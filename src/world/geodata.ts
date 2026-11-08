@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { animateFoliage } from '../living/atmosphere';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { toLocal } from './geo';
 import { setBuildingFootprints } from './collisions';
@@ -518,6 +519,7 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     // Per-cell materials allow a smooth distance fade without rebuilding instances.
     const trunkCellMaterial=trunkMaterial.clone();
     const crownCellMaterial=crownMaterial.clone();
+    animateFoliage(crownCellMaterial);
     // Opaque foliage writes depth normally: no ground bleeding through crowns.
     const trunks=new THREE.InstancedMesh(trunkGeometry,trunkCellMaterial,cellPoints.length);
     const crowns=new THREE.InstancedMesh(crownGeometry,crownCellMaterial,cellPoints.length);

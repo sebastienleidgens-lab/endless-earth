@@ -5,3 +5,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden}#app{position:fixed;in
 .quiet-control{position:fixed;left:14px;z-index:20;background:#304d40ed;color:#fff;border:1px solid #ffffff55;border-radius:8px;padding:8px 12px;font:12px system-ui;cursor:pointer}.quality-control{top:128px}.sound-control{top:166px}
 
 @media(max-width:550px){.perf-panel{top:auto!important;bottom:220px;font-size:9px!important;padding:7px!important;opacity:.9}}
+.living-panel{position:fixed;top:100px;left:16px;z-index:22;display:flex;flex-wrap:wrap;gap:8px;max-width:360px;background:#243e32e8;padding:12px;border-radius:12px;color:#fff;font:13px system-ui}.living-panel button{border:1px solid #ffffff55;border-radius:8px;padding:10px;background:#e8dfc6;color:#293b2e;cursor:pointer}.living-panel button:disabled{opacity:.5}.living-panel span,.living-panel small{width:100%}
+
+.quality-control{top:224px}
+@media(max-width:550px){.living-panel{top:112px;left:14px;right:14px}.quality-control{top:250px}}
