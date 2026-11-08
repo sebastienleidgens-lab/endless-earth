@@ -53,7 +53,21 @@ export class Terrain {
       const up=g.elevations_m[Math.max(0,z-1)*g.width+x];
       const down=g.elevations_m[Math.min(g.height-1,z+1)*g.width+x];
       const slope=Math.hypot(right-left,down-up)/(2*g.step_m);
-      const color=new THREE.Color(slope>.9?0x9c9987:slope>.4?0xaaa78c:0x86a47a);
+      // The Anglin valley has real limestone cliffs. Blend bare limestone
+      // into steep slopes directly in the terrain's vertex colors: no extra
+      // overlapping ground meshes (which previously caused z-fighting).
+      const smoothstep=(a:number,b:number,v:number)=>{
+        const t=THREE.MathUtils.clamp((v-a)/(b-a),0,1);
+        return t*t*(3-2*t);
+      };
+      const grass=new THREE.Color(0x86a47a);
+      const dryGrass=new THREE.Color(0x9eaa80);
+      const limestone=new THREE.Color(0xb8b09a);
+      const exposedRock=new THREE.Color(0xaaa394);
+      const dry=smoothstep(.12,.38,slope);
+      const rock=smoothstep(.38,1.05,slope);
+      const color=grass.lerp(dryGrass,dry).lerp(limestone,rock);
+      color.lerp(exposedRock,smoothstep(1.05,1.9,slope)*.55);
       colors.push(color.r,color.g,color.b);
     }
     for(let z=0;z<g.height-1;z++)for(let x=0;x<g.width-1;x++){
