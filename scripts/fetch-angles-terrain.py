@@ -10,10 +10,10 @@ import urllib.request
 from datetime import datetime, timezone
 
 LAT, LON = 46.6953, 0.8844
-STEP = 20.0
-SIZE = 101  # 2 km square, centered on the village
+STEP = 10.0
+SIZE = 201  # Same 2 km footprint, 4x the samples of the 20 m pilot grid
 HALF = (SIZE - 1) // 2
-CHUNK = 2000  # IGN accepts at most 5000 points per call
+CHUNK = 2000  # IGN accepts at most 5000 points per call; bounded batches
 URL = "https://data.geopf.fr/altimetrie/1.0/calcul/alti/rest/elevation.json"
 HEADERS = {
     "User-Agent": "EndlessEarthResearch/0.1 (github.com/sebastienleidgens-lab/endless-earth)",
@@ -57,6 +57,8 @@ def sample_grid():
                 raise ValueError(f"IGN returned invalid or nodata altitude at {offset}")
         values.extend(round(float(v), 2) for v in heights)
         print(f"IGN elevations: {len(values)}/{len(points)}", flush=True)
+    if len(values) != SIZE * SIZE:
+        raise ValueError('Incomplete terrain sampling; refusing publication')
     if max(values) - min(values) < 1:
         raise ValueError("Suspiciously flat terrain; refusing publication")
     return {
