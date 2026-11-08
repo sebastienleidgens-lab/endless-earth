@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { createDemoWorld } from './world/demo';
 import { loadAnglesGeography, updateVegetationLOD } from './world/geodata';
 import { fetchTerrain, type Terrain } from './world/terrain';
-import { ANGLES } from './world/geo';
+import { ANGLES, toLocal } from './world/geo';
 import { InputController } from './controls/input';
 import { moveWithCollision } from './world/collisions';
 import './style.css';
@@ -28,6 +28,25 @@ const params = new URLSearchParams(location.search);
 const terrainPreview = params.get('terrain') === '1';
 const tilesPreview = params.get('tiles') === '1';
 const terrainDebug = params.get('terrainDebug') === '1';
+// Approximate site reference, not a surveyed fortress footprint. Historical
+// sources agree on the rocky promontory but differ on their POI coordinates.
+const fortressSite=toLocal({lat:46.69390,lon:0.88310});
+if(tilesPreview){
+  const landmark=document.createElement('button');
+  landmark.type='button';
+  landmark.textContent='⌖ Forteresse · situer';
+  landmark.title='Rejoindre le site approximatif du château (pas un relevé des murs)';
+  landmark.style.cssText='position:fixed;right:14px;bottom:18px;z-index:20;background:#304d40ed;color:white;border:1px solid #ffffff55;border-radius:8px;padding:11px 14px;font:600 13px system-ui;cursor:pointer';
+  landmark.addEventListener('click',()=>{
+    avatar.position.x=fortressSite.x;
+    avatar.position.z=fortressSite.z;
+    const ground=activeTerrain?.relativeHeight(fortressSite.x,fortressSite.z);
+    if(ground!==null&&ground!==undefined)avatar.position.y=ground;
+    zoom=110;
+  });
+  root.append(landmark);
+}
+
 // Aerial OSM mode prioritizes responsiveness: terrain and facades still receive light.
 if(tilesPreview)renderer.shadowMap.enabled=false;
 // Optional live GPU diagnostics: ?tiles=1&perf=1 (disabled by default).
