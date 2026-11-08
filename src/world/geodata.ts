@@ -126,6 +126,29 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
   const roof=new THREE.Mesh(geometry,material);
   roof.castShadow=false;roof.receiveShadow=true;scene.add(roof);
 }
+// Four-sided pyramidal roof only when explicitly mapped in OSM.
+// All corners meet a single apex; no extra geometry is invented for other shapes.
+function addPyramidalRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,height:number,material:THREE.Material,explicitRise:number|null):void{
+  const corners=ring.slice();
+  if(corners.length>4&&corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
+  if(corners.length!==4)return;
+  const edges=corners.map((p,i)=>Math.hypot(p.x-corners[(i+1)%4].x,p.z-corners[(i+1)%4].z));
+  if(edges.some(length=>length<3||length>90))return;
+  const centerX=corners.reduce((sum,p)=>sum+p.x,0)/4;
+  const centerZ=corners.reduce((sum,p)=>sum+p.z,0)/4;
+  const rise=explicitRise??Math.min(4,Math.max(1.2,Math.min(...edges)*.3),height*.45);
+  const vertices:number[]=[];
+  for(let i=0;i<4;i++){
+    const a=corners[i],b=corners[(i+1)%4];
+    vertices.push(a.x,top,a.z,b.x,top,b.z,centerX,top+rise,centerZ);
+  }
+  const geometry=new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+  geometry.computeVertexNormals();
+  const roof=new THREE.Mesh(geometry,material);
+  roof.castShadow=false;roof.receiveShadow=true;
+  scene.add(roof);
+}
 // Drape mapped land-cover polygons onto the DEM. Subdivide their triangles
 // before sampling so large forest polygons do not cut through valley slopes.
 function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THREE.Material,holes:THREE.Vector3[][]=[],offset=.35):THREE.Mesh{
@@ -436,8 +459,13 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const wallIndex=mix(hz^Math.imul(hx,131)^0x5f3759df)%WALL_MATERIALS.length;
         const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[wallIndex]]);
         mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
-        if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
-          addGableRoof(scene,ring,base+height+slopeRise,height,GABLE_ROOF_MATERIALS[roofIndex],roofRise(tags,height));
+        const roofShape=typeof tags['roof:shape']==='string'?tags['roof:shape']:'';
+        const top=base+height+slopeRise;
+        const rise=roofRise(tags,height);
+        if(roofShape==='pyramidal')
+          addPyramidalRoof(scene,ring,top,height,GABLE_ROOF_MATERIALS[roofIndex],rise);
+        else if(roofShape===''||roofShape==='gabled')
+          addGableRoof(scene,ring,top,height,GABLE_ROOF_MATERIALS[roofIndex],rise);
         count++;
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
         // The DEM is already the ground. A second, independently triangulated
