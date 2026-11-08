@@ -18,7 +18,7 @@ const FLAT_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x9a6758});
 const GABLE_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x975c4b,side:THREE.DoubleSide});
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
 const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
-const WATER_MATERIAL=new THREE.MeshLambertMaterial({color:0x739da8,side:THREE.DoubleSide});
+const WATER_MATERIAL=WATER_MATERIAL;
 function insideArea(p:THREE.Vector3){return Math.abs(p.x)<=LOCAL_LIMIT&&Math.abs(p.z)<=LOCAL_LIMIT;}
 function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain){
   if(points.length<2)return;
@@ -102,8 +102,38 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
   const roof=new THREE.Mesh(geometry,GABLE_ROOF_MATERIAL);
   roof.castShadow=true;roof.receiveShadow=true;scene.add(roof);
 }
+// Trees are placed only where OSM explicitly maps a tree.
+// Instancing keeps hundreds of trees to two draw calls.
+function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain):number{
+  const points:THREE.Vector3[]=[];
+  for(const feature of features){
+    if(feature.geometry?.type!=='Point'||feature.properties?.natural!=='tree')continue;
+    const coords=feature.geometry.coordinates;
+    if(!Array.isArray(coords)||typeof coords[0]!=='number'||typeof coords[1]!=='number')continue;
+    const local=toLocal({lon:coords[0],lat:coords[1]});
+    const p=new THREE.Vector3(local.x,terrain?.relativeHeight(local.x,local.z)??0,local.z);
+    if(insideArea(p))points.push(p);
+  }
+  if(!points.length)return 0;
+  const trunkGeometry=new THREE.CylinderGeometry(.25,.38,3.5,5);
+  const crownGeometry=new THREE.ConeGeometry(2.4,6,7);
+  const trunks=new THREE.InstancedMesh(trunkGeometry,new THREE.MeshLambertMaterial({color:0x76614b}),points.length);
+  const crowns=new THREE.InstancedMesh(crownGeometry,new THREE.MeshLambertMaterial({color:0x567b51}),points.length);
+  const dummy=new THREE.Object3D();
+  points.forEach((p,i)=>{
+    const scale=.8+(Math.sin(p.x*12.9898+p.z*78.233)*43758.5453%1+1)%1*.45;
+    dummy.position.set(p.x,p.y+1.75*scale,p.z);
+    dummy.scale.setScalar(scale);dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
+    dummy.position.set(p.x,p.y+5.6*scale,p.z);
+    dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);
+  });
+  trunks.instanceMatrix.needsUpdate=true;crowns.instanceMatrix.needsUpdate=true;
+  trunks.castShadow=true;crowns.castShadow=true;
+  scene.add(trunks,crowns);
+  return points.length;
+}
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
-  let count=0;
+  let count=addMappedTrees(scene,features,terrain);
   for(const f of features){
     const tags=f.properties??{};
     if(f.geometry?.type==='LineString'){
