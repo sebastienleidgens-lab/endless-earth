@@ -145,15 +145,52 @@ function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THR
 }
 // Trees are placed only where OSM explicitly maps a tree.
 // Instancing keeps hundreds of trees to two draw calls.
+function pointInRing(x:number,z:number,ring:THREE.Vector3[]):boolean{
+  let inside=false;
+  for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+    const a=ring[i],b=ring[j];
+    if((a.z>z)!==(b.z>z) && x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)inside=!inside;
+  }
+  return inside;
+}
 function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain):number{
   const points:THREE.Vector3[]=[];
+  const add=(x:number,z:number)=>{
+    if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>980||Math.abs(z)>980||points.length>=2500)return;
+    const h=terrain?.relativeHeight(x,z);
+    if(terrain && h===null)return;
+    points.push(new THREE.Vector3(x,h??0,z));
+  };
   for(const feature of features){
-    if(feature.geometry?.type!=='Point'||feature.properties?.natural!=='tree')continue;
-    const coords=feature.geometry.coordinates;
-    if(!Array.isArray(coords)||typeof coords[0]!=='number'||typeof coords[1]!=='number')continue;
-    const local=toLocal({lon:coords[0],lat:coords[1]});
-    const p=new THREE.Vector3(local.x,terrain?.relativeHeight(local.x,local.z)??0,local.z);
-    if(insideArea(p))points.push(p);
+    const tags=feature.properties??{};
+    if(feature.geometry?.type==='Point'&&tags.natural==='tree'){
+      const coords=feature.geometry.coordinates;
+      if(Array.isArray(coords)&&typeof coords[0]==='number'&&typeof coords[1]==='number'){
+        const p=toLocal({lon:coords[0],lat:coords[1]});
+        add(p.x,p.z);
+      }
+    }
+    // The forest footprint is mapped, but individual tree positions are
+    // illustrative. Deterministic 14 m spacing avoids flicker and GPU spikes.
+    if(feature.geometry?.type==='Polygon' &&
+       (tags.natural==='wood'||tags.landuse==='forest'||tags.landuse==='orchard')){
+      const coords=feature.geometry.coordinates;
+      if(!Array.isArray(coords))continue;
+      const ring=coordsToPoints(coords[0]);
+      if(ring.length<4)continue;
+      const minX=Math.max(-980,Math.min(...ring.map(p=>p.x)));
+      const maxX=Math.min(980,Math.max(...ring.map(p=>p.x)));
+      const minZ=Math.max(-980,Math.min(...ring.map(p=>p.z)));
+      const maxZ=Math.min(980,Math.max(...ring.map(p=>p.z)));
+      const spacing=tags.landuse==='orchard'?16:14;
+      for(let z=Math.ceil(minZ/spacing)*spacing;z<=maxZ && points.length<2500;z+=spacing)
+        for(let x=Math.ceil(minX/spacing)*spacing;x<=maxX && points.length<2500;x+=spacing){
+          const seed=Math.sin(x*12.9898+z*78.233)*43758.5453;
+          const jitter=(seed-Math.floor(seed)-.5)*spacing*.55;
+          const px=x+jitter,pz=z+jitter*.7;
+          if(pointInRing(px,pz,ring))add(px,pz);
+        }
+    }
   }
   if(!points.length)return 0;
   const trunkGeometry=new THREE.CylinderGeometry(.25,.38,3.5,5);
@@ -162,9 +199,11 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
   const crowns=new THREE.InstancedMesh(crownGeometry,new THREE.MeshLambertMaterial({color:0x567b51}),points.length);
   const dummy=new THREE.Object3D();
   points.forEach((p,i)=>{
-    const scale=.8+(Math.sin(p.x*12.9898+p.z*78.233)*43758.5453%1+1)%1*.45;
+    const seed=Math.sin(p.x*12.9898+p.z*78.233)*43758.5453;
+    const scale=.8+(seed-Math.floor(seed))*.45;
+    dummy.scale.setScalar(scale);
     dummy.position.set(p.x,p.y+1.75*scale,p.z);
-    dummy.scale.setScalar(scale);dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
+    dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
     dummy.position.set(p.x,p.y+5.6*scale,p.z);
     dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);
   });
