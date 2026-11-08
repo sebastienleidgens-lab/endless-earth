@@ -30,8 +30,11 @@ export class Terrain {
     const x0=Math.min(Math.floor(fx),g.width-2),z0=Math.min(Math.floor(fz),g.height-2);
     const tx=fx-x0,tz=fz-z0;
     const h=(xx:number,zz:number)=>g.elevations_m[zz*g.width+xx];
-    return (1-tz)*((1-tx)*h(x0,z0)+tx*h(x0+1,z0))+
-      tz*((1-tx)*h(x0,z0+1)+tx*h(x0+1,z0+1));
+    const a=h(x0,z0),b=h(x0+1,z0),cc=h(x0,z0+1),d=h(x0+1,z0+1);
+    // Match the exact two triangles used by createMesh(), not a bilinear
+    // surface that can float above or sink below the rendered terrain.
+    if(tx+tz<=1)return a+(b-a)*tx+(cc-a)*tz;
+    return d+(cc-d)*(1-tx)+(b-d)*(1-tz);
   }
   createMesh():THREE.Mesh {
     const g=this.grid, positions:number[]=[],indices:number[]=[],colors:number[]=[];
