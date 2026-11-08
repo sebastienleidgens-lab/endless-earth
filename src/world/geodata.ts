@@ -13,7 +13,7 @@ function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
 }
 const LOCAL_LIMIT=1050;
 // Shared materials avoid allocating thousands of identical GPU resources.
-const WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xcab89d});
+const WALL_MATERIALS=[0xcab89d,0xd8c7ab,0xb8a991,0xe0d1b8].map(color=>new THREE.MeshLambertMaterial({color}));
 const FLAT_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x9a6758});
 const GABLE_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x975c4b,side:THREE.DoubleSide});
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
@@ -155,7 +155,8 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const geometry=new THREE.ExtrudeGeometry(shape,{depth:height+slopeRise,bevelEnabled:false});
         geometry.rotateX(-Math.PI/2);
         geometry.translate(0,base,0);
-        const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIAL,WALL_MATERIAL]);
+        const seed=Math.abs(Math.round(ring[0].x*31+ring[0].z*17));
+        const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIAL,WALL_MATERIALS[seed%WALL_MATERIALS.length]]);
         mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
         if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
           addGableRoof(scene,ring,base+height+slopeRise,height);
