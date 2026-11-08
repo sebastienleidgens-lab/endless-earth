@@ -35,13 +35,9 @@ function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
   ring.forEach((p,i)=>i===0?shape.moveTo(p.x,-p.z):shape.lineTo(p.x,-p.z));
   return shape;
 }
-export async function loadAnglesGeography(scene:THREE.Object3D):Promise<number>{
-  const response=await fetch(`${import.meta.env.BASE_URL}data/angles-osm.geojson`);
-  if(!response.ok) return 0;
-  const data=await response.json() as Collection;
-  if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
+export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[]):number{
   let count=0;
-  for(const f of data.features){
+  for(const f of features){
     const tags=f.properties??{};
     if(f.geometry?.type==='LineString'){
       const pts=coordsToPoints(f.geometry.coordinates);
@@ -64,6 +60,15 @@ export async function loadAnglesGeography(scene:THREE.Object3D):Promise<number>{
       }
     }
   }
-  if(count>0) setBuildingFootprints(data.features);
   return count;
 }
+export async function loadAnglesGeography(scene:THREE.Object3D):Promise<number>{
+  const response=await fetch(`${import.meta.env.BASE_URL}data/angles-osm.geojson`);
+  if(!response.ok)return 0;
+  const data=await response.json() as Collection;
+  if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
+  const count=renderGeoFeatures(scene,data.features);
+  if(count>0)setBuildingFootprints(data.features);
+  return count;
+}
+
