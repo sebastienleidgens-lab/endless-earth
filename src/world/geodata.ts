@@ -15,10 +15,10 @@ const LOCAL_LIMIT=1050;
 // Shared materials avoid allocating thousands of identical GPU resources.
 const WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xcab89d});
 const FLAT_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x9a6758});
-const GABLE_ROOF_MATERIAL=GABLE_ROOF_MATERIAL;
+const GABLE_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x975c4b,side:THREE.DoubleSide});
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
 const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
-const WATER_MATERIAL=WATER_MATERIAL;
+const WATER_MATERIAL=new THREE.MeshLambertMaterial({color:0x739da8,side:THREE.DoubleSide});
 function insideArea(p:THREE.Vector3){return Math.abs(p.x)<=LOCAL_LIMIT&&Math.abs(p.z)<=LOCAL_LIMIT;}
 function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain){
   if(points.length<2)return;
