@@ -64,14 +64,21 @@ export class Terrain {
       const up=g.elevations_m[Math.max(0,z-1)*g.width+x];
       const down=g.elevations_m[Math.min(g.height-1,z+1)*g.width+x];
       const slope=Math.hypot(right-left,down-up)/(2*g.step_m);
-      // The Anglin valley has real limestone cliffs. Blend bare limestone
-      // into steep slopes directly in the terrain's vertex colors: no extra
-      // overlapping ground meshes (which previously caused z-fighting).
+      // Exposed limestone is visible on the steep Anglin valley sides.
+      // Shade it within the DEM's existing vertex colors: an extra rock
+      // surface would intersect the terrain and reintroduce z-fighting.
       const dry=smoothstep(.12,.38,slope);
-      const rock=smoothstep(.38,1.05,slope);
-      // copy() is essential: never mutate the shared grass palette entry.
+      const rock=smoothstep(.34,.95,slope);
       color.copy(grass).lerp(dryGrass,dry).lerp(limestone,rock);
-      color.lerp(exposedRock,smoothstep(1.05,1.9,slope)*.55);
+      // Faceted, stratified limestone variation derived from surveyed
+      // elevation and slope. This changes only color, never DEM geometry.
+      if(rock>.001){
+        const band=Math.sin(elevation*1.65+Math.sin(x*.31+z*.17)*.8);
+        const grain=Math.sin(x*2.17+z*1.31)*Math.sin(x*.73-z*1.93);
+        const shade=THREE.MathUtils.clamp(.93+band*.065+grain*.035,.79,1.08);
+        color.multiplyScalar(1+(shade-1)*rock);
+        color.lerp(exposedRock,smoothstep(.95,1.75,slope)*.64);
+      }
       colors.push(color.r,color.g,color.b);
     }
     for(let z=0;z<g.height-1;z++)for(let x=0;x<g.width-1;x++){
