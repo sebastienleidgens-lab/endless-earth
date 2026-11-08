@@ -2,13 +2,20 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const center = { lat: 46.6953, lon: 0.8844 };
 const radius = 900;
 const query = `[out:json][timeout:90];(way(around:${radius},${center.lat},${center.lon})[highway];way(around:${radius},${center.lat},${center.lon})[building];way(around:${radius},${center.lat},${center.lon})[waterway];way(around:${radius},${center.lat},${center.lon})[natural=water];);out geom;`;
-const endpoints = ['https://overpass.private.coffee/api/interpreter','https://overpass-api.de/api/interpreter'];
+const endpoints = [
+  'https://overpass.kumi.systems/api/interpreter',
+  'https://overpass.nchc.org.tw/api/interpreter',
+  'https://overpass.private.coffee/api/interpreter',
+  'https://overpass-api.de/api/interpreter'
+];
 let data;
 for(const endpoint of endpoints) {
   try {
-    const response=await fetch(endpoint,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded','user-agent':'EndlessEarth/0.1 (github.com/sebastienleidgens-lab/endless-earth)'},body:new URLSearchParams({data:query}),signal:AbortSignal.timeout(100000)});
+    const response=await fetch(endpoint,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded','user-agent':'EndlessEarth/0.1 (github.com/sebastienleidgens-lab/endless-earth)'},body:new URLSearchParams({data:query}),signal:AbortSignal.timeout(35000)});
     if(!response.ok) throw new Error(`HTTP ${response.status}`);
-    data=await response.json(); break;
+    const candidate=await response.json();
+    if(!Array.isArray(candidate.elements) || candidate.elements.length<5) throw new Error('Incomplete OSM response');
+    data=candidate; break;
   } catch(err){ console.warn(`Overpass unavailable at ${endpoint}: ${err.message}`); }
 }
 if(!data) throw new Error('No Overpass endpoint available. Retry later; no fabricated geographic data will be written.');
