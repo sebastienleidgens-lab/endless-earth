@@ -262,6 +262,51 @@ function batchLinearFeatures(scene:THREE.Object3D):void{
     scene.add(combined);
   }
 }
+// Merge building surfaces by actual material, including the two material
+// groups of ExtrudeGeometry. Keeping separate groups would retain draw calls.
+function batchBuildings(scene:THREE.Object3D):void{
+  const buckets=new Map<THREE.Material,THREE.BufferGeometry[]>();
+  const originals:THREE.Mesh[]=[];
+  const materials:THREE.Material[]=[FLAT_ROOF_MATERIAL,...WALL_MATERIALS,GABLE_ROOF_MATERIAL];
+  for(const child of scene.children){
+    if(!(child instanceof THREE.Mesh))continue;
+    const assigned=Array.isArray(child.material)?child.material:[child.material];
+    if(!assigned.every(material=>materials.includes(material)))continue;
+    const source=child.geometry;
+    const expanded=source.index?source.toNonIndexed():source.clone();
+    const position=expanded.getAttribute('position');
+    const normal=expanded.getAttribute('normal');
+    if(!position||!normal){expanded.dispose();continue;}
+    const groups=expanded.groups.length?expanded.groups:[{start:0,count:position.count,materialIndex:0}];
+    for(const group of groups){
+      const material=assigned[group.materialIndex];
+      if(!material)continue;
+      const positions=new Float32Array(group.count*3);
+      const normals=new Float32Array(group.count*3);
+      for(let i=0;i<group.count;i++){
+        const j=group.start+i;
+        positions[i*3]=position.getX(j);positions[i*3+1]=position.getY(j);positions[i*3+2]=position.getZ(j);
+        normals[i*3]=normal.getX(j);normals[i*3+1]=normal.getY(j);normals[i*3+2]=normal.getZ(j);
+      }
+      const geometry=new THREE.BufferGeometry();
+      geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
+      geometry.setAttribute('normal',new THREE.BufferAttribute(normals,3));
+      if(!buckets.has(material))buckets.set(material,[]);
+      buckets.get(material)!.push(geometry);
+    }
+    expanded.dispose();
+    originals.push(child);
+  }
+  for(const [material,geometries] of buckets){
+    const merged=mergeGeometries(geometries,false);
+    for(const geometry of geometries)geometry.dispose();
+    if(!merged)continue;
+    const mesh=new THREE.Mesh(merged,material);
+    mesh.receiveShadow=true;
+    scene.add(mesh);
+  }
+  for(const mesh of originals){scene.remove(mesh);mesh.geometry.dispose();}
+}
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
   let count=addMappedTrees(scene,features,terrain);
   for(const f of features){
@@ -306,6 +351,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
     }
   }
   batchLinearFeatures(scene);
+  batchBuildings(scene);
   return count;
 }
 export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain):Promise<number>{
