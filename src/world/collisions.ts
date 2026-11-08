@@ -1,7 +1,11 @@
 import * as THREE from 'three';
+// @ts-ignore shared runtime kernel
+import { circleHitsPolygon, moveGrounded } from '../controls/walking.mjs';
 import { toLocal } from './geo';
 type Point = { x:number; z:number };
 let realFootprints: Point[][] | null = null;
+const cells=new Map<string,Point[][]>();
+const cellKey=(x:number,z:number)=>`${Math.floor(x/20)},${Math.floor(z/20)}`;
 export function setBuildingFootprints(features: Array<{geometry?:{type:string;coordinates:unknown};properties?:Record<string,unknown>}>) {
   const polygons:Point[][]=[];
   for(const feature of features){
@@ -15,37 +19,29 @@ export function setBuildingFootprints(features: Array<{geometry?:{type:string;co
     if(points.length>=3)polygons.push(points);
   }
   realFootprints=polygons;
-}
-function inPolygon(x:number,z:number,poly:Point[]):boolean {
-  let inside=false;
-  for(let i=0,j=poly.length-1;i<poly.length;j=i++){
-    const a=poly[i],b=poly[j];
-    if((a.z>z)!==(b.z>z) && x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)inside=!inside;
+  cells.clear();
+  for(const poly of polygons){
+    const xs=poly.map(p=>p.x),zs=poly.map(p=>p.z);
+    for(let x=Math.floor((Math.min(...xs)-.3)/20);x<=Math.floor((Math.max(...xs)+.3)/20);x++)
+      for(let z=Math.floor((Math.min(...zs)-.3)/20);z<=Math.floor((Math.max(...zs)+.3)/20);z++){
+        const key=`${x},${z}`;if(!cells.has(key))cells.set(key,[]);cells.get(key)!.push(poly);
+      }
   }
-  return inside;
 }
 export function canWalk(x:number,z:number):boolean {
   if(Math.abs(x)>1000||Math.abs(z)>1000)return false;
   if(realFootprints!==null){
-    // Polygon interiors only; detailed wall clearance comes later.
-    return !realFootprints.some(poly=>inPolygon(x,z,poly));
+    // Uniform grid broad phase; exact polygon and 30 cm body clearance.
+    return !(cells.get(cellKey(x,z))??[]).some(poly=>circleHitsPolygon(x,z,poly));
   }
   // Colliders for the illustrative demo only.
   if(Math.abs(x)>205||Math.abs(z)>205)return false;
   for(let i=0;i<12;i++){
     const hx=(i%2?1:-1)*(20+(i%3)*7),hz=Math.floor(i/2)*35-90;
-    if(Math.abs(x-hx)<7.6&&Math.abs(z-hz)<7.1)return false;
+    if(Math.abs(x-hx)<7.9&&Math.abs(z-hz)<7.4)return false;
   }
   return true;
 }
-export function moveWithCollision(position:THREE.Vector3,displacement:THREE.Vector3){
-  const steps=Math.max(1,Math.ceil(displacement.length()/.35));
-  const dx=displacement.x/steps,dz=displacement.z/steps;
-  for(let i=0;i<steps;i++){
-    if(canWalk(position.x+dx,position.z+dz)){position.x+=dx;position.z+=dz;}
-    else{
-      if(canWalk(position.x+dx,position.z))position.x+=dx;
-      if(canWalk(position.x,position.z+dz))position.z+=dz;
-    }
-  }
+export function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null=()=>0){
+  moveGrounded(position,displacement,canWalk,height);
 }
