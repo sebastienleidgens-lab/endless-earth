@@ -241,8 +241,7 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     // Per-cell materials allow a smooth distance fade without rebuilding instances.
     const trunkCellMaterial=trunkMaterial.clone();
     const crownCellMaterial=crownMaterial.clone();
-    trunkCellMaterial.transparent=true;trunkCellMaterial.depthWrite=false;
-    crownCellMaterial.transparent=true;crownCellMaterial.depthWrite=false;
+    // Opaque foliage writes depth normally: no ground bleeding through crowns.
     const trunks=new THREE.InstancedMesh(trunkGeometry,trunkCellMaterial,cellPoints.length);
     const crowns=new THREE.InstancedMesh(crownGeometry,crownCellMaterial,cellPoints.length);
     cellPoints.forEach((p,i)=>{
@@ -271,23 +270,17 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
   }
   return points.length;
 }
-// Fade individual vegetation cells rather than abruptly removing entire forests.
-// At distance, narrow cone tips alias badly; the OSM ground cover stays visible.
+// Distance culling is conservative and hysteretic. No transparent foliage:
+// transparency made the underlying terrain appear/disappear while orbiting.
 export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):void{
-  const fade=(distance:number,start:number,end:number):number=>
-    THREE.MathUtils.clamp((end-distance)/(end-start),0,1);
   scene.traverse(object=>{
     if(!object.userData.vegetationCell)return;
     const x=object.userData.centerX as number,z=object.userData.centerZ as number;
     const distance=Math.hypot(camera.position.x-x,camera.position.z-z);
     const trunks=object.children[0] as THREE.InstancedMesh;
     const crowns=object.children[1] as THREE.InstancedMesh;
-    const trunkOpacity=fade(distance,170,310);
-    const crownOpacity=fade(distance,240,430);
-    (trunks.material as THREE.MeshLambertMaterial).opacity=trunkOpacity;
-    (crowns.material as THREE.MeshLambertMaterial).opacity=crownOpacity;
-    trunks.visible=trunkOpacity>.015;
-    crowns.visible=crownOpacity>.015;
+    trunks.visible=trunks.visible?distance<310:distance<280;
+    crowns.visible=crowns.visible?distance<430:distance<400;
   });
 }
 // Merge the many separate road/river meshes into one mesh per material.
@@ -395,10 +388,11 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
           addGableRoof(scene,ring,base+height+slopeRise,height);
         count++;
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
-        // Ground cover follows the real DEM; mapped boundaries are preserved.
-        const material=tags.natural==='scrub'?SCRUB_MATERIAL:tags.leisure==='park'?PARK_MATERIAL:WOOD_MATERIAL;
-        const holes=f.geometry.coordinates.slice(1).map(coords=>coordsToPoints(coords,terrain)).filter(points=>points.length>=4);
-        scene.add(drapedCover(ring,terrain,material,holes));count++;
+        // The DEM is already the ground. A second, independently triangulated
+        // surface can intersect its triangles on slopes and flash with camera
+        // motion (z-fighting). Preserve OSM polygons for tree placement, but
+        // don't overlay a competing terrain mesh until DEM-cell clipping exists.
+        count++;
       } else if(tags.natural==='water'){
         // Water surfaces remain level at their lowest mapped edge.
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
