@@ -27,6 +27,15 @@ const hint = document.querySelector<HTMLElement>('.hud small');
 const params = new URLSearchParams(location.search);
 const terrainPreview = params.get('terrain') === '1';
 const tilesPreview = params.get('tiles') === '1';
+// Optional live GPU diagnostics: ?tiles=1&perf=1 (disabled by default).
+const perfPreview = params.get('perf') === '1';
+const perfPanel = perfPreview ? document.createElement('div') : null;
+if(perfPanel){
+  perfPanel.setAttribute('role','status');
+  perfPanel.style.cssText='position:fixed;right:12px;top:12px;z-index:30;background:#17251de6;color:#fff;padding:10px 13px;border-radius:7px;font:12px/1.6 monospace;pointer-events:none;white-space:pre';
+  perfPanel.textContent='GPU : initialisation…';
+  root.append(perfPanel);
+}
 if (terrainPreview) {
   fetchTerrain().then(terrain=>{
     if(!terrain) { if(hint)hint.textContent='Relief indisponible · décor illustratif'; return; }
@@ -99,6 +108,7 @@ camera.lookAt(0,2,0);
 renderer.render(scene,camera);
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
+let perfElapsed=0,perfFrames=0;
 function frame(){requestAnimationFrame(frame);const dt=Math.min(clock.getDelta(),.05);
 const controls=input.getVector();
 const dir=new THREE.Vector3(Math.sin(yaw)*controls.forward+Math.cos(yaw)*controls.strafe,0,Math.cos(yaw)*controls.forward-Math.sin(yaw)*controls.strafe);
@@ -115,4 +125,13 @@ camera.lookAt(avatar.position.x,avatar.position.y+2,avatar.position.z);
 sun.position.set(avatar.position.x-60,100,avatar.position.z+55);sun.target.position.copy(avatar.position);sun.target.updateMatrixWorld();
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateVegetationLOD(scene,camera)}
-renderer.render(scene,camera)}frame();
+renderer.render(scene,camera);
+if(perfPanel){
+  perfElapsed+=dt;perfFrames++;
+  if(perfElapsed>=1){
+    const info=renderer.info;
+    perfPanel.textContent=`FPS ≈ ${Math.round(perfFrames/perfElapsed)}\nDraw calls : ${info.render.calls}\nTriangles : ${info.render.triangles.toLocaleString('fr-FR')}\nGéométries : ${info.memory.geometries}\nTextures : ${info.memory.textures}\nRatio pixels : ${renderer.getPixelRatio().toFixed(1)}`;
+    perfElapsed=0;perfFrames=0;
+  }
+}
+}frame();
