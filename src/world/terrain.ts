@@ -71,6 +71,29 @@ export class Terrain {
     const mesh=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}));
     mesh.receiveShadow=true;return mesh;
   }
+  // Optional terrain inspection: highlight DEM cells with abrupt elevation
+  // transitions without modifying any surveyed heights or the normal view.
+  createSlopeDiagnostics(thresholdMetres=15):{overlay:THREE.LineSegments;cells:number}{
+    const g=this.grid,baseline=this.sample(0,0)??g.elevations_m[0];
+    const positions:number[]=[];
+    let cells=0;
+    for(let z=0;z<g.height-1;z++)for(let x=0;x<g.width-1;x++){
+      const i=z*g.width+x;
+      const h=[g.elevations_m[i],g.elevations_m[i+1],g.elevations_m[i+g.width],g.elevations_m[i+g.width+1]];
+      if(Math.max(...h)-Math.min(...h)<thresholdMetres)continue;
+      cells++;
+      const x0=g.origin_x_m+x*g.step_m,z0=g.origin_z_m+z*g.step_m;
+      const corners=[[x0,h[0]-baseline+.7,z0],[x0+g.step_m,h[1]-baseline+.7,z0],
+        [x0+g.step_m,h[3]-baseline+.7,z0+g.step_m],[x0,h[2]-baseline+.7,z0+g.step_m]];
+      for(let edge=0;edge<4;edge++)positions.push(...corners[edge],...corners[(edge+1)%4]);
+    }
+    const geometry=new THREE.BufferGeometry();
+    geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+    const overlay=new THREE.LineSegments(geometry,new THREE.LineBasicMaterial({color:0xff00c8,depthTest:false,transparent:true,opacity:.85}));
+    overlay.frustumCulled=false;
+    overlay.renderOrder=100;
+    return {overlay,cells};
+  }
   relativeHeight(x:number,z:number):number|null {
     const h=this.sample(x,z),baseline=this.sample(0,0)??this.grid.elevations_m[0];
     return h===null?null:h-baseline;
