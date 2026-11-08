@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { createDemoWorld } from './world/demo';
-import { loadAnglesGeography } from './world/geodata';
+import { loadAnglesGeography, updateVegetationLOD } from './world/geodata';
 import { fetchTerrain, type Terrain } from './world/terrain';
 import { ANGLES } from './world/geo';
 import { InputController } from './controls/input';
@@ -98,6 +98,7 @@ camera.position.set(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
 camera.lookAt(0,2,0);
 renderer.render(scene,camera);
 const clock=new THREE.Clock();
+let vegetationLodElapsed=0;
 function frame(){requestAnimationFrame(frame);const dt=Math.min(clock.getDelta(),.05);
 const controls=input.getVector();
 const dir=new THREE.Vector3(Math.sin(yaw)*controls.forward+Math.cos(yaw)*controls.strafe,0,Math.cos(yaw)*controls.forward-Math.sin(yaw)*controls.strafe);
@@ -111,4 +112,7 @@ if(activeTerrain){
 }
 camera.position.lerp(target,1-Math.pow(.91,dt*60));
 camera.lookAt(avatar.position.x,avatar.position.y+2,avatar.position.z);
-sun.position.set(avatar.position.x-60,100,avatar.position.z+55);sun.target.position.copy(avatar.position);sun.target.updateMatrixWorld();renderer.render(scene,camera)}frame();
+sun.position.set(avatar.position.x-60,100,avatar.position.z+55);sun.target.position.copy(avatar.position);sun.target.updateMatrixWorld();
+vegetationLodElapsed+=dt;
+if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateVegetationLOD(scene,camera)}
+renderer.render(scene,camera)}frame();
