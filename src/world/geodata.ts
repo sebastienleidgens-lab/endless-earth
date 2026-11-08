@@ -417,6 +417,11 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
   // plantation of conifers. Still one instanced mesh and one draw call per cell.
   const crownGeometry=new THREE.IcosahedronGeometry(1,1);
   crownGeometry.scale(2.8,3.1,2.8);
+  // Low, faceted undergrowth: restrained clusters near some mapped woodland
+  // trees. Their exact positions are illustrative, never OSM-surveyed shrubs.
+  const shrubGeometry=new THREE.IcosahedronGeometry(1,0);
+  const shrubMaterial=new THREE.MeshLambertMaterial({color:0xffffff});
+  const shrubPalette=[0x557b4b,0x658455,0x758c57,0x496c48].map(v=>new THREE.Color(v));
   const trunkMaterial=new THREE.MeshLambertMaterial({color:0x76614b});
   const crownMaterial=new THREE.MeshLambertMaterial({color:0xffffff});
   const foliagePalette=[0x486e47,0x587d4f,0x6b8958,0x426a4b,0x79905b].map(color=>new THREE.Color(color));
@@ -433,6 +438,11 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     // Opaque foliage writes depth normally: no ground bleeding through crowns.
     const trunks=new THREE.InstancedMesh(trunkGeometry,trunkCellMaterial,cellPoints.length);
     const crowns=new THREE.InstancedMesh(crownGeometry,crownCellMaterial,cellPoints.length);
+    const shrubPoints=cellPoints.filter(p=>{
+      const v=Math.sin(p.x*7.41+p.z*4.67)*13931.77;
+      return v-Math.floor(v)<.32;
+    });
+    const shrubs=new THREE.InstancedMesh(shrubGeometry,shrubMaterial,shrubPoints.length);
     cellPoints.forEach((p,i)=>{
       const seed=Math.sin(p.x*12.9898+p.z*78.233)*43758.5453;
       const scale=.8+(seed-Math.floor(seed))*.45;
@@ -450,11 +460,29 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
       dummy.rotation.y=0;
       crowns.setColorAt(i,foliagePalette[Math.min(foliagePalette.length-1,Math.floor(fraction*foliagePalette.length))]);
     });
+    shrubPoints.forEach((p,i)=>{
+      const v=Math.sin(p.x*3.71-p.z*8.13)*29513.17;
+      const t=v-Math.floor(v);
+      const angle=t*Math.PI*2;
+      const radius=1.6+t*1.4;
+      const sx=p.x+Math.cos(angle)*radius,sz=p.z+Math.sin(angle)*radius;
+      const ground=terrain?.relativeHeight(sx,sz)??p.y;
+      const size=.65+t*.7;
+      dummy.position.set(sx,ground+.55*size,sz);
+      dummy.scale.set(size*1.5,size*.8,size*1.3);
+      dummy.rotation.y=angle;
+      dummy.updateMatrix();shrubs.setMatrixAt(i,dummy.matrix);
+      shrubs.setColorAt(i,shrubPalette[Math.floor(t*shrubPalette.length)]);
+    });
+    dummy.rotation.y=0;
+    shrubs.instanceMatrix.needsUpdate=true;
+    if(shrubs.instanceColor)shrubs.instanceColor.needsUpdate=true;
     trunks.instanceMatrix.needsUpdate=true;crowns.instanceMatrix.needsUpdate=true;
     if(crowns.instanceColor)crowns.instanceColor.needsUpdate=true;
     trunks.castShadow=false;crowns.castShadow=false;
     trunks.frustumCulled=false;crowns.frustumCulled=false;
-    group.add(trunks,crowns);
+    shrubs.castShadow=false;shrubs.frustumCulled=false;
+    group.add(trunks,crowns,shrubs);
     scene.add(group);
   }
   return points.length;
@@ -472,6 +500,8 @@ export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):vo
     // do not cause the former competing-ground z-fighting.
     trunks.visible=trunks.visible?distance<650:distance<620;
     crowns.visible=crowns.visible?distance<1050:distance<1020;
+    const shrubs=object.children[2] as THREE.InstancedMesh|undefined;
+    if(shrubs)shrubs.visible=shrubs.visible?distance<480:distance<450;
   });
 }
 // Merge the many separate road/river meshes into one mesh per material.
