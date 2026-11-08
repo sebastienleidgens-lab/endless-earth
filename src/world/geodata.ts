@@ -121,7 +121,8 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const roof=new THREE.MeshLambertMaterial({color:0x9a6758});
         const mesh=new THREE.Mesh(geometry,[roof,wall]);
         mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
-        addGableRoof(scene,ring,base+height+slopeRise,height);
+        if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
+          addGableRoof(scene,ring,base+height+slopeRise,height);
         count++;
       } else if(tags.natural==='water'){
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
