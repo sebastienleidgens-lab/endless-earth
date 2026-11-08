@@ -400,6 +400,47 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
         }
     }
   }
+  // Sparse illustrative vegetation inside mapped castle/ruin polygons.
+  // The historic boundary is factual OSM data; individual trees are NOT.
+  // Keep the courtyard predominantly open, avoid buildings and paths, and
+  // leave a buffer from the perimeter so crowns don't swallow the ruins.
+  const distanceToRing=(x:number,z:number,ring:THREE.Vector3[]):number=>{
+    let nearest=Infinity;
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],b=ring[(i+1)%ring.length];
+      const dx=b.x-a.x,dz=b.z-a.z,denom=dx*dx+dz*dz;
+      if(denom<.001)continue;
+      const t=THREE.MathUtils.clamp(((x-a.x)*dx+(z-a.z)*dz)/denom,0,1);
+      nearest=Math.min(nearest,Math.hypot(x-a.x-t*dx,z-a.z-t*dz));
+    }
+    return nearest;
+  };
+  for(const feature of features){
+    const tags=feature.properties??{};
+    if(feature.geometry?.type!=='Polygon'||!['castle','ruins'].includes(String(tags.historic)))continue;
+    const coordinates=feature.geometry.coordinates;
+    if(!Array.isArray(coordinates))continue;
+    const ring=coordsToPoints(coordinates[0]);
+    if(ring.length<4)continue;
+    const holes=coordinates.slice(1).map(h=>coordsToPoints(h)).filter(h=>h.length>=4);
+    const minX=Math.max(-970,Math.min(...ring.map(p=>p.x)));
+    const maxX=Math.min(970,Math.max(...ring.map(p=>p.x)));
+    const minZ=Math.max(-970,Math.min(...ring.map(p=>p.z)));
+    const maxZ=Math.min(970,Math.max(...ring.map(p=>p.z)));
+    const initial=points.length;
+    const spacing=13;
+    for(let z=Math.ceil(minZ/spacing)*spacing;z<=maxZ&&points.length-initial<32&&points.length<2500;z+=spacing){
+      for(let x=Math.ceil(minX/spacing)*spacing;x<=maxX&&points.length-initial<32&&points.length<2500;x+=spacing){
+        const noise=Math.sin(x*3.17+z*5.93)*18473.27;
+        const fraction=noise-Math.floor(noise);
+        if(fraction>.27)continue;
+        const px=x+(fraction-.14)*9,pz=z+(fraction-.14)*6;
+        if(!pointInRing(px,pz,ring)||holes.some(h=>pointInRing(px,pz,h)))continue;
+        if(distanceToRing(px,pz,ring)<6||!clearOfBuildings(px,pz)||!clearOfPaths(px,pz))continue;
+        add(px,pz);
+      }
+    }
+  }
   // Riparian vegetation: mapped OSM river centerlines establish the corridor,
   // while individual bank trees are explicitly illustrative. Place them on
   // both sides, not in the water, and keep paths and houses unobstructed.
