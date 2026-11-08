@@ -49,10 +49,13 @@ def sample_grid():
         chunk = result.get("elevations")
         if not isinstance(chunk, list) or len(chunk) != len(part):
             raise ValueError(f"IGN returned invalid batch size at {offset}")
-        for height in chunk:
-            if not isinstance(height, (int, float)) or not math.isfinite(height) or height <= -99900:
+        # The elevation endpoint may return either bare Z values (zonly=true)
+        # or objects with a z field. Never silently interpret missing data.
+        heights = [item.get("z") if isinstance(item, dict) else item for item in chunk]
+        for height in heights:
+            if not isinstance(height, (int, float)) or isinstance(height, bool) or not math.isfinite(height) or height <= -99900:
                 raise ValueError(f"IGN returned invalid or nodata altitude at {offset}")
-        values.extend(round(float(v), 2) for v in chunk)
+        values.extend(round(float(v), 2) for v in heights)
         print(f"IGN elevations: {len(values)}/{len(points)}", flush=True)
     if max(values) - min(values) < 1:
         raise ValueError("Suspiciously flat terrain; refusing publication")
