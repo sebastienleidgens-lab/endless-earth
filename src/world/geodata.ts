@@ -14,18 +14,17 @@ function addLine(scene:THREE.Scene,points:THREE.Vector3[],width:number,color:num
   if(points.length<2)return;
   const mat=new THREE.MeshLambertMaterial({color,side:THREE.DoubleSide});
   for(let i=1;i<points.length;i++){
-    const a=points[i-1],b=points[i],d=b.clone().sub(a);if(d.lengthSq()<.01)continue;
-    const m=new THREE.Mesh(new THREE.PlaneGeometry(width,d.length()),mat);
-    m.rotation.x=-Math.PI/2;
-    m.rotation.z=0;
-    // Plane local +Y maps toward world -Z after rotation.
-    m.rotation.set(-Math.PI/2,0,Math.atan2(-d.x,-d.z));
-    m.position.copy(a).add(b).multiplyScalar(.5);
-    m.position.y=.13; m.receiveShadow=true;scene.add(m);
+    const a=points[i-1],b=points[i],d=b.clone().sub(a);
+    const len=Math.hypot(d.x,d.z);
+    if(len<.05)continue;
+    const mesh=new THREE.Mesh(new THREE.PlaneGeometry(width,len),mat);
+    mesh.rotation.set(-Math.PI/2,0,-Math.atan2(d.x,-d.z));
+    mesh.position.set((a.x+b.x)/2,.16,(a.z+b.z)/2);
+    mesh.receiveShadow=true;scene.add(mesh);
   }
 }
 export async function loadAnglesGeography(scene:THREE.Scene):Promise<number>{
-  const response=await fetch('/data/angles-osm.geojson');
+  const response=await fetch(`${import.meta.env.BASE_URL}data/angles-osm.geojson`);
   if(!response.ok) return 0;
   const data=await response.json() as Collection;
   if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
