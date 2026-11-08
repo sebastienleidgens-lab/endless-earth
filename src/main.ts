@@ -61,18 +61,29 @@ if(tilesPreview && !terrainPreview){
   demo.visible=false;
   const realWorld=new THREE.Group();
   scene.add(realWorld);
-  createDemoWorld(realWorld,true);
-  if(hint)hint.textContent='OSM réel : chargement du fichier géographique…';
-  loadAnglesGeography(realWorld).then(count=>{
-    if(hint)hint.textContent=count>0
-      ? `OSM réel : ${count} objets affichés · relief provisoire`
-      : 'ERREUR OSM : fichier absent (HTTP 404 ou autre réponse)';
-    if(count===0)console.error('OSM diagnostic: zero renderable features');
-  }).catch(error=>{
-    console.error('OSM diagnostic loading/rendering failed',error);
-    if(hint)hint.textContent=`ERREUR OSM : ${String(error?.message??error).slice(0,110)}`;
-  });
+  if(hint)hint.textContent='OSM réel : recherche du relief et des bâtiments…';
+  (async()=>{
+    let terrain:Terrain|null=null;
+    try{terrain=await fetchTerrain();}catch(error){console.warn('DEM unavailable',error);}
+    if(terrain){
+      const mesh=terrain.createMesh();
+      realWorld.add(mesh);
+      activeTerrain=terrain;
+    }else{
+      createDemoWorld(realWorld,true);
+    }
+    try{
+      const count=await loadAnglesGeography(realWorld,terrain??undefined);
+      if(hint)hint.textContent=count>0
+        ? `OSM réel : ${count} objets · ${terrain?'relief DEM réel':'relief indisponible, sol plat'}`
+        : 'ERREUR OSM : aucun objet géographique chargé';
+    }catch(error){
+      console.error('OSM geography rendering failed',error);
+      if(hint)hint.textContent=`ERREUR OSM : ${String(error instanceof Error?error.message:error).slice(0,100)}`;
+    }
+  })();
 }
+
 const avatar=new THREE.Group();
 const body=new THREE.Mesh(new THREE.CapsuleGeometry(.65,1.65,5,8),new THREE.MeshStandardMaterial({color:0x715d4f}));body.position.y=2;body.castShadow=true;avatar.add(body);
 const head=new THREE.Mesh(new THREE.SphereGeometry(.52,10,8),new THREE.MeshStandardMaterial({color:0xe4b992}));head.position.y=3.65;head.castShadow=true;avatar.add(head);scene.add(avatar);
