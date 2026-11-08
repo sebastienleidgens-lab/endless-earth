@@ -20,9 +20,9 @@ const GABLE_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x975c4b,side:THR
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
 const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
 const WATER_MATERIAL=new THREE.MeshLambertMaterial({color:0x739da8,side:THREE.DoubleSide});
-const WOOD_MATERIAL=new THREE.MeshLambertMaterial({color:0x557b4d,side:THREE.DoubleSide});
-const SCRUB_MATERIAL=new THREE.MeshLambertMaterial({color:0x7f9964,side:THREE.DoubleSide});
-const PARK_MATERIAL=new THREE.MeshLambertMaterial({color:0x94ae7b,side:THREE.DoubleSide});
+const WOOD_MATERIAL=new THREE.MeshLambertMaterial({color:0x557b4d,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
+const SCRUB_MATERIAL=new THREE.MeshLambertMaterial({color:0x7f9964,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
+const PARK_MATERIAL=new THREE.MeshLambertMaterial({color:0x94ae7b,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
 function insideArea(p:THREE.Vector3){return Math.abs(p.x)<=LOCAL_LIMIT&&Math.abs(p.z)<=LOCAL_LIMIT;}
 function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain){
   if(points.length<2)return;
@@ -108,7 +108,7 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
 }
 // Drape mapped land-cover polygons onto the DEM. Subdivide their triangles
 // before sampling so large forest polygons do not cut through valley slopes.
-function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THREE.Material,offset=.13):THREE.Mesh{
+function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THREE.Material,offset=.35):THREE.Mesh{
   const flat=new THREE.ShapeGeometry(makeFootprint(ring));
   const position=flat.getAttribute('position');
   const index=flat.getIndex();
@@ -241,8 +241,8 @@ export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):vo
     const x=object.userData.centerX as number,z=object.userData.centerZ as number;
     const distance=Math.hypot(camera.position.x-x,camera.position.z-z);
     const trunks=object.children[0],crowns=object.children[1];
-    const near=trunks.visible?distance<330:distance<290;
-    const far=crowns.visible?distance<750:distance<710;
+    const near=trunks.visible?distance<420:distance<360;
+    const far=crowns.visible?distance<900:distance<820;
     trunks.visible=near;
     crowns.visible=far;
   });
