@@ -18,22 +18,39 @@ renderer.domElement.setAttribute('aria-label','Vue 3D du village');
 scene.add(new THREE.HemisphereLight(0xffffff,0x738465,2));
 const sun=new THREE.DirectionalLight(0xffe5bc,2.3); sun.position.set(-60,100,55); sun.castShadow=true;
 sun.shadow.mapSize.set(1024,1024); sun.shadow.camera.left=-115; sun.shadow.camera.right=115; sun.shadow.camera.top=115; sun.shadow.camera.bottom=-115; scene.add(sun); scene.add(sun.target);
+// Render a complete fallback synchronously: network requests must never block first paint.
+const demo = new THREE.Group();
+createDemoWorld(demo);
+scene.add(demo);
 let activeTerrain: Terrain | null = null;
+const hint = document.querySelector<HTMLElement>('.hud small');
 const terrainPreview = new URLSearchParams(location.search).get('terrain') === '1';
 if (terrainPreview) {
   fetchTerrain().then(terrain=>{
-    if(!terrain) throw new Error('No licensed terrain grid available');
-    activeTerrain=terrain;scene.add(terrain.createMesh());
-    const hint=document.querySelector('.hud small');
-    if(hint)hint.textContent='Relief issu du jeu de données · aperçu terrain uniquement';
+    if(!terrain) { if(hint)hint.textContent='Relief indisponible · décor illustratif'; return; }
+    const mesh=terrain.createMesh();
+    activeTerrain=terrain;
+    scene.add(mesh);
+    demo.visible=false;
+    if(hint)hint.textContent='Aperçu du relief réel · bâtiments masqués';
   }).catch(error=>{
     console.warn('Terrain preview unavailable',error);
-    createDemoWorld(scene);
-    const hint=document.querySelector('.hud small');
-    if(hint)hint.textContent='Aucun relief réel importé · décor illustratif';
+    if(hint)hint.textContent='Relief indisponible · décor illustratif';
   });
 } else {
-  loadAnglesGeography(scene).then(count=>{createDemoWorld(scene,count>0);if(count>0){const hint=document.querySelector('.hud small');if(hint)hint.textContent=`OSM : ${count} objets importés · relief provisoire`;}}).catch(error=>{console.warn('Geodata unavailable',error);createDemoWorld(scene);});
+  const realWorld = new THREE.Group();
+  loadAnglesGeography(realWorld).then(count=>{
+    if(count>0){
+      scene.add(realWorld);
+      demo.visible=false;
+      // A ground surface remains necessary for the OSM footprints.
+      createDemoWorld(realWorld,true);
+      if(hint)hint.textContent=`OSM : ${count} objets · relief provisoire`;
+    } else if(hint) hint.textContent='Décor illustratif · données géographiques en attente';
+  }).catch(error=>{
+    console.warn('Geodata unavailable',error);
+    if(hint)hint.textContent='Décor illustratif · import géographique indisponible';
+  });
 }
 const avatar=new THREE.Group();
 const body=new THREE.Mesh(new THREE.CapsuleGeometry(.65,1.65,5,8),new THREE.MeshStandardMaterial({color:0x715d4f}));body.position.y=2;body.castShadow=true;avatar.add(body);
