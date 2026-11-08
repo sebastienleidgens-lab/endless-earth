@@ -14,7 +14,7 @@ export function animateFoliage(material:THREE.MeshLambertMaterial){
  material.customProgramCacheKey=()=> 'living-foliage-v1';
 }
 export function createAtmosphere(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(x:number,z:number)=>number|null=()=>0){
- const clouds=new THREE.InstancedMesh(new THREE.SphereGeometry(1,8,5),new THREE.MeshLambertMaterial({color:0xfff6e6}),36);
+ const clouds=new THREE.InstancedMesh(new THREE.SphereGeometry(1,12,7),new THREE.MeshLambertMaterial({color:0xfff6e6}),36);
  clouds.frustumCulled=false;
  const dummy=new THREE.Object3D();
  const birds=new THREE.Group();scene.add(clouds,birds);
@@ -33,7 +33,7 @@ export function createAtmosphere(scene:THREE.Scene,sun:THREE.DirectionalLight,he
   for(let i=0;i<36;i++){
    const cluster=Math.floor(i/3),part=i%3;
    dummy.position.set(((cluster*173+elapsed*.9)%1800)-900+part*19,160+(cluster%3)*22,Math.sin(cluster*7)*680);
-   dummy.scale.set(35+part*6,9+part*2,22);dummy.updateMatrix();clouds.setMatrixAt(i,dummy.matrix);
+   dummy.scale.set(32+Math.sin(cluster*3+part)*9,7+part*2+Math.sin(cluster)*2,20+Math.cos(cluster+part)*7);dummy.updateMatrix();clouds.setMatrixAt(i,dummy.matrix);
   }
   clouds.count=eco?18:36;clouds.instanceMatrix.needsUpdate=true;
   birds.children.forEach((bird,i)=>{
@@ -42,7 +42,7 @@ export function createAtmosphere(scene:THREE.Scene,sun:THREE.DirectionalLight,he
    if(!anchor)return;
    const phase=elapsed*.19+i*2;
    bird.position.set(anchor.x+Math.cos(phase)*22,(height(anchor.x,anchor.z)??0)+18+i*3+Math.sin(phase*2),anchor.z+Math.sin(phase)*16);
-   bird.rotation.y=-phase;bird.rotation.z=Math.sin(elapsed*6+i)*.18;
+   bird.rotation.y=-phase;bird.rotation.z=Math.sin(elapsed*(4.5+i*.37)+i)*.12+Math.sin(phase)*.16;
   });
  };
 }

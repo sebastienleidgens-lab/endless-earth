@@ -2,9 +2,11 @@ import { toLocal } from '../world/geo';
 import { canWalk } from '../world/collisions';
 import type { Terrain } from '../world/terrain';
 // @ts-ignore Pure module also exercised directly by Node tests.
-import { allowed, planRoute } from './walk.mjs';
+import { allowed } from './walk.mjs';
+// @ts-ignore Pure module.
+import { buildGraph, graphRoute } from './graph.mjs';
 type Point={x:number;z:number};
-export const paths:{points:Point[];surface:string;name:string}[]=[];
+export const paths:{points:Point[];surface:string;name:string;tags:Record<string,string>}[]=[];
 export const nature:Point[]=[];
 export const water:Point[]=[];
 let ready=false;
@@ -16,7 +18,7 @@ export async function loadNavigation(){
  for(const f of data.features){
   const t=f.properties??{},g=f.geometry;
   const local=(p:number[])=>toLocal({lon:p[0],lat:p[1]});
-  if(g?.type==='LineString'&&allowed(t))paths.push({points:g.coordinates.map(local),surface:t.surface??'',name:t.name??'Voie OSM'});
+  if(g?.type==='LineString'&&allowed(t))paths.push({points:g.coordinates.map(local),surface:t.surface??'',name:t.name??'Voie OSM',tags:t});
   if(g?.type==='Point'&&t.natural==='tree')nature.push(local(g.coordinates));
   if(g?.type==='LineString'&&t.waterway)water.push(...g.coordinates.map(local));
  }
@@ -29,7 +31,8 @@ export function validPoint(p:Point,terrain:Terrain|null){
  if(h===null)return false;
  return [[.5,0],[-.5,0],[0,.5],[0,-.5]].every(([x,z])=>{const v=terrain.relativeHeight(p.x+x,p.z+z);return v!==null&&Math.abs(v-h)<.3;});
 }
-export function routeAt(p:Point,terrain:Terrain|null){return planRoute(paths,p,(q:Point)=>validPoint(q,terrain));}
+let graph:ReturnType<typeof buildGraph>|null=null;
+export function routeAt(p:Point,terrain:Terrain|null){const valid=(q:Point)=>validPoint(q,terrain);graph??=buildGraph(paths,valid);return graphRoute(graph,p,valid);}
 export function surfaceAt(p:Point){
  let best=Infinity,surface='grass';
  for(const line of paths)for(let i=1;i<line.points.length;i++){

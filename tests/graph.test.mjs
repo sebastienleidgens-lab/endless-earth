@@ -1,0 +1,15 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {buildGraph,graphRoute} from '../src/living/graph.mjs';
+import {AutoWalk} from '../src/living/walk.mjs';
+import {clampZoom,behind} from '../src/controls/orbit.mjs';
+const line=(points,tags={highway:'path'})=>({points:points.map(([x,z])=>({x,z})),tags,name:'Way',surface:'gravel'});
+const lines=[line([[0,0],[10,0]]),line([[10,0],[10,10]]),line([[10,10],[20,10]])];
+test('OSM shared vertices connect consecutive ways, without revisiting vertices',()=>{const r=graphRoute(buildGraph(lines,()=>true),{x:0,z:0},()=>true);assert.equal(r.length,30);const w=new AutoWalk();w.start(r);let p={x:0,z:0};for(let i=0;i<10000&&w.active;i++){const d=w.update(p,.02,()=>true);p.x+=d.x;p.z+=d.z;}assert.equal(w.active,false);assert.ok(Math.hypot(p.x-20,p.z-10)<.02);});
+test('gaps, geometric crossings and different layers never connect',()=>{for(const extra of [line([[10.1,0],[20,0]]),line([[5,-5],[5,5]]),line([[10,0],[20,0]],{highway:'path',layer:'1'})])assert.equal(graphRoute(buildGraph([lines[0],extra],()=>true),{x:0,z:0},()=>true).length,10);});
+test('private, unsupported bridge and blocked segments never enter graph',()=>{for(const tags of [{highway:'path',access:'private'},{highway:'path',bridge:'yes'}])assert.equal(buildGraph([line([[0,0],[10,0]],tags)],()=>true).edges.length,0);assert.equal(buildGraph(lines,p=>p.x<9).edges.length,0);});
+test('graph route stops on new obstacle and manual stop stays stopped',()=>{const w=new AutoWalk();w.start(graphRoute(buildGraph(lines,()=>true),{x:0,z:0},()=>true));assert.deepEqual(w.update({x:0,z:0},.1,()=>false),{x:0,z:0});assert.match(w.message,/bloqué/);w.stop('manual');assert.equal(w.active,false);});
+test('camera zoom clamps, and recenter follows shortest angular arc smoothly',()=>{assert.equal(clampZoom(-2),1.5);assert.equal(clampZoom(30),15);assert.ok(behind(0,1,.1)>0&&behind(0,1,.1)<1);assert.ok(behind(3.1,-3.1,.1)>3.1);});
+test('pedestrian directional restrictions are preserved',()=>{const g=buildGraph([line([[0,0],[10,0]],{highway:'path','oneway:foot':'yes'})],()=>true);assert.equal(graphRoute(g,{x:0,z:0},()=>true).length,10);assert.equal(graphRoute(g,{x:10,z:0},()=>true),null);});
+import {createNavigation} from '../src/world/navigation.mjs';
+test('camera blocks mapped walls independently of pedestrian road restrictions',()=>{for(const tags of [{barrier:'wall'},{historic:'castle'}])assert.equal(createNavigation([{tags,points:[{x:0,z:0},{x:10,z:0}]}])(5,0).cameraClear,false);assert.equal(createNavigation([{tags:{highway:'path',access:'private'},points:[{x:0,z:0},{x:10,z:0}]}])(5,0).cameraClear,true);});
+test('cyclic networks never repeat a vertex to inflate walking distance',()=>{const data=[line([[0,0],[10,0],[10,10],[0,0]]),line([[10,10],[20,10]])];const r=graphRoute(buildGraph(data,()=>true),{x:0,z:0},()=>true);const keys=r.points.map(p=>`${p.x},${p.z}`);assert.equal(new Set(keys).size,keys.length);assert.ok(r.length<45);});

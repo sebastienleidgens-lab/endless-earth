@@ -11,6 +11,7 @@ try{
   await page.waitForFunction(()=>window.endlessDiagnostics?.ready,{timeout:30000});
   const state=()=>page.evaluate(()=>window.endlessDiagnostics);
   await page.waitForTimeout(6500);
+  await page.keyboard.press('v');await page.keyboard.press('v');await page.waitForFunction(()=>window.endlessDiagnostics.mode==='aerial');
   console.log('AERIAL',await state(),await page.locator('.perf-panel').innerText());
   await page.screenshot({path:'work/visual/aerial.png'});
   await page.keyboard.press('v');await page.waitForFunction(()=>window.endlessDiagnostics.mode==='third');
@@ -23,7 +24,7 @@ try{
   const before=await state();await page.keyboard.down('d');await page.waitForTimeout(1400);await page.keyboard.up('d');
   const after=await state();assert.notDeepEqual(before.position,after.position,'player must move in a clear starting street');
   assert.ok(after.camera[1]>=after.position[1]+1.6,'first person stays above ground');
-  await page.waitForTimeout(2200);
+  await page.waitForFunction(()=>{const p=window.endlessDiagnostics.position.join(',');window.restFrames=p===window.lastRestPosition?(window.restFrames??0)+1:0;window.lastRestPosition=p;return window.restFrames>=8;});
   const resting=await state();await page.waitForTimeout(1000);
   const settled=await state();assert.deepEqual(settled.position,resting.position,'released input settles without drift');
   assert.ok(Math.hypot(...settled.camera.map((v,i)=>v-resting.camera[i]))<.001,'resting camera is stable');

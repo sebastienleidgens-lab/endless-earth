@@ -9,8 +9,8 @@ try{
  page.on('pageerror',e=>errors.push(String(e)));
  await page.goto('http://localhost:5173/endless-earth/?perf=1');await page.waitForFunction(()=>window.endlessDiagnostics?.ready);
  await page.addStyleTag({content:'.perf-panel{display:none!important}'});
- await page.keyboard.press('v');await page.keyboard.press('v');await page.waitForTimeout(1500);
- await page.mouse.move(500,360);await page.mouse.down();await page.mouse.move(500,70,{steps:15});await page.mouse.up();
+ await page.keyboard.press('v');await page.waitForFunction(()=>window.endlessDiagnostics.mode==='first');await page.waitForTimeout(1500);
+ await page.mouse.move(500,360);await page.mouse.down();await page.mouse.move(610,160,{steps:15});await page.mouse.up();
  await page.keyboard.down('d');
  for(let i=0;i<5;i++){await page.waitForTimeout(600);await page.screenshot({path:`work/visual/final/clouds-${i}.png`});positions.push(await page.evaluate(()=>window.endlessDiagnostics.position));}
  await page.keyboard.up('d');await page.keyboard.press('v');
