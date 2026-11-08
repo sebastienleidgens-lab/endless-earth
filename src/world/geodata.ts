@@ -69,9 +69,14 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
       if(ring.length<4)continue;
       if(tags.building){
         const shape=makeFootprint(ring);
-        const base=terrain?Math.min(...ring.map(p=>p.y))-.12:0;
+        // A single level foundation avoids floating corners on sloping terrain.
+        // The roof remains above the highest footprint vertex.
+        const minGround=terrain?Math.min(...ring.map(p=>p.y))-.12:0;
+        const maxGround=terrain?Math.max(...ring.map(p=>p.y))-.12:0;
+        const slopeRise=Math.min(30,Math.max(0,maxGround-minGround));
+        const base=minGround;
         const height=buildingHeight(tags);
-        const geometry=new THREE.ExtrudeGeometry(shape,{depth:height,bevelEnabled:false});
+        const geometry=new THREE.ExtrudeGeometry(shape,{depth:height+slopeRise,bevelEnabled:false});
         geometry.rotateX(-Math.PI/2);
         geometry.translate(0,base,0);
         const wall=new THREE.MeshLambertMaterial({color:0xcab89d});
