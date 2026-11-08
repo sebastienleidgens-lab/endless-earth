@@ -11,25 +11,38 @@ function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
     const v=toLocal({lon:p[0],lat:p[1]}); return [new THREE.Vector3(v.x,(terrain?.relativeHeight(v.x,v.z)??0)+0.12,v.z)];
   });
 }
-function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number){
+function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain){
   if(points.length<2)return;
-  const material=new THREE.MeshLambertMaterial({color,side:THREE.DoubleSide});
+  // One draw call per road/river, not one mesh per OSM segment.
+  // Densify long segments so the road follows the elevation grid.
+  const vertices:number[]=[];
   for(let i=1;i<points.length;i++){
-    const a=points[i-1],b=points[i],dx=b.x-a.x,dz=b.z-a.z;
-    const length=Math.hypot(dx,dz);
+    const start=points[i-1],end=points[i];
+    const length=Math.hypot(end.x-start.x,end.z-start.z);
     if(length<.05)continue;
-    // A horizontal strip in world coordinates, avoiding Euler rotation ambiguity.
-    const nx=-dz/length*width/2,nz=dx/length*width/2;
-    const vertices=new Float32Array([
-      a.x+nx,a.y+.04,a.z+nz, a.x-nx,a.y+.04,a.z-nz, b.x+nx,b.y+.04,b.z+nz,
-      b.x+nx,b.y+.04,b.z+nz, a.x-nx,a.y+.04,a.z-nz, b.x-nx,b.y+.04,b.z-nz
-    ]);
-    const geometry=new THREE.BufferGeometry();
-    geometry.setAttribute('position',new THREE.BufferAttribute(vertices,3));
-    geometry.computeVertexNormals();
-    const mesh=new THREE.Mesh(geometry,material);
-    mesh.receiveShadow=true;scene.add(mesh);
+    const pieces=terrain?Math.min(120,Math.ceil(length/8)):1;
+    for(let part=0;part<pieces;part++){
+      const t0=part/pieces,t1=(part+1)/pieces;
+      const a=start.clone().lerp(end,t0),b=start.clone().lerp(end,t1);
+      if(terrain){
+        a.y=(terrain.relativeHeight(a.x,a.z)??a.y)+.19;
+        b.y=(terrain.relativeHeight(b.x,b.z)??b.y)+.19;
+      }else{a.y=.19;b.y=.19;}
+      const dx=b.x-a.x,dz=b.z-a.z,segment=Math.hypot(dx,dz);
+      if(segment<.01)continue;
+      const nx=-dz/segment*width/2,nz=dx/segment*width/2;
+      vertices.push(
+        a.x+nx,a.y,a.z+nz,a.x-nx,a.y,a.z-nz,b.x+nx,b.y,b.z+nz,
+        b.x+nx,b.y,b.z+nz,a.x-nx,a.y,a.z-nz,b.x-nx,b.y,b.z-nz
+      );
+    }
   }
+  if(!vertices.length)return;
+  const geometry=new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+  geometry.computeVertexNormals();
+  const mesh=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({color,side:THREE.DoubleSide}));
+  mesh.receiveShadow=true;scene.add(mesh);
 }
 function buildingHeight(tags:Record<string,unknown>):number{
   const explicit=typeof tags.height==='string'?Number.parseFloat(tags.height.replace(',','.')):NaN;
@@ -49,8 +62,8 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
     const tags=f.properties??{};
     if(f.geometry?.type==='LineString'){
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
-      if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b);count++;}
-      else if(tags.waterway){addLine(scene,pts,6,0x729ea8);count++;}
+      if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b,terrain);count++;}
+      else if(tags.waterway){addLine(scene,pts,6,0x729ea8,terrain);count++;}
     } else if(f.geometry?.type==='Polygon' && Array.isArray(f.geometry.coordinates)){
       const ring=coordsToPoints(f.geometry.coordinates[0],terrain);
       if(ring.length<4)continue;
