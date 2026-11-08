@@ -34,6 +34,7 @@ export class InputController {
     this.base.addEventListener('lostpointercapture', () => this.reset());
   }
   private reset() { this.pointer=null; this.joystick.x=0; this.joystick.y=0; this.knob.style.transform='translate(0,0)'; }
+  get running() { return this.keys.has('shift'); }
   getVector() {
     const k=this.keys;
     const f=Number(k.has('w')||k.has('z')||k.has('arrowup'))-Number(k.has('s')||k.has('arrowdown'));
