@@ -193,24 +193,58 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     }
   }
   if(!points.length)return 0;
+  // Partition instances into spatial cells. Distant cells hide trunks,
+  // then crowns; no per-frame instance matrix rebuild is necessary.
+  const cellSize=180;
+  const cells=new Map<string,THREE.Vector3[]>();
+  for(const p of points){
+    const cx=Math.floor(p.x/cellSize),cz=Math.floor(p.z/cellSize);
+    const key=`${cx}:${cz}`;
+    if(!cells.has(key))cells.set(key,[]);
+    cells.get(key)!.push(p);
+  }
   const trunkGeometry=new THREE.CylinderGeometry(.25,.38,3.5,5);
   const crownGeometry=new THREE.ConeGeometry(2.4,6,7);
-  const trunks=new THREE.InstancedMesh(trunkGeometry,new THREE.MeshLambertMaterial({color:0x76614b}),points.length);
-  const crowns=new THREE.InstancedMesh(crownGeometry,new THREE.MeshLambertMaterial({color:0x567b51}),points.length);
+  const trunkMaterial=new THREE.MeshLambertMaterial({color:0x76614b});
+  const crownMaterial=new THREE.MeshLambertMaterial({color:0x567b51});
   const dummy=new THREE.Object3D();
-  points.forEach((p,i)=>{
-    const seed=Math.sin(p.x*12.9898+p.z*78.233)*43758.5453;
-    const scale=.8+(seed-Math.floor(seed))*.45;
-    dummy.scale.setScalar(scale);
-    dummy.position.set(p.x,p.y+1.75*scale,p.z);
-    dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
-    dummy.position.set(p.x,p.y+5.6*scale,p.z);
-    dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);
-  });
-  trunks.instanceMatrix.needsUpdate=true;crowns.instanceMatrix.needsUpdate=true;
-  trunks.castShadow=true;crowns.castShadow=true;
-  scene.add(trunks,crowns);
+  for(const [key,cellPoints] of cells){
+    const [cx,cz]=key.split(':').map(Number);
+    const group=new THREE.Group();
+    group.userData.vegetationCell=true;
+    group.userData.centerX=(cx+.5)*cellSize;
+    group.userData.centerZ=(cz+.5)*cellSize;
+    const trunks=new THREE.InstancedMesh(trunkGeometry,trunkMaterial,cellPoints.length);
+    const crowns=new THREE.InstancedMesh(crownGeometry,crownMaterial,cellPoints.length);
+    cellPoints.forEach((p,i)=>{
+      const seed=Math.sin(p.x*12.9898+p.z*78.233)*43758.5453;
+      const scale=.8+(seed-Math.floor(seed))*.45;
+      dummy.scale.setScalar(scale);
+      dummy.position.set(p.x,p.y+1.75*scale,p.z);
+      dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
+      dummy.position.set(p.x,p.y+5.6*scale,p.z);
+      dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);
+    });
+    trunks.instanceMatrix.needsUpdate=true;crowns.instanceMatrix.needsUpdate=true;
+    trunks.castShadow=false;crowns.castShadow=false;
+    trunks.frustumCulled=false;crowns.frustumCulled=false;
+    group.add(trunks,crowns);
+    scene.add(group);
+  }
   return points.length;
+}
+// Run at a low frequency from the render loop; thresholds include hysteresis.
+export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):void{
+  scene.traverse(object=>{
+    if(!object.userData.vegetationCell)return;
+    const x=object.userData.centerX as number,z=object.userData.centerZ as number;
+    const distance=Math.hypot(camera.position.x-x,camera.position.z-z);
+    const trunks=object.children[0],crowns=object.children[1];
+    const near=trunks.visible?distance<330:distance<290;
+    const far=crowns.visible?distance<750:distance<710;
+    trunks.visible=near;
+    crowns.visible=far;
+  });
 }
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
   let count=addMappedTrees(scene,features,terrain);
