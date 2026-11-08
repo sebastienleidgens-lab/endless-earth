@@ -17,7 +17,7 @@ Open the local URL shown by Vite. Build with `npm run build`.
 
 ## Controls
 
-WASD / ZQSD / arrows: walk. Drag: rotate view. Mouse wheel: zoom. **Touch movement controls are not implemented yet.**
+WASD / ZQSD / arrows: walk. Drag: rotate view. Mouse wheel: zoom. Touch joystick: bottom left on mobile. Drag elsewhere to rotate the camera. Basic collisions prevent walking through illustrative houses. Terrain, water and tree collisions are not implemented yet.
 
 ## Architecture
 
@@ -30,7 +30,21 @@ WASD / ZQSD / arrows: walk. Drag: rotate view. Mouse wheel: zoom. **Touch moveme
 
 1. Real geospatial data pipeline and source licensing.
 2. Terrain-aware paths, river and buildings.
-3. Touch controls, collisions and automated visual tests.
+3. Extend collisions to terrain, water and trees; add automated visual tests.
 4. Tile streaming and deterministic procedural detail.
 
 This repository is the long-lived source of truth; standalone HTML experiments are not the production architecture.
+
+## Validation
+
+GitHub Actions runs `npm install` and `npm run build` for pushes and pull requests. This is compilation validation, **not** a WebGL/Android runtime test.
+
+## Geographic data import (experimental)
+
+Run `npm run geo:fetch` with network access, or use the manual GitHub Action **Fetch Angles OSM geography** to obtain `angles-osm.geojson`. Place it at `public/data/angles-osm.geojson`. The runtime loads actual OSM road lines and building footprints if present; otherwise it shows the illustrative scene. The terrain is still flat and buildings are extruded approximations. See [docs/GEODATA.md](docs/GEODATA.md).
+
+**Collision note:** when real OSM footprints are loaded, the avatar cannot cross the interiors of mapped buildings; road, river, cliff and terrain collision remain future work. Building clearance is approximate and not yet tested in a browser.
+
+## Terrain preview (experimental)
+
+A validated elevation grid can be placed at `public/data/angles-terrain.json`. Open the app with `?terrain=1` to preview terrain **without roads and buildings**, because those have not yet been draped to real elevations. Without a real grid, the demo remains illustrative. See [docs/TERRAIN.md](docs/TERRAIN.md) for the data contract and provenance requirements.
