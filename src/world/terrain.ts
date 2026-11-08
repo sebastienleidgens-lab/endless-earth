@@ -34,18 +34,27 @@ export class Terrain {
       tz*((1-tx)*h(x0,z0+1)+tx*h(x0+1,z0+1));
   }
   createMesh():THREE.Mesh {
-    const g=this.grid, positions:number[]=[],indices:number[]=[];
+    const g=this.grid, positions:number[]=[],indices:number[]=[],colors:number[]=[];
     const baseline=this.sample(0,0)??g.elevations_m[0];
-    for(let z=0;z<g.height;z++)for(let x=0;x<g.width;x++)
-      positions.push(g.origin_x_m+x*g.step_m,g.elevations_m[z*g.width+x]-baseline,g.origin_z_m+z*g.step_m);
+    for(let z=0;z<g.height;z++)for(let x=0;x<g.width;x++){
+      const elevation=g.elevations_m[z*g.width+x];
+      positions.push(g.origin_x_m+x*g.step_m,elevation-baseline,g.origin_z_m+z*g.step_m);
+      const left=g.elevations_m[z*g.width+Math.max(0,x-1)];
+      const right=g.elevations_m[z*g.width+Math.min(g.width-1,x+1)];
+      const up=g.elevations_m[Math.max(0,z-1)*g.width+x];
+      const down=g.elevations_m[Math.min(g.height-1,z+1)*g.width+x];
+      const slope=Math.hypot(right-left,down-up)/(2*g.step_m);
+      const color=new THREE.Color(slope>.9?0x9c9987:slope>.4?0xaaa78c:0x86a47a);
+      colors.push(color.r,color.g,color.b);
+    }
     for(let z=0;z<g.height-1;z++)for(let x=0;x<g.width-1;x++){
       const a=z*g.width+x,b=a+1,c=a+g.width,d=c+1;
       indices.push(a,c,b,b,c,d);
     }
     const geometry=new THREE.BufferGeometry();
     geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
-    geometry.setIndex(indices);geometry.computeVertexNormals();
-    const mesh=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({color:0x91a985,side:THREE.DoubleSide}));
+    geometry.setIndex(indices);geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();
+    const mesh=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}));
     mesh.receiveShadow=true;return mesh;
   }
   relativeHeight(x:number,z:number):number|null {
