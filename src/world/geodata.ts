@@ -155,18 +155,30 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
 // illustrative until a verified height or architectural model is available.
 const HISTORIC_WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xb8ad96});
 function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Terrain):void{
+  // Only OSM-surveyed linework determines the wall plan. The fragmented
+  // elevations below are illustrative and must not imply measured ruin heights.
   for(let i=1;i<points.length;i++){
     const a=points[i-1],b=points[i];
     if(!insideArea(a)&&!insideArea(b))continue;
     const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
     if(length<.5||length>150)continue;
-    const midX=(a.x+b.x)/2,midZ=(a.z+b.z)/2;
-    const ground=terrain?.relativeHeight(midX,midZ)??(a.y+b.y)/2;
-    const geometry=new THREE.BoxGeometry(length,2.6,1.25);
-    const mesh=new THREE.Mesh(geometry,HISTORIC_WALL_MATERIAL);
-    mesh.position.set(midX,ground+1.3,midZ);
-    mesh.rotation.y=-Math.atan2(dz,dx);
-    mesh.receiveShadow=true;scene.add(mesh);
+    const pieces=Math.max(1,Math.ceil(length/5));
+    for(let j=0;j<pieces;j++){
+      const t0=j/pieces,t1=(j+1)/pieces;
+      const midT=(t0+t1)/2;
+      const x=a.x+dx*midT,z=a.z+dz*midT;
+      const ground=terrain?.relativeHeight(x,z)??(a.y+b.y)/2;
+      // Fixed hash: no animated/random changes between page loads.
+      const seed=Math.abs(Math.sin(x*12.9898+z*78.233)*43758.5453);
+      const fraction=seed-Math.floor(seed);
+      const height=2.3+fraction*2.8;
+      const segmentLength=length/pieces;
+      const geometry=new THREE.BoxGeometry(segmentLength+.04,height,1.25);
+      const mesh=new THREE.Mesh(geometry,HISTORIC_WALL_MATERIAL);
+      mesh.position.set(x,ground+height/2-.12,z);
+      mesh.rotation.y=-Math.atan2(dz,dx);
+      mesh.receiveShadow=true;scene.add(mesh);
+    }
   }
 }
 function measuredMetres(value:unknown):number|null{
@@ -544,13 +556,17 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
     const tags=f.properties??{};
     if(f.geometry?.type==='LineString'){
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
-      if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b,terrain);count++;}
+      if(tags.historic==='citywalls'||tags.historic==='castle'||tags.historic==='ruins'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain);count++;}
+      else if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b,terrain);count++;}
       else if(tags.waterway){addLine(scene,pts,6,0x729ea8,terrain);count++;}
-      else if(tags.historic==='citywalls'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain);count++;}
     } else if(f.geometry?.type==='Polygon' && Array.isArray(f.geometry.coordinates)){
       const ring=coordsToPoints(f.geometry.coordinates[0],terrain);
       if(ring.length<4 || !ring.some(insideArea))continue;
-      if(tags.building){
+      if(tags.historic==='castle'||tags.historic==='ruins'){
+        // The mapped castle perimeter takes priority over generic building
+        // extrusion: an intact terracotta-roofed house would be misleading.
+        addHistoricWall(scene,ring,terrain);count++;
+      } else if(tags.building){
         const shape=makeFootprint(ring);
         // A single level foundation avoids floating corners on sloping terrain.
         // The roof remains above the highest footprint vertex.
