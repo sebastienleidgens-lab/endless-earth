@@ -45,6 +45,17 @@ export class Terrain {
   createMesh():THREE.Mesh {
     const g=this.grid, positions:number[]=[],indices:number[]=[],colors:number[]=[];
     const baseline=this.sample(0,0)??g.elevations_m[0];
+    // Reuse colors and the blend function across the entire 40,401-vertex DEM.
+    // The former implementation allocated four THREE.Color objects per vertex.
+    const grass=new THREE.Color(0x86a47a);
+    const dryGrass=new THREE.Color(0x9eaa80);
+    const limestone=new THREE.Color(0xb8b09a);
+    const exposedRock=new THREE.Color(0xaaa394);
+    const color=new THREE.Color();
+    const smoothstep=(a:number,b:number,v:number)=>{
+      const t=THREE.MathUtils.clamp((v-a)/(b-a),0,1);
+      return t*t*(3-2*t);
+    };
     for(let z=0;z<g.height;z++)for(let x=0;x<g.width;x++){
       const elevation=g.elevations_m[z*g.width+x];
       positions.push(g.origin_x_m+x*g.step_m,elevation-baseline,g.origin_z_m+z*g.step_m);
@@ -56,17 +67,10 @@ export class Terrain {
       // The Anglin valley has real limestone cliffs. Blend bare limestone
       // into steep slopes directly in the terrain's vertex colors: no extra
       // overlapping ground meshes (which previously caused z-fighting).
-      const smoothstep=(a:number,b:number,v:number)=>{
-        const t=THREE.MathUtils.clamp((v-a)/(b-a),0,1);
-        return t*t*(3-2*t);
-      };
-      const grass=new THREE.Color(0x86a47a);
-      const dryGrass=new THREE.Color(0x9eaa80);
-      const limestone=new THREE.Color(0xb8b09a);
-      const exposedRock=new THREE.Color(0xaaa394);
       const dry=smoothstep(.12,.38,slope);
       const rock=smoothstep(.38,1.05,slope);
-      const color=grass.lerp(dryGrass,dry).lerp(limestone,rock);
+      // copy() is essential: never mutate the shared grass palette entry.
+      color.copy(grass).lerp(dryGrass,dry).lerp(limestone,rock);
       color.lerp(exposedRock,smoothstep(1.05,1.9,slope)*.55);
       colors.push(color.r,color.g,color.b);
     }
