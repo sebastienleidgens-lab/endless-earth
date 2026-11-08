@@ -279,8 +279,10 @@ export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):vo
     const distance=Math.hypot(camera.position.x-x,camera.position.z-z);
     const trunks=object.children[0] as THREE.InstancedMesh;
     const crowns=object.children[1] as THREE.InstancedMesh;
-    trunks.visible=trunks.visible?distance<310:distance<280;
-    crowns.visible=crowns.visible?distance<430:distance<400;
+    // Preserve distant forests in the aerial view; opaque depth-tested trees
+    // do not cause the former competing-ground z-fighting.
+    trunks.visible=trunks.visible?distance<650:distance<620;
+    crowns.visible=crowns.visible?distance<1050:distance<1020;
   });
 }
 // Merge the many separate road/river meshes into one mesh per material.
