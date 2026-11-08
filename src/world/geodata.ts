@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { toLocal } from './geo';
 import { setBuildingFootprints } from './collisions';
 import type { Terrain } from './terrain';
@@ -246,6 +247,21 @@ export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):vo
     crowns.visible=far;
   });
 }
+// Merge the many separate road/river meshes into one mesh per material.
+// This cuts draw calls without altering the OSM linework or its DEM heights.
+function batchLinearFeatures(scene:THREE.Object3D):void{
+  for(const material of [ROAD_MATERIAL,RIVER_MATERIAL]){
+    const meshes=scene.children.filter((child):child is THREE.Mesh=>
+      child instanceof THREE.Mesh && child.material===material);
+    if(meshes.length<2)continue;
+    const merged=mergeGeometries(meshes.map(mesh=>mesh.geometry),false);
+    if(!merged)continue;
+    for(const mesh of meshes){scene.remove(mesh);mesh.geometry.dispose();}
+    const combined=new THREE.Mesh(merged,material);
+    combined.receiveShadow=true;
+    scene.add(combined);
+  }
+}
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
   let count=addMappedTrees(scene,features,terrain);
   for(const f of features){
@@ -289,6 +305,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
       }
     }
   }
+  batchLinearFeatures(scene);
   return count;
 }
 export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain):Promise<number>{
