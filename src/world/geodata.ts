@@ -156,6 +156,21 @@ function pointInRing(x:number,z:number,ring:THREE.Vector3[]):boolean{
 }
 function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain):number{
   const points:THREE.Vector3[]=[];
+  // Precompute obstacles so generated trees cannot grow through mapped houses.
+  // Only procedural trees are excluded; explicitly mapped OSM trees remain.
+  const buildings:THREE.Vector3[][]=[];
+  for(const feature of features){
+    if(feature.geometry?.type!=='Polygon'||!feature.properties?.building)continue;
+    const coordinates=feature.geometry.coordinates;
+    if(!Array.isArray(coordinates))continue;
+    const ring=coordsToPoints(coordinates[0]);
+    if(ring.length>=4)buildings.push(ring);
+  }
+  const clearOfBuildings=(x:number,z:number):boolean=>!buildings.some(ring=>{
+    const minX=Math.min(...ring.map(p=>p.x))-2,maxX=Math.max(...ring.map(p=>p.x))+2;
+    const minZ=Math.min(...ring.map(p=>p.z))-2,maxZ=Math.max(...ring.map(p=>p.z))+2;
+    return x>=minX&&x<=maxX&&z>=minZ&&z<=maxZ&&pointInRing(x,z,ring);
+  });
   const add=(x:number,z:number)=>{
     if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>980||Math.abs(z)>980||points.length>=2500)return;
     const h=terrain?.relativeHeight(x,z);
@@ -189,7 +204,7 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
           const seed=Math.sin(x*12.9898+z*78.233)*43758.5453;
           const jitter=(seed-Math.floor(seed)-.5)*spacing*.55;
           const px=x+jitter,pz=z+jitter*.7;
-          if(pointInRing(px,pz,ring))add(px,pz);
+          if(pointInRing(px,pz,ring)&&clearOfBuildings(px,pz))add(px,pz);
         }
     }
   }
