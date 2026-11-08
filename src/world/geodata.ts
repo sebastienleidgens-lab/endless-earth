@@ -99,7 +99,7 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
   const geometry=new THREE.BufferGeometry();
   geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
   geometry.computeVertexNormals();
-  const roof=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({color:0x975c4b,side:THREE.DoubleSide}));
+  const roof=new THREE.Mesh(geometry,GABLE_ROOF_MATERIAL);
   roof.castShadow=true;roof.receiveShadow=true;scene.add(roof);
 }
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
