@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 // Illustrative placeholder. NOT an IGN/OSM reconstruction of Angles-sur-l'Anglin.
-export function createDemoWorld(scene: THREE.Scene, onlyGround = false) {
+export function createDemoWorld(scene: THREE.Object3D, onlyGround = false) {
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(2200, 2200), new THREE.MeshLambertMaterial({ color: 0x8eaa80 }));
   ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
   if (onlyGround) return;
