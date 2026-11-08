@@ -70,7 +70,7 @@ camera.lookAt(0,2,0);
 renderer.render(scene,camera);
 const tilePreview = tilesPreview ? startTilePreview(scene,avatar,status=>{
   if(hint)hint.textContent=status;
-  if(status.startsWith('Tuiles réelles'))demo.visible=false;
+  if(status.startsWith('Tuiles réelles') || status.startsWith('OSM réel'))demo.visible=false;
 }) : null;
 const clock=new THREE.Clock();
 function frame(){requestAnimationFrame(frame);const dt=Math.min(clock.getDelta(),.05);
