@@ -400,6 +400,42 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
         }
     }
   }
+  // Riparian vegetation: mapped OSM river centerlines establish the corridor,
+  // while individual bank trees are explicitly illustrative. Place them on
+  // both sides, not in the water, and keep paths and houses unobstructed.
+  // Do not use a second ground overlay: it caused terrain z-fighting.
+  const riparianSegments:THREE.Vector3[][]=[];
+  for(const feature of features){
+    if(feature.geometry?.type!=='LineString'||feature.properties?.waterway!=='river')continue;
+    const line=coordsToPoints(feature.geometry.coordinates);
+    if(line.length>1)riparianSegments.push(line);
+  }
+  const nearExisting=(x:number,z:number)=>points.some(p=>
+    Math.abs(p.x-x)<9&&Math.abs(p.z-z)<9&&Math.hypot(p.x-x,p.z-z)<9);
+  for(const line of riparianSegments){
+    for(let i=1;i<line.length&&points.length<2500;i++){
+      const a=line[i-1],b=line[i];
+      const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
+      if(length<2)continue;
+      const nx=-dz/length,nz=dx/length;
+      const steps=Math.max(1,Math.ceil(length/26));
+      for(let j=0;j<steps&&points.length<2500;j++){
+        const t=(j+.5)/steps;
+        const centerX=a.x+dx*t,centerZ=a.z+dz*t;
+        for(const side of [-1,1]){
+          if(points.length>=2500)break;
+          const noise=Math.sin(centerX*1.37+centerZ*2.91+side*7.3)*17317.13;
+          const fraction=noise-Math.floor(noise);
+          // Deliberately sparse to preserve open views of the Anglin.
+          if(fraction>.68)continue;
+          const distance=12+fraction*18;
+          const x=centerX+nx*side*distance,z=centerZ+nz*side*distance;
+          if(!clearOfBuildings(x,z)||!clearOfPaths(x,z)||nearExisting(x,z))continue;
+          add(x,z);
+        }
+      }
+    }
+  }
   if(!points.length)return 0;
   // Partition instances into spatial cells. Distant cells hide trunks,
   // then crowns; no per-frame instance matrix rebuild is necessary.
