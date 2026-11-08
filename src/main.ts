@@ -5,7 +5,6 @@ import { fetchTerrain, type Terrain } from './world/terrain';
 import { ANGLES } from './world/geo';
 import { InputController } from './controls/input';
 import { moveWithCollision } from './world/collisions';
-import { startTilePreview } from './world/tile-preview';
 import './style.css';
 const root=document.querySelector<HTMLDivElement>('#app')!;
 root.innerHTML=`<div class="hud"><strong>ENDLESS EARTH</strong><span>France Alpha · ${ANGLES.name}</span><small>Décor illustratif — géographie réelle à importer</small></div><div class="help">Déplacement : ZQSD / WASD / flèches · Glisser : orienter la caméra · Molette : zoom</div>`;
@@ -55,6 +54,25 @@ if (terrainPreview) {
     if(hint)hint.textContent='Décor illustratif · import géographique indisponible';
   });
 }
+// Diagnostic real-geography mode: bypass the tile coordinator until we can
+// prove that the actual OSM dataset is rendered correctly in the browser.
+// Never silently show the illustrative village in this mode.
+if(tilesPreview && !terrainPreview){
+  demo.visible=false;
+  const realWorld=new THREE.Group();
+  scene.add(realWorld);
+  createDemoWorld(realWorld,true);
+  if(hint)hint.textContent='OSM réel : chargement du fichier géographique…';
+  loadAnglesGeography(realWorld).then(count=>{
+    if(hint)hint.textContent=count>0
+      ? `OSM réel : ${count} objets affichés · relief provisoire`
+      : 'ERREUR OSM : fichier absent (HTTP 404 ou autre réponse)';
+    if(count===0)console.error('OSM diagnostic: zero renderable features');
+  }).catch(error=>{
+    console.error('OSM diagnostic loading/rendering failed',error);
+    if(hint)hint.textContent=`ERREUR OSM : ${String(error?.message??error).slice(0,110)}`;
+  });
+}
 const avatar=new THREE.Group();
 const body=new THREE.Mesh(new THREE.CapsuleGeometry(.65,1.65,5,8),new THREE.MeshStandardMaterial({color:0x715d4f}));body.position.y=2;body.castShadow=true;avatar.add(body);
 const head=new THREE.Mesh(new THREE.SphereGeometry(.52,10,8),new THREE.MeshStandardMaterial({color:0xe4b992}));head.position.y=3.65;head.castShadow=true;avatar.add(head);scene.add(avatar);
@@ -68,16 +86,11 @@ addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updat
 camera.position.set(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
 camera.lookAt(0,2,0);
 renderer.render(scene,camera);
-const tilePreview = tilesPreview ? startTilePreview(scene,avatar,status=>{
-  if(hint)hint.textContent=status;
-  if(status.startsWith('Tuiles réelles') || status.startsWith('OSM réel'))demo.visible=false;
-}) : null;
 const clock=new THREE.Clock();
 function frame(){requestAnimationFrame(frame);const dt=Math.min(clock.getDelta(),.05);
 const controls=input.getVector();
 const dir=new THREE.Vector3(Math.sin(yaw)*controls.forward+Math.cos(yaw)*controls.strafe,0,Math.cos(yaw)*controls.forward-Math.sin(yaw)*controls.strafe);
 if(dir.lengthSq()>0){dir.normalize();moveWithCollision(avatar.position,dir.clone().multiplyScalar(dt*8));avatar.rotation.y=Math.atan2(dir.x,dir.z)}
-if(tilePreview)void tilePreview.update();
 if(activeTerrain){const h=activeTerrain.relativeHeight(avatar.position.x,avatar.position.z);if(h!==null)avatar.position.y=h;}
 const offset=new THREE.Vector3(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
 camera.position.lerp(avatar.position.clone().add(offset),.09);camera.lookAt(avatar.position.x,2,avatar.position.z);
