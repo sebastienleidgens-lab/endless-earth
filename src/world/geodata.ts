@@ -151,6 +151,24 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
   const mesh=new THREE.Mesh(geometry,color===0x729ea8?RIVER_MATERIAL:ROAD_MATERIAL);
   mesh.receiveShadow=true;scene.add(mesh);
 }
+// Historic OSM outlines are survey data; wall heights are deliberately
+// illustrative until a verified height or architectural model is available.
+const HISTORIC_WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xb8ad96});
+function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Terrain):void{
+  for(let i=1;i<points.length;i++){
+    const a=points[i-1],b=points[i];
+    if(!insideArea(a)&&!insideArea(b))continue;
+    const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
+    if(length<.5||length>150)continue;
+    const midX=(a.x+b.x)/2,midZ=(a.z+b.z)/2;
+    const ground=terrain?.relativeHeight(midX,midZ)??(a.y+b.y)/2;
+    const geometry=new THREE.BoxGeometry(length,2.6,1.25);
+    const mesh=new THREE.Mesh(geometry,HISTORIC_WALL_MATERIAL);
+    mesh.position.set(midX,ground+1.3,midZ);
+    mesh.rotation.y=-Math.atan2(dz,dx);
+    mesh.receiveShadow=true;scene.add(mesh);
+  }
+}
 function measuredMetres(value:unknown):number|null{
   if(typeof value!=='string'&&typeof value!=='number')return null;
   const text=String(value).trim().replace(',','.');
@@ -528,6 +546,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
       if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b,terrain);count++;}
       else if(tags.waterway){addLine(scene,pts,6,0x729ea8,terrain);count++;}
+      else if(tags.historic==='citywalls'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain);count++;}
     } else if(f.geometry?.type==='Polygon' && Array.isArray(f.geometry.coordinates)){
       const ring=coordsToPoints(f.geometry.coordinates[0],terrain);
       if(ring.length<4 || !ring.some(insideArea))continue;
@@ -566,6 +585,10 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         // motion (z-fighting). Preserve OSM polygons for tree placement, but
         // don't overlay a competing terrain mesh until DEM-cell clipping exists.
         count++;
+      } else if(tags.historic==='castle'||tags.historic==='ruins'){
+        // Preserve the mapped footprint without inventing an intact castle.
+        // Only its surveyed perimeter is represented as a low schematic wall.
+        addHistoricWall(scene,ring,terrain);count++;
       } else if(tags.natural==='water'){
         // Water surfaces remain level at their lowest mapped edge.
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
