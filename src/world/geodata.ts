@@ -382,8 +382,11 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     cells.get(key)!.push(p);
   }
   const trunkGeometry=new THREE.CylinderGeometry(.25,.38,3.5,5);
-  // Broad low-poly crowns retain a more stable silhouette at oblique angles.
-  const crownGeometry=new THREE.ConeGeometry(2.8,6,5);
+  // Angles-sur-l'Anglin is dominated by broadleaf trees along the Anglin.
+  // A faceted, rounded canopy is a better regional silhouette than a uniform
+  // plantation of conifers. Still one instanced mesh and one draw call per cell.
+  const crownGeometry=new THREE.IcosahedronGeometry(1,1);
+  crownGeometry.scale(2.8,3.1,2.8);
   const trunkMaterial=new THREE.MeshLambertMaterial({color:0x76614b});
   const crownMaterial=new THREE.MeshLambertMaterial({color:0xffffff});
   const foliagePalette=[0x486e47,0x587d4f,0x6b8958,0x426a4b,0x79905b].map(color=>new THREE.Color(color));
@@ -411,7 +414,7 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
       dummy.position.set(p.x,p.y+1.75*scale*height,p.z);
       dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
       dummy.scale.set(scale*width,scale*height,scale*width);
-      dummy.position.set(p.x,p.y+5.6*scale*height,p.z);
+      dummy.position.set(p.x,p.y+5.05*scale*height,p.z);
       dummy.rotation.y=fraction*Math.PI*2;
       dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);
       dummy.rotation.y=0;
