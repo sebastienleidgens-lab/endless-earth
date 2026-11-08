@@ -1,6 +1,6 @@
 import { createAtmosphere } from './living/atmosphere';
 import { Soundscape } from './living/sound';
-import { loadNavigation, navigationReady, paths, routeAt, validPoint } from './living/geography';
+import { loadNavigation, navigationReady, nature, paths, routeAt, validPoint } from './living/geography';
 // @ts-ignore Shared controller tested directly in Node.
 import { AutoWalk, windAt } from './living/walk.mjs';
 import * as THREE from 'three';
@@ -239,7 +239,7 @@ root.append(qualityButton);applyQuality('high');
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),quality,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);

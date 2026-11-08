@@ -14,7 +14,7 @@ Le planificateur réutilisable consomme des polylignes en mètres locaux et un p
 
 ## Ambiance
 
-Nuages opaques stylisés instanciés (un draw call), dérive lente, lumière et ciel interpolés sur un cycle de vingt minutes, coucher chaleureux. Vent subtil par shader des couronnes opaques : conservation du batching, du depth test et du LOD hystérétique existants ; pas de reconstruction des matrices d'arbres par frame. Quatre oiseaux décoratifs maximum, vols intermittents autour de points d'arbres OSM, deux en Éco. Leur présence et leur animation sont illustratives, jamais des observations de faune réelle.
+Nuages opaques stylisés instanciés (un draw call), dérive lente, lumière et ciel interpolés sur un cycle de vingt minutes, coucher chaleureux. Vent subtil par shader des couronnes opaques : conservation du batching, du depth test et du LOD hystérétique existants ; pas de reconstruction des matrices d'arbres par frame. Quatre oiseaux décoratifs maximum, vols intermittents autour des arbres effectivement rendus (OSM ou végétation illustrative), deux en Éco. Leur présence et leur animation sont illustratives, jamais des observations de faune réelle.
 
 Son explicitement activé via Web Audio : vent filtré modulé, eau atténuée à proximité des points de cours d'eau, pas déclenchés par distance parcourue, timbres herbe/terre/gravier/route issus des surfaces OSM, chants espacés avec panorama et atténuation. Synthèse originale uniquement, aucune ressource audio externe ni licence supplémentaire. Le son de pas reste stylisé (oscillateurs), pas un enregistrement réaliste ; l'eau repose sur la distance aux sommets des lignes et les chants utilisent un panoramique stéréo simplifié.
 
@@ -32,3 +32,7 @@ Deux profils existants conservés : Éco / Qualité, choix automatique selon les
 ## Limites à revoir
 
 La marche longue distance, les connexions entre plusieurs voies, la validation terrain réelle, les performances GPU/mobile réelles, l'écoute humaine sur casque et la qualité artistique du coucher complet ne sont pas validées. Les nuages et oiseaux sont des premières formes légères. Les captures des trois vues seules ne prouvent pas l'absence de scintillement ou de popping pendant une longue session. Conserver les attributions OSM/IGN existantes ; aucune donnée externe ajoutée. Aucun déploiement et aucune fusion autorisés par cette mission.
+
+Contrôle supplémentaire : aucun arbre ponctuel OSM dans cet extrait ; ancrage des oiseaux/chants corrigé sur les arbres rendus, avec assertion Chromium de présence des ancrages. Dernier passage logiciel : environ 11 FPS, 102 draw calls et 315 milliers de triangles.
+
+Nouvelle exécution Chromium après correction : 2 147 ancrages de végétation, assertion de présence réussie, scénario complet réussi. Le test de reprise manuelle attend maintenant l'état observé plutôt qu'un délai arbitraire de 100 ms (insuffisant sous SwiftShader chargé). Mesures logicielles variables : 3–11 FPS selon la charge, jusqu'à 103 draw calls / 315 282 triangles ; aucune conclusion GPU. Capture supplémentaire vers le ciel inspectée : nuage stylisé visible ; un essai de capture a expiré avant une nouvelle capture réussie à résolution réduite. Console de cet essai : 404 de ressource, sans erreur de shader observée. Le cycle complet du coucher et une longue observation du feuillage restent à examiner.

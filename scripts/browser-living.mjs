@@ -10,14 +10,14 @@ try{
  await page.waitForFunction(()=>window.endlessDiagnostics?.ready);
  await page.waitForFunction(()=>!document.querySelector('#auto-walk').disabled);
  const state=()=>page.evaluate(()=>window.endlessDiagnostics);
- console.log('START',await state());
+ console.log('START',await state());assert.ok((await state()).natureAnchors>0,'birds and calls have vegetation anchors');
  await page.locator('#sound').click();assert.equal((await state()).sound,true);
  await page.locator('#auto-walk').click();assert.equal((await state()).autoWalk,true);
  const before=await state();await page.waitForTimeout(6000);const after=await state();
  assert.ok(Math.hypot(after.position[0]-before.position[0],after.position[2]-before.position[2])>.5);
  console.log('WALK',after);
  for(const mode of ['third','first','aerial']){await page.keyboard.press('v');await page.waitForTimeout(1200);assert.equal((await state()).mode,mode);await page.screenshot({path:`work/visual/living-${mode}.png`});}
- await page.keyboard.down('d');await page.waitForTimeout(100);await page.keyboard.up('d');assert.equal((await state()).autoWalk,false);assert.match((await state()).walkMessage,/manuel/);
+ await page.keyboard.down('d');await page.waitForFunction(()=>window.endlessDiagnostics.autoWalk===false);await page.keyboard.up('d');assert.equal((await state()).autoWalk,false);assert.match((await state()).walkMessage,/manuel/);
  await page.locator('#sound').click();assert.equal((await state()).sound,false);
  await page.locator('#auto-walk').click();await page.waitForTimeout(100);await page.locator('#auto-walk').click();assert.equal((await state()).autoWalk,false);
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(1000);await page.screenshot({path:'work/visual/living-mobile.png'});
