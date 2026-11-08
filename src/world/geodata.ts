@@ -105,6 +105,44 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
   const roof=new THREE.Mesh(geometry,GABLE_ROOF_MATERIAL);
   roof.castShadow=true;roof.receiveShadow=true;scene.add(roof);
 }
+// Drape mapped land-cover polygons onto the DEM. Subdivide their triangles
+// before sampling so large forest polygons do not cut through valley slopes.
+function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THREE.Material,offset=.13):THREE.Mesh{
+  const flat=new THREE.ShapeGeometry(makeFootprint(ring));
+  const position=flat.getAttribute('position');
+  const index=flat.getIndex();
+  const vertices:number[]=[];
+  const emit=(x:number,z:number)=>{
+    const h=terrain?.relativeHeight(x,z)??0;
+    vertices.push(x,h+offset,z);
+  };
+  const triangle=(a:[number,number],b:[number,number],c:[number,number],depth:number):void=>{
+    const ab=Math.hypot(a[0]-b[0],a[1]-b[1]);
+    const bc=Math.hypot(b[0]-c[0],b[1]-c[1]);
+    const ca=Math.hypot(c[0]-a[0],c[1]-a[1]);
+    if(terrain && depth<7 && Math.max(ab,bc,ca)>15){
+      const m=(p:[number,number],q:[number,number]):[number,number]=>[(p[0]+q[0])/2,(p[1]+q[1])/2];
+      const abm=m(a,b),bcm=m(b,c),cam=m(c,a);
+      triangle(a,abm,cam,depth+1);
+      triangle(abm,b,bcm,depth+1);
+      triangle(cam,bcm,c,depth+1);
+      triangle(abm,bcm,cam,depth+1);
+    }else{emit(...a);emit(...b);emit(...c);}
+  };
+  const point=(i:number):[number,number]=>[position.getX(i),-position.getY(i)];
+  const triangles=index?index.count:position.count;
+  for(let i=0;i+2<triangles;i+=3){
+    const a=index?index.getX(i):i,b=index?index.getX(i+1):i+1,d=index?index.getX(i+2):i+2;
+    triangle(point(a),point(b),point(d),0);
+  }
+  flat.dispose();
+  const geometry=new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+  geometry.computeVertexNormals();
+  const mesh=new THREE.Mesh(geometry,material);
+  mesh.receiveShadow=true;
+  return mesh;
+}
 // Trees are placed only where OSM explicitly maps a tree.
 // Instancing keeps hundreds of trees to two draw calls.
 function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain):number{
@@ -165,18 +203,16 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
           addGableRoof(scene,ring,base+height+slopeRise,height);
         count++;
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
-        // The OSM boundary is factual; this is a ground-cover preview, not invented trees.
-        const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
-        geometry.rotateX(-Math.PI/2);
+        // Ground cover follows the real DEM; mapped boundaries are preserved.
         const material=tags.natural==='scrub'?SCRUB_MATERIAL:tags.leisure==='park'?PARK_MATERIAL:WOOD_MATERIAL;
-        const cover=new THREE.Mesh(geometry,material);
-        cover.position.y=terrain?(Math.min(...ring.map(p=>p.y))+.08):.16;
-        scene.add(cover);count++;
+        scene.add(drapedCover(ring,terrain,material));count++;
       } else if(tags.natural==='water'){
+        // Water surfaces remain level at their lowest mapped edge.
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
         geometry.rotateX(-Math.PI/2);
-        const water=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({color:0x739da8,side:THREE.DoubleSide}));
-        water.position.y=terrain?(Math.min(...ring.map(p=>p.y))+.05):.2;scene.add(water);count++;
+        const water=new THREE.Mesh(geometry,WATER_MATERIAL);
+        water.position.y=terrain?(Math.min(...ring.map(p=>p.y))+.05):.2;
+        scene.add(water);count++;
       }
     }
   }
