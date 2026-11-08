@@ -18,7 +18,10 @@ const FLAT_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x9a6758});
 const GABLE_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x975c4b,side:THREE.DoubleSide});
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
 const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
-const WATER_MATERIAL=new THREE.MeshLambertMaterial({color:0x739da8,side:THREE.DoubleSide});
+const WATER_MATERIAL=WATER_MATERIAL;
+const WOOD_MATERIAL=new THREE.MeshLambertMaterial({color:0x557b4d,side:THREE.DoubleSide});
+const SCRUB_MATERIAL=new THREE.MeshLambertMaterial({color:0x7f9964,side:THREE.DoubleSide});
+const PARK_MATERIAL=new THREE.MeshLambertMaterial({color:0x94ae7b,side:THREE.DoubleSide});
 function insideArea(p:THREE.Vector3){return Math.abs(p.x)<=LOCAL_LIMIT&&Math.abs(p.z)<=LOCAL_LIMIT;}
 function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain){
   if(points.length<2)return;
@@ -161,6 +164,14 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
           addGableRoof(scene,ring,base+height+slopeRise,height);
         count++;
+      } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
+        // The OSM boundary is factual; this is a ground-cover preview, not invented trees.
+        const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
+        geometry.rotateX(-Math.PI/2);
+        const material=tags.natural==='scrub'?SCRUB_MATERIAL:tags.leisure==='park'?PARK_MATERIAL:WOOD_MATERIAL;
+        const cover=new THREE.Mesh(geometry,material);
+        cover.position.y=terrain?(Math.min(...ring.map(p=>p.y))+.08):.16;
+        scene.add(cover);count++;
       } else if(tags.natural==='water'){
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
         geometry.rotateX(-Math.PI/2);
