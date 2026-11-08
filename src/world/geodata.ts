@@ -14,7 +14,9 @@ function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
 }
 const LOCAL_LIMIT=1050;
 // Shared materials avoid allocating thousands of identical GPU resources.
-const WALL_MATERIALS=[0xcab89d,0xd8c7ab,0xb8a991,0xe0d1b8].map(color=>new THREE.MeshLambertMaterial({color}));
+// Limestone, pale render and aged stone tones typical of the region.
+const WALL_COLORS=[0xcab89d,0xd8c7ab,0xb8a991,0xe0d1b8,0xc4b69d,0xe1d5be,0xafa48e,0xd1bea2];
+const WALL_MATERIALS=WALL_COLORS.map(color=>new THREE.MeshLambertMaterial({color}));
 // Restrained regional roof palette; deterministic per footprint and GPU-shared.
 const ROOF_COLORS=[0xa96049,0xb77559,0x995a49,0xb16a52,0x8d594b];
 const FLAT_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial({color}));
@@ -410,9 +412,13 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const geometry=new THREE.ExtrudeGeometry(shape,{depth:height+slopeRise,bevelEnabled:false});
         geometry.rotateX(-Math.PI/2);
         geometry.translate(0,base,0);
-        const seed=Math.abs(Math.round(ring[0].x*31+ring[0].z*17));
-        const roofIndex=seed%ROOF_COLORS.length;
-        const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[seed%WALL_MATERIALS.length]]);
+        // Stable spatial hashes, deliberately decorrelated: neighboring buildings
+        // should not all share the same facade/roof pairing.
+        const hx=Math.round(ring[0].x*10),hz=Math.round(ring[0].z*10);
+        const mix=(x:number)=>{x=Math.imul(x^(x>>>16),0x7feb352d);x=Math.imul(x^(x>>>15),0x846ca68b);return (x^(x>>>16))>>>0;};
+        const roofIndex=mix(hx^Math.imul(hz,31))%ROOF_COLORS.length;
+        const wallIndex=mix(hz^Math.imul(hx,131)^0x5f3759df)%WALL_MATERIALS.length;
+        const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[wallIndex]]);
         mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
         if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
           addGableRoof(scene,ring,base+height+slopeRise,height,GABLE_ROOF_MATERIALS[roofIndex]);
