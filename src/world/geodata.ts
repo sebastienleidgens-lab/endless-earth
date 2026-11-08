@@ -30,6 +30,13 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
     mesh.receiveShadow=true;scene.add(mesh);
   }
 }
+function buildingHeight(tags:Record<string,unknown>):number{
+  const explicit=typeof tags.height==='string'?Number.parseFloat(tags.height.replace(',','.')):NaN;
+  if(Number.isFinite(explicit)&&explicit>=2&&explicit<=80)return explicit;
+  const levels=Number(tags['building:levels']);
+  if(Number.isFinite(levels)&&levels>=1&&levels<=20)return levels*3.1;
+  return 7;
+}
 function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
   const shape=new THREE.Shape();
   ring.forEach((p,i)=>i===0?shape.moveTo(p.x,-p.z):shape.lineTo(p.x,-p.z));
@@ -48,9 +55,12 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[]):numb
       if(ring.length<4)continue;
       if(tags.building){
         const shape=makeFootprint(ring);
-        const geometry=new THREE.ExtrudeGeometry(shape,{depth:7,bevelEnabled:false});
+        const height=buildingHeight(tags);
+        const geometry=new THREE.ExtrudeGeometry(shape,{depth:height,bevelEnabled:false});
         geometry.rotateX(-Math.PI/2);
-        const mesh=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({color:0xd6c8af}));
+        const wall=new THREE.MeshLambertMaterial({color:0xcab89d});
+        const roof=new THREE.MeshLambertMaterial({color:0x9a6758});
+        const mesh=new THREE.Mesh(geometry,[wall,roof]);
         mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);count++;
       } else if(tags.natural==='water'){
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
