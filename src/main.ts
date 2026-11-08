@@ -96,7 +96,7 @@ if(tilesPreview && !terrainPreview){
     try{
       const count=await loadAnglesGeography(realWorld,terrain??undefined);
       if(hint)hint.textContent=count>0
-        ? `OSM réel : ${count} objets · ${terrain?`relief IGN 20 m · dénivelé ${(Math.max(...terrain.grid.elevations_m)-Math.min(...terrain.grid.elevations_m)).toFixed(0)} m`:'relief indisponible, sol plat'}`
+        ? `OSM réel : ${count} objets · ${terrain?`relief IGN ${terrain.grid.step_m} m · dénivelé ${(Math.max(...terrain.grid.elevations_m)-Math.min(...terrain.grid.elevations_m)).toFixed(0)} m`:'relief indisponible, sol plat'}`
         : 'ERREUR OSM : aucun objet géographique chargé';
     }catch(error){
       console.error('OSM geography rendering failed',error);
