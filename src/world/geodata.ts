@@ -176,6 +176,31 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
   }
   const clearOfBuildings=(x:number,z:number):boolean=>!buildings.some(b=>
     x>=b.minX&&x<=b.maxX&&z>=b.minZ&&z<=b.maxZ&&pointInRing(x,z,b.ring));
+  // Keep generated woodland clear of mapped roads and paths. Real OSM
+  // tree points are never moved or discarded by this illustrative rule.
+  const paths:{ax:number;az:number;dx:number;dz:number;lengthSq:number;minX:number;maxX:number;minZ:number;maxZ:number;clearanceSq:number}[]=[];
+  for(const feature of features){
+    if(feature.geometry?.type!=='LineString'||!feature.properties?.highway)continue;
+    const coordinates=feature.geometry.coordinates;
+    const line=coordsToPoints(coordinates);
+    const highway=String(feature.properties.highway);
+    const clearance=['footway','path','track','steps','pedestrian'].includes(highway)?2.5:4.5;
+    for(let i=1;i<line.length;i++){
+      const a=line[i-1],b=line[i],dx=b.x-a.x,dz=b.z-a.z;
+      const lengthSq=dx*dx+dz*dz;
+      if(lengthSq<.01)continue;
+      paths.push({ax:a.x,az:a.z,dx,dz,lengthSq,
+        minX:Math.min(a.x,b.x)-clearance,maxX:Math.max(a.x,b.x)+clearance,
+        minZ:Math.min(a.z,b.z)-clearance,maxZ:Math.max(a.z,b.z)+clearance,
+        clearanceSq:clearance*clearance});
+    }
+  }
+  const clearOfPaths=(x:number,z:number):boolean=>!paths.some(p=>{
+    if(x<p.minX||x>p.maxX||z<p.minZ||z>p.maxZ)return false;
+    const t=THREE.MathUtils.clamp(((x-p.ax)*p.dx+(z-p.az)*p.dz)/p.lengthSq,0,1);
+    const ox=x-(p.ax+t*p.dx),oz=z-(p.az+t*p.dz);
+    return ox*ox+oz*oz<p.clearanceSq;
+  });
   const add=(x:number,z:number)=>{
     if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>980||Math.abs(z)>980||points.length>=2500)return;
     const h=terrain?.relativeHeight(x,z);
@@ -210,7 +235,7 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
           const seed=Math.sin(x*12.9898+z*78.233)*43758.5453;
           const jitter=(seed-Math.floor(seed)-.5)*spacing*.55;
           const px=x+jitter,pz=z+jitter*.7;
-          if(pointInRing(px,pz,ring)&&!holes.some(hole=>pointInRing(px,pz,hole))&&clearOfBuildings(px,pz))add(px,pz);
+          if(pointInRing(px,pz,ring)&&!holes.some(hole=>pointInRing(px,pz,hole))&&clearOfBuildings(px,pz)&&clearOfPaths(px,pz))add(px,pz);
         }
     }
   }
