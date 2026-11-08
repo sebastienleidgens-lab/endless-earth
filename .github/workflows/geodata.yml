@@ -36,5 +36,21 @@ jobs:
           git add public/data/angles-osm.geojson public/tiles/
           if ! git diff --cached --quiet; then
             git commit -m "Import OpenStreetMap features for Angles-sur-l'Anglin"
-            git push origin HEAD:main
+            # Other development commits may land while the import runs.
+            # Replay this data-only commit onto the newest main before pushing.
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort || true
+                echo "Import conflicts with concurrent changes; stopping safely."
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              echo "Concurrent push detected (attempt ${attempt}/5); retrying..."
+              sleep 2
+            done
+            echo "Could not publish after five safe retries."
+            exit 1
           fi
