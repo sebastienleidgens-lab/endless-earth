@@ -27,6 +27,7 @@ const hint = document.querySelector<HTMLElement>('.hud small');
 const params = new URLSearchParams(location.search);
 const terrainPreview = params.get('terrain') === '1';
 const tilesPreview = params.get('tiles') === '1';
+const terrainDebug = params.get('terrainDebug') === '1';
 // Aerial OSM mode prioritizes responsiveness: terrain and facades still receive light.
 if(tilesPreview)renderer.shadowMap.enabled=false;
 // Optional live GPU diagnostics: ?tiles=1&perf=1 (disabled by default).
@@ -80,6 +81,15 @@ if(tilesPreview && !terrainPreview){
       const mesh=terrain.createMesh();
       realWorld.add(mesh);
       activeTerrain=terrain;
+      if(terrainDebug){
+        const {overlay,cells}=terrain.createSlopeDiagnostics();
+        realWorld.add(overlay);
+        console.info('DEM diagnostic: cells with >=15m elevation range',cells);
+        const diagnostic=document.createElement('div');
+        diagnostic.style.cssText='position:fixed;left:12px;bottom:12px;z-index:30;background:#17251de6;color:#fff;padding:9px 12px;border-radius:6px;font:12px/1.5 sans-serif;pointer-events:none';
+        diagnostic.textContent=`Diagnostic relief : ${cells} cellules ≥ 15 m (contours roses)`;
+        root.append(diagnostic);
+      }
     }else{
       createDemoWorld(realWorld,true);
     }
