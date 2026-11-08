@@ -205,7 +205,8 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     cells.get(key)!.push(p);
   }
   const trunkGeometry=new THREE.CylinderGeometry(.25,.38,3.5,5);
-  const crownGeometry=new THREE.ConeGeometry(2.4,6,7);
+  // Broad low-poly crowns retain a more stable silhouette at oblique angles.
+  const crownGeometry=new THREE.ConeGeometry(2.8,6,5);
   const trunkMaterial=new THREE.MeshLambertMaterial({color:0x76614b});
   const crownMaterial=new THREE.MeshLambertMaterial({color:0x567b51});
   const dummy=new THREE.Object3D();
@@ -242,7 +243,9 @@ export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):vo
     const distance=Math.hypot(camera.position.x-x,camera.position.z-z);
     const trunks=object.children[0],crowns=object.children[1];
     const near=trunks.visible?distance<420:distance<360;
-    const far=crowns.visible?distance<900:distance<820;
+    // Beyond this range the narrow tree tips become subpixel and shimmer.
+    // Keep the mapped green ground cover visible instead of drawing unstable crowns.
+    const far=crowns.visible?distance<620:distance<550;
     trunks.visible=near;
     crowns.visible=far;
   });
