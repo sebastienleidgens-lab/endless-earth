@@ -238,8 +238,13 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     group.userData.vegetationCell=true;
     group.userData.centerX=(cx+.5)*cellSize;
     group.userData.centerZ=(cz+.5)*cellSize;
-    const trunks=new THREE.InstancedMesh(trunkGeometry,trunkMaterial,cellPoints.length);
-    const crowns=new THREE.InstancedMesh(crownGeometry,crownMaterial,cellPoints.length);
+    // Per-cell materials allow a smooth distance fade without rebuilding instances.
+    const trunkCellMaterial=trunkMaterial.clone();
+    const crownCellMaterial=crownMaterial.clone();
+    trunkCellMaterial.transparent=true;trunkCellMaterial.depthWrite=false;
+    crownCellMaterial.transparent=true;crownCellMaterial.depthWrite=false;
+    const trunks=new THREE.InstancedMesh(trunkGeometry,trunkCellMaterial,cellPoints.length);
+    const crowns=new THREE.InstancedMesh(crownGeometry,crownCellMaterial,cellPoints.length);
     cellPoints.forEach((p,i)=>{
       const seed=Math.sin(p.x*12.9898+p.z*78.233)*43758.5453;
       const scale=.8+(seed-Math.floor(seed))*.45;
@@ -266,19 +271,23 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
   }
   return points.length;
 }
-// Run at a low frequency from the render loop; thresholds include hysteresis.
+// Fade individual vegetation cells rather than abruptly removing entire forests.
+// At distance, narrow cone tips alias badly; the OSM ground cover stays visible.
 export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):void{
+  const fade=(distance:number,start:number,end:number):number=>
+    THREE.MathUtils.clamp((end-distance)/(end-start),0,1);
   scene.traverse(object=>{
     if(!object.userData.vegetationCell)return;
     const x=object.userData.centerX as number,z=object.userData.centerZ as number;
     const distance=Math.hypot(camera.position.x-x,camera.position.z-z);
-    const trunks=object.children[0],crowns=object.children[1];
-    const near=trunks.visible?distance<420:distance<360;
-    // Beyond this range the narrow tree tips become subpixel and shimmer.
-    // Keep the mapped green ground cover visible instead of drawing unstable crowns.
-    const far=crowns.visible?distance<620:distance<550;
-    trunks.visible=near;
-    crowns.visible=far;
+    const trunks=object.children[0] as THREE.InstancedMesh;
+    const crowns=object.children[1] as THREE.InstancedMesh;
+    const trunkOpacity=fade(distance,170,310);
+    const crownOpacity=fade(distance,240,430);
+    (trunks.material as THREE.MeshLambertMaterial).opacity=trunkOpacity;
+    (crowns.material as THREE.MeshLambertMaterial).opacity=crownOpacity;
+    trunks.visible=trunkOpacity>.015;
+    crowns.visible=crownOpacity>.015;
   });
 }
 // Merge the many separate road/river meshes into one mesh per material.
