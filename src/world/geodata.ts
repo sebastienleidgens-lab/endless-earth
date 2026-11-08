@@ -103,7 +103,7 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
   geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
   geometry.computeVertexNormals();
   const roof=new THREE.Mesh(geometry,GABLE_ROOF_MATERIAL);
-  roof.castShadow=true;roof.receiveShadow=true;scene.add(roof);
+  roof.castShadow=false;roof.receiveShadow=true;scene.add(roof);
 }
 // Drape mapped land-cover polygons onto the DEM. Subdivide their triangles
 // before sampling so large forest polygons do not cut through valley slopes.
@@ -271,7 +271,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         geometry.translate(0,base,0);
         const seed=Math.abs(Math.round(ring[0].x*31+ring[0].z*17));
         const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIAL,WALL_MATERIALS[seed%WALL_MATERIALS.length]]);
-        mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
+        mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
         if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
           addGableRoof(scene,ring,base+height+slopeRise,height);
         count++;
