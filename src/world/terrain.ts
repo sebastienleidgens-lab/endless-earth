@@ -54,7 +54,7 @@ export class Terrain {
   }
 }
 export async function fetchTerrain():Promise<Terrain|null>{
-  const response=await fetch('/data/angles-terrain.json');
+  const response=await fetch(`${import.meta.env.BASE_URL}data/angles-terrain.json`);
   if(!response.ok)return null;
   return new Terrain(Terrain.validate(await response.json()));
 }
