@@ -6,6 +6,10 @@ on:
     paths:
       - '.github/workflows/terrain.yml'
       - 'scripts/fetch-angles-terrain.py'
+# Serialize imports so two IGN runs cannot publish competing JSON files.
+concurrency:
+  group: angles-ign-terrain-import
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
