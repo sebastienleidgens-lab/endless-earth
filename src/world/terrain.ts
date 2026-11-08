@@ -33,6 +33,12 @@ export class Terrain {
     const a=h(x0,z0),b=h(x0+1,z0),cc=h(x0,z0+1),d=h(x0+1,z0+1);
     // Match the exact two triangles used by createMesh(), not a bilinear
     // surface that can float above or sink below the rendered terrain.
+    // Choose the shorter elevation diagonal in steep cells. The same
+    // decision is used for mesh indices below, so sampling stays exact.
+    if(Math.abs(a-d)<Math.abs(b-cc)){
+      if(tx>=tz)return a+(b-a)*tx+(d-b)*tz;
+      return a+(cc-a)*tz+(d-cc)*tx;
+    }
     if(tx+tz<=1)return a+(b-a)*tx+(cc-a)*tz;
     return d+(cc-d)*(1-tx)+(b-d)*(1-tz);
   }
@@ -52,7 +58,12 @@ export class Terrain {
     }
     for(let z=0;z<g.height-1;z++)for(let x=0;x<g.width-1;x++){
       const a=z*g.width+x,b=a+1,c=a+g.width,d=c+1;
-      indices.push(a,c,b,b,c,d);
+      // Prefer the diagonal with the smaller height jump. A fixed diagonal
+      // across a cliff can create long, unnatural triangular wedges.
+      const h=g.elevations_m;
+      if(Math.abs(h[a]-h[d])<Math.abs(h[b]-h[c]))
+        indices.push(a,c,d,a,d,b);
+      else indices.push(a,c,b,b,c,d);
     }
     const geometry=new THREE.BufferGeometry();
     geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
