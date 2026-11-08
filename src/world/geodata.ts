@@ -108,8 +108,16 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
 }
 // Drape mapped land-cover polygons onto the DEM. Subdivide their triangles
 // before sampling so large forest polygons do not cut through valley slopes.
-function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THREE.Material,offset=.35):THREE.Mesh{
-  const flat=new THREE.ShapeGeometry(makeFootprint(ring));
+function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THREE.Material,holes:THREE.Vector3[][]=[],offset=.35):THREE.Mesh{
+  const shape=makeFootprint(ring);
+  // OSM interior rings are genuine clearings: don't paint over them.
+  for(const hole of holes){
+    if(hole.length<4)continue;
+    const path=new THREE.Path();
+    hole.forEach((p,i)=>i===0?path.moveTo(p.x,-p.z):path.lineTo(p.x,-p.z));
+    shape.holes.push(path);
+  }
+  const flat=new THREE.ShapeGeometry(shape);
   const position=flat.getAttribute('position');
   const index=flat.getIndex();
   const vertices:number[]=[];
@@ -365,7 +373,8 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
         // Ground cover follows the real DEM; mapped boundaries are preserved.
         const material=tags.natural==='scrub'?SCRUB_MATERIAL:tags.leisure==='park'?PARK_MATERIAL:WOOD_MATERIAL;
-        scene.add(drapedCover(ring,terrain,material));count++;
+        const holes=f.geometry.coordinates.slice(1).map(coords=>coordsToPoints(coords,terrain)).filter(points=>points.length>=4);
+        scene.add(drapedCover(ring,terrain,material,holes));count++;
       } else if(tags.natural==='water'){
         // Water surfaces remain level at their lowest mapped edge.
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
