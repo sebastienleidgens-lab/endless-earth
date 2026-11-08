@@ -17,7 +17,7 @@ Open the local URL shown by Vite. Build with `npm run build`.
 
 ## Controls
 
-WASD / ZQSD / arrows: walk. Drag: rotate view. Mouse wheel: zoom. **Touch movement controls are not implemented yet.**
+WASD / ZQSD / arrows: walk. Drag: rotate view. Mouse wheel: zoom. Touch joystick: bottom left on mobile. Drag elsewhere to rotate the camera. Basic collisions prevent walking through illustrative houses. Terrain, water and tree collisions are not implemented yet.
 
 ## Architecture
 
@@ -30,7 +30,11 @@ WASD / ZQSD / arrows: walk. Drag: rotate view. Mouse wheel: zoom. **Touch moveme
 
 1. Real geospatial data pipeline and source licensing.
 2. Terrain-aware paths, river and buildings.
-3. Touch controls, collisions and automated visual tests.
+3. Extend collisions to terrain, water and trees; add automated visual tests.
 4. Tile streaming and deterministic procedural detail.
 
 This repository is the long-lived source of truth; standalone HTML experiments are not the production architecture.
+
+## Validation
+
+GitHub Actions runs `npm install` and `npm run build` for pushes and pull requests. This is compilation validation, **not** a WebGL/Android runtime test.
