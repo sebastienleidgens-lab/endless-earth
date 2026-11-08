@@ -25,7 +25,7 @@ const GABLE_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial(
 // Shared opaque materials allow them to join the existing building batches.
 const WINDOW_MATERIAL=new THREE.MeshLambertMaterial({color:0x526b69,side:THREE.DoubleSide});
 const DOOR_MATERIAL=new THREE.MeshLambertMaterial({color:0x725746,side:THREE.DoubleSide});
-function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,wallHeight:number,sharedEdges:Set<string>):void{
+function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,wallHeight:number,sharedEdges:Set<string>,terrain?:Terrain):void{
   const corners=ring.slice();
   if(corners.length>1&&corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
   if(corners.length<3||corners.length>24||wallHeight<3.6)return;
@@ -60,6 +60,10 @@ function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,
         const t=THREE.MathUtils.clamp((j+1)/(count+1)+shift,.1,.9);
         const cx=a.x+dx*t+ox,cz=a.z+dz*t+oz;
         const ux=dx/length*width,uz=dz/length*width;
+        const ground=terrain?.relativeHeight(cx,cz);
+        // The DEM can climb above the building's level foundation.
+        // Never draw an opening buried in that hillside.
+        if(ground!==null&&ground!==undefined&&sill<ground+.45)continue;
         emit(windows,cx-ux,cz-uz,cx+ux,cz+uz,sill,sill+windowHeight);
       }
     }
@@ -67,8 +71,12 @@ function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,
       const t=.42+((variant>>>12)%5)*.04;
       const cx=a.x+dx*t+ox*1.2,cz=a.z+dz*t+oz*1.2;
       const ux=dx/length*.55,uz=dz/length*.55;
-      emit(doors,cx-ux,cz-uz,cx+ux,cz+uz,base+.12,base+2.25);
-      doorPlaced=true;
+      const ground=terrain?.relativeHeight(cx,cz);
+      // An entrance belongs near accessible ground, not beneath the slope.
+      if(ground===null||ground===undefined||Math.abs(ground-base)<.8){
+        emit(doors,cx-ux,cz-uz,cx+ux,cz+uz,base+.12,base+2.25);
+        doorPlaced=true;
+      }
     }
   }
   for(const [vertices,material] of [[windows,WINDOW_MATERIAL],[doors,DOOR_MATERIAL]] as const){
@@ -540,7 +548,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const wallIndex=mix(hz^Math.imul(hx,131)^0x5f3759df)%WALL_MATERIALS.length;
         const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[wallIndex]]);
         mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
-        addFacadeDetails(scene,ring,base,height+slopeRise,sharedEdges);
+        addFacadeDetails(scene,ring,base,height+slopeRise,sharedEdges,terrain);
         const roofShape=typeof tags['roof:shape']==='string'?tags['roof:shape']:'';
         const top=base+height+slopeRise;
         const rise=roofRise(tags,height);
