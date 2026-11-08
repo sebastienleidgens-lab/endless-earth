@@ -4,7 +4,7 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_run:
-    workflows: ['Import Angles real OSM geography']
+    workflows: ['Import Angles real OSM geography', 'Import Angles IGN terrain']
     types: [completed]
     branches: [main]
 permissions:
