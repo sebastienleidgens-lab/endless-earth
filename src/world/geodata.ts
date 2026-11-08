@@ -15,8 +15,10 @@ function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
 const LOCAL_LIMIT=1050;
 // Shared materials avoid allocating thousands of identical GPU resources.
 const WALL_MATERIALS=[0xcab89d,0xd8c7ab,0xb8a991,0xe0d1b8].map(color=>new THREE.MeshLambertMaterial({color}));
-const FLAT_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x9a6758});
-const GABLE_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x975c4b,side:THREE.DoubleSide});
+// Restrained regional roof palette; deterministic per footprint and GPU-shared.
+const ROOF_COLORS=[0xa96049,0xb77559,0x995a49,0xb16a52,0x8d594b];
+const FLAT_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial({color}));
+const GABLE_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial({color,side:THREE.DoubleSide}));
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
 const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
 const WATER_MATERIAL=new THREE.MeshLambertMaterial({color:0x739da8,side:THREE.DoubleSide});
@@ -73,7 +75,7 @@ function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
 }
 // A conservative gable roof for verified rectangular footprints only.
 // Complex footprints keep their flat cap rather than inventing inaccurate geometry.
-function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,height:number){
+function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,height:number,material:THREE.Material){
   const corners=ring.slice();
   if(corners.length>4 && corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
   if(corners.length!==4)return;
@@ -103,7 +105,7 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
   const geometry=new THREE.BufferGeometry();
   geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
   geometry.computeVertexNormals();
-  const roof=new THREE.Mesh(geometry,GABLE_ROOF_MATERIAL);
+  const roof=new THREE.Mesh(geometry,material);
   roof.castShadow=false;roof.receiveShadow=true;scene.add(roof);
 }
 // Drape mapped land-cover polygons onto the DEM. Subdivide their triangles
@@ -330,7 +332,7 @@ function batchLinearFeatures(scene:THREE.Object3D):void{
 function batchBuildings(scene:THREE.Object3D):void{
   const buckets=new Map<THREE.Material,THREE.BufferGeometry[]>();
   const originals:THREE.Mesh[]=[];
-  const materials:THREE.Material[]=[FLAT_ROOF_MATERIAL,...WALL_MATERIALS,GABLE_ROOF_MATERIAL];
+  const materials:THREE.Material[]=[...FLAT_ROOF_MATERIALS,...WALL_MATERIALS,...GABLE_ROOF_MATERIALS];
   const disposeTemporary=()=>{for(const geometries of buckets.values())for(const geometry of geometries)geometry.dispose();};
   try{
     for(const child of scene.children){
@@ -409,10 +411,11 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         geometry.rotateX(-Math.PI/2);
         geometry.translate(0,base,0);
         const seed=Math.abs(Math.round(ring[0].x*31+ring[0].z*17));
-        const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIAL,WALL_MATERIALS[seed%WALL_MATERIALS.length]]);
+        const roofIndex=seed%ROOF_COLORS.length;
+        const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[seed%WALL_MATERIALS.length]]);
         mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
         if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
-          addGableRoof(scene,ring,base+height+slopeRise,height);
+          addGableRoof(scene,ring,base+height+slopeRise,height,GABLE_ROOF_MATERIALS[roofIndex]);
         count++;
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
         // The DEM is already the ground. A second, independently triangulated
