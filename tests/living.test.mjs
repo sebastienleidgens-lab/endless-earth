@@ -22,3 +22,29 @@ test('bounded smooth wind and four surface mappings',()=>{
  for(let t=0;t<100;t+=.1){assert.ok(windAt(t)>.1&&windAt(t)<.8);assert.ok(Math.abs(windAt(t)-windAt(t+.01))<.01);}
  assert.deepEqual(['grass','ground','gravel','asphalt'].map(surfaceKind),['herbe','terre','gravier','route']);
 });
+
+import {createNavigation} from '../src/world/navigation.mjs';
+import {circleHitsPolygon,moveGrounded} from '../src/controls/walking.mjs';
+test('auto walk stops before real navigation restrictions introduced after planning',()=>{
+ const ring=[{x:2,z:-2},{x:3,z:-2},{x:3,z:2},{x:2,z:2}];
+ for(const tags of [{highway:'path',access:'private'},{highway:'path',foot:'no'},{natural:'water'},{barrier:'wall'},{historic:'castle'},{highway:'path',bridge:'yes'},{highway:'path',tunnel:'yes'},{building:'yes'}]){
+  for(const dt of [1/120,1/30,.25]){
+   const w=new AutoWalk(),p={x:0,y:0,z:0};w.start(planRoute([line],p,()=>true));
+   const nav=createNavigation([{tags,polygon:true,points:ring}]);
+   const clear=(x,z)=>nav(x,z).clear&&(!tags.building||!circleHitsPolygon(x,z,ring));
+   for(let i=0;i<3000&&w.active;i++){
+    const delta=w.update(p,dt,q=>clear(q.x,q.z));
+    moveGrounded(p,delta,clear,()=>0,()=>.7,false);
+    assert.ok(clear(p.x,p.z));assert.ok(p.x<2,'never emerges on the far side');
+   }
+   assert.equal(w.active,false);assert.match(w.message,/bloqué/);
+   if(tags.historic)assert.ok(p.x<2-1.25/2-.3,'body clears the full visible wall thickness');
+  }
+ }
+});
+test('automatic collision sweep stops along its route instead of sliding sideways',()=>{
+ const p={x:0,y:0,z:0};
+ moveGrounded(p,{x:1,z:1},x=>x<.4,()=>0,()=>.7,false);
+ assert.ok(p.x<.4);assert.ok(Math.abs(p.x-p.z)<1e-10,'remains on planned diagonal');
+ const q={x:0,y:0,z:0};moveGrounded(q,{x:1,z:1},x=>x<.4,()=>0);assert.ok(q.z>p.z,'manual wall sliding remains available');
+});

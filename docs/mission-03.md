@@ -36,3 +36,29 @@ La marche longue distance, les connexions entre plusieurs voies, la validation t
 Contrôle supplémentaire : aucun arbre ponctuel OSM dans cet extrait ; ancrage des oiseaux/chants corrigé sur les arbres rendus, avec assertion Chromium de présence des ancrages. Dernier passage logiciel : environ 11 FPS, 102 draw calls et 315 milliers de triangles.
 
 Nouvelle exécution Chromium après correction : 2 147 ancrages de végétation, assertion de présence réussie, scénario complet réussi. Le test de reprise manuelle attend maintenant l'état observé plutôt qu'un délai arbitraire de 100 ms (insuffisant sous SwiftShader chargé). Mesures logicielles variables : 3–11 FPS selon la charge, jusqu'à 103 draw calls / 315 282 triangles ; aucune conclusion GPU. Capture supplémentaire vers le ciel inspectée : nuage stylisé visible ; un essai de capture a expiré avant une nouvelle capture réussie à résolution réduite. Console de cet essai : 404 de ressource, sans erreur de shader observée. Le cycle complet du coucher et une longue observation du feuillage restent à examiner.
+
+## Dernière vérification avant fusion — 8 novembre 2026
+
+### Corrections
+
+- 404 reproduite et identifiée par Chromium DevTools Protocol (`Network.responseReceived` et `Log.entryAdded`) : **`http://localhost:5173/favicon.ico`**, requête automatique de l'icône du navigateur. Aucune ressource géographique ou audio du jeu ne manquait. Ajout de `public/favicon.svg` original et lien explicite avec la base Vite (`/endless-earth/favicon.svg`), également copié dans le build.
+- Déplacement automatique : suppression du glissement latéral lors d'une collision, arrêt dès que le déplacement réalisé diffère du déplacement prévu. Le mode manuel garde le glissement existant. Les remparts rendus (`historic=castle/ruins/citywalls`, `barrier=city_wall`) étaient absents de la navigation : ajout des collisions sur leur contour, avec leur épaisseur de rendu de 1,25 m et les 30 cm de rayon du personnage ; intérieur de cour préservé. Fermeture des contours prise en compte même si le dernier sommet n'est pas dupliqué.
+- Audio : sérialisation des transitions `resume`/`suspend`, réutilisation du contexte et des deux sources d'ambiance, annulation des anciennes automations de gain lors d'un basculement. L'état n'est validé qu'après réussite de la transition.
+- Feuillage : intégration d'une vitesse de phase bornée. L'ancienne multiplication du temps par l'intensité des rafales aurait accéléré les oscillations au fil d'une longue session.
+- Mise à jour du smoke test de Mission 02 pour les commandes audio actuelles et les deux zones de statut.
+
+### Sécurité et répétitions
+
+`npm test` : les **28 tests initiaux ont été relancés avec succès**, puis deux tests de régression ajoutés : **30/30** réussis. Ils combinent Auto Walk, le vrai noyau de navigation et les collisions, à 120 Hz, 30 Hz et avec des frames de 250 ms. Bâtiment, accès privé, interdiction piétonne, eau, mur, ruines, pont sans tablier et tunnel : arrêt avant la zone, sans traversée. Le test diagonal vérifie l'absence de déviation automatique et conserve le glissement manuel.
+
+`node scripts/browser-safety.mjs` : cinq obstacles ajoutés **après** le départ dans Chromium (bâtiment, zone privée, eau, mur, rempart historique). Arrêt explicatif dans les cinq cas ; chaque position relevée à chaque frame reste autorisée, sans passage de l'autre côté. Ces fixtures restent uniquement en mémoire du navigateur de test et ne modifient pas les données du dépôt.
+
+`node scripts/browser-living.mjs` renforce la surveillance des réponses HTTP et des erreurs console/CDP. Audio : six cycles marche/arrêt, puis douze clics rapides (24 basculements au total), avec vérification des états `running`/`suspended`, un seul contexte, deux sources d'ambiance et exactement douze `resume`/douze `suspend`. Trois vues, Auto Walk, reprise manuelle et viewport mobile conservés dans le scénario.
+
+### Inspection visuelle et limites
+
+`node scripts/browser-visual.mjs` : capture vidéo de 22,24 s et dix captures, nuages pendant un déplacement du personnage (positions enregistrées) puis arbres pendant une orbite de caméra près du château. Inspection des captures pleine taille et de deux planches de seize images à 4 images/s extraites de la vidéo : **aucun scintillement visible ni disparition anormale de couronnes observés sur ces séquences**. Le changement ponctuel de densité lors du passage automatique Qualité → Éco reste un changement de profil prévu.
+
+La capture vidéo utilise le ffmpeg système via un chemin de cache Playwright temporaire dans cet environnement (le binaire vidéo Playwright n'était pas installé). Captures et vidéo sont dans `work/visual/final/`, exclu de Git. Ce contrôle est un échantillon visuel sous **Chromium/SwiftShader** ; il ne constitue pas une garantie pour tous les trajets, toutes les durées ou les GPU matériels. Écoute humaine sur casque et matériel Android toujours non réalisées.
+
+Résultats finaux sur cette révision : `npm test` **30/30**, `npm run build` **réussi** (seul avertissement de taille Vite existant), `npm run test:browser` **réussi**, `node scripts/browser-living.mjs` **réussi**, `node scripts/browser-safety.mjs` **réussi**. Dernier contrôle CDP : **aucune réponse HTTP ≥ 400 et aucune erreur réseau console** ; le scénario Mission 03 ne relève aucune erreur JavaScript/console. Branche existante et PR n°7 conservées en brouillon, sans fusion ni déploiement.

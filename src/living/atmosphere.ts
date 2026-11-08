@@ -22,7 +22,10 @@ export function createAtmosphere(scene:THREE.Scene,sun:THREE.DirectionalLight,he
  for(let i=0;i<4;i++){const bird=new THREE.Line(birdGeometry,new THREE.LineBasicMaterial({color:0x4b5147}));birds.add(bird);}
  let elapsed=0;
  return (dt:number,eco:boolean)=>{
-  elapsed+=dt;windUniform.value=elapsed*(.6+windAt(elapsed));
+  elapsed+=dt;
+  // Integrate a bounded phase speed; multiplying elapsed by gust intensity
+  // made foliage oscillate increasingly fast during long sessions.
+  windUniform.value+=dt*(.6+windAt(elapsed));
   const sunset=(1-Math.cos(elapsed*Math.PI/600))*.5;
   const sky=new THREE.Color(0xdce8df).lerp(new THREE.Color(0xeeb997),sunset);
   (scene.background as THREE.Color).copy(sky);(scene.fog as THREE.Fog).color.copy(sky);

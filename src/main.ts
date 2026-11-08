@@ -239,13 +239,14 @@ root.append(qualityButton);applyQuality('high');
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
 const previous=avatar.position.clone();
 if(controls.forward||controls.strafe){if(walker.active){walker.stop('Contrôle manuel repris');velocity.x=velocity.z=0;}}
-if(walker.active){
+const autoStep=walker.active;
+if(autoStep){
  const delta=walker.update(avatar.position,dt,(p:{x:number;z:number})=>validPoint(p,activeTerrain));
  displacement.x=delta.x;displacement.z=delta.z;velocity.x=velocity.z=0;
  if(Math.hypot(delta.x,delta.z)>.00001){const angle=Math.atan2(-delta.x,-delta.z);yaw+=Math.atan2(Math.sin(angle-yaw),Math.cos(angle-yaw))*(1-Math.exp(-dt*.8));}
@@ -255,9 +256,9 @@ walkStatus.textContent=walker.message;autoButton.textContent=walker.active?'Arr�
 const terrainHeight=(x:number,z:number)=>activeTerrain?activeTerrain.relativeHeight(x,z):0;
 const groundHeight=walkingHeight(terrainHeight);
 // Wait for the real dataset before allowing walking in geography mode.
-if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,terrainHeight);
+if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep);
 const moved=avatar.position.distanceTo(previous);
-if(walker.active&&Math.hypot(displacement.x,displacement.z)>.0001&&moved<.00001)walker.stop('Chemin bloqué · promenade arrêtée');
+if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
 updateAtmosphere(dt,quality==='low');sound.update(avatar.position,moved,windAt(clock.elapsedTime),yaw);
 panel.querySelector('#profile')!.textContent='Profil · '+(quality==='low'?'Éco':'Qualité');
 if(moved>.0001){

@@ -5,7 +5,13 @@ import { surfaceKind } from './walk.mjs';
 export class Soundscape {
  context:AudioContext|null=null; master:GainNode|null=null;wind:GainNode|null=null;river:GainNode|null=null;
  enabled=false;distance=0;nextBird=0;
- async toggle(){
+ private transition:Promise<boolean>=Promise.resolve(false);
+ toggle(){
+  // Serialize resume/suspend even when several clicks arrive before a promise settles.
+  const next=this.transition.then(()=>this.applyToggle(),()=>this.applyToggle());
+  this.transition=next;return next;
+ }
+ private async applyToggle(){
   if(!this.context){
    this.context=new AudioContext();const c=this.context;
    this.master=c.createGain();this.master.gain.value=0;this.master.connect(c.destination);
@@ -17,10 +23,12 @@ export class Soundscape {
     const gain=c.createGain();gain.gain.value=0;source.connect(filter).connect(gain).connect(this.master);source.start();this[kind]=gain;
    }
   }
-  this.enabled=!this.enabled;
-  if(this.enabled)await this.context.resume();
-  this.master!.gain.setTargetAtTime(this.enabled?.28:0,this.context.currentTime,.08);
-  if(!this.enabled)await this.context.suspend();
+  const enable=!this.enabled;
+  if(enable)await this.context.resume();
+  this.master!.gain.cancelScheduledValues(this.context.currentTime);
+  this.master!.gain.setTargetAtTime(enable?.28:0,this.context.currentTime,.08);
+  if(!enable)await this.context.suspend();
+  this.enabled=enable;
   return this.enabled;
  }
  tone(frequency:number,duration:number,volume:number,pan=0,noise=false){
