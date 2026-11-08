@@ -60,7 +60,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[]):numb
         geometry.rotateX(-Math.PI/2);
         const wall=new THREE.MeshLambertMaterial({color:0xcab89d});
         const roof=new THREE.MeshLambertMaterial({color:0x9a6758});
-        const mesh=new THREE.Mesh(geometry,[wall,roof]);
+        const mesh=new THREE.Mesh(geometry,[roof,wall]);
         mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);count++;
       } else if(tags.natural==='water'){
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
