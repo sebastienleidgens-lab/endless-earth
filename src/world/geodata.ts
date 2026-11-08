@@ -21,6 +21,57 @@ const WALL_MATERIALS=WALL_COLORS.map(color=>new THREE.MeshLambertMaterial({color
 const ROOF_COLORS=[0xa96049,0xb77559,0x995a49,0xb16a52,0x8d594b];
 const FLAT_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial({color}));
 const GABLE_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial({color,side:THREE.DoubleSide}));
+// Stylized facade details are illustrative, not surveyed OSM openings.
+// Shared opaque materials allow them to join the existing building batches.
+const WINDOW_MATERIAL=new THREE.MeshLambertMaterial({color:0x526b69,side:THREE.DoubleSide});
+const DOOR_MATERIAL=new THREE.MeshLambertMaterial({color:0x725746,side:THREE.DoubleSide});
+function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,wallHeight:number):void{
+  const corners=ring.slice();
+  if(corners.length>1&&corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
+  if(corners.length<3||corners.length>24||wallHeight<3.6)return;
+  const centerX=corners.reduce((s,p)=>s+p.x,0)/corners.length;
+  const centerZ=corners.reduce((s,p)=>s+p.z,0)/corners.length;
+  const windows:number[]=[],doors:number[]=[];
+  const emit=(dest:number[],ax:number,az:number,bx:number,bz:number,y0:number,y1:number)=>{
+    dest.push(ax,y0,az,bx,y0,bz,bx,y1,bz,ax,y0,az,bx,y1,bz,ax,y1,az);
+  };
+  let doorPlaced=false;
+  for(let i=0;i<corners.length;i++){
+    const a=corners[i],b=corners[(i+1)%corners.length];
+    const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
+    if(length<5||length>65)continue;
+    const nx=-dz/length,nz=dx/length;
+    const mx=(a.x+b.x)/2,mz=(a.z+b.z)/2;
+    const outward=(nx*(mx-centerX)+nz*(mz-centerZ)>=0)?1:-1;
+    const ox=nx*outward*.09,oz=nz*outward*.09;
+    const levels=Math.min(3,Math.max(1,Math.floor(wallHeight/3.1)));
+    const count=Math.min(5,Math.floor(length/4));
+    for(let level=0;level<levels;level++){
+      const sill=base+1.4+level*3.1;
+      if(sill+1.15>base+wallHeight-.55)continue;
+      for(let j=0;j<count;j++){
+        const t=(j+1)/(count+1),cx=a.x+dx*t+ox,cz=a.z+dz*t+oz;
+        const half=.48,ux=dx/length*half,uz=dz/length*half;
+        emit(windows,cx-ux,cz-uz,cx+ux,cz+uz,sill,sill+1.15);
+      }
+    }
+    // Only one representative entrance, on a sufficiently long facade.
+    if(!doorPlaced&&length>=7){
+      const t=.5,cx=a.x+dx*t+ox*1.2,cz=a.z+dz*t+oz*1.2;
+      const ux=dx/length*.55,uz=dz/length*.55;
+      emit(doors,cx-ux,cz-uz,cx+ux,cz+uz,base+.12,base+2.25);
+      doorPlaced=true;
+    }
+  }
+  for(const [vertices,material] of [[windows,WINDOW_MATERIAL],[doors,DOOR_MATERIAL]] as const){
+    if(!vertices.length)continue;
+    const geometry=new THREE.BufferGeometry();
+    geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+    geometry.computeVertexNormals();
+    const mesh=new THREE.Mesh(geometry,material);
+    mesh.castShadow=false;scene.add(mesh);
+  }
+}
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
 const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
 const WATER_MATERIAL=new THREE.MeshLambertMaterial({color:0x739da8,side:THREE.DoubleSide});
@@ -373,7 +424,7 @@ function batchLinearFeatures(scene:THREE.Object3D):void{
 function batchBuildings(scene:THREE.Object3D):void{
   const buckets=new Map<THREE.Material,THREE.BufferGeometry[]>();
   const originals:THREE.Mesh[]=[];
-  const materials:THREE.Material[]=[...FLAT_ROOF_MATERIALS,...WALL_MATERIALS,...GABLE_ROOF_MATERIALS];
+  const materials:THREE.Material[]=[...FLAT_ROOF_MATERIALS,...WALL_MATERIALS,...GABLE_ROOF_MATERIALS,WINDOW_MATERIAL,DOOR_MATERIAL];
   const disposeTemporary=()=>{for(const geometries of buckets.values())for(const geometry of geometries)geometry.dispose();};
   try{
     for(const child of scene.children){
@@ -459,6 +510,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const wallIndex=mix(hz^Math.imul(hx,131)^0x5f3759df)%WALL_MATERIALS.length;
         const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[wallIndex]]);
         mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
+        addFacadeDetails(scene,ring,base,height+slopeRise);
         const roofShape=typeof tags['roof:shape']==='string'?tags['roof:shape']:'';
         const top=base+height+slopeRise;
         const rise=roofRise(tags,height);
