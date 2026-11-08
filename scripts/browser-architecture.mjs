@@ -18,19 +18,20 @@ try{
  await page.getByRole('button',{name:/Qualité :/}).click();await capture('eco');
  await page.setViewportSize({width:390,height:844});await capture('mobile');
  const initialArchitecture=results.rue.state.architecture;
- if(phase==='after'){
+ if(phase==='after'||phase==='optimized'){
   assert.ok(initialArchitecture?.length&&initialArchitecture.every(s=>s.builds===1));
-  assert.deepEqual(results.mobile.state.architecture,initialArchitecture,'camera and LOD never rebuild architecture');
-  const before=JSON.parse(await readFile(`${dir}/before-measurements.json`,'utf8'));
+  assert.deepEqual(results.mobile.state.architecture,initialArchitecture,'camera and LOD never rebuild coarse architecture');
+  const references=['before',...(phase==='optimized'?['pr-initial']:[])];
+  for(const reference of references){const before=JSON.parse(await readFile(`${dir}/${reference}-measurements.json`,'utf8'));
   for(const [name,record] of Object.entries(results)){
    const old=before.results[name].state,now=record.state;
    assert.deepEqual(now.position,old.position,`${name}: same geographic viewpoint`);assert.equal(now.yaw,old.yaw);assert.equal(now.zoom,old.zoom);
    assert.ok(Math.hypot(...now.camera.map((n,i)=>n-old.camera[i]))<.025,`${name}: same camera angle and position`);
-  }
+  }}
  }
  const gpu=await page.evaluate(()=>{const gl=document.querySelector('canvas').getContext('webgl2'),e=gl.getExtension('WEBGL_debug_renderer_info');return e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):'unknown'});
  const generation=await page.evaluate(async()=>{
-  const THREE=await import('/endless-earth/node_modules/.vite/deps/three.js');const geo=await import('/endless-earth/src/world/geodata.ts');const t=await import('/endless-earth/src/world/terrain.ts');const terrain=await t.fetchTerrain();const data=await (await fetch('/endless-earth/data/angles-osm.geojson')).json();const group=new THREE.Group();const start=performance.now();geo.renderGeoFeatures(group,data.features,terrain);const ms=performance.now()-start;let triangles=0,meshes=0;group.traverse(o=>{if(o.isMesh){meshes++;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3*(o.count??1)}});return {ms,triangles,meshes,architecture:group.userData.architecture??null};
+  const THREE=await import('/endless-earth/node_modules/.vite/deps/three.js');const geo=await import('/endless-earth/src/world/geodata.ts');const t=await import('/endless-earth/src/world/terrain.ts');const terrain=await t.fetchTerrain();const data=await (await fetch('/endless-earth/data/angles-osm.geojson')).json();const group=new THREE.Group();const start=performance.now();geo.renderGeoFeatures(group,data.features,terrain);const ms=performance.now()-start;let triangles=0,meshes=0,bytes=0;group.traverse(o=>{if(o.isMesh){meshes++;for(const a of Object.values(o.geometry.attributes))bytes+=a.array.byteLength;bytes+=o.geometry.index?.array.byteLength??0;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3*(o.count??1)}});return {ms,triangles,meshes,bytes,architecture:group.userData.architecture??null};
  });
  assert.deepEqual(errors,[]);await writeFile(`${dir}/${phase}-measurements.json`,JSON.stringify({results,generation,gpu,errors},null,2));console.log(JSON.stringify({phase,generation,errors}));
 }finally{await browser.close()}

@@ -1,5 +1,73 @@
 # Mission 05 — Les villages prennent vie
 
+## Dernière passe avant fusion — optimisation de la PR #9
+
+Cette section décrit l'état optimisé ; la livraison initiale est conservée plus bas comme historique. Même branche, même PR, aucune fusion ni déploiement. Référence de cette passe : `031f3b60808ccf8ebe7004308a3c932b106fb28a`. Une nouvelle série de six captures a été réalisée sur cette référence avant toute modification, puis sur la version optimisée, avec les mêmes paramètres que la Mission 04.
+
+### Changements retenus
+
+Les volumes, les toits, les découpes des baies et leurs tableaux restent générés immédiatement. Les 10 723 ouvertures ne sont pas remplacées par des textures. Les détails fins sont extraits en recettes déterministes par cellule de 128 m : au chargement, aucun buffer de volets, petits bois, jardinières ou grimpantes éloignés n'est créé. À l'approche, au plus une cellule est construite par mise à jour LOD (environ 4 Hz), en priorité la plus proche. Un même lot reste réutilisé au repos. Douze cellules invisibles au maximum sont gardées en cache ; au-delà, les plus éloignées libèrent leur géométrie. Les cellules visibles sont toujours conservées, même si leur nombre dépasse douze. Les recettes CPU restent attachées à leur groupe géographique et disparaissent avec lui.
+
+Un panneau quadrilatère partage désormais ses quatre sommets au lieu de dupliquer six sommets. Positions, couleurs, UV utiles et triangles sont conservés ; les normales sont recalculées avec les sommets indexés. Les UV inutilisés du matériau uni sont omis. À proximité, les fonds/tableaux des ouvertures et les détails fins partagent un lot de même matériau ; le lot grossier est alors masqué. Cela économise un appel par cellule concernée, sans regrouper toute la ville dans une géométrie unique. Le lot grossier reste en mémoire pour revenir instantanément au LOD lointain ; cette duplication est incluse dans les mesures.
+
+Je n'ai pas supprimé indistinctement les murs mitoyens : des hauteurs et plans voisins différents peuvent laisser apparaître leur partie supérieure. Les silhouettes, pignons, cheminées et baies restent identiques. Pas de quantification des positions/couleurs, pas de nouvel atlas, worker ou changement de collision, navigation, caméra ou contrôleur de promenade.
+
+### Mesures comparables
+
+Les captures comparatives sont exécutées seules sous Chromium/ANGLE/SwiftShader, 1 000 × 720 puis 390 × 844, même ratio de pixels et même séquence Qualité/Éco. Les positions, yaw, zoom et caméra convergée sont contrôlés contre la Mission 04. Les triangles dessinés et appels concernent la scène entière ; triangles conservés et Mo concernent seulement les buffers architecturaux, y compris les lots cachés. Les Mo sont décimaux, somme des attributs typés et index : ils ne mesurent ni le tas JS des recettes/copies CPU, ni la mémoire interne du pilote GPU.
+
+| Vue | Appels PR → optimisé | Triangles dessinés (identiques) | Triangles conservés PR → optimisé | Tampons Mo PR → optimisé | FPS logiciel PR → optimisé |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| rue | 154 → 149 | 399 027 | 458165 → 329211 | 60.48 → 27.62 | 3 → 2 |
+| troisieme | 155 → 150 | 399 823 | 458165 → 329211 | 60.48 → 27.62 | 4 → 4 |
+| aerienne | 272 → 268 | 330 420 | 458165 → 386553 | 60.48 → 32.09 | 5 → 4 |
+| toitures | 254 → 250 | 329 768 | 458165 → 386553 | 60.48 → 32.09 | 6 → 5 |
+| eco | 251 → 250 | 298 508 | 458165 → 386553 | 60.48 → 32.09 | 5 → 6 |
+| mobile | 180 → 179 | 274 982 | 458165 → 386553 | 60.48 → 32.09 | 10 → 8 |
+
+
+Tous les nombres de triangles **dessinés** correspondent exactement à ceux de la PR avant optimisation. Le gain porte sur le travail différé, les sommets partagés, les buffers conservés et quelques appels, plutôt que sur une simplification des maisons. Les tampons architecturaux diminuent de **54,3 % en rue** et **46,9 % après les vues aériennes** ; les triangles conservés diminuent respectivement de **28,1 %** et **15,6 %**. Après cette séquence, seules 14 cellules de détail sur les 67 éligibles ont été construites, contre les 67 auparavant (69 cellules géographiques au total). 266 à 272 meshes sont conservés, contre 325.
+
+L'appel synchrone complet `renderGeoFeatures`, sur les mêmes données IGN/OSM, passe de **884,7 à 589,1 ms** dans cette nouvelle paire d'échantillons (−33,4 %). Sa fenêtre architecturale passe de **716,5 à 433,7 ms**. Ce n'est pas une médiane. Les détails ne sont pas gratuits : les premières huit cellules ont ensuite coûté **124,4 ms cumulées** ; les quatorze de la séquence, **149,9 ms**, réparties sur les mises à jour. Les chiffres de génération différée proviennent de la scène affichée, les temps synchrones du second appel instrumenté ; ils ne doivent pas être additionnés comme une mesure unique de chargement. À froid, le groupe architectural compte **190 095 triangles et 258 meshes**, contre **458 165 triangles et 325 meshes** sur la référence actuelle de PR. Le compte géométrique du groupe géographique complet, instances d’arbres comprises, passe initialement de 698 400 à 430 330 triangles ; ce compte logique n’est pas la taille des buffers uniques des instances. Le champ `generation.bytes` est une somme par mesh et peut recompter les géométries végétales partagées : les comparaisons mémoire ci-dessus utilisent exclusivement `architectureMemory`, dont les géométries sont distinctes.
+
+Les FPS affichés sont ceux de la dernière seconde, arrondis, et restent variables : **aucun gain de FPS n'est établi**. Plusieurs vues sont même plus lentes dans ces échantillons. L'optimisation est retenue pour ses gains mesurés de génération et de ressources sans différence artistique sensible observée, pas pour promettre une amélioration de débit. Aucun résultat sur GPU matériel ou Android physique.
+
+Relevés : [référence PR](mission-05-captures/pr-initial-measurements.json), [mémoire référence](mission-05-captures/pr-initial-memory.json), [optimisé](mission-05-captures/optimized-measurements.json), [comparaison structurée](mission-05-captures/optimization-comparison.json).
+
+### Comparaisons artistiques
+
+| Vue | Mission 04 | PR #9 avant optimisation | Version optimisée |
+| --- | --- | --- | --- |
+| Rue, Qualité | [Avant](mission-05-captures/before-rue.png) | [PR actuelle](mission-05-captures/pr-initial-rue.png) | [Optimisé](mission-05-captures/optimized-rue.png) |
+| Troisième personne éloignée | [Avant](mission-05-captures/before-troisieme.png) | [PR actuelle](mission-05-captures/pr-initial-troisieme.png) | [Optimisé](mission-05-captures/optimized-troisieme.png) |
+| Aérienne, Qualité | [Avant](mission-05-captures/before-aerienne.png) | [PR actuelle](mission-05-captures/pr-initial-aerienne.png) | [Optimisé](mission-05-captures/optimized-aerienne.png) |
+| Toitures, Qualité | [Avant](mission-05-captures/before-toitures.png) | [PR actuelle](mission-05-captures/pr-initial-toitures.png) | [Optimisé](mission-05-captures/optimized-toitures.png) |
+| Toitures, Éco | [Avant](mission-05-captures/before-eco.png) | [PR actuelle](mission-05-captures/pr-initial-eco.png) | [Optimisé](mission-05-captures/optimized-eco.png) |
+| Mobile, Éco | [Avant](mission-05-captures/before-mobile.png) | [PR actuelle](mission-05-captures/pr-initial-mobile.png) | [Optimisé](mission-05-captures/optimized-mobile.png) |
+
+Les façades proches, baies, volets, pignons, silhouettes de toitures et matériaux ont été inspectés sur les captures comparées. Aucun appauvrissement sensible constaté dans les vues inspectées. Le soleil et le vivant continuent d'évoluer : ce n'est pas une comparaison d'un monde figé pixel à pixel. À titre de contrôle complémentaire, la différence absolue moyenne par canal (échelle 0–255) est comprise entre 0,000085 et 0,0891 sur les six images PR/optimisé ; [relevé](mission-05-captures/optimization-image-differences.json). Ce faible écart appuie l'inspection visuelle sans la remplacer.
+
+### Compromis et contrôles
+
+Le détail apparaît progressivement à l'approche et après un saut de caméra. La limite est une cellule par mise à jour, pas un budget strict en millisecondes : une cellule dense peut encore provoquer un pic. Les 65 images d'attente par capture permettent la convergence, et ne démontrent pas une absence de transition au premier affichage. Une cellule sortie du cache devra être reconstruite lors d'une visite ultérieure. Les recettes et les tableaux grossiers retenus ont un coût CPU non couvert par la seule mesure de buffers. La génération de la coque reste synchrone ; elle est allégée, pas rendue entièrement asynchrone.
+
+`npm test` : **49 tests réussis**, avec vérification des buffers indexés, de l'enveloppe des **921 bâtiments** (détails matérialisés compris), absence de buffers décoratifs au loin, construction unique au repos et éviction bornée du cache. `npm run build` : réussi, avertissement de taille existant, bundle d'environ 578 ko / 156 ko gzip. Les statistiques `architecture` décrivent la construction initiale stable ; `architectureMemory` expose séparément la résidence et les constructions/évictions de détail.
+
+Les 917 bâtiments et 458 085 triangles du premier rapport précédaient la correction des empreintes minuscules. Cette correction faisait déjà partie du commit de référence de la PR : elle ajoute quatre petits volumes et 80 triangles, d'où **921 bâtiments et 458 165 triangles** avant cette optimisation. L'ancienne phrase affirmant que cette correction ne changeait pas le corpus était inexacte ; cette nouvelle référence et les relevés la corrigent.
+
+`node scripts/browser-architecture.mjs optimized` : six captures réussies, paramètres vérifiés contre Mission 04 et contre la référence de PR. Pour refaire la référence de PR, servir le commit `031f3b6` et lancer le script de cette branche avec `TEST_URL=... node scripts/browser-architecture.mjs pr-initial`, avant de relancer `optimized` sur la version courante.
+
+`node scripts/browser-promenade.mjs` : **450,000 m réellement parcourus en 383,047 s (6 min 23 s), 1 917 images**, arrêt normal à destination, sans accélération ni navigateur concurrent. Les 939 sommets / 918 segments et le trajet de 450 m sont conservés. Les statistiques de construction initiale des bâtiments restent identiques à l'arrivée, `builds: 1` ; les constructions de détails à l'approche sont attendues et distinctes. Le relevé à environ 1 Hz donne 449,684 m, légèrement inférieur à la distance cumulée à chaque image. Environ 5,00 images/s moyennes sous SwiftShader sur cette marche. La durée historique de 485 s comprenait des tests concurrents : on ne peut pas attribuer toute la différence à l'optimisation.
+
+Preuves : [mesure du trajet](mission-05-captures/optimized-promenade-measurement.json), [rue en promenade](mission-05-captures/optimized-promenade-rue.png), [paysage](mission-05-captures/optimized-promenade-paysage.png), [arrivée mobile](mission-05-captures/optimized-promenade-arrivee.png).
+
+Les scénarios `npm run test:browser`, `browser-camera.mjs`, `browser-safety.mjs` et `browser-living.mjs` ont tous été relancés séquentiellement après la marche : **réussis**. Déplacement et repos, trois vues, garde au sol, zoom et pincement, recentrage et rétraction caméra, obstacles injectés après le départ, son (six cycles et douze bascules rapides), mobile et absence d'erreurs JavaScript/HTTP. Aucun changement des modules de navigation ou de collisions. [Résumé de validation](mission-05-captures/optimization-validation.json).
+
+---
+
+## Livraison initiale — historique des mesures et choix artistiques
+
+
 Branche `mission/05-villages-prennent-vie`, créée depuis `origin/main` au commit **60c39212025a9c44a14be9afb50937d18d7bc452**. La fusion de la [Mission 04, PR #8](https://github.com/sebastienleidgens-lab/endless-earth/pull/8) a été vérifiée par l'historique Git et les métadonnées GitHub (`merged: true`). Aucun déploiement ni fusion demandé pour cette mission.
 
 ## Du plan OSM à la maison
@@ -70,7 +138,7 @@ La Mission 04 avait mesuré 414,438 s sous SwiftShader. Le nouvel essai a partag
 
 Preuves : [mesure de la promenade](mission-05-captures/promenade-measurement.json), [arrivée mobile](mission-05-captures/promenade-arrivee-mobile.png). `node scripts/browser-architecture-motion.mjs` : **réussi**, vidéo de **39,92 s** comprenant le chargement, rotations des façades et du village, dix captures et compteur de génération stable. Inspection des dix captures et d'une planche extraite de la vidéo à une image toutes les quatre secondes : pas de toit détaché, de passage de baie dans un angle ni de scintillement évident dans ces échantillons. Cette inspection échantillonnée ne vaut pas une lecture exhaustive image par image ni une garantie sur toutes les rues. Les textures répétées et certaines longues trames de fenêtres restent perceptibles ; aucune répétition de maison complète indépendante des empreintes n'est ajoutée. [Rotation proche](mission-05-captures/rotation-facade.png), [rotation des toitures](mission-05-captures/rotation-toitures.png). Vidéo et images intermédiaires conservées dans `work/architecture-motion/`.
 
-Un dernier test des empreintes minuscules a renforcé leur traitement : volume conservé pour éviter un obstacle cartographié invisible, détails supprimés sous 40 cm de largeur. Cette correction n'affecte pas les captures ni la promenade du corpus réel : ses 917 bâtiments traités avaient déjà tous une aire supérieure à 2 m² et une largeur supérieure à 64 cm. Les 48 tests et la compilation ont été relancés après cette correction.
+Un dernier test des empreintes minuscules a renforcé leur traitement : volume conservé pour éviter un obstacle cartographié invisible, détails supprimés sous 40 cm de largeur. Cette correction ajoute quatre petits volumes au rendu : les captures et la promenade historiques ci-dessus précèdent leur ajout. La nouvelle série `pr-initial` de la dernière passe intègre les 921 bâtiments et sert de référence correcte à l'optimisation. Les 48 tests et la compilation ont été relancés après cette correction.
 
 ## Reproduire les contrôles
 

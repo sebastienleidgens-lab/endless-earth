@@ -1,0 +1,45 @@
+{
+  "unitTestsPassed": 49,
+  "build": "passed",
+  "comparativeViews": 6,
+  "referenceCommit": "031f3b60808ccf8ebe7004308a3c932b106fb28a",
+  "walk": {
+    "architecture": [
+      {
+        "version": "poitou-v1",
+        "buildings": 921,
+        "inferredHeights": 920,
+        "pitchedRoofs": 921,
+        "openings": 10723,
+        "cells": 69,
+        "meshes": 258,
+        "triangles": 190095,
+        "generationMs": 243.10000000009313,
+        "builds": 1
+      }
+    ],
+    "frameMeasuredMetres": 450.0000000000001,
+    "frameMeasuredSeconds": 383.0468999999999,
+    "frames": 1917,
+    "wallSeconds": 383.863,
+    "measuredMetres": 449.68401706779053,
+    "plannedMetres": 450,
+    "samples": 375,
+    "message": "Fin du parcours OSM validé"
+  },
+  "browserChecks": {
+    "smoke": [
+      "PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors."
+    ],
+    "camera": [
+      "PASS camera: remembered wheel zoom, drag lock, idle delay, recenter, mapped wall collision, three views"
+    ],
+    "safety": [
+      "PASS: live building, private area, water, wall and historic ruins injected AFTER Auto Walk starts; every sampled frame legal."
+    ],
+    "living": [
+      "AUDIO PASS: six full cycles + 12 rapid toggles, one context, two ambient sources",
+      "PASS: auto movement, three views, manual takeover, sound on/off, stop button, mobile, no JS errors"
+    ]
+  }
+}

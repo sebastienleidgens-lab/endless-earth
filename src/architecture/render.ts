@@ -4,14 +4,21 @@ import {buildingPlan, detailVisible} from './plan.mjs';
 // @ts-ignore Regional configuration is data, independent of Three.js.
 import {POITOU} from './style.mjs';
 type Point={x:number;z:number};
-type Bucket={p:number[];uv:number[];c:number[]};
-const bucket=():Bucket=>({p:[],uv:[],c:[]});
+type Bucket={p:number[];uv:number[];c:number[];indices:number[]};
+const bucket=():Bucket=>({p:[],uv:[],c:[],indices:[]});
 const color=new THREE.Color();
 function triangle(b:Bucket,points:number[][],tint:number,uv:number[][]){
  const [a,c,d]=points,ux=c[0]-a[0],uy=c[1]-a[1],uz=c[2]-a[2],vx=d[0]-a[0],vy=d[1]-a[1],vz=d[2]-a[2];
  if(Math.hypot(uy*vz-uz*vy,uz*vx-ux*vz,ux*vy-uy*vx)<1e-9)return;
- color.setHex(tint);for(let i=0;i<3;i++){b.p.push(...points[i]);b.uv.push(...uv[i]);b.c.push(color.r,color.g,color.b)}}
-function quad(b:Bucket,p:number[][],tint:number,uv=[[0,0],[1,0],[1,1],[0,1]]){triangle(b,[p[0],p[1],p[2]],tint,[uv[0],uv[1],uv[2]]);triangle(b,[p[0],p[2],p[3]],tint,[uv[0],uv[2],uv[3]])}
+ const start=b.p.length/3;b.indices.push(start,start+1,start+2);color.setHex(tint);for(let i=0;i<3;i++){b.p.push(...points[i]);b.uv.push(...uv[i]);b.c.push(color.r,color.g,color.b)}}
+function quad(b:Bucket,p:number[][],tint:number,uv=[[0,0],[1,0],[1,1],[0,1]]){
+ // A planar panel shares its diagonal vertices, with exactly the same triangles.
+ const [a,c,d,e]=p,ux=c[0]-a[0],uy=c[1]-a[1],uz=c[2]-a[2],vx=d[0]-a[0],vy=d[1]-a[1],vz=d[2]-a[2],wx=e[0]-a[0],wy=e[1]-a[1],wz=e[2]-a[2];
+ if(Math.hypot(uy*vz-uz*vy,uz*vx-ux*vz,ux*vy-uy*vx)<1e-9||Math.hypot(vy*wz-vz*wy,vz*wx-vx*wz,vx*wy-vy*wx)<1e-9){
+  triangle(b,[p[0],p[1],p[2]],tint,[uv[0],uv[1],uv[2]]);triangle(b,[p[0],p[2],p[3]],tint,[uv[0],uv[2],uv[3]]);return;
+ }
+ const start=b.p.length/3;color.setHex(tint);for(let i=0;i<4;i++){b.p.push(...p[i]);b.uv.push(...uv[i]);b.c.push(color.r,color.g,color.b)}b.indices.push(start,start+1,start+2,start,start+2,start+3);
+}
 // Small shared, repeating physical-scale textures: no external art or per-house maps.
 function texture(kind:'stone'|'tile'|'plaster'){
  const size=128,data=new Uint8Array(size*size*4);
@@ -31,18 +38,42 @@ const plaster=new THREE.MeshLambertMaterial({vertexColors:true,map:texture('plas
 const tile=new THREE.MeshLambertMaterial({vertexColors:true,map:texture('tile'),side:THREE.DoubleSide});
 const plain=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide});
 for(const m of [stone,plaster,tile,plain])m.userData.architectureShared=true;
-function mesh(b:Bucket,material:THREE.Material){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(b.p,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(b.uv,2));g.setAttribute('color',new THREE.Float32BufferAttribute(b.c,3));g.computeVertexNormals();g.computeBoundingSphere();const m=new THREE.Mesh(g,material);m.receiveShadow=true;return m}
+function mesh(b:Bucket,material:THREE.Material){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(b.p,3));if((material as THREE.MeshLambertMaterial).map)g.setAttribute('uv',new THREE.Float32BufferAttribute(b.uv,2));g.setAttribute('color',new THREE.Float32BufferAttribute(b.c,3));g.setIndex(b.indices);g.computeVertexNormals();g.computeBoundingSphere();const m=new THREE.Mesh(g,material);m.receiveShadow=true;return m}
 // Clip a triangulated footprint to each roof plane, preserving concavities/holes.
 function clip(poly:Point[],value:(p:Point)=>number){const out:Point[]=[];for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],va=value(a),vb=value(b);if(va>=-1e-8)out.push(a);if((va>0&&vb<0)||(va<0&&vb>0)){const t=va/(va-vb);out.push({x:a.x+(b.x-a.x)*t,z:a.z+(b.z-a.z)*t})}}return out}
+function fineDetails(detail:Bucket,p:any,style:typeof POITOU){
+ for(const o of p.openings){
+  const panel=(dest:Bucket,x0:number,x1:number,y0:number,y1:number,inset:number,tint:number)=>{const v=(x:number,y:number)=>[o.x+o.ux*x-o.nx*inset,y,o.z+o.uz*x-o.nz*inset];quad(dest,[v(x0,y0),v(x1,y0),v(x1,y1),v(x0,y1)],tint)};
+  const pos=(s:number,yy:number,inset:number)=>[o.x+o.ux*s-o.nx*inset,yy,o.z+o.uz*s-o.nz*inset];
+  const w=o.width/2,y=o.bottom,h=o.height,window=o.kind==='window';
+   const frame=0xe5d7ba,thick=.09;
+   panel(detail,-w,-w+thick,y,y+h,.008,frame);panel(detail,w-thick,w,y,y+h,.008,frame);panel(detail,-w,w,y+h-.14,y+h,.006,frame);
+   panel(detail,-w,w,y,y+.09,.004,frame);
+   if(window){
+    panel(detail,-.025,.025,y+.08,y+h-.12,.09,0xb7ad91);panel(detail,-w+.08,w-.08,y+h*.48,y+h*.48+.04,.09,0xb7ad91);
+    // Leaves stay in the window recess; no shutters swing into the street.
+    if(o.shutters){const sc=style.shutters[p.shutter];panel(detail,-w+.09,-w+.24,y+.10,y+h-.15,.05,sc);panel(detail,w-.24,w-.09,y+.10,y+h-.15,.05,sc);for(let yy=y+.28;yy<y+h-.15;yy+=.32){panel(detail,-w+.10,-w+.23,yy,yy+.025,.042,0x4f6258);panel(detail,w-.23,w-.10,yy,yy+.025,.042,0x4f6258)}}
+    if(o.planter){
+     // A small potted climber follows the recessed jamb, with no street projection.
+     if((p.seed+o.edge)%3===0){panel(detail,-w+.19,-w+.21,y+.23,y+h-.2,.018,0x65754c);for(let j=0;j<4;j++){const yy=y+.35+j*.19,xx=-w+.20+(j%2?.045:-.045);panel(detail,xx-.045,xx+.045,yy,yy+.09,.012,0x6e824e)}}
+     panel(detail,-w+.1,w-.1,y+.09,y+.23,.025,0x986f50);for(let j=0;j<4;j++){const x=-w+.16+j*(o.width-.32)/3;panel(detail,x-.07,x+.07,y+.22,y+.35+(j%2)*.08,.02,0x657a4c)}}
+   }else{
+    for(let j=1;j<5;j++){const x=-w+j*o.width/5;panel(detail,x,x+.015,y+.09,y+h-.15,.17,0x403c30)}
+    panel(detail,w-.23,w-.16,y+.92,y+.98,.15,0xb5a17b);
+    // Shallow threshold INSIDE the footprint, at the sampled ground level.
+    quad(detail,[pos(-w,y,.01),pos(w,y,.01),pos(w,y,.18),pos(-w,y,.18)],0xc4b69b);
+   }
+ }
+}
 export class ArchitectureBatch{
- private cells=new Map<string,{shell:Bucket;render:Bucket;roof:Bucket;openings:Bucket;detail:Bucket;x:number;z:number}>();
+ private cells=new Map<string,{shell:Bucket;render:Bucket;roof:Bucket;openings:Bucket;recipes:any[];x:number;z:number}>();
  private started=performance.now();private anchors:Array<{id:unknown;doors:unknown[]}>=[];private buildings=0;private openings=0;private inferred=0;private roofs=0;
  constructor(private scene:THREE.Object3D,private style=POITOU){}
  add(ring:Point[],tags:Record<string,unknown>,shared:Set<string>,ground:(x:number,z:number)=>number|null,holes:Point[][]=[]){
   const plan=buildingPlan(ring,tags,this.style,shared,ground);if(!plan)return;
   const p=plan,cellSize=this.style.cellSize,cx=Math.floor(ring[0].x/cellSize),cz=Math.floor(ring[0].z/cellSize),key=`${cx}:${cz}`;
-  let cell=this.cells.get(key);if(!cell){cell={shell:bucket(),render:bucket(),roof:bucket(),openings:bucket(),detail:bucket(),x:(cx+.5)*cellSize,z:(cz+.5)*cellSize};this.cells.set(key,cell)}
-  const {roof,openings,detail}=cell,shell=(tags['building:material']==='plaster'||tags['building:material']==='render'||!tags['building:material']&&p.seed%3===0)?cell.render:cell.shell,wall=this.style.walls[p.wall],roofColor=(this.style.roofMaterials as Record<string,number>)[String(tags['roof:material'])]??this.style.roofs[p.roof];
+  let cell=this.cells.get(key);if(!cell){cell={shell:bucket(),render:bucket(),roof:bucket(),openings:bucket(),recipes:[],x:(cx+.5)*cellSize,z:(cz+.5)*cellSize};this.cells.set(key,cell)}
+  const {roof,openings}=cell,shell=(tags['building:material']==='plaster'||tags['building:material']==='render'||!tags['building:material']&&p.seed%3===0)?cell.render:cell.shell,wall=this.style.walls[p.wall],roofColor=(this.style.roofMaterials as Record<string,number>)[String(tags['roof:material'])]??this.style.roofs[p.roof];
   this.anchors.push({id:tags.osm_id??p.seed,doors:p.anchors});this.buildings++;this.inferred+=Number(p.inferred.height);this.openings+=p.openings.length;this.roofs+=Number(p.rise>0);
   const drawWall=(a:Point,b:Point,y0:number,y1:number)=>{if(y1<=y0)return;const l=Math.hypot(b.x-a.x,b.z-a.z);if(l<.001)return;const u0=(a.x*(b.x-a.x)+a.z*(b.z-a.z))/l/2.8,u1=u0+l/2.8;quad(shell,[[a.x,y0,a.z],[b.x,y0,b.z],[b.x,y1,b.z],[a.x,y1,a.z]],wall,[[u0,y0/1.4],[u1,y0/1.4],[u1,y1/1.4],[u0,y1/1.4]])};
   for(const edge of p.edges){
@@ -89,24 +120,8 @@ export class ArchitectureBatch{
    // Recess reveals close the wall thickness and keep the aperture dark from oblique views.
    const pos=(s:number,yy:number,inset:number)=>[o.x+o.ux*s-o.nx*inset,yy,o.z+o.uz*s-o.nz*inset];
    for(const [x0,x1,y0,y1] of [[-w,-w,y,y+h],[w,w,y,y+h],[-w,w,y+h,y+h],[-w,w,y,y]])quad(openings,[pos(x0,y0,0),pos(x1,y1,0),pos(x1,y1,.18),pos(x0,y0,.18)],0xbfb197);
-   const frame=0xe5d7ba,thick=.09;
-   panel(detail,-w,-w+thick,y,y+h,.008,frame);panel(detail,w-thick,w,y,y+h,.008,frame);panel(detail,-w,w,y+h-.14,y+h,.006,frame);
-   panel(detail,-w,w,y,y+.09,.004,frame);
-   if(window){
-    panel(detail,-.025,.025,y+.08,y+h-.12,.09,0xb7ad91);panel(detail,-w+.08,w-.08,y+h*.48,y+h*.48+.04,.09,0xb7ad91);
-    // Leaves stay in the window recess; no shutters swing into the street.
-    if(o.shutters){const sc=this.style.shutters[p.shutter];panel(detail,-w+.09,-w+.24,y+.10,y+h-.15,.05,sc);panel(detail,w-.24,w-.09,y+.10,y+h-.15,.05,sc);for(let yy=y+.28;yy<y+h-.15;yy+=.32){panel(detail,-w+.10,-w+.23,yy,yy+.025,.042,0x4f6258);panel(detail,w-.23,w-.10,yy,yy+.025,.042,0x4f6258)}}
-    if(o.planter){
-     // A small potted climber follows the recessed jamb, with no street projection.
-     if((p.seed+o.edge)%3===0){panel(detail,-w+.19,-w+.21,y+.23,y+h-.2,.018,0x65754c);for(let j=0;j<4;j++){const yy=y+.35+j*.19,xx=-w+.20+(j%2?.045:-.045);panel(detail,xx-.045,xx+.045,yy,yy+.09,.012,0x6e824e)}}
-     panel(detail,-w+.1,w-.1,y+.09,y+.23,.025,0x986f50);for(let j=0;j<4;j++){const x=-w+.16+j*(o.width-.32)/3;panel(detail,x-.07,x+.07,y+.22,y+.35+(j%2)*.08,.02,0x657a4c)}}
-   }else{
-    for(let j=1;j<5;j++){const x=-w+j*o.width/5;panel(detail,x,x+.015,y+.09,y+h-.15,.17,0x403c30)}
-    panel(detail,w-.23,w-.16,y+.92,y+.98,.15,0xb5a17b);
-    // Shallow threshold INSIDE the footprint, at the sampled ground level.
-    quad(detail,[pos(-w,y,.01),pos(w,y,.01),pos(w,y,.18),pos(-w,y,.18)],0xc4b69b);
-   }
   }
+  cell.recipes.push({seed:p.seed,shutter:p.shutter,openings:p.openings});
   // Sparse chimney on a genuine roof interior point, never a new ground obstacle.
   if(p.rise>0&&p.seed%3===0&&faces.length){
    const f=faces[p.seed%faces.length],q=f.map((i:number)=>all[i]),center={x:(q[0].x+q[1].x+q[2].x)/3,z:(q[0].z+q[1].z+q[2].z)/3};
@@ -115,9 +130,28 @@ export class ArchitectureBatch{
   }
  }
  finish(){let triangles=0,meshes=0;for(const cell of this.cells.values()){
-  for(const [name,material] of [['shell',stone],['render',plaster],['roof',tile],['openings',plain],['detail',plain]] as const){const b=cell[name];if(!b.p.length)continue;const m=mesh(b,material);m.name=`architecture-${name}`;if(name==='detail'){m.userData.architectureDetail=true;m.userData.architectureStyle=this.style;m.userData.centerX=cell.x;m.userData.centerZ=cell.z;m.visible=false}this.scene.add(m);triangles+=b.p.length/9;meshes++}
+  let openingMesh:THREE.Mesh|undefined;
+  for(const [name,material] of [['shell',stone],['render',plaster],['roof',tile],['openings',plain]] as const){const b=cell[name];if(!b.p.length)continue;const m=mesh(b,material);m.name=`architecture-${name}`;this.scene.add(m);triangles+=b.indices.length/3;meshes++;if(name==='openings')openingMesh=m;}
+  if(!cell.recipes.some(p=>p.openings.length))continue;
+  // The factory retains compact recipes, never far-away decorative vertex arrays.
+  const slot=new THREE.Group();slot.name='architecture-detail-cache';slot.userData.architectureDetail=true;slot.userData.architectureStyle=this.style;slot.userData.centerX=cell.x;slot.userData.centerZ=cell.z;slot.userData.openingMesh=openingMesh;
+  const recipes=cell.recipes,base=cell.openings,style=this.style;
+  slot.userData.create=()=>{const b:Bucket={p:base.p.slice(),uv:base.uv.slice(),c:base.c.slice(),indices:base.indices.slice()};for(const p of recipes)fineDetails(b,p,style);const m=mesh(b,plain);m.name='architecture-detail';slot.add(m);};slot.visible=false;this.scene.add(slot);
  }
  const stats={version:this.style.id,buildings:this.buildings,inferredHeights:this.inferred,pitchedRoofs:this.roofs,openings:this.openings,cells:this.cells.size,meshes,triangles,generationMs:performance.now()-this.started,builds:1};this.scene.userData.architecture=stats;this.scene.userData.architectureAnchors=this.anchors;this.cells.clear();return stats;
  }
 }
-export function updateArchitectureLOD(scene:THREE.Object3D,camera:THREE.Camera,low=false){scene.traverse(o=>{if(!o.userData.architectureDetail)return;const distance=Math.hypot(Math.max(0,Math.abs(camera.position.x-o.userData.centerX)-o.userData.architectureStyle.cellSize/2),Math.max(0,Math.abs(camera.position.z-o.userData.centerZ)-o.userData.architectureStyle.cellSize/2));o.visible=detailVisible(o.visible,distance,low,o.userData.architectureStyle)})}
+export function updateArchitectureLOD(scene:THREE.Object3D,camera:THREE.Camera,low=false){
+ const slots:THREE.Object3D[]=[];scene.traverse(o=>{if(o.userData.architectureDetail)slots.push(o)});
+ const distance=(o:THREE.Object3D)=>Math.hypot(Math.max(0,Math.abs(camera.position.x-o.userData.centerX)-o.userData.architectureStyle.cellSize/2),Math.max(0,Math.abs(camera.position.z-o.userData.centerZ)-o.userData.architectureStyle.cellSize/2));
+ slots.sort((a,b)=>distance(a)-distance(b));let generated=0;
+ for(const o of slots){const wanted=detailVisible(o.visible,distance(o),low,o.userData.architectureStyle);
+  if(wanted&&!o.children.length&&generated===0){const start=performance.now();o.userData.create();o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;generated++;}
+  o.visible=wanted&&o.children.length>0;if(o.userData.openingMesh)o.userData.openingMesh.visible=!o.visible;
+ }
+ // Keep at most twelve invisible cached cells. Required visible cells always win.
+ let hidden=0;for(const o of slots){if(o.visible||!o.children.length)continue;if(++hidden<=12)continue;for(const child of [...o.children]){(child as THREE.Mesh).geometry.dispose();o.remove(child)}o.userData.evictions=(o.userData.evictions??0)+1;}
+}
+export function architectureMemory(scene:THREE.Object3D){let triangles=0,bytes=0,meshes=0,detailCells=0,detailBuilds=0,detailMs=0,evictions=0;
+ scene.traverse(o=>{if(o.userData.architectureDetail){detailCells+=Number(o.children.length>0);detailBuilds+=o.userData.builds??0;detailMs+=o.userData.generationMs??0;evictions+=o.userData.evictions??0;}if(!(o instanceof THREE.Mesh)||!o.name.startsWith('architecture-'))return;const g=o.geometry;triangles+=(g.index?.count??g.attributes.position.count)/3;meshes++;for(const a of Object.values(g.attributes) as THREE.BufferAttribute[])bytes+=a.array.byteLength;bytes+=g.index?.array.byteLength??0;});return {triangles,bytes,meshes,detailCells,detailBuilds,detailMs,evictions};
+}
