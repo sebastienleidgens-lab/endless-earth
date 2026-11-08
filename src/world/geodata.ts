@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { ArchitectureBatch } from '../architecture/render';
+// @ts-ignore Pure shared footprint helper.
+import { edgeKey } from '../architecture/plan.mjs';
 import { nature } from '../living/geography';
 import { animateFoliage } from '../living/atmosphere';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -15,88 +18,6 @@ function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
   });
 }
 const LOCAL_LIMIT=1050;
-// Shared materials avoid allocating thousands of identical GPU resources.
-// Limestone, pale render and aged stone tones typical of the region.
-const WALL_COLORS=[0xcab89d,0xd8c7ab,0xb8a991,0xe0d1b8,0xc4b69d,0xe1d5be,0xafa48e,0xd1bea2];
-const WALL_MATERIALS=WALL_COLORS.map(color=>new THREE.MeshLambertMaterial({color}));
-// Restrained regional roof palette; deterministic per footprint and GPU-shared.
-const ROOF_COLORS=[0xa96049,0xb77559,0x995a49,0xb16a52,0x8d594b];
-const FLAT_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial({color}));
-const GABLE_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial({color,side:THREE.DoubleSide}));
-// Stylized facade details are illustrative, not surveyed OSM openings.
-// Shared opaque materials allow them to join the existing building batches.
-const WINDOW_MATERIAL=new THREE.MeshLambertMaterial({color:0x526b69,side:THREE.DoubleSide});
-const DOOR_MATERIAL=new THREE.MeshLambertMaterial({color:0x725746,side:THREE.DoubleSide});
-function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,wallHeight:number,sharedEdges:Set<string>,terrain?:Terrain):void{
-  const corners=ring.slice();
-  if(corners.length>1&&corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
-  if(corners.length<3||corners.length>24||wallHeight<3.6)return;
-  const centerX=corners.reduce((s,p)=>s+p.x,0)/corners.length;
-  const centerZ=corners.reduce((s,p)=>s+p.z,0)/corners.length;
-  const windows:number[]=[],doors:number[]=[];
-  const emit=(dest:number[],ax:number,az:number,bx:number,bz:number,y0:number,y1:number)=>{
-    dest.push(ax,y0,az,bx,y0,bz,bx,y1,bz,ax,y0,az,bx,y1,bz,ax,y1,az);
-  };
-  const hash=(n:number)=>{n=Math.imul(n^(n>>>16),0x7feb352d);n=Math.imul(n^(n>>>15),0x846ca68b);return (n^(n>>>16))>>>0;};
-  const seed=hash(Math.round(centerX*10)^Math.imul(Math.round(centerZ*10),31));
-  let doorPlaced=false;
-  for(let i=0;i<corners.length;i++){
-    const a=corners[i],b=corners[(i+1)%corners.length];
-    const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
-    if(length<5||length>65||sharedEdges.has(facadeEdgeKey(a,b)))continue;
-    const nx=-dz/length,nz=dx/length;
-    const mx=(a.x+b.x)/2,mz=(a.z+b.z)/2;
-    const outward=(nx*(mx-centerX)+nz*(mz-centerZ)>=0)?1:-1;
-    const ox=nx*outward*.09,oz=nz*outward*.09;
-    const variant=hash(seed^Math.imul(i+1,7919));
-    const levels=Math.min(3,Math.max(1,Math.floor(wallHeight/3.1)));
-    const count=Math.min(5,Math.floor(length/(3.7+(variant%4)*.35)));
-    const width=[.36,.43,.5,.58][variant%4];
-    const windowHeight=[.85,1.05,1.2][(variant>>>4)%3];
-    const shift=((variant>>>8)%7-3)*.035;
-    for(let level=0;level<levels;level++){
-      const sill=base+1.35+level*3.1;
-      if(sill+windowHeight>base+wallHeight-.55)continue;
-      for(let j=0;j<count;j++){
-        // A little asymmetry, but keep each opening safely within its wall.
-        const t=THREE.MathUtils.clamp((j+1)/(count+1)+shift,.1,.9);
-        const cx=a.x+dx*t+ox,cz=a.z+dz*t+oz;
-        const ux=dx/length*width,uz=dz/length*width;
-        const ground=terrain?.relativeHeight(cx,cz);
-        // The DEM can climb above the building's level foundation.
-        // Never draw an opening buried in that hillside.
-        if(ground!==null&&ground!==undefined&&sill<ground+.45)continue;
-        emit(windows,cx-ux,cz-uz,cx+ux,cz+uz,sill,sill+windowHeight);
-      }
-    }
-    if(!doorPlaced&&length>=7){
-      const t=.42+((variant>>>12)%5)*.04;
-      const cx=a.x+dx*t+ox*1.2,cz=a.z+dz*t+oz*1.2;
-      const ux=dx/length*.55,uz=dz/length*.55;
-      const ground=terrain?.relativeHeight(cx,cz);
-      // An entrance belongs near accessible ground, not beneath the slope.
-      if(ground===null||ground===undefined||Math.abs(ground-base)<.8){
-        emit(doors,cx-ux,cz-uz,cx+ux,cz+uz,base+.12,base+2.25);
-        doorPlaced=true;
-      }
-    }
-  }
-  for(const [vertices,material] of [[windows,WINDOW_MATERIAL],[doors,DOOR_MATERIAL]] as const){
-    if(!vertices.length)continue;
-    const geometry=new THREE.BufferGeometry();
-    geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
-    geometry.computeVertexNormals();
-    const mesh=new THREE.Mesh(geometry,material);
-    mesh.castShadow=false;scene.add(mesh);
-  }
-}
-// Quantized undirected OSM footprint edges: suppress illustrative openings on
-// walls shared exactly by two mapped building polygons.
-function facadeEdgeKey(a:THREE.Vector3,b:THREE.Vector3):string{
-  const p=`${Math.round(a.x*10)},${Math.round(a.z*10)}`;
-  const q=`${Math.round(b.x*10)},${Math.round(b.z*10)}`;
-  return p<q?`${p}|${q}`:`${q}|${p}`;
-}
 function sharedBuildingEdges(features:Feature[]):Set<string>{
   const counts=new Map<string,number>();
   for(const feature of features){
@@ -105,7 +26,7 @@ function sharedBuildingEdges(features:Feature[]):Set<string>{
     if(points.length<3||!points.some(insideArea))continue;
     const ring=points.length>1&&points[0].distanceTo(points[points.length-1])<.01?points.slice(0,-1):points;
     for(let i=0;i<ring.length;i++){
-      const key=facadeEdgeKey(ring[i],ring[(i+1)%ring.length]);
+      const key=edgeKey(ring[i],ring[(i+1)%ring.length]);
       counts.set(key,(counts.get(key)??0)+1);
     }
   }
@@ -189,94 +110,11 @@ function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Te
     }
   }
 }
-function measuredMetres(value:unknown):number|null{
-  if(typeof value!=='string'&&typeof value!=='number')return null;
-  const text=String(value).trim().replace(',','.');
-  // OSM height tags can be "8", "8 m" or "8.5m". Reject ambiguous units.
-  if(!/^\d+(?:\.\d+)?\s*(?:m)?$/i.test(text))return null;
-  const metres=Number.parseFloat(text);
-  return Number.isFinite(metres)?metres:null;
-}
-function buildingHeight(tags:Record<string,unknown>):number{
-  const explicit=measuredMetres(tags.height);
-  if(explicit!==null&&explicit>=2&&explicit<=80)return explicit;
-  const levels=Number(tags['building:levels']);
-  if(Number.isFinite(levels)&&levels>=1&&levels<=20)return levels*3.1;
-  // Illustrative fallback only when OSM has no usable height information.
-  return 7;
-}
-function roofRise(tags:Record<string,unknown>,buildingHeightMetres:number):number|null{
-  const height=measuredMetres(tags['roof:height']);
-  if(height!==null&&height>=.3&&height<=12)return Math.min(height,buildingHeightMetres*.85);
-  const levels=Number(tags['roof:levels']);
-  if(Number.isFinite(levels)&&levels>=1&&levels<=3)return Math.min(levels*2.5,buildingHeightMetres*.85);
-  return null;
-}
 function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
   const shape=new THREE.Shape();
   ring.forEach((p,i)=>i===0?shape.moveTo(p.x,-p.z):shape.lineTo(p.x,-p.z));
   return shape;
 }
-// A conservative gable roof for verified rectangular footprints only.
-// Complex footprints keep their flat cap rather than inventing inaccurate geometry.
-function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,height:number,material:THREE.Material,explicitRise:number|null){
-  const corners=ring.slice();
-  if(corners.length>4 && corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
-  if(corners.length!==4)return;
-  const edges=corners.map((p,i)=>corners[(i+1)%4].clone().sub(p));
-  const lengths=edges.map(e=>Math.hypot(e.x,e.z));
-  if(lengths.some(l=>l<3)||Math.max(...lengths)>90)return;
-  const dot=(i:number)=>Math.abs((edges[i].x*edges[(i+1)%4].x+edges[i].z*edges[(i+1)%4].z)/(lengths[i]*lengths[(i+1)%4]));
-  if([0,1,2,3].some(i=>dot(i)>.18))return;
-  if(Math.abs(lengths[0]-lengths[2])>Math.max(1,lengths[0]*.12)||Math.abs(lengths[1]-lengths[3])>Math.max(1,lengths[1]*.12))return;
-  const ridgeHeight=explicitRise??Math.min(4,Math.max(1.2,Math.min(...lengths)*.23),height*.45);
-  // Ridge runs parallel to the longer side of the rectangle.
-  const shortSide=lengths[0]<lengths[1]?0:1;
-  const a=corners[shortSide],b=corners[(shortSide+1)%4],d=corners[(shortSide+3)%4],cc=corners[(shortSide+2)%4];
-  const mid=(p:THREE.Vector3,q:THREE.Vector3)=>new THREE.Vector3((p.x+q.x)/2,top+ridgeHeight,(p.z+q.z)/2);
-  const r0=mid(a,b),r1=mid(d,cc);
-  const vertex=(p:THREE.Vector3)=>[p.x,p.y,p.z];
-  const atTop=(p:THREE.Vector3)=>new THREE.Vector3(p.x,top,p.z);
-  const a0=atTop(a),b0=atTop(b),c0=atTop(cc),d0=atTop(d);
-  const vertices=[
-    ...vertex(a0),...vertex(d0),...vertex(r1),
-    ...vertex(a0),...vertex(r1),...vertex(r0),
-    ...vertex(b0),...vertex(r0),...vertex(r1),
-    ...vertex(b0),...vertex(r1),...vertex(c0),
-    ...vertex(a0),...vertex(r0),...vertex(b0),
-    ...vertex(d0),...vertex(c0),...vertex(r1),
-  ];
-  const geometry=new THREE.BufferGeometry();
-  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
-  geometry.computeVertexNormals();
-  const roof=new THREE.Mesh(geometry,material);
-  roof.castShadow=false;roof.receiveShadow=true;scene.add(roof);
-}
-// Four-sided pyramidal roof only when explicitly mapped in OSM.
-// All corners meet a single apex; no extra geometry is invented for other shapes.
-function addPyramidalRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,height:number,material:THREE.Material,explicitRise:number|null):void{
-  const corners=ring.slice();
-  if(corners.length>4&&corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
-  if(corners.length!==4)return;
-  const edges=corners.map((p,i)=>Math.hypot(p.x-corners[(i+1)%4].x,p.z-corners[(i+1)%4].z));
-  if(edges.some(length=>length<3||length>90))return;
-  const centerX=corners.reduce((sum,p)=>sum+p.x,0)/4;
-  const centerZ=corners.reduce((sum,p)=>sum+p.z,0)/4;
-  const rise=explicitRise??Math.min(4,Math.max(1.2,Math.min(...edges)*.3),height*.45);
-  const vertices:number[]=[];
-  for(let i=0;i<4;i++){
-    const a=corners[i],b=corners[(i+1)%4];
-    vertices.push(a.x,top,a.z,b.x,top,b.z,centerX,top+rise,centerZ);
-  }
-  const geometry=new THREE.BufferGeometry();
-  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
-  geometry.computeVertexNormals();
-  const roof=new THREE.Mesh(geometry,material);
-  roof.castShadow=false;roof.receiveShadow=true;
-  scene.add(roof);
-}
-// Drape mapped land-cover polygons onto the DEM. Subdivide their triangles
-// before sampling so large forest polygons do not cut through valley slopes.
 function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THREE.Material,holes:THREE.Vector3[][]=[],offset=.35):THREE.Mesh{
   const shape=makeFootprint(ring);
   // OSM interior rings are genuine clearings: don't paint over them.
@@ -608,69 +446,10 @@ function batchLinearFeatures(scene:THREE.Object3D):void{
     scene.add(combined);
   }
 }
-// Merge building surfaces by actual material, including the two material
-// groups of ExtrudeGeometry. Keeping separate groups would retain draw calls.
-function batchBuildings(scene:THREE.Object3D):void{
-  const buckets=new Map<THREE.Material,THREE.BufferGeometry[]>();
-  const originals:THREE.Mesh[]=[];
-  const materials:THREE.Material[]=[...FLAT_ROOF_MATERIALS,...WALL_MATERIALS,...GABLE_ROOF_MATERIALS,WINDOW_MATERIAL,DOOR_MATERIAL];
-  const disposeTemporary=()=>{for(const geometries of buckets.values())for(const geometry of geometries)geometry.dispose();};
-  try{
-    for(const child of scene.children){
-      if(!(child instanceof THREE.Mesh))continue;
-      const assigned=Array.isArray(child.material)?child.material:[child.material];
-      if(!assigned.every(material=>materials.includes(material)))continue;
-      const source=child.geometry;
-      const expanded=source.index?source.toNonIndexed():source.clone();
-      try{
-        const position=expanded.getAttribute('position');
-        const normal=expanded.getAttribute('normal');
-        if(!position||!normal)throw new Error('Building missing positions or normals');
-        const groups=expanded.groups.length?expanded.groups:[{start:0,count:position.count,materialIndex:0}];
-        for(const group of groups){
-          const material=assigned[group.materialIndex];
-          if(!material||group.start<0||group.count<0||group.start+group.count>position.count||group.count%3!==0)
-            throw new Error('Invalid building material group');
-          if(group.count===0)continue;
-          const positions=new Float32Array(group.count*3);
-          const normals=new Float32Array(group.count*3);
-          for(let i=0;i<group.count;i++){
-            const j=group.start+i;
-            positions[i*3]=position.getX(j);positions[i*3+1]=position.getY(j);positions[i*3+2]=position.getZ(j);
-            normals[i*3]=normal.getX(j);normals[i*3+1]=normal.getY(j);normals[i*3+2]=normal.getZ(j);
-          }
-          const geometry=new THREE.BufferGeometry();
-          geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
-          geometry.setAttribute('normal',new THREE.BufferAttribute(normals,3));
-          if(!buckets.has(material))buckets.set(material,[]);
-          buckets.get(material)!.push(geometry);
-        }
-      }finally{expanded.dispose();}
-      originals.push(child);
-    }
-    // Transactional: don't remove a single building until every merge succeeds.
-    const combined:THREE.Mesh[]=[];
-    try{
-      for(const [material,geometries] of buckets){
-        const merged=mergeGeometries(geometries,false);
-        if(!merged)throw new Error('Building geometry merge failed');
-        const mesh=new THREE.Mesh(merged,material);
-        mesh.receiveShadow=true;
-        combined.push(mesh);
-      }
-    }catch(error){
-      for(const mesh of combined)mesh.geometry.dispose();
-      throw error;
-    }
-    for(const mesh of originals){scene.remove(mesh);mesh.geometry.dispose();}
-    for(const mesh of combined)scene.add(mesh);
-  }catch(error){
-    console.warn('Building batching skipped; retaining original geometry',error);
-  }finally{disposeTemporary();}
-}
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
   let count=addMappedTrees(scene,features,terrain);
   const sharedEdges=sharedBuildingEdges(features);
+  const architecture=new ArchitectureBatch(scene);
   for(const f of features){
     const tags=f.properties??{};
     if(f.geometry?.type==='LineString'){
@@ -686,33 +465,8 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         // extrusion: an intact terracotta-roofed house would be misleading.
         addHistoricWall(scene,ring,terrain,true);count++;
       } else if(tags.building){
-        const shape=makeFootprint(ring);
-        // A single level foundation avoids floating corners on sloping terrain.
-        // The roof remains above the highest footprint vertex.
-        const minGround=terrain?Math.min(...ring.map(p=>p.y))-.12:0;
-        const maxGround=terrain?Math.max(...ring.map(p=>p.y))-.12:0;
-        const slopeRise=Math.min(30,Math.max(0,maxGround-minGround));
-        const base=minGround;
-        const height=buildingHeight(tags);
-        const geometry=new THREE.ExtrudeGeometry(shape,{depth:height+slopeRise,bevelEnabled:false});
-        geometry.rotateX(-Math.PI/2);
-        geometry.translate(0,base,0);
-        // Stable spatial hashes, deliberately decorrelated: neighboring buildings
-        // should not all share the same facade/roof pairing.
-        const hx=Math.round(ring[0].x*10),hz=Math.round(ring[0].z*10);
-        const mix=(x:number)=>{x=Math.imul(x^(x>>>16),0x7feb352d);x=Math.imul(x^(x>>>15),0x846ca68b);return (x^(x>>>16))>>>0;};
-        const roofIndex=mix(hx^Math.imul(hz,31))%ROOF_COLORS.length;
-        const wallIndex=mix(hz^Math.imul(hx,131)^0x5f3759df)%WALL_MATERIALS.length;
-        const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[wallIndex]]);
-        mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
-        addFacadeDetails(scene,ring,base,height+slopeRise,sharedEdges,terrain);
-        const roofShape=typeof tags['roof:shape']==='string'?tags['roof:shape']:'';
-        const top=base+height+slopeRise;
-        const rise=roofRise(tags,height);
-        if(roofShape==='pyramidal')
-          addPyramidalRoof(scene,ring,top,height,GABLE_ROOF_MATERIALS[roofIndex],rise);
-        else if(roofShape===''||roofShape==='gabled')
-          addGableRoof(scene,ring,top,height,GABLE_ROOF_MATERIALS[roofIndex],rise);
+        const holes=(f.geometry.coordinates.slice(1) as unknown[]).map(h=>coordsToPoints(h,terrain)).map(h=>h.length>1&&h[0].distanceTo(h[h.length-1])<.01?h.slice(0,-1):h).filter(h=>h.length>=3);
+        architecture.add(ring,tags,sharedEdges,(x,z)=>terrain?terrain.relativeHeight(x,z):0,holes);
         count++;
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
         // The DEM is already the ground. A second, independently triangulated
@@ -735,7 +489,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
     }
   }
   batchLinearFeatures(scene);
-  batchBuildings(scene);
+  architecture.finish();
   return count;
 }
 export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain):Promise<number>{

@@ -22,7 +22,7 @@ export function startTilePreview(scene:THREE.Scene, avatar:THREE.Object3D, onSta
       if(object instanceof THREE.Mesh){
         object.geometry.dispose();
         const materials=Array.isArray(object.material)?object.material:[object.material];
-        for(const material of materials)material.dispose();
+        for(const material of materials)if(!material.userData.architectureShared)material.dispose();
       }
     });
   };
