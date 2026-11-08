@@ -1,3 +1,8 @@
+import { createAtmosphere } from './living/atmosphere';
+import { Soundscape } from './living/sound';
+import { loadNavigation, navigationReady, nature, paths, routeAt, validPoint } from './living/geography';
+// @ts-ignore Shared controller tested directly in Node.
+import { AutoWalk, windAt } from './living/walk.mjs';
 import * as THREE from 'three';
 import { createDemoWorld } from './world/demo';
 import { loadAnglesGeography, updateVegetationLOD } from './world/geodata';
@@ -7,11 +12,11 @@ import { InputController } from './controls/input';
 import { canWalk, moveWithCollision, walkingHeight, cameraClear } from './world/collisions';
 // @ts-ignore shared deterministic runtime
 import { movement, nextView, cameraFraction, smoothMovement, transitionWeight } from './controls/walking.mjs';
-import { createAmbienceButton } from './controls/ambience';
+
 import './style.css';
 const root=document.querySelector<HTMLDivElement>('#app')!;
 root.innerHTML=`<div class="hud"><strong>ENDLESS EARTH</strong><span>France Alpha · ${ANGLES.name}</span><small>Décor illustratif — géographie réelle à importer</small></div><div class="help">Déplacement : ZQSD / WASD / flèches · Glisser : orienter la caméra · Molette : zoom · Shift : courir · V : changer de vue</div>`;
-createAmbienceButton(root);
+
 const scene=new THREE.Scene(); scene.background=new THREE.Color(0xdce8df); scene.fog=new THREE.Fog(0xdce8df,300,1000);
 const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,1500);
 const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
@@ -31,7 +36,7 @@ let geographyReady=false;
 const hint = document.querySelector<HTMLElement>('.hud small');
 const params = new URLSearchParams(location.search);
 const terrainPreview = params.get('terrain') === '1';
-const tilesPreview = params.get('tiles') === '1';
+const tilesPreview = params.get('tiles') !== '0';
 const terrainDebug = params.get('terrainDebug') === '1';
 // Approximate site reference, not a surveyed fortress footprint. Historical
 // sources agree on the rocky promontory but differ on their POI coordinates.
@@ -44,6 +49,7 @@ if(tilesPreview){
   landmark.style.cssText='position:fixed;right:14px;bottom:50px;z-index:20;background:#304d40ed;color:white;border:1px solid #ffffff55;border-radius:8px;padding:11px 14px;font:600 13px system-ui;cursor:pointer';
   landmark.addEventListener('click',()=>{
     setViewMode('aerial');
+    walker.stop('Promenade interrompue · changement de lieu');
     avatar.position.x=fortressSite.x;
     avatar.position.z=fortressSite.z;
     const ground=activeTerrain?.relativeHeight(fortressSite.x,fortressSite.z);
@@ -87,6 +93,7 @@ if (terrainPreview) {
       // A ground surface remains necessary for the OSM footprints.
       createDemoWorld(realWorld,true);
       if(hint)hint.textContent=`OSM : ${count} objets · relief provisoire`;
+      navigationPromise.then(()=>prepareWalk());
     } else if(hint) hint.textContent='Décor illustratif · données géographiques en attente';
   }).catch(error=>{
     console.warn('Geodata unavailable',error);
@@ -126,6 +133,8 @@ if(tilesPreview && !terrainPreview){
       const count=await loadAnglesGeography(realWorld,terrain??undefined);
       geographyReady=count>0&&terrain!==null;
       if(geographyReady)geographyReady=placeSafeStart(terrain!);
+      await navigationLoaded();
+      if(count>0)prepareWalk();
       if(hint)hint.textContent=count>0
         ? `OSM réel : ${count} objets · ${terrain?`relief IGN ${terrain.grid.step_m} m · dénivelé ${(Math.max(...terrain.grid.elevations_m)-Math.min(...terrain.grid.elevations_m)).toFixed(0)} m`:'relief indisponible, sol plat'}`
         : 'ERREUR OSM : aucun objet géographique chargé';
@@ -183,6 +192,30 @@ addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat)setView
 root.append(viewButton);
 setViewMode('aerial');
 const input = new InputController();
+const walker=new AutoWalk(), sound=new Soundscape();
+const updateAtmosphere=createAtmosphere(scene,sun,(x,z)=>activeTerrain?.relativeHeight(x,z)??0);
+const panel=document.createElement('div');panel.className='living-panel';
+panel.innerHTML='<button id="auto-walk" disabled>Promenade automatique</button><button id="sound">Activer le son</button><span id="walk-status" role="status">Chargement des voies OSM…</span><small id="profile"></small>';
+root.append(panel);
+const autoButton=panel.querySelector<HTMLButtonElement>('#auto-walk')!;
+const soundButton=panel.querySelector<HTMLButtonElement>('#sound')!;
+const walkStatus=panel.querySelector<HTMLElement>('#walk-status')!;
+autoButton.onclick=()=>{if(walker.active)walker.stop();else walker.start(routeAt(avatar.position,activeTerrain));};
+soundButton.onclick=async()=>{try{const on=await sound.toggle();soundButton.textContent=on?'Désactiver le son':'Activer le son';soundButton.setAttribute('aria-pressed',String(on));}catch{walkStatus.textContent='Son indisponible dans ce navigateur';}};
+let worldReady=false;
+const navigationPromise=loadNavigation().then(()=>{autoButton.disabled=!worldReady;}).catch(()=>{walkStatus.textContent='Navigation OSM indisponible';});
+async function navigationLoaded(){await navigationPromise;}
+function prepareWalk(){
+ worldReady=true;
+ // Initial placement only, before enabling walking. Auto Walk never relocates.
+ const candidates=paths.flatMap(line=>line.points).filter(p=>canWalk(p.x,p.z)&&validPoint(p,activeTerrain)).sort((a,b)=>Math.hypot(a.x,a.z)-Math.hypot(b.x,b.z));
+ const start=candidates.find(p=>routeAt(p,activeTerrain));
+ if(start){avatar.position.x=start.x;avatar.position.z=start.z;}
+ autoButton.disabled=!navigationReady();
+}
+addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive'));
+document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
+
 renderer.domElement.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;renderer.domElement.setPointerCapture(e.pointerId)});
 renderer.domElement.addEventListener('pointerup',()=>dragging=false);
 renderer.domElement.addEventListener('pointercancel',()=>dragging=false);
@@ -206,16 +239,28 @@ root.append(qualityButton);applyQuality('high');
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),quality,avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
 const previous=avatar.position.clone();
+if(controls.forward||controls.strafe){if(walker.active){walker.stop('Contrôle manuel repris');velocity.x=velocity.z=0;}}
+const autoStep=walker.active;
+if(autoStep){
+ const delta=walker.update(avatar.position,dt,(p:{x:number;z:number})=>validPoint(p,activeTerrain));
+ displacement.x=delta.x;displacement.z=delta.z;velocity.x=velocity.z=0;
+ if(Math.hypot(delta.x,delta.z)>.00001){const angle=Math.atan2(-delta.x,-delta.z);yaw+=Math.atan2(Math.sin(angle-yaw),Math.cos(angle-yaw))*(1-Math.exp(-dt*.8));}
+}
+walkStatus.textContent=walker.message;autoButton.textContent=walker.active?'Arrêter la promenade':'Promenade automatique';autoButton.setAttribute('aria-pressed',String(walker.active));
+
 const terrainHeight=(x:number,z:number)=>activeTerrain?activeTerrain.relativeHeight(x,z):0;
 const groundHeight=walkingHeight(terrainHeight);
 // Wait for the real dataset before allowing walking in geography mode.
-if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,terrainHeight);
+if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep);
 const moved=avatar.position.distanceTo(previous);
+if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
+updateAtmosphere(dt,quality==='low');sound.update(avatar.position,moved,windAt(clock.elapsedTime),yaw);
+panel.querySelector('#profile')!.textContent='Profil · '+(quality==='low'?'Éco':'Qualité');
 if(moved>.0001){
   const facing=Math.atan2(displacement.x,displacement.z);
   avatar.rotation.y+=Math.atan2(Math.sin(facing-avatar.rotation.y),Math.cos(facing-avatar.rotation.y))*(1-Math.exp(-dt*12));
@@ -258,7 +303,7 @@ if(transitionElapsed<.8){
     camera.position.copy(eye).addScaledVector(boom,cameraFraction(eye,boom,cameraClear,terrainHeight));
   }
 }
-sun.position.set(avatar.position.x-60,100,avatar.position.z+55);sun.target.position.copy(avatar.position);sun.target.updateMatrixWorld();
+sun.position.set(avatar.position.x-60,85+25*Math.cos(clock.elapsedTime/600),avatar.position.z+55);sun.target.position.copy(avatar.position);sun.target.updateMatrixWorld();
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateVegetationLOD(scene,camera)}
 renderer.render(scene,camera);

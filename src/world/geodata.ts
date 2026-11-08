@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { nature } from '../living/geography';
+import { animateFoliage } from '../living/atmosphere';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { toLocal } from './geo';
 import { setBuildingFootprints } from './collisions';
@@ -484,6 +486,9 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     }
   }
   if(!points.length)return 0;
+  // Bird and sound anchors follow actual rendered vegetation, including clearly
+  // illustrative riparian/woodland trees when OSM has no individual tree points.
+  nature.push(...points.map(p=>({x:p.x,z:p.z})));
   // Partition instances into spatial cells. Distant cells hide trunks,
   // then crowns; no per-frame instance matrix rebuild is necessary.
   const cellSize=180;
@@ -518,6 +523,7 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     // Per-cell materials allow a smooth distance fade without rebuilding instances.
     const trunkCellMaterial=trunkMaterial.clone();
     const crownCellMaterial=crownMaterial.clone();
+    animateFoliage(crownCellMaterial);
     // Opaque foliage writes depth normally: no ground bleeding through crowns.
     const trunks=new THREE.InstancedMesh(trunkGeometry,trunkCellMaterial,cellPoints.length);
     const crowns=new THREE.InstancedMesh(crownGeometry,crownCellMaterial,cellPoints.length);

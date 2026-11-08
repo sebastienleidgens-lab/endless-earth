@@ -52,8 +52,8 @@ export function canWalk(x:number,z:number, camera=false):boolean {
   }
   return true;
 }
-export function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null=()=>0){
-  moveGrounded(position,displacement,canWalk,walkingHeight(height),(x:number,z:number)=>navigation(x,z).slope);
+export function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null=()=>0,slide=true){
+  moveGrounded(position,displacement,canWalk,walkingHeight(height),(x:number,z:number)=>navigation(x,z).slope,slide);
 }
 
 export const cameraClear=(x:number,z:number)=>canWalk(x,z,true);

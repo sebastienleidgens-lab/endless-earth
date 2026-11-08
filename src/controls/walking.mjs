@@ -16,7 +16,7 @@ export function circleHitsPolygon(x,z,poly,radius=.3) {
   }
   return inside;
 }
-export function moveGrounded(position, displacement, clear, height, slope=()=>.7) {
+export function moveGrounded(position, displacement, clear, height, slope=()=>.7,slide=true) {
   const steps=Math.max(1,Math.ceil(Math.hypot(displacement.x,displacement.z)/.1));
   const dx=displacement.x/steps,dz=displacement.z/steps;
   const attempt=(x,z)=>{
@@ -28,6 +28,7 @@ export function moveGrounded(position, displacement, clear, height, slope=()=>.7
   };
   for(let i=0;i<steps;i++) {
     if(!attempt(position.x+dx,position.z+dz)) {
+      if(!slide)return position;
       attempt(position.x+dx,position.z);
       attempt(position.x,position.z+dz);
     }

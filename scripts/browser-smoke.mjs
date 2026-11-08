@@ -11,7 +11,7 @@ try{
   await page.waitForFunction(()=>window.endlessDiagnostics?.ready,{timeout:30000});
   const state=()=>page.evaluate(()=>window.endlessDiagnostics);
   await page.waitForTimeout(6500);
-  console.log('AERIAL',await state(),await page.locator('[role=status]').innerText());
+  console.log('AERIAL',await state(),await page.locator('.perf-panel').innerText());
   await page.screenshot({path:'work/visual/aerial.png'});
   await page.keyboard.press('v');await page.waitForFunction(()=>window.endlessDiagnostics.mode==='third');
   assert.equal((await state()).avatarVisible,true);
@@ -30,10 +30,10 @@ try{
   await page.screenshot({path:'work/visual/first.png'});
   await page.mouse.move(600,400);await page.mouse.down();await page.mouse.move(850,480,{steps:10});await page.mouse.up();
   await page.keyboard.down('Shift');await page.keyboard.down('w');await page.waitForTimeout(1200);await page.keyboard.up('w');await page.keyboard.up('Shift');
-  await page.locator('.sound-control').click();await page.waitForTimeout(200);assert.match(await page.locator('.sound-control').innerText(),/vent/);
+  await page.locator('#sound').click();await page.waitForTimeout(200);assert.match(await page.locator('#sound').innerText(),/Désactiver le son/);
   await page.locator('.quality-control').click();await page.waitForTimeout(200);
   await page.keyboard.press('v');await page.waitForFunction(()=>window.endlessDiagnostics.mode==='aerial');
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:'work/visual/mobile.png'});
-  console.log('FINAL',await state(),await page.locator('[role=status]').innerText());
+  console.log('FINAL',await state(),await page.locator('.perf-panel').innerText());
   assert.deepEqual(errors,[]);console.log('PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors.');
 }finally{await browser.close()}
