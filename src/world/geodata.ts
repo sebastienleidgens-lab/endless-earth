@@ -10,7 +10,7 @@ function coordsToPoints(coords: unknown): THREE.Vector3[] {
     const v=toLocal({lon:p[0],lat:p[1]}); return [new THREE.Vector3(v.x,0.12,v.z)];
   });
 }
-function addLine(scene:THREE.Scene,points:THREE.Vector3[],width:number,color:number){
+function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number){
   if(points.length<2)return;
   const material=new THREE.MeshLambertMaterial({color,side:THREE.DoubleSide});
   for(let i=1;i<points.length;i++){
@@ -35,7 +35,7 @@ function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
   ring.forEach((p,i)=>i===0?shape.moveTo(p.x,-p.z):shape.lineTo(p.x,-p.z));
   return shape;
 }
-export async function loadAnglesGeography(scene:THREE.Scene):Promise<number>{
+export async function loadAnglesGeography(scene:THREE.Object3D):Promise<number>{
   const response=await fetch(`${import.meta.env.BASE_URL}data/angles-osm.geojson`);
   if(!response.ok) return 0;
   const data=await response.json() as Collection;
