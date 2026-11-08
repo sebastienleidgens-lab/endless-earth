@@ -130,11 +130,27 @@ const avatar=new THREE.Group();
 const body=new THREE.Mesh(new THREE.CapsuleGeometry(.65,1.65,5,8),new THREE.MeshStandardMaterial({color:0x715d4f}));body.position.y=2;body.castShadow=true;avatar.add(body);
 const head=new THREE.Mesh(new THREE.SphereGeometry(.52,10,8),new THREE.MeshStandardMaterial({color:0xe4b992}));head.position.y=3.65;head.castShadow=true;avatar.add(head);scene.add(avatar);
 let yaw=.65, zoom=tilesPreview?125:45, dragging=false,lastX=0;
+type ViewMode='aerial'|'first'|'third';
+let viewMode:ViewMode='aerial';
+const viewButton=document.createElement('button');
+viewButton.type='button';
+viewButton.style.cssText='position:fixed;right:14px;bottom:70px;z-index:21;background:#304d40ed;color:white;border:1px solid #ffffff55;border-radius:8px;padding:11px 14px;font:600 13px system-ui;cursor:pointer';
+const viewNames:Record<ViewMode,string>={aerial:'Vue aérienne',first:'À pied · 1re personne',third:'À pied · 3e personne'};
+function setViewMode(mode:ViewMode){
+  viewMode=mode;
+  viewButton.textContent='◉ '+viewNames[mode]+' · changer (V)';
+  zoom=mode==='aerial'?125:mode==='third'?7:0;
+  body.visible=head.visible=mode!=='first';
+}
+viewButton.addEventListener('click',()=>setViewMode(viewMode==='aerial'?'third':viewMode==='third'?'first':'aerial'));
+addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat)setViewMode(viewMode==='aerial'?'third':viewMode==='third'?'first':'aerial')});
+root.append(viewButton);
+setViewMode('aerial');
 const input = new InputController();
 renderer.domElement.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;renderer.domElement.setPointerCapture(e.pointerId)});
 renderer.domElement.addEventListener('pointerup',()=>dragging=false);
 renderer.domElement.addEventListener('pointermove',e=>{if(dragging){yaw+=(e.clientX-lastX)*.005;lastX=e.clientX}});
-renderer.domElement.addEventListener('wheel',e=>{zoom=THREE.MathUtils.clamp(zoom+e.deltaY*.055,22,210)},{passive:true});
+renderer.domElement.addEventListener('wheel',e=>{if(viewMode==='aerial')zoom=THREE.MathUtils.clamp(zoom+e.deltaY*.055,22,210);else if(viewMode==='third')zoom=THREE.MathUtils.clamp(zoom+e.deltaY*.012,4,13)},{passive:true});
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 camera.position.set(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
 camera.lookAt(0,2,0);
@@ -145,16 +161,17 @@ let perfElapsed=0,perfFrames=0;
 function frame(){requestAnimationFrame(frame);const dt=Math.min(clock.getDelta(),.05);
 const controls=input.getVector();
 const dir=new THREE.Vector3(Math.sin(yaw)*controls.forward+Math.cos(yaw)*controls.strafe,0,Math.cos(yaw)*controls.forward-Math.sin(yaw)*controls.strafe);
-if(dir.lengthSq()>0){dir.normalize();moveWithCollision(avatar.position,dir.clone().multiplyScalar(dt*8));avatar.rotation.y=Math.atan2(dir.x,dir.z)}
+if(dir.lengthSq()>0){dir.normalize();moveWithCollision(avatar.position,dir.clone().multiplyScalar(dt*(viewMode==='aerial'?8:3.3)));avatar.rotation.y=viewMode==='first'?yaw+Math.PI:Math.atan2(dir.x,dir.z)}
 if(activeTerrain){const h=activeTerrain.relativeHeight(avatar.position.x,avatar.position.z);if(h!==null)avatar.position.y=h;}
-const offset=new THREE.Vector3(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
+const offset=viewMode==='first'?new THREE.Vector3(0,1.7,0):viewMode==='third'?new THREE.Vector3(Math.sin(yaw)*zoom,3.2,Math.cos(yaw)*zoom):new THREE.Vector3(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
 const target=avatar.position.clone().add(offset);
 if(activeTerrain){
   const ground=activeTerrain.relativeHeight(target.x,target.z);
-  if(ground!==null)target.y=Math.max(target.y,ground+12);
+  if(ground!==null)target.y=Math.max(target.y,ground+(viewMode==='aerial'?12:1.6));
 }
-camera.position.lerp(target,1-Math.pow(.91,dt*60));
-camera.lookAt(avatar.position.x,avatar.position.y+2,avatar.position.z);
+camera.position.lerp(target,1-Math.pow(viewMode==='first'?.68:.91,dt*60));
+if(viewMode==='first')camera.lookAt(camera.position.x-Math.sin(yaw)*12,camera.position.y-.15,camera.position.z-Math.cos(yaw)*12);
+else camera.lookAt(avatar.position.x,avatar.position.y+(viewMode==='third'?1.9:2),avatar.position.z);
 sun.position.set(avatar.position.x-60,100,avatar.position.z+55);sun.target.position.copy(avatar.position);sun.target.updateMatrixWorld();
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateVegetationLOD(scene,camera)}
