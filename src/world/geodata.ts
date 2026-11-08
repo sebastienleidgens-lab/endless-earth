@@ -60,6 +60,40 @@ function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
   ring.forEach((p,i)=>i===0?shape.moveTo(p.x,-p.z):shape.lineTo(p.x,-p.z));
   return shape;
 }
+// A conservative gable roof for verified rectangular footprints only.
+// Complex footprints keep their flat cap rather than inventing inaccurate geometry.
+function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,height:number){
+  const corners=ring.slice();
+  if(corners.length>4 && corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
+  if(corners.length!==4)return;
+  const edges=corners.map((p,i)=>corners[(i+1)%4].clone().sub(p));
+  const lengths=edges.map(e=>Math.hypot(e.x,e.z));
+  if(lengths.some(l=>l<3)||Math.max(...lengths)>90)return;
+  const dot=(i:number)=>Math.abs((edges[i].x*edges[(i+1)%4].x+edges[i].z*edges[(i+1)%4].z)/(lengths[i]*lengths[(i+1)%4]));
+  if([0,1,2,3].some(i=>dot(i)>.18))return;
+  const ridgeHeight=Math.min(4,Math.max(1.2,Math.min(...lengths)*.23),height*.45);
+  // Ridge runs parallel to the longer side of the rectangle.
+  const shortSide=lengths[0]<lengths[1]?0:1;
+  const a=corners[shortSide],b=corners[(shortSide+1)%4],d=corners[(shortSide+3)%4],cc=corners[(shortSide+2)%4];
+  const mid=(p:THREE.Vector3,q:THREE.Vector3)=>new THREE.Vector3((p.x+q.x)/2,top+ridgeHeight,(p.z+q.z)/2);
+  const r0=mid(a,b),r1=mid(d,cc);
+  const vertex=(p:THREE.Vector3)=>[p.x,p.y,p.z];
+  const atTop=(p:THREE.Vector3)=>new THREE.Vector3(p.x,top,p.z);
+  const a0=atTop(a),b0=atTop(b),c0=atTop(cc),d0=atTop(d);
+  const vertices=[
+    ...vertex(a0),...vertex(d0),...vertex(r1),
+    ...vertex(a0),...vertex(r1),...vertex(r0),
+    ...vertex(b0),...vertex(r0),...vertex(r1),
+    ...vertex(b0),...vertex(r1),...vertex(c0),
+    ...vertex(a0),...vertex(r0),...vertex(b0),
+    ...vertex(d0),...vertex(c0),...vertex(r1),
+  ];
+  const geometry=new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+  geometry.computeVertexNormals();
+  const roof=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({color:0x975c4b,side:THREE.DoubleSide}));
+  roof.castShadow=true;roof.receiveShadow=true;scene.add(roof);
+}
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
   let count=0;
   for(const f of features){
@@ -86,7 +120,9 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const wall=new THREE.MeshLambertMaterial({color:0xcab89d});
         const roof=new THREE.MeshLambertMaterial({color:0x9a6758});
         const mesh=new THREE.Mesh(geometry,[roof,wall]);
-        mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);count++;
+        mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
+        addGableRoof(scene,ring,base+height+slopeRise,height);
+        count++;
       } else if(tags.natural==='water'){
         const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
         geometry.rotateX(-Math.PI/2);
