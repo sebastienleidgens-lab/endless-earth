@@ -17,7 +17,7 @@ renderer.outputColorSpace=THREE.SRGBColorSpace; root.prepend(renderer.domElement
 renderer.domElement.setAttribute('aria-label','Vue 3D du village');
 scene.add(new THREE.HemisphereLight(0xffffff,0x738465,2));
 const sun=new THREE.DirectionalLight(0xffe5bc,2.3); sun.position.set(-60,100,55); sun.castShadow=true;
-sun.shadow.mapSize.set(1024,1024); sun.shadow.camera.left=-115; sun.shadow.camera.right=115; sun.shadow.camera.top=115; sun.shadow.camera.bottom=-115; scene.add(sun); scene.add(sun.target);
+sun.shadow.mapSize.set(1024,1024); sun.shadow.camera.left=-65; sun.shadow.camera.right=65; sun.shadow.camera.top=65; sun.shadow.camera.bottom=-65; scene.add(sun); scene.add(sun.target);
 // Render a complete fallback synchronously: network requests must never block first paint.
 const demo = new THREE.Group();
 createDemoWorld(demo);
@@ -27,6 +27,8 @@ const hint = document.querySelector<HTMLElement>('.hud small');
 const params = new URLSearchParams(location.search);
 const terrainPreview = params.get('terrain') === '1';
 const tilesPreview = params.get('tiles') === '1';
+// Aerial OSM mode prioritizes responsiveness: terrain and facades still receive light.
+if(tilesPreview)renderer.shadowMap.enabled=false;
 // Optional live GPU diagnostics: ?tiles=1&perf=1 (disabled by default).
 const perfPreview = params.get('perf') === '1';
 const perfPanel = perfPreview ? document.createElement('div') : null;
