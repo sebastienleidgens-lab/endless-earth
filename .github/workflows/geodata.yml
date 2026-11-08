@@ -1,6 +1,11 @@
 name: Import Angles real OSM geography
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/geodata.yml'
+      - 'scripts/fetch-angles.mjs'
 permissions:
   contents: write
 jobs:
