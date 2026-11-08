@@ -120,7 +120,7 @@ function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THR
     const ab=Math.hypot(a[0]-b[0],a[1]-b[1]);
     const bc=Math.hypot(b[0]-c[0],b[1]-c[1]);
     const ca=Math.hypot(c[0]-a[0],c[1]-a[1]);
-    if(terrain && depth<7 && Math.max(ab,bc,ca)>15){
+    if(terrain && depth<5 && Math.max(ab,bc,ca)>20){
       const m=(p:[number,number],q:[number,number]):[number,number]=>[(p[0]+q[0])/2,(p[1]+q[1])/2];
       const abm=m(a,b),bcm=m(b,c),cam=m(c,a);
       triangle(a,abm,cam,depth+1);
