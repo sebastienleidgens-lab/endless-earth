@@ -154,7 +154,7 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
 // Historic OSM outlines are survey data; wall heights are deliberately
 // illustrative until a verified height or architectural model is available.
 const HISTORIC_WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xb8ad96});
-function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Terrain):void{
+function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Terrain,castle=false):void{
   // Only OSM-surveyed linework determines the wall plan. The fragmented
   // elevations below are illustrative and must not imply measured ruin heights.
   for(let i=1;i<points.length;i++){
@@ -171,7 +171,13 @@ function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Te
       // Fixed hash: no animated/random changes between page loads.
       const seed=Math.abs(Math.sin(x*12.9898+z*78.233)*43758.5453);
       const fraction=seed-Math.floor(seed);
-      const height=2.3+fraction*2.8;
+      // Castle silhouettes rise above their curtain walls, as in the
+      // supplied Angles-sur-l'Anglin reference photos. Heights remain
+      // illustrative; only the OSM footprint is geographically anchored.
+      // A few tall fragments are deliberately separated by lower ruins.
+      const height=castle
+        ? (fraction>.88?11+fraction*6:fraction<.18?2.1+fraction*5:4.5+fraction*4)
+        : 2.3+fraction*2.8;
       const segmentLength=length/pieces;
       const geometry=new THREE.BoxGeometry(segmentLength+.04,height,1.25);
       const mesh=new THREE.Mesh(geometry,HISTORIC_WALL_MATERIAL);
@@ -663,7 +669,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
     const tags=f.properties??{};
     if(f.geometry?.type==='LineString'){
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
-      if(tags.historic==='citywalls'||tags.historic==='castle'||tags.historic==='ruins'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain);count++;}
+      if(tags.historic==='citywalls'||tags.historic==='castle'||tags.historic==='ruins'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain,tags.historic==='castle'||tags.historic==='ruins');count++;}
       else if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b,terrain);count++;}
       else if(tags.waterway){addLine(scene,pts,6,0x729ea8,terrain);count++;}
     } else if(f.geometry?.type==='Polygon' && Array.isArray(f.geometry.coordinates)){
@@ -672,7 +678,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
       if(tags.historic==='castle'||tags.historic==='ruins'){
         // The mapped castle perimeter takes priority over generic building
         // extrusion: an intact terracotta-roofed house would be misleading.
-        addHistoricWall(scene,ring,terrain);count++;
+        addHistoricWall(scene,ring,terrain,true);count++;
       } else if(tags.building){
         const shape=makeFootprint(ring);
         // A single level foundation avoids floating corners on sloping terrain.
