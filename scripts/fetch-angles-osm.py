@@ -36,13 +36,13 @@ def convert_osm_xml(raw):
                          "geometry": {"type": "Point", "coordinates": nodes[node.attrib["id"]]}})
     for way in ways:
         tags = {tag.attrib["k"]: tag.attrib["v"] for tag in way.findall("tag")}
-        if not (tags.get("highway") or tags.get("building") or tags.get("waterway") or tags.get("natural") in ("water", "wood", "scrub") or tags.get("landuse") in ("forest", "orchard") or tags.get("leisure") == "park"):
+        if not (tags.get("highway") or tags.get("building") or tags.get("waterway") or tags.get("historic") in ("castle", "ruins", "citywalls", "archaeological_site") or tags.get("barrier") == "city_wall" or tags.get("natural") in ("water", "wood", "scrub") or tags.get("landuse") in ("forest", "orchard") or tags.get("leisure") == "park"):
             continue
         refs = [ref.attrib["ref"] for ref in way.findall("nd")]
         if len(refs) < 2 or any(ref not in nodes for ref in refs):
             continue
         coords = [nodes[ref] for ref in refs]
-        polygon = bool(tags.get("building") or tags.get("natural") in ("water", "wood", "scrub") or tags.get("landuse") in ("forest", "orchard") or tags.get("leisure") == "park")
+        polygon = bool(tags.get("building") or (tags.get("historic") in ("castle", "ruins", "archaeological_site") and coords[0] == coords[-1]) or tags.get("natural") in ("water", "wood", "scrub") or tags.get("landuse") in ("forest", "orchard") or tags.get("leisure") == "park")
         if polygon:
             if len(coords) < 4 or coords[0] != coords[-1]:
                 continue
