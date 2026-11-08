@@ -38,3 +38,7 @@ This repository is the long-lived source of truth; standalone HTML experiments a
 ## Validation
 
 GitHub Actions runs `npm install` and `npm run build` for pushes and pull requests. This is compilation validation, **not** a WebGL/Android runtime test.
+
+## Geographic data import (experimental)
+
+Run `npm run geo:fetch` with network access, or use the manual GitHub Action **Fetch Angles OSM geography** to obtain `angles-osm.geojson`. Place it at `public/data/angles-osm.geojson`. The runtime loads actual OSM road lines and building footprints if present; otherwise it shows the illustrative scene. The terrain is still flat and buildings are extruded approximations. See [docs/GEODATA.md](docs/GEODATA.md).
