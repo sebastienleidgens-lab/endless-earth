@@ -221,7 +221,8 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
   // Broad low-poly crowns retain a more stable silhouette at oblique angles.
   const crownGeometry=new THREE.ConeGeometry(2.8,6,5);
   const trunkMaterial=new THREE.MeshLambertMaterial({color:0x76614b});
-  const crownMaterial=new THREE.MeshLambertMaterial({color:0x567b51});
+  const crownMaterial=new THREE.MeshLambertMaterial({color:0xffffff});
+  const foliagePalette=[0x486e47,0x587d4f,0x6b8958,0x426a4b,0x79905b].map(color=>new THREE.Color(color));
   const dummy=new THREE.Object3D();
   for(const [key,cellPoints] of cells){
     const [cx,cz]=key.split(':').map(Number);
@@ -234,13 +235,22 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
     cellPoints.forEach((p,i)=>{
       const seed=Math.sin(p.x*12.9898+p.z*78.233)*43758.5453;
       const scale=.8+(seed-Math.floor(seed))*.45;
-      dummy.scale.setScalar(scale);
-      dummy.position.set(p.x,p.y+1.75*scale,p.z);
+      const variation=Math.sin(p.x*5.73+p.z*3.19)*19341.91;
+      const fraction=variation-Math.floor(variation);
+      const width=.76+fraction*.5;
+      const height=.85+(1-fraction)*.4;
+      dummy.scale.set(.9*scale,scale*height,.9*scale);
+      dummy.position.set(p.x,p.y+1.75*scale*height,p.z);
       dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
-      dummy.position.set(p.x,p.y+5.6*scale,p.z);
+      dummy.scale.set(scale*width,scale*height,scale*width);
+      dummy.position.set(p.x,p.y+5.6*scale*height,p.z);
+      dummy.rotation.y=fraction*Math.PI*2;
       dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);
+      dummy.rotation.y=0;
+      crowns.setColorAt(i,foliagePalette[Math.min(foliagePalette.length-1,Math.floor(fraction*foliagePalette.length))]);
     });
     trunks.instanceMatrix.needsUpdate=true;crowns.instanceMatrix.needsUpdate=true;
+    if(crowns.instanceColor)crowns.instanceColor.needsUpdate=true;
     trunks.castShadow=false;crowns.castShadow=false;
     trunks.frustumCulled=false;crowns.frustumCulled=false;
     group.add(trunks,crowns);
