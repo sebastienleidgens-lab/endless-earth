@@ -11,6 +11,8 @@ function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
     const v=toLocal({lon:p[0],lat:p[1]}); return [new THREE.Vector3(v.x,(terrain?.relativeHeight(v.x,v.z)??0)+0.12,v.z)];
   });
 }
+const LOCAL_LIMIT=1050;
+function insideArea(p:THREE.Vector3){return Math.abs(p.x)<=LOCAL_LIMIT&&Math.abs(p.z)<=LOCAL_LIMIT;}
 function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain){
   if(points.length<2)return;
   // One draw call per road/river, not one mesh per OSM segment.
@@ -24,6 +26,8 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
     for(let part=0;part<pieces;part++){
       const t0=part/pieces,t1=(part+1)/pieces;
       const a=start.clone().lerp(end,t0),b=start.clone().lerp(end,t1);
+      // Ignore geometry outside the currently supported 2 km pilot area.
+      if(!insideArea(a)&&!insideArea(b))continue;
       if(terrain){
         a.y=(terrain.relativeHeight(a.x,a.z)??a.y)+.19;
         b.y=(terrain.relativeHeight(b.x,b.z)??b.y)+.19;
@@ -66,7 +70,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
       else if(tags.waterway){addLine(scene,pts,6,0x729ea8,terrain);count++;}
     } else if(f.geometry?.type==='Polygon' && Array.isArray(f.geometry.coordinates)){
       const ring=coordsToPoints(f.geometry.coordinates[0],terrain);
-      if(ring.length<4)continue;
+      if(ring.length<4 || !ring.some(insideArea))continue;
       if(tags.building){
         const shape=makeFootprint(ring);
         // A single level foundation avoids floating corners on sloping terrain.
