@@ -25,3 +25,9 @@ A single reusable geographic engine for Angles-sur-l'Anglin, France, Europe and 
 
 ## Non-goals for M0
 No claim of full France coverage, real DEM, live OSM updates, global 3D coordinates or photorealistic buildings. Tile JSON schema is provisional and should be versioned before large-scale generation.
+
+## M1 streaming coordinator (implemented on feature branch)
+
+`src/world/tile-stream.mjs` computes a neighborhood around the player, fetches nearby tile payloads concurrently, caps the number of mounted tiles and calls application-provided `create`/`dispose` callbacks. Generation tokens discard stale responses after movement. This is a **foundation**, not yet an in-game geographic renderer: Three.js mesh creation and disposal, distance-aware LOD, abortable fetches, seam clipping and spatial movement integration still need implementation. The browser game continues using the illustrative fallback until real source tiles are verified.
+
+`scripts/build-tiles.mjs` currently indexes features by their vertices, and **must not be used as a production national-scale tiler** until segments and polygons are clipped across tile boundaries. Keep this limitation visible in all milestone reports.
