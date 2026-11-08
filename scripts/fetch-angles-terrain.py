@@ -6,6 +6,8 @@ API reference: https://data.geopf.fr/altimetrie/1.0/calcul/alti/rest/elevation.j
 import json
 import math
 import pathlib
+import time
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
@@ -44,8 +46,25 @@ def sample_grid():
             "zonly": "true",
         }).encode("utf-8")
         req = urllib.request.Request(URL, data=body, headers=HEADERS, method="POST")
-        with urllib.request.urlopen(req, timeout=120) as response:
-            result = json.load(response)
+        # Retry only transient gateway/rate-limit failures. Invalid data
+        # still fails closed, and no partial terrain file is ever published.
+        for attempt in range(5):
+            try:
+                with urllib.request.urlopen(req, timeout=120) as response:
+                    result = json.load(response)
+                break
+            except urllib.error.HTTPError as error:
+                if error.code not in (429, 500, 502, 503, 504) or attempt == 4:
+                    raise
+                delay = min(30, 2 ** (attempt + 1))
+                print(f"IGN batch {offset}: HTTP {error.code}; retry in {delay}s ({attempt + 1}/5)", flush=True)
+                time.sleep(delay)
+            except (urllib.error.URLError, TimeoutError):
+                if attempt == 4:
+                    raise
+                delay = min(30, 2 ** (attempt + 1))
+                print(f"IGN batch {offset}: temporary network failure; retry in {delay}s ({attempt + 1}/5)", flush=True)
+                time.sleep(delay)
         chunk = result.get("elevations")
         if not isinstance(chunk, list) or len(chunk) != len(part):
             raise ValueError(f"IGN returned invalid batch size at {offset}")
