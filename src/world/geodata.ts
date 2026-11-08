@@ -12,6 +12,13 @@ function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
   });
 }
 const LOCAL_LIMIT=1050;
+// Shared materials avoid allocating thousands of identical GPU resources.
+const WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xcab89d});
+const FLAT_ROOF_MATERIAL=new THREE.MeshLambertMaterial({color:0x9a6758});
+const GABLE_ROOF_MATERIAL=GABLE_ROOF_MATERIAL;
+const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
+const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
+const WATER_MATERIAL=WATER_MATERIAL;
 function insideArea(p:THREE.Vector3){return Math.abs(p.x)<=LOCAL_LIMIT&&Math.abs(p.z)<=LOCAL_LIMIT;}
 function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain){
   if(points.length<2)return;
@@ -45,7 +52,7 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
   const geometry=new THREE.BufferGeometry();
   geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
   geometry.computeVertexNormals();
-  const mesh=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({color,side:THREE.DoubleSide}));
+  const mesh=new THREE.Mesh(geometry,color===0x729ea8?RIVER_MATERIAL:ROAD_MATERIAL);
   mesh.receiveShadow=true;scene.add(mesh);
 }
 function buildingHeight(tags:Record<string,unknown>):number{
@@ -71,6 +78,7 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
   if(lengths.some(l=>l<3)||Math.max(...lengths)>90)return;
   const dot=(i:number)=>Math.abs((edges[i].x*edges[(i+1)%4].x+edges[i].z*edges[(i+1)%4].z)/(lengths[i]*lengths[(i+1)%4]));
   if([0,1,2,3].some(i=>dot(i)>.18))return;
+  if(Math.abs(lengths[0]-lengths[2])>Math.max(1,lengths[0]*.12)||Math.abs(lengths[1]-lengths[3])>Math.max(1,lengths[1]*.12))return;
   const ridgeHeight=Math.min(4,Math.max(1.2,Math.min(...lengths)*.23),height*.45);
   // Ridge runs parallel to the longer side of the rectangle.
   const shortSide=lengths[0]<lengths[1]?0:1;
@@ -117,9 +125,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const geometry=new THREE.ExtrudeGeometry(shape,{depth:height+slopeRise,bevelEnabled:false});
         geometry.rotateX(-Math.PI/2);
         geometry.translate(0,base,0);
-        const wall=new THREE.MeshLambertMaterial({color:0xcab89d});
-        const roof=new THREE.MeshLambertMaterial({color:0x9a6758});
-        const mesh=new THREE.Mesh(geometry,[roof,wall]);
+        const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIAL,WALL_MATERIAL]);
         mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
         if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
           addGableRoof(scene,ring,base+height+slopeRise,height);
