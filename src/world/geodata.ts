@@ -25,7 +25,7 @@ const GABLE_ROOF_MATERIALS=ROOF_COLORS.map(color=>new THREE.MeshLambertMaterial(
 // Shared opaque materials allow them to join the existing building batches.
 const WINDOW_MATERIAL=new THREE.MeshLambertMaterial({color:0x526b69,side:THREE.DoubleSide});
 const DOOR_MATERIAL=new THREE.MeshLambertMaterial({color:0x725746,side:THREE.DoubleSide});
-function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,wallHeight:number):void{
+function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,wallHeight:number,sharedEdges:Set<string>):void{
   const corners=ring.slice();
   if(corners.length>1&&corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
   if(corners.length<3||corners.length>24||wallHeight<3.6)return;
@@ -35,29 +35,37 @@ function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,
   const emit=(dest:number[],ax:number,az:number,bx:number,bz:number,y0:number,y1:number)=>{
     dest.push(ax,y0,az,bx,y0,bz,bx,y1,bz,ax,y0,az,bx,y1,bz,ax,y1,az);
   };
+  const hash=(n:number)=>{n=Math.imul(n^(n>>>16),0x7feb352d);n=Math.imul(n^(n>>>15),0x846ca68b);return (n^(n>>>16))>>>0;};
+  const seed=hash(Math.round(centerX*10)^Math.imul(Math.round(centerZ*10),31));
   let doorPlaced=false;
   for(let i=0;i<corners.length;i++){
     const a=corners[i],b=corners[(i+1)%corners.length];
     const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
-    if(length<5||length>65)continue;
+    if(length<5||length>65||sharedEdges.has(facadeEdgeKey(a,b)))continue;
     const nx=-dz/length,nz=dx/length;
     const mx=(a.x+b.x)/2,mz=(a.z+b.z)/2;
     const outward=(nx*(mx-centerX)+nz*(mz-centerZ)>=0)?1:-1;
     const ox=nx*outward*.09,oz=nz*outward*.09;
+    const variant=hash(seed^Math.imul(i+1,7919));
     const levels=Math.min(3,Math.max(1,Math.floor(wallHeight/3.1)));
-    const count=Math.min(5,Math.floor(length/4));
+    const count=Math.min(5,Math.floor(length/(3.7+(variant%4)*.35)));
+    const width=[.36,.43,.5,.58][variant%4];
+    const windowHeight=[.85,1.05,1.2][(variant>>>4)%3];
+    const shift=((variant>>>8)%7-3)*.035;
     for(let level=0;level<levels;level++){
-      const sill=base+1.4+level*3.1;
-      if(sill+1.15>base+wallHeight-.55)continue;
+      const sill=base+1.35+level*3.1;
+      if(sill+windowHeight>base+wallHeight-.55)continue;
       for(let j=0;j<count;j++){
-        const t=(j+1)/(count+1),cx=a.x+dx*t+ox,cz=a.z+dz*t+oz;
-        const half=.48,ux=dx/length*half,uz=dz/length*half;
-        emit(windows,cx-ux,cz-uz,cx+ux,cz+uz,sill,sill+1.15);
+        // A little asymmetry, but keep each opening safely within its wall.
+        const t=THREE.MathUtils.clamp((j+1)/(count+1)+shift,.1,.9);
+        const cx=a.x+dx*t+ox,cz=a.z+dz*t+oz;
+        const ux=dx/length*width,uz=dz/length*width;
+        emit(windows,cx-ux,cz-uz,cx+ux,cz+uz,sill,sill+windowHeight);
       }
     }
-    // Only one representative entrance, on a sufficiently long facade.
     if(!doorPlaced&&length>=7){
-      const t=.5,cx=a.x+dx*t+ox*1.2,cz=a.z+dz*t+oz*1.2;
+      const t=.42+((variant>>>12)%5)*.04;
+      const cx=a.x+dx*t+ox*1.2,cz=a.z+dz*t+oz*1.2;
       const ux=dx/length*.55,uz=dz/length*.55;
       emit(doors,cx-ux,cz-uz,cx+ux,cz+uz,base+.12,base+2.25);
       doorPlaced=true;
@@ -71,6 +79,27 @@ function addFacadeDetails(scene:THREE.Object3D,ring:THREE.Vector3[],base:number,
     const mesh=new THREE.Mesh(geometry,material);
     mesh.castShadow=false;scene.add(mesh);
   }
+}
+// Quantized undirected OSM footprint edges: suppress illustrative openings on
+// walls shared exactly by two mapped building polygons.
+function facadeEdgeKey(a:THREE.Vector3,b:THREE.Vector3):string{
+  const p=`${Math.round(a.x*10)},${Math.round(a.z*10)}`;
+  const q=`${Math.round(b.x*10)},${Math.round(b.z*10)}`;
+  return p<q?`${p}|${q}`:`${q}|${p}`;
+}
+function sharedBuildingEdges(features:Feature[]):Set<string>{
+  const counts=new Map<string,number>();
+  for(const feature of features){
+    if(!feature.properties?.building||feature.geometry?.type!=='Polygon'||!Array.isArray(feature.geometry.coordinates))continue;
+    const points=coordsToPoints(feature.geometry.coordinates[0]);
+    if(points.length<3||!points.some(insideArea))continue;
+    const ring=points.length>1&&points[0].distanceTo(points[points.length-1])<.01?points.slice(0,-1):points;
+    for(let i=0;i<ring.length;i++){
+      const key=facadeEdgeKey(ring[i],ring[(i+1)%ring.length]);
+      counts.set(key,(counts.get(key)??0)+1);
+    }
+  }
+  return new Set([...counts].filter(([,count])=>count>1).map(([key])=>key));
 }
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
 const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
@@ -481,6 +510,7 @@ function batchBuildings(scene:THREE.Object3D):void{
 }
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
   let count=addMappedTrees(scene,features,terrain);
+  const sharedEdges=sharedBuildingEdges(features);
   for(const f of features){
     const tags=f.properties??{};
     if(f.geometry?.type==='LineString'){
@@ -510,7 +540,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const wallIndex=mix(hz^Math.imul(hx,131)^0x5f3759df)%WALL_MATERIALS.length;
         const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[wallIndex]]);
         mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
-        addFacadeDetails(scene,ring,base,height+slopeRise);
+        addFacadeDetails(scene,ring,base,height+slopeRise,sharedEdges);
         const roofShape=typeof tags['roof:shape']==='string'?tags['roof:shape']:'';
         const top=base+height+slopeRise;
         const rise=roofRise(tags,height);
