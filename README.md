@@ -48,3 +48,7 @@ Run `npm run geo:fetch` with network access, or use the manual GitHub Action **F
 ## Terrain preview (experimental)
 
 A validated elevation grid can be placed at `public/data/angles-terrain.json`. Open the app with `?terrain=1` to preview terrain **without roads and buildings**, because those have not yet been draped to real elevations. Without a real grid, the demo remains illustrative. See [docs/TERRAIN.md](docs/TERRAIN.md) for the data contract and provenance requirements.
+
+## Planetary-scale foundation
+
+Global z/x/y tile addressing, a bounded tile cache and automated unit tests are available in `src/world/tiles.mjs` and `src/world/tile-loader.mjs`. These are not connected to the current village renderer yet. See [docs/WORLD_ARCHITECTURE.md](docs/WORLD_ARCHITECTURE.md) for the offline data pipeline, streaming, LOD and floating-origin roadmap.
