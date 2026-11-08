@@ -63,12 +63,28 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
   const mesh=new THREE.Mesh(geometry,color===0x729ea8?RIVER_MATERIAL:ROAD_MATERIAL);
   mesh.receiveShadow=true;scene.add(mesh);
 }
+function measuredMetres(value:unknown):number|null{
+  if(typeof value!=='string'&&typeof value!=='number')return null;
+  const text=String(value).trim().replace(',','.');
+  // OSM height tags can be "8", "8 m" or "8.5m". Reject ambiguous units.
+  if(!/^\\d+(?:\\.\\d+)?\\s*(?:m)?$/i.test(text))return null;
+  const metres=Number.parseFloat(text);
+  return Number.isFinite(metres)?metres:null;
+}
 function buildingHeight(tags:Record<string,unknown>):number{
-  const explicit=typeof tags.height==='string'?Number.parseFloat(tags.height.replace(',','.')):NaN;
-  if(Number.isFinite(explicit)&&explicit>=2&&explicit<=80)return explicit;
+  const explicit=measuredMetres(tags.height);
+  if(explicit!==null&&explicit>=2&&explicit<=80)return explicit;
   const levels=Number(tags['building:levels']);
   if(Number.isFinite(levels)&&levels>=1&&levels<=20)return levels*3.1;
+  // Illustrative fallback only when OSM has no usable height information.
   return 7;
+}
+function roofRise(tags:Record<string,unknown>,buildingHeightMetres:number):number|null{
+  const height=measuredMetres(tags['roof:height']);
+  if(height!==null&&height>=.3&&height<=12)return Math.min(height,buildingHeightMetres*.85);
+  const levels=Number(tags['roof:levels']);
+  if(Number.isFinite(levels)&&levels>=1&&levels<=3)return Math.min(levels*2.5,buildingHeightMetres*.85);
+  return null;
 }
 function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
   const shape=new THREE.Shape();
@@ -77,7 +93,7 @@ function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
 }
 // A conservative gable roof for verified rectangular footprints only.
 // Complex footprints keep their flat cap rather than inventing inaccurate geometry.
-function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,height:number,material:THREE.Material){
+function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,height:number,material:THREE.Material,explicitRise:number|null){
   const corners=ring.slice();
   if(corners.length>4 && corners[0].distanceTo(corners[corners.length-1])<.01)corners.pop();
   if(corners.length!==4)return;
@@ -87,7 +103,7 @@ function addGableRoof(scene:THREE.Object3D,ring:THREE.Vector3[],top:number,heigh
   const dot=(i:number)=>Math.abs((edges[i].x*edges[(i+1)%4].x+edges[i].z*edges[(i+1)%4].z)/(lengths[i]*lengths[(i+1)%4]));
   if([0,1,2,3].some(i=>dot(i)>.18))return;
   if(Math.abs(lengths[0]-lengths[2])>Math.max(1,lengths[0]*.12)||Math.abs(lengths[1]-lengths[3])>Math.max(1,lengths[1]*.12))return;
-  const ridgeHeight=Math.min(4,Math.max(1.2,Math.min(...lengths)*.23),height*.45);
+  const ridgeHeight=explicitRise??Math.min(4,Math.max(1.2,Math.min(...lengths)*.23),height*.45);
   // Ridge runs parallel to the longer side of the rectangle.
   const shortSide=lengths[0]<lengths[1]?0:1;
   const a=corners[shortSide],b=corners[(shortSide+1)%4],d=corners[(shortSide+3)%4],cc=corners[(shortSide+2)%4];
@@ -421,7 +437,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         const mesh=new THREE.Mesh(geometry,[FLAT_ROOF_MATERIALS[roofIndex],WALL_MATERIALS[wallIndex]]);
         mesh.castShadow=false;mesh.receiveShadow=true;scene.add(mesh);
         if(tags['roof:shape']!=='flat' && tags['roof:shape']!=='skillion' && tags['roof:shape']!=='dome')
-          addGableRoof(scene,ring,base+height+slopeRise,height,GABLE_ROOF_MATERIALS[roofIndex]);
+          addGableRoof(scene,ring,base+height+slopeRise,height,GABLE_ROOF_MATERIALS[roofIndex],roofRise(tags,height));
         count++;
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
         // The DEM is already the ground. A second, independently triangulated
