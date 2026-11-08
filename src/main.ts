@@ -4,9 +4,9 @@ import { loadAnglesGeography, updateVegetationLOD } from './world/geodata';
 import { fetchTerrain, type Terrain } from './world/terrain';
 import { ANGLES, toLocal } from './world/geo';
 import { InputController } from './controls/input';
-import { canWalk, moveWithCollision } from './world/collisions';
+import { canWalk, moveWithCollision, walkingHeight, cameraClear } from './world/collisions';
 // @ts-ignore shared deterministic runtime
-import { movement, nextView, cameraFraction } from './controls/walking.mjs';
+import { movement, nextView, cameraFraction, smoothMovement, transitionWeight } from './controls/walking.mjs';
 import { createAmbienceButton } from './controls/ambience';
 import './style.css';
 const root=document.querySelector<HTMLDivElement>('#app')!;
@@ -161,18 +161,22 @@ avatar.traverse(o=>{if(o instanceof THREE.Mesh)o.castShadow=true});scene.add(ava
 let yaw=.65, pitch=.2, zoom=tilesPreview?125:45, smoothZoom=zoom, dragging=false,lastX=0,lastY=0;
 type ViewMode='aerial'|'first'|'third';
 let viewMode:ViewMode='aerial';
+let transitionElapsed=1;
+const transitionStart=new THREE.Vector3(),transitionRotation=new THREE.Quaternion();
+const velocity={x:0,z:0};
+let boomLength=0,eyeHeight:number|undefined;
 const viewButton=document.createElement('button');
 viewButton.type='button';
 viewButton.style.cssText='position:fixed;right:14px;bottom:100px;z-index:21;background:#304d40ed;color:white;border:1px solid #ffffff55;border-radius:8px;padding:11px 14px;font:600 13px system-ui;cursor:pointer';
 const viewNames:Record<ViewMode,string>={aerial:'Vue aérienne',first:'À pied · 1re personne',third:'À pied · 3e personne'};
 function setViewMode(mode:ViewMode){
   if(mode!=='aerial'&&!canWalk(avatar.position.x,avatar.position.z))return;
+  transitionStart.copy(camera.position);transitionRotation.copy(camera.quaternion);transitionElapsed=0;
   viewMode=mode;
   viewButton.textContent='◉ '+viewNames[mode]+' · changer (V)';
   zoom=mode==='aerial'?125:mode==='third'?7:0;
   avatar.visible=mode!=='first';
   smoothZoom=zoom;
-  camera.position.copy(avatar.position).add(new THREE.Vector3(0,1.7,0));
 }
 viewButton.addEventListener('click',()=>setViewMode(nextView(viewMode)));
 addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat)setViewMode(nextView(viewMode))});
@@ -205,11 +209,12 @@ let perfElapsed=0,perfFrames=0,walkPhase=0;
 if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),quality,avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
-const displacement=movement(yaw,controls.forward,controls.strafe,dt,input.running);
+const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
 const previous=avatar.position.clone();
-const groundHeight=(x:number,z:number)=>activeTerrain?activeTerrain.relativeHeight(x,z):0;
+const terrainHeight=(x:number,z:number)=>activeTerrain?activeTerrain.relativeHeight(x,z):0;
+const groundHeight=walkingHeight(terrainHeight);
 // Wait for the real dataset before allowing walking in geography mode.
-if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,groundHeight);
+if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,terrainHeight);
 const moved=avatar.position.distanceTo(previous);
 if(moved>.0001){
   const facing=Math.atan2(displacement.x,displacement.z);
@@ -219,12 +224,19 @@ walkPhase+=moved*(input.running?7:9);
 limbs.forEach((limb,i)=>{limb.rotation.x=THREE.MathUtils.lerp(limb.rotation.x,moved>.0001?Math.sin(walkPhase+(i%2?Math.PI:0))*(i<2?.48:-.35):0,1-Math.exp(-dt*14))});
 if(activeTerrain){const h=groundHeight(avatar.position.x,avatar.position.z);if(h!==null)avatar.position.y=h;}
 smoothZoom=THREE.MathUtils.lerp(smoothZoom,zoom,1-Math.exp(-dt*10));
-const eye=avatar.position.clone().add(new THREE.Vector3(0,1.65,0));
+const desiredEye=avatar.position.y+1.65;
+eyeHeight=eyeHeight===undefined?desiredEye:THREE.MathUtils.lerp(eyeHeight,desiredEye,1-Math.exp(-dt*14));
+if(Math.abs(eyeHeight-desiredEye)<.0001)eyeHeight=desiredEye;
+// Bound vertical lag on ramps; never let smoothing sink the eyes into the ground.
+eyeHeight=THREE.MathUtils.clamp(eyeHeight,desiredEye-.15,desiredEye+.15);
+const eye=avatar.position.clone();eye.y=eyeHeight;
 const offset=viewMode==='first'?new THREE.Vector3():viewMode==='third'?new THREE.Vector3(Math.sin(yaw)*Math.cos(pitch)*smoothZoom,Math.sin(pitch)*smoothZoom+.5,Math.cos(yaw)*Math.cos(pitch)*smoothZoom):new THREE.Vector3(Math.sin(yaw)*smoothZoom,smoothZoom*.78,Math.cos(yaw)*smoothZoom);
 const target=eye.clone().add(offset);
 if(viewMode==='third'){
   // Sweep from the eye on every frame; never interpolate across a wall after a turn.
-  target.copy(eye).addScaledVector(offset,cameraFraction(eye,offset,canWalk,groundHeight));
+  const allowed=offset.length()*cameraFraction(eye,offset,cameraClear,terrainHeight);
+  boomLength=allowed<boomLength?allowed:THREE.MathUtils.lerp(boomLength,allowed,1-Math.exp(-dt*5));
+  target.copy(eye).addScaledVector(offset,offset.length()>0?boomLength/offset.length():0);
 }
 if(viewMode==='first'){
   camera.position.copy(eye);
@@ -234,6 +246,17 @@ if(viewMode==='first'){
 }else{
   const h=groundHeight(target.x,target.z);if(h!==null)target.y=Math.max(target.y,h+12);
   camera.position.lerp(target,1-Math.exp(-dt*6));camera.lookAt(eye);
+}
+if(transitionElapsed<.8){
+  transitionElapsed+=dt;
+  const weight=transitionWeight(transitionElapsed);
+  camera.position.lerpVectors(transitionStart,camera.position.clone(),weight);
+  camera.quaternion.slerpQuaternions(transitionRotation,camera.quaternion.clone(),weight);
+  // Each interpolated walking viewpoint must also remain in front of obstacles.
+  if(viewMode!=='aerial'){
+    const boom=camera.position.clone().sub(eye);
+    camera.position.copy(eye).addScaledVector(boom,cameraFraction(eye,boom,cameraClear,terrainHeight));
+  }
 }
 sun.position.set(avatar.position.x-60,100,avatar.position.z+55);sun.target.position.copy(avatar.position);sun.target.updateMatrixWorld();
 vegetationLodElapsed+=dt;

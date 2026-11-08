@@ -16,14 +16,14 @@ export function circleHitsPolygon(x,z,poly,radius=.3) {
   }
   return inside;
 }
-export function moveGrounded(position, displacement, clear, height) {
+export function moveGrounded(position, displacement, clear, height, slope=()=>.7) {
   const steps=Math.max(1,Math.ceil(Math.hypot(displacement.x,displacement.z)/.1));
   const dx=displacement.x/steps,dz=displacement.z/steps;
   const attempt=(x,z)=>{
     if(!clear(x,z))return false;
     const h=height(x,z),old=height(position.x,position.z),distance=Math.hypot(x-position.x,z-position.z);
     // Both ascent and descent are bounded: no snapping down cliffs, no unknown DEM.
-    if(h===null||old===null||Math.abs(h-old)>distance*.7+.001)return false;
+    if(h===null||old===null||Math.abs(h-old)>distance*Math.min(slope(x,z),slope(position.x,position.z))+.001)return false;
     position.x=x;position.z=z;position.y=h;return true;
   };
   for(let i=0;i<steps;i++) {
@@ -43,3 +43,14 @@ export function cameraFraction(eye,offset,clear,height) {
   }
   return 1;
 }
+
+// Exact integral of first-order velocity response: same travel at 30/60/120 Hz.
+export function smoothMovement(velocity,target,dt) {
+  const tau=Math.hypot(target.x,target.z)>.001?.28:.18;
+  const decay=Math.exp(-dt/tau),factor=tau*(1-decay);
+  const displacement={x:target.x*dt+(velocity.x-target.x)*factor,z:target.z*dt+(velocity.z-target.z)*factor};
+  velocity.x=target.x+(velocity.x-target.x)*decay;velocity.z=target.z+(velocity.z-target.z)*decay;
+  if(Math.hypot(velocity.x,velocity.z)<.001){velocity.x=0;velocity.z=0;}
+  return displacement;
+}
+export const transitionWeight=(elapsed,duration=.8)=>{const t=Math.min(1,Math.max(0,elapsed/duration));return t*t*(3-2*t);};
