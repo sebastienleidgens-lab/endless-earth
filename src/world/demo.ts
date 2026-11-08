@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 // Illustrative placeholder. NOT an IGN/OSM reconstruction of Angles-sur-l'Anglin.
-export function createDemoWorld(scene: THREE.Scene) {
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(420, 420), new THREE.MeshLambertMaterial({ color: 0x8eaa80 }));
+export function createDemoWorld(scene: THREE.Scene, onlyGround = false) {
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(2200, 2200), new THREE.MeshLambertMaterial({ color: 0x8eaa80 }));
   ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+  if (onlyGround) return;
   const road = new THREE.Mesh(new THREE.BoxGeometry(8, 0.08, 260), new THREE.MeshLambertMaterial({color:0xc5ae8d}));
   road.position.y = 0.05; road.rotation.y = 0.25; road.receiveShadow = true; scene.add(road);
   const houseColors = [0xe9d6b8, 0xc5c9ad, 0xe7c8aa, 0xd5d5c5];
