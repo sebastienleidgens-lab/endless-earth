@@ -84,3 +84,24 @@ relief plus fin pour les escaliers, validation d'un trajet réellement connecté
 glissement tangent aux murs, tests de frustum caméra puis mesure sur GPU et
 Android physiques. La fluidité artistique ne peut être certifiée par ces seuls
 tests unitaires ni par SwiftShader.
+
+## Résultats Chromium
+
+Test final réussi dans Chromium headless `/usr/bin/chromium`, ANGLE/SwiftShader,
+viewport 960×600 puis 390×844, ratio pixels 1. Chargement, cycle des trois vues,
+visibilité du personnage, déplacement réel, hauteur des yeux, arrêt sans dérive,
+caméra stable au repos, son et choix qualité vérifiés ; aucun `pageerror`.
+Captures prises dans `work/visual/` ; inspection des vues troisième et première
+personne : avatar visible dans une ruelle, puis vue au niveau des yeux et avatar
+masqué. Pas de comparaison automatisée du scintillement ni de test Android réel.
+
+Échantillons du panneau : 7–9 FPS, 83–100 appels de rendu, 276 541–288 890
+triangles, 47 géométries et 0 texture. Ces chiffres concernent un rendu logiciel,
+sans benchmark équivalent avant/après ; aucune amélioration FPS ni 60 FPS sur
+GPU matériel revendiqués. Le panneau se rafraîchit une fois par seconde : son
+texte final peut encore indiquer le mode précédent pendant une transition.
+
+Deux tentatives préalables ont échoué : délai de chargement avec l'ancienne URL
+racine/serveur en cours de réinstallation, puis timeout de capture à 1280×800 en
+rendu logiciel. L'URL de base est corrigée dans le script et le test final utilise
+960×600 avec un délai maximal de 60 secondes par opération.
