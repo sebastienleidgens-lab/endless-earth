@@ -20,21 +20,29 @@ def convert_osm_xml(raw):
         raise ValueError("Expected OSM XML")
     nodes = {}
     ways = []
+    tagged_nodes = []
     for el in root:
         if el.tag == "node":
             nodes[el.attrib["id"]] = [float(el.attrib["lon"]), float(el.attrib["lat"])]
+            if any(tag.attrib.get("k") == "natural" and tag.attrib.get("v") == "tree" for tag in el.findall("tag")):
+                tagged_nodes.append(el)
         elif el.tag == "way":
             ways.append(el)
     features = []
+    for node in tagged_nodes:
+        tags = {tag.attrib["k"]: tag.attrib["v"] for tag in node.findall("tag")}
+        features.append({"type": "Feature", "id": "osm-node-" + node.attrib["id"],
+                         "properties": {"osm_id": int(node.attrib["id"]), "source": "OpenStreetMap", **tags},
+                         "geometry": {"type": "Point", "coordinates": nodes[node.attrib["id"]]}})
     for way in ways:
         tags = {tag.attrib["k"]: tag.attrib["v"] for tag in way.findall("tag")}
-        if not (tags.get("highway") or tags.get("building") or tags.get("waterway") or tags.get("natural") == "water"):
+        if not (tags.get("highway") or tags.get("building") or tags.get("waterway") or tags.get("natural") in ("water", "wood", "scrub") or tags.get("landuse") in ("forest", "orchard") or tags.get("leisure") == "park"):
             continue
         refs = [ref.attrib["ref"] for ref in way.findall("nd")]
         if len(refs) < 2 or any(ref not in nodes for ref in refs):
             continue
         coords = [nodes[ref] for ref in refs]
-        polygon = bool(tags.get("building") or tags.get("natural") == "water")
+        polygon = bool(tags.get("building") or tags.get("natural") in ("water", "wood", "scrub") or tags.get("landuse") in ("forest", "orchard") or tags.get("leisure") == "park")
         if polygon:
             if len(coords) < 4 or coords[0] != coords[-1]:
                 continue
