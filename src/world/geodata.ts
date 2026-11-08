@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { toLocal } from './geo';
+import { setBuildingFootprints } from './collisions';
 type Feature = { geometry?: { type: string; coordinates: unknown }; properties?: Record<string,unknown> };
 type Collection = { type: string; features: Feature[] };
 function coordsToPoints(coords: unknown): THREE.Vector3[] {
@@ -48,5 +49,6 @@ export async function loadAnglesGeography(scene:THREE.Scene):Promise<number>{
       }
     }
   }
+  if(count>0) setBuildingFootprints(data.features);
   return count;
 }
