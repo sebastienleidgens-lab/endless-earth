@@ -44,3 +44,7 @@ GitHub Actions runs `npm install` and `npm run build` for pushes and pull reques
 Run `npm run geo:fetch` with network access, or use the manual GitHub Action **Fetch Angles OSM geography** to obtain `angles-osm.geojson`. Place it at `public/data/angles-osm.geojson`. The runtime loads actual OSM road lines and building footprints if present; otherwise it shows the illustrative scene. The terrain is still flat and buildings are extruded approximations. See [docs/GEODATA.md](docs/GEODATA.md).
 
 **Collision note:** when real OSM footprints are loaded, the avatar cannot cross the interiors of mapped buildings; road, river, cliff and terrain collision remain future work. Building clearance is approximate and not yet tested in a browser.
+
+## Terrain preview (experimental)
+
+A validated elevation grid can be placed at `public/data/angles-terrain.json`. Open the app with `?terrain=1` to preview terrain **without roads and buildings**, because those have not yet been draped to real elevations. Without a real grid, the demo remains illustrative. See [docs/TERRAIN.md](docs/TERRAIN.md) for the data contract and provenance requirements.
