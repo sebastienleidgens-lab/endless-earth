@@ -1,3 +1,5 @@
+// @ts-ignore Pure camera helpers.
+import {clampZoom,behind} from './controls/orbit.mjs';
 import { createAtmosphere } from './living/atmosphere';
 import { Soundscape } from './living/sound';
 import { loadNavigation, navigationReady, nature, paths, routeAt, validPoint } from './living/geography';
@@ -167,9 +169,11 @@ for(let i=0;i<4;i++){
   mesh.position.y=i<2?-.35:-.27;pivot.add(mesh);avatar.add(pivot);limbs.push(pivot);
 }
 avatar.traverse(o=>{if(o instanceof THREE.Mesh)o.castShadow=true});scene.add(avatar);
-let yaw=.65, pitch=.2, zoom=tilesPreview?125:45, smoothZoom=zoom, dragging=false,lastX=0,lastY=0;
+let yaw=.65, pitch=.2, zoom=tilesPreview?125:45, smoothZoom=zoom, dragging=false;
 type ViewMode='aerial'|'first'|'third';
-let viewMode:ViewMode='aerial';
+let viewMode:ViewMode='third';
+let thirdZoom=5,aerialZoom=125,lastCameraInteraction=-Infinity;
+const pointers=new Map<number,{x:number;y:number}>();
 let transitionElapsed=1;
 const transitionStart=new THREE.Vector3(),transitionRotation=new THREE.Quaternion();
 const velocity={x:0,z:0};
@@ -183,14 +187,14 @@ function setViewMode(mode:ViewMode){
   transitionStart.copy(camera.position);transitionRotation.copy(camera.quaternion);transitionElapsed=0;
   viewMode=mode;
   viewButton.textContent='◉ '+viewNames[mode]+' · changer (V)';
-  zoom=mode==='aerial'?125:mode==='third'?7:0;
+  zoom=mode==='aerial'?aerialZoom:mode==='third'?thirdZoom:0;
   avatar.visible=mode!=='first';
   smoothZoom=zoom;
 }
 viewButton.addEventListener('click',()=>setViewMode(nextView(viewMode)));
 addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat)setViewMode(nextView(viewMode))});
 root.append(viewButton);
-setViewMode('aerial');
+setViewMode('third');
 const input = new InputController();
 const walker=new AutoWalk(), sound=new Soundscape();
 const updateAtmosphere=createAtmosphere(scene,sun,(x,z)=>activeTerrain?.relativeHeight(x,z)??0);
@@ -209,19 +213,30 @@ function prepareWalk(){
  worldReady=true;
  // Initial placement only, before enabling walking. Auto Walk never relocates.
  const candidates=paths.flatMap(line=>line.points).filter(p=>canWalk(p.x,p.z)&&validPoint(p,activeTerrain)).sort((a,b)=>Math.hypot(a.x,a.z)-Math.hypot(b.x,b.z));
- const start=candidates.find(p=>routeAt(p,activeTerrain));
+ // Prefer the nearest existing OSM vertex offering a full contemplative walk.
+ // Placement happens only at world initialization, never on pressing Auto Walk.
+ const nearby=candidates.filter(p=>Math.hypot(p.x,p.z)<=150);
+ const start=nearby.find(p=>(routeAt(p,activeTerrain)?.length??0)>=449)??candidates.find(p=>routeAt(p,activeTerrain));
  if(start){avatar.position.x=start.x;avatar.position.z=start.z;}
  autoButton.disabled=!navigationReady();
 }
 addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive'));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
-renderer.domElement.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;renderer.domElement.setPointerCapture(e.pointerId)});
-renderer.domElement.addEventListener('pointerup',()=>dragging=false);
-renderer.domElement.addEventListener('pointercancel',()=>dragging=false);
-renderer.domElement.addEventListener('lostpointercapture',()=>dragging=false);
-renderer.domElement.addEventListener('pointermove',e=>{if(dragging){yaw-=(e.clientX-lastX)*.005;pitch=THREE.MathUtils.clamp(pitch+(e.clientY-lastY)*.004,-1.15,1.15);lastX=e.clientX;lastY=e.clientY}});
-renderer.domElement.addEventListener('wheel',e=>{if(viewMode==='aerial')zoom=THREE.MathUtils.clamp(zoom+e.deltaY*.055,22,210);else if(viewMode==='third')zoom=THREE.MathUtils.clamp(zoom+e.deltaY*.012,4,13)},{passive:true});
+const canvas=renderer.domElement;canvas.style.touchAction='none';
+const touchCamera=()=>{lastCameraInteraction=performance.now();};
+canvas.addEventListener('pointerdown',e=>{touchCamera();pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});dragging=true;canvas.setPointerCapture(e.pointerId);});
+for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>{pointers.delete((e as PointerEvent).pointerId);dragging=pointers.size>0;touchCamera();});
+canvas.addEventListener('pointermove',e=>{
+ const old=pointers.get(e.pointerId);if(!old)return;touchCamera();
+ if(pointers.size===2&&viewMode==='third'){
+  const other=[...pointers.entries()].find(([id])=>id!==e.pointerId)![1];
+  const before=Math.hypot(old.x-other.x,old.y-other.y),after=Math.hypot(e.clientX-other.x,e.clientY-other.y);
+  if(after>1)zoom=thirdZoom=clampZoom(zoom*before/after);
+ }else if(pointers.size===1){yaw-=(e.clientX-old.x)*.005;pitch=THREE.MathUtils.clamp(pitch+(e.clientY-old.y)*.004,viewMode==='third'?-.15:-1.15,1.15);}
+ pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+});
+canvas.addEventListener('wheel',e=>{e.preventDefault();touchCamera();if(viewMode==='aerial')zoom=aerialZoom=THREE.MathUtils.clamp(zoom+e.deltaY*.055,22,210);else if(viewMode==='third')zoom=thirdZoom=clampZoom(zoom+e.deltaY*.012);},{passive:false});
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 camera.position.set(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
 camera.lookAt(0,2,0);
@@ -239,7 +254,7 @@ root.append(qualityButton);applyQuality('high');
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
@@ -249,7 +264,7 @@ const autoStep=walker.active;
 if(autoStep){
  const delta=walker.update(avatar.position,dt,(p:{x:number;z:number})=>validPoint(p,activeTerrain));
  displacement.x=delta.x;displacement.z=delta.z;velocity.x=velocity.z=0;
- if(Math.hypot(delta.x,delta.z)>.00001){const angle=Math.atan2(-delta.x,-delta.z);yaw+=Math.atan2(Math.sin(angle-yaw),Math.cos(angle-yaw))*(1-Math.exp(-dt*.8));}
+ if(Math.hypot(delta.x,delta.z)>.00001){const angle=Math.atan2(-delta.x,-delta.z);if(!dragging&&performance.now()-lastCameraInteraction>3500)yaw=behind(yaw,angle,dt);}
 }
 walkStatus.textContent=walker.message;autoButton.textContent=walker.active?'Arrêter la promenade':'Promenade automatique';autoButton.setAttribute('aria-pressed',String(walker.active));
 

@@ -12,7 +12,7 @@ try{
  cdp.on('Log.entryAdded',({entry})=>{if(entry.level==='error')errors.push(`${entry.text} ${entry.url??''}`)});
  await page.addInitScript(()=>{
   window.audioCreations={contexts:0,loops:0,resumes:0,suspends:0};const Native=window.AudioContext;
-  window.AudioContext=class extends Native {constructor(...args){super(...args);window.audioCreations.contexts++;}createBufferSource(){window.audioCreations.loops++;return super.createBufferSource();}async resume(){await super.resume();window.audioCreations.resumes++;}async suspend(){await super.suspend();window.audioCreations.suspends++;}};
+  window.AudioContext=class extends Native {constructor(...args){super(...args);window.audioCreations.contexts++;}createBufferSource(){const source=super.createBufferSource();const start=source.start.bind(source);source.start=(...args)=>{if(source.loop)window.audioCreations.loops++;return start(...args);};return source;}async resume(){await super.resume();window.audioCreations.resumes++;}async suspend(){await super.suspend();window.audioCreations.suspends++;}};
  });
  await page.goto('http://localhost:5173/endless-earth/?perf=1');
  await page.waitForFunction(()=>window.endlessDiagnostics?.ready);
@@ -24,7 +24,7 @@ try{
  const before=await state();await page.waitForTimeout(6000);const after=await state();
  assert.ok(Math.hypot(after.position[0]-before.position[0],after.position[2]-before.position[2])>.5);
  console.log('WALK',after);
- for(const mode of ['third','first','aerial']){await page.keyboard.press('v');await page.waitForTimeout(1200);assert.equal((await state()).mode,mode);await page.screenshot({path:`work/visual/living-${mode}.png`});}
+ for(const mode of ['first','aerial','third']){await page.keyboard.press('v');await page.waitForTimeout(1200);assert.equal((await state()).mode,mode);await page.screenshot({path:`work/visual/living-${mode}.png`});}
  await page.keyboard.down('d');await page.waitForFunction(()=>window.endlessDiagnostics.autoWalk===false);await page.keyboard.up('d');assert.equal((await state()).autoWalk,false);assert.match((await state()).walkMessage,/manuel/);
  await page.locator('#sound').click();await page.waitForFunction(()=>window.endlessDiagnostics.soundState==='suspended');
  for(let i=0;i<5;i++){

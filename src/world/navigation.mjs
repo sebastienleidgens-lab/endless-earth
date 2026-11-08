@@ -35,15 +35,15 @@ export function createNavigation(features) {
       }
   }
   return (x,z)=>{
-    let water=false,blocked=false,support=null,steps=false;
+    let water=false,blocked=false,cameraBlocked=false,support=null,steps=false;
     for(const item of cells.get(`${Math.floor(x/20)},${Math.floor(z/20)}`)??[]){
       const {tags,points,polygon,width,historicWall}=item,n=nearest(x,z,points,polygon);
       const hits=historicWall?n.distance<width/2+.3:polygon?circleHitsPolygon(x,z,points,.3):n.distance<width/2+.3;
       if(!hits)continue;
       // Same 1.25 m footprint as the rendered ruin walls; keep courtyards free.
-      if(historicWall&&n.distance<width/2+.3)blocked=true;
+      if(historicWall&&n.distance<width/2+.3){blocked=true;cameraBlocked=true;}
       if(tags.natural==='water'||tags.waterway)water=true;
-      if(tags.barrier&&!['entrance','gate','lift_gate','bollard'].includes(tags.barrier))blocked=true;
+      if(tags.barrier&&!['entrance','gate','lift_gate','bollard'].includes(tags.barrier)){blocked=true;cameraBlocked=true;}
       if(tags.barrier&&!pedestrianAccess(tags))blocked=true;
       if(tags.highway){
         if(!pedestrianAccess(tags)||['motorway','motorway_link','construction','proposed'].includes(tags.highway)||tags.tunnel&&tags.tunnel!=='no')blocked=true;
@@ -55,6 +55,6 @@ export function createNavigation(features) {
         if(tags.highway==='steps'&&n.distance<=Math.max(0,width/2-.3))steps=true;
       }
     }
-    return {clear:!blocked&&(!water||support!==null),support, slope:steps?1.2:.7};
+    return {cameraClear:!cameraBlocked,clear:!blocked&&(!water||support!==null),support, slope:steps?1.2:.7};
   };
 }

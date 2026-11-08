@@ -5,7 +5,7 @@ import { circleHitsPolygon, moveGrounded } from '../controls/walking.mjs';
 import { createNavigation } from './navigation.mjs';
 import { toLocal } from './geo';
 type Point = { x:number; z:number };
-let navigation:(x:number,z:number)=>{clear:boolean;support:number|null;slope:number}=()=>({clear:true,support:null,slope:.7});
+let navigation:(x:number,z:number)=>{clear:boolean;cameraClear?:boolean;support:number|null;slope:number}=()=>({clear:true,support:null,slope:.7});
 export const walkingHeight=(height:(x:number,z:number)=>number|null)=>(x:number,z:number)=>navigation(x,z).support??height(x,z);
 let realFootprints: Point[][] | null = null;
 const cells=new Map<string,Point[][]>();
@@ -39,7 +39,8 @@ export function setBuildingFootprints(features: Array<{geometry?:{type:string;co
 }
 export function canWalk(x:number,z:number, camera=false):boolean {
   if(Math.abs(x)>1000||Math.abs(z)>1000)return false;
-  if(!camera&&!navigation(x,z).clear)return false;
+  const access=navigation(x,z);
+  if(camera?access.cameraClear===false:!access.clear)return false;
   if(realFootprints!==null){
     // Uniform grid broad phase; exact polygon and 30 cm body clearance.
     return !(cells.get(cellKey(x,z))??[]).some(poly=>circleHitsPolygon(x,z,poly));
