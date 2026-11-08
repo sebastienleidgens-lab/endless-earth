@@ -67,7 +67,7 @@ function measuredMetres(value:unknown):number|null{
   if(typeof value!=='string'&&typeof value!=='number')return null;
   const text=String(value).trim().replace(',','.');
   // OSM height tags can be "8", "8 m" or "8.5m". Reject ambiguous units.
-  if(!/^\\d+(?:\\.\\d+)?\\s*(?:m)?$/i.test(text))return null;
+  if(!/^\d+(?:\.\d+)?\s*(?:m)?$/i.test(text))return null;
   const metres=Number.parseFloat(text);
   return Number.isFinite(metres)?metres:null;
 }
