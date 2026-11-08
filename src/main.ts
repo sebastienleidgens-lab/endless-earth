@@ -75,7 +75,7 @@ if(tilesPreview && !terrainPreview){
     try{
       const count=await loadAnglesGeography(realWorld,terrain??undefined);
       if(hint)hint.textContent=count>0
-        ? `OSM réel : ${count} objets · ${terrain?'relief DEM réel':'relief indisponible, sol plat'}`
+        ? `OSM réel : ${count} objets · ${terrain?'relief IGN 20 m':'relief indisponible, sol plat'}`
         : 'ERREUR OSM : aucun objet géographique chargé';
     }catch(error){
       console.error('OSM geography rendering failed',error);
@@ -104,5 +104,11 @@ const dir=new THREE.Vector3(Math.sin(yaw)*controls.forward+Math.cos(yaw)*control
 if(dir.lengthSq()>0){dir.normalize();moveWithCollision(avatar.position,dir.clone().multiplyScalar(dt*8));avatar.rotation.y=Math.atan2(dir.x,dir.z)}
 if(activeTerrain){const h=activeTerrain.relativeHeight(avatar.position.x,avatar.position.z);if(h!==null)avatar.position.y=h;}
 const offset=new THREE.Vector3(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
-camera.position.lerp(avatar.position.clone().add(offset),.09);camera.lookAt(avatar.position.x,2,avatar.position.z);
+const target=avatar.position.clone().add(offset);
+if(activeTerrain){
+  const ground=activeTerrain.relativeHeight(target.x,target.z);
+  if(ground!==null)target.y=Math.max(target.y,ground+12);
+}
+camera.position.lerp(target,1-Math.pow(.91,dt*60));
+camera.lookAt(avatar.position.x,avatar.position.y+2,avatar.position.z);
 sun.position.set(avatar.position.x-60,100,avatar.position.z+55);sun.target.position.copy(avatar.position);sun.target.updateMatrixWorld();renderer.render(scene,camera)}frame();
