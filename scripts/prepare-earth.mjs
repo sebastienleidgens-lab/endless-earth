@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {sampleGrid,cellIndices,sourceTriangles,clipConvex} from '../src/world/terrain-grid.mjs';
 import {COVER,coverClass,coverAt} from '../src/world/landcover.mjs';
 export const TILE=40,ERROR=.25;
-export function farIndices(g,ox,oz,size,tolerance=ERROR){
+export function farIndices(g,ox,oz,size,tolerance=ERROR,blocked=new Set()){
  const out=[],stride=size+1,id=(x,z)=>(z-oz)*stride+x-ox;
  const point=(x,z)=>({x:g.origin_x_m+x*g.step_m,z:g.origin_z_m+z*g.step_m});
  const block=(x,z,n)=>{
@@ -14,7 +14,8 @@ export function farIndices(g,ox,oz,size,tolerance=ERROR){
    const ring=[];for(let i=0;i<n;i++)ring.push([x+i,z]);for(let i=0;i<n;i++)ring.push([x+n,z+i]);for(let i=0;i<n;i++)ring.push([x+n-i,z+n]);for(let i=0;i<n;i++)ring.push([x,z+n-i]);
    const center=[x+n/2,z+n/2],fans=ring.map((p,i)=>[center,p,ring[(i+1)%ring.length]]);
    let valid=true;
-   for(const f of fans){
+   for(let zz=z;zz<z+n;zz++)for(let xx=x;xx<x+n;xx++)if(blocked.has(zz*g.width+xx))valid=false;
+   for(const f of valid?fans:[]){
     const [a,b,c]=f.map(([xx,zz])=>point(xx,zz)),ha=sampleGrid(g,a.x,a.z),hb=sampleGrid(g,b.x,b.z),hc=sampleGrid(g,c.x,c.z);
     const det=(b.x-a.x)*(c.z-a.z)-(b.z-a.z)*(c.x-a.x);
     const predicted=p=>ha+((p.x-a.x)*(c.z-a.z)-(p.z-a.z)*(c.x-a.x))/det*(hb-ha)+((b.x-a.x)*(p.z-a.z)-(b.z-a.z)*(p.x-a.x))/det*(hc-ha);

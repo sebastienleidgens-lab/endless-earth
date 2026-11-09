@@ -1,9 +1,9 @@
-// @ts-ignore Exact source-triangle draping shared with offline tests.
-import {drapePolygon,clipLineToGrid} from './terrain-grid.mjs';
+// @ts-ignore Water line clipping shared with offline tests.
+import {clipLineToGrid} from './terrain-grid.mjs';
 // @ts-ignore Explicitly illustrative ruin profile.
 import {ruinHeight} from './ruins.mjs';
 import {addNature,updateNatureLOD} from '../nature/render';
-import {groundDetail,waterMaterial} from '../nature/surfaces';
+import {waterMaterial} from '../nature/surfaces';
 import * as THREE from 'three';
 import { ArchitectureBatch } from '../architecture/render';
 // @ts-ignore Pure shared footprint helper.
@@ -38,20 +38,12 @@ function sharedBuildingEdges(features:Feature[]):Set<string>{
   }
   return new Set([...counts].filter(([,count])=>count>1).map(([key])=>key));
 }
-const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
-const PAVED_MATERIAL=new THREE.MeshLambertMaterial({color:0x8d908b,side:THREE.DoubleSide});
-const SETT_MATERIAL=new THREE.MeshLambertMaterial({color:0xaaa493,side:THREE.DoubleSide});
-for(const material of [PAVED_MATERIAL,SETT_MATERIAL]){groundDetail(material);material.userData.natureShared=true;}
-function roadMaterial(tags:Record<string,unknown>){return ['asphalt','concrete'].includes(String(tags.surface))?PAVED_MATERIAL:['sett','unhewn_cobblestone','cobblestone','paving_stones'].includes(String(tags.surface))?SETT_MATERIAL:ROAD_MATERIAL;}
 const RIVER_MATERIAL=waterMaterial();
 const WATER_MATERIAL=waterMaterial();
-groundDetail(ROAD_MATERIAL);
-ROAD_MATERIAL.userData.natureShared=true;
 function insideArea(p:THREE.Vector3){return Math.abs(p.x)<=LOCAL_LIMIT&&Math.abs(p.z)<=LOCAL_LIMIT;}
-function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain,material:THREE.MeshLambertMaterial=ROAD_MATERIAL){
+function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,terrain?:Terrain){
   if(points.length<2)return;
-  // One draw call per road/river, not one mesh per OSM segment.
-  // Densify long segments so the road follows the elevation grid.
+  // Densify existing water lines before batching; road surfaces are prepared offline.
   const vertices:number[]=[];
   for(let i=1;i<points.length;i++){
     const start=points[i-1],end=points[i];
@@ -74,11 +66,7 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
       const dx=b.x-a.x,dz=b.z-a.z,segment=Math.hypot(dx,dz);
       if(segment<.01)continue;
       const nx=-dz/segment*width/2,nz=dx/segment*width/2;
-      if(terrain&&color!==0x729ea8){
-        // Split at every crossed DEM edge and selected diagonal. Every visible
-        // road point stays 4.5 cm above the collision source, even across cliffs.
-        vertices.push(...drapePolygon([{x:a.x+nx,z:a.z+nz},{x:a.x-nx,z:a.z-nz},{x:b.x-nx,z:b.z-nz},{x:b.x+nx,z:b.z+nz}],terrain.grid));
-      }else vertices.push(
+      vertices.push(
         a.x+nx,a.y,a.z+nz,a.x-nx,a.y,a.z-nz,b.x+nx,b.y,b.z+nz,
         b.x+nx,b.y,b.z+nz,a.x-nx,a.y,a.z-nz,b.x-nx,b.y,b.z-nz
       );
@@ -88,7 +76,7 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
   const geometry=new THREE.BufferGeometry();
   geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
   geometry.computeVertexNormals();
-  const mesh=new THREE.Mesh(geometry,color===0x729ea8?RIVER_MATERIAL:material);
+  const mesh=new THREE.Mesh(geometry,RIVER_MATERIAL);
   mesh.receiveShadow=true;scene.add(mesh);
 }
 // Historic OSM outlines are mapped linework; wall heights are deliberately
@@ -138,10 +126,10 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
  return trees.length;
 }
 export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=false){updateNatureLOD(scene,camera,eco)}
-// Merge the many separate road/river meshes into one mesh per material.
+// Merge existing water and historic-wall meshes into one mesh per material.
 // This cuts draw calls without altering the OSM linework or its DEM heights.
 function batchLinearFeatures(scene:THREE.Object3D):void{
-  for(const material of [ROAD_MATERIAL,PAVED_MATERIAL,SETT_MATERIAL,RIVER_MATERIAL,HISTORIC_WALL_MATERIAL]){
+  for(const material of [RIVER_MATERIAL,HISTORIC_WALL_MATERIAL]){
     const meshes=scene.children.filter((child):child is THREE.Mesh=>
       child instanceof THREE.Mesh && child.material===material);
     if(meshes.length<2)continue;
@@ -163,8 +151,8 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
     if(f.geometry?.type==='LineString'){
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
       if(tags.historic==='citywalls'||tags.historic==='castle'||tags.historic==='ruins'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain,tags.historic==='castle'||tags.historic==='ruins');count++;}
-      else if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b,terrain,roadMaterial(tags));count++;}
-      else if(tags.waterway){addLine(scene,pts,6,0x729ea8,terrain);count++;}
+      else if(tags.highway){count++;} // Rendered once inside the prepared ground surface.
+      else if(tags.waterway){addLine(scene,pts,6,terrain);count++;}
     } else if(f.geometry?.type==='Polygon' && Array.isArray(f.geometry.coordinates)){
       const ring=coordsToPoints(f.geometry.coordinates[0],terrain);
       if(ring.length<4 || !ring.some(insideArea))continue;

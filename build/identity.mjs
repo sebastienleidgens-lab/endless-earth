@@ -14,8 +14,8 @@ export function readBuildIdentity(root,environment){
    const file=realpathSync(resolve(root,source)),path=relative(realpathSync(root),file);
    if(path&&!path.startsWith('..')&&!path.startsWith('/')){
     const heading=readFileSync(file,'utf8').split(/\r?\n/).find(line=>line.trim());
-    const match=heading?.match(/^# Mission (\d{2,}) — (\S[^\r\n]{0,99})$/u);
-    if(match&&basename(file)===`mission-${match[1]}.md`)mission={number:match[1],name:match[2].trim(),source};
+    const match=heading?.match(/^# Mission (\d{2,}(?:\.\d+)*) — (\S[^\r\n]{0,99})$/u);
+    if(match&&basename(file)===`mission-${match[1].replaceAll('.','-')}.md`)mission={number:match[1],name:match[2].trim(),source};
    }
   }
  }catch{/* No authoritative mission: keep it explicitly unavailable. */}
@@ -40,7 +40,7 @@ export function buildIdentityPlugin(){
    if(JSON.stringify(readBuildIdentity(root,environment))!==JSON.stringify(snapshot))this.error('Les métadonnées des sources ont changé pendant la compilation ; relancer le build.');
   },
   handleHotUpdate(ctx){
-   if(!ctx.modules.length&&ctx.file!==resolve(root,'package.json')&&!/^docs\/mission-\d+\.md$/.test(relative(root,ctx.file)))return;
+   if(!ctx.modules.length&&ctx.file!==resolve(root,'package.json')&&!/^docs\/mission-\d+(?:-\d+)*\.md$/.test(relative(root,ctx.file)))return;
    const next=readBuildIdentity(root,environment);
    if(JSON.stringify(next)!==JSON.stringify(snapshot)){
     snapshot=next;const module=ctx.server.moduleGraph.getModuleById(id);

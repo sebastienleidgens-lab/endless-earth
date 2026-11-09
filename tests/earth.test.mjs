@@ -13,7 +13,7 @@ import {createEcology} from '../src/nature/ecology.mjs';
 await mkdir('work',{recursive:true});
 for(const [source,out,replacements] of [
  ['src/nature/surfaces.ts','earth-surfaces',[]],
- ['src/world/terrain.ts','earth-terrain',[["'../nature/surfaces'","'./earth-surfaces.mjs'"],["'./terrain-grid.mjs'","'../src/world/terrain-grid.mjs'"]]],
+ ['src/world/terrain.ts','earth-terrain',[["'../nature/surfaces'","'./earth-surfaces.mjs'"],["'./terrain-grid.mjs'","'../src/world/terrain-grid.mjs'"],["'./source-geometry.mjs'","'../src/world/source-geometry.mjs'"],["'./surface-mesh.mjs'","'../src/world/surface-mesh.mjs'"]]],
  ['src/world/geo.ts','earth-geo',[]]
 ]){let code=transpileModule(await readFile(source,'utf8'),{compilerOptions:{target:9,module:99}}).outputText;for(const [a,b] of replacements)code=code.replaceAll(a,b);await writeFile(`work/${out}.mjs`,code)}
 const {Terrain,updateTerrainLOD}=await import('../work/earth-terrain.mjs');

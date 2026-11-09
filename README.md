@@ -24,8 +24,9 @@ Building footprints, water, walls, access restrictions, slopes and unknown-heigh
 - `public/data/angles-terrain.json`: real IGN RGE ALTI elevations; 2 km local extent, 201² samples, extracted 8 November 2026. Acquisition date is not supplied. **No LiDAR HD is currently imported.**
 - `public/data/angles-osm.geojson`: OSM extract from 8 November 2026; roads, buildings, water, two forest polygons and the castle perimeter. Incomplete land-use tags do not justify inventing agricultural parcels.
 - `npm run geo:prepare`: rebuilds checked, deterministic terrain LOD indices, mapped land-cover atlas and SHA-256 manifest offline. Source files remain unchanged. The browser falls back to the exact IGN grid if prepared assets are stale or missing.
+- `npm run geo:roads`: rebuilds the unified OSM road/IGN ground partition offline. It replaces overlapping road ribbons without a depth offset. Missing/stale road derivatives omit visible roads with an explicit status; navigation still uses the source paths.
 - `scripts/import-mnt.py`: future, explicit MNT GeoTIFF import with projected coordinates, checksums, datum and nodata validation. Tested with a synthetic raster; real local LiDAR availability is unverified because download access was blocked in Mission 07.
-- [Data licences and attribution](public/data/LICENSE.md) · [Mission 07 report and evidence](docs/mission-07.md) · [Mission 06](docs/mission-06.md).
+- [Data licences and attribution](public/data/LICENSE.md) · [Mission 07.1 road correction and evidence](docs/mission-07-1.md) · [Mission 07](docs/mission-07.md) · [Mission 06](docs/mission-06.md).
 
 The local rendering frame is metric but approximate (under 0.2% axis scale error around the pilot). Source coordinates are retained in GeoJSON. A future projection migration must transform terrain, buildings, navigation and vegetation together.
 
@@ -41,7 +42,9 @@ node scripts/browser-camera.mjs
 node scripts/browser-safety.mjs
 node scripts/browser-living.mjs
 node scripts/browser-earth-data.mjs
-node scripts/browser-earth-walk.mjs
+node scripts/browser-roads.mjs after
+node scripts/browser-road-motion.mjs after
+node scripts/browser-roads-walk.mjs
 npm run test:build-identity
 ```
 
