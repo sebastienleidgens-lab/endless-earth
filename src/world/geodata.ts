@@ -1,5 +1,5 @@
 // @ts-ignore Exact source-triangle draping shared with offline tests.
-import {drapePolygon} from './terrain-grid.mjs';
+import {drapePolygon,clipLineToGrid} from './terrain-grid.mjs';
 // @ts-ignore Explicitly illustrative ruin profile.
 import {ruinHeight} from './ruins.mjs';
 import {addNature,updateNatureLOD} from '../nature/render';
@@ -64,8 +64,12 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
       // Ignore geometry outside the currently supported 2 km pilot area.
       if(!insideArea(a)&&!insideArea(b))continue;
       if(terrain){
-        a.y=(terrain.relativeHeight(a.x,a.z)??a.y)+.19;
-        b.y=(terrain.relativeHeight(b.x,b.z)??b.y)+.19;
+        const clipped=clipLineToGrid(terrain.grid,a,b);if(!clipped)continue;
+        a.x=clipped[0].x;a.z=clipped[0].z;b.x=clipped[1].x;b.z=clipped[1].z;
+        const ha=terrain.relativeHeight(a.x,a.z),hb=terrain.relativeHeight(b.x,b.z);
+        // Never substitute local zero for an unknown river altitude at the
+        // DEM edge: that produced a visible vertical water strip.
+        if(ha===null||hb===null)continue;a.y=ha+.19;b.y=hb+.19;
       }else{a.y=.19;b.y=.19;}
       const dx=b.x-a.x,dz=b.z-a.z,segment=Math.hypot(dx,dz);
       if(segment<.01)continue;

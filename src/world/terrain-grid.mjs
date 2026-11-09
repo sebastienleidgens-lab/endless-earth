@@ -47,3 +47,14 @@ export function drapePolygon(polygon,g,offset=.045){
  }
  return result;
 }
+export function clipLineToGrid(g,a,b){
+ let lo=0,hi=1;
+ const x1=g.origin_x_m+(g.width-1)*g.step_m,z1=g.origin_z_m+(g.height-1)*g.step_m;
+ const dx=b.x-a.x,dz=b.z-a.z;
+ for(const [p,q] of [[-dx,a.x-g.origin_x_m],[dx,x1-a.x],[-dz,a.z-g.origin_z_m],[dz,z1-a.z]]){
+  if(Math.abs(p)<1e-12){if(q<0)return null;continue}
+  const t=q/p;if(p<0)lo=Math.max(lo,t);else hi=Math.min(hi,t);if(lo>hi)return null;
+ }
+ const point=t=>({x:Math.max(g.origin_x_m,Math.min(x1,a.x+dx*t)),z:Math.max(g.origin_z_m,Math.min(z1,a.z+dz*t))});
+ return [point(lo),point(hi)];
+}

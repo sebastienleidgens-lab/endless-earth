@@ -79,6 +79,7 @@ export class Terrain {
     geometry.setIndex(indices);geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();
     const material=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.FrontSide});
     groundDetail(material);
+    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial);
     if(this.landcover){
       const detail=material.onBeforeCompile;
       material.onBeforeCompile=(shader,renderer)=>{
@@ -97,7 +98,7 @@ export class Terrain {
       material.customProgramCacheKey=()=> 'earth-cover-v1';
     }
     const group=new THREE.Group();group.name='IGN source terrain';group.userData.terrainTexture=this.landcover;
-    const owned:THREE.BufferGeometry[]=[];group.userData.terrainResources={geometries:owned,materials:[material]};
+    const owned:THREE.BufferGeometry[]=[];group.userData.terrainResources={geometries:owned,materials:[material,bareMaterial]};
     if(this.prepared){
       const {manifest,indices:far}=this.prepared;
       for(const tile of manifest.tiles){
@@ -116,7 +117,7 @@ export class Terrain {
         // Two owned geometries ensure both GPU index buffers are freed on unload.
         const farGeometry=new THREE.BufferGeometry();for(const [name,attribute] of Object.entries(geom.attributes))farGeometry.setAttribute(name,attribute);
         farGeometry.setIndex(farIndex);farGeometry.boundingSphere=geom.boundingSphere;owned.push(geom,farGeometry);
-        const mesh=new THREE.Mesh(geom,material);mesh.receiveShadow=true;
+        const mesh=new THREE.Mesh(geom,tile.cover===false?bareMaterial:material);mesh.receiveShadow=true;
         mesh.userData.earthTile={fineIndex,farIndex,fineGeometry:geom,farGeometry,far:false,x:g.origin_x_m+tile.x*g.step_m,z:g.origin_z_m+tile.z*g.step_m,size:size*g.step_m};group.add(mesh);
       }
       geometry.dispose();

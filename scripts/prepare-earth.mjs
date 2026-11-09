@@ -40,13 +40,18 @@ const hash=s=>createHash('sha256').update(s).digest('hex');
 export async function prepare(dir='public/data'){
  const text=await readFile(`${dir}/angles-terrain.json`,'utf8'),osm=await readFile(`${dir}/angles-osm.geojson`,'utf8'),g=JSON.parse(text),data=JSON.parse(osm);
  if((g.width-1)%TILE||(g.height-1)%TILE)throw new Error('Unsupported tile extent: reconfigure offline tile size');
- const tiles=[],all=[];for(let z=0;z<g.height-1;z+=TILE)for(let x=0;x<g.width-1;x+=TILE){const index=farIndices(g,x,z,TILE);tiles.push({x,z,size:TILE,offset:all.length,count:index.length});all.push(...index)}
+ const tiles=[],all=[];for(let z=0;z<g.height-1;z+=TILE)for(let x=0;x<g.width-1;x+=TILE){const index=farIndices(g,x,z,TILE);tiles.push({x,z,size:TILE,offset:all.length,count:index.length,cover:false});all.push(...index)}
  const bytes=Buffer.alloc(all.length*2);all.forEach((v,i)=>bytes.writeUInt16LE(v,i*2));
  const features=data.features.filter(f=>f.geometry?.type==='Polygon'&&coverClass(f.properties??{})).map(f=>({tags:f.properties,rings:f.geometry.coordinates.map(r=>r.map(p=>({x:(p[0]-.8844)*111320*Math.cos(46.6953*Math.PI/180),z:-(p[1]-46.6953)*111320})))}));
  const step=2,width=(g.width-1)*g.step_m/step,height=(g.height-1)*g.step_m/step,pixels=new Uint8Array(width*height*4),counts={};
  for(let z=0;z<height;z++)for(let x=0;x<width;x++){
   const type=coverAt(g.origin_x_m+(x+.5)*step,g.origin_z_m+(z+.5)*step,features);if(!type)continue;
-  counts[type]=(counts[type]??0)+1;const c=COVER[type].color,i=(z*width+x)*4;
+  counts[type]=(counts[type]??0)+1;
+  // Include a 16 m halo for filtered mask transitions, without imposing an
+  // atlas lookup on distant tiles that contain no mapped habitat at all.
+  const columns=(g.width-1)/TILE,tilePixels=TILE*g.step_m/step;
+  for(const dx of [-8,0,8])for(const dz of [-8,0,8]){const tx=Math.floor((x+dx)/tilePixels),tz=Math.floor((z+dz)/tilePixels);if(tx>=0&&tz>=0&&tx<columns&&tz<(g.height-1)/TILE)tiles[tz*columns+tx].cover=true;}
+  const c=COVER[type].color,i=(z*width+x)*4;
   // Linear RGB premultiplied by the known-use mask (0 or 1).
   const linear=v=>Math.round(255*(v<=.04045?v/12.92:((v+.055)/1.055)**2.4));
   pixels[i]=linear(((c>>16)&255)/255);pixels[i+1]=linear(((c>>8)&255)/255);pixels[i+2]=linear((c&255)/255);pixels[i+3]=255;

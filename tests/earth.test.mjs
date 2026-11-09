@@ -5,7 +5,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {transpileModule} from 'typescript';
 import * as THREE from 'three';
-import {sampleGrid,sourceTriangles,drapePolygon} from '../src/world/terrain-grid.mjs';
+import {sampleGrid,drapePolygon,clipLineToGrid} from '../src/world/terrain-grid.mjs';
 import {coverAt,coverClass} from '../src/world/landcover.mjs';
 import {prepare} from '../scripts/prepare-earth.mjs';
 import {ruinHeight} from '../src/world/ruins.mjs';
@@ -44,11 +44,28 @@ test('road draping splits every source edge without lost area, buried corners or
   for(const [u,v] of [[0,0],[1,0],[0,1],[.25,.4],[1/3,1/3]]){const x=a.x+(b.x-a.x)*u+(c.x-a.x)*v,z=a.z+(b.z-a.z)*u+(c.z-a.z)*v,h=vertices[i+1]+(vertices[i+4]-vertices[i+1])*u+(vertices[i+7]-vertices[i+1])*v;assert.ok(Math.abs(h-sampleGrid(grid,x,z)-.045)<1e-6)}
  }assert.ok(Math.abs(area-17*13)<1e-6);
 });
+test('river lines crossing DEM bounds never receive the unsupported local-zero altitude',()=>{
+ const grid={origin_x_m:-10,origin_z_m:-10,step_m:10,width:3,height:3,elevations_m:Array(9).fill(65)};
+ assert.deepEqual(clipLineToGrid(grid,{x:-20,z:0},{x:20,z:0}),[{x:-10,z:0},{x:10,z:0}]);
+ assert.equal(clipLineToGrid(grid,{x:-20,z:11},{x:20,z:11}),null);
+ for(const a of [{x:0,z:0},{x:-40,z:-10},{x:30,z:30}])for(const b of [{x:0,z:0},{x:40,z:10},{x:20,z:-20}]){
+  const clipped=clipLineToGrid(grid,a,b);if(clipped)for(const p of clipped)assert.equal(sampleGrid(grid,p.x,p.z),65);
+ }
+});
 test('terrain tiles retain identical boundary positions/normals and every boundary vertex in far LOD',()=>{
  const t=prepared(),group=t.createMesh();assert.equal(group.children.length,25);
  const points=new Map();for(const mesh of group.children){const a=mesh.geometry.attributes.position,n=mesh.geometry.attributes.normal,used=new Set(mesh.userData.earthTile.farIndex.array);
   for(let z=0;z<=40;z++)for(let x=0;x<=40;x++){if(x&&x!==40&&z&&z!==40)continue;const i=z*41+x,key=`${a.getX(i)},${a.getZ(i)}`,v=[a.getY(i),n.getX(i),n.getY(i),n.getZ(i)];if(points.has(key))assert.deepEqual(v,points.get(key));else points.set(key,v);assert.ok(used.has(i))}
  }
+});
+test('unknown-only tiles omit atlas sampling while mapped habitat tiles retain it',()=>{
+ const terrain=prepared();terrain.landcover=new THREE.DataTexture(new Uint8Array([0,0,0,0]),1,1);
+ const group=terrain.createMesh();let covered=0,bare=0;
+ for(let i=0;i<group.children.length;i++){
+  const material=group.children[i].material,shader={uniforms:{},vertexShader:THREE.ShaderLib.lambert.vertexShader,fragmentShader:THREE.ShaderLib.lambert.fragmentShader};
+  material.onBeforeCompile(shader,{});
+  if(m.tiles[i].cover){assert.ok(shader.uniforms.earthCover);covered++}else{assert.equal(shader.uniforms.earthCover,undefined);bare++}
+ }assert.ok(covered>0&&bare>0);assert.equal(covered,12);
 });
 test('all far triangles stay within their declared error throughout each intersected source plane',()=>{
  let max=0;
