@@ -11,3 +11,5 @@ test('weather transitions are bounded, gradual and approach selected simulated r
 test('bird species have long absences and brief perching windows, never perpetual player orbits',()=>{for(let i=0;i<4;i++){let absent=0;for(let t=0;t<200;t++)if(!birdState(t,i).visible)absent++;assert.ok(absent>100);assert.equal(birdState(0,i).progress>=0,true)}assert.equal(birdState(0,0).perched,true);assert.equal(birdState(9,0).progress,0);assert.equal(birdState(29,0).visible,false)});
 
 test('courtyard margins keep crowns away from inner building walls',()=>{const outer=ring(-50,-50,100),hole=ring(-15,-15,30),e=createEcology([{tags:{building:'yes'},rings:[outer,hole]}]);assert.equal(e.valid({x:14,z:0},2),false);assert.equal(e.valid({x:0,z:0},2),true)});
+
+test('incremental recipes preserve every deterministic detail in the same order',()=>{const e=createEcology(features),whole=detailRecipe(-1,-1,e),parts=[];for(let i=0;i<3200;i+=256)parts.push(...detailRecipe(-1,-1,e,i,i+256));assert.deepEqual(parts,whole)});

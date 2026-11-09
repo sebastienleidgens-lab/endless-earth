@@ -9,18 +9,20 @@ export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z
  const ecology=createEcology(features,height),cells=new Map<string,Tree[]>();
  for(const p of ecology.trees){const key=`${Math.floor(p.x/180)}:${Math.floor(p.z/180)}`;if(!cells.has(key))cells.set(key,[]);cells.get(key)!.push(p)}
  // Three overlapping, asymmetric lobes in ONE shared crown geometry.
- const positions:number[]=[],normals:number[]=[];
- for(const [x,y,z,sx,sy,sz] of [[0,0,0,2.3,2.9,2.2],[-1.3,-.5,.2,1.9,2.0,1.7],[1.1,.4,-.5,1.7,2.2,1.8]]){const g=new THREE.IcosahedronGeometry(1,x===0?1:0);const a=g.attributes.position,n=g.attributes.normal;for(let i=0;i<a.count;i++){const v=new THREE.Vector3().fromBufferAttribute(a,i).normalize();n.setXYZ(i,v.x,v.y,v.z)}g.scale(sx,sy,sz);g.translate(x,y,z);positions.push(...g.attributes.position.array);normals.push(...g.attributes.normal.array);g.dispose()}
- const crown=new THREE.BufferGeometry();crown.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));crown.setAttribute('normal',new THREE.Float32BufferAttribute(normals,3));
- const stem=new THREE.CylinderGeometry(.19,.36,4.5,5),branches=[stem];for(const side of [-1,1]){const branch=new THREE.CylinderGeometry(.07,.16,2.6,3,1,true);branch.rotateZ(side*.65);branch.translate(-side*.7,1.1,0);branches.push(branch)}const trunk=mergeGeometries(branches)!;branches.forEach(g=>g.dispose());const bark=new THREE.MeshLambertMaterial({color:0x716653}),leaves=new THREE.MeshLambertMaterial({color:0xffffff});animateFoliage(leaves,true);
+ function makeCrown(detail:number){const positions:number[]=[],normals:number[]=[];
+ for(const [x,y,z,sx,sy,sz] of [[0,0,0,2.3,2.9,2.2],[-1.3,-.5,.2,1.9,2.0,1.7],[1.1,.4,-.5,1.7,2.2,1.8]]){const g=new THREE.IcosahedronGeometry(1,x===0?detail:0);const a=g.attributes.position,n=g.attributes.normal;for(let i=0;i<a.count;i++){const v=new THREE.Vector3().fromBufferAttribute(a,i).normalize();n.setXYZ(i,v.x,v.y,v.z)}g.scale(sx,sy,sz);g.translate(x,y,z);positions.push(...g.attributes.position.array);normals.push(...g.attributes.normal.array);g.dispose()}
+ const crown=new THREE.BufferGeometry();crown.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));crown.setAttribute('normal',new THREE.Float32BufferAttribute(normals,3));return crown;}
+ const crown=makeCrown(1),distantCrown=makeCrown(0);crown.name='nature-crown-near';distantCrown.name='nature-crown-far';
+ const stem=new THREE.CylinderGeometry(.19,.36,4.5,5),branches=[stem];for(const side of [-1,1]){const branch=new THREE.CylinderGeometry(.07,.16,2.6,3,1,true);branch.rotateZ(side*.65);branch.translate(-side*.7,1.1,0);branches.push(branch)}const trunk=mergeGeometries(branches)!;branches.forEach(g=>g.dispose());const bark=new THREE.MeshLambertMaterial({color:0x716653}),leaves=new THREE.MeshLambertMaterial({color:0xffffff});animateFoliage(leaves,true);const distantLeaves=new THREE.MeshLambertMaterial({color:0xffffff});animateFoliage(distantLeaves,true,false,true);
+ scene.userData.natureResources={geometries:[trunk,crown,distantCrown],materials:[bark,leaves,distantLeaves]};
  // Geometry/materials belong to this geographic zone, shared only within it.
  const palette=[0x526c45,0x66794b,0x74865a,0x546f58,0x7d8552];
- for(const [key,points] of cells){const [cx,cz]=key.split(':').map(Number),group=new THREE.Group();group.userData.natureTreeCell={x:(cx+.5)*180,z:(cz+.5)*180};
+ for(const [key,points] of cells){const [cx,cz]=key.split(':').map(Number),group=new THREE.Group();group.userData.natureTreeCell={x:(cx+.5)*180,z:(cz+.5)*180,nearGeometry:crown,farGeometry:distantCrown,nearMaterial:leaves,farMaterial:distantLeaves,lod:'near'};
   const trunks=new THREE.InstancedMesh(trunk,bark,points.length),crowns=new THREE.InstancedMesh(crown,leaves,points.length);
   points.forEach((p,i)=>{const f=noise(p.x,p.z,2),wet=p.kind==='riparian',s=p.scale,w=wet?.7:.85+f*.35,h=wet?1.35:1;
    dummy.rotation.set(0,f*6.28,0);dummy.position.set(p.x,p.y+2.25*s*h,p.z);dummy.scale.set(s,s*h,s);dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
    dummy.position.y=p.y+5.6*s*h;dummy.scale.set(s*w,s*h,s*(.85+noise(p.x,p.z,4)*.3));dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);crowns.setColorAt(i,new THREE.Color(palette[Math.floor(f*palette.length)]));
-  });trunks.frustumCulled=crowns.frustumCulled=false;group.add(trunks,crowns);scene.add(group);
+  });trunks.computeBoundingSphere();crowns.computeBoundingSphere();trunks.boundingSphere!.radius+=.5;crowns.boundingSphere!.radius+=.5;trunks.frustumCulled=crowns.frustumCulled=true;group.add(trunks,crowns);scene.add(group);
  }
  const detailCells=new Set<string>();
  // Detail cells use a separate, finer grid than the shared tree batches.
@@ -28,8 +30,8 @@ export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z
  scene.userData.nature={trees:ecology.trees.length,cells:cells.size,detailCells:detailCells.size,profile:POITOU.id};
  return ecology.trees;
 }
-function buildDetail(cell:THREE.Object3D){
- const c=cell.userData.natureCell,recipe=detailRecipe(c.cx,c.cz,c.ecology),vertices:number[]=[],colors:number[]=[],bends:number[]=[];
+function buildDetail(cell:THREE.Object3D,recipe:any[]){
+ const c=cell.userData.natureCell,vertices:number[]=[],colors:number[]=[],bends:number[]=[];
  for(const p of recipe){
   const h=c.height(p.x,p.z);if(h===null)continue;const scale=p.scale;
   const col=new THREE.Color(({grass:0x85895a,fern:0x637c54,leaf:0x99805b,flower:0xcbbe91,stone:0xa09b85,branch:0x71634e} as Record<string,number>)[p.kind]);
@@ -45,5 +47,30 @@ function buildDetail(cell:THREE.Object3D){
  const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.setAttribute('natureBend',new THREE.Float32BufferAttribute(bends,1));geometry.computeVertexNormals();
  const material=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide});animateFoliage(material,false,true);const mesh=new THREE.Mesh(geometry,material);mesh.name='nature-detail';cell.add(mesh);c.detail=mesh;c.builds++;
 }
-export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=false){let built=false;const hidden:any[]=[];scene.traverse(o=>{const tree=o.userData.natureTreeCell;if(tree){const d=Math.hypot(camera.position.x-tree.x,camera.position.z-tree.z);o.children[0].visible=o.children[0].visible?d<650:d<620;o.children[1].visible=o.children[1].visible?d<1050:d<1020;return}const c=o.userData.natureCell;if(!c)return;const d=Math.hypot(camera.position.x-(c.cx+.5)*128,camera.position.z-(c.cz+.5)*128);const range=eco?55:110,near=d<range+(c.detail?.visible?18:0);if(near&&!c.detail&&!built){buildDetail(o);built=true}if(c.detail){c.detail.visible=near;if(!near)hidden.push({o,c,d})}});hidden.sort((a,b)=>a.d-b.d);for(const {o,c} of hidden.slice(4)){o.remove(c.detail);c.detail.geometry.dispose();c.detail.material.dispose();c.detail=null}}
-export function disposeNatureZone(group:THREE.Object3D){const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{if(o instanceof THREE.Mesh){geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.clear();group.userData={};}
+export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=false){
+ const hidden:any[]=[],near:any[]=[];
+ scene.traverse(o=>{
+  const tree=o.userData.natureTreeCell;
+  if(tree){const d=Math.hypot(camera.position.x-tree.x,camera.position.z-tree.z),crowns=o.children[1] as THREE.InstancedMesh;
+   o.children[0].visible=o.children[0].visible?d<650:d<620;crowns.visible=crowns.visible?d<1050:d<1020;
+   const nearDistance=Math.max(0,camera.position.distanceTo(crowns.boundingSphere!.center)-crowns.boundingSphere!.radius),threshold=eco?220:350;
+   tree.lod=nearDistance<(tree.lod==='near'?threshold+40:threshold)?'near':'far';
+   crowns.geometry=tree.lod==='near'?tree.nearGeometry:tree.farGeometry;crowns.material=tree.lod==='near'?tree.nearMaterial:tree.farMaterial;return;
+  }
+  const c=o.userData.natureCell;if(!c)return;
+  const d=Math.hypot(camera.position.x-(c.cx+.5)*128,camera.position.z-(c.cz+.5)*128),range=eco?c.ecology.profile.ecoRange:c.ecology.profile.detailRange;
+  const visible=d<range+(c.detail?.visible?18:0);c.wanted=visible;
+  if(c.detail){c.detail.visible=visible;if(!visible)hidden.push({o,c,d})}
+  else if(visible)near.push({o,c,d});
+  else c.pending=null;
+ });
+ near.sort((a,b)=>a.d-b.d);
+ // One bounded recipe slice per update, then one final buffer build. Same sequence.
+ const next=near[0];if(next){const {o,c}=next;c.pending??={cursor:0,points:[]};const job=c.pending;
+  job.points.push(...detailRecipe(c.cx,c.cz,c.ecology,job.cursor,job.cursor+256));job.cursor=Math.min(3200,job.cursor+256);
+  if(job.cursor===3200){buildDetail(o,job.points);c.pending=null}
+ }
+ hidden.sort((a,b)=>a.d-b.d);for(const {o,c} of hidden.slice(4)){o.remove(c.detail);c.detail.geometry.dispose();c.detail.material.dispose();c.detail=null}
+}
+export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,cells=0,resident=0,builds=0,pending=0,work=0,needed=0;scene.traverse(o=>{const t=o.userData.natureTreeCell;if(t){treeCells++;if(t.lod==='far')farCells++}const c=o.userData.natureCell;if(c){cells++;if(c.detail)resident++;else if(c.wanted)needed++;builds+=c.builds;if(c.pending){pending++;work+=c.pending.cursor}}});return {treeCells,farCells,cells,resident,builds,pending,work,needed}}
+export function disposeNatureZone(group:THREE.Object3D){const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{const resources=o.userData.natureResources;if(resources){for(const g of resources.geometries)geometries.add(g);for(const m of resources.materials)materials.add(m)}if(o instanceof THREE.Mesh){geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.clear();group.userData={};}

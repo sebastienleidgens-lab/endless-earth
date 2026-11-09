@@ -14,15 +14,15 @@ export function groundDetail(material:THREE.MeshLambertMaterial){
    vec2 p=naturePosition.xz;
    float groundPatch=(texture2D(natureSoil,p*.017).g+texture2D(natureSoil,mat2(.8,.6,-.6,.8)*p*.0113+vec2(.37,.13)).g)*.5-.5;
    float nearDetail=1.0-smoothstep(8.0,65.0,vViewPosition.z);
-   float grain=texture2D(natureSoil,p*1.7).r-.5;
+   float grain=0.0; if(nearDetail>.001)grain=texture2D(natureSoil,p*1.7).r-.5;
    diffuseColor.rgb *= .98+groundPatch*.17+grain*.07*nearDetail;`);
  };
- material.customProgramCacheKey=()=> 'nature-ground-atlas-v2';
+ material.customProgramCacheKey=()=> 'nature-ground-atlas-v3';
 }
 export function waterMaterial(){const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;material.onBeforeCompile=s=>{s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=position;');s.fragmentShader='uniform float natureTime; uniform float natureWind; varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
  float ripple=sin(waterPosition.x*.9+waterPosition.z*.55+natureTime*.55)*sin(waterPosition.z*1.3-waterPosition.x*.3+natureTime*.31);
  float calm=sin(waterPosition.x*.019+waterPosition.z*.027)*.5+.5;
  diffuseColor.rgb *= .91+ripple*(.035+natureWind*.045)+calm*.08;
- vec3 waterNormal=normalize(mat3(viewMatrix)*vec3(0.0,1.0,0.0));
- float grazing=pow(1.0-abs(dot(normalize(vViewPosition),waterNormal)),3.0);
- diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.55,.65,.67),grazing*.16);`)};material.customProgramCacheKey=()=> 'anglin-ripples-v2';return material}
+ vec3 waterNormal=viewMatrix[1].xyz;
+ float grazing=1.0-abs(dot(normalize(vViewPosition),waterNormal));grazing=grazing*grazing*grazing;
+ diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.55,.65,.67),grazing*.16);`)};material.customProgramCacheKey=()=> 'anglin-ripples-v3';return material}

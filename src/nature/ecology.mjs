@@ -12,14 +12,21 @@ export function createEcology(features,height=()=>0,profile=POITOU){
  const rivers=lines.filter(l=>l.tags.waterway);
  const waterPolygons=polygons.filter(f=>f.tags.natural==='water'||f.tags.water);
  const waterDistance=p=>waterPolygons.reduce((d,f)=>Math.min(d,ringDistance(p,f.rings[0])),rivers.reduce((d,l)=>Math.min(d,segmentDistance(p,l.a,l.b)),Infinity));
+ // Cache only local candidate lists, preserving source order and exact predicates.
+ const habitats=polygons.filter(f=>habitat(f.tags));
+ const obstacles=polygons.filter(f=>f.tags.building||f.tags.natural==='water'||f.tags.water||f.tags.waterway||f.tags.historic);
+ const segments=lines.filter(l=>l.tags.highway||l.tags.waterway||l.tags.barrier||l.tags.historic).map(l=>({...l,box:[Math.min(l.a.x,l.b.x),Math.min(l.a.z,l.b.z),Math.max(l.a.x,l.b.x),Math.max(l.a.z,l.b.z)]}));
+ const localCache=new Map();
+ const candidates=(p,radius)=>{const cx=Math.floor(p.x/128),cz=Math.floor(p.z/128),pad=Math.ceil((radius+6)/8)*8,key=`${cx}:${cz}:${pad}`;let result=localCache.get(key);if(!result){const touches=f=>f.box[0]<=(cx+1)*128+pad&&f.box[2]>=cx*128-pad&&f.box[1]<=(cz+1)*128+pad&&f.box[3]>=cz*128-pad;result={polygons:obstacles.filter(touches),lines:segments.filter(touches)};localCache.set(key,result)}return result};
  const valid=(p,radius=.5)=>{
   const h=height(p.x,p.z);if(h===null||!Number.isFinite(h))return false;
   for(const [dx,dz] of [[2,0],[-2,0],[0,2],[0,-2]]){const q=height(p.x+dx,p.z+dz);if(q===null||Math.abs(q-h)/2>profile.maxSlope)return false}
-  for(const f of polygons){const t=f.tags;if(p.x<f.box[0]-radius-2||p.z<f.box[1]-radius-2||p.x>f.box[2]+radius+2||p.z>f.box[3]+radius+2)continue;if(!t.building&&t.natural!=='water'&&!t.water&&!t.waterway&&!t.historic)continue;if(covers(p,f))return false;if((t.building||t.historic)&&Math.min(...f.rings.map(r=>ringDistance(p,r)))<radius+1.3)return false}
-  for(const l of lines){const t=l.tags;if(!t.highway&&!t.waterway&&!t.barrier&&!t.historic)continue;const clearance=t.waterway?3:t.highway?(['path','footway','steps','track','pedestrian'].includes(t.highway)?1.25:2.75):1; if(segmentDistance(p,l.a,l.b)<clearance+radius+.6)return false}
+  const local=candidates(p,radius);
+  for(const f of local.polygons){const t=f.tags;if(p.x<f.box[0]-radius-2||p.z<f.box[1]-radius-2||p.x>f.box[2]+radius+2||p.z>f.box[3]+radius+2)continue;if(!t.building&&t.natural!=='water'&&!t.water&&!t.waterway&&!t.historic)continue;if(covers(p,f))return false;if((t.building||t.historic)&&Math.min(...f.rings.map(r=>ringDistance(p,r)))<radius+1.3)return false}
+  for(const l of local.lines){const t=l.tags;if(!t.highway&&!t.waterway&&!t.barrier&&!t.historic)continue;const clearance=t.waterway?3:t.highway?(['path','footway','steps','track','pedestrian'].includes(t.highway)?1.25:2.75):1; if(segmentDistance(p,l.a,l.b)<clearance+radius+.6)return false}
   return true;
  };
- const biome=p=>{const f=polygons.find(f=>habitat(f.tags)&&covers(p,f));return f?habitat(f.tags):null};
+ const biome=p=>{const f=habitats.find(f=>covers(p,f));return f?habitat(f.tags):null};
  const trees=[],keys=new Set();
  const add=(p,mapped=false)=>{if(Math.abs(p.x)>980||Math.abs(p.z)>980||!valid(p,5.8))return;const k=`${Math.round(p.x)}:${Math.round(p.z)}`;if(keys.has(k))return;keys.add(k);const wet=waterDistance(p)<38,young=noise(p.x,p.z,3)<.16;trees.push({...p,y:height(p.x,p.z),kind:wet?'riparian':young?'young':'broadleaf',scale:young?.48+noise(p.x,p.z)*.24:.85+noise(p.x,p.z)*.7,mapped});};
  for(const f of features)if(f.point&&f.tags.natural==='tree')add(f.point,true);
@@ -30,4 +37,4 @@ export function createEcology(features,height=()=>0,profile=POITOU){
  for(const f of waterPolygons){const r=f.rings[0];for(let i=1;i<r.length;i++){const a=r[i-1],b=r[i],dx=b.x-a.x,dz=b.z-a.z,len=Math.hypot(dx,dz);if(len<1)continue;const n=Math.ceil(len/44);for(let j=0;j<n;j++){const t=(j+.5)/n,x=a.x+dx*t,z=a.z+dz*t;if(noise(x,z,31)>.42)continue;for(const side of [-1,1]){const offset=6+noise(x,z,32)*7,p={x:x-dz/len*offset*side,z:z+dx/len*offset*side};if(!trees.some(q=>Math.hypot(q.x-p.x,q.z-p.z)<12)&&trees.length<2500)add(p)}}}}
  return {trees,valid,biome,waterDistance,profile};
 }
-export function detailRecipe(cx,cz,ecology){const points=[],size=ecology.profile.cellSize;for(let i=0;i<3200;i++){const x=(cx+noise(cx,cz,i+10))*size,z=(cz+noise(cx,cz,i+400))*size,p={x,z},biome=ecology.biome(p);if(!biome||!ecology.valid(p,.65))continue;const n=noise(x,z,9);if(n>.48)continue;const kind=biome==='wood'?(n<.1?'branch':n<.22?'fern':'leaf'):n<.025?'flower':n<.10?'stone':'grass';points.push({...p,y:0,kind,scale:.35+noise(x,z,13)*.65,angle:noise(x,z,21)*Math.PI*2})}return points}
+export function detailRecipe(cx,cz,ecology,start=0,end=3200){const points=[],size=ecology.profile.cellSize;for(let i=start;i<Math.min(3200,end);i++){const x=(cx+noise(cx,cz,i+10))*size,z=(cz+noise(cx,cz,i+400))*size,p={x,z},biome=ecology.biome(p);if(!biome||!ecology.valid(p,.65))continue;const n=noise(x,z,9);if(n>.48)continue;const kind=biome==='wood'?(n<.1?'branch':n<.22?'fern':'leaf'):n<.025?'flower':n<.10?'stone':'grass';points.push({...p,y:0,kind,scale:.35+noise(x,z,13)*.65,angle:noise(x,z,21)*Math.PI*2})}return points}
