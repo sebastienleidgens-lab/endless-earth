@@ -1,7 +1,7 @@
 // REJECTED runtime prototype; retained only to reproduce the signed-field/mask study.
 // Distance to the OUTER union boundary: internal segment/intersection edges
 // never become shoulders. The geometric road surface itself is untouched.
-import {readFile,writeFile} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {gunzipSync,gzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
@@ -44,7 +44,7 @@ export function signedBoundaryField(rings,config){
 }
 
 const sha=b=>createHash('sha256').update(b).digest('hex');
-export async function prepareRoadEdges(dir='public/data',{size=1536}={}){
+export async function prepareRoadEdges(dir='work/road-finish-prototype',{size=1536}={}){
  const osm=await readFile(`${dir}/angles-osm.geojson`),terrain=await readFile(`${dir}/angles-terrain.json`),g=JSON.parse(terrain);
  const local=([lon,lat])=>[(lon-.8844)*111320*Math.cos(46.6953*Math.PI/180),-(lat-46.6953)*111320];
  const segments=roadSegments(JSON.parse(osm).features,local),union=pc.union(...segments.map(s=>s.polygon));
@@ -60,4 +60,9 @@ export async function prepareRoadEdges(dir='public/data',{size=1536}={}){
  const manifest={schema:'endless-earth-road-edge-v3',...config,encoding:'signed metres: (R / 255 * 2 - 1) * range; inside positive',osmSha256:sha(osm),terrainSha256:sha(terrain),sha256:sha(payload),distanceBytes:data.length,bytes:payload.length,surfaceSha256:geometryManifest.binarySha256,maskPaddingM:4,maskBytes:masks.reduce((n,a)=>n+a.length,0),tiles,compressedBytes:packed.length,interpretation:'Distance to estimated OSM road union boundary; not surveyed shoulders.'};
  await writeFile(`${dir}/angles-road-edge.pack`,packed);await writeFile(`${dir}/angles-road-edge.json`,JSON.stringify(manifest,null,2)+'\n');return manifest;
 }
-if(process.argv[1]===fileURLToPath(import.meta.url)){const t=performance.now();console.log(await prepareRoadEdges(),{ms:performance.now()-t})}
+if(process.argv[1]===fileURLToPath(import.meta.url)){
+ const dir=process.argv[2]??'work/road-finish-prototype';
+ if(!dir.startsWith('work/')||dir.split('/').includes('..'))throw new Error('Prototype output must stay under work/');
+ await mkdir(dir,{recursive:true});for(const name of ['angles-terrain.json','angles-osm.geojson','angles-surface.json','angles-surface.pack'])await copyFile('public/data/'+name,dir+'/'+name);
+ const start=performance.now(),m=await prepareRoadEdges(dir);console.log(m,{ms:performance.now()-start});
+}

@@ -18,7 +18,11 @@
     "test:architecture": "node scripts/browser-architecture.mjs after",
     "geo:roads": "node scripts/prepare-road-surface.mjs",
     "geo:road-materials": "node scripts/prepare-road-edges.mjs",
-    "test:road-materials": "node scripts/browser-road-materials.mjs after"
+    "test:road-materials": "node scripts/browser-road-materials.mjs after",
+    "test:road-optimization": "node scripts/browser-road-performance.mjs 073",
+    "test:road-optimization:motion": "node scripts/browser-road-optimization-motion.mjs 073",
+    "test:road-optimization:walk": "node scripts/browser-road-optimization-walk.mjs",
+    "bench:roads": "node scripts/benchmark-road-optimization.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"
