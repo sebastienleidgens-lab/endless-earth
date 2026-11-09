@@ -1,5 +1,110 @@
 # Mission 06 — La nature extraordinaire
 
+## Dernière optimisation avant fusion
+
+Mission 06.1 sur la même branche et la même PR #10 ; aucune nouvelle PR, fusion ou publication de production. Références : Mission 05 `60a8f10`, Mission 06 initiale `cf85270`, code produit optimisé `71c6300`.
+
+### Diagnostic et protocole
+
+Les instantanés de FPS de la première livraison ne suffisaient pas à attribuer les régressions. Une première exploration a retiré séparément le sol enrichi, les arbres, le vent du feuillage, l’eau et les objets atmosphériques. Les résultats isolés variaient fortement ; ils n’ont pas servi à annoncer un gain de FPS. Le diagnostic du code montre aussi des couronnes soumises hors champ, du vent calculé sur les silhouettes lointaines, des échantillonnages de texture inutiles au loin et des recherches d’habitat/obstacles répétées pour chaque petit décor.
+
+La comparaison répétée utilise trois serveurs issus des références ci-dessus, une seule instance Chromium active et le même jeu de stations de caméra. Résolution 800 × 600, puis 390 × 844 pour mobile, ratio 1, profils identiques, lumière/fog de mesure imposées aux trois versions, météo claire. Les dates de référence de matin/nuit sont explicites. Le dessin est figé pendant les échantillons ; les mises à jour CPU sont mesurées séparément. L’architecture et les détails sont amenés à convergence avant les mesures.
+
+Trois passages indépendants, dans l’ordre **05 / initiale / optimisée**, puis **optimisée / 05 / initiale**, puis **initiale / optimisée / 05**. Chaque station comporte trois dessins de chauffe puis cinq échantillons par passage : quinze échantillons au total, sans assimiler les images corrélées à quinze expériences indépendantes. Le temps mesuré inclut `gl.finish` et la lecture RGBA de toute l’image ; cette copie impose la complétion du travail, mais ajoute un coût commun et ne représente pas directement les FPS du jeu. La simple soumission JavaScript est conservée séparément. Les médianes des trois passages et leur plage doivent être lues ensemble.
+
+Chromium 156 / WebGL2 / ANGLE / SwiftShader, quota de deux CPU, affinité `0,1` identique pour tous les passages. Aucun périphérique GPU matériel n’est exposé dans ce conteneur ; aucune extrapolation à un GPU réel ou à Android. Les compteurs de limitation CPU du conteneur sont conservés avec chaque passage. Même avec ces précautions, la latence logicielle varie beaucoup.
+
+### Corrections retenues
+
+- Culling des lots instanciés d’arbres avec sphères calculées une fois et élargies de 50 cm pour le vent. Aucun arbre retiré des données. Les tests parcourent les sommets instanciés pour vérifier l’enveloppe.
+- Couronne proche inchangée : trois volumes, **120 triangles**. Couronne lointaine partagée : mêmes trois volumes à **60 triangles**, sans animation de vent sous le pixel. La teinte saisonnière et les couleurs d’instance restent actives. Distances conservatrices à partir de la sphère de cellule, avec 40 m d’hystérésis ; aucune nouvelle matrice ni géométrie par arbre à chaque image.
+- Texture du sol conservée ; l’échantillon du micrograin est évité quand sa contribution devient négligeable au loin. Le cube du terme de réflexion de l’eau remplace une puissance générique, et la normale caméra évite une normalisation constante. Pas de suppression des ondulations ou des détails proches.
+- Le ciel est dessiné après les opaques, à profondeur lointaine, pour éviter de peindre inutilement sous le terrain et les maisons. Les matrices de nuages sont mises à jour à 10 Hz, le vent des feuilles reste continu. Couleurs constantes et formateur de date sont réutilisés.
+- Habitats présélectionnés et listes locales d’obstacles mises en cache par zone, avec les mêmes prédicats et l’ordre original. Les détails sont préparés par tranches déterministes de **256 candidats par mise à jour**, puis leur buffer est construit une fois. Une préparation quittant le rayon est annulée ; le cache de quatre cellules invisibles reste borné. Les géométries et matériaux proches/lointains sont tous libérés au déchargement, même s’ils ne sont pas actifs.
+
+La vérification sur les données OSM/IGN réelles compare les empreintes de calcul SHA-256 : **mêmes 1 650 arbres, mêmes positions, matrices, couleurs et géométries proches**, ainsi que les recettes de détail sur six cellules documentées. L’index spatial ne change donc pas les exclusions. Les tranches réassemblées donnent exactement la même recette que la génération complète. [Preuve d’équivalence](mission-06-1/ecology-equivalence.json).
+
+### Comparaison mesurée
+
+| Vue | Appels 05 / 06 / opt. | Triangles dessinés 05 / 06 / opt. | Buffers Mo 05 / 06 / opt. |
+| --- | ---: | ---: | ---: |
+| Rue | 150 / 141 / 113 | 399027 / 424837 / 293117 | 30.83 / 30.73 / 30.73 |
+| Anglin | 125 / 116 / 93 | 300656 / 324936 / 231772 | 33.50 / 33.40 / 33.40 |
+| Forêt | 81 / 70 / 35 | 253131 / 282993 / 174057 | 32.51 / 33.43 / 33.43 |
+| Espace ouvert | 99 / 97 / 86 | 214651 / 228331 / 151511 | 31.34 / 31.24 / 31.24 |
+| Aérienne | 309 / 303 / 284 | 349219 / 377603 / 296803 | 31.36 / 31.26 / 31.27 |
+| Sol | 74 / 63 / 18 | 251931 / 281637 / 147757 | 31.53 / 32.12 / 32.12 |
+| Aurore | 125 / 115 / 92 | 290842 / 315122 / 222858 | 32.53 / 33.12 / 33.13 |
+| Nuit | 125 / 115 / 92 | 290842 / 315122 / 222858 | 32.53 / 33.12 / 33.13 |
+| Éco | 125 / 116 / 93 | 288250 / 312722 / 215898 | 32.33 / 32.23 / 32.23 |
+| Mobile | 92 / 82 / 47 | 268655 / 293127 / 171699 | 32.33 / 32.23 / 32.23 |
+
+Temps de dessin synchronisé : médiane des trois médianes, puis [minimum–maximum des médianes de passage], en millisecondes. **La colonne de variation décrit ces échantillons, pas un gain statistique garanti.**
+
+| Vue | Mission 05 ms | Mission 06 initiale ms | Optimisée ms | Opt. / initiale |
+| --- | ---: | ---: | ---: | ---: |
+| Rue | 1130 [1080–1470] | 1638 [1265–4559] | 1314 [1029–2719] | -19.8 % |
+| Anglin | 658 [647–826] | 960 [794–2043] | 640 [639–706] | -33.4 % |
+| Forêt | 439 [415–504] | 585 [579–714] | 720 [438–1140] | 23.2 % |
+| Espace ouvert | 1326 [430–1488] | 490 [475–512] | 368 [345–568] | -24.9 % |
+| Aérienne | 891 [804–3365] | 983 [946–1134] | 865 [837–1429] | -12.0 % |
+| Sol | 245 [222–262] | 404 [352–470] | 231 [221–731] | -42.8 % |
+| Aurore | 624 [610–681] | 796 [784–854] | 1536 [734–1544] | 93.1 % |
+| Nuit | 651 [645–798] | 823 [797–928] | 641 [624–1004] | -22.1 % |
+| Éco | 691 [684–3217] | 1853 [726–3109] | 803 [743–1355] | -56.7 % |
+| Mobile | 403 [385–1645] | 962 [454–1183] | 469 [407–483] | -51.2 % |
+
+| Mesure CPU | Mission 05 | Mission 06 initiale | Optimisée |
+| --- | ---: | ---: | ---: |
+| Soumission GL, médiane / P95 (ms) | 3.70 / 15.40 | 3.00 / 15.40 | 2.70 / 16.00 |
+| Atmosphère, médiane / P95 (ms) | 0.00 / 0.20 | 0.10 / 0.90 | 0.00 / 0.20 |
+| LOD au repos, médiane / P95 (ms) | 0.20 / 1.60 | 0.20 / 1.50 | 0.20 / 1.20 |
+| Génération géographique entière, médiane [min–max] (ms), 9 échantillons | 1466 [934–7053] | 1759 [1421–3128] | 1517 [981–7460] |
+| Nature seule, génération Node médiane (ms), 3 répétitions | — | 869 | 364 |
+| Nature seule, pics des mises à jour froides Node (ms) | — | 1195 / 763 / 914 | 33 / 118 / 34 |
+
+Les nombres de triangles sont identiques dans les trois répétitions de chaque version. Par rapport à la Mission 06 initiale : **−21 à −48 % de triangles soumis**, **−6 à −71 % d’appels selon la station** ; aucune baisse de densité des 1 650 arbres. Les buffers architecturaux sont strictement identiques dans les 90 stations comparées. Le total des buffers inclut ici géométries uniques et matrices/couleurs d’instances ; il exclut textures, programmes du pilote, tas JavaScript et tampon RGBA du harnais. La seconde couronne partagée ajoute **4 320 octets par zone** : on économise du travail de dessin, pas la mémoire en supprimant les arbres. Les index et préparations CPU sont possédés par la zone et détruits avec elle ; leur tas JS n’est pas chiffré par ces buffers.
+
+Les médianes de dessin synchronisé s’améliorent dans huit stations sur dix face à l’initiale, mais **forêt (+23 %) et aurore (+93 %) restent défavorables dans ces trois passages**. Les plages se chevauchent fortement ; plusieurs valeurs isolées divergent d’un facteur supérieur à deux. Ce n’est pas une restauration uniforme de la fluidité Qualité et aucun gain de FPS matériel n’est établi. Les médianes de rue, forêt, aurore, Éco et mobile restent aussi au-dessus de celles de Mission 05 dans cette série. Les compteurs structurels et les gains CPU sont les conclusions les plus solides.
+
+La génération Node de la nature seule baisse d’environ **58 % en médiane**. Les plus grands pics observés par répétition passent de 763–1 195 ms à 33–118 ms. Le coût LOD au repos reste petit et sans reconstruction ; les P95 du callback d’atmosphère et du LOD chaud diminuent. Les valeurs nulles des chronomètres navigateur signifient « sous la résolution de mesure », pas « calcul gratuit ». Ces callbacks et la soumission GL sont des composantes CPU par image, pas une mesure exhaustive du CPU de l’application : contrôles, DOM et audio ne sont pas inclus dans ce tableau. La génération géographique entière garde de gros écarts, y compris sur Mission 05 inchangée.
+
+Les retraits appariés confirment que les textures de sol et les arbres peuvent peser sur le rendu logiciel ; leurs effets ne sont pas additifs et certains retraits deviennent plus lents, notamment en aérienne. Vent du feuillage et eau n’ont pas un coût isolé stable sur toutes les stations. Les formes proches et les ondulations sont donc conservées ; les calculs prouvés inutiles au loin ont été évités. Un contrôle ciblé de l’ordre du ciel ne donne pas davantage de résultat stable : à l’aurore, le retour à l’ordre historique mesure 714, 731 puis 3 169 ms, contre 897, 744 et 686 ms pour le nouvel ordre dans les mêmes paires. Aucun changement supplémentaire n’est retenu sur la seule base d’un échantillon favorable.
+
+Données complètes : [résumé des trois versions](mission-06-1/summary.json), [CPU de nature isolé](mission-06-1/nature-cpu.json), [retraits appariés](mission-06-1/diagnostic-profile.json), [contrôle ciblé du ciel](mission-06-1/sky-check-profile.json). Les neuf fichiers `*-r1/r2/r3-profile.json` conservent les mesures brutes et les compteurs de limitation CPU.
+
+
+### Comparaison artistique
+
+Les dix stations ont été revues. Les façades et accès restent lisibles ; les couronnes et détails proches ne montrent pas d’appauvrissement évident dans ces échantillons. La simplification des facettes lointaines est intentionnelle. L’eau, le sol, l’aurore, la nuit, Éco et mobile sont conservés. Ce constat ne garantit pas l’absence de popping ou de scintillement sur tout le territoire.
+
+[Planche 1 — rue, rivière, forêt, espace ouvert et aérienne](mission-06-1/planche-1.jpg) · [Planche 2 — sol, aurore, nuit, Éco et mobile](mission-06-1/planche-2.jpg) · [Galerie HTML avec accès aux PNG](mission-06-1/comparaison.html) (ouvrir localement ; GitHub affiche le code HTML).
+
+![Mission 05 / Mission 06 initiale / optimisée — paysages](mission-06-1/planche-1.jpg)
+![Mission 05 / Mission 06 initiale / optimisée — détails et profils](mission-06-1/planche-2.jpg)
+
+Les deux premières colonnes reprennent les références versionnées de Mission 06. La Mission 05 ne possédait pas de véritable nuit : sa colonne aurore/nuit montre son cycle historique. Ces planches artistiques ne doivent pas être confondues avec le banc de mesure à éclairage contrôlé.
+
+### Validation et limites restantes
+
+**61 tests unitaires réussis**, dont enveloppes de culling, LOD proche/lointain hystérétique, préparation annulable, stabilité des buffers et destruction des ressources. `npm run build` réussi : **591,52 ko / 161,10 ko gzip** ; seul avertissement de taille Vite existant. `npm run test:browser`, `browser-camera.mjs`, `browser-safety.mjs` et `browser-living.mjs` réussis : déplacement et repos, trois vues, garde au sol, zoom/pincement, recentrage, rétraction devant mur, cinq obstacles ajoutés après départ, faune existante, audio avec bascules rapides et mobile. Aucun module de navigation, collision ou contrôleur de marche modifié.
+
+Le smoke test attend maintenant plus de 5 cm de déplacement effectivement rendu, avec délai maximal de 60 s, au lieu de relâcher la touche après 1,4 s sous SwiftShader. Cette correction évite un test sans image de mouvement ; elle ne touche ni la vitesse ni le chronomètre du jeu. Les captures attendent aussi la fin des préparations de cellules avant de vérifier la convergence.
+
+**Nouvelle promenade complète : 450,000 m en 1 168,6695 s, soit 19 min 28,67 s**, 1 480 images mesurées ; chronomètre externe 1 169,744 s, relevé moins fréquent 449,759 m. Arrêt « Fin du parcours OSM validé ». Architecture identique du départ à l’arrivée : 921 bâtiments, 10 723 ouvertures, 69 cellules, `builds: 1`. Résolution 640 × 480, Éco automatique, puis 390 × 844 à l’arrivée ; un seul navigateur actif, sans affinité forcée pour cette marche finale. Vitesse et delta plafonné existants inchangés. Moyenne logicielle d’environ **1,27 image/s**, sans interprétation matérielle.
+
+Une première tentative partielle avec affinité forcée a été arrêtée pour contrôler le ciel ; elle ne compte pas comme promenade complète. La durée finale n’est pas déclarée comparable aux 18 min 56 s de Mission 06 : heure réelle de scène, charge du conteneur et historique de cache ne sont pas identiques. Le protocole strictement apparié est celui des rendus figés, pas celui de ces deux longues marches.
+
+Preuves : [validation structurée](mission-06-1/validation.json), [mesure de marche](mission-06-1/promenade.json), [rue](mission-06-1/promenade-rue.png), [ouverture du paysage](mission-06-1/promenade-paysage.png), [arrivée mobile](mission-06-1/promenade-mobile.png). Plusieurs captures de parcours ont été inspectées ; elles ne constituent pas une exploration exhaustive.
+
+
+Reproduction : servir trois checkouts aux ports 5174 (Mission 05), 5175 (initiale) et 5173 (optimisée), avec les dépendances verrouillées et des caches Vite distincts. `bash scripts/nature-benchmark.sh` reproduit les trois rotations sous Linux avec `taskset` ; l’affinité doit correspondre aux CPU autorisés du conteneur. `node scripts/nature-equivalence.mjs`, puis `taskset -c 0,1 node --expose-gc scripts/nature-cpu-profile.mjs` isolent le placement et les coûts CPU de nature. Les scripts exigent les références Git complètes. `CAPTURE_DIR=docs/mission-06-1 node scripts/browser-nature.mjs optimized`, puis `python3 scripts/nature-comparison.py` régénèrent les vues et planches ; Pillow est nécessaire uniquement pour la preuve graphique.
+
+La construction architecturale différée de la Mission 05 n’a pas été modifiée : ses pics de cellule dense restent une limite existante. Les tranches de nature limitent le nombre de candidats traités, pas le temps total de chaque image ni celui de la création finale d’un buffer. Le tas JavaScript des index, les programmes internes du pilote et la mémoire GPU totale ne sont pas déduits des seuls buffers. Matériel GPU, Android physique et écoute humaine prolongée restent à valider. Les limites fonctionnelles de la météo, de la botanique et de la faune de la Mission 06 demeurent ; aucune fonctionnalité supplémentaire n’est introduite par cette passe.
+
+---
+
+
 Branche `mission/06-nature-extraordinaire`, base `60a8f104b92f317d84c4c0ff989d31ec6ad16ae2` (`origin/main`). Fusion de la Mission 05, PR #9, vérifiée par Git et par GitHub (`merged: true`) avant les changements. Livraison en une PR en brouillon, sans fusion ni déploiement. Aucun workflow, aucune dépendance ni donnée géographique source modifiés.
 
 ## Audit et direction artistique

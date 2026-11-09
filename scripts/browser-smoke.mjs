@@ -21,7 +21,7 @@ try{
   await page.keyboard.press('v');await page.waitForFunction(()=>window.endlessDiagnostics.mode==='first');
   assert.equal((await state()).avatarVisible,false);
   await page.waitForTimeout(1300);
-  const before=await state();await page.keyboard.down('d');await page.waitForTimeout(1400);await page.keyboard.up('d');
+  const before=await state();await page.keyboard.down('d');await page.waitForFunction(p=>Math.hypot(window.endlessDiagnostics.position[0]-p[0],window.endlessDiagnostics.position[2]-p[2])>.05,before.position,{timeout:60000});await page.keyboard.up('d');
   const after=await state();assert.notDeepEqual(before.position,after.position,'player must move in a clear starting street');
   assert.ok(after.camera[1]>=after.position[1]+1.6,'first person stays above ground');
   await page.waitForFunction(()=>{const p=window.endlessDiagnostics.position.join(',');window.restFrames=p===window.lastRestPosition?(window.restFrames??0)+1:0;window.lastRestPosition=p;return window.restFrames>=8;});

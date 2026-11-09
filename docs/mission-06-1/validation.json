@@ -1,0 +1,77 @@
+{
+  "product": "71c6300",
+  "references": {
+    "m05": "60a8f10",
+    "initial": "cf85270"
+  },
+  "unitTests": 61,
+  "build": {
+    "passed": true,
+    "bundleKB": 591.52,
+    "gzipKB": 161.1
+  },
+  "browser": {
+    "smoke": true,
+    "camera": true,
+    "dynamicObstacleCases": 5,
+    "livingAudio": true,
+    "mobile": true
+  },
+  "geometry": {
+    "placementsAndNearValuesIdentical": true,
+    "frustumBoundsTest": true,
+    "lodHysteresisTest": true,
+    "incrementalRecipesTest": true,
+    "cancellationTest": true,
+    "disposalTest": true,
+    "repeatPasses": 3,
+    "stationsPerPass": 30
+  },
+  "promenade": {
+    "architecture": [
+      {
+        "version": "poitou-v1",
+        "buildings": 921,
+        "inferredHeights": 920,
+        "pitchedRoofs": 921,
+        "openings": 10723,
+        "cells": 69,
+        "meshes": 258,
+        "triangles": 190095,
+        "generationMs": 944.2999999988824,
+        "builds": 1
+      }
+    ],
+    "frameMeasuredMetres": 450.0000000000027,
+    "frameMeasuredSeconds": 1168.6695000000018,
+    "frames": 1480,
+    "wallSeconds": 1169.744,
+    "measuredMetres": 449.75936290950636,
+    "plannedMetres": 450,
+    "samples": 958,
+    "message": "Fin du parcours OSM validé"
+  },
+  "promenadeConditions": {
+    "viewport": [
+      640,
+      480
+    ],
+    "finalMobile": [
+      390,
+      844
+    ],
+    "profile": "automatic Eco",
+    "forcedAffinity": false,
+    "cpuQuota": 2,
+    "browserConcurrent": false,
+    "clock": "real local date/hour; physics delta cap unchanged",
+    "speed": "unchanged"
+  },
+  "limitations": [
+    "No exposed hardware GPU",
+    "Software timings variable; forest and dawn median regressions remain",
+    "No matched before/after full promenade durations",
+    "Final detail buffer commits can still exceed a frame budget",
+    "No physical Android or prolonged listening test"
+  ]
+}
