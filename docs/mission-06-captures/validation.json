@@ -1,0 +1,61 @@
+{
+  "base": "60a8f104b92f317d84c4c0ff989d31ec6ad16ae2",
+  "unit": {
+    "command": "npm test",
+    "passed": 58
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "bundleKB": 589.32,
+    "gzipKB": 160.41
+  },
+  "browser": {
+    "finalSmoke": true,
+    "matchedViews": 10,
+    "shaderErrors": [],
+    "cameraToleranceMetres": 0.025,
+    "realTime": true,
+    "explicitDemo": true,
+    "gradualWeather": true
+  },
+  "functionalBeforeLastMaterialOptimization": {
+    "camera": true,
+    "dynamicObstacles": 5,
+    "audioLiving": true,
+    "contexts": 1,
+    "ambientSources": 2,
+    "resumes": 12,
+    "suspends": 12
+  },
+  "promenade": {
+    "architecture": [
+      {
+        "version": "poitou-v1",
+        "buildings": 921,
+        "inferredHeights": 920,
+        "pitchedRoofs": 921,
+        "openings": 10723,
+        "cells": 69,
+        "meshes": 258,
+        "triangles": 190095,
+        "generationMs": 673.2999999998137,
+        "builds": 1
+      }
+    ],
+    "frameMeasuredMetres": 450.0000000000023,
+    "frameMeasuredSeconds": 1136.2691000000007,
+    "frames": 1462,
+    "wallSeconds": 1137.549,
+    "measuredMetres": 449.94601190025634,
+    "plannedMetres": 450,
+    "samples": 1008,
+    "message": "Fin du parcours OSM validé"
+  },
+  "limitations": [
+    "Software renderer only",
+    "No physical Android or hardware GPU",
+    "Quality software regression documented",
+    "No twenty-minute human listening test"
+  ]
+}
