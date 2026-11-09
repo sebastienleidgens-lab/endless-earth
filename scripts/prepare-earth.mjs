@@ -5,7 +5,7 @@ import {deflateSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
 import {sampleGrid,cellIndices,sourceTriangles,clipConvex} from '../src/world/terrain-grid.mjs';
 import {COVER,coverClass,coverAt} from '../src/world/landcover.mjs';
-export const TILE=40,ERROR=.08;
+export const TILE=40,ERROR=.25;
 export function farIndices(g,ox,oz,size,tolerance=ERROR){
  const out=[],stride=size+1,id=(x,z)=>(z-oz)*stride+x-ox;
  const point=(x,z)=>({x:g.origin_x_m+x*g.step_m,z:g.origin_z_m+z*g.step_m});

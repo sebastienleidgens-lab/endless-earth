@@ -1,0 +1,19 @@
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const results={};
+try{
+ for(const failure of ['none','missing-manifest','bad-lod','stale-osm']){
+  const context=await browser.newContext({viewport:{width:640,height:480}}),page=await context.newPage();page.setDefaultTimeout(180000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+  await page.route('**/src/main.ts*',async route=>{const response=await route.fetch();await route.fulfill({response,body:(await response.text())+`
+   window.earthSurvey=()=>{let roads=0,maxRoadError=0,bottoms=0,maxFoundationError=0;scene.traverse(o=>{if(!o.isMesh)return;const a=o.geometry.attributes.position;if([0xbda68b,0x8d908b,0xaaa493].includes(o.material.color?.getHex()))for(let i=0;i<a.count;i++){const h=activeTerrain.relativeHeight(a.getX(i),a.getZ(i));if(h===null)continue;maxRoadError=Math.max(maxRoadError,Math.abs(a.getY(i)-h-.045));roads++}if(o.name==='OSM ruins')for(let i=0;i<a.count;i++){const h=activeTerrain.relativeHeight(a.getX(i),a.getZ(i)),d=a.getY(i)-h;if(d<0){bottoms++;maxFoundationError=Math.max(maxFoundationError,Math.abs(d+.12))}}});return {roads,maxRoadError,bottoms,maxFoundationError,terrain:activeTerrain.metrics,hasCover:!!activeTerrain.landcover}};`})});
+  if(failure==='missing-manifest')await page.route('**/data/angles-earth.json',r=>r.fulfill({status:404,body:'missing'}));
+  if(failure==='bad-lod')await page.route('**/data/angles-terrain-lod.bin',r=>r.fulfill({status:200,body:Buffer.from([0,0,1,0])}));
+  if(failure==='stale-osm')await page.route('**/data/angles-earth.json',async r=>{const response=await r.fetch(),m=await response.json();m.osmSha256='wrong';await r.fulfill({response,json:m})});
+  await page.goto('http://localhost:5173/endless-earth/?perf=1&date=2026-06-21T12:00:00Z');await page.waitForFunction(()=>window.endlessDiagnostics?.ready&&!document.querySelector('#auto-walk').disabled);
+  const survey=await page.evaluate(()=>window.earthSurvey());assert.ok(survey.roads>1000);assert.ok(survey.maxRoadError<.0002,JSON.stringify(survey));assert.ok(survey.bottoms>100);assert.ok(survey.maxFoundationError<.0002);
+  assert.equal(survey.terrain.tiles,failure==='none'?25:1);assert.equal(survey.hasCover,failure==='none');assert.deepEqual(errors,[]);results[failure]={...survey,errors};console.log('PASS Earth data',failure,survey.roads);await context.close();
+ }
+ await writeFile('docs/mission-07-captures/data-validation.json',JSON.stringify(results,null,2));
+}finally{await browser.close()}

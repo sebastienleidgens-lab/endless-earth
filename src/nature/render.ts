@@ -3,25 +3,28 @@ import * as THREE from 'three';
 // @ts-ignore Shared ecological rules exercised by Node.
 import {createEcology,detailRecipe,noise,POITOU} from './ecology.mjs';
 import {animateFoliage} from '../living/atmosphere';
-type Tree={x:number;y:number;z:number;kind:string;scale:number};
+type Tree={x:number;y:number;z:number;kind:string;leaf?:string;scale:number};
 const dummy=new THREE.Object3D();
 export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z:number)=>number|null){
  const ecology=createEcology(features,height),cells=new Map<string,Tree[]>();
- for(const p of ecology.trees){const key=`${Math.floor(p.x/180)}:${Math.floor(p.z/180)}`;if(!cells.has(key))cells.set(key,[]);cells.get(key)!.push(p)}
+ for(const p of ecology.trees){const key=`${Math.floor(p.x/180)}:${Math.floor(p.z/180)}:${p.leaf==='needle'&&p.kind!=='riparian'?'needle':'broad'}`;if(!cells.has(key))cells.set(key,[]);cells.get(key)!.push(p)}
  // Three overlapping, asymmetric lobes in ONE shared crown geometry.
  function makeCrown(detail:number){const positions:number[]=[],normals:number[]=[];
  for(const [x,y,z,sx,sy,sz] of [[0,0,0,2.3,2.9,2.2],[-1.3,-.5,.2,1.9,2.0,1.7],[1.1,.4,-.5,1.7,2.2,1.8]]){const g=new THREE.IcosahedronGeometry(1,x===0?detail:0);const a=g.attributes.position,n=g.attributes.normal;for(let i=0;i<a.count;i++){const v=new THREE.Vector3().fromBufferAttribute(a,i).normalize();n.setXYZ(i,v.x,v.y,v.z)}g.scale(sx,sy,sz);g.translate(x,y,z);positions.push(...g.attributes.position.array);normals.push(...g.attributes.normal.array);g.dispose()}
  const crown=new THREE.BufferGeometry();crown.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));crown.setAttribute('normal',new THREE.Float32BufferAttribute(normals,3));return crown;}
  const crown=makeCrown(1),distantCrown=makeCrown(0);crown.name='nature-crown-near';distantCrown.name='nature-crown-far';
+ // OSM mixed/needle-leaved stands permit a conifer silhouette, not a species claim.
+ const conifer=(sides:number)=>{const parts:THREE.BufferGeometry[]=[];for(const [radius,height,y] of [[2.1,3.4,-.6],[1.65,3.2,.65],[1.1,2.6,1.75]]){const part=new THREE.ConeGeometry(radius,height,sides,1,true);part.translate(0,y,0);parts.push(part)}const g=mergeGeometries(parts)!;parts.forEach(p=>p.dispose());return g};
+ const needleCrown=conifer(7),farNeedleCrown=conifer(4);
  const stem=new THREE.CylinderGeometry(.19,.36,4.5,5),branches=[stem];for(const side of [-1,1]){const branch=new THREE.CylinderGeometry(.07,.16,2.6,3,1,true);branch.rotateZ(side*.65);branch.translate(-side*.7,1.1,0);branches.push(branch)}const trunk=mergeGeometries(branches)!;branches.forEach(g=>g.dispose());const bark=new THREE.MeshLambertMaterial({color:0x716653}),leaves=new THREE.MeshLambertMaterial({color:0xffffff});animateFoliage(leaves,true);const distantLeaves=new THREE.MeshLambertMaterial({color:0xffffff});animateFoliage(distantLeaves,true,false,true);
- scene.userData.natureResources={geometries:[trunk,crown,distantCrown],materials:[bark,leaves,distantLeaves]};
+ scene.userData.natureResources={geometries:[trunk,crown,distantCrown,needleCrown,farNeedleCrown],materials:[bark,leaves,distantLeaves]};
  // Geometry/materials belong to this geographic zone, shared only within it.
  const palette=[0x526c45,0x66794b,0x74865a,0x546f58,0x7d8552];
- for(const [key,points] of cells){const [cx,cz]=key.split(':').map(Number),group=new THREE.Group();group.userData.natureTreeCell={x:(cx+.5)*180,z:(cz+.5)*180,nearGeometry:crown,farGeometry:distantCrown,nearMaterial:leaves,farMaterial:distantLeaves,lod:'near'};
-  const trunks=new THREE.InstancedMesh(trunk,bark,points.length),crowns=new THREE.InstancedMesh(crown,leaves,points.length);
+ for(const [key,points] of cells){const [cx,cz]=key.split(':').map(Number),needle=key.endsWith(':needle'),nearGeometry=needle?needleCrown:crown,farGeometry=needle?farNeedleCrown:distantCrown,group=new THREE.Group();group.userData.natureTreeCell={x:(cx+.5)*180,z:(cz+.5)*180,nearGeometry,farGeometry,nearMaterial:leaves,farMaterial:distantLeaves,lod:'near'};
+  const trunks=new THREE.InstancedMesh(trunk,bark,points.length),crowns=new THREE.InstancedMesh(nearGeometry,leaves,points.length);
   points.forEach((p,i)=>{const f=noise(p.x,p.z,2),wet=p.kind==='riparian',s=p.scale,w=wet?.7:.85+f*.35,h=wet?1.35:1;
    dummy.rotation.set(0,f*6.28,0);dummy.position.set(p.x,p.y+2.25*s*h,p.z);dummy.scale.set(s,s*h,s);dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
-   dummy.position.y=p.y+5.6*s*h;dummy.scale.set(s*w,s*h,s*(.85+noise(p.x,p.z,4)*.3));dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);crowns.setColorAt(i,new THREE.Color(palette[Math.floor(f*palette.length)]));
+   dummy.position.y=p.y+5.6*s*h;dummy.scale.set(s*w,s*h,s*(.85+noise(p.x,p.z,4)*.3));dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);crowns.setColorAt(i,new THREE.Color(needle?0x586d56:palette[Math.floor(f*palette.length)]));
   });trunks.computeBoundingSphere();crowns.computeBoundingSphere();trunks.boundingSphere!.radius+=.5;crowns.boundingSphere!.radius+=.5;trunks.frustumCulled=crowns.frustumCulled=true;group.add(trunks,crowns);scene.add(group);
  }
  const detailCells=new Set<string>();
@@ -73,4 +76,4 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
  hidden.sort((a,b)=>a.d-b.d);for(const {o,c} of hidden.slice(4)){o.remove(c.detail);c.detail.geometry.dispose();c.detail.material.dispose();c.detail=null}
 }
 export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,cells=0,resident=0,builds=0,pending=0,work=0,needed=0;scene.traverse(o=>{const t=o.userData.natureTreeCell;if(t){treeCells++;if(t.lod==='far')farCells++}const c=o.userData.natureCell;if(c){cells++;if(c.detail)resident++;else if(c.wanted)needed++;builds+=c.builds;if(c.pending){pending++;work+=c.pending.cursor}}});return {treeCells,farCells,cells,resident,builds,pending,work,needed}}
-export function disposeNatureZone(group:THREE.Object3D){const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{const resources=o.userData.natureResources;if(resources){for(const g of resources.geometries)geometries.add(g);for(const m of resources.materials)materials.add(m)}if(o instanceof THREE.Mesh){geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.clear();group.userData={};}
+export function disposeNatureZone(group:THREE.Object3D){const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{const resources=o.userData.natureResources??o.userData.terrainResources;if(resources){for(const g of resources.geometries)geometries.add(g);for(const m of resources.materials)materials.add(m)}if(o instanceof THREE.Mesh){geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.traverse(o=>{const t=o.userData.terrainTexture;if(t){t.dispose();t.image?.close?.()}});group.clear();group.userData={};}

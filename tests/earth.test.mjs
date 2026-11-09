@@ -8,6 +8,8 @@ import * as THREE from 'three';
 import {sampleGrid,sourceTriangles,drapePolygon} from '../src/world/terrain-grid.mjs';
 import {coverAt,coverClass} from '../src/world/landcover.mjs';
 import {prepare} from '../scripts/prepare-earth.mjs';
+import {ruinHeight} from '../src/world/ruins.mjs';
+import {createEcology} from '../src/nature/ecology.mjs';
 await mkdir('work',{recursive:true});
 for(const [source,out,replacements] of [
  ['src/nature/surfaces.ts','earth-surfaces',[]],
@@ -70,6 +72,17 @@ test('explicit land use respects clearings, water, agricultural semantics and un
  const box=(a,b)=>[{x:a,z:a},{x:b,z:a},{x:b,z:b},{x:a,z:b}];
  const features=[{tags:{landuse:'forest'},rings:[box(0,100),box(20,40)]},{tags:{landuse:'farmland'},rings:[box(200,250)]}];
  assert.equal(coverAt(5,5,features),'wood');assert.equal(coverAt(30,30,features),null);assert.equal(coverAt(220,220,features),'farmland');assert.equal(coverAt(150,150,features),null);assert.equal(coverClass({natural:'water'}),null);
+});
+test('inferred ruin heights remain continuous, bounded and deterministic',()=>{
+ for(let x=-200;x<200;x+=.5){const h=ruinHeight(x,150,true);assert.equal(h,ruinHeight(x,150,true));assert.ok(h>=4.2&&h<=9.4);assert.ok(Math.abs(h-ruinHeight(x+.5,150,true))<.1)}
+});
+test('forest leaf shapes use explicit OSM leaf_type while roots retain source terrain contact',()=>{
+ const rings=[[{x:-300,z:-300},{x:300,z:-300},{x:300,z:300},{x:-300,z:300}]];
+ const trees=tags=>createEcology([{tags:{landuse:'forest',...tags},rings}],(x,z)=>sampleGrid(g,x,z)).trees;
+ const broad=trees({leaf_type:'broadleaved'}),mixed=trees({leaf_type:'mixed'}),unknown=trees({});
+ assert.ok(broad.every(p=>p.leaf==='broad'));assert.ok(unknown.every(p=>p.leaf==='broad'));assert.ok(mixed.some(p=>p.leaf==='needle'));
+ const placement=points=>points.map(({leaf,...p})=>p);assert.deepEqual(placement(broad),placement(mixed));
+ for(const p of mixed)assert.equal(p.y,sampleGrid(g,p.x,p.z));
 });
 test('offline assets are byte deterministic and retain source provenance',async()=>{
  const dir=await mkdtemp(join(tmpdir(),'endless-earth-'));try{

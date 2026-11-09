@@ -39,8 +39,8 @@ export class Terrain {
     const baseline=this.sample(0,0)??g.elevations_m[0];
     // Reuse colors and the blend function across the entire 40,401-vertex DEM.
     // The former implementation allocated four THREE.Color objects per vertex.
-    const grass=new THREE.Color(0x86a47a);
-    const dryGrass=new THREE.Color(0x9eaa80);
+    const grass=new THREE.Color(0x8d9b79);
+    const dryGrass=new THREE.Color(0xa5a58a);
     const limestone=new THREE.Color(0xb8b09a);
     const exposedRock=new THREE.Color(0xaaa394);
     const color=new THREE.Color();
@@ -97,6 +97,7 @@ export class Terrain {
       material.customProgramCacheKey=()=> 'earth-cover-v1';
     }
     const group=new THREE.Group();group.name='IGN source terrain';group.userData.terrainTexture=this.landcover;
+    const owned:THREE.BufferGeometry[]=[];group.userData.terrainResources={geometries:owned,materials:[material]};
     if(this.prepared){
       const {manifest,indices:far}=this.prepared;
       for(const tile of manifest.tiles){
@@ -112,13 +113,16 @@ export class Terrain {
         for(let z=0;z<size;z++)for(let x=0;x<size;x++)fine.push(...cellIndices(g,tile.x+x,tile.z+z,stride,z*stride+x));
         const fineIndex=new THREE.Uint16BufferAttribute(fine,1),farIndex=new THREE.BufferAttribute(far.slice(tile.offset,tile.offset+tile.count),1);
         geom.setIndex(fineIndex);geom.computeBoundingSphere();
+        // Two owned geometries ensure both GPU index buffers are freed on unload.
+        const farGeometry=new THREE.BufferGeometry();for(const [name,attribute] of Object.entries(geom.attributes))farGeometry.setAttribute(name,attribute);
+        farGeometry.setIndex(farIndex);farGeometry.boundingSphere=geom.boundingSphere;owned.push(geom,farGeometry);
         const mesh=new THREE.Mesh(geom,material);mesh.receiveShadow=true;
-        mesh.userData.earthTile={fineIndex,farIndex,far:false,x:g.origin_x_m+tile.x*g.step_m,z:g.origin_z_m+tile.z*g.step_m,size:size*g.step_m};group.add(mesh);
+        mesh.userData.earthTile={fineIndex,farIndex,fineGeometry:geom,farGeometry,far:false,x:g.origin_x_m+tile.x*g.step_m,z:g.origin_z_m+tile.z*g.step_m,size:size*g.step_m};group.add(mesh);
       }
       geometry.dispose();
       this.metrics.tiles=manifest.tiles.length;this.metrics.fineTriangles=manifest.fineTriangles;this.metrics.farTriangles=manifest.farTriangles;this.metrics.maxFarErrorM=manifest.maxFarErrorM;
     }else{
-      const mesh=new THREE.Mesh(geometry,material);mesh.receiveShadow=true;group.add(mesh);
+      const mesh=new THREE.Mesh(geometry,material);mesh.receiveShadow=true;group.add(mesh);owned.push(geometry);
       this.metrics.tiles=1;this.metrics.fineTriangles=indices.length/3;
     }
     this.metrics.preparationMs=performance.now()-started;
@@ -162,7 +166,7 @@ export function updateTerrainLOD(scene:THREE.Object3D,camera:{x:number;z:number}
     const distance=(p:{x:number;z:number})=>Math.hypot(Math.max(t.x-p.x,0,p.x-t.x-t.size),Math.max(t.z-p.z,0,p.z-t.z-t.size));
     const d=Math.min(distance(camera),distance(player));
     t.far=d>(t.far?radius:radius+60);
-    (o as THREE.Mesh).geometry.setIndex(t.far?t.farIndex:t.fineIndex);
+    (o as THREE.Mesh).geometry=t.far?t.farGeometry:t.fineGeometry;
   });
   scene.traverse(o=>{if(o.userData.terrainMetrics){let count=0;o.traverse(c=>{if(c.userData.earthTile?.far)count++});o.userData.terrainMetrics.farTiles=count}});
 }
@@ -174,8 +178,9 @@ export async function fetchTerrain():Promise<Terrain|null>{
   try{
     const r=await fetch(base+'angles-earth.json');if(!r.ok)return terrain;const m=await r.json();
     if(m.schema!=='endless-earth-prepared-v1'||m.terrainSha256!==await sha256(new TextEncoder().encode(text)))throw new Error('Stale prepared terrain');
-    const [lod,image]=await Promise.all([fetch(base+'angles-terrain-lod.bin'),fetch(base+'angles-landcover.png')]);
-    if(!lod.ok||!image.ok)throw new Error('Prepared data missing');
+    const [lod,image,osm]=await Promise.all([fetch(base+'angles-terrain-lod.bin'),fetch(base+'angles-landcover.png'),fetch(base+'angles-osm.geojson')]);
+    if(!lod.ok||!image.ok||!osm.ok)throw new Error('Prepared data missing');
+    if(await sha256(new TextEncoder().encode(await osm.text()))!==m.osmSha256)throw new Error('Stale landcover source');
     const bytes=await lod.arrayBuffer(),png=await image.arrayBuffer();
     if(await sha256(bytes)!==m.lodSha256||await sha256(png)!==m.coverSha256)throw new Error('Prepared data hash mismatch');
     const indices=new Uint16Array(bytes);

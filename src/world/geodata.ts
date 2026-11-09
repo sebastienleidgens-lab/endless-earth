@@ -1,5 +1,7 @@
 // @ts-ignore Exact source-triangle draping shared with offline tests.
 import {drapePolygon} from './terrain-grid.mjs';
+// @ts-ignore Explicitly illustrative ruin profile.
+import {ruinHeight} from './ruins.mjs';
 import {addNature,updateNatureLOD} from '../nature/render';
 import {groundDetail,waterMaterial} from '../nature/surfaces';
 import * as THREE from 'three';
@@ -88,6 +90,7 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
 // Historic OSM outlines are survey data; wall heights are deliberately
 // illustrative until a verified height or architectural model is available.
 const HISTORIC_WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xb8ad96});
+HISTORIC_WALL_MATERIAL.userData.natureShared=true;
 function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Terrain,castle=false):void{
   // Only OSM-surveyed linework determines the wall plan. The fragmented
   // elevations below are illustrative and must not imply measured ruin heights.
@@ -102,21 +105,18 @@ function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Te
       const midT=(t0+t1)/2;
       const x=a.x+dx*midT,z=a.z+dz*midT;
       const ground=terrain?.relativeHeight(x,z)??(a.y+b.y)/2;
-      // Fixed hash: no animated/random changes between page loads.
-      const seed=Math.abs(Math.sin(x*12.9898+z*78.233)*43758.5453);
-      const fraction=seed-Math.floor(seed);
-      // Castle silhouettes rise above their curtain walls, as in the
-      // supplied Angles-sur-l'Anglin reference photos. Heights remain
-      // illustrative; only the OSM footprint is geographically anchored.
-      // A few tall fragments are deliberately separated by lower ruins.
-      const height=castle
-        ? (fraction>.88?11+fraction*6:fraction<.18?2.1+fraction*5:4.5+fraction*4)
-        : 2.3+fraction*2.8;
+      const height=ruinHeight(x,z,castle);
       const segmentLength=length/pieces;
       const geometry=new THREE.BoxGeometry(segmentLength+.04,height,1.25);
+      geometry.rotateY(-Math.atan2(dz,dx));geometry.translate(x,0,z);
+      const positions=geometry.getAttribute('position');
+      for(let k=0;k<positions.count;k++){
+        const px=positions.getX(k),pz=positions.getZ(k);
+        const base=terrain?.relativeHeight(px,pz)??ground;
+        positions.setY(k,base-.12+(positions.getY(k)>0?height:0));
+      }
+      geometry.computeVertexNormals();
       const mesh=new THREE.Mesh(geometry,HISTORIC_WALL_MATERIAL);
-      mesh.position.set(x,ground+height/2-.12,z);
-      mesh.rotation.y=-Math.atan2(dz,dx);
       mesh.receiveShadow=true;scene.add(mesh);
     }
   }
@@ -137,7 +137,7 @@ export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera,eco
 // Merge the many separate road/river meshes into one mesh per material.
 // This cuts draw calls without altering the OSM linework or its DEM heights.
 function batchLinearFeatures(scene:THREE.Object3D):void{
-  for(const material of [ROAD_MATERIAL,PAVED_MATERIAL,SETT_MATERIAL,RIVER_MATERIAL]){
+  for(const material of [ROAD_MATERIAL,PAVED_MATERIAL,SETT_MATERIAL,RIVER_MATERIAL,HISTORIC_WALL_MATERIAL]){
     const meshes=scene.children.filter((child):child is THREE.Mesh=>
       child instanceof THREE.Mesh && child.material===material);
     if(meshes.length<2)continue;
@@ -145,6 +145,7 @@ function batchLinearFeatures(scene:THREE.Object3D):void{
     if(!merged)continue;
     for(const mesh of meshes){scene.remove(mesh);mesh.geometry.dispose();}
     const combined=new THREE.Mesh(merged,material);
+    combined.name=material===HISTORIC_WALL_MATERIAL?'OSM ruins':'OSM linear features';
     combined.receiveShadow=true;
     scene.add(combined);
   }

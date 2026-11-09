@@ -20,6 +20,9 @@ import { movement, nextView, cameraFraction, smoothMovement, transitionWeight } 
 import './style.css';
 const root=document.querySelector<HTMLDivElement>('#app')!;
 root.innerHTML=`<div class="hud"><strong>ENDLESS EARTH</strong><span>France Alpha · ${ANGLES.name}</span><small>Décor illustratif — géographie réelle à importer</small></div><div class="help">Déplacement : ZQSD / WASD / flèches · Glisser : orienter la caméra · Molette : zoom · Shift : courir · V : changer de vue</div>`;
+const credits=document.createElement('div');credits.className='geo-credit';
+credits.innerHTML='<a href="https://www.data.gouv.fr/datasets/referentiel-a-grande-echelle-rge" target="_blank" rel="noopener">IGN · RGE ALTI · extraction 08/11/2026</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a>';
+root.append(credits);
 
 const scene=new THREE.Scene(); scene.background=new THREE.Color(0xdce8df); scene.fog=new THREE.Fog(0xdce8df,300,1000);
 const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,1500);
