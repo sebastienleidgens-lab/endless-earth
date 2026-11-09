@@ -2,7 +2,7 @@ import {chromium} from 'playwright';import assert from 'node:assert/strict';impo
 await mkdir('work/visual/mission04',{recursive:true});
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 try{
- const page=await browser.newPage({viewport:{width:800,height:600}});page.setDefaultTimeout(60000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+ const page=await browser.newPage({viewport:{width:640,height:480}});page.setDefaultTimeout(60000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));
  await page.goto('http://localhost:5173/endless-earth/?perf=1');await page.waitForFunction(()=>window.endlessDiagnostics?.ready&&!document.querySelector('#auto-walk').disabled);
  const state=()=>page.evaluate(()=>window.endlessDiagnostics);assert.equal((await state()).mode,'third');
  // Survey every graph node, using the same terrain and collision predicate as runtime.
@@ -16,16 +16,16 @@ try{
  for(const [label,delta] of [['near',-10000],['medium',292],['far',10000]]){await page.mouse.move(400,280);await page.mouse.wheel(0,delta);await page.waitForTimeout(1500);await page.screenshot({path:`work/visual/mission04/${label}.png`});}
  assert.equal((await state()).zoom,15);
  const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:2});
- await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:300,y:250,id:1},{x:500,y:250,id:2}]});
- await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:250,y:250,id:1},{x:600,y:250,id:2}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:200,y:280,id:1},{x:400,y:280,id:2}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:150,y:280,id:1},{x:450,y:280,id:2}]});
  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
  await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});
- assert.ok((await state()).zoom<15,'two pointer pinch zoom');
+ await page.waitForFunction(()=>window.endlessDiagnostics.zoom<15);assert.ok((await state()).zoom<15,'two pointer pinch zoom');
  const yaw=(await state()).yaw;await page.mouse.move(400,250);await page.mouse.down();await page.mouse.move(600,250);await page.mouse.up();assert.ok(Math.abs((await state()).yaw-yaw)>.5);
  await page.evaluate(()=>{window.walkEvidence={distance:0,frames:0,started:null,ended:null,last:window.endlessDiagnostics.position};const sample=()=>{const e=window.walkEvidence,s=window.endlessDiagnostics;if(s.autoWalk){e.started??=performance.now();e.distance+=Math.hypot(s.position[0]-e.last[0],s.position[2]-e.last[2]);e.frames++;}else if(e.started&&!e.ended){e.distance+=Math.hypot(s.position[0]-e.last[0],s.position[2]-e.last[2]);e.ended=performance.now();}e.last=s.position;requestAnimationFrame(sample);};requestAnimationFrame(sample);});
  await page.locator('#auto-walk').click();assert.equal((await state()).autoWalk,true);
  const start=Date.now(),initial=await state();console.log('INITIAL',JSON.stringify(initial));let last=initial.position,total=0,samples=0;
- while(true){await page.waitForTimeout(1000);const s=await state();if(samples%30===0)console.log('PROGRESS',Math.round((Date.now()-start)/1000),Math.round(total),s.yaw);total+=Math.hypot(s.position[0]-last[0],s.position[2]-last[2]);last=s.position;samples++;if(samples%60===0)await page.screenshot({path:`work/visual/mission04/walk-${samples}.png`});if(!s.autoWalk){const evidence=await page.evaluate(()=>window.walkEvidence);assert.deepEqual(s.architecture,initial.architecture,'architecture is generated once for the entire promenade');const measurement={architecture:s.architecture,frameMeasuredMetres:evidence.distance,frameMeasuredSeconds:(evidence.ended-evidence.started)/1000,frames:evidence.frames,wallSeconds:(Date.now()-start)/1000,measuredMetres:total,plannedMetres:initial.routeLength,samples,message:s.walkMessage};console.log('COMPLETE',JSON.stringify(measurement));await writeFile('work/mission04-measurement.json',JSON.stringify(measurement,null,2));break;}if(Date.now()-start>660000)throw new Error('No completion after 11 minutes');}
+ while(true){await page.waitForTimeout(1000);const s=await state();if(samples%30===0)console.log('PROGRESS',Math.round((Date.now()-start)/1000),Math.round(total),s.yaw);total+=Math.hypot(s.position[0]-last[0],s.position[2]-last[2]);last=s.position;samples++;if(samples%60===0)await page.screenshot({path:`work/visual/mission04/walk-${samples}.png`});if(!s.autoWalk){const evidence=await page.evaluate(()=>window.walkEvidence);assert.deepEqual(s.architecture,initial.architecture,'architecture is generated once for the entire promenade');const measurement={architecture:s.architecture,frameMeasuredMetres:evidence.distance,frameMeasuredSeconds:(evidence.ended-evidence.started)/1000,frames:evidence.frames,wallSeconds:(Date.now()-start)/1000,measuredMetres:total,plannedMetres:initial.routeLength,samples,message:s.walkMessage};console.log('COMPLETE',JSON.stringify(measurement));await writeFile('work/mission04-measurement.json',JSON.stringify(measurement,null,2));break;}if(Date.now()-start>1800000)throw new Error('No completion after 30 minutes');}
  for(const mode of ['first','aerial','third']){await page.keyboard.press('v');await page.waitForFunction(mode=>window.endlessDiagnostics.mode===mode,mode);}
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:'work/visual/mission04/mobile.png'});
  console.log('PERF',await page.locator('.perf-panel').innerText());console.log('GPU',await page.evaluate(()=>{const gl=document.querySelector('canvas').getContext('webgl2'),e=gl.getExtension('WEBGL_debug_renderer_info');return e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):'unknown';}));

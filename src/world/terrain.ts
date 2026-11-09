@@ -1,3 +1,4 @@
+import {groundDetail} from '../nature/surfaces';
 import * as THREE from 'three';
 export type TerrainGrid = {
   schema: 'endless-earth-terrain-v1';
@@ -94,7 +95,7 @@ export class Terrain {
     geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
     geometry.setIndex(indices);geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();
     const mesh=new THREE.Mesh(geometry,new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}));
-    mesh.receiveShadow=true;return mesh;
+    groundDetail(mesh.material);mesh.receiveShadow=true;return mesh;
   }
   // Optional terrain inspection: highlight DEM cells with abrupt elevation
   // transitions without modifying any surveyed heights or the normal view.

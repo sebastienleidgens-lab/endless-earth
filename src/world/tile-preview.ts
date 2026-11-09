@@ -1,3 +1,5 @@
+import {disposeNatureZone} from '../nature/render';
+import {nature} from '../living/geography';
 import * as THREE from 'three';
 import { ANGLES } from './geo';
 import { renderGeoFeatures } from './geodata';
@@ -18,13 +20,9 @@ export function startTilePreview(scene:THREE.Scene, avatar:THREE.Object3D, onSta
   let fallbackAttempted=false;
   let fallbackGroup:THREE.Group|null=null;
   const disposeGroup=(group:THREE.Group)=>{
-    group.traverse(object=>{
-      if(object instanceof THREE.Mesh){
-        object.geometry.dispose();
-        const materials=Array.isArray(object.material)?object.material:[object.material];
-        for(const material of materials)if(!material.userData.architectureShared)material.dispose();
-      }
-    });
+    const anchors=new Set(group.userData.natureAnchors??[]);
+    for(let i=nature.length-1;i>=0;i--)if(anchors.has(nature[i]))nature.splice(i,1);
+    disposeNatureZone(group);
   };
   async function tryFallback(){
     if(fallbackAttempted)return;

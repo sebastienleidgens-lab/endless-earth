@@ -1,3 +1,5 @@
+import {addNature,updateNatureLOD} from '../nature/render';
+import {groundDetail,waterMaterial} from '../nature/surfaces';
 import * as THREE from 'three';
 import { ArchitectureBatch } from '../architecture/render';
 // @ts-ignore Pure shared footprint helper.
@@ -33,8 +35,10 @@ function sharedBuildingEdges(features:Feature[]):Set<string>{
   return new Set([...counts].filter(([,count])=>count>1).map(([key])=>key));
 }
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
-const RIVER_MATERIAL=new THREE.MeshLambertMaterial({color:0x729ea8,side:THREE.DoubleSide});
-const WATER_MATERIAL=new THREE.MeshLambertMaterial({color:0x739da8,side:THREE.DoubleSide});
+const RIVER_MATERIAL=waterMaterial();
+const WATER_MATERIAL=waterMaterial();
+groundDetail(ROAD_MATERIAL);
+ROAD_MATERIAL.userData.natureShared=true;
 const WOOD_MATERIAL=new THREE.MeshLambertMaterial({color:0x557b4d,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
 const SCRUB_MATERIAL=new THREE.MeshLambertMaterial({color:0x7f9964,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
 const PARK_MATERIAL=new THREE.MeshLambertMaterial({color:0x94ae7b,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
@@ -170,267 +174,12 @@ function pointInRing(x:number,z:number,ring:THREE.Vector3[]):boolean{
   return inside;
 }
 function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain):number{
-  const points:THREE.Vector3[]=[];
-  // Precompute obstacles so generated trees cannot grow through mapped houses.
-  // Only procedural trees are excluded; explicitly mapped OSM trees remain.
-  const buildings:{ring:THREE.Vector3[];minX:number;maxX:number;minZ:number;maxZ:number}[]=[];
-  for(const feature of features){
-    if(feature.geometry?.type!=='Polygon'||!feature.properties?.building)continue;
-    const coordinates=feature.geometry.coordinates;
-    if(!Array.isArray(coordinates))continue;
-    const ring=coordsToPoints(coordinates[0]);
-    if(ring.length>=4)buildings.push({ring,minX:Math.min(...ring.map(p=>p.x))-2,maxX:Math.max(...ring.map(p=>p.x))+2,minZ:Math.min(...ring.map(p=>p.z))-2,maxZ:Math.max(...ring.map(p=>p.z))+2});
-  }
-  const clearOfBuildings=(x:number,z:number):boolean=>!buildings.some(b=>
-    x>=b.minX&&x<=b.maxX&&z>=b.minZ&&z<=b.maxZ&&pointInRing(x,z,b.ring));
-  // Keep generated woodland clear of mapped roads and paths. Real OSM
-  // tree points are never moved or discarded by this illustrative rule.
-  const paths:{ax:number;az:number;dx:number;dz:number;lengthSq:number;minX:number;maxX:number;minZ:number;maxZ:number;clearanceSq:number}[]=[];
-  for(const feature of features){
-    if(feature.geometry?.type!=='LineString'||!feature.properties?.highway)continue;
-    const coordinates=feature.geometry.coordinates;
-    const line=coordsToPoints(coordinates);
-    const highway=String(feature.properties.highway);
-    const clearance=['footway','path','track','steps','pedestrian'].includes(highway)?2.5:4.5;
-    for(let i=1;i<line.length;i++){
-      const a=line[i-1],b=line[i],dx=b.x-a.x,dz=b.z-a.z;
-      const lengthSq=dx*dx+dz*dz;
-      if(lengthSq<.01)continue;
-      paths.push({ax:a.x,az:a.z,dx,dz,lengthSq,
-        minX:Math.min(a.x,b.x)-clearance,maxX:Math.max(a.x,b.x)+clearance,
-        minZ:Math.min(a.z,b.z)-clearance,maxZ:Math.max(a.z,b.z)+clearance,
-        clearanceSq:clearance*clearance});
-    }
-  }
-  const clearOfPaths=(x:number,z:number):boolean=>!paths.some(p=>{
-    if(x<p.minX||x>p.maxX||z<p.minZ||z>p.maxZ)return false;
-    const t=THREE.MathUtils.clamp(((x-p.ax)*p.dx+(z-p.az)*p.dz)/p.lengthSq,0,1);
-    const ox=x-(p.ax+t*p.dx),oz=z-(p.az+t*p.dz);
-    return ox*ox+oz*oz<p.clearanceSq;
-  });
-  const add=(x:number,z:number)=>{
-    if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>980||Math.abs(z)>980||points.length>=2500)return;
-    const h=terrain?.relativeHeight(x,z);
-    if(terrain && h===null)return;
-    points.push(new THREE.Vector3(x,h??0,z));
-  };
-  for(const feature of features){
-    const tags=feature.properties??{};
-    if(feature.geometry?.type==='Point'&&tags.natural==='tree'){
-      const coords=feature.geometry.coordinates;
-      if(Array.isArray(coords)&&typeof coords[0]==='number'&&typeof coords[1]==='number'){
-        const p=toLocal({lon:coords[0],lat:coords[1]});
-        add(p.x,p.z);
-      }
-    }
-    // The forest footprint is mapped, but individual tree positions are
-    // illustrative. Deterministic 14 m spacing avoids flicker and GPU spikes.
-    if(feature.geometry?.type==='Polygon' &&
-       (tags.natural==='wood'||tags.landuse==='forest'||tags.landuse==='orchard')){
-      const coords=feature.geometry.coordinates;
-      if(!Array.isArray(coords))continue;
-      const ring=coordsToPoints(coords[0]);
-      if(ring.length<4)continue;
-      const holes=coords.slice(1).map(hole=>coordsToPoints(hole)).filter(hole=>hole.length>=4);
-      const minX=Math.max(-980,Math.min(...ring.map(p=>p.x)));
-      const maxX=Math.min(980,Math.max(...ring.map(p=>p.x)));
-      const minZ=Math.max(-980,Math.min(...ring.map(p=>p.z)));
-      const maxZ=Math.min(980,Math.max(...ring.map(p=>p.z)));
-      const spacing=tags.landuse==='orchard'?16:14;
-      for(let z=Math.ceil(minZ/spacing)*spacing;z<=maxZ && points.length<2500;z+=spacing)
-        for(let x=Math.ceil(minX/spacing)*spacing;x<=maxX && points.length<2500;x+=spacing){
-          const seed=Math.sin(x*12.9898+z*78.233)*43758.5453;
-          const jitter=(seed-Math.floor(seed)-.5)*spacing*.55;
-          const px=x+jitter,pz=z+jitter*.7;
-          if(pointInRing(px,pz,ring)&&!holes.some(hole=>pointInRing(px,pz,hole))&&clearOfBuildings(px,pz)&&clearOfPaths(px,pz))add(px,pz);
-        }
-    }
-  }
-  // Sparse illustrative vegetation inside mapped castle/ruin polygons.
-  // The historic boundary is factual OSM data; individual trees are NOT.
-  // Keep the courtyard predominantly open, avoid buildings and paths, and
-  // leave a buffer from the perimeter so crowns don't swallow the ruins.
-  const distanceToRing=(x:number,z:number,ring:THREE.Vector3[]):number=>{
-    let nearest=Infinity;
-    for(let i=0;i<ring.length;i++){
-      const a=ring[i],b=ring[(i+1)%ring.length];
-      const dx=b.x-a.x,dz=b.z-a.z,denom=dx*dx+dz*dz;
-      if(denom<.001)continue;
-      const t=THREE.MathUtils.clamp(((x-a.x)*dx+(z-a.z)*dz)/denom,0,1);
-      nearest=Math.min(nearest,Math.hypot(x-a.x-t*dx,z-a.z-t*dz));
-    }
-    return nearest;
-  };
-  for(const feature of features){
-    const tags=feature.properties??{};
-    if(feature.geometry?.type!=='Polygon'||!['castle','ruins'].includes(String(tags.historic)))continue;
-    const coordinates=feature.geometry.coordinates;
-    if(!Array.isArray(coordinates))continue;
-    const ring=coordsToPoints(coordinates[0]);
-    if(ring.length<4)continue;
-    const holes=coordinates.slice(1).map(h=>coordsToPoints(h)).filter(h=>h.length>=4);
-    const minX=Math.max(-970,Math.min(...ring.map(p=>p.x)));
-    const maxX=Math.min(970,Math.max(...ring.map(p=>p.x)));
-    const minZ=Math.max(-970,Math.min(...ring.map(p=>p.z)));
-    const maxZ=Math.min(970,Math.max(...ring.map(p=>p.z)));
-    const initial=points.length;
-    const spacing=13;
-    for(let z=Math.ceil(minZ/spacing)*spacing;z<=maxZ&&points.length-initial<32&&points.length<2500;z+=spacing){
-      for(let x=Math.ceil(minX/spacing)*spacing;x<=maxX&&points.length-initial<32&&points.length<2500;x+=spacing){
-        const noise=Math.sin(x*3.17+z*5.93)*18473.27;
-        const fraction=noise-Math.floor(noise);
-        if(fraction>.27)continue;
-        const px=x+(fraction-.14)*9,pz=z+(fraction-.14)*6;
-        if(!pointInRing(px,pz,ring)||holes.some(h=>pointInRing(px,pz,h)))continue;
-        if(distanceToRing(px,pz,ring)<6||!clearOfBuildings(px,pz)||!clearOfPaths(px,pz))continue;
-        add(px,pz);
-      }
-    }
-  }
-  // Riparian vegetation: mapped OSM river centerlines establish the corridor,
-  // while individual bank trees are explicitly illustrative. Place them on
-  // both sides, not in the water, and keep paths and houses unobstructed.
-  // Do not use a second ground overlay: it caused terrain z-fighting.
-  const riparianSegments:THREE.Vector3[][]=[];
-  for(const feature of features){
-    if(feature.geometry?.type!=='LineString'||feature.properties?.waterway!=='river')continue;
-    const line=coordsToPoints(feature.geometry.coordinates);
-    if(line.length>1)riparianSegments.push(line);
-  }
-  const nearExisting=(x:number,z:number)=>points.some(p=>
-    Math.abs(p.x-x)<9&&Math.abs(p.z-z)<9&&Math.hypot(p.x-x,p.z-z)<9);
-  for(const line of riparianSegments){
-    for(let i=1;i<line.length&&points.length<2500;i++){
-      const a=line[i-1],b=line[i];
-      const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
-      if(length<2)continue;
-      const nx=-dz/length,nz=dx/length;
-      const steps=Math.max(1,Math.ceil(length/26));
-      for(let j=0;j<steps&&points.length<2500;j++){
-        const t=(j+.5)/steps;
-        const centerX=a.x+dx*t,centerZ=a.z+dz*t;
-        for(const side of [-1,1]){
-          if(points.length>=2500)break;
-          const noise=Math.sin(centerX*1.37+centerZ*2.91+side*7.3)*17317.13;
-          const fraction=noise-Math.floor(noise);
-          // Deliberately sparse to preserve open views of the Anglin.
-          if(fraction>.68)continue;
-          const distance=12+fraction*18;
-          const x=centerX+nx*side*distance,z=centerZ+nz*side*distance;
-          if(!clearOfBuildings(x,z)||!clearOfPaths(x,z)||nearExisting(x,z))continue;
-          add(x,z);
-        }
-      }
-    }
-  }
-  if(!points.length)return 0;
-  // Bird and sound anchors follow actual rendered vegetation, including clearly
-  // illustrative riparian/woodland trees when OSM has no individual tree points.
-  nature.push(...points.map(p=>({x:p.x,z:p.z})));
-  // Partition instances into spatial cells. Distant cells hide trunks,
-  // then crowns; no per-frame instance matrix rebuild is necessary.
-  const cellSize=180;
-  const cells=new Map<string,THREE.Vector3[]>();
-  for(const p of points){
-    const cx=Math.floor(p.x/cellSize),cz=Math.floor(p.z/cellSize);
-    const key=`${cx}:${cz}`;
-    if(!cells.has(key))cells.set(key,[]);
-    cells.get(key)!.push(p);
-  }
-  const trunkGeometry=new THREE.CylinderGeometry(.25,.38,3.5,5);
-  // Angles-sur-l'Anglin is dominated by broadleaf trees along the Anglin.
-  // A faceted, rounded canopy is a better regional silhouette than a uniform
-  // plantation of conifers. Still one instanced mesh and one draw call per cell.
-  const crownGeometry=new THREE.IcosahedronGeometry(1,1);
-  crownGeometry.scale(2.8,3.1,2.8);
-  // Low, faceted undergrowth: restrained clusters near some mapped woodland
-  // trees. Their exact positions are illustrative, never OSM-surveyed shrubs.
-  const shrubGeometry=new THREE.IcosahedronGeometry(1,0);
-  const shrubMaterial=new THREE.MeshLambertMaterial({color:0xffffff});
-  const shrubPalette=[0x557b4b,0x658455,0x758c57,0x496c48].map(v=>new THREE.Color(v));
-  const trunkMaterial=new THREE.MeshLambertMaterial({color:0x76614b});
-  const crownMaterial=new THREE.MeshLambertMaterial({color:0xffffff});
-  const foliagePalette=[0x486e47,0x587d4f,0x6b8958,0x426a4b,0x79905b].map(color=>new THREE.Color(color));
-  const dummy=new THREE.Object3D();
-  for(const [key,cellPoints] of cells){
-    const [cx,cz]=key.split(':').map(Number);
-    const group=new THREE.Group();
-    group.userData.vegetationCell=true;
-    group.userData.centerX=(cx+.5)*cellSize;
-    group.userData.centerZ=(cz+.5)*cellSize;
-    // Per-cell materials allow a smooth distance fade without rebuilding instances.
-    const trunkCellMaterial=trunkMaterial.clone();
-    const crownCellMaterial=crownMaterial.clone();
-    animateFoliage(crownCellMaterial);
-    // Opaque foliage writes depth normally: no ground bleeding through crowns.
-    const trunks=new THREE.InstancedMesh(trunkGeometry,trunkCellMaterial,cellPoints.length);
-    const crowns=new THREE.InstancedMesh(crownGeometry,crownCellMaterial,cellPoints.length);
-    const shrubPoints=cellPoints.filter(p=>{
-      const v=Math.sin(p.x*7.41+p.z*4.67)*13931.77;
-      return v-Math.floor(v)<.32;
-    });
-    const shrubs=new THREE.InstancedMesh(shrubGeometry,shrubMaterial,shrubPoints.length);
-    cellPoints.forEach((p,i)=>{
-      const seed=Math.sin(p.x*12.9898+p.z*78.233)*43758.5453;
-      const scale=.8+(seed-Math.floor(seed))*.45;
-      const variation=Math.sin(p.x*5.73+p.z*3.19)*19341.91;
-      const fraction=variation-Math.floor(variation);
-      const width=.76+fraction*.5;
-      const height=.85+(1-fraction)*.4;
-      dummy.scale.set(.9*scale,scale*height,.9*scale);
-      dummy.position.set(p.x,p.y+1.75*scale*height,p.z);
-      dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
-      dummy.scale.set(scale*width,scale*height,scale*width);
-      dummy.position.set(p.x,p.y+5.05*scale*height,p.z);
-      dummy.rotation.y=fraction*Math.PI*2;
-      dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);
-      dummy.rotation.y=0;
-      crowns.setColorAt(i,foliagePalette[Math.min(foliagePalette.length-1,Math.floor(fraction*foliagePalette.length))]);
-    });
-    shrubPoints.forEach((p,i)=>{
-      const v=Math.sin(p.x*3.71-p.z*8.13)*29513.17;
-      const t=v-Math.floor(v);
-      const angle=t*Math.PI*2;
-      const radius=1.6+t*1.4;
-      const sx=p.x+Math.cos(angle)*radius,sz=p.z+Math.sin(angle)*radius;
-      const ground=terrain?.relativeHeight(sx,sz)??p.y;
-      const size=.65+t*.7;
-      dummy.position.set(sx,ground+.55*size,sz);
-      dummy.scale.set(size*1.5,size*.8,size*1.3);
-      dummy.rotation.y=angle;
-      dummy.updateMatrix();shrubs.setMatrixAt(i,dummy.matrix);
-      shrubs.setColorAt(i,shrubPalette[Math.floor(t*shrubPalette.length)]);
-    });
-    dummy.rotation.y=0;
-    shrubs.instanceMatrix.needsUpdate=true;
-    if(shrubs.instanceColor)shrubs.instanceColor.needsUpdate=true;
-    trunks.instanceMatrix.needsUpdate=true;crowns.instanceMatrix.needsUpdate=true;
-    if(crowns.instanceColor)crowns.instanceColor.needsUpdate=true;
-    trunks.castShadow=false;crowns.castShadow=false;
-    trunks.frustumCulled=false;crowns.frustumCulled=false;
-    shrubs.castShadow=false;shrubs.frustumCulled=false;
-    group.add(trunks,crowns,shrubs);
-    scene.add(group);
-  }
-  return points.length;
+ const local=features.map(f=>{const g=f.geometry,tags=f.properties??{},c=g?.coordinates;if(!g||!Array.isArray(c))return {tags};if(g.type==='Polygon')return {tags,rings:c.map(r=>coordsToPoints(r))};if(g.type==='LineString')return {tags,line:coordsToPoints(c)};if(g.type==='Point'&&typeof c[0]==='number'&&typeof c[1]==='number')return {tags,point:toLocal({lon:c[0],lat:c[1]})};return {tags};});
+ const trees=addNature(scene,local,(x,z)=>terrain?terrain.relativeHeight(x,z):0);
+ const anchors=trees.map((p:{x:number;y:number;z:number;scale:number;kind:string})=>({x:p.x,z:p.z,perchY:p.y+8.5*p.scale*(p.kind==='riparian'?1.35:1)}));nature.push(...anchors);scene.userData.natureAnchors=anchors;
+ return trees.length;
 }
-// Distance culling is conservative and hysteretic. No transparent foliage:
-// transparency made the underlying terrain appear/disappear while orbiting.
-export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera):void{
-  scene.traverse(object=>{
-    if(!object.userData.vegetationCell)return;
-    const x=object.userData.centerX as number,z=object.userData.centerZ as number;
-    const distance=Math.hypot(camera.position.x-x,camera.position.z-z);
-    const trunks=object.children[0] as THREE.InstancedMesh;
-    const crowns=object.children[1] as THREE.InstancedMesh;
-    // Preserve distant forests in the aerial view; opaque depth-tested trees
-    // do not cause the former competing-ground z-fighting.
-    trunks.visible=trunks.visible?distance<650:distance<620;
-    crowns.visible=crowns.visible?distance<1050:distance<1020;
-    const shrubs=object.children[2] as THREE.InstancedMesh|undefined;
-    if(shrubs)shrubs.visible=shrubs.visible?distance<480:distance<450;
-  });
-}
+export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=false){updateNatureLOD(scene,camera,eco)}
 // Merge the many separate road/river meshes into one mesh per material.
 // This cuts draw calls without altering the OSM linework or its DEM heights.
 function batchLinearFeatures(scene:THREE.Object3D):void{
@@ -480,7 +229,9 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         addHistoricWall(scene,ring,terrain);count++;
       } else if(tags.natural==='water'){
         // Water surfaces remain level at their lowest mapped edge.
-        const geometry=new THREE.ShapeGeometry(makeFootprint(ring));
+        const shape=makeFootprint(ring);
+        for(const coords of f.geometry.coordinates.slice(1)){const hole=coordsToPoints(coords);const path=new THREE.Path();hole.forEach((p,i)=>i===0?path.moveTo(p.x,-p.z):path.lineTo(p.x,-p.z));shape.holes.push(path)}
+        const geometry=new THREE.ShapeGeometry(shape);
         geometry.rotateX(-Math.PI/2);
         const water=new THREE.Mesh(geometry,WATER_MATERIAL);
         water.position.y=terrain?(Math.min(...ring.map(p=>p.y))+.05):.2;
