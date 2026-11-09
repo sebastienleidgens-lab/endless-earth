@@ -1,0 +1,81 @@
+{
+  "baseCommit": "cc7cf2cd17eadb6a240830e9877dc5a2c6fad86a",
+  "node": "24.22.1",
+  "chromium": "156.0.0.0",
+  "gpu": "SwiftShader Subzero",
+  "gpuDevicesExposed": [],
+  "checks": {
+    "unit": {
+      "command": "npm test",
+      "passed": true
+    },
+    "build": {
+      "command": "npm run build",
+      "passed": true
+    },
+    "import": {
+      "command": "work/geo-venv/bin/python tests/import-mnt.test.py",
+      "passed": true
+    },
+    "browser": {
+      "command": "npm run test:browser",
+      "passed": true
+    },
+    "camera": {
+      "command": "node scripts/browser-camera.mjs",
+      "passed": true
+    },
+    "safety": {
+      "command": "node scripts/browser-safety.mjs",
+      "passed": true
+    },
+    "living": {
+      "command": "node scripts/browser-living.mjs",
+      "passed": true
+    },
+    "data": {
+      "command": "node scripts/browser-earth-data.mjs",
+      "passed": true
+    },
+    "walk": {
+      "command": "node scripts/browser-earth-walk.mjs",
+      "passed": true
+    },
+    "before": {
+      "command": "node scripts/browser-earth.mjs before (ports as in README)",
+      "passed": true,
+      "stations": 13,
+      "errors": []
+    },
+    "after": {
+      "command": "node scripts/browser-earth.mjs after (ports as in README)",
+      "passed": true,
+      "stations": 13,
+      "errors": []
+    },
+    "before-r2": {
+      "command": "node scripts/browser-earth.mjs before-r2 (ports as in README)",
+      "passed": true,
+      "stations": 13,
+      "errors": []
+    },
+    "after-r2": {
+      "command": "node scripts/browser-earth.mjs after-r2 (ports as in README)",
+      "passed": true,
+      "stations": 13,
+      "errors": []
+    }
+  },
+  "walk": {
+    "cpuTraceCapped": false,
+    "traceScope": "all frames from startup through walk completion, including graph survey and camera checks",
+    "frameMeasuredMetres": 449.99999999999943,
+    "frameMeasuredSeconds": 341.3876000000001,
+    "frames": 3132,
+    "wallSeconds": 343.018,
+    "measuredMetres": 449.7505359517767,
+    "plannedMetres": 450,
+    "samples": 337,
+    "message": "Fin du parcours OSM valid\u00e9"
+  }
+}

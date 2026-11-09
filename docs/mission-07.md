@@ -117,13 +117,67 @@ Priorités des écarts : relief des falaises/berges à 10 m ; pont et ses arches
 
 Les comparaisons portent sur douze vues utiles et une station diagnostique EXIF. Le chemin rural est placé sur le segment OSM `450089955` ; la rue en pente sur `148936368` (environ 4,4 % sur le segment retenu), au lieu de positions simplement proches de voies. Le protocole [browser-earth.mjs](../scripts/browser-earth.mjs) fixe positions, yaw, pitch, zoom, mode, profil et date (21 juin 2026, midi UTC), suspend les images d’animation puis prépare les caches de détail selon le même ordre. Il n’ajoute aucune téléportation au produit. Les caméras et la géographie sont comparées dans les JSON ; ce n’est pas un test de pixels de végétation animée. Les chronomètres logiciels imposent une lecture RGBA complète après rendu pour attendre effectivement la fin des commandes.
 
-3. **Passe 3** : la capture du chemin rural révèle une bande d’eau verticale à la limite du pilote. La ligne de rivière complète dépasse largement notre grille et utilisait localement l’altitude zéro lorsque le relief manquait. Les segments sont maintenant coupés à l’emprise du MNT ; aucune altitude de secours n’est injectée dans l’eau. Un test couvre les lignes entrant, sortant et restant hors du relief. Nouvelle série finale de captures et nouvelle promenade après correction.
+3. **Passe 3** : la capture du chemin rural révèle une bande d’eau verticale à la limite du pilote. La ligne de rivière complète dépasse largement notre grille et utilisait localement l’altitude zéro lorsque le relief manquait. Les segments sont maintenant coupés à l’emprise du MNT ; aucune altitude de secours n’est injectée dans l’eau. Un test couvre les lignes entrant, sortant et restant hors du relief. Le coût du masque de sols est ensuite limité aux 12 tuiles contenant un habitat cartographié ou sa marge de filtrage de 16 m ; les 13 autres n’effectuent aucune lecture de l’atlas. Nouvelle série finale de captures et nouvelle promenade après correction.
 
 Les [planches 1](mission-07-captures/planche-1.jpg), [2](mission-07-captures/planche-2.jpg) et [3](mission-07-captures/planche-3.jpg) présentent douze paires. La [planche 4](mission-07-captures/planche-4.jpg) conserve le diagnostic EXIF obstrué ; elle n’est pas comptée comme une vue réussie. Les captures sont assemblées avec leurs couleurs intactes, réduites pour la lecture. Les positions, orientations et mesures complètes restent dans [before.json](mission-07-captures/before.json), [after.json](mission-07-captures/after.json) et [comparison.json](mission-07-captures/comparison.json). Deux exemples de la première passe restent conservés : [forêt](mission-07-captures/pass1-foret.png), [aérienne](mission-07-captures/pass1-aerienne.png).
 
 ## Mesures et validation
 
-Les résultats finaux, la promenade complète et les limites de mesure sont consignés avec les artefacts de cette mission. Les FPS historiques de Mission 06 sous quota/affinité différents ne servent pas de référence comparative. Les tests unitaires et synthétiques ne constituent pas un profil matériel.
+Environnement : Chromium 156 / ANGLE / Vulkan / **SwiftShader Subzero**, 800 × 600 et 390 × 844, ratio 1 ; quota de quatre CPU, affinité autorisée 0–4. Aucun périphérique `/dev/dri` ou NVIDIA n’est exposé. Le rendu logiciel est imposé aux scénarios reproductibles ; **aucun profil GPU matériel ou Android physique n’est revendiqué**. Les FPS historiques de Mission 06 sous quota/affinité différents ne servent pas de référence comparative.
+
+### Dessin et temps logiciels, caméras identiques
+
+| Vue | Appels avant → après | Triangles dessinés avant → après | Médiane de fin de dessin logiciel, ms |
+| --- | ---: | ---: | ---: |
+| Village | 113 → 123 | 293 117 → 264 057 | 239,1 → 228,0 |
+| Vallée | 39 → 49 | 193 570 → 163 950 | 106,2 → 106,2 |
+| Rivière | 93 → 105 | 232 672 → 207 532 | 138,7 → 146,0 |
+| Forêt | 35 → 41 | 174 057 → 136 657 | 96,6 → 97,7 |
+| Ouvert | 86 → 94 | 151 511 → 120 063 | 78,6 → 83,0 |
+| Chemin rural | 28 → 42 | 124 530 → 81 572 | 73,8 → 67,3 |
+| Rue en pente | 77 → 85 | 211 220 → 179 324 | 102,8 → 109,2 |
+| Sol proche | 18 → 23 | 147 757 → 107 653 | 50,9 → 45,6 |
+| Aérienne | 285 → 154 | 296 995 → 273 663 | 185,2 → 198,4 |
+| Lointaine | 79 → 88 | 200 750 → 170 758 | 109,0 → 104,3 |
+| Éco | 92 → 104 | 213 050 → 187 910 | 120,8 → 120,0 |
+| Mobile | 46 → 55 | 168 851 → 137 375 | 71,2 → 67,9 |
+
+Les triangles diminuent de **7 à 34,5 %**, selon la vue, diagnostic EXIF compris. Les appels diminuent fortement devant le château (regroupement des ruines), mais augmentent ailleurs de 5 à 14, notamment à cause des tuiles et des silhouettes mixtes. Les compteurs architecturaux et les octets de leurs buffers sont **identiques dans les treize paires** ; les 1 650 placements végétaux sont également vérifiés identiques par [équivalence des données](mission-07-captures/equivalence.json), erreur de racine nulle.
+
+Ces treize paires utilisent cinq lectures RGBA complètes par station après deux rendus de préparation, une rotation avant puis après. Cela mesure la fin des commandes de dessin logiciel, pas seulement leur soumission JavaScript. **Il n’y a pas de gain uniforme de vitesse** : rivière, forêt, ouvert, pente et aérienne sont défavorables dans cette rotation ; l’aérienne est environ 7 % plus lente malgré ses appels réduits. L’exécution reste sensible à SwiftShader, à la compilation et à la charge. Le tableau n’établit ni une amélioration statistique de FPS ni une cadence de 60 FPS sur matériel. Les mesures brutes et le script [earth-compare.py](../scripts/earth-compare.py) permettent de refaire les comparaisons.
+
+Une **seconde rotation, dans l’ordre après puis avant**, conserve les positions/profils et l’égalité des buffers architecturaux. Elle confirme la variabilité : l’aérienne est défavorable d’environ **0,7 à 7,1 %** selon la rotation, la forêt d’environ **1,1 à 5,4 %** ; plusieurs autres écarts changent de signe. Le coût logiciel supplémentaire de certaines vues reste donc une limite, malgré la réduction des triangles. [Résumé des deux rotations](mission-07-captures/repeated-comparison.json), [avant seconde rotation](mission-07-captures/before-r2.json), [après seconde rotation](mission-07-captures/after-r2.json). Cette répétition améliore la traçabilité, sans suffire à une conclusion statistique sur GPU matériel.
+
+### Chargement, préparation, cellules et mémoire
+
+- Chargement local jusqu’aux données prêtes : **7,963 s avant / 5,823 s après**, une seule mesure par version, compilation et cache compris. La mesure initiale coïncide avec des vérifications de développement ; **aucun gain de chargement n’est attribué au code**.
+- Trois constructions CPU de terrain dans le navigateur : avant **23,4 / 15,4 / 19,3 ms**, après **29,6 / 36,0 / 17,2 ms** ; médianes **19,3 → 29,6 ms**. La préparation des tuiles coûte davantage au démarrage ; les buffers sont ensuite réutilisés, pas reconstruits à l’approche.
+- Dans la rue, géométries uniques retenues : **30,50 → 32,71 Mo**. Ce compteur inclut les attributs/index possédés des deux LOD, sans compter deux fois les tableaux partagés. Il exclut matrices d’instances, tas JavaScript et mémoire du pilote. L’architecture représente 27,62 Mo et reste identique dans cette vue.
+- L’atlas ajoute au maximum **5,33 Mo RGBA avec mipmaps** lorsqu’il est chargé sur le GPU ; son PNG ne pèse que **8 387 octets**. C’est une estimation de texture, pas toute la mémoire du processus. Les textures existantes ne sont pas incluses dans ce delta. Les trois dérivés réseau ajoutent environ 389 ko, dont 375 936 octets d’indices.
+- Préparation combinée des détails et LOD lors des stations : maximum **26 ms** dans cette rotation, dont des constructions de cache. Ce compteur inclut architecture et nature ; il n’isole pas le seul terrain.
+- [Mesure CPU de nature séparée](mission-07-captures/nature-cpu.json), sous Node 24.22.1 : trois générations par version, mêmes données/altitudes. Médiane **205,85 → 179,13 ms**, avec ordre avant puis après et effet de chauffe ; aucun gain statistique n’en est déduit. Pour les cellules proches de la station forestière : préparation par tranche, maximum **2,28 → 3,60 ms** ; dernière construction de buffer et mise à jour LOD, maximum **9,29 → 10,80 ms**. Ce sont des mesures CPU hors navigateur, sans rendu GPU.
+
+Le benchmark de cellules [earth-nature-cpu.mjs](../scripts/earth-nature-cpu.mjs) mesure le vrai code de génération, sans le remplacer par une réplique. Les tests de cache vérifient absence de reconstruction au repos, hystérésis, éviction bornée et destruction des ressources. Les index lointains sont préparés hors navigateur ; la géométrie de terrain reste un ensemble fixe, pas un cache national extensible.
+
+### Déplacements et contrôles
+
+Les tests finaux comprennent les **73 tests Node**, la compilation de production, le test synthétique Python de l’import MNT, le chargement navigateur, les trois caméras et le zoom, le balayage devant les murs, les collisions dynamiques et la reprise manuelle. Les scénarios de vivant vérifient aussi l’audio (six cycles et douze bascules rapides), le profil Éco et le format mobile. Les captures finales ne relèvent aucune erreur JavaScript ou de compilation WebGL.
+
+[Index des validations exécutées](mission-07-captures/validation.json). L’import synthétique a été vérifié avec Rasterio 1.5.2 et PyProj 3.8.0 ; ces dépendances restent hors du bundle du jeu.
+
+[data-validation.json](mission-07-captures/data-validation.json) vérifie dans la vraie scène **102 174 sommets de route** : écart maximal au décalage attendu de 4,5 cm, **0,033 mm** (arrondi). Les 1 728 sommets bas des ruines suivent leur niveau de fondation à moins de 0,001 mm dans cette mesure Float32. Ces précisions décrivent la cohérence numérique avec la grille, **pas la précision du relevé IGN**. Les cas sans manifeste, index corrompu et source OSM périmée retrouvent chacun le terrain exact, sans atlas et sans erreur JavaScript.
+
+Les ponts à altitude de tablier inconnue restent bloqués ; les tests de navigation avec tablier vérifié utilisent des cas synthétiques et ne valident pas le pont réel du village. Les surfaces et usages non renseignés n’obtiennent pas de nouvelle autorisation de passage.
+
+**Promenade finale : 450,000 m planimétriques cumulés à chaque image, en 341,3876 s (5 min 41,39 s), 3 132 images observées en marche.** Chronomètre externe : 343,018 s ; arrêt normal « Fin du parcours OSM validé ». Le relevé une fois par seconde donne 449,751 m et sous-estime les virages ; c’est le cumul par image qui valide les 450 m. Les vitesses, le contrôleur et le plafonnement du delta à 250 ms sont inchangés. Les durées historiques sous d’autres quotas CPU ne sont pas utilisées pour revendiquer une accélération.
+
+Le graphe conserve **939 sommets / 918 segments**. Le parcours calculé le plus long trouvé par le sondage fait 3 787,53 m ; il n’a pas été parcouru et ne doit pas être confondu avec les 450 m réellement réalisés. À l’arrivée, les compteurs architecturaux sont strictement conservés : 921 bâtiments, 10 723 ouvertures, 69 cellules, `builds: 1`.
+
+La trace bornée contient **3 219 images**, sans atteindre sa limite de 8 192 : de l’initialisation à l’arrivée, y compris le sondage du graphe et les tests de caméra. Le temps CPU de mise à jour avant soumission a pour médiane **3,9 ms**, p95 **8,7 ms**, p99 **23,6 ms**, maximum **30,5 ms**. La soumission du rendu, qui peut attendre le logiciel graphique, a un maximum de **285,4 ms**. La médiane d’intervalle entre images est **101,3 ms**, p95 **186,5 ms**, p99 **273,7 ms** ; **20 intervalles dépassent 300 ms**, maximum **5 173,4 ms** dans cette trace incluant le démarrage et le harnais. Même en retirant les 100 premières images, le maximum reste **429,3 ms**. Le moteur logiciel n’est donc pas présenté comme une promenade fluide à 60 FPS. Le coût CPU de mise à jour est distinct de l’attente de rendu, et l’absence de blocage GPU matériel n’est pas démontrée.
+
+La promenade traverse au plus quatre cellules végétales résidentes dans cette trace ; les index de terrain changent de niveau sans reconstruction. Les tests séparés vérifient l’hystérésis et l’éviction lors de déplacements plus larges que ce parcours. Preuves : [mesure et percentiles](mission-07-captures/walk.json), [trace complète JSON comprimée sans perte](mission-07-captures/walk-cpu.json.gz), [graphe](mission-07-captures/walk-survey.json), [début](mission-07-captures/walk-60.png), [milieu](mission-07-captures/walk-180.png), [fin de trajet](mission-07-captures/walk-300.png), [arrivée mobile](mission-07-captures/walk-arrivee-mobile.png). Les captures de promenade sont prises pendant le fonctionnement normal, sans suspendre ni accélérer le temps.
+
+La compilation finale produit un bundle d’environ **599 ko / 164 ko gzip** ; l’avertissement Vite au-dessus de 500 ko préexistait. Les scénarios navigateur finaux repassent après la dernière correction des lignes d’eau et des matériaux. Les vérifications de cette mission restent locales ; aucune publication de production n’a été effectuée.
 
 ## Limites et prochaine mission
 

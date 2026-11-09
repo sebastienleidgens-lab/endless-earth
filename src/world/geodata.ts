@@ -91,12 +91,12 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
   const mesh=new THREE.Mesh(geometry,color===0x729ea8?RIVER_MATERIAL:material);
   mesh.receiveShadow=true;scene.add(mesh);
 }
-// Historic OSM outlines are survey data; wall heights are deliberately
+// Historic OSM outlines are mapped linework; wall heights are deliberately
 // illustrative until a verified height or architectural model is available.
 const HISTORIC_WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xb8ad96});
 HISTORIC_WALL_MATERIAL.userData.natureShared=true;
 function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Terrain,castle=false):void{
-  // Only OSM-surveyed linework determines the wall plan. The fragmented
+  // Only OSM-mapped linework determines the wall plan. The fragmented
   // elevations below are illustrative and must not imply measured ruin heights.
   for(let i=1;i<points.length;i++){
     const a=points[i-1],b=points[i];

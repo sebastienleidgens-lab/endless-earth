@@ -56,13 +56,13 @@ export class Terrain {
       const up=g.elevations_m[Math.max(0,z-1)*g.width+x];
       const down=g.elevations_m[Math.min(g.height-1,z+1)*g.width+x];
       const slope=Math.hypot(right-left,down-up)/(2*g.step_m);
-      // Exposed limestone is visible on the steep Anglin valley sides.
+      // Inferred limestone palette on steep Anglin valley sides.
       // Shade it within the DEM's existing vertex colors: an extra rock
       // surface would intersect the terrain and reintroduce z-fighting.
       const dry=smoothstep(.12,.38,slope);
       const rock=smoothstep(.34,.95,slope);
       color.copy(grass).lerp(dryGrass,dry).lerp(limestone,rock);
-      // Faceted, stratified limestone variation derived from surveyed
+      // Faceted, stratified limestone variation derived from source
       // elevation and slope. This changes only color, never DEM geometry.
       if(rock>.001){
         const band=Math.sin(elevation*1.65+Math.sin(x*.31+z*.17)*.8);
@@ -132,7 +132,7 @@ export class Terrain {
   }
 
   // Optional terrain inspection: highlight DEM cells with abrupt elevation
-  // transitions without modifying any surveyed heights or the normal view.
+  // transitions without modifying any source heights or the normal view.
   createSlopeDiagnostics(thresholdMetres=15):{overlay:THREE.LineSegments;cells:number}{
     const g=this.grid,baseline=this.sample(0,0)??g.elevations_m[0];
     const positions:number[]=[];
