@@ -29,6 +29,12 @@ vec3 mineralNormal(vec3 n, vec3 eye, float height){
 `;
 export const roadColorShader=`
 float mineralHeight=0.;
+float roadBoundaryDistance=3.;
+#ifdef ROAD_EDGES
+ vec2 edgeUV=(p-roadEdgeOrigin)/roadEdgeExtent;
+ roadBoundaryDistance=abs(texture2D(roadEdges,edgeUV).r*2.-1.)*roadEdgeRange;
+#endif
+vec3 roadDust=vec3(.42,.385,.30)*(1.+groundPatch*.15);
 if(earthRoadType>.5){
  int roadClass=int(earthRoadType+.5)-1;
  vec3 base=roadColors[roadClass];
@@ -52,17 +58,15 @@ if(earthRoadType>.5){
  // Existing low-frequency world noise is shared with surrounding ground.
  // No high-contrast aerial blotches and no tiled cracks or invented markings.
  base*=1.+groundPatch*.20+mineralTone*detailFade;
- float edgeDust=0.;
- #ifdef ROAD_EDGES
-  vec2 edgeUV=(p-roadEdgeOrigin)/roadEdgeExtent;
-  float edgeDistance=texture2D(roadEdges,edgeUV).r*roadEdgeRange;
-  edgeDust=(1.-smoothstep(.20,rural>.5?1.35:.85,edgeDistance));
- #endif
- vec3 dust=vec3(.42,.385,.30)*(1.+groundPatch*.15);
+ float edgeDust=1.-smoothstep(.12,rural>.5?1.10:.65,roadBoundaryDistance);
  // A restrained mineral shoulder, not grass painted onto sealed roads.
- base=mix(base,dust,edgeDust*(rural>.5?.38:.18));
+ base=mix(base,roadDust,edgeDust*(rural>.5?.55:.30));
  mineralHeight*=1.-edgeDust*.55;
  diffuseColor.rgb=base;
+}else{
+ // Same partition, natural side: a faint mineral/soil transition, no overlay.
+ float soilEdge=1.-smoothstep(.12,.80,roadBoundaryDistance);
+ diffuseColor.rgb=mix(diffuseColor.rgb,roadDust,soilEdge*.24);
 }
 `;
 export const roadNormalShader=`

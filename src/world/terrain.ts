@@ -185,7 +185,7 @@ export async function fetchTerrain():Promise<Terrain|null>{
   if(terrain.singleSurface)try{
     const response=await fetch(base+'angles-road-edge.json');if(!response.ok)throw new Error('Road edge field missing');const m=await response.json();
     const g=terrain.grid,source=terrain.singleSurface.manifest;
-    if(m.schema!=='endless-earth-road-edge-v1'||m.size!==2048||m.bytes!==m.size*m.size||m.range!==3||
+    if(m.schema!=='endless-earth-road-edge-v2'||m.size!==2048||m.bytes!==m.size*m.size||m.range!==3||
       !Array.isArray(m.origin)||!Array.isArray(m.extent)||m.origin[0]!==g.origin_x_m||m.origin[1]!==g.origin_z_m||
       m.extent[0]!==g.step_m*(g.width-1)||m.extent[1]!==g.step_m*(g.height-1)||
       m.osmSha256!==source.osmSha256||m.terrainSha256!==source.terrainSha256)throw new Error('Stale road edge field');

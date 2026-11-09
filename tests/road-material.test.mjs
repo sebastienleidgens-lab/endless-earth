@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {transpileModule} from 'typescript';
 import * as THREE from 'three';
 import {createRoadAtlas,materialPixel,roadUV,ROAD_TILE_PIXELS,ROAD_TILE_GUTTER} from '../src/world/road-texture.mjs';
-import {boundaryDistanceField} from '../scripts/prepare-road-edges.mjs';
+import {boundaryDistanceField,signedBoundaryField} from '../scripts/prepare-road-edges.mjs';
 import {pc} from '../scripts/lib/road-topology.mjs';
 import {roadStyle} from '../src/world/road-style.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -50,4 +50,13 @@ test('road shader adds filtered dry relief on the existing surface, with a disti
  assert.equal(material.polygonOffset,false);assert.equal(material.transparent,false);assert.equal(material.depthWrite,true);assert.ok(shader.uniforms.roadAtlas.value.generateMipmaps);
  const key=material.customProgramCacheKey();groundDetail(material,true,{texture:new THREE.DataTexture(),manifest:{origin:[0,0],extent:[1,1],range:3}});assert.notEqual(material.customProgramCacheKey(),key);
  assert.equal(roadStyle({highway:'residential'}),5);assert.equal(roadStyle({highway:'track'}),6);
+});
+
+test('signed field interpolates subpixel straight edges and keeps exterior scanlines outside',()=>{
+ const config={size:100,origin:[-5,-5],extent:[10,10],range:3};
+ const ring=[[-2,-4],[2,-4],[2,4],[-2,4],[-2,-4]],data=signedBoundaryField([ring],config);
+ const at=(x,z)=>(data[Math.floor((z+5)*10)*100+Math.floor((x+5)*10)]/255*2-1)*3;
+ assert.ok(at(0,0)>1.9);assert.ok(at(3,0)<-.9);assert.ok(Math.abs((at(1.95,0)+at(2.05,0))/2)<.015);
+ const outside=[[-20,-20],[-10,-20],[-10,20],[-20,20],[-20,-20]];
+ assert.ok(signedBoundaryField([outside],config).every(v=>v===0));
 });

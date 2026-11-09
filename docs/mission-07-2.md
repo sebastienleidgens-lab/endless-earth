@@ -36,3 +36,115 @@ L'atlas coûte environ 1,77 Mo avec mipmaps ; le champ R8 2048², environ 5,59 M
 
 1. Atlas de grain et relief diffus, palette différenciée, premier champ de distance aux frontières externes. Captures `pass1-*.png`. La vue de gravier initiale regardait hors de l'axe du chemin ; le cadrage retenu a été corrigé puis repris à l'identique avant et après.
 2. Revue des gros plans et de l'aérien : pierres trop grandes, fins traits parasites aux limites de l'atlas, accotements trop peu visibles. Réduction du module des pavés, joints plus doux, ajout de marges périodiques et atténuation du relief. Les images de la première passe sont conservées comme trace de ces corrections.
+3. **Passe finale des accotements** : remplacement du champ de distance absolue par une distance signée. L'interpolation d'une distance absolue en V arrondissait les minima aux bords obliques ; la version signée conserve bien mieux les frontières sous le pixel. L'effet minéral agit désormais légèrement sur les deux régions incidentes, dans le shader du même sol : environ 0,65 m côté voie scellée, 1,10 m côté chemin et 0,80 m côté terrain, avec une atténuation variable. Ce sont des nuances, pas des trottoirs ni des bandes géométriques ajoutées. Les variantes `pass2-*` et la promenade de passe 2 restent conservées ; les `after-*` et séquences `motion-after-*` sont repris avec cette version finale.
+
+## Comparaisons visuelles
+
+Seize stations avant/après : base 07.1 `cb73252` servie indépendamment sur 5175 et travail 07.2 sur 5173. **Mêmes coordonnées, caméra, orientation, hauteur d'œil, date du 21 juin 2026 à 12:00 UTC, viewport et profil pour chaque paire.** Les stations exactes, états et mesures sont dans [before.json](mission-07-2-captures/before.json) et [after.json](mission-07-2-captures/after.json). Le très gros plan utilise un œil à 45 cm ; les vues de marche utilisent 1,65 m. Les stations pavées proviennent de Place Aimé Octobre ; le gravier du sentier OSM 1421393085. Le chemin de terre correspond à la piste `dirt` 657662319. Ces stations de test n'ajoutent aucune API de téléportation au produit.
+
+| Vue | Planche |
+|---|---|
+| Rue étroite / maisons | [Village](mission-07-2-captures/compare-village.jpg) |
+| Rue principale (Rue de Tournon, asphalte) | [Principale](mission-07-2-captures/compare-principale.jpg) |
+| Carrefour | [Carrefour](mission-07-2-captures/compare-carrefour.jpg) |
+| Trois voies | [Trois voies](mission-07-2-captures/compare-trois-voies.jpg) |
+| Rue en pente | [Pente](mission-07-2-captures/compare-pente.jpg) |
+| Chemin rural non renseigné | [Rural](mission-07-2-captures/compare-rural.jpg) |
+| Pavés documentés | [Pavés](mission-07-2-captures/compare-paves.jpg) |
+| Gravier documenté | [Gravier](mission-07-2-captures/compare-gravier.jpg) |
+| Terre documentée | [Terre](mission-07-2-captures/compare-terre.jpg) |
+| Sol très proche | [Gros plan](mission-07-2-captures/compare-gros-plan.jpg) |
+| Rue à angle rasant | [Rasante](mission-07-2-captures/compare-rasante.jpg) |
+| Aérienne du centre | [Aérienne](mission-07-2-captures/compare-aerienne.jpg) |
+| Aérienne éloignée | [Lointaine](mission-07-2-captures/compare-lointaine.jpg) |
+| Raccord de tuile | [Raccord](mission-07-2-captures/compare-raccord.jpg) |
+| Éco | [Éco](mission-07-2-captures/compare-eco.jpg) |
+| Mobile 390 × 844 | [Mobile](mission-07-2-captures/compare-mobile.jpg) |
+
+![Rue étroite](mission-07-2-captures/compare-village.jpg)
+![Rue principale](mission-07-2-captures/compare-principale.jpg)
+![Carrefour](mission-07-2-captures/compare-carrefour.jpg)
+![Trois voies](mission-07-2-captures/compare-trois-voies.jpg)
+![Pente](mission-07-2-captures/compare-pente.jpg)
+![Rural](mission-07-2-captures/compare-rural.jpg)
+![Pavés](mission-07-2-captures/compare-paves.jpg)
+![Gravier](mission-07-2-captures/compare-gravier.jpg)
+![Terre](mission-07-2-captures/compare-terre.jpg)
+![Sol très proche](mission-07-2-captures/compare-gros-plan.jpg)
+![Aérienne](mission-07-2-captures/compare-aerienne.jpg)
+![Lointaine](mission-07-2-captures/compare-lointaine.jpg)
+![Éco](mission-07-2-captures/compare-eco.jpg)
+![Mobile](mission-07-2-captures/compare-mobile.jpg)
+
+### Lumière
+
+En plus du midi commun aux comparaisons : captures finales à 04:30 UTC (aurore et contre-jour dans la rue principale), 19:30 UTC (crépuscule, rue rasante), et ciel couvert stabilisé par 120 secondes de simulation déterministe. L'orientation et la matière restent celles du jeu, sans éclairage de studio ajouté. Les fichiers `dawn-after.json`, `dusk-after.json` et `overcast-after.json` conservent les paramètres et les erreurs collectées.
+
+![Aurore / rue principale](mission-07-2-captures/dawn-after-principale.png)
+![Crépuscule / pavés](mission-07-2-captures/dusk-after-paves.png)
+![Ciel couvert / rue](mission-07-2-captures/overcast-after-rasante.png)
+
+## Stabilité en mouvement
+
+Huit trajectoires, six rendus successifs chacune, **avant et après** : fixe, translation lente de 12 cm/image, rapide de 1,8 m/image, rotation, aérienne mobile, zoom, parcours aérien franchissant les rayons LOD et pavés en gros plan. Les originaux PNG, les animations WebP, les planches et les SHA-256 des pixels WebGL sont conservés. L'atmosphère est immobilisée pour isoler les surfaces ; la promenade utilise séparément la boucle normale du jeu.
+
+La caméra fixe doit donner six hashes identiques ; les sept autres doivent produire des images réellement différentes. Ce contrôle ne remplace pas l'examen visuel : les séquences ont aussi été examinées, notamment les joints, frontières et intersections pendant les rotations et le recul. Pas de retour des plans concurrents, de popping des faces routières ou de moiré excessif constaté dans les trajectoires retenues. Le filtrage raster reste visible sur les détails sous le pixel ; une absence universelle de scintillement sur tout GPU n'est pas démontrée par ces essais logiciels.
+
+| Trajectoire | Avant | Après |
+|---|---|---|
+| Lente | [Animation](mission-07-2-captures/motion-before-lent.webp) | [Animation](mission-07-2-captures/motion-after-lent.webp) |
+| Rapide | [Animation](mission-07-2-captures/motion-before-rapide.webp) | [Animation](mission-07-2-captures/motion-after-rapide.webp) |
+| Rotation rasante | [Planche](mission-07-2-captures/sequence-before-rotation.jpg) | [Planche](mission-07-2-captures/sequence-after-rotation.jpg) |
+| Aérienne mobile | [Planche](mission-07-2-captures/sequence-before-aerienne.jpg) | [Planche](mission-07-2-captures/sequence-after-aerienne.jpg) |
+| Zoom | [Planche](mission-07-2-captures/sequence-before-zoom.jpg) | [Planche](mission-07-2-captures/sequence-after-zoom.jpg) |
+| LOD | [Planche](mission-07-2-captures/sequence-before-lod.jpg) | [Planche](mission-07-2-captures/sequence-after-lod.jpg) |
+| Pavés proches | [Animation](mission-07-2-captures/motion-before-paves.webp) | [Animation](mission-07-2-captures/motion-after-paves.webp) |
+
+![Rotation finale](mission-07-2-captures/sequence-after-rotation.jpg)
+![Pavés en mouvement](mission-07-2-captures/sequence-after-paves.jpg)
+
+## Tests et invariants
+
+**94 tests Node réussis**, compilation TypeScript/Vite réussie. Les nouveaux tests couvrent la détermination de l'atlas, ses statistiques distinctes, les marges périodiques, les UV métriques indépendants du maillage, l'absence de fausse bordure au centre d'un carrefour, la distance signée sous le pixel, les scanlines hors emprise, les empreintes des sources et du champ livré, les options du shader et la véritable identité 07.2 compilée.
+
+Les tests géométriques 07.1 restent exécutés : partition unique, intersections, non-recouvrement des triangles, normales et hauteurs communes, mêmes faces routières aux deux LOD, intégrité des buffers et coordonnées. [Empreintes comparées à la base](mission-07-2-captures/invariants.json) : `angles-surface.json`, `angles-surface.pack`, `angles-osm.geojson`, `angles-terrain.json` sont identiques octet pour octet. Le champ d'accotement est régénéré à l'identique dans un répertoire temporaire : [preuve](mission-07-2-captures/edge-determinism.json).
+
+Tests navigateur exécutés : chargement, déplacement manuel, garde au sol, immobilité, trois caméras, zoom molette/pincement, retour caméra et collision caméra contre un mur, audio activé/désactivé sans multiplication des contextes/boucles, reprise manuelle, mobile et Qualité/Éco. Le test de sécurité introduit cinq obstacles pendant une promenade (bâtiment, accès privé, eau, mur, ruine) : toutes les positions échantillonnées restent légales. Le test du bundle production vérifie mission, vrai commit, état modifié/propre et quatre formats d'écran.
+
+Dix scénarios de données : nominal ; ancien manifeste absent, ancien LOD corrompu, ancienne source périmée ; surface unifiée absente/corrompue/périmée ; champ d'accotement absent/corrompu/périmé. Dans ces trois derniers cas, les routes unifiées restent visibles et la finition de bord est omise. Aucune erreur JavaScript dans les essais de données ; aucune erreur JavaScript/WebGL dans les captures et séquences finales. [Résultats](mission-07-2-captures/data-validation.json).
+
+## Limites de fidélité et priorités
+
+- La palette, le grain, l'usure, l'agencement des pierres et les nuances d'accotement sont des **interprétations originales**. Les tags OSM donnent une catégorie, pas la teinte ou la pose exacte. Aucune orthophoto ni photo locale supplémentaire n'a été vérifiée.
+- Les 1 567 segments à largeur estimée sur 1 580 restent estimés. Le champ de distance suit cette union ; il n'ajoute aucune précision cadastrale. Sa résolution de 0,977 m et sa quantification à environ 2,35 cm sur ±3 m limitent la précision des coins et des chemins très étroits. Les frontières de matériau exactes restent celles de la partition géométrique, pas celles de la carte de finition.
+- La catégorie héritée « asphalte » regroupe encore deux voies `concrete`, et « terre » plusieurs types non scellés. Il faut conserver ces différences de provenance plutôt que présenter toutes ces interprétations comme vérifiées sur place.
+- Les normales simulées ne créent pas de relief géométrique ; Lambert ne fournit ni BRDF complète ni reflet de rugosité PBR. Ce choix garde une réponse sèche et sobre dans le moteur existant. Le relief IGN à 10 m, les façades et l'occupation du sol environnante limitent toujours la fidélité globale à hauteur humaine.
+- La mémoire supplémentaire des textures est réelle. Les profils Qualité/Éco et le viewport mobile ont été testés dans Chromium logiciel ; **aucune performance GPU matériel ni validation physique Android n'est revendiquée**.
+
+Priorités suivantes : confronter la palette à des photographies locales avec licence et provenance claires ; valider le filtrage et le budget des textures sur Android/GPU physique ; mieux distinguer les voies béton et les sols non scellés si les données le permettent ; améliorer l'occupation du sol des abords bâtis avec des sources réelles. Aucune bordure, signalisation, ornière ou réparation historique ne devrait être ajoutée sans preuve ou sans identification explicite comme interprétation.
+
+## Reproduction
+
+```sh
+npm ci
+npm run geo:road-materials        # champ signé déterministe, aucun réseau
+npm test
+npm run build
+npm run dev                     # port 5173
+npm run test:road-materials
+node scripts/browser-road-material-motion.mjs after
+node scripts/browser-road-material-data.mjs
+node scripts/browser-road-material-walk.mjs
+npm run test:browser
+node scripts/browser-safety.mjs
+node scripts/browser-living.mjs
+node scripts/browser-camera.mjs
+CAPTURE_DIR=work/architecture-07-2 npm run test:architecture
+CAPTURE_DIR=work/nature-07-2 node scripts/browser-nature.mjs final
+npm run test:build-identity
+python scripts/road-material-contact-sheets.py
+```
+
+Pour l'avant, servir `cb73252` sur 5175 dans un checkout séparé, puis exécuter les scripts `browser-road-materials.mjs before` et `browser-road-material-motion.mjs before` depuis le checkout d'outillage. `CAPTURE_LABEL`, `TEST_VIEWS`, `TEST_DATE`, `TEST_WEATHER`, `TEST_TERRAIN_ONLY` et `TEST_PORT` permettent de rejouer les prises et mesures. Le test d'architecture conserve ses assertions de construction unique ; avec un répertoire de sortie explicite, il ne compare pas les anciennes caméras de Mission 05 au relief courant. Les 16 paires 07.1/07.2 constituent la comparaison géographique de cette mission.
+
+L'identité du build provient du rapport déclaré dans `package.json` : **ENDLESS EARTH — Mission 07.2 : Les routes du monde réel**, commit Git réel et état du build. Les captures de travail portent honnêtement leur commit de base et le statut « modifié » ; le contrôle du bundle production vérifie les métadonnées réellement compilées. Aucune fusion, aucun déploiement, aucun changement direct de `main`.

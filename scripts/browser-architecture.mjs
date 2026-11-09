@@ -1,7 +1,7 @@
 import {chromium} from 'playwright';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
-const phase=process.argv[2]??'after',dir='docs/mission-05-captures';await mkdir(dir,{recursive:true});
+const phase=process.argv[2]??'after',dir=process.env.CAPTURE_DIR??'docs/mission-05-captures';await mkdir(dir,{recursive:true});
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 try{
  const page=await browser.newPage({viewport:{width:1000,height:720}});page.setDefaultTimeout(90000);
@@ -21,7 +21,7 @@ try{
  if(phase==='after'||phase==='optimized'){
   assert.ok(initialArchitecture?.length&&initialArchitecture.every(s=>s.builds===1));
   assert.deepEqual(results.mobile.state.architecture,initialArchitecture,'camera and LOD never rebuild coarse architecture');
-  const references=['before',...(phase==='optimized'?['pr-initial']:[])];
+  const references=process.env.CAPTURE_DIR?[]:['before',...(phase==='optimized'?['pr-initial']:[])];
   for(const reference of references){const before=JSON.parse(await readFile(`${dir}/${reference}-measurements.json`,'utf8'));
   for(const [name,record] of Object.entries(results)){
    const old=before.results[name].state,now=record.state;
