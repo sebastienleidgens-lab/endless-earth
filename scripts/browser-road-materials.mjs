@@ -32,14 +32,14 @@ try{
  const start=Date.now();await page.goto(`http://localhost:${port}/endless-earth/?perf=1&date=${process.env.TEST_DATE??'2026-06-21T12:00:00Z'}`);await page.waitForFunction(()=>window.endlessDiagnostics?.ready&&!document.querySelector('#auto-walk').disabled);const loadMs=Date.now()-start;if(phase!=='before')assert.equal((await page.evaluate(()=>window.earthTest.terrain())).surface,'integrated','must capture the actual unified surface, never its fallback');
  if(process.env.TEST_WEATHER)await page.evaluate(mode=>window.earthTest.weather(mode),process.env.TEST_WEATHER);
  const environment=await page.evaluate(()=>{const gl=document.querySelector('canvas').getContext('webgl2'),e=gl.getExtension('WEBGL_debug_renderer_info');return {gpu:e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):null,userAgent:navigator.userAgent,cores:navigator.hardwareConcurrency}});
- if(process.env.TEST_TERRAIN_ONLY)await page.evaluate(()=>window.earthTest.terrainOnly(true));
  const terrainCpuMs=await page.evaluate(()=>window.earthTest.terrainCpu());const results={};
  for(const v of views.filter(v=>!process.env.TEST_VIEWS||process.env.TEST_VIEWS.split(',').includes(v[0]))){const name=v[0];await page.setViewportSize(name==='mobile'?{width:390,height:844}:{width:800,height:600});await page.evaluate(v=>window.earthTest.setup(v),v);
   const lodMs=await page.evaluate(()=>Array.from({length:100},()=>window.earthTest.lod()));
+  if(process.env.TEST_TERRAIN_ONLY)await page.evaluate(()=>window.earthTest.terrainOnly(true));
   await page.evaluate(()=>window.earthTest.render());await page.evaluate(()=>window.earthTest.render());
-  const samples=[];for(let i=0;i<5;i++)samples.push(await page.evaluate(()=>{const t=performance.now();const render=window.earthTest.render();return {ms:performance.now()-t,render}}));
+  const samples=[];for(let i=0;i<Number(process.env.TEST_SAMPLES??5);i++)samples.push(await page.evaluate(()=>{const t=performance.now();const render=window.earthTest.render();return {ms:performance.now()-t,render}}));
   results[name]={station:v,state:await page.evaluate(()=>window.endlessDiagnostics),memory:await page.evaluate(()=>window.earthTest.memory()),terrain:await page.evaluate(()=>window.earthTest.terrain()),lodMs,samples};
-  await page.addStyleTag({content:'.perf-panel{visibility:hidden}'});await page.screenshot({path:`${dir}/${label}-${name}.png`});
+  await page.addStyleTag({content:'.perf-panel{visibility:hidden}'});if(!process.env.TEST_NO_SCREENSHOTS)await page.screenshot({path:`${dir}/${label}-${name}.png`});
   await writeFile(`${dir}/${label}.json`,JSON.stringify({phase,loadMs,terrainCpuMs,terrainOnly:!!process.env.TEST_TERRAIN_ONLY,environment,results,errors},null,2));console.log(phase,name,samples.at(-1).render);
  }
  assert.deepEqual(errors,[]);

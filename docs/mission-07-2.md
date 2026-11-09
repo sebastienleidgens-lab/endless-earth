@@ -18,7 +18,7 @@ Exemples documentés : Rue de la Cueille (203459882), Place Aimé Octobre (23920
 
 ## Réalisation et validation
 
-En cours : première passe de matériaux, comparaisons reproductibles, seconde passe artistique, séquences en mouvement et validation fonctionnelle. Les mesures et résultats seront renseignés après exécution, sans confondre SwiftShader et GPU matériel.
+Trois passes de matériaux et de transitions, seize comparaisons reproductibles, séquences multi-images et validation fonctionnelle sont décrites ci-dessous. Les mesures logicielles sont distinguées des résultats sur GPU matériel non vérifiés.
 
 ## Matériaux et coût retenu
 
@@ -143,8 +143,52 @@ CAPTURE_DIR=work/architecture-07-2 npm run test:architecture
 CAPTURE_DIR=work/nature-07-2 node scripts/browser-nature.mjs final
 npm run test:build-identity
 python scripts/road-material-contact-sheets.py
+node scripts/validate-road-material-evidence.mjs
+# Une fois les autres navigateurs arrêtés, avec la base sur 5175 :
+node scripts/benchmark-road-materials.mjs
+node scripts/report-road-material-metrics.mjs
 ```
 
 Pour l'avant, servir `cb73252` sur 5175 dans un checkout séparé, puis exécuter les scripts `browser-road-materials.mjs before` et `browser-road-material-motion.mjs before` depuis le checkout d'outillage. `CAPTURE_LABEL`, `TEST_VIEWS`, `TEST_DATE`, `TEST_WEATHER`, `TEST_TERRAIN_ONLY` et `TEST_PORT` permettent de rejouer les prises et mesures. Le test d'architecture conserve ses assertions de construction unique ; avec un répertoire de sortie explicite, il ne compare pas les anciennes caméras de Mission 05 au relief courant. Les 16 paires 07.1/07.2 constituent la comparaison géographique de cette mission.
 
 L'identité du build provient du rapport déclaré dans `package.json` : **ENDLESS EARTH — Mission 07.2 : Les routes du monde réel**, commit Git réel et état du build. Les captures de travail portent honnêtement leur commit de base et le statut « modifié » ; le contrôle du bundle production vérifie les métadonnées réellement compilées. Aucune fusion, aucun déploiement, aucun changement direct de `main`.
+
+### Promenade et fonctions conservées
+
+Deux parcours complets ont été exécutés, dont un nouveau avec les matériaux et le champ signé finaux : **450,000 m en 394,38 s**, 2 216 images de déplacement, arrêt normal « Fin du parcours OSM validé ». La première passe complète avait pris 408,23 s sous d'autres charges concurrentes ; cette différence n'est pas attribuée à un gain de shader. Le graphe conserve 939 nœuds et 918 arêtes ; le relevé trouve un parcours admissible de 3 787,53 m avant la limite volontaire de 450 m. Les 921 bâtiments et leurs statistiques restent identiques du départ à l'arrivée, avec `builds: 1`.
+
+La trace finale couvre 2 283 images du démarrage jusqu'à la fin, relevé du graphe et contrôles caméra compris ; elle n'est pas plafonnée. Les autres tests navigateur ont tourné pendant une partie du parcours : les pics sont conservés et signalés, sans les transformer en résultat matériel. [Trace finale](mission-07-2-captures/walk.json), [parcours et graphe](mission-07-2-captures/walk-survey.json), [première promenade complète](mission-07-2-captures/walk-pass2.json).
+
+Les tests de conservation de l'architecture et de la nature ont aussi été exécutés sur six et dix vues respectivement, avec des répertoires de sortie séparés pour préserver les preuves historiques : [architecture](mission-07-2-captures/architecture-validation.json), [nature](mission-07-2-captures/nature-validation.json). Les trois caméras, le mobile, les profils Qualité/Éco, le son et les variations de lumière/météo gardent leurs contrôles existants.
+
+## Performances mesurées
+
+Chromium 156 / WebGL2, ANGLE **SwiftShader logiciel**, pas de périphérique `/dev/dri`. Les captures artistiques ont parfois partagé les CPU avec d'autres tests ; leurs temps ne servent pas au bilan de performance. Le protocole final alterne trois paires de navigateurs isolés avant/après, 15 images mesurées par station et par essai (45 échantillons par version/vue), avec fin GPU et lecture des pixels. Ce temps est celui du rendu logiciel synchronisé de la scène, **pas** un temps GPU matériel. La soumission CPU est chronométrée séparément. [Synthèse et distributions](mission-07-2-captures/metrics.json), fichiers bruts `bench-before-1..3.json` et `bench-after-1..3.json`.
+
+| Station | Appels avant → après | Triangles avant → après | Buffers géométriques avant → après | Rendu logiciel médian avant → après | Soumission CPU médiane avant → après |
+|---|---:|---:|---:|---:|---:|
+| Village, Qualité | 120 → 120 | 247 134 → 247 134 | 31,01 → 31,01 Mo | 166,4 → 200,0 ms | 1,2 → 1,4 ms |
+| Aérienne, Qualité | 151 → 151 | 262 503 → 262 503 | 33,54 → 33,54 Mo | 191,7 → 212,9 ms | 1,2 → 1,2 ms |
+| Carrefour, Éco | 79 → 79 | 231 313 → 231 313 | 33,54 → 33,54 Mo | 166,7 → 184,0 ms | 1,0 → 1,0 ms |
+| Mobile, Éco | 87 → 87 | 183 560 → 183 560 | 33,54 → 33,54 Mo | 104,7 → 127,1 ms | 1,0 → 1,0 ms |
+
+Le surcoût logiciel médian de la scène est donc **environ 10 à 21 %** selon la vue : la finition n'est pas gratuite. Les p95 logiciels avant/après sont respectivement 190,5/236,2 ms, 205,0/247,3 ms, 181,2/199,4 ms et 123,2/152,0 ms. Aucun gain uniforme de FPS ni 60 FPS n'est revendiqué. La réponse d'un GPU matériel à ces lectures de texture et dérivées reste non mesurée.
+
+Les textures terrain et routes comptabilisées passent de 5,33 à **12,70 Mo estimés avec mipmaps**, soit +7,36 Mo : 1,77 Mo pour l'atlas et 5,59 Mo pour le champ R8. Le compteur du renderer passe de cinq à sept textures. Ce sont les tailles théoriques des ressources connues, pas toute la mémoire du pilote. Le champ ajoute **352 937 octets compressés** au transfert ; l'atlas est original, généré sur CPU (36–99 ms sur les cinq échantillons Node enregistrés, sans coût par image). Le champ est préparé hors navigateur : environ 0,92 s sur la génération finale, 1,55 s lors de la vérification reproductible sous charge.
+
+Chargement local jusqu'à disponibilité : médianes de trois essais 3,808 s → 3,900 s. Construction CPU des objets terrain : médiane 0,9 ms → 0,9 ms sur neuf échantillons par version, hors téléchargement et hors génération initiale de l'atlas. Mise à jour combinée des LOD : médiane proche de 0,1 ms aux quatre stations ; cette résolution ne démontre pas un gain. Les données brutes conservent aussi les p95 et maxima.
+
+La promenade finale donne une médiane CPU avant soumission de **2,4 ms**, p95 **6,5 ms**, maximum **31,7 ms** ; soumission médiane 0,9 ms, p95 4,5 ms, maximum 578 ms. L'intervalle entre images a une médiane de 150,8 ms, un p95 de 410,6 ms et un maximum de 5 162,5 ms. Ces distributions couvrent aussi le démarrage, le relevé bloquant du graphe et les contrôles caméra, et une partie du parcours partageait les CPU avec les tests d'architecture/nature. Elles montrent les pics réels de cette trace logicielle ; elles ne les attribuent pas tous au déplacement ou au nouveau shader.
+
+### Proxy du coût des matériaux
+
+Une mesure complémentaire conserve seulement les maillages de la partition terrain/chaussée et les lumières, avec 15 lectures synchronisées par vue. Le contrôle impose 25 lots au maximum et moins de 117 319 triangles : les groupes parents ne sont pas masqués à la place du terrain et les mises à jour LOD ne peuvent pas réactiver les bâtiments entre le filtrage et le rendu. Cette mesure inclut le shader du sol complet, son occupation du sol et la finition des bords ; ce n’est ni un timer GPU matériel ni une isolation des seuls pixels routiers.
+
+| Vue | Lots / triangles identiques | Logiciel médian avant → après |
+|---|---:|---:|
+| village | 9 / 43375 | 33,6 → 84,7 ms |
+| aerienne | 13 / 63734 | 62,0 → 85,8 ms |
+| eco | 8 / 38929 | 32,7 → 60,6 ms |
+| mobile | 7 / 35769 | 19,9 → 61,3 ms |
+
+Un essai supplémentaire a limité l'anisotropie de la seule carte d'accotement à 1 (l'atlas restant à 8). Les médianes logicielles obtenues, 204,2 ms en village et 129,6 ms en mobile, n'ont pas montré de gain par rapport aux mesures finales 200,0/127,1 ms. Ce réglage n'a donc pas été retenu ; les données de l'essai restent dans `filter-trial.json`, et le code livré est celui des captures, séquences et promenade finales. Une optimisation plus poussée devra s'appuyer sur un profil GPU matériel, avec une comparaison visuelle des bordures.
