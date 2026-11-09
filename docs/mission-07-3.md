@@ -184,3 +184,5 @@ Références : servir `cb73252` sur 5175 et `72006e0` sur 5176 dans des worktree
 Le rapport déclaré dans `package.json` fournit l'indicateur **Mission 07.3 — Optimisation des matières routières**, avec le vrai commit et le statut du build. Les commits intermédiaires restent dans l'historique partagé. La livraison poursuit la branche et la PR #13 en brouillon : aucune fusion, aucun déploiement et aucune modification directe de `main`.
 
 Le champ livré et le prototype expérimental ont été régénérés dans `work/` et comparés octet pour octet aux ressources enregistrées : [preuve de déterminisme](mission-07-3-captures/determinism.json). Le CLI du prototype refuse une destination hors `work/`, afin de préserver les ressources du produit lors d'une reproduction. [Synthèse des commandes validées](mission-07-3-captures/test-summary.json).
+
+Le contrôle du bundle a détecté 9 px de rognage du titre à 320 px de largeur. La taille du seul libellé de mission devient légèrement adaptative sur les écrans étroits (10,88 px à 320, 11,5 px à 390), sans masquer le titre ni recouvrir les commandes. Les quatre formats du badge production sont revérifiés après cette correction.
