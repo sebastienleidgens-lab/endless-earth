@@ -5,10 +5,11 @@ import type { Terrain } from '../world/terrain';
 import { allowed } from './walk.mjs';
 // @ts-ignore Pure module.
 import { buildGraph, graphRoute } from './graph.mjs';
-type Point={x:number;z:number};
+type Point={x:number;z:number;perchY?:number};
 export const paths:{points:Point[];surface:string;name:string;tags:Record<string,string>}[]=[];
 export const nature:Point[]=[];
 export const water:Point[]=[];
+export const waterLines:Point[][]=[];
 let ready=false;
 export function navigationReady(){return ready;}
 export async function loadNavigation(){
@@ -20,7 +21,7 @@ export async function loadNavigation(){
   const local=(p:number[])=>toLocal({lon:p[0],lat:p[1]});
   if(g?.type==='LineString'&&allowed(t))paths.push({points:g.coordinates.map(local),surface:t.surface??'',name:t.name??'Voie OSM',tags:t});
   if(g?.type==='Point'&&t.natural==='tree')nature.push(local(g.coordinates));
-  if(g?.type==='LineString'&&t.waterway)water.push(...g.coordinates.map(local));
+  if(g?.type==='LineString'&&t.waterway){const line=g.coordinates.map(local);water.push(...line);waterLines.push(line);}
  }
  ready=true;
 }

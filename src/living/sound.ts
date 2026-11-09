@@ -1,4 +1,6 @@
-import { nature,water,surfaceAt } from './geography';
+// @ts-ignore Shared geometric distance, independent of renderer.
+import {segmentDistance} from '../nature/ecology.mjs';
+import { nature,waterLines,surfaceAt } from './geography';
 // @ts-ignore Shared pure module.
 import { surfaceKind } from './walk.mjs';
 // Original procedural synthesis: no external recordings or asset licenses.
@@ -15,13 +17,13 @@ export class Soundscape {
   if(!this.context){
    this.context=new AudioContext();const c=this.context;
    this.master=c.createGain();this.master.gain.value=0;this.master.connect(c.destination);
-   const buffer=c.createBuffer(1,c.sampleRate*3,c.sampleRate),data=buffer.getChannelData(0);
-   for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*.35;
+   const buffer=c.createBuffer(1,c.sampleRate*17,c.sampleRate),data=buffer.getChannelData(0);
+   let brown=0;for(let i=0;i<data.length;i++){const white=Math.random()*2-1;brown=(brown+.02*white)/1.02;data[i]=brown*1.8+white*.10;}
    this.stepBuffer=buffer;
    for(const [frequency,kind] of [[480,'wind'],[950,'river']] as const){
     const source=c.createBufferSource();source.buffer=buffer;source.loop=true;
     const filter=c.createBiquadFilter();filter.type='lowpass';filter.frequency.value=frequency;
-    const gain=c.createGain();gain.gain.value=0;source.connect(filter).connect(gain).connect(this.master);source.start();this[kind]=gain;
+    const gain=c.createGain();gain.gain.value=0;source.connect(filter).connect(gain).connect(this.master);source.start(0,kind==='river'?7.3:0);this[kind]=gain;
    }
   }
   const enable=!this.enabled;
@@ -49,17 +51,17 @@ export class Soundscape {
   gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.2+Math.random()*.06,t+.008);gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
   source.connect(filter).connect(gain).connect(this.master!);source.start(t,Math.random()*2,duration);source.onended=()=>{source.disconnect();filter.disconnect();gain.disconnect();};
  }
- update(p:{x:number;z:number},travel:number,wind:number,yaw:number){
+ update(p:{x:number;z:number},travel:number,wind:number,yaw:number,climate?:{solar:{altitude:number};weather:{rain:number;wind:number}}){
   if(!this.enabled||!this.context)return;
-  const c=this.context;this.wind!.gain.setTargetAtTime(wind*.22,c.currentTime,.5);
-  const nearest=water.reduce((v,q)=>Math.min(v,Math.hypot(q.x-p.x,q.z-p.z)),Infinity);
-  this.river!.gain.setTargetAtTime(Math.max(0,1-nearest/65)*.12,c.currentTime,.5);
+  const c=this.context;this.wind!.gain.setTargetAtTime((climate?.weather.wind??wind)*(.17+Math.sin(c.currentTime*.073)*.025),c.currentTime,.5);
+  const nearest=waterLines.reduce((v,line)=>line.slice(1).reduce((d,q,i)=>Math.min(d,segmentDistance(p,line[i],q)),v),Infinity);
+  this.river!.gain.setTargetAtTime(Math.max(0,1-nearest/65)*.10+(climate?.weather.rain??0)*.08,c.currentTime,.5);
   this.distance+=travel;
   if(this.distance>.8){this.distance%=.8;const kind=surfaceKind(surfaceAt(p));this.footstep(kind);}
   if(c.currentTime>this.nextBird){
-   this.nextBird=c.currentTime+10+Math.random()*22;
+   this.nextBird=c.currentTime+24+Math.random()*105;
    const q=nature[Math.floor(Math.random()*nature.length)];
-   if(q){const dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<110)this.tone(1500+Math.random()*1700,.12+Math.random()*.18,.07/(1+d/15),(dx*Math.cos(yaw)-dz*Math.sin(yaw))/Math.max(1,d));}
+   if(q&&(!climate||climate.solar.altitude>0)&&Math.random()>.25){const dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<110)this.tone(1500+Math.random()*1700,.12+Math.random()*.18,.07/(1+d/15),(dx*Math.cos(yaw)-dz*Math.sin(yaw))/Math.max(1,d));}
   }
  }
 }

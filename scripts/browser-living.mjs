@@ -21,7 +21,7 @@ try{
  console.log('START',await state());assert.ok((await state()).natureAnchors>0,'birds and calls have vegetation anchors');
  await page.locator('#sound').click();assert.equal((await state()).sound,true);
  await page.locator('#auto-walk').click();assert.equal((await state()).autoWalk,true);
- const before=await state();await page.waitForTimeout(6000);const after=await state();
+ const before=await state();await page.waitForFunction(p=>{const s=window.endlessDiagnostics;return Math.hypot(s.position[0]-p[0],s.position[2]-p[2])>.5},before.position,{timeout:90000});const after=await state();
  assert.ok(Math.hypot(after.position[0]-before.position[0],after.position[2]-before.position[2])>.5);
  console.log('WALK',after);
  for(const mode of ['first','aerial','third']){await page.keyboard.press('v');await page.waitForTimeout(1200);assert.equal((await state()).mode,mode);await page.screenshot({path:`work/visual/living-${mode}.png`});}
