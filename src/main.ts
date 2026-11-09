@@ -18,8 +18,16 @@ import { canWalk, moveWithCollision, walkingHeight, cameraClear } from './world/
 import { movement, nextView, cameraFraction, smoothMovement, transitionWeight } from './controls/walking.mjs';
 
 import './style.css';
+import {buildIdentity} from 'virtual:build-identity';
+// @ts-ignore Pure HTML formatter, shared with the compiled-build tests.
+import {buildIdentityMarkup} from './ui/build-identity.mjs';
 const root=document.querySelector<HTMLDivElement>('#app')!;
-root.innerHTML=`<div class="hud"><strong>ENDLESS EARTH</strong><span>France Alpha · ${ANGLES.name}</span><small>Décor illustratif — géographie réelle à importer</small></div><div class="help">Déplacement : ZQSD / WASD / flèches · Glisser : orienter la caméra · Molette : zoom · Shift : courir · V : changer de vue</div>`;
+root.innerHTML=`<div class="hud"><div id="build-identity"></div><small>Décor illustratif — géographie réelle à importer</small></div><div class="help">Déplacement : ZQSD / WASD / flèches · Glisser : orienter la caméra · Molette : zoom · Shift : courir · V : changer de vue</div>`;
+const identityElement=document.querySelector<HTMLElement>('#build-identity')!;
+identityElement.innerHTML=buildIdentityMarkup(buildIdentity,ANGLES.name);
+if(import.meta.hot)import.meta.hot.accept('virtual:build-identity',module=>{
+ if(module)identityElement.innerHTML=buildIdentityMarkup(module.buildIdentity,ANGLES.name);
+});
 const credits=document.createElement('div');credits.className='geo-credit';
 credits.innerHTML='<a href="https://www.data.gouv.fr/datasets/referentiel-a-grande-echelle-rge" target="_blank" rel="noopener">IGN · RGE ALTI · extraction 08/11/2026</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a>';
 root.append(credits);

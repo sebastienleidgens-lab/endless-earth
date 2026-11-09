@@ -42,8 +42,11 @@ node scripts/browser-safety.mjs
 node scripts/browser-living.mjs
 node scripts/browser-earth-data.mjs
 node scripts/browser-earth-walk.mjs
+npm run test:build-identity
 ```
 
 Browser scripts expect `/usr/bin/chromium` and Playwright. They use SwiftShader; software timings are not hardware GPU/Android performance. The complete walk can take several minutes. The optional importer test needs a Python virtual environment with `rasterio` and `pyproj`: `python tests/import-mnt.test.py`.
+
+The permanent HTML header identifies the running build: active mission, actual Git commit and development/production status. Vite embeds these values in the JavaScript bundle; it never queries GitHub or a version endpoint in the browser. `package.json` explicitly selects the authoritative mission report, whose title supplies the number/name; it does not guess from branches or future mission documents. Missing Git shows “Commit indisponible”; missing/inconsistent mission data shows “Mission indisponible”. Local edits show a base commit marked “modifié”. Development identity refreshes with HMR/reloads; restart the dev server after changing Git refs without editing source files. A production build refuses a metadata change detected during compilation.
 
 The renderer remains a bounded pilot loaded as one geographic zone, with culling, terrain LOD, instanced trees and progressively prepared/cached nearby details. National geographic streaming, high-resolution banks/cliffs, verified bridge reconstruction and a calibrated castle model remain future work. The older tile modules in `src/world/tiles.mjs`, `tile-loader.mjs` and `tile-stream.mjs` are foundations, not proof of national streaming in the normal game.

@@ -179,6 +179,16 @@ La promenade traverse au plus quatre cellules végétales résidentes dans cette
 
 La compilation finale produit un bundle d’environ **599 ko / 164 ko gzip** ; l’avertissement Vite au-dessus de 500 ko préexistait. Les scénarios navigateur finaux repassent après la dernière correction des lignes d’eau et des matériaux. Les vérifications de cette mission restent locales ; aucune publication de production n’a été effectuée.
 
+## Complément — version réellement exécutée
+
+Un indicateur HTML permanent remplace le titre de l’en-tête, sans ajouter d’objet ou d’appel de rendu Three.js. Il affiche ENDLESS EARTH, **Mission 07 — La Terre véritable**, le commit court réel et **Développement / Production**. La mission est extraite du titre du rapport actif explicitement référencé par `endlessEarth.missionReport` dans `package.json` ; aucun tri des documents ou nom de branche ne sert à deviner une mission.
+
+Vite capture le HEAD réel du checkout et l’état de la copie de travail, puis les embarque dans le bundle. Le statut dépend de la compilation Vite, pas de la présence d’un déploiement : un aperçu local d’un build de production affiche donc Production. Aucun appel réseau de version, timer ou traitement par image n’est ajouté. Une copie modifiée affiche **Base … · modifié** ; sans Git, **Commit indisponible**. Une mission absente ou incohérente reste **Mission indisponible**. Une archive placée dans un autre dépôt ne peut pas emprunter son commit. Un changement des métadonnées pendant la compilation arrête le build plutôt que d’annoncer une version faussement propre.
+
+L’en-tête garde les informations de lieu et de géographie, avec une emprise compacte et `pointer-events: none`. Le test `npm run test:build-identity` construit et sert le vrai bundle, compare le texte/attributs au checkout, interdit les requêtes de métadonnées et vérifie la lisibilité sans recouvrement des commandes à **1280×800, 390×844, 320×568 et 844×390**. Les tests unitaires compilent aussi des fixtures propres, modifiées, sans Git et à mission incohérente. Les métriques et captures de la mission ci-dessus précèdent ce complément d’interface ; le rendu du monde et ses contrôleurs restent inchangés.
+
+Validation du complément : **80 tests Node réussis**, compilation de production, scénario navigateur existant de déplacement/caméras et test dédié au vrai bundle. Les captures dédiées restent dans `work/build-identity/`, sans ajouter une nouvelle série de données géographiques au dépôt.
+
 ## Limites et prochaine mission
 
 Cette mission n’importe ni LiDAR, ni orthophoto, ni BD TOPO, ni BD Forêt, ni OCS GE/RPG/Copernicus/TOPAGE. Le relief source, les cours d’eau, les ponts et les constructions conservent les limites déclarées ci-dessus. Le monde gagne en cohérence et en coût de dessin mais reste visiblement procédural. Aucun habitant n’a évalué le « waouh local » ; il ne serait pas honnête de le déclarer acquis.
