@@ -1,0 +1,16 @@
+{
+  "checkedOn": "2026-11-09",
+  "policy": "restricted, enforced; observations_current=true",
+  "requests": [
+    {
+      "url": "https://data.geopf.fr/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=IGNF_LIDAR-HD_TA:mnt-dalle&outputFormat=application%2Fjson&srsName=EPSG:4326&bbox=0.870,46.684,0.899,46.706,EPSG:4326",
+      "command": "curl --max-time 20 with inherited HTTPS proxy and CA trust",
+      "result": "CONNECT 403 Forbidden; curl exit 56; envoy response, 2026-11-09 12:16:48 UTC",
+      "interpretation": "Destination rejected before WFS response; neither local tile availability nor WFS query syntax is established by this response."
+    },
+    {"url": "https://services.sandre.eaufrance.fr/", "result": "CONNECT 403 Forbidden; curl exit 56"},
+    {"url": "https://land.copernicus.eu/", "result": "CONNECT 403 Forbidden; curl exit 56"}
+  ],
+  "webCatalogues": "Readable through the separate web search tool. The same spatial WFS URL was unavailable through that tool. Product catalogues are not proof of pixel/tile coverage at Angles.",
+  "fallback": "Existing committed IGN RGE ALTI grid and OSM extract retained; no MNS, synthetic official terrain, or guessed dataset vintage substituted."
+}

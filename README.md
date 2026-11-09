@@ -1,58 +1,52 @@
 # ENDLESS EARTH — France Alpha
 
-A long-term browser-based 3D walking simulation of France, starting with **Angles-sur-l'Anglin** (Vienne).
+An exploratory Three.js walking simulation, piloting **Angles-sur-l’Anglin (Vienne)**. The normal URL uses the committed OSM extract, 921 mapped building footprints and a real IGN elevation grid sampled every 10 m. Building heights, architecture, individual trees, materials, ruin heights and weather remain largely interpreted. This is a stylized geographic pilot, not a surveyed digital twin.
 
-> **Status: architectural prototype.** The current scenery is illustrative, **not** a faithful reconstruction of Angles-sur-l'Anglin. Real IGN/OSM roads, buildings, terrain, and river data have not yet been imported.
+## Run
 
-## Run locally
+Node.js 20.19+ or 22.12+:
 
-Requires Node.js 20.19+ or 22.12+ (for Vite 7).
-
-```bash
-npm install
+```sh
+npm ci
 npm run dev
 ```
 
-Open the local URL shown by Vite. Build with `npm run build`.
+Open `http://localhost:5173/endless-earth/`. `npm run build` creates a production bundle locally. Production deployment is a separate GitHub workflow on `main`; mission branches and draft PRs must not deploy or merge themselves.
 
-## Controls
+## Explore
 
-WASD / ZQSD / arrows: walk. Drag: rotate view. Mouse wheel: zoom. Touch joystick: bottom left on mobile. Drag elsewhere to rotate the camera. Basic collisions prevent walking through illustrative houses. Terrain, water and tree collisions are not implemented yet.
+WASD / ZQSD / arrows walk; Shift runs. Drag rotates the camera, wheel/pinch adjusts third-person zoom, V cycles third-person, first-person and aerial views. Mobile has a touch joystick. Automatic walking follows a validated 450 m OSM route; manual input takes control. Sound is opt-in. Quality can switch automatically to Éco or be selected manually. Time uses the real solar position; weather is explicitly simulated.
 
-## Architecture
+Building footprints, water, walls, access restrictions, slopes and unknown-height bridges constrain walking. A mapped bridge is **not** assumed safe without a verified deck altitude. The visible source terrain and collision sampler use the same triangulation near the player.
 
-- `src/main.ts`: renderer, lighting, camera, basic keyboard movement.
-- `src/world/geo.ts`: Angles-sur-l'Anglin anchor and local coordinate conversion.
-- `src/world/demo.ts`: temporary illustrative scenery.
-- `AGENTS.md`: development rules for AI agents.
+## Geography and provenance
 
-## Next priorities
+- `public/data/angles-terrain.json`: real IGN RGE ALTI elevations; 2 km local extent, 201² samples, extracted 8 November 2026. Acquisition date is not supplied. **No LiDAR HD is currently imported.**
+- `public/data/angles-osm.geojson`: OSM extract from 8 November 2026; roads, buildings, water, two forest polygons and the castle perimeter. Incomplete land-use tags do not justify inventing agricultural parcels.
+- `npm run geo:prepare`: rebuilds checked, deterministic terrain LOD indices, mapped land-cover atlas and SHA-256 manifest offline. Source files remain unchanged. The browser falls back to the exact IGN grid if prepared assets are stale or missing.
+- `scripts/import-mnt.py`: future, explicit MNT GeoTIFF import with projected coordinates, checksums, datum and nodata validation. Tested with a synthetic raster; real local LiDAR availability is unverified because download access was blocked in Mission 07.
+- [Data licences and attribution](public/data/LICENSE.md) · [Mission 07 report and evidence](docs/mission-07.md) · [Mission 06](docs/mission-06.md).
 
-1. Real geospatial data pipeline and source licensing.
-2. Terrain-aware paths, river and buildings.
-3. Extend collisions to terrain, water and trees; add automated visual tests.
-4. Tile streaming and deterministic procedural detail.
+The local rendering frame is metric but approximate (under 0.2% axis scale error around the pilot). Source coordinates are retained in GeoJSON. A future projection migration must transform terrain, buildings, navigation and vegetation together.
 
-This repository is the long-lived source of truth; standalone HTML experiments are not the production architecture.
+## Validate
 
-## Validation
+With the dev server running:
 
-GitHub Actions runs `npm install` and `npm run build` for pushes and pull requests. This is compilation validation, **not** a WebGL/Android runtime test.
+```sh
+npm test
+npm run build
+npm run test:browser
+node scripts/browser-camera.mjs
+node scripts/browser-safety.mjs
+node scripts/browser-living.mjs
+node scripts/browser-earth-data.mjs
+node scripts/browser-earth-walk.mjs
+npm run test:build-identity
+```
 
-## Geographic data import (experimental)
+Browser scripts expect `/usr/bin/chromium` and Playwright. They use SwiftShader; software timings are not hardware GPU/Android performance. The complete walk can take several minutes. The optional importer test needs a Python virtual environment with `rasterio` and `pyproj`: `python tests/import-mnt.test.py`.
 
-Run `npm run geo:fetch` with network access, or use the manual GitHub Action **Fetch Angles OSM geography** to obtain `angles-osm.geojson`. Place it at `public/data/angles-osm.geojson`. The runtime loads actual OSM road lines and building footprints if present; otherwise it shows the illustrative scene. The terrain is still flat and buildings are extruded approximations. See [docs/GEODATA.md](docs/GEODATA.md).
+The permanent HTML header identifies the running build: active mission, actual Git commit and development/production status. Vite embeds these values in the JavaScript bundle; it never queries GitHub or a version endpoint in the browser. `package.json` explicitly selects the authoritative mission report, whose title supplies the number/name; it does not guess from branches or future mission documents. Missing Git shows “Commit indisponible”; missing/inconsistent mission data shows “Mission indisponible”. Local edits show a base commit marked “modifié”. Development identity refreshes with HMR/reloads; restart the dev server after changing Git refs without editing source files. A production build refuses a metadata change detected during compilation.
 
-**Collision note:** when real OSM footprints are loaded, the avatar cannot cross the interiors of mapped buildings; road, river, cliff and terrain collision remain future work. Building clearance is approximate and not yet tested in a browser.
-
-## Terrain preview (experimental)
-
-A validated elevation grid can be placed at `public/data/angles-terrain.json`. Open the app with `?terrain=1` to preview terrain **without roads and buildings**, because those have not yet been draped to real elevations. Without a real grid, the demo remains illustrative. See [docs/TERRAIN.md](docs/TERRAIN.md) for the data contract and provenance requirements.
-
-## Planetary-scale foundation
-
-Global z/x/y tile addressing, a bounded tile cache and automated unit tests are available in `src/world/tiles.mjs` and `src/world/tile-loader.mjs`. These are not connected to the current village renderer yet. See [docs/WORLD_ARCHITECTURE.md](docs/WORLD_ARCHITECTURE.md) for the offline data pipeline, streaming, LOD and floating-origin roadmap.
-
-## Opt-in streamed tiles preview
-
-Once real tile bundles are built and published under `public/tiles/`, open `?tiles=1` to enable the experimental world-tile renderer. It loads a 3×3 neighborhood around the player, unloads distant Three.js meshes, and falls back to the illustrative demo when no tile data exists. The regular URL remains unchanged. The mode is not production-ready: geographic geometry clipping, river/terrain alignment, LOD and complete collisions are outstanding. Do not mistake a successful build for a visual validation.
+The renderer remains a bounded pilot loaded as one geographic zone, with culling, terrain LOD, instanced trees and progressively prepared/cached nearby details. National geographic streaming, high-resolution banks/cliffs, verified bridge reconstruction and a calibrated castle model remain future work. The older tile modules in `src/world/tiles.mjs`, `tile-loader.mjs` and `tile-stream.mjs` are foundations, not proof of national streaming in the normal game.
