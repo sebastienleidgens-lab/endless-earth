@@ -151,7 +151,7 @@ if(tilesPreview && !terrainPreview){
       await navigationLoaded();
       if(count>0)prepareWalk();
       if(hint)hint.textContent=count>0
-        ? `OSM réel : ${count} objets · ${terrain?`relief IGN ${terrain.grid.step_m} m · dénivelé ${(Math.max(...terrain.grid.elevations_m)-Math.min(...terrain.grid.elevations_m)).toFixed(0)} m`:'relief indisponible, sol plat'}`
+        ? `OSM réel : ${count} objets · ${terrain?`relief IGN ${terrain.grid.step_m} m · dénivelé ${(Math.max(...terrain.grid.elevations_m)-Math.min(...terrain.grid.elevations_m)).toFixed(0)} m`:'relief indisponible, sol plat'}${terrain&&!terrain.roadsAvailable?' · voies visuelles indisponibles':''}`
         : 'ERREUR OSM : aucun objet géographique chargé';
     }catch(error){
       console.error('OSM geography rendering failed',error);

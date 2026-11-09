@@ -2,6 +2,10 @@ import {groundDetail} from '../nature/surfaces';
 import * as THREE from 'three';
 // @ts-ignore Shared, tested source surface.
 import {sampleGrid,cellIndices} from './terrain-grid.mjs';
+// @ts-ignore Shared offline source geometry.
+import {sourceGeometry} from './source-geometry.mjs';
+// @ts-ignore Validated binary geometry decoder.
+import {decodeSurface} from './surface-mesh.mjs';
 export type TerrainGrid = {
   schema: 'endless-earth-terrain-v1';
   origin_x_m: number;
@@ -15,8 +19,10 @@ export type TerrainGrid = {
 };
 export class Terrain {
   landcover:THREE.Texture|null=null;
+  singleSurface:any=null;
+  get roadsAvailable(){return this.singleSurface!==null;}
   prepared:any=null;
-  metrics={preparationMs:0,tiles:0,fineTriangles:0,farTriangles:0,farTiles:0,maxFarErrorM:0};
+  metrics={preparationMs:0,tiles:0,fineTriangles:0,farTriangles:0,farTiles:0,maxFarErrorM:0,surface:'source'};
   constructor(readonly grid: TerrainGrid) {}
   static validate(raw: unknown): TerrainGrid {
     if(!raw || typeof raw !== 'object') throw new Error('Invalid terrain payload');
@@ -35,51 +41,10 @@ export class Terrain {
   }
   createMesh():THREE.Object3D {
     const started=performance.now();
-    const g=this.grid, positions:number[]=[],indices:number[]=[],colors:number[]=[];
-    const baseline=this.sample(0,0)??g.elevations_m[0];
-    // Reuse colors and the blend function across the entire 40,401-vertex DEM.
-    // The former implementation allocated four THREE.Color objects per vertex.
-    const grass=new THREE.Color(0x8d9b79);
-    const dryGrass=new THREE.Color(0xa5a58a);
-    const limestone=new THREE.Color(0xb8b09a);
-    const exposedRock=new THREE.Color(0xaaa394);
-    const color=new THREE.Color();
-    const smoothstep=(a:number,b:number,v:number)=>{
-      const t=THREE.MathUtils.clamp((v-a)/(b-a),0,1);
-      return t*t*(3-2*t);
-    };
-    for(let z=0;z<g.height;z++)for(let x=0;x<g.width;x++){
-      const elevation=g.elevations_m[z*g.width+x];
-      positions.push(g.origin_x_m+x*g.step_m,elevation-baseline,g.origin_z_m+z*g.step_m);
-      const left=g.elevations_m[z*g.width+Math.max(0,x-1)];
-      const right=g.elevations_m[z*g.width+Math.min(g.width-1,x+1)];
-      const up=g.elevations_m[Math.max(0,z-1)*g.width+x];
-      const down=g.elevations_m[Math.min(g.height-1,z+1)*g.width+x];
-      const slope=Math.hypot(right-left,down-up)/(2*g.step_m);
-      // Inferred limestone palette on steep Anglin valley sides.
-      // Shade it within the DEM's existing vertex colors: an extra rock
-      // surface would intersect the terrain and reintroduce z-fighting.
-      const dry=smoothstep(.12,.38,slope);
-      const rock=smoothstep(.34,.95,slope);
-      color.copy(grass).lerp(dryGrass,dry).lerp(limestone,rock);
-      // Faceted, stratified limestone variation derived from source
-      // elevation and slope. This changes only color, never DEM geometry.
-      if(rock>.001){
-        const band=Math.sin(elevation*1.65+Math.sin(x*.31+z*.17)*.8);
-        const grain=Math.sin(x*2.17+z*1.31)*Math.sin(x*.73-z*1.93);
-        const shade=THREE.MathUtils.clamp(.93+band*.065+grain*.035,.79,1.08);
-        color.multiplyScalar(1+(shade-1)*rock);
-        color.lerp(exposedRock,smoothstep(.95,1.75,slope)*.64);
-      }
-      colors.push(color.r,color.g,color.b);
-    }
-    for(let z=0;z<g.height-1;z++)for(let x=0;x<g.width-1;x++)indices.push(...cellIndices(g,x,z,g.width,z*g.width+x));
-    const geometry=new THREE.BufferGeometry();
-    geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
-    geometry.setIndex(indices);geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();
+    const g=this.grid,geometry=this.singleSurface?null:sourceGeometry(g);
     const material=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.FrontSide});
-    groundDetail(material);
-    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial);
+    groundDetail(material,!!this.singleSurface);
+    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial,!!this.singleSurface);
     if(this.landcover){
       const detail=material.onBeforeCompile;
       material.onBeforeCompile=(shader,renderer)=>{
@@ -92,19 +57,31 @@ export class Terrain {
         shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
           vec2 coverUV=(naturePosition.xz-earthOrigin)/earthExtent;
           vec4 cover=texture2D(earthCover,coverUV);
-          float inCover=step(0.,coverUV.x)*step(0.,coverUV.y)*step(coverUV.x,1.)*step(coverUV.y,1.);
+          float inCover=step(0.,coverUV.x)*step(0.,coverUV.y)*step(coverUV.x,1.)*step(coverUV.y,1.)${this.singleSurface?'*(1.-step(.5,earthRoadType))':''};
           diffuseColor.rgb=diffuseColor.rgb*(1.-cover.a*inCover)+cover.rgb*inCover;`);
       };
-      material.customProgramCacheKey=()=> 'earth-cover-v1';
+      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-single-surface-v1':'earth-cover-v1';
     }
     const group=new THREE.Group();group.name='IGN source terrain';group.userData.terrainTexture=this.landcover;
     const owned:THREE.BufferGeometry[]=[];group.userData.terrainResources={geometries:owned,materials:[material,bareMaterial]};
-    if(this.prepared){
+    if(this.singleSurface){
+      const {manifest,tiles}=this.singleSurface;
+      for(const tile of tiles){
+        const t=tile.descriptor,geom=new THREE.BufferGeometry();
+        for(const [name,attribute] of Object.entries(tile.attributes))geom.setAttribute(name,attribute as THREE.BufferAttribute);
+        geom.setIndex(tile.fine);geom.computeBoundingSphere();
+        const farGeometry=new THREE.BufferGeometry();for(const [name,attribute] of Object.entries(geom.attributes))farGeometry.setAttribute(name,attribute);
+        farGeometry.setIndex(tile.far);farGeometry.boundingSphere=geom.boundingSphere;owned.push(geom,farGeometry);
+        const mesh=new THREE.Mesh(geom,t.cover===false?bareMaterial:material);mesh.receiveShadow=true;mesh.name='IGN ground and OSM roads';
+        mesh.userData.earthTile={fineIndex:tile.fine,farIndex:tile.far,fineGeometry:geom,farGeometry,far:false,x:g.origin_x_m+t.x*g.step_m,z:g.origin_z_m+t.z*g.step_m,size:t.size*g.step_m};group.add(mesh);
+      }
+      this.metrics.tiles=tiles.length;this.metrics.fineTriangles=manifest.stats.fineTriangles;this.metrics.farTriangles=manifest.stats.farTriangles;this.metrics.maxFarErrorM=manifest.maxFarErrorM;this.metrics.surface='integrated';
+    }else if(this.prepared){
       const {manifest,indices:far}=this.prepared;
       for(const tile of manifest.tiles){
         const size=tile.size,stride=size+1,geom=new THREE.BufferGeometry();
         for(const name of ['position','normal','color']){
-          const source=geometry.getAttribute(name),array=new Float32Array(stride*stride*3);
+          const source=geometry!.getAttribute(name),array=new Float32Array(stride*stride*3);
           for(let z=0;z<=size;z++)for(let x=0;x<=size;x++){
             const from=(tile.z+z)*g.width+tile.x+x,to=z*stride+x;
             array[to*3]=source.getX(from);array[to*3+1]=source.getY(from);array[to*3+2]=source.getZ(from);
@@ -120,11 +97,11 @@ export class Terrain {
         const mesh=new THREE.Mesh(geom,tile.cover===false?bareMaterial:material);mesh.receiveShadow=true;
         mesh.userData.earthTile={fineIndex,farIndex,fineGeometry:geom,farGeometry,far:false,x:g.origin_x_m+tile.x*g.step_m,z:g.origin_z_m+tile.z*g.step_m,size:size*g.step_m};group.add(mesh);
       }
-      geometry.dispose();
+      geometry!.dispose();
       this.metrics.tiles=manifest.tiles.length;this.metrics.fineTriangles=manifest.fineTriangles;this.metrics.farTriangles=manifest.farTriangles;this.metrics.maxFarErrorM=manifest.maxFarErrorM;
     }else{
-      const mesh=new THREE.Mesh(geometry,material);mesh.receiveShadow=true;group.add(mesh);owned.push(geometry);
-      this.metrics.tiles=1;this.metrics.fineTriangles=indices.length/3;
+      const mesh=new THREE.Mesh(geometry!,material);mesh.receiveShadow=true;group.add(mesh);owned.push(geometry!);
+      this.metrics.tiles=1;this.metrics.fineTriangles=geometry!.index!.count/3;
     }
     this.metrics.preparationMs=performance.now()-started;
     group.userData.terrainMetrics=this.metrics;
@@ -177,7 +154,7 @@ export async function fetchTerrain():Promise<Terrain|null>{
   if(!response.ok)return null;
   const text=await response.text(),terrain=new Terrain(Terrain.validate(JSON.parse(text)));
   try{
-    const r=await fetch(base+'angles-earth.json');if(!r.ok)return terrain;const m=await r.json();
+    const r=await fetch(base+'angles-earth.json');if(!r.ok)throw new Error('Prepared landcover unavailable');const m=await r.json();
     if(m.schema!=='endless-earth-prepared-v1'||m.terrainSha256!==await sha256(new TextEncoder().encode(text)))throw new Error('Stale prepared terrain');
     const [lod,image,osm]=await Promise.all([fetch(base+'angles-terrain-lod.bin'),fetch(base+'angles-landcover.png'),fetch(base+'angles-osm.geojson')]);
     if(!lod.ok||!image.ok||!osm.ok)throw new Error('Prepared data missing');
@@ -191,5 +168,14 @@ export async function fetchTerrain():Promise<Terrain|null>{
     const texture=new THREE.Texture(bitmap);texture.flipY=false;texture.generateMipmaps=true;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.needsUpdate=true;
     terrain.landcover=texture;
   }catch(error){console.warn('Prepared Earth data unavailable; exact IGN grid retained',error);}
+  try{
+    const r=await fetch(base+'angles-surface.json');if(!r.ok)throw new Error('Unified surface unavailable');const m=await r.json();
+    const [terrainHash,osmHash]=await Promise.all([sha256(new TextEncoder().encode(text)),fetch(base+'angles-osm.geojson').then(r=>r.text()).then(t=>sha256(new TextEncoder().encode(t)))]);
+    if(m.terrainSha256!==terrainHash||m.osmSha256!==osmHash||m.sourceSpacingM!==terrain.grid.step_m)throw new Error('Stale unified surface');
+    if(!m.tiles.every((t:any)=>Number.isInteger(t.x)&&Number.isInteger(t.z)&&t.x>=0&&t.z>=0&&t.size>0&&t.x+t.size<terrain.grid.width&&t.z+t.size<terrain.grid.height))throw new Error('Invalid unified tile extent');
+    const packed=await fetch(base+'angles-surface.pack');if(!packed.ok)throw new Error('Unified surface buffer unavailable');
+    const buffer=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+    if(await sha256(buffer)!==m.binarySha256)throw new Error('Unified surface checksum mismatch');terrain.singleSurface=decodeSurface(m,buffer);
+  }catch(error){console.warn('Road surfaces unavailable; exact source ground retained without overlapping fallback roads',error);}
   return terrain;
 }

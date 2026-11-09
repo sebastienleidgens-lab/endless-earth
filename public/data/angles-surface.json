@@ -1,0 +1,1007 @@
+{
+  "schema": "endless-earth-single-surface-v1",
+  "terrainSha256": "bfe0ce976a290d46e2db13200d2d1341a1876583b55e1cdbaa556236e726d151",
+  "osmSha256": "06b79e259d8cca94ed6619d90a058e650d1a9bb5e245802f0dd141b679587aac",
+  "terrainSource": "IGN RGE ALTI via Géoplateforme altitude API",
+  "osmSource": {
+    "source": "© OpenStreetMap contributors",
+    "license": "ODbL 1.0",
+    "retrieved_at": "2026-11-08T18:30:04.047921+00:00",
+    "bbox": [
+      0.8735,
+      46.6872,
+      0.8953,
+      46.7034
+    ],
+    "method": "one-time OSM API bbox bootstrap",
+    "warning": "Incomplete OSM tags; no authoritative elevation or building heights."
+  },
+  "sourceSpacingM": 10,
+  "segments": 1580,
+  "estimatedWidthSegments": 1567,
+  "roadOffsetM": 0,
+  "polygonOffset": false,
+  "maxFarErrorM": 0.25,
+  "positionPrecision": "Float32; clipping coordinates canonicalized to 1 µm before Float32 storage",
+  "styles": {
+    "1": {
+      "name": "asphalt",
+      "color": 9014665,
+      "priority": 60
+    },
+    "2": {
+      "name": "setts",
+      "color": 10789007,
+      "priority": 50
+    },
+    "3": {
+      "name": "earth",
+      "color": 10787455,
+      "priority": 40
+    },
+    "4": {
+      "name": "gravel",
+      "color": 10920591,
+      "priority": 45
+    },
+    "5": {
+      "name": "unknown",
+      "color": 10262923,
+      "priority": 30
+    },
+    "6": {
+      "name": "rural-unknown",
+      "color": 10722179,
+      "priority": 20
+    }
+  },
+  "stats": {
+    "roadCells": 5191,
+    "roadAreaM2": 142909.74322481788,
+    "legacyOverlapExcessM2": 2274.398230648792,
+    "legacyConflictCells": 1387,
+    "sliversDiscarded": 34,
+    "sliverAreaM2": 0.0000028147148822357533,
+    "fineTriangles": 117318,
+    "farTriangles": 103334,
+    "vertices": 81495,
+    "materialAreasM2": {
+      "1": 32324.37179281069,
+      "2": 916.6251727094733,
+      "3": 16270.94269067469,
+      "4": 884.9412841132206,
+      "5": 57010.16049619459,
+      "6": 35502.70178831512
+    }
+  },
+  "tiles": [
+    {
+      "x": 0,
+      "z": 0,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 152,
+      "position": {
+        "offset": 0,
+        "length": 7914,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 31656,
+        "length": 7914,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 47484,
+        "length": 7914,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 55400,
+        "length": 2638,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 58040,
+        "length": 12276,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 82592,
+        "length": 10836,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 40,
+      "z": 0,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 248,
+      "position": {
+        "offset": 104264,
+        "length": 10053,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 144476,
+        "length": 10053,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 164584,
+        "length": 10053,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 174640,
+        "length": 3351,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 177992,
+        "length": 14346,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 206684,
+        "length": 13770,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 80,
+      "z": 0,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 94,
+      "position": {
+        "offset": 234224,
+        "length": 7020,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 262304,
+        "length": 7020,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 276344,
+        "length": 7020,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 283364,
+        "length": 2340,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 285704,
+        "length": 11496,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 308696,
+        "length": 9480,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 120,
+      "z": 0,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 159,
+      "position": {
+        "offset": 327656,
+        "length": 8328,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 360968,
+        "length": 8328,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 377624,
+        "length": 8328,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 385952,
+        "length": 2776,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 388728,
+        "length": 12636,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 414000,
+        "length": 9516,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 160,
+      "z": 0,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 227,
+      "position": {
+        "offset": 433032,
+        "length": 9246,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 470016,
+        "length": 9246,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 488508,
+        "length": 9246,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 497756,
+        "length": 3082,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 500840,
+        "length": 13548,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 527936,
+        "length": 10764,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 0,
+      "z": 40,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 131,
+      "position": {
+        "offset": 549464,
+        "length": 8460,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 583304,
+        "length": 8460,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 600224,
+        "length": 8460,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 608684,
+        "length": 2820,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 611504,
+        "length": 12864,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 637232,
+        "length": 11952,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 40,
+      "z": 40,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 208,
+      "position": {
+        "offset": 661136,
+        "length": 9876,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 700640,
+        "length": 9876,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 720392,
+        "length": 9876,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 730268,
+        "length": 3292,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 733560,
+        "length": 14181,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 761924,
+        "length": 13701,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 80,
+      "z": 40,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 223,
+      "position": {
+        "offset": 789328,
+        "length": 9240,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 826288,
+        "length": 9240,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 844768,
+        "length": 9240,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 854008,
+        "length": 3080,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 857088,
+        "length": 13539,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 884168,
+        "length": 12435,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 120,
+      "z": 40,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 270,
+      "position": {
+        "offset": 909040,
+        "length": 10140,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 949600,
+        "length": 10140,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 969880,
+        "length": 10140,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 980020,
+        "length": 3380,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 983400,
+        "length": 14364,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 1012128,
+        "length": 12444,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 160,
+      "z": 40,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 197,
+      "position": {
+        "offset": 1037016,
+        "length": 8211,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 1069860,
+        "length": 8211,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 1086284,
+        "length": 8211,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 1094496,
+        "length": 2737,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 1097236,
+        "length": 12564,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 1122364,
+        "length": 10692,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 0,
+      "z": 80,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 273,
+      "position": {
+        "offset": 1143748,
+        "length": 10461,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 1185592,
+        "length": 10461,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 1206516,
+        "length": 10461,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 1216980,
+        "length": 3487,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 1220468,
+        "length": 14730,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 1249928,
+        "length": 13338,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 40,
+      "z": 80,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 295,
+      "position": {
+        "offset": 1276604,
+        "length": 11277,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 1321712,
+        "length": 11277,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 1344268,
+        "length": 11277,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 1355548,
+        "length": 3759,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 1359308,
+        "length": 15456,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 1390220,
+        "length": 14880,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 80,
+      "z": 80,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 578,
+      "position": {
+        "offset": 1419980,
+        "length": 23901,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 1515584,
+        "length": 23901,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 1563388,
+        "length": 23901,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 1587292,
+        "length": 7967,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 1595260,
+        "length": 27573,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 1650408,
+        "length": 27429,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 120,
+      "z": 80,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 302,
+      "position": {
+        "offset": 1705268,
+        "length": 12495,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 1755248,
+        "length": 12495,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 1780240,
+        "length": 12495,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 1792736,
+        "length": 4165,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 1796904,
+        "length": 16692,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 1830288,
+        "length": 15636,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 160,
+      "z": 80,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 104,
+      "position": {
+        "offset": 1861560,
+        "length": 6909,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 1889196,
+        "length": 6909,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 1903016,
+        "length": 6909,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 1909928,
+        "length": 2303,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 1912232,
+        "length": 11358,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 1934948,
+        "length": 9246,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 0,
+      "z": 120,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 119,
+      "position": {
+        "offset": 1953440,
+        "length": 7683,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 1984172,
+        "length": 7683,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 1999540,
+        "length": 7683,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2007224,
+        "length": 2561,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2009788,
+        "length": 12108,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 2034004,
+        "length": 8124,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 40,
+      "z": 120,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 200,
+      "position": {
+        "offset": 2050252,
+        "length": 10701,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 2093056,
+        "length": 10701,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 2114460,
+        "length": 10701,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2125164,
+        "length": 3567,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2128732,
+        "length": 14958,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 2158648,
+        "length": 14334,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 80,
+      "z": 120,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 388,
+      "position": {
+        "offset": 2187316,
+        "length": 16491,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 2253280,
+        "length": 16491,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 2286264,
+        "length": 16491,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2302756,
+        "length": 5497,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2308256,
+        "length": 20505,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 2349268,
+        "length": 20361,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 120,
+      "z": 120,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 160,
+      "position": {
+        "offset": 2389992,
+        "length": 8622,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 2424480,
+        "length": 8622,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 2441724,
+        "length": 8622,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2450348,
+        "length": 2874,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2453224,
+        "length": 12996,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 2479216,
+        "length": 11028,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 160,
+      "z": 120,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 148,
+      "position": {
+        "offset": 2501272,
+        "length": 7710,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 2532112,
+        "length": 7710,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 2547532,
+        "length": 7710,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2555244,
+        "length": 2570,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2557816,
+        "length": 12096,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 2582008,
+        "length": 8640,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 0,
+      "z": 160,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 51,
+      "position": {
+        "offset": 2599288,
+        "length": 5901,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 2622892,
+        "length": 5901,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 2634696,
+        "length": 5901,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2640600,
+        "length": 1967,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2642568,
+        "length": 10386,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 2663340,
+        "length": 5682,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 40,
+      "z": 160,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 191,
+      "position": {
+        "offset": 2674704,
+        "length": 9339,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 2712060,
+        "length": 9339,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 2730740,
+        "length": 9339,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2740080,
+        "length": 3113,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2743196,
+        "length": 13680,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 2770556,
+        "length": 12336,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 80,
+      "z": 160,
+      "size": 40,
+      "cover": true,
+      "protectedCells": 284,
+      "position": {
+        "offset": 2795228,
+        "length": 11019,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 2839304,
+        "length": 11019,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 2861344,
+        "length": 11019,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2872364,
+        "length": 3673,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2876040,
+        "length": 15240,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 2906520,
+        "length": 14952,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 120,
+      "z": 160,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 115,
+      "position": {
+        "offset": 2936424,
+        "length": 7128,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 2964936,
+        "length": 7128,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 2979192,
+        "length": 7128,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 2986320,
+        "length": 2376,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 2988696,
+        "length": 11526,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 3011748,
+        "length": 10230,
+        "type": "u16"
+      }
+    },
+    {
+      "x": 160,
+      "z": 160,
+      "size": 40,
+      "cover": false,
+      "protectedCells": 74,
+      "position": {
+        "offset": 3032208,
+        "length": 6360,
+        "type": "f32"
+      },
+      "normal": {
+        "offset": 3057648,
+        "length": 6360,
+        "type": "i16"
+      },
+      "color": {
+        "offset": 3070368,
+        "length": 6360,
+        "type": "u8"
+      },
+      "earthRoad": {
+        "offset": 3076728,
+        "length": 2120,
+        "type": "u8"
+      },
+      "fine": {
+        "offset": 3078848,
+        "length": 10836,
+        "type": "u16"
+      },
+      "far": {
+        "offset": 3100520,
+        "length": 8196,
+        "type": "u16"
+      }
+    }
+  ],
+  "binaryBytes": 3116912,
+  "binarySha256": "cb5d8048e3e4d6cdf9cb9c6de1b96111b41dab3790b5be7b1b15e96d29bdc115",
+  "compressedBytes": 1561640
+}

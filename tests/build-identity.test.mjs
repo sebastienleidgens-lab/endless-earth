@@ -58,3 +58,9 @@ test('build labels escape source text rather than interpreting it as HTML',()=>{
 test('a checkout that changes during compilation cannot publish a falsely clean identity',async()=>fixture(async(root)=>{
  await assert.rejects(build({root,configFile:false,logLevel:'silent',plugins:[buildIdentityPlugin(),{name:'edit-during-build',buildStart:()=>writeFile(join(root,'changed-during-build.txt'),'changed')}],build:{write:false,lib:{entry:join(root,'entry.mjs'),formats:['es']}}}),/changé pendant la compilation/);
 }));
+
+test('corrective mission 07.1 is taken from its declared report, including in the compiled badge',async()=>fixture(async root=>{
+ await writeFile(join(root,'package.json'),JSON.stringify({type:'module',endlessEarth:{missionReport:'docs/mission-07-1.md'}}));
+ await writeFile(join(root,'docs/mission-07-1.md'),'# Mission 07.1 — Routes et intersections continues\n');
+ const {info,markup}=await compiled(root);assert.deepEqual(info.mission,{number:'07.1',name:'Routes et intersections continues',source:'docs/mission-07-1.md'});assert.match(markup,/Mission 07\.1 — Routes et intersections continues/);
+}));
