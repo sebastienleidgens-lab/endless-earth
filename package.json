@@ -16,7 +16,9 @@
     "test:browser": "node scripts/browser-smoke.mjs",
     "test:build-identity": "node scripts/browser-build-identity.mjs",
     "test:architecture": "node scripts/browser-architecture.mjs after",
-    "geo:roads": "node scripts/prepare-road-surface.mjs"
+    "geo:roads": "node scripts/prepare-road-surface.mjs",
+    "geo:road-materials": "node scripts/prepare-road-edges.mjs",
+    "test:road-materials": "node scripts/browser-road-materials.mjs after"
   },
   "dependencies": {
     "three": "^0.180.0"

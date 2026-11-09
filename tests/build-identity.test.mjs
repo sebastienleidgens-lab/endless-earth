@@ -64,3 +64,9 @@ test('corrective mission 07.1 is taken from its declared report, including in th
  await writeFile(join(root,'docs/mission-07-1.md'),'# Mission 07.1 — Routes et intersections continues\n');
  const {info,markup}=await compiled(root);assert.deepEqual(info.mission,{number:'07.1',name:'Routes et intersections continues',source:'docs/mission-07-1.md'});assert.match(markup,/Mission 07\.1 — Routes et intersections continues/);
 }));
+
+test('mission 07.2 material build retains the exact mission name and actual Git commit',async()=>fixture(async(root,git)=>{
+ await writeFile(join(root,'package.json'),JSON.stringify({type:'module',endlessEarth:{missionReport:'docs/mission-07-2.md'}}));
+ await writeFile(join(root,'docs/mission-07-2.md'),'# Mission 07.2 — Les routes du monde réel\n');
+ const {info,markup}=await compiled(root);assert.equal(info.commit,git('rev-parse','HEAD'));assert.equal(info.mission.number,'07.2');assert.match(markup,/Mission 07\.2 — Les routes du monde réel/);
+}));
