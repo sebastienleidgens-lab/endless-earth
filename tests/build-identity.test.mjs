@@ -70,3 +70,9 @@ test('mission 07.2 material build retains the exact mission name and actual Git 
  await writeFile(join(root,'docs/mission-07-2.md'),'# Mission 07.2 — Les routes du monde réel\n');
  const {info,markup}=await compiled(root);assert.equal(info.commit,git('rev-parse','HEAD'));assert.equal(info.mission.number,'07.2');assert.match(markup,/Mission 07\.2 — Les routes du monde réel/);
 }));
+
+test('mission 07.3 optimization build uses its explicit name and the real commit',async()=>fixture(async(root,git)=>{
+ await writeFile(join(root,'package.json'),JSON.stringify({type:'module',endlessEarth:{missionReport:'docs/mission-07-3.md'}}));
+ await writeFile(join(root,'docs/mission-07-3.md'),'# Mission 07.3 — Optimisation des matières routières\n');
+ const {info,markup}=await compiled(root);assert.equal(info.commit,git('rev-parse','HEAD'));assert.equal(info.mission.number,'07.3');assert.match(markup,/Mission 07\.3 — Optimisation des matières routières/);
+}));

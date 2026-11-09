@@ -33,7 +33,7 @@ float mineralDetail=0.;
 float roadBoundaryDistance=3.;
 #ifdef ROAD_EDGES
  vec2 edgeUV=(p-roadEdgeOrigin)/roadEdgeExtent;
- if(earthShoulderRegion>.001)roadBoundaryDistance=abs(texture2D(roadEdges,edgeUV).r*2.-1.)*roadEdgeRange;
+ roadBoundaryDistance=abs(texture2D(roadEdges,edgeUV).r*2.-1.)*roadEdgeRange;
 #endif
 vec3 roadDust=vec3(.42,.385,.30)*(1.+groundPatch*.15);
 if(earthRoadType>.5){
@@ -75,9 +75,9 @@ if(earthRoadType>.5){
 export const roadNormalShader=`
 if(earthRoadType>.5&&mineralDetail>.001)normal=mineralNormal(normal,-vViewPosition,mineralHeight);
 `;
-export type RoadEdges={texture:THREE.DataTexture;manifest:any;masks?:Uint8Array[]};
+export type RoadEdges={texture:THREE.DataTexture;manifest:any};
 export function configureRoadFiltering(renderer:THREE.WebGLRenderer,edges:RoadEdges|null){
- const anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+ const maximum=renderer.capabilities.getMaxAnisotropy(),anisotropy=Math.min(4,maximum),edgeAnisotropy=Math.min(8,maximum);
  if(roadTexture.anisotropy!==anisotropy){roadTexture.anisotropy=anisotropy;roadTexture.needsUpdate=true;}
- if(edges&&edges.texture.anisotropy!==anisotropy){edges.texture.anisotropy=anisotropy;edges.texture.needsUpdate=true;}
+ if(edges&&edges.texture.anisotropy!==edgeAnisotropy){edges.texture.anisotropy=edgeAnisotropy;edges.texture.needsUpdate=true;}
 }

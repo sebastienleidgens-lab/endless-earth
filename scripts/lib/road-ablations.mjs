@@ -1,9 +1,11 @@
 // Browser-test-only ablations of the served frozen Mission 07.2 module.
 // These intentionally disable features to measure cost; they are not presets.
-export const ABLATIONS=['full','no-normal','no-secondary','no-detail','no-edges','implicit-grad','aniso-one','edges-road-only','no-soil-blend','073-no-mask'];
+export const ABLATIONS=['full','no-normal','no-secondary','no-detail','no-edges','implicit-grad','aniso-one','edges-road-only','no-soil-blend','073-no-mask','073-aniso-four','073-aniso-two'];
 export function ablateRoadModule(source,variant){
  if(!ABLATIONS.includes(variant))throw new Error('Unknown road ablation: '+variant);
  const replace=(old,next)=>{if(!source.includes(old))throw new Error('Ablation marker absent: '+variant);source=source.replace(old,next)};
+ if(variant==='073-aniso-four')replace('const anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());','const anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());');
+ if(variant==='073-aniso-two')replace('const anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());','const anisotropy = Math.min(2, renderer.capabilities.getMaxAnisotropy());');
  if(variant==='073-no-mask')replace('if(earthShoulderRegion>.001)roadBoundaryDistance','roadBoundaryDistance');
  if(variant==='no-normal')replace('if(earthRoadType>.5)normal=mineralNormal(normal,-vViewPosition,mineralHeight);','');
  if(variant==='no-secondary')replace('vec4 variation=mineralSample(mat2(.8,.6,-.6,.8)*p/(metres*3.71)+vec2(.137,.397),quadrant);','vec4 variation=vec4(.5);');

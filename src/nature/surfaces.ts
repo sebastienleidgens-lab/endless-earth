@@ -12,9 +12,9 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
    s.uniforms.roadEdges={value:edges.texture};s.uniforms.roadEdgeOrigin={value:new THREE.Vector2(...edges.manifest.origin)};
    s.uniforms.roadEdgeExtent={value:new THREE.Vector2(...edges.manifest.extent)};s.uniforms.roadEdgeRange={value:edges.manifest.range};
   }}
-  s.vertexShader=(roads?'attribute float earthRoad; attribute float earthShoulder; varying float earthRoadType; varying float earthShoulderRegion;\n':'')+'varying vec3 naturePosition;\n'+s.vertexShader;
-  s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nnaturePosition=position;'+(roads?'earthRoadType=earthRoad;earthShoulderRegion=earthShoulder;':''));
-  s.fragmentShader=(roads?'varying float earthRoadType; varying float earthShoulderRegion;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
+  s.vertexShader=(roads?'attribute float earthRoad; varying float earthRoadType;\n':'')+'varying vec3 naturePosition;\n'+s.vertexShader;
+  s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nnaturePosition=position;'+(roads?'earthRoadType=earthRoad;':''));
+  s.fragmentShader=(roads?'varying float earthRoadType;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    vec2 p=naturePosition.xz;
    vec4 soilA=texture2D(natureSoil,p*.017);
