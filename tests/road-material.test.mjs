@@ -41,7 +41,7 @@ test('edge field uses exterior union boundary: no shoulder across a crossing or 
 test('delivered shoulder field belongs to exact source data, with bounded one-channel memory',()=>{
  const m=JSON.parse(readFileSync('public/data/angles-road-edge.json')),data=gunzipSync(readFileSync('public/data/angles-road-edge.pack'));
  assert.equal(m.osmSha256,sha(readFileSync('public/data/angles-osm.geojson')));assert.equal(m.terrainSha256,sha(readFileSync('public/data/angles-terrain.json')));
- assert.equal(sha(data),m.sha256);assert.equal(data.length,2048*2048);assert.equal(m.range,3);
+ assert.equal(sha(data),m.sha256);assert.equal(data.length,m.distanceBytes+m.maskBytes);assert.equal(m.distanceBytes,1536*1536);assert.equal(m.range,3);
 });
 test('road shader adds filtered dry relief on the existing surface, with a distinct optional-shoulder program',()=>{
  const material=new THREE.MeshLambertMaterial({vertexColors:true});groundDetail(material,true);
@@ -59,4 +59,9 @@ test('signed field interpolates subpixel straight edges and keeps exterior scanl
  assert.ok(at(0,0)>1.9);assert.ok(at(3,0)<-.9);assert.ok(Math.abs((at(1.95,0)+at(2.05,0))/2)<.015);
  const outside=[[-20,-20],[-10,-20],[-10,20],[-20,20],[-20,-20]];
  assert.ok(signedBoundaryField([outside],config).every(v=>v===0));
+});
+
+test('RG atlas preserves every original tone and height byte without unused channels',()=>{
+ const original=createRoadAtlas(),compact=createRoadAtlas(undefined,2);assert.equal(compact.width,original.width);assert.equal(compact.data.length,original.data.length/2);
+ for(let i=0;i<compact.width*compact.height;i++){assert.equal(compact.data[i*2],original.data[i*4]);assert.equal(compact.data[i*2+1],original.data[i*4+1]);}
 });

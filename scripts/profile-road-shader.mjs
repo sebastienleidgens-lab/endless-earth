@@ -6,7 +6,8 @@ const run=(phase,label,extra={})=>{
 };
 for(let n=1;n<=3;n++)for(const phase of n%2?['071','072']:['072','071'])run(phase,`reference-${phase}-${n}`);
 for(let n=1;n<=3;n++){
- const order=n===1?ABLATIONS:n===2?[...ABLATIONS].reverse():[...ABLATIONS.slice(4),...ABLATIONS.slice(0,4)];
+ const family=ABLATIONS.filter(v=>!v.startsWith('073-'));
+ const order=n===1?family:n===2?[...family].reverse():[...family.slice(4),...family.slice(0,4)];
  for(const variant of order)run('072',`ablation-${variant}-${n}`,{TEST_VARIANT:variant,TEST_VIEWS:'village,aerienne,mobile',TEST_SAMPLES:'7'});
 }
 for(const phase of ['071','072'])for(const subset of ['roads','ground'])run(phase,`subset-${phase}-${subset}`,{TEST_SURFACE_ONLY:subset,TEST_SAMPLES:'9'});

@@ -1,12 +1,12 @@
-# Mission 07.3 — Des routes magnifiques, sans sacrifier la fluidité
+# Mission 07.3 — Optimisation des matières routières
 
 ## Audit préalable
 
 PR #13 vérifiée ouverte, en brouillon et non fusionnée : poursuite sur `mission/07-2-routes-matieres`, sans réécriture d'historique ni nouvelle PR. Référence technique 07.1 : `cb73252`. Référence artistique 07.2 figée : `72006e0`. Les deux références sont servies dans des worktrees séparés ; `main` reste inchangé.
 
-Le texte reçu s'interrompt au milieu de la section 11. Les objectifs explicitement reçus sont suivis ; rapport, identité de build et validation fonctionnelle conservent les conventions de Mission 07.2.
+Le complément reçu dans le fil confirme les comparaisons à trois versions, séquences en mouvement, promenade intégrale, non-régression et mise à jour de la PR #13. L’identité du build suit le titre explicite demandé ci-dessus.
 
-Le coût ne peut pas être déduit du nombre de triangles : un seul shader traite le terrain naturel et la chaussée. Le champ signé est lu sur tous les fragments du sol ; la normale de détail est recalculée sur toutes les routes, même lorsque la hauteur filtrée ne contribue plus. L'atlas utilise seulement R (ton) et G (hauteur), mais transfère RGBA. La seconde lecture d'atlas influence seulement la couleur. Le bruit naturel est encore lu sur les routes alors que sa contribution finale à leur couleur peut être remplacée. Ces constats motivent des expériences, pas encore des conclusions de performance.
+Le coût ne peut pas être déduit du nombre de triangles : un seul shader traite le terrain naturel et la chaussée. Le champ signé est lu sur tous les fragments du sol ; la normale de détail est recalculée sur toutes les routes, même lorsque la hauteur filtrée ne contribue plus. L'atlas utilise seulement R (ton) et G (hauteur), mais transfère RGBA. La seconde lecture d'atlas influence seulement la couleur. Le produit de couleur du terrain est calculé avant d’être substitué par celui des routes ; le compilateur peut déjà éliminer ce calcul, tandis que les deux lectures de bruit restent utiles à la variation de grande échelle. Ces constats motivent des expériences, pas encore des conclusions de performance.
 
 ## Protocole avant modification
 

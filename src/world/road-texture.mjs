@@ -39,12 +39,13 @@ export function materialPixel(kind,u,v){
  }
  return [tone,height,stone,1];
 }
-export function createRoadAtlas(size=ROAD_TILE_PIXELS){
- const gutter=ROAD_TILE_GUTTER,stride=size+gutter*2,width=stride*2,data=new Uint8Array(width*width*4);
+export function createRoadAtlas(size=ROAD_TILE_PIXELS,channels=4){
+ if(channels!==2&&channels!==4)throw new Error("Road atlas requires RG or RGBA");
+ const gutter=ROAD_TILE_GUTTER,stride=size+gutter*2,width=stride*2,data=new Uint8Array(width*width*channels);
  for(let kind=0;kind<4;kind++)for(let y=0;y<stride;y++)for(let x=0;x<stride;x++){
-  const i=((y+Math.floor(kind/2)*stride)*width+x+(kind%2)*stride)*4;
+  const i=((y+Math.floor(kind/2)*stride)*width+x+(kind%2)*stride)*channels;
   const pixel=materialPixel(kind,fract((x-gutter+.5)/size),fract((y-gutter+.5)/size));
-  for(let c=0;c<4;c++)data[i+c]=Math.round(Math.max(0,Math.min(1,pixel[c]))*255);
+  for(let c=0;c<channels;c++)data[i+c]=Math.round(Math.max(0,Math.min(1,pixel[c]))*255);
  }
  return {data,width,height:width};
 }

@@ -1,0 +1,401 @@
+{
+  "method": "3 passes, 7 synchronized software samples per station per ablation; orders forward, reverse and rotated. Frozen 07.2 source at 72006e0; these intentionally incomplete variants are diagnostics, not deliverables. Ablation differences include compiler interactions and are not additive GPU costs.",
+  "ablations": {
+    "aniso-one": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 172.5,
+          "p95": 182.10000000009313,
+          "max": 187
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.6000000000931323,
+          "p95": 2.3999999999068677,
+          "max": 2.6000000000931323
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 199,
+          "p95": 214,
+          "max": 243.59999999962747
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.3999999999068677,
+          "p95": 1.6000000000931323,
+          "max": 1.6000000000931323
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 112.60000000009313,
+          "p95": 131.89999999990687,
+          "max": 139.10000000009313
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.1000000000931323,
+          "p95": 1.5,
+          "max": 1.6000000000931323
+        }
+      }
+    },
+    "edges-road-only": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 206.09999999962747,
+          "p95": 217.5,
+          "max": 223.89999999990687
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.6999999997206032,
+          "p95": 3.1000000000931323,
+          "max": 10.5
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 209.40000000037253,
+          "p95": 234.5,
+          "max": 244.20000000018626
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.1000000000931323,
+          "p95": 2.7000000001862645,
+          "max": 13.899999999906868
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 124.39999999990687,
+          "p95": 144.39999999990687,
+          "max": 156.10000000009313
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1,
+          "p95": 1.400000000372529,
+          "max": 1.8000000002793968
+        }
+      }
+    },
+    "full": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 214.3000000002794,
+          "p95": 258.5,
+          "max": 268.39999999990687
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.6000000000931323,
+          "p95": 2.1000000000931323,
+          "max": 2.2999999998137355
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 214.79999999981374,
+          "p95": 240.1999999997206,
+          "max": 246.5
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.2000000001862645,
+          "p95": 1.3999999999068677,
+          "max": 1.5
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 137.60000000009313,
+          "p95": 173.39999999990687,
+          "max": 176.20000000018626
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1,
+          "p95": 1.2999999998137355,
+          "max": 2.099999999627471
+        }
+      }
+    },
+    "implicit-grad": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 178.8000000002794,
+          "p95": 199.60000000009313,
+          "max": 213.60000000009313
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.5,
+          "p95": 2.1000000000931323,
+          "max": 2.2000000001862645
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 212.5,
+          "p95": 244.6999999997206,
+          "max": 247.70000000018626
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.1000000000931323,
+          "p95": 1.3999999999068677,
+          "max": 1.3999999999068677
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 117,
+          "p95": 138.5,
+          "max": 142.5
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.099999999627471,
+          "p95": 1.3000000002793968,
+          "max": 1.3999999999068677
+        }
+      }
+    },
+    "no-detail": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 185.60000000009313,
+          "p95": 194.39999999990687,
+          "max": 211.6999999997206
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.5,
+          "p95": 1.8999999999068677,
+          "max": 2.900000000372529
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 196.79999999981374,
+          "p95": 222.89999999990687,
+          "max": 234.89999999990687
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.2000000001862645,
+          "p95": 2.6000000000931323,
+          "max": 3.1000000000931323
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 106.6999999997206,
+          "p95": 132.20000000018626,
+          "max": 137.3000000002794
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.099999999627471,
+          "p95": 1.3999999999068677,
+          "max": 1.5
+        }
+      }
+    },
+    "no-edges": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 200.59999999962747,
+          "p95": 215.60000000009313,
+          "max": 229.60000000009313
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.599999999627471,
+          "p95": 2.1000000000931323,
+          "max": 2.1999999997206032
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 215.79999999981374,
+          "p95": 255.5,
+          "max": 256.89999999990687
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.2999999998137355,
+          "p95": 1.6000000000931323,
+          "max": 2.6000000000931323
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 131.20000000018626,
+          "p95": 146.1999999997206,
+          "max": 153.70000000018626
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1,
+          "p95": 1.400000000372529,
+          "max": 1.7999999998137355
+        }
+      }
+    },
+    "no-normal": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 204.90000000037253,
+          "p95": 230.20000000018626,
+          "max": 232.70000000018626
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.5,
+          "p95": 2.2999999998137355,
+          "max": 2.2999999998137355
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 200.90000000037253,
+          "p95": 225.09999999962747,
+          "max": 226.39999999990687
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.2999999998137355,
+          "p95": 2,
+          "max": 2
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 131.39999999990687,
+          "p95": 146.79999999981374,
+          "max": 148
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1,
+          "p95": 1.3999999999068677,
+          "max": 1.5
+        }
+      }
+    },
+    "no-secondary": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 193.10000000009313,
+          "p95": 225.39999999990687,
+          "max": 226.10000000009313
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.7999999998137355,
+          "p95": 4,
+          "max": 4.7000000001862645
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 202.60000000009313,
+          "p95": 251.6999999997206,
+          "max": 257.60000000009313
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.2000000001862645,
+          "p95": 2.5,
+          "max": 2.5
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 122.29999999981374,
+          "p95": 141.89999999990687,
+          "max": 146.09999999962747
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.1000000000931323,
+          "p95": 1.7000000001862645,
+          "max": 2.1000000000931323
+        }
+      }
+    },
+    "no-soil-blend": {
+      "village": {
+        "syncMs": {
+          "samples": 21,
+          "median": 204.20000000018626,
+          "p95": 249.5,
+          "max": 250.89999999990687
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.6000000000931323,
+          "p95": 1.900000000372529,
+          "max": 3.8999999999068677
+        }
+      },
+      "aerienne": {
+        "syncMs": {
+          "samples": 21,
+          "median": 212.60000000009313,
+          "p95": 244,
+          "max": 245.70000000018626
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.1000000000931323,
+          "p95": 1.2999999998137355,
+          "max": 1.3999999999068677
+        }
+      },
+      "mobile": {
+        "syncMs": {
+          "samples": 21,
+          "median": 136.89999999990687,
+          "p95": 159.3000000002794,
+          "max": 160.89999999990687
+        },
+        "cpuSubmitMs": {
+          "samples": 21,
+          "median": 1.099999999627471,
+          "p95": 1.3000000002793968,
+          "max": 1.3999999999068677
+        }
+      }
+    }
+  }
+}

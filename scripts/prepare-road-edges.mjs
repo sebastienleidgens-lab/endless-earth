@@ -2,8 +2,10 @@
 // never become shoulders. The geometric road surface itself is untouched.
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {gzipSync} from 'node:zlib';
+import {gunzipSync,gzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
+import {decodeSurface} from '../src/world/surface-mesh.mjs';
+import {shoulderMasks} from './lib/road-shoulder-mask.mjs';
 import {pc,roadSegments} from './lib/road-topology.mjs';
 export function boundaryDistanceField(rings,{size=2048,origin=[-1000,-1000],extent=[2000,2000],range=3}={}){
  const data=new Uint8Array(size*size).fill(255),sx=extent[0]/size,sz=extent[1]/size;
@@ -41,13 +43,20 @@ export function signedBoundaryField(rings,config){
 }
 
 const sha=b=>createHash('sha256').update(b).digest('hex');
-export async function prepareRoadEdges(dir='public/data'){
+export async function prepareRoadEdges(dir='public/data',{size=1536}={}){
  const osm=await readFile(`${dir}/angles-osm.geojson`),terrain=await readFile(`${dir}/angles-terrain.json`),g=JSON.parse(terrain);
  const local=([lon,lat])=>[(lon-.8844)*111320*Math.cos(46.6953*Math.PI/180),-(lat-46.6953)*111320];
  const segments=roadSegments(JSON.parse(osm).features,local),union=pc.union(...segments.map(s=>s.polygon));
- const config={size:2048,origin:[g.origin_x_m,g.origin_z_m],extent:[(g.width-1)*g.step_m,(g.height-1)*g.step_m],range:3};
- const data=signedBoundaryField(union.flat(),config),packed=gzipSync(data,{level:9,mtime:0});
- const manifest={schema:'endless-earth-road-edge-v2',...config,encoding:'signed metres: (R / 255 * 2 - 1) * range; inside positive',osmSha256:sha(osm),terrainSha256:sha(terrain),sha256:sha(data),bytes:data.length,compressedBytes:packed.length,interpretation:'Distance to estimated OSM road union boundary; not surveyed shoulders.'};
+ const config={size,origin:[g.origin_x_m,g.origin_z_m],extent:[(g.width-1)*g.step_m,(g.height-1)*g.step_m],range:3};
+ const data=signedBoundaryField(union.flat(),config);
+ const geometryManifest=JSON.parse(await readFile(`${dir}/angles-surface.json`,'utf8'));
+ const geometry=gunzipSync(await readFile(`${dir}/angles-surface.pack`));
+ if(sha(geometry)!==geometryManifest.binarySha256||geometryManifest.osmSha256!==sha(osm)||geometryManifest.terrainSha256!==sha(terrain))throw new Error('Stale geometry for shoulder mask');
+ const surface=decodeSurface(geometryManifest,geometry.buffer.slice(geometry.byteOffset,geometry.byteOffset+geometry.byteLength));
+ const masks=shoulderMasks(surface,data,config),tiles=[];let offset=data.length;
+ for(let i=0;i<masks.length;i++){tiles.push({x:surface.tiles[i].descriptor.x,z:surface.tiles[i].descriptor.z,offset,length:masks[i].length});offset+=masks[i].length;}
+ const payload=Buffer.concat([data,...masks]),packed=gzipSync(payload,{level:9,mtime:0});
+ const manifest={schema:'endless-earth-road-edge-v3',...config,encoding:'signed metres: (R / 255 * 2 - 1) * range; inside positive',osmSha256:sha(osm),terrainSha256:sha(terrain),sha256:sha(payload),distanceBytes:data.length,bytes:payload.length,surfaceSha256:geometryManifest.binarySha256,maskPaddingM:4,maskBytes:masks.reduce((n,a)=>n+a.length,0),tiles,compressedBytes:packed.length,interpretation:'Distance to estimated OSM road union boundary; not surveyed shoulders.'};
  await writeFile(`${dir}/angles-road-edge.pack`,packed);await writeFile(`${dir}/angles-road-edge.json`,JSON.stringify(manifest,null,2)+'\n');return manifest;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){const t=performance.now();console.log(await prepareRoadEdges(),{ms:performance.now()-t})}

@@ -62,7 +62,7 @@ export class Terrain {
           float inCover=step(0.,coverUV.x)*step(0.,coverUV.y)*step(coverUV.x,1.)*step(coverUV.y,1.)${this.singleSurface?'*(1.-step(.5,earthRoadType))':''};
           diffuseColor.rgb=diffuseColor.rgb*(1.-cover.a*inCover)+cover.rgb*inCover;`);
       };
-      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-mineral-v2-'+!!this.roadEdges:'earth-cover-v1';
+      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-mineral-v3-'+!!this.roadEdges:'earth-cover-v1';
     }
     const group=new THREE.Group();group.name='IGN source terrain';group.userData.terrainTexture=this.landcover;
     group.userData.roadEdgeTexture=this.roadEdges?.texture;
@@ -70,9 +70,13 @@ export class Terrain {
     const owned:THREE.BufferGeometry[]=[];group.userData.terrainResources={geometries:owned,materials:[material,bareMaterial]};
     if(this.singleSurface){
       const {manifest,tiles}=this.singleSurface;
-      for(const tile of tiles){
+      for(const [tileIndex,tile] of tiles.entries()){
         const t=tile.descriptor,geom=new THREE.BufferGeometry();
         for(const [name,attribute] of Object.entries(tile.attributes))geom.setAttribute(name,attribute as THREE.BufferAttribute);
+        // One normalized byte; shared by the two LOD geometries. Missing support
+        // keeps all lookups enabled, preserving the full-quality fallback.
+        const shoulder=this.roadEdges?.masks?.[tileIndex]??new Uint8Array(tile.attributes.earthRoad.count).fill(255);
+        geom.setAttribute('earthShoulder',new THREE.BufferAttribute(shoulder,1,true));
         geom.setIndex(tile.fine);geom.computeBoundingSphere();
         const farGeometry=new THREE.BufferGeometry();for(const [name,attribute] of Object.entries(geom.attributes))farGeometry.setAttribute(name,attribute);
         farGeometry.setIndex(tile.far);farGeometry.boundingSphere=geom.boundingSphere;owned.push(geom,farGeometry);
@@ -185,16 +189,24 @@ export async function fetchTerrain():Promise<Terrain|null>{
   if(terrain.singleSurface)try{
     const response=await fetch(base+'angles-road-edge.json');if(!response.ok)throw new Error('Road edge field missing');const m=await response.json();
     const g=terrain.grid,source=terrain.singleSurface.manifest;
-    if(m.schema!=='endless-earth-road-edge-v2'||m.size!==2048||m.bytes!==m.size*m.size||m.range!==3||
+    if(!['endless-earth-road-edge-v2','endless-earth-road-edge-v3'].includes(m.schema)||![1024,1536,2048].includes(m.size)||(m.distanceBytes??m.bytes)!==m.size*m.size||m.range!==3||
       !Array.isArray(m.origin)||!Array.isArray(m.extent)||m.origin[0]!==g.origin_x_m||m.origin[1]!==g.origin_z_m||
       m.extent[0]!==g.step_m*(g.width-1)||m.extent[1]!==g.step_m*(g.height-1)||
       m.osmSha256!==source.osmSha256||m.terrainSha256!==source.terrainSha256)throw new Error('Stale road edge field');
     const packed=await fetch(base+'angles-road-edge.pack');if(!packed.ok)throw new Error('Road edge field missing');
     const bytes=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
     if(bytes.byteLength!==m.bytes||await sha256(bytes)!==m.sha256)throw new Error('Invalid road edge field');
-    const texture=new THREE.DataTexture(new Uint8Array(bytes),m.size,m.size,THREE.RedFormat);
+    const texture=new THREE.DataTexture(new Uint8Array(bytes,0,m.size*m.size),m.size,m.size,THREE.RedFormat);
     texture.name='OSM union boundary distance';texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;
     texture.generateMipmaps=true;texture.needsUpdate=true;terrain.roadEdges={texture,manifest:m};
+    if(m.schema==='endless-earth-road-edge-v3'){
+      const descriptors=m.tiles,tiles=terrain.singleSurface.tiles;
+      if(m.surfaceSha256===source.binarySha256&&Array.isArray(descriptors)&&descriptors.length===tiles.length&&descriptors.every((d:any,i:number)=>Number.isInteger(d.offset)&&d.offset>=m.distanceBytes&&d.offset+d.length<=bytes.byteLength&&d.length===tiles[i].attributes.earthRoad.count&&d.x===tiles[i].descriptor.x&&d.z===tiles[i].descriptor.z)){
+        const masks=descriptors.map((d:any)=>new Uint8Array(bytes,d.offset,d.length));
+        if(masks.every((a:Uint8Array)=>a.every(v=>v===0||v===255)))terrain.roadEdges.masks=masks;
+      }
+      if(!terrain.roadEdges.masks)console.warn('Shoulder support unavailable; full-quality unmasked lookup retained');
+    }
   }catch(error){console.warn('Road shoulders unavailable; unified road geometry and mineral materials retained',error);}
   return terrain;
 }

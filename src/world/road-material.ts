@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 // @ts-ignore Deterministic CPU atlas, shared with Node tests.
 import {createRoadAtlas} from './road-texture.mjs';
-const atlas=createRoadAtlas();
-export const roadTexture=new THREE.DataTexture(atlas.data,atlas.width,atlas.height);
-roadTexture.name='Original mineral materials · Mission 07.2';
+const atlas=createRoadAtlas(undefined,2);
+export const roadTexture=new THREE.DataTexture(atlas.data,atlas.width,atlas.height,THREE.RGFormat);
+roadTexture.name='Original mineral materials · Mission 07.3';
 roadTexture.wrapS=roadTexture.wrapT=THREE.ClampToEdgeWrapping;
 roadTexture.minFilter=THREE.LinearMipmapLinearFilter;roadTexture.magFilter=THREE.LinearFilter;
 roadTexture.generateMipmaps=true;roadTexture.needsUpdate=true;
@@ -29,10 +29,11 @@ vec3 mineralNormal(vec3 n, vec3 eye, float height){
 `;
 export const roadColorShader=`
 float mineralHeight=0.;
+float mineralDetail=0.;
 float roadBoundaryDistance=3.;
 #ifdef ROAD_EDGES
  vec2 edgeUV=(p-roadEdgeOrigin)/roadEdgeExtent;
- roadBoundaryDistance=abs(texture2D(roadEdges,edgeUV).r*2.-1.)*roadEdgeRange;
+ if(earthShoulderRegion>.001)roadBoundaryDistance=abs(texture2D(roadEdges,edgeUV).r*2.-1.)*roadEdgeRange;
 #endif
 vec3 roadDust=vec3(.42,.385,.30)*(1.+groundPatch*.15);
 if(earthRoadType>.5){
@@ -45,12 +46,14 @@ if(earthRoadType>.5){
  vec2 quadrant=sett>0.?vec2(1.,0.):gravel>0.?vec2(0.,1.):rural>0.?vec2(1.,1.):vec2(0.);
  float metres=earthRoadType<1.5||unknown>0.?2.:4.;
  float detailFade=1.-smoothstep(12.,75.,length(vViewPosition));
+ mineralDetail=detailFade;
  float mineralTone=0.;
  if(detailFade>.001){
   vec4 grain=mineralSample(p/metres,quadrant);
-  vec4 variation=mineralSample(mat2(.8,.6,-.6,.8)*p/(metres*3.71)+vec2(.137,.397),quadrant);
+  // Reuse the independent R channels of the two existing world-noise reads.
+  // They vary in world space, independently of the repeated mineral tile.
   // Courses remain coherent; a second scale only varies their tone, not joints.
-  mineralTone=(grain.r-.5)*(sett>.5?.52:gravel>.5?.52:.36)+(variation.r-.5)*.14;
+  mineralTone=(grain.r-.5)*(sett>.5?.52:gravel>.5?.52:.36)+groundMineral*.04;
   float relief=sett>.5?.006:gravel>.5?.006:rural>.5?.003:.0018;
   mineralHeight=(grain.g-.5)*relief*detailFade;
   if(unknown>.5){mineralTone*=.55;mineralHeight*=.5;}
@@ -70,9 +73,9 @@ if(earthRoadType>.5){
 }
 `;
 export const roadNormalShader=`
-if(earthRoadType>.5)normal=mineralNormal(normal,-vViewPosition,mineralHeight);
+if(earthRoadType>.5&&mineralDetail>.001)normal=mineralNormal(normal,-vViewPosition,mineralHeight);
 `;
-export type RoadEdges={texture:THREE.DataTexture;manifest:any};
+export type RoadEdges={texture:THREE.DataTexture;manifest:any;masks?:Uint8Array[]};
 export function configureRoadFiltering(renderer:THREE.WebGLRenderer,edges:RoadEdges|null){
  const anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
  if(roadTexture.anisotropy!==anisotropy){roadTexture.anisotropy=anisotropy;roadTexture.needsUpdate=true;}

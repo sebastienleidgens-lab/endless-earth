@@ -1,6 +1,6 @@
 // Fixed, held-frame stations: identical geographic cameras before and after.
 import {chromium} from 'playwright';
-import {mkdir,writeFile} from 'node:fs/promises';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const phase=process.argv[2]??'073',port=process.env.TEST_PORT??({ '071':'5175','072':'5176','073':'5173'}[phase]);
 const variant=process.env.TEST_VARIANT??'full';
@@ -30,6 +30,11 @@ const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['-
 try{
  const page=await browser.newPage({viewport:{width:800,height:600}});page.setDefaultTimeout(180000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
  if(variant!=='full')await page.route('**/src/world/road-material.ts*',async route=>{const response=await route.fetch();await route.fulfill({response,body:ablateRoadModule(await response.text(),variant)})});
+ if(process.env.TEST_EDGE_SIZE){
+  const size=Number(process.env.TEST_EDGE_SIZE),root=size===2048?'work/mission-07-2-base/public/data':`work/field-${size}`;
+  if(phase!=='073')await page.route('**/src/world/terrain.ts*',async route=>{const response=await route.fetch(),body=await response.text();const changed=body.replace('m.size !== 2048','![1024,1536,2048].includes(m.size)');assert.notEqual(changed,body);await route.fulfill({response,body:changed})});
+  for(const ext of ['json','pack'])await page.route(`**/data/angles-road-edge.${ext}`,async route=>route.fulfill({status:200,body:await readFile(`${root}/angles-road-edge.${ext}`),contentType:ext==='json'?'application/json':'application/octet-stream'}));
+ }
  await page.addInitScript(()=>window.earthHold=true);
  await page.route('**/src/main.ts*',async route=>{const response=await route.fetch();let body=await response.text();body=body.replace(/function frame\(\)\s*\{\s*requestAnimationFrame\(frame\);/,m=>m+'if(window.earthHold)return;');assert.ok(body.includes('if(window.earthHold)return;'));await route.fulfill({response,body:body+injection+`
 window.earthSubset=kind=>{window.earthOriginalIndices??=new WeakMap();scene.traverse(o=>{if(!o.userData.earthTile)return;const g=o.geometry;let index=window.earthOriginalIndices.get(g);if(!index){index=g.index;window.earthOriginalIndices.set(g,index)}const r=g.attributes.earthRoad.array,out=[];for(let i=0;i<index.count;i+=3)if((r[index.array[i]]>.5)===(kind==='roads'))out.push(...index.array.slice(i,i+3));g.setIndex(new THREE.BufferAttribute(new index.array.constructor(out),1));});};`})});
@@ -45,7 +50,7 @@ window.earthSubset=kind=>{window.earthOriginalIndices??=new WeakMap();scene.trav
   const samples=[];for(let i=0;i<Number(process.env.TEST_SAMPLES??5);i++)samples.push(await page.evaluate(()=>{const t=performance.now();const render=window.earthTest.render();return {ms:performance.now()-t,render}}));
   results[name]={station:v,state:await page.evaluate(()=>window.endlessDiagnostics),memory:await page.evaluate(()=>window.earthTest.memory()),terrain:await page.evaluate(()=>window.earthTest.terrain()),lodMs,samples};
   await page.addStyleTag({content:'.perf-panel{visibility:hidden}'});if(!process.env.TEST_NO_SCREENSHOTS)await page.screenshot({path:`${dir}/${label}-${name}.png`});
-  await writeFile(`${dir}/${label}.json`,JSON.stringify({phase,variant,loadMs,terrainCpuMs,terrainOnly:!!process.env.TEST_TERRAIN_ONLY,surfaceOnly:process.env.TEST_SURFACE_ONLY??null,environment,results,errors},null,2));console.log(phase,name,samples.at(-1).render);
+  await writeFile(`${dir}/${label}.json`,JSON.stringify({phase,variant,edgeSize:process.env.TEST_EDGE_SIZE??null,loadMs,terrainCpuMs,terrainOnly:!!process.env.TEST_TERRAIN_ONLY,surfaceOnly:process.env.TEST_SURFACE_ONLY??null,environment,results,errors},null,2));console.log(phase,name,samples.at(-1).render);
  }
  assert.deepEqual(errors,[]);
 }finally{await browser.close()}

@@ -12,19 +12,22 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
    s.uniforms.roadEdges={value:edges.texture};s.uniforms.roadEdgeOrigin={value:new THREE.Vector2(...edges.manifest.origin)};
    s.uniforms.roadEdgeExtent={value:new THREE.Vector2(...edges.manifest.extent)};s.uniforms.roadEdgeRange={value:edges.manifest.range};
   }}
-  s.vertexShader=(roads?'attribute float earthRoad; varying float earthRoadType;\n':'')+'varying vec3 naturePosition;\n'+s.vertexShader;
-  s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nnaturePosition=position;'+(roads?'earthRoadType=earthRoad;':''));
-  s.fragmentShader=(roads?'varying float earthRoadType;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
+  s.vertexShader=(roads?'attribute float earthRoad; attribute float earthShoulder; varying float earthRoadType; varying float earthShoulderRegion;\n':'')+'varying vec3 naturePosition;\n'+s.vertexShader;
+  s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nnaturePosition=position;'+(roads?'earthRoadType=earthRoad;earthShoulderRegion=earthShoulder;':''));
+  s.fragmentShader=(roads?'varying float earthRoadType; varying float earthShoulderRegion;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    vec2 p=naturePosition.xz;
-   float groundPatch=(texture2D(natureSoil,p*.017).g+texture2D(natureSoil,mat2(.8,.6,-.6,.8)*p*.0113+vec2(.37,.13)).g)*.5-.5;
+   vec4 soilA=texture2D(natureSoil,p*.017);
+   vec4 soilB=texture2D(natureSoil,mat2(.8,.6,-.6,.8)*p*.0113+vec2(.37,.13));
+   float groundPatch=(soilA.g+soilB.g)*.5-.5;
+   float groundMineral=(soilA.r+soilB.r)*.5-.5;
    float nearDetail=1.0-smoothstep(8.0,65.0,vViewPosition.z);
    float grain=0.0; if(nearDetail>.001${roads?'&&earthRoadType<.5':''})grain=texture2D(natureSoil,p*1.7).r-.5;
    diffuseColor.rgb *= .98+groundPatch*.17+grain*.07*nearDetail;
    ${roads?roadColorShader:''}`);
   if(roads)s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n'+roadNormalShader);
  };
- material.customProgramCacheKey=()=> roads?'nature-ground-mineral-v2-'+!!edges:'nature-ground-atlas-v3';
+ material.customProgramCacheKey=()=> roads?'nature-ground-mineral-v3-'+!!edges:'nature-ground-atlas-v3';
 }
 export function waterMaterial(){const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;material.onBeforeCompile=s=>{s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=position;');s.fragmentShader='uniform float natureTime; uniform float natureWind; varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
  float ripple=sin(waterPosition.x*.9+waterPosition.z*.55+natureTime*.55)*sin(waterPosition.z*1.3-waterPosition.x*.3+natureTime*.31);
