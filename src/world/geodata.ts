@@ -1,3 +1,5 @@
+// @ts-ignore Exact source-triangle draping shared with offline tests.
+import {drapePolygon} from './terrain-grid.mjs';
 import {addNature,updateNatureLOD} from '../nature/render';
 import {groundDetail,waterMaterial} from '../nature/surfaces';
 import * as THREE from 'three';
@@ -35,15 +37,16 @@ function sharedBuildingEdges(features:Feature[]):Set<string>{
   return new Set([...counts].filter(([,count])=>count>1).map(([key])=>key));
 }
 const ROAD_MATERIAL=new THREE.MeshLambertMaterial({color:0xbda68b,side:THREE.DoubleSide});
+const PAVED_MATERIAL=new THREE.MeshLambertMaterial({color:0x8d908b,side:THREE.DoubleSide});
+const SETT_MATERIAL=new THREE.MeshLambertMaterial({color:0xaaa493,side:THREE.DoubleSide});
+for(const material of [PAVED_MATERIAL,SETT_MATERIAL]){groundDetail(material);material.userData.natureShared=true;}
+function roadMaterial(tags:Record<string,unknown>){return ['asphalt','concrete'].includes(String(tags.surface))?PAVED_MATERIAL:['sett','unhewn_cobblestone','cobblestone','paving_stones'].includes(String(tags.surface))?SETT_MATERIAL:ROAD_MATERIAL;}
 const RIVER_MATERIAL=waterMaterial();
 const WATER_MATERIAL=waterMaterial();
 groundDetail(ROAD_MATERIAL);
 ROAD_MATERIAL.userData.natureShared=true;
-const WOOD_MATERIAL=new THREE.MeshLambertMaterial({color:0x557b4d,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
-const SCRUB_MATERIAL=new THREE.MeshLambertMaterial({color:0x7f9964,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
-const PARK_MATERIAL=new THREE.MeshLambertMaterial({color:0x94ae7b,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
 function insideArea(p:THREE.Vector3){return Math.abs(p.x)<=LOCAL_LIMIT&&Math.abs(p.z)<=LOCAL_LIMIT;}
-function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain){
+function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:number,terrain?:Terrain,material:THREE.MeshLambertMaterial=ROAD_MATERIAL){
   if(points.length<2)return;
   // One draw call per road/river, not one mesh per OSM segment.
   // Densify long segments so the road follows the elevation grid.
@@ -65,7 +68,11 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
       const dx=b.x-a.x,dz=b.z-a.z,segment=Math.hypot(dx,dz);
       if(segment<.01)continue;
       const nx=-dz/segment*width/2,nz=dx/segment*width/2;
-      vertices.push(
+      if(terrain&&color!==0x729ea8){
+        // Split at every crossed DEM edge and selected diagonal. Every visible
+        // road point stays 4.5 cm above the collision source, even across cliffs.
+        vertices.push(...drapePolygon([{x:a.x+nx,z:a.z+nz},{x:a.x-nx,z:a.z-nz},{x:b.x-nx,z:b.z-nz},{x:b.x+nx,z:b.z+nz}],terrain.grid));
+      }else vertices.push(
         a.x+nx,a.y,a.z+nz,a.x-nx,a.y,a.z-nz,b.x+nx,b.y,b.z+nz,
         b.x+nx,b.y,b.z+nz,a.x-nx,a.y,a.z-nz,b.x-nx,b.y,b.z-nz
       );
@@ -75,7 +82,7 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,color:
   const geometry=new THREE.BufferGeometry();
   geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
   geometry.computeVertexNormals();
-  const mesh=new THREE.Mesh(geometry,color===0x729ea8?RIVER_MATERIAL:ROAD_MATERIAL);
+  const mesh=new THREE.Mesh(geometry,color===0x729ea8?RIVER_MATERIAL:material);
   mesh.receiveShadow=true;scene.add(mesh);
 }
 // Historic OSM outlines are survey data; wall heights are deliberately
@@ -119,60 +126,7 @@ function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
   ring.forEach((p,i)=>i===0?shape.moveTo(p.x,-p.z):shape.lineTo(p.x,-p.z));
   return shape;
 }
-function drapedCover(ring:THREE.Vector3[],terrain:Terrain|undefined,material:THREE.Material,holes:THREE.Vector3[][]=[],offset=.35):THREE.Mesh{
-  const shape=makeFootprint(ring);
-  // OSM interior rings are genuine clearings: don't paint over them.
-  for(const hole of holes){
-    if(hole.length<4)continue;
-    const path=new THREE.Path();
-    hole.forEach((p,i)=>i===0?path.moveTo(p.x,-p.z):path.lineTo(p.x,-p.z));
-    shape.holes.push(path);
-  }
-  const flat=new THREE.ShapeGeometry(shape);
-  const position=flat.getAttribute('position');
-  const index=flat.getIndex();
-  const vertices:number[]=[];
-  const emit=(x:number,z:number)=>{
-    const h=terrain?.relativeHeight(x,z)??0;
-    vertices.push(x,h+offset,z);
-  };
-  const triangle=(a:[number,number],b:[number,number],c:[number,number],depth:number):void=>{
-    const ab=Math.hypot(a[0]-b[0],a[1]-b[1]);
-    const bc=Math.hypot(b[0]-c[0],b[1]-c[1]);
-    const ca=Math.hypot(c[0]-a[0],c[1]-a[1]);
-    if(terrain && depth<5 && Math.max(ab,bc,ca)>20){
-      const m=(p:[number,number],q:[number,number]):[number,number]=>[(p[0]+q[0])/2,(p[1]+q[1])/2];
-      const abm=m(a,b),bcm=m(b,c),cam=m(c,a);
-      triangle(a,abm,cam,depth+1);
-      triangle(abm,b,bcm,depth+1);
-      triangle(cam,bcm,c,depth+1);
-      triangle(abm,bcm,cam,depth+1);
-    }else{emit(...a);emit(...b);emit(...c);}
-  };
-  const point=(i:number):[number,number]=>[position.getX(i),-position.getY(i)];
-  const triangles=index?index.count:position.count;
-  for(let i=0;i+2<triangles;i+=3){
-    const a=index?index.getX(i):i,b=index?index.getX(i+1):i+1,d=index?index.getX(i+2):i+2;
-    triangle(point(a),point(b),point(d),0);
-  }
-  flat.dispose();
-  const geometry=new THREE.BufferGeometry();
-  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
-  geometry.computeVertexNormals();
-  const mesh=new THREE.Mesh(geometry,material);
-  mesh.receiveShadow=true;
-  return mesh;
-}
-// Trees are placed only where OSM explicitly maps a tree.
-// Instancing keeps hundreds of trees to two draw calls.
-function pointInRing(x:number,z:number,ring:THREE.Vector3[]):boolean{
-  let inside=false;
-  for(let i=0,j=ring.length-1;i<ring.length;j=i++){
-    const a=ring[i],b=ring[j];
-    if((a.z>z)!==(b.z>z) && x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)inside=!inside;
-  }
-  return inside;
-}
+// Mapped habitat boundaries constrain deterministic, inferred individual trees.
 function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain):number{
  const local=features.map(f=>{const g=f.geometry,tags=f.properties??{},c=g?.coordinates;if(!g||!Array.isArray(c))return {tags};if(g.type==='Polygon')return {tags,rings:c.map(r=>coordsToPoints(r))};if(g.type==='LineString')return {tags,line:coordsToPoints(c)};if(g.type==='Point'&&typeof c[0]==='number'&&typeof c[1]==='number')return {tags,point:toLocal({lon:c[0],lat:c[1]})};return {tags};});
  const trees=addNature(scene,local,(x,z)=>terrain?terrain.relativeHeight(x,z):0);
@@ -183,7 +137,7 @@ export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera,eco
 // Merge the many separate road/river meshes into one mesh per material.
 // This cuts draw calls without altering the OSM linework or its DEM heights.
 function batchLinearFeatures(scene:THREE.Object3D):void{
-  for(const material of [ROAD_MATERIAL,RIVER_MATERIAL]){
+  for(const material of [ROAD_MATERIAL,PAVED_MATERIAL,SETT_MATERIAL,RIVER_MATERIAL]){
     const meshes=scene.children.filter((child):child is THREE.Mesh=>
       child instanceof THREE.Mesh && child.material===material);
     if(meshes.length<2)continue;
@@ -204,7 +158,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
     if(f.geometry?.type==='LineString'){
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
       if(tags.historic==='citywalls'||tags.historic==='castle'||tags.historic==='ruins'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain,tags.historic==='castle'||tags.historic==='ruins');count++;}
-      else if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b,terrain);count++;}
+      else if(tags.highway){addLine(scene,pts,typeof tags.highway==='string'&&['footway','path','steps'].includes(tags.highway)?2.5:5.5,0xbda68b,terrain,roadMaterial(tags));count++;}
       else if(tags.waterway){addLine(scene,pts,6,0x729ea8,terrain);count++;}
     } else if(f.geometry?.type==='Polygon' && Array.isArray(f.geometry.coordinates)){
       const ring=coordsToPoints(f.geometry.coordinates[0],terrain);
@@ -218,10 +172,8 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         architecture.add(ring,tags,sharedEdges,(x,z)=>terrain?terrain.relativeHeight(x,z):0,holes);
         count++;
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
-        // The DEM is already the ground. A second, independently triangulated
-        // surface can intersect its triangles on slopes and flash with camera
-        // motion (z-fighting). Preserve OSM polygons for tree placement, but
-        // don't overlay a competing terrain mesh until DEM-cell clipping exists.
+        // Habitat colors are now baked into the source terrain material.
+        // No duplicate ground surface and no additional collision geometry.
         count++;
       } else if(tags.historic==='castle'||tags.historic==='ruins'){
         // Preserve the mapped footprint without inventing an intact castle.
