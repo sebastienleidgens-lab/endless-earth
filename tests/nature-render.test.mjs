@@ -1,7 +1,7 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import {readFile,writeFile,mkdir} from 'node:fs/promises';import {transpileModule} from 'typescript';import * as THREE from 'three';
 await mkdir('work',{recursive:true});
 for(const [file,replacements] of [['road-material',[["'./road-texture.mjs'","'../src/world/road-texture.mjs'"]]],['surfaces',[["'../world/road-material'","'./road-material.mjs'"]]],['foliage',[["'../nature/surfaces'","'./surfaces.mjs'"]]],['nature-render',[["'./ecology.mjs'","'../src/nature/ecology.mjs'"],["'../living/atmosphere'","'./foliage.mjs'"]]]]){
- const path=file==='road-material'?'src/world/road-material.ts':file==='foliage'?'src/living/atmosphere.ts':file==='nature-render'?'src/nature/render.ts':'src/nature/surfaces.ts';let compiled=transpileModule(await readFile(path,'utf8'),{compilerOptions:{target:9,module:99}}).outputText;for(const [a,b] of replacements)compiled=compiled.replaceAll(a,b);await writeFile(`work/${file}.mjs`,compiled);
+ const path=file==='road-material'?'src/world/road-material.ts':file==='foliage'?'src/living/atmosphere.ts':file==='nature-render'?'src/nature/render.ts':'src/nature/surfaces.ts';let compiled=transpileModule(await readFile(path,'utf8'),{compilerOptions:{target:9,module:99}}).outputText.replaceAll("'../earthlife/","'../src/earthlife/");for(const [a,b] of replacements)compiled=compiled.replaceAll(a,b);await writeFile(`work/${file}.mjs`,compiled);
 }
 const {addNature,updateNatureLOD,disposeNatureZone}=await import('../work/nature-render.mjs');
 const features=[{tags:{natural:'wood'},rings:[[{x:-500,z:-500},{x:500,z:-500},{x:500,z:500},{x:-500,z:500}]]}];

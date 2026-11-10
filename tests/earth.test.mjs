@@ -16,7 +16,7 @@ for(const [source,out,replacements] of [
  ['src/nature/surfaces.ts','earth-surfaces',[["'../world/road-material'","'./earth-road-material.mjs'"]]],
  ['src/world/terrain.ts','earth-terrain',[["'./environment.mjs'","'../src/world/environment.mjs'"],["'./road-material'","'./earth-road-material.mjs'"],["'../nature/surfaces'","'./earth-surfaces.mjs'"],["'./terrain-grid.mjs'","'../src/world/terrain-grid.mjs'"],["'./source-geometry.mjs'","'../src/world/source-geometry.mjs'"],["'./surface-mesh.mjs'","'../src/world/surface-mesh.mjs'"]]],
  ['src/world/geo.ts','earth-geo',[]]
-]){let code=transpileModule(await readFile(source,'utf8'),{compilerOptions:{target:9,module:99}}).outputText;for(const [a,b] of replacements)code=code.replaceAll(a,b);await writeFile(`work/${out}.mjs`,code)}
+]){let code=transpileModule(await readFile(source,'utf8'),{compilerOptions:{target:9,module:99}}).outputText.replaceAll("'../earthlife/","'../src/earthlife/");for(const [a,b] of replacements)code=code.replaceAll(a,b);await writeFile(`work/${out}.mjs`,code)}
 const {Terrain,updateTerrainLOD}=await import('../work/earth-terrain.mjs');
 const {toLocal,ANGLES}=await import('../work/earth-geo.mjs');
 const g=JSON.parse(await readFile('public/data/angles-terrain.json','utf8'));

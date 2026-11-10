@@ -1,21 +1,31 @@
 import * as THREE from 'three';
 import {environmentalWind} from '../nature/surfaces';
+// @ts-ignore Shared shader module.
+import {lifeUniforms,cloudReceiver} from '../earthlife/state.mjs';
+// @ts-ignore Pure GPU carrier shared with deterministic CPU wind.
+import {windGLSL} from '../earthlife/wind.mjs';
 export const windUniform={value:0};
 export const seasonUniform={value:0};
-export function animateFoliage(material:THREE.MeshLambertMaterial,season=false,grounded=false,stationary=false){
+export function animateFoliage(material:THREE.MeshLambertMaterial,season=false,grounded=false,stationary=false,trunk=false){
  material.onBeforeCompile=shader=>{
-  shader.uniforms.livingTime=windUniform;shader.uniforms.natureWind=environmentalWind;shader.uniforms.natureSeason=seasonUniform;
-  shader.vertexShader=(grounded?'attribute float natureBend;\n':'')+'uniform float livingTime; uniform float natureWind;\n'+shader.vertexShader;
-  if(!stationary)shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
-    float phase=0.0;
+  Object.assign(shader.uniforms,lifeUniforms);shader.uniforms.livingTime=windUniform;shader.uniforms.natureWind=environmentalWind;shader.uniforms.natureSeason=seasonUniform;
+  shader.vertexShader=(grounded?'attribute float natureBend;\n':'')+'uniform float lifeTime,lifeMeanWind,lifeVegetation,lifeFine;\n'+windGLSL+shader.vertexShader;
+  shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
+    vec4 anchor=vec4(position,1.);
     #ifdef USE_INSTANCING
-    phase=instanceMatrix[3].x*.17+instanceMatrix[3].z*.13;
+    anchor=instanceMatrix*vec4(0.,0.,0.,1.);
     #endif
-    transformed.x += sin(livingTime*.8+phase+position.y*.7)*.035*max(0.0,position.y+.5)*natureWind;
-    transformed.z += sin(livingTime*.53+phase+position.x)*.025*max(0.0,position.y+.5)*natureWind;`);
-  if(grounded)shader.vertexShader=shader.vertexShader.replaceAll('max(0.0,position.y+.5)','natureBend');
+    vec2 worldAnchor=(modelMatrix*anchor).xz;
+    vec2 wind=lifeWind(worldAnchor,lifeTime,lifeMeanWind);
+    float phase=worldAnchor.x*.17+worldAnchor.y*.13;
+    float inertia=${grounded?'(1.7-step(.04,color.g-color.r))':trunk?'.43':stationary?'.45':'.72'};
+    float sway=sin(lifeTime*inertia+phase)*.65+sin(lifeTime*inertia*.53+phase*.73)*.35;
+    float bend=${grounded?'natureBend':trunk?'pow(clamp((position.y+2.25)/4.5,0.,1.),2.)*.025':'(.10+clamp((position.y+2.4)/5.1,0.,1.)*.16)'};
+    float fine=${stationary||trunk?'0.':'sin(lifeTime*2.3+phase+position.x*1.7+position.z)*lifeFine*.08'};
+    transformed.xz+=wind*bend*(sway+fine)*lifeVegetation*${grounded?'1.1':'1.'};`);
   if(season){shader.fragmentShader='uniform float natureSeason;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(1.32,.86,.48),natureSeason);`)}
  };
- material.customProgramCacheKey=()=> 'living-foliage-v4-'+season+'-'+grounded+'-'+stationary;
+ material.customProgramCacheKey=()=> 'living-foliage-v5-'+season+'-'+grounded+'-'+stationary+'-'+trunk;
+ cloudReceiver(material);
 }

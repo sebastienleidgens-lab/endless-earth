@@ -1,3 +1,5 @@
+// @ts-ignore Shared shader module.
+import {cloudReceiver} from '../earthlife/state.mjs';
 import * as THREE from 'three';
 // @ts-ignore Pure deterministic planning shared with Node tests.
 import {buildingPlan, detailVisible} from './plan.mjs';
@@ -37,7 +39,7 @@ const stone=new THREE.MeshLambertMaterial({vertexColors:true,map:texture('stone'
 const plaster=new THREE.MeshLambertMaterial({vertexColors:true,map:texture('plaster'),side:THREE.DoubleSide});
 const tile=new THREE.MeshLambertMaterial({vertexColors:true,map:texture('tile'),side:THREE.DoubleSide});
 const plain=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide});
-for(const m of [stone,plaster,tile,plain])m.userData.architectureShared=true;
+for(const m of [stone,plaster,tile,plain]){m.userData.architectureShared=true;cloudReceiver(m)}
 function mesh(b:Bucket,material:THREE.Material){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(b.p,3));if((material as THREE.MeshLambertMaterial).map)g.setAttribute('uv',new THREE.Float32BufferAttribute(b.uv,2));g.setAttribute('color',new THREE.Float32BufferAttribute(b.c,3));g.setIndex(b.indices);g.computeVertexNormals();g.computeBoundingSphere();const m=new THREE.Mesh(g,material);m.receiveShadow=true;return m}
 // Clip a triangulated footprint to each roof plane, preserving concavities/holes.
 function clip(poly:Point[],value:(p:Point)=>number){const out:Point[]=[];for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],va=value(a),vb=value(b);if(va>=-1e-8)out.push(a);if((va>0&&vb<0)||(va<0&&vb>0)){const t=va/(va-vb);out.push({x:a.x+(b.x-a.x)*t,z:a.z+(b.z-a.z)*t})}}return out}

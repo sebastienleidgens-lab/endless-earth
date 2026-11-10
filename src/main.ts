@@ -1,3 +1,4 @@
+import {lifeSettings,setLifeProfile,type LifeProfileName} from './earthlife/preferences';
 import {natureMemory} from './nature/render';
 import { updateArchitectureLOD, architectureMemory } from './architecture/render';
 // @ts-ignore Pure camera helpers.
@@ -6,7 +7,7 @@ import {naturalSky} from './nature/sky';
 import { Soundscape } from './living/sound';
 import { loadNavigation, navigationReady, nature, paths, routeAt, validPoint } from './living/geography';
 // @ts-ignore Shared controller tested directly in Node.
-import { AutoWalk, windAt } from './living/walk.mjs';
+import { AutoWalk } from './living/walk.mjs';
 import * as THREE from 'three';
 import { createDemoWorld } from './world/demo';
 import { loadAnglesGeography, updateVegetationLOD } from './world/geodata';
@@ -147,6 +148,8 @@ if(tilesPreview && !terrainPreview){
     try{
       const count=await loadAnglesGeography(realWorld,terrain??undefined);
       scene.userData.decorationStream=realWorld.userData.decorationStream;
+      scene.userData.lifeHabitat=realWorld.userData.lifeHabitat;
+      scene.userData.lifeCeiling=new THREE.Box3().setFromObject(realWorld).max.y+12;
       geographyReady=count>0&&terrain!==null;
       if(geographyReady)geographyReady=placeSafeStart(terrain!);
       await navigationLoaded();
@@ -218,6 +221,7 @@ root.append(panel);
 const autoButton=panel.querySelector<HTMLButtonElement>('#auto-walk')!;
 const soundButton=panel.querySelector<HTMLButtonElement>('#sound')!;
 const walkStatus=panel.querySelector<HTMLElement>('#walk-status')!;
+const volume=document.createElement('input');volume.type='range';volume.min='0';volume.max='100';volume.value='70';volume.setAttribute('aria-label',"Volume de l’ambiance");volume.oninput=()=>sound.setVolume(Number(volume.value)/100);const volumeLabel=document.createElement('label');volumeLabel.className='ambience-volume';volumeLabel.append('Ambiance ',volume);panel.append(volumeLabel);
 autoButton.onclick=()=>{if(walker.active)walker.stop();else walker.start(routeAt(avatar.position,activeTerrain));};
 soundButton.onclick=async()=>{try{const on=await sound.toggle();soundButton.textContent=on?'Désactiver le son':'Activer le son';soundButton.setAttribute('aria-pressed',String(on));}catch{walkStatus.textContent='Son indisponible dans ce navigateur';}};
 let worldReady=false;
@@ -255,21 +259,29 @@ addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updat
 camera.position.set(Math.sin(yaw)*zoom,zoom*.78,Math.cos(yaw)*zoom);
 camera.lookAt(0,2,0);
 renderer.render(scene,camera);
-const qualityButton=document.createElement('button');
+const qualityButton=document.createElement('details');
 qualityButton.className='quiet-control quality-control';
 let quality:'low'|'high'='high',qualityAuto=true,qualitySeconds=0,qualityFrames=0;
 function applyQuality(level:'low'|'high'){
   quality=level;renderer.setPixelRatio(Math.min(devicePixelRatio,level==='low'?1:1.6));
   renderer.shadowMap.enabled=!tilesPreview&&level==='high';
-  qualityButton.textContent=`Qualité : ${level==='low'?'éco':'douce'}${qualityAuto?' (auto)':''}`;
+  setLifeProfile(level==='low'?'eco':'quality');
+  const select=qualityButton.querySelector<HTMLSelectElement>('select');if(select)select.value=level==='low'?'eco':'quality';
 }
-qualityButton.addEventListener('click',()=>{qualityAuto=false;applyQuality(quality==='high'?'low':'high')});
-root.append(qualityButton);applyQuality('high');
+qualityButton.innerHTML='<summary>Paysage vivant · réglages</summary><label>Profil graphique <select aria-label="Profil graphique"><option value="eco">Éco</option><option value="balanced" selected>Équilibré</option><option value="quality">Qualité</option><option value="custom">Personnalisé</option></select></label><div class="life-custom" hidden></div>';
+const profileSelect=qualityButton.querySelector<HTMLSelectElement>('select')!,customControls=qualityButton.querySelector<HTMLElement>('.life-custom')!;
+const customEffects:Record<string,number>={};
+for(const [key,label] of [['vegetation','Vent végétal'],['water','Courant visuel'],['clouds','Nuages'],['shadows','Ombres des nuages'],['birds','Oiseaux'],['events','Événements naturels']]){
+ const row=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.checked=true;check.setAttribute('aria-label',label);row.append(check,label);customControls.append(row);
+ check.onchange=()=>{customEffects[key]=check.checked?({shadows:.1,birds:6,events:2} as Record<string,number>)[key]??1:0;setLifeProfile('custom',customEffects)};
+}
+profileSelect.onchange=()=>{qualityAuto=false;const name=profileSelect.value as LifeProfileName;applyQuality(name==='eco'?'low':'high');profileSelect.value=name;setLifeProfile(name,customEffects);customControls.hidden=name!=='custom'};
+root.append(qualityButton);applyQuality('high');setLifeProfile('balanced');profileSelect.value='balanced';
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
@@ -289,8 +301,8 @@ const groundHeight=walkingHeight(terrainHeight);
 if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep);
 const moved=avatar.position.distanceTo(previous);
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
-updateAtmosphere(dt,quality==='low');sound.update(avatar.position,moved,windAt(clock.elapsedTime),yaw,scene.userData.climate);
-panel.querySelector('#profile')!.textContent='Profil · '+(quality==='low'?'Éco':'Qualité');
+updateAtmosphere(dt,quality==='low');sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.climate);
+panel.querySelector('#profile')!.textContent='Profil · '+({eco:'Éco',balanced:'Équilibré',quality:'Qualité',custom:'Personnalisé'}[lifeSettings.name]);
 if(moved>.0001){
   const facing=Math.atan2(displacement.x,displacement.z);
   avatar.rotation.y+=Math.atan2(Math.sin(facing-avatar.rotation.y),Math.cos(facing-avatar.rotation.y))*(1-Math.exp(-dt*12));

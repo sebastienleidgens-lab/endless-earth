@@ -3,7 +3,7 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';import {transpileModul
 import {buildingPlan} from '../src/architecture/plan.mjs';
 await mkdir('work',{recursive:true});
 const source=await readFile(new URL('../src/architecture/render.ts',import.meta.url),'utf8');
-const compiled=transpileModule(source,{compilerOptions:{target:9,module:99}}).outputText.replaceAll("'./plan.mjs'","'../src/architecture/plan.mjs'").replaceAll("'./style.mjs'","'../src/architecture/style.mjs'");
+const compiled=transpileModule(source,{compilerOptions:{target:9,module:99}}).outputText.replaceAll("'../earthlife/","'../src/earthlife/").replaceAll("'./plan.mjs'","'../src/architecture/plan.mjs'").replaceAll("'./style.mjs'","'../src/architecture/style.mjs'");
 await writeFile('work/architecture-render.mjs',compiled);
 const {ArchitectureBatch,updateArchitectureLOD,architectureMemory}=await import('../work/architecture-render.mjs');
 const outer=[{x:0,z:0},{x:12,z:0},{x:12,z:9},{x:5,z:9},{x:5,z:14},{x:0,z:14}];
