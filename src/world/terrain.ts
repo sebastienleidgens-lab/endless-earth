@@ -1,3 +1,4 @@
+import {configureRoadFiltering,type RoadEdges,roadTexture} from './road-material';
 import {groundDetail} from '../nature/surfaces';
 import * as THREE from 'three';
 // @ts-ignore Shared, tested source surface.
@@ -19,6 +20,7 @@ export type TerrainGrid = {
 };
 export class Terrain {
   landcover:THREE.Texture|null=null;
+  roadEdges:RoadEdges|null=null;
   singleSurface:any=null;
   get roadsAvailable(){return this.singleSurface!==null;}
   prepared:any=null;
@@ -43,8 +45,8 @@ export class Terrain {
     const started=performance.now();
     const g=this.grid,geometry=this.singleSurface?null:sourceGeometry(g);
     const material=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.FrontSide});
-    groundDetail(material,!!this.singleSurface);
-    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial,!!this.singleSurface);
+    groundDetail(material,!!this.singleSurface,this.roadEdges);
+    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial,!!this.singleSurface,this.roadEdges);
     if(this.landcover){
       const detail=material.onBeforeCompile;
       material.onBeforeCompile=(shader,renderer)=>{
@@ -60,9 +62,11 @@ export class Terrain {
           float inCover=step(0.,coverUV.x)*step(0.,coverUV.y)*step(coverUV.x,1.)*step(coverUV.y,1.)${this.singleSurface?'*(1.-step(.5,earthRoadType))':''};
           diffuseColor.rgb=diffuseColor.rgb*(1.-cover.a*inCover)+cover.rgb*inCover;`);
       };
-      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-single-surface-v1':'earth-cover-v1';
+      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-mineral-v3-'+!!this.roadEdges:'earth-cover-v1';
     }
     const group=new THREE.Group();group.name='IGN source terrain';group.userData.terrainTexture=this.landcover;
+    group.userData.roadEdgeTexture=this.roadEdges?.texture;
+    group.userData.roadTextures=this.singleSurface?[roadTexture,...(this.roadEdges?[this.roadEdges.texture]:[])]:[];
     const owned:THREE.BufferGeometry[]=[];group.userData.terrainResources={geometries:owned,materials:[material,bareMaterial]};
     if(this.singleSurface){
       const {manifest,tiles}=this.singleSurface;
@@ -73,6 +77,7 @@ export class Terrain {
         const farGeometry=new THREE.BufferGeometry();for(const [name,attribute] of Object.entries(geom.attributes))farGeometry.setAttribute(name,attribute);
         farGeometry.setIndex(tile.far);farGeometry.boundingSphere=geom.boundingSphere;owned.push(geom,farGeometry);
         const mesh=new THREE.Mesh(geom,t.cover===false?bareMaterial:material);mesh.receiveShadow=true;mesh.name='IGN ground and OSM roads';
+        mesh.onBeforeRender=renderer=>configureRoadFiltering(renderer,this.roadEdges);
         mesh.userData.earthTile={fineIndex:tile.fine,farIndex:tile.far,fineGeometry:geom,farGeometry,far:false,x:g.origin_x_m+t.x*g.step_m,z:g.origin_z_m+t.z*g.step_m,size:t.size*g.step_m};group.add(mesh);
       }
       this.metrics.tiles=tiles.length;this.metrics.fineTriangles=manifest.stats.fineTriangles;this.metrics.farTriangles=manifest.stats.farTriangles;this.metrics.maxFarErrorM=manifest.maxFarErrorM;this.metrics.surface='integrated';
@@ -177,5 +182,19 @@ export async function fetchTerrain():Promise<Terrain|null>{
     const buffer=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
     if(await sha256(buffer)!==m.binarySha256)throw new Error('Unified surface checksum mismatch');terrain.singleSurface=decodeSurface(m,buffer);
   }catch(error){console.warn('Road surfaces unavailable; exact source ground retained without overlapping fallback roads',error);}
+  if(terrain.singleSurface)try{
+    const response=await fetch(base+'angles-road-edge.json');if(!response.ok)throw new Error('Road edge field missing');const m=await response.json();
+    const g=terrain.grid,source=terrain.singleSurface.manifest;
+    if(m.schema!=='endless-earth-road-edge-v2'||m.size!==2048||m.bytes!==m.size*m.size||m.range!==3||
+      !Array.isArray(m.origin)||!Array.isArray(m.extent)||m.origin[0]!==g.origin_x_m||m.origin[1]!==g.origin_z_m||
+      m.extent[0]!==g.step_m*(g.width-1)||m.extent[1]!==g.step_m*(g.height-1)||
+      m.osmSha256!==source.osmSha256||m.terrainSha256!==source.terrainSha256)throw new Error('Stale road edge field');
+    const packed=await fetch(base+'angles-road-edge.pack');if(!packed.ok)throw new Error('Road edge field missing');
+    const bytes=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+    if(bytes.byteLength!==m.bytes||await sha256(bytes)!==m.sha256)throw new Error('Invalid road edge field');
+    const texture=new THREE.DataTexture(new Uint8Array(bytes),m.size,m.size,THREE.RedFormat);
+    texture.name='OSM union boundary distance';texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;
+    texture.generateMipmaps=true;texture.needsUpdate=true;terrain.roadEdges={texture,manifest:m};
+  }catch(error){console.warn('Road shoulders unavailable; unified road geometry and mineral materials retained',error);}
   return terrain;
 }
