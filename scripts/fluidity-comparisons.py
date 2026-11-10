@@ -6,7 +6,7 @@ names=['village','foret-dense','boisement-reel','lisiere','prairie','chemin-rura
 thumbs=[]
 for name in names:
  a=Image.open(root/f'before-{name}.png').convert('RGB');b=Image.open(root/f'after-{name}.png').convert('RGB');w,h=a.size
- canvas=Image.new('RGB',(w*2,h+36),'#f2efe4');canvas.paste(a,(0,36));canvas.paste(b,(w,36));d=ImageDraw.Draw(canvas);d.text((12,8),'Mission 08.6 — '+name,font=font,fill='#193b2f');d.text((w+12,8),'Mission 08.6 — '+name,font=font,fill='#193b2f');canvas.save(root/f'compare-{name}.jpg',quality=88)
+ canvas=Image.new('RGB',(w*2,h+36),'#f2efe4');canvas.paste(a,(0,36));canvas.paste(b,(w,36));d=ImageDraw.Draw(canvas);d.text((12,8),'Mission 08.5 — '+name,font=font,fill='#193b2f');d.text((w+12,8),'Mission 08.6 — '+name,font=font,fill='#193b2f');canvas.save(root/f'compare-{name}.jpg',quality=88)
  canvas.thumbnail((800,340));thumbs.append(canvas)
 out=Image.new('RGB',(1600,sum(max(thumbs[i].height,thumbs[i+1].height if i+1<len(thumbs) else 0) for i in range(0,len(thumbs),2))),'#f2efe4');y=0
 for i in range(0,len(thumbs),2):
