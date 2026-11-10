@@ -17,3 +17,5 @@ Base immuable : `f11f165`, Mission 08.6 après fusion PR #15. Le worktree de ré
 Chromium utilise explicitement ANGLE/SwiftShader. Le viewport mobile n'est pas un véritable appareil. Les temps de `finish/readPixels` ne sont pas du temps GPU matériel. Les buffers géométriques et les textures comptées ne représentent pas toute la mémoire GPU du processus.
 
 Les scènes artistiques utilisent des caméras d'inspection fixes ; elles ne modifient pas le fonctionnement de la marche réelle. Les scripts sont les sources du protocole. Le rapport `../mission-09.md` décrit les hypothèses et les limites.
+
+Attributions applicables à l'ensemble des captures et séquences : [© OpenStreetMap contributors](https://www.openstreetmap.org/copyright), base dérivée ODbL 1.0 ; IGN et ASP, Licence Ouverte 2.0. Les sources et millésimes détaillés sont conservés dans les données et les rapports géographiques 08.5/08.6. Les animations, synthèses et silhouettes sont des interprétations originales, sans observation d'espèce ni donnée météo réelle.

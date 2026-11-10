@@ -1,0 +1,545 @@
+=== tests.log ===
+
+
+> endless-earth@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ actual meshes stay within mapped footprint, valid height and contain no degenerate triangles (112.75311ms)
+✔ roof triangles preserve concavities and courtyard holes, including their centroids (4.610431ms)
+✔ LOD updates reuse geometry, materials and anchors; no reconstruction or collision mutation (6.534002ms)
+Validated decoration envelopes for 921 actual OSM buildings
+✔ real OSM corpus has no decorative vertices outside its existing collision footprints (5153.148315ms)
+✔ tiny mapped footprints retain a visible volume without projecting recessed details outside (1.170976ms)
+✔ far details allocate no buffers, near details build once and hidden cache is bounded (116.694327ms)
+✔ regional plans are deterministic, order independent and configurable without geography (18.668816ms)
+✔ heights respect explicit OSM total and units, levels, slopes and small buildings (0.697476ms)
+✔ openings have corner margins, valid headroom and ground attached doors; shared walls stay closed (0.893961ms)
+✔ concave footprints have continuous bounded pitched roofs and explicit roof modes (1.349358ms)
+✔ detail LOD has quality limits and hysteresis without changing a plan (0.19771ms)
+✔ compiled production badge matches the actual checkout and its explicitly selected mission (443.340086ms)
+✔ compiled dirty builds identify a base commit and local modifications (210.301811ms)
+✔ source export without Git retains the declared mission but never invents a commit (63.114229ms)
+✔ missing or inconsistent mission metadata remains explicitly unknown (110.00903ms)
+✔ an export inside another repository cannot borrow its parent commit (79.120435ms)
+✔ build labels escape source text rather than interpreting it as HTML (0.480747ms)
+✔ a checkout that changes during compilation cannot publish a falsely clean identity (198.926078ms)
+✔ corrective mission 07.1 is taken from its declared report, including in the compiled badge (172.472097ms)
+✔ mission 07.2 material build retains the exact mission name and actual Git commit (163.301731ms)
+✔ mission 07.3 optimization build uses its explicit name and the real commit (187.876682ms)
+✔ assigns verified geographic features to stable tiles (1.49161ms)
+✔ writes a versioned manifest and tile files (12.717521ms)
+✔ refuses empty data rather than inventing geography (0.756942ms)
+✔ prepared decorations retain exact source fingerprints, 2500 finite anchors and generator versions (26.294785ms)
+✔ all offline chunks pass checksums, schema, typed ranges and finite bounding spheres (1315.666769ms)
+✔ anchors and prepared geometry remain identical to the verified 08.5 reference (8.723116ms)
+✔ pack roundtrip preserves original float/index bytes and rejects corrupt ranges (10.206589ms)
+✔ work budgets preserve geography and reduce optional work on long frames (0.359755ms)
+✔ detail queue cancels stale requests, bounds concurrency and never installs cancelled data (100.070031ms)
+✔ metric frame preserves orientation, original source positions and declared distance limits (2.252242ms)
+✔ rendered fine triangles and collision interpolation agree on cliffs and both diagonals (1539.656805ms)
+✔ road draping splits every source edge without lost area, buried corners or floating centres (1.240159ms)
+✔ river lines crossing DEM bounds never receive the unsupported local-zero altitude (6.777648ms)
+✔ terrain tiles retain identical boundary positions/normals and every boundary vertex in far LOD (252.069464ms)
+✔ unknown-only tiles omit atlas sampling while mapped habitat tiles retain it (169.910638ms)
+✔ all far triangles stay within their declared error throughout each intersected source plane (139.297459ms)
+✔ LOD keeps walking terrain exact, has hysteresis and reuses all buffers at rest and on return (226.657499ms)
+✔ explicit land use respects clearings, water, agricultural semantics and unknown areas (2.631311ms)
+✔ inferred ruin heights remain continuous, bounded and deterministic (2.82684ms)
+✔ forest leaf shapes use explicit OSM leaf_type while roots retain source terrain contact (59.669091ms)
+✔ offline assets are byte deterministic and retain source provenance (13574.043903ms)
+✔ wind is seeded, bounded and continuous through cell boundaries and time (173.13834ms)
+✔ cloud shadow is precisely the visible field projected along the sun, continuous and absent at night (14.00515ms)
+✔ analytic flocks contain silence, solo/pair/groups, varied durations and safe altitude (86.00758ms)
+✔ rare micro-events have deterministic jitter, gaps and seasonal habitat constraints (57.899126ms)
+✔ one world budget stays bounded over hundreds of cells and releases every claim (4.715171ms)
+✔ mapped habitat query preserves holes and unknown areas across cells (2.190393ms)
+✔ cloud receiver composes with owners, handles clones and reuses uniform references (2.963049ms)
+✔ actual fauna/events respect profile changes and dispose after repeated cell visits (52.668649ms)
+✔ vertex cloud-field interpolation keeps 40 m terrain LOD shadow changes below 2.5 percent (17.856484ms)
+✔ normalized dataset has complete provenance and matches the rendered atlas dependency (85.601674ms)
+✔ incomplete provenance, wrong projection, invalid geometry and unrecognized classes fail closed (392.598068ms)
+✔ replaces generalized CLC only with a valid dataset, keeps OSM roads and footprints byte-equivalent (55.337564ms)
+✔ land-use priority preserves clearings and polygon holes; unknown remains unclassified (8.492598ms)
+✔ bounded procedural trees cover separated mapped woods independently of input order (356.854551ms)
+✔ OSM shared vertices connect consecutive ways, without revisiting vertices (26.221167ms)
+✔ gaps, geometric crossings and different layers never connect (1.004ms)
+✔ private, unsupported bridge and blocked segments never enter graph (0.305174ms)
+✔ graph route stops on new obstacle and manual stop stays stopped (2.173262ms)
+✔ camera zoom clamps, and recenter follows shortest angular arc smoothly (0.345418ms)
+✔ pedestrian directional restrictions are preserved (1.049399ms)
+✔ camera blocks mapped walls independently of pedestrian road restrictions (2.16155ms)
+✔ cyclic networks never repeat a vertex to inflate walking distance (1.506091ms)
+✔ mapped water shares exact collision terrain, has constant classes and identical near/far faces (791.059221ms)
+✔ water union respects islands, overlap, DEM bounds and crossing road priorities without extra area (97.268201ms)
+✔ decoder refuses missing, truncated, mixed and conflicting water attributes (45.322281ms)
+✔ weir linework never creates a river habitat and mapped roots retain their DEM heights (53.917935ms)
+✔ forest material colors are decorative, slope weighted and do not classify unknown land (6.737597ms)
+✔ an agricultural overlay overrides coarse woodland and unknown banks gain no invented forest (10.219485ms)
+✔ auto walk excludes restricted and unsupported roads (4.614453ms)
+✔ planning never connects a remote position and stops before obstacles (7.020369ms)
+✔ walk accelerates, reaches end without teleport and can be interrupted (25.017274ms)
+✔ dynamic obstacle stops safely (0.465101ms)
+✔ bounded smooth wind and four surface mappings (3.208207ms)
+✔ auto walk stops before real navigation restrictions introduced after planning (159.852788ms)
+✔ automatic collision sweep stops along its route instead of sliding sideways (0.693515ms)
+✔ nature detail buffers build once at rest, remain hysteretic and evict with a bounded cache (990.155046ms)
+✔ zone unload disposes each unique geometry and owned material once, releases recipes (135.740546ms)
+✔ tree culling bounds contain all instanced vertices; far LOD is shared and hysteretic (124.444375ms)
+✔ detail recipes progress in bounded slices and cancel when a cell leaves range (53.395455ms)
+✔ regional placements repeat exactly, including detail recipes (78.521234ms)
+✔ trees and all detail types exclude buildings, water and road corridors (47.809813ms)
+✔ slope, missing DEM, clearings and unmapped habitats do not receive invented forest (37.780487ms)
+✔ solar position follows UTC, longitude, latitude and calendar, including night (0.638362ms)
+✔ weather transitions are bounded, gradual and approach selected simulated regime (13.804647ms)
+✔ bird species have long absences and brief perching windows, never perpetual player orbits (8.353906ms)
+✔ courtyard margins keep crowns away from inner building walls (0.329639ms)
+✔ incremental recipes preserve every deterministic detail in the same order (88.768332ms)
+✔ water banks block the body; supported real bridge crosses only within deck width (15.773567ms)
+✔ layer and unknown bridge height never create a crossing; restrictions win over support (2.310709ms)
+✔ mapped steps allow bounded slopes without teleporting over cliffs or missing terrain (0.869293ms)
+✔ barriers, forbidden roads and tunnels block independently of building footprints (1.9865ms)
+✔ acceleration is frame-rate independent, deceleration settles without drift (0.973465ms)
+✔ view transitions have bounded smooth endpoints and monotonic progress (0.326601ms)
+✔ original mineral atlas is deterministic, bounded and materials have distinct spatial statistics (418.04259ms)
+✔ atlas gutters wrap their own material, not adjacent quadrants; metric UV is independent of mesh density (228.266426ms)
+✔ edge field uses exterior union boundary: no shoulder across a crossing or seam (87.239169ms)
+✔ delivered shoulder field belongs to exact source data, with bounded one-channel memory (36.405783ms)
+✔ road shader adds filtered dry relief on the existing surface, with a distinct optional-shoulder program (4.652158ms)
+✔ signed field interpolates subpixel straight edges and keeps exterior scanlines outside (54.877991ms)
+✔ RG atlas preserves every original tone and height byte without unused channels (515.580642ms)
+✔ material filtering cap preserves the shoulder filter and respects the device capability (1.63661ms)
+✔ experimental support mask is deterministic, byte-sized and never alters positions or LOD topology (52.837226ms)
+✔ experimental mask covers crossing face interiors even when vertices alone miss the signed band (2.159894ms)
+✔ complex crossings, T, acute joins, width changes, loops and duplicates form one partition (758.743387ms)
+✔ material and width interpretations distinguish known data from estimates (0.755807ms)
+✔ prepared surface belongs to exact OSM/DEM sources and has no depth bias (119.009037ms)
+✔ all actual source-cell triangles cover the terrain once, with no overlap or degeneracy (1006.538181ms)
+✔ road faces are identical in near and far LOD; shared positions have identical normals across tile seams (293.320214ms)
+✔ surface decoder rejects truncated buffers, unsafe descriptors and invalid indices (26.071016ms)
+✔ real IGN elevation file has valid provenance and 2 km extent (62.035098ms)
+✔ stream keeps a bounded number of visible tiles (3.84933ms)
+✔ outdated responses never mount after moving (2.335548ms)
+✔ missing tiles do not create objects (0.553947ms)
+✔ Angles-sur-l Anglin is within its global tile bounds (4.136104ms)
+✔ antimeridian wrapping and polar clamp (3.952491ms)
+✔ deduplicates in-flight requests and caches successful tiles (3.31954ms)
+✔ 404 is not cached (0.680969ms)
+✔ human walking, sprint, diagonal normalization and forward relative to gaze (2.099147ms)
+✔ camera cycle returns freely to aerial (0.607733ms)
+✔ body radius, polygon interior and exterior (0.544078ms)
+✔ swept movement cannot tunnel through walls and slides along them (3.930701ms)
+✔ gentle slopes follow ground; steep slopes, cliffs and unknown terrain block (1.001902ms)
+✔ camera sweep stops before walls, terrain and unknown coverage (11.192838ms)
+ℹ tests 125
+ℹ suites 0
+ℹ pass 125
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19508.449961
+
+=== python-tests.log ===
+
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.127s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.135s
+
+OK
+
+=== build.log ===
+
+
+> endless-earth@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.56 kB │ gzip:   0.37 kB
+dist/assets/index-Flf8nrz2.css    4.71 kB │ gzip:   1.51 kB
+dist/assets/index-D_Ff0soH.js   639.70 kB │ gzip: 178.08 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.50s
+
+=== smoke.log ===
+
+AERIAL {
+  decorations: {
+    requests: 8,
+    completed: 8,
+    cancelled: 15,
+    stale: 0,
+    failed: 0,
+    installed: 8,
+    cacheHits: 0,
+    bytes: 1835333,
+    maxDecodeCpuMs: 0.40000000002328306,
+    maxFetchDecodeWallMs: 320.79999999993015,
+    maxInstallMs: 0.40000000002328306,
+    maxDisposeMs: 0,
+    maxTickMs: 19.699999999953434,
+    active: 0,
+    ready: 0
+  },
+  terrain: {
+    preparationMs: 9.800000000046566,
+    tiles: 25,
+    fineTriangles: 120128,
+    farTriangles: 111104,
+    farTiles: 17,
+    maxFarErrorM: 0.25,
+    surface: 'integrated',
+    water: 'mapped-outline-dem-drape-v1'
+  },
+  nature: {
+    treeCells: 125,
+    farCells: 111,
+    cells: 250,
+    resident: 2,
+    builds: 2,
+    pending: 0,
+    work: 0,
+    needed: 0,
+    preparation: null
+  },
+  climate: {
+    mode: 'real',
+    date: '2026-11-10T11:07:46.811Z',
+    solar: {
+      altitude: 0.45091714704994373,
+      azimuth: 2.989458946953286,
+      month: 11
+    },
+    weather: { cloud: 0.16, mist: 0, wind: 0.35, rain: 0 },
+    simulation: true
+  },
+  earthLife: {
+    time: 3.0495,
+    profile: 'eco',
+    budget: { birds: 0, particles: 0, events: 0 },
+    limits: {
+      vegetation: 0.55,
+      fine: 0,
+      water: 0.5,
+      clouds: 0.7,
+      shadows: 0,
+      birds: 2,
+      particles: 0,
+      events: 1,
+      cpuHz: 5
+    },
+    activeBirds: 0,
+    activeEvents: 0,
+    habitat: 'built',
+    wind: {
+      x: 0.26621164449445417,
+      z: -0.12526489010490377,
+      speed: 0.2937597259617999,
+      gust: 0.02308567202199206
+    },
+    cpuMs: 0.39999999990686774,
+    maxCpuMs: 4.300000000046566,
+    provenance: {
+      habitat: 'mapped classification, unknown preserved',
+      wind: 'simulated',
+      weather: 'simulated',
+      birds: 'generic artistic silhouettes',
+      current: 'unverified artistic direction'
+    },
+    resources: {
+      cpuObjects: 9,
+      extraDrawCallsMax: 11,
+      extraTextures: 0,
+      cloudMaterials: 1,
+      birdMaterials: 1,
+      particleMaterials: 1
+    }
+  },
+  render: { calls: 133, triangles: 220363, geometries: 100 },
+  architecture: [
+    {
+      version: 'poitou-v1',
+      buildings: 921,
+      inferredHeights: 920,
+      pitchedRoofs: 921,
+      openings: 10713,
+      cells: 69,
+      meshes: 258,
+      triangles: 189939,
+      builds: 1,
+      generationMs: 1.900000000023283
+    }
+  ],
+  architectureMemory: {
+    triangles: 308515,
+    bytes: 26004278,
+    meshes: 264,
+    detailCells: 6,
+    detailBuilds: 6,
+    detailMs: 0.5999999999767169,
+    evictions: 0
+  },
+  mode: 'aerial',
+  ready: true,
+  position: [ -12.277392682727118, -1.48157948633812, -32.416383999943434 ],
+  camera: [ -9.311778542885905, 1.6617668109762704, -28.51530931105607 ],
+  zoom: 125,
+  smoothZoom: 125,
+  yaw: 0.65,
+  routeLength: undefined,
+  routePoints: undefined,
+  routeIndex: 1,
+  quality: 'low',
+  natureAnchors: 2500,
+  autoWalk: false,
+  walkMessage: 'Prêt · rejoindre une voie OSM',
+  sound: false,
+  soundState: 'uninitialized',
+  avatarVisible: true
+} FPS ≈ 2
+Draw calls : 133
+Triangles : 220 363
+Géométries : 100
+Textures : 7
+Ratio pixels : 1.0
+Vue : third · terrain prêt : true
+Position : -12.28, -1.48, -32.42
+FINAL {
+  decorations: {
+    requests: 17,
+    completed: 17,
+    cancelled: 21,
+    stale: 0,
+    failed: 0,
+    installed: 12,
+    cacheHits: 0,
+    bytes: 3026511,
+    maxDecodeCpuMs: 0.40000000002328306,
+    maxFetchDecodeWallMs: 1997.3000000000466,
+    maxInstallMs: 0.40000000002328306,
+    maxDisposeMs: 0.2000000000698492,
+    maxTickMs: 19.699999999953434,
+    active: 2,
+    ready: 0
+  },
+  terrain: {
+    preparationMs: 9.800000000046566,
+    tiles: 25,
+    fineTriangles: 120128,
+    farTriangles: 111104,
+    farTiles: 17,
+    maxFarErrorM: 0.25,
+    surface: 'integrated',
+    water: 'mapped-outline-dem-drape-v1'
+  },
+  nature: {
+    treeCells: 125,
+    farCells: 115,
+    cells: 250,
+    resident: 4,
+    builds: 4,
+    pending: 0,
+    work: 0,
+    needed: 0,
+    preparation: null
+  },
+  climate: {
+    mode: 'real',
+    date: '2026-11-10T11:08:14.367Z',
+    solar: {
+      altitude: 0.45112731343638124,
+      azimuth: 2.991609428575953,
+      month: 11
+    },
+    weather: { cloud: 0.16, mist: 0, wind: 0.35, rain: 0 },
+    simulation: true
+  },
+  earthLife: {
+    time: 16.949500000000118,
+    profile: 'eco',
+    budget: { birds: 0, particles: 0, events: 0 },
+    limits: {
+      vegetation: 0.55,
+      fine: 0,
+      water: 0.5,
+      clouds: 0.7,
+      shadows: 0,
+      birds: 2,
+      particles: 0,
+      events: 1,
+      cpuHz: 5
+    },
+    activeBirds: 0,
+    activeEvents: 0,
+    habitat: 'built',
+    wind: {
+      x: 0.25827963877067445,
+      z: -0.13842004837762012,
+      speed: 0.2930282793905783,
+      gust: 0.0044375013812500905
+    },
+    cpuMs: 0.6000000000931323,
+    maxCpuMs: 4.300000000046566,
+    provenance: {
+      habitat: 'mapped classification, unknown preserved',
+      wind: 'simulated',
+      weather: 'simulated',
+      birds: 'generic artistic silhouettes',
+      current: 'unverified artistic direction'
+    },
+    resources: {
+      cpuObjects: 9,
+      extraDrawCallsMax: 11,
+      extraTextures: 0,
+      cloudMaterials: 1,
+      birdMaterials: 1,
+      particleMaterials: 1
+    }
+  },
+  render: { calls: 61, triangles: 170049, geometries: 167 },
+  architecture: [
+    {
+      version: 'poitou-v1',
+      buildings: 921,
+      inferredHeights: 920,
+      pitchedRoofs: 921,
+      openings: 10713,
+      cells: 69,
+      meshes: 258,
+      triangles: 189939,
+      builds: 1,
+      generationMs: 1.900000000023283
+    }
+  ],
+  architectureMemory: {
+    triangles: 328823,
+    bytes: 27588302,
+    meshes: 266,
+    detailCells: 8,
+    detailBuilds: 8,
+    detailMs: 0.6999999999534339,
+    evictions: 0
+  },
+  mode: 'aerial',
+  ready: true,
+  position: [ -10.181751989616256, -1.393941242559535, -35.325036614827155 ],
+  camera: [ -70.45188618431784, 83.51353032029543, 52.7715742674215 ],
+  zoom: 125,
+  smoothZoom: 125,
+  yaw: -0.6,
+  routeLength: undefined,
+  routePoints: undefined,
+  routeIndex: 1,
+  quality: 'low',
+  natureAnchors: 2500,
+  autoWalk: false,
+  walkMessage: 'Prêt · rejoindre une voie OSM',
+  sound: true,
+  soundState: 'running',
+  avatarVisible: true
+} FPS ≈ 2
+Draw calls : 53
+Triangles : 150 287
+Géométries : 166
+Textures : 7
+Ratio pixels : 1.0
+Vue : aerial · terrain prêt : true
+Position : -10.18, -1.39, -35.33
+PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors.
+
+=== safety.log ===
+
+STOP PASS { building: 'yes' } [ -12.940225108393445, -1.4854452917085013, -33.08662903785113 ] samples 9
+STOP PASS { highway: 'footway', access: 'private' } [ -13.620706457459134, -1.4894140300378211, -33.77472037125492 ] samples 10
+STOP PASS { natural: 'water' } [ -14.28067415351152, -1.4932631275847683, -34.44206864259787 ] samples 9
+STOP PASS { barrier: 'wall' } [ -14.95973595504417, -1.5012043096328682, -35.128724553331814 ] samples 10
+STOP PASS { historic: 'castle' } [ -15.182202842224667, -1.522635767801276, -35.35367934048122 ] samples 7
+PASS: live building, private area, water, wall and historic ruins injected AFTER Auto Walk starts; every sampled frame legal.
+
+=== runtime.log ===
+
+PASS EarthLife runtime {
+  solo: true,
+  pair: true,
+  group: true,
+  max: 6,
+  leafFrames: 71,
+  eventFrames: 278
+} {
+  before: { objects: 10, controls: 1 },
+  timings: [
+    {
+      createCpuMs: 4.3999999994412065,
+      updateCpuMs: 0.900000000372529,
+      disposeCpuMs: 1.2999999998137355
+    },
+    {
+      createCpuMs: 6.599999999627471,
+      updateCpuMs: 0.20000000018626451,
+      disposeCpuMs: 0.20000000018626451
+    },
+    {
+      createCpuMs: 3.2000000001862645,
+      updateCpuMs: 0.39999999944120646,
+      disposeCpuMs: 0.20000000018626451
+    },
+    {
+      createCpuMs: 3.1000000005587935,
+      updateCpuMs: 0.19999999925494194,
+      disposeCpuMs: 0.20000000018626451
+    },
+    {
+      createCpuMs: 3.1000000005587935,
+      updateCpuMs: 0.2999999998137355,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 3,
+      updateCpuMs: 0.19999999925494194,
+      disposeCpuMs: 0.20000000018626451
+    },
+    {
+      createCpuMs: 2.7000000001862645,
+      updateCpuMs: 0.20000000018626451,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 5,
+      updateCpuMs: 0.19999999925494194,
+      disposeCpuMs: 0.20000000018626451
+    },
+    {
+      createCpuMs: 3.2999999998137355,
+      updateCpuMs: 0.6000000005587935,
+      disposeCpuMs: 0.7000000001862645
+    },
+    {
+      createCpuMs: 3.2999999998137355,
+      updateCpuMs: 0.20000000018626451,
+      disposeCpuMs: 0.2999999998137355
+    },
+    {
+      createCpuMs: 2.099999999627471,
+      updateCpuMs: 0.10000000055879354,
+      disposeCpuMs: 0.2999999998137355
+    },
+    {
+      createCpuMs: 2.2999999998137355,
+      updateCpuMs: 0.20000000018626451,
+      disposeCpuMs: 0.09999999962747097
+    }
+  ],
+  after: { objects: 10, controls: 1 }
+}

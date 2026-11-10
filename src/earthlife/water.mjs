@@ -7,7 +7,7 @@ export function waterColor(position){return `
  float grazing=1.-abs(dot(normalize(vViewPosition),viewMatrix[1].xyz));
  grazing=grazing*grazing*grazing;
  if(lifeWater<=.5){
- float ripple=sin(dot(waterP,current)*.85-lifeTime*.55);
+ float ripple=lifeWater>0.?sin(dot(waterP,current)*.85-lifeTime*.55):0.;
  diffuseColor.rgb=mix(vec3(.092,.168,.145)*(.96+ripple*.018),vec3(.32,.43,.45),grazing*.38);
  }else{
  vec2 advect=waterP-current*lifeTime*.65;

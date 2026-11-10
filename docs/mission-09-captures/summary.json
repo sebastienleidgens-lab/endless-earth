@@ -338,5 +338,879 @@
       "windGust": 0.08559031417389262,
       "errors": []
     }
-  ]
+  ],
+  "benchmark": {
+    "protocol": "Three alternating isolated rounds, 15 synchronized finish/readback renders per station and version per round; all detail settled before measurement. Chromium/SwiftShader, not hardware GPU.",
+    "phases": {
+      "before": {
+        "loads": {
+          "n": 3,
+          "p50": 9003,
+          "p95": 11241,
+          "p99": 11241,
+          "max": 11241
+        },
+        "mobileIntervals": {
+          "n": 120,
+          "p50": 124.8000000002794,
+          "p95": 153.59999999962747,
+          "p99": 186.79999999981374,
+          "max": 219.5
+        },
+        "mobileCpu": {
+          "n": 120,
+          "p50": 7.600000000093132,
+          "p95": 24.899999999906868,
+          "p99": 26.299999999813735,
+          "max": 30.200000000186265
+        },
+        "mobileSubmit": {
+          "n": 120,
+          "p50": 1.5,
+          "p95": 4.099999999627471,
+          "p99": 17.700000000186265,
+          "max": 19.399999999906868
+        },
+        "stations": {
+          "village": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 421.89999999990687,
+              "p95": 570.3999999999069,
+              "p99": 816.6000000000931,
+              "max": 816.6000000000931
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 2.6000000000931323,
+              "p95": 6.800000000279397,
+              "p99": 15.200000000186265,
+              "max": 15.200000000186265
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.19999999972060323,
+              "p99": 0.5,
+              "max": 2.1000000000931323
+            },
+            "calls": [
+              125,
+              125,
+              125
+            ],
+            "triangles": [
+              246163,
+              246163,
+              246163
+            ],
+            "memory": [
+              {
+                "geometryBytes": 37620345,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 374
+              },
+              {
+                "geometryBytes": 37620345,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 374
+              },
+              {
+                "geometryBytes": 37620345,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 374
+              }
+            ],
+            "heap": [
+              151757828,
+              155466452,
+              154297344
+            ]
+          },
+          "foret-dense": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 249.5,
+              "p95": 604.6000000000931,
+              "p99": 701.1999999997206,
+              "max": 701.1999999997206
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 1.8000000002793968,
+              "p95": 3.2999999998137355,
+              "p99": 7.099999999627471,
+              "max": 7.099999999627471
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.3000000002793968,
+              "max": 11
+            },
+            "calls": [
+              80,
+              80,
+              80
+            ],
+            "triangles": [
+              147404,
+              147404,
+              147404
+            ],
+            "memory": [
+              {
+                "geometryBytes": 32606493,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              },
+              {
+                "geometryBytes": 32606493,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              },
+              {
+                "geometryBytes": 32606493,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              }
+            ],
+            "heap": [
+              185736486,
+              189537094,
+              188422842
+            ]
+          },
+          "riviere": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 224.70000000018626,
+              "p95": 316.60000000009313,
+              "p99": 482,
+              "max": 482
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 1.7999999998137355,
+              "p95": 4,
+              "p99": 5.7999999998137355,
+              "max": 5.7999999998137355
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.20000000018626451,
+              "max": 0.5
+            },
+            "calls": [
+              102,
+              102,
+              102
+            ],
+            "triangles": [
+              169972,
+              169972,
+              169972
+            ],
+            "memory": [
+              {
+                "geometryBytes": 32131905,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 376
+              },
+              {
+                "geometryBytes": 32131905,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 376
+              },
+              {
+                "geometryBytes": 32131905,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 376
+              }
+            ],
+            "heap": [
+              191068792,
+              194750824,
+              193632308
+            ]
+          },
+          "aerienne": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 478.6999999997206,
+              "p95": 558.1000000000931,
+              "p99": 725.7000000001863,
+              "max": 725.7000000001863
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 2.3000000002793968,
+              "p95": 9.699999999720603,
+              "p99": 17.200000000186265,
+              "max": 17.200000000186265
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.2999999998137355,
+              "max": 0.8000000002793968
+            },
+            "calls": [
+              161,
+              161,
+              161
+            ],
+            "triangles": [
+              271267,
+              271267,
+              271267
+            ],
+            "memory": [
+              {
+                "geometryBytes": 31802169,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 374
+              },
+              {
+                "geometryBytes": 31802169,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 374
+              },
+              {
+                "geometryBytes": 31802169,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 374
+              }
+            ],
+            "heap": [
+              186099307,
+              189687331,
+              188613179
+            ]
+          },
+          "eco": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 249.39999999990687,
+              "p95": 373.20000000018626,
+              "p99": 608.3999999999069,
+              "max": 608.3999999999069
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 1.900000000372529,
+              "p95": 10.200000000186265,
+              "p99": 15.600000000093132,
+              "max": 15.600000000093132
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 1.5,
+              "max": 3.1000000000931323
+            },
+            "calls": [
+              98,
+              98,
+              98
+            ],
+            "triangles": [
+              159954,
+              159954,
+              159954
+            ],
+            "memory": [
+              {
+                "geometryBytes": 29623245,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 370
+              },
+              {
+                "geometryBytes": 29623245,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 370
+              },
+              {
+                "geometryBytes": 29623245,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 370
+              }
+            ],
+            "heap": [
+              180262715,
+              183803539,
+              116390561
+            ]
+          },
+          "mobile": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 123.89999999990687,
+              "p95": 196.10000000009313,
+              "p99": 262.20000000018626,
+              "max": 262.20000000018626
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 1.5,
+              "p95": 3.8000000002793968,
+              "p99": 6.5,
+              "max": 6.5
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.3000000002793968,
+              "max": 1.7000000001862645
+            },
+            "calls": [
+              54,
+              54,
+              54
+            ],
+            "triangles": [
+              115701,
+              115701,
+              115701
+            ],
+            "memory": [
+              {
+                "geometryBytes": 29623245,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 370
+              },
+              {
+                "geometryBytes": 29623245,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 370
+              },
+              {
+                "geometryBytes": 29623245,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 370
+              }
+            ],
+            "heap": [
+              201190803,
+              177825995,
+              117773069
+            ]
+          }
+        }
+      },
+      "after": {
+        "loads": {
+          "n": 3,
+          "p50": 8720,
+          "p95": 12168,
+          "p99": 12168,
+          "max": 12168
+        },
+        "mobileIntervals": {
+          "n": 120,
+          "p50": 156.60000000009313,
+          "p95": 447.3000000002794,
+          "p99": 623.7999999998137,
+          "max": 755.3000000002794
+        },
+        "mobileCpu": {
+          "n": 120,
+          "p50": 9.5,
+          "p95": 32.3000000002794,
+          "p99": 123.6999999997206,
+          "max": 192.89999999990687
+        },
+        "mobileSubmit": {
+          "n": 120,
+          "p50": 1.7999999998137355,
+          "p95": 16.5,
+          "p99": 29.600000000093132,
+          "max": 52.299999999813735
+        },
+        "stations": {
+          "village": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 603.3000000002794,
+              "p95": 1158.5,
+              "p99": 1276,
+              "max": 1276
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 2.8000000002793968,
+              "p95": 7.5,
+              "p99": 15.900000000372529,
+              "max": 15.900000000372529
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.20000000018626451,
+              "p99": 0.7000000001862645,
+              "max": 1.2000000001862645
+            },
+            "calls": [
+              124,
+              124,
+              124
+            ],
+            "triangles": [
+              245971,
+              245971,
+              245971
+            ],
+            "memory": [
+              {
+                "geometryBytes": 37717337,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 375
+              },
+              {
+                "geometryBytes": 37717337,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 375
+              },
+              {
+                "geometryBytes": 37717337,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 375
+              }
+            ],
+            "heap": [
+              158415037,
+              158977749,
+              180790405
+            ]
+          },
+          "foret-dense": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 346.5,
+              "p95": 716.6000000000931,
+              "p99": 888.8999999999069,
+              "max": 888.8999999999069
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 1.8999999999068677,
+              "p95": 6.199999999720603,
+              "p99": 7.399999999906868,
+              "max": 7.399999999906868
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.5,
+              "max": 2.8000000002793968
+            },
+            "calls": [
+              80,
+              80,
+              80
+            ],
+            "triangles": [
+              147212,
+              147212,
+              147212
+            ],
+            "memory": [
+              {
+                "geometryBytes": 32703485,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 372
+              },
+              {
+                "geometryBytes": 32703485,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 372
+              },
+              {
+                "geometryBytes": 32703485,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 372
+              }
+            ],
+            "heap": [
+              192123315,
+              192638815,
+              187882587
+            ]
+          },
+          "riviere": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 305.20000000018626,
+              "p95": 457.60000000009313,
+              "p99": 557,
+              "max": 557
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 2,
+              "p95": 6.800000000279397,
+              "p99": 12.899999999906868,
+              "max": 12.899999999906868
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.39999999990686774,
+              "max": 1.5
+            },
+            "calls": [
+              102,
+              102,
+              102
+            ],
+            "triangles": [
+              169780,
+              169780,
+              169780
+            ],
+            "memory": [
+              {
+                "geometryBytes": 32228897,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 377
+              },
+              {
+                "geometryBytes": 32228897,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 377
+              },
+              {
+                "geometryBytes": 32228897,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 377
+              }
+            ],
+            "heap": [
+              177908817,
+              124568216,
+              193660629
+            ]
+          },
+          "aerienne": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 472.40000000037253,
+              "p95": 678.3000000002794,
+              "p99": 902,
+              "max": 902
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 2.400000000372529,
+              "p95": 6.7000000001862645,
+              "p99": 11.299999999813735,
+              "max": 11.299999999813735
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.5,
+              "max": 1.1000000000931323
+            },
+            "calls": [
+              161,
+              161,
+              161
+            ],
+            "triangles": [
+              271075,
+              271075,
+              271075
+            ],
+            "memory": [
+              {
+                "geometryBytes": 31899161,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 375
+              },
+              {
+                "geometryBytes": 31899161,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 375
+              },
+              {
+                "geometryBytes": 31899161,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 375
+              }
+            ],
+            "heap": [
+              179935720,
+              122564243,
+              122659859
+            ],
+            "withoutCloudShadowsMs": {
+              "n": 45,
+              "p50": 471,
+              "p95": 714.2000000001863,
+              "p99": 763.2999999998137,
+              "max": 763.2999999998137
+            }
+          },
+          "eco": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 260.89999999990687,
+              "p95": 597.7000000001863,
+              "p99": 648.2999999998137,
+              "max": 648.2999999998137
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 1.7000000001862645,
+              "p95": 3.8000000002793968,
+              "p99": 6.2000000001862645,
+              "max": 6.2000000001862645
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.3000000002793968,
+              "max": 1
+            },
+            "calls": [
+              98,
+              98,
+              98
+            ],
+            "triangles": [
+              158706,
+              158706,
+              158706
+            ],
+            "memory": [
+              {
+                "geometryBytes": 29642669,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              },
+              {
+                "geometryBytes": 29642669,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              },
+              {
+                "geometryBytes": 29642669,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              }
+            ],
+            "heap": [
+              121079641,
+              122481045,
+              123758597
+            ]
+          },
+          "mobile": {
+            "gpuQueryMs": {
+              "n": 0
+            },
+            "synchronizedRenderMs": {
+              "n": 45,
+              "p50": 152.10000000009313,
+              "p95": 349,
+              "p99": 435.1999999997206,
+              "max": 435.1999999997206
+            },
+            "submitMs": {
+              "n": 45,
+              "p50": 1.5,
+              "p95": 3,
+              "p99": 4.100000000093132,
+              "max": 4.100000000093132
+            },
+            "atmosphereCpuMs": {
+              "n": 360,
+              "p50": 0,
+              "p95": 0.10000000009313226,
+              "p99": 0.5,
+              "max": 0.900000000372529
+            },
+            "calls": [
+              54,
+              54,
+              54
+            ],
+            "triangles": [
+              114453,
+              114453,
+              114453
+            ],
+            "memory": [
+              {
+                "geometryBytes": 29642669,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              },
+              {
+                "geometryBytes": 29642669,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              },
+              {
+                "geometryBytes": 29642669,
+                "terrainTextureBytesWithMipmaps": 11810474.666666666,
+                "roadTextureBytesWithMipmaps": 6477141.333333333,
+                "geometries": 371
+              }
+            ],
+            "heap": [
+              122429673,
+              123738689,
+              125095669
+            ]
+          }
+        }
+      }
+    }
+  },
+  "walk-before": {
+    "metres": 450.00000000000017,
+    "seconds": 403.5941000000001,
+    "frames": 1679,
+    "intervals": {
+      "n": 1679,
+      "p50": 221.59999999962747,
+      "p95": 472,
+      "p99": 670.5,
+      "max": 1039.1000000000931
+    },
+    "cpu": {
+      "n": 1679,
+      "p50": 8.099999999627471,
+      "p95": 24.300000000745058,
+      "p99": 40,
+      "max": 104.3999999994412
+    },
+    "submit": {
+      "n": 1679,
+      "p50": 1.7999999998137355,
+      "p95": 8.399999999906868,
+      "p99": 19.399999999441206,
+      "max": 1029.7000000001863
+    },
+    "heap": {
+      "n": 1679,
+      "p50": 123680191,
+      "p95": 181754226,
+      "p99": 190698817,
+      "max": 195579565
+    }
+  },
+  "walk-after": {
+    "metres": 449.9999999999998,
+    "seconds": 458.21159999999963,
+    "frames": 1581,
+    "intervals": {
+      "n": 1581,
+      "p50": 272.79999999981374,
+      "p95": 575.1000000005588,
+      "p99": 860.0999999996275,
+      "max": 1258.5999999996275
+    },
+    "cpu": {
+      "n": 1581,
+      "p50": 8.899999999441206,
+      "p95": 27.600000000558794,
+      "p99": 45.700000000186265,
+      "max": 106.20000000018626
+    },
+    "submit": {
+      "n": 1581,
+      "p50": 1.900000000372529,
+      "p95": 8.400000000372529,
+      "p99": 18.799999999813735,
+      "max": 1106.3999999994412
+    },
+    "heap": {
+      "n": 1581,
+      "p50": 128545405,
+      "p95": 181403605,
+      "p99": 191376511,
+      "max": 196945713
+    }
+  }
 }

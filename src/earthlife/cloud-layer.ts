@@ -12,5 +12,5 @@ export function createCloudLayer(scene:THREE.Scene){
  #include <colorspace_fragment>
  }`});
  const mesh=new THREE.Mesh(geometry,material);mesh.name='earthlife-cloud-layer';mesh.position.y=230;mesh.frustumCulled=false;mesh.userData.lifeResources={geometries:[geometry,ecoGeometry]};scene.add(mesh);
- return {update(p:THREE.Vector3,day:number,enabled:number,eco=false){mesh.geometry=eco?ecoGeometry:geometry;mesh.position.x=p.x;mesh.position.z=p.z;material.uniforms.lifeDay.value=day;material.uniforms.lifeCloudEnabled.value=enabled},dispose(){scene.remove(mesh);geometry.dispose();ecoGeometry.dispose();material.dispose()}};
+ return {update(p:THREE.Vector3,day:number,enabled:number,eco=false){mesh.visible=enabled>.001;mesh.geometry=eco?ecoGeometry:geometry;mesh.position.x=p.x;mesh.position.z=p.z;material.uniforms.lifeDay.value=day;material.uniforms.lifeCloudEnabled.value=enabled},dispose(){scene.remove(mesh);geometry.dispose();ecoGeometry.dispose();material.dispose()}};
 }

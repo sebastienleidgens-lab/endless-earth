@@ -21,8 +21,8 @@ try{
  for(const [label,delta] of [['near',-10000],['medium',292],['far',10000]]){await page.mouse.move(400,280);await page.mouse.wheel(0,delta);await page.waitForTimeout(1500);await page.screenshot({path:`${dir}/walk-zoom-${label}.png`});}
  assert.equal((await state()).zoom,15);
  const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:2});
- await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:200,y:280,id:1},{x:400,y:280,id:2}]});
- await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:150,y:280,id:1},{x:450,y:280,id:2}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:200,y:320,id:1},{x:400,y:320,id:2}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:150,y:320,id:1},{x:450,y:320,id:2}]});
  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
  await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});
  await page.waitForFunction(()=>window.endlessDiagnostics.zoom<15);assert.ok((await state()).zoom<15,'two pointer pinch zoom');
