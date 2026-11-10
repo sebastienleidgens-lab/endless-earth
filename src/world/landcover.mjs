@@ -20,9 +20,13 @@ export function coverClass(t){
  return null;
 }
 export function insideRing(x,z,ring){let yes=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a.z>z)!==(b.z>z)&&x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)yes=!yes}return yes}
+// CLC is a generalized inventory, not a parcel boundary. Explicit local use
+// overrides an overlapping inherited CLC polygon. This is a fusion policy,
+// not a claim that an undated OSM tag is a more recent observation.
+export function coverPriority(f){const type=coverClass(f.tags);return type?COVER[type].priority-(f.tags['CLC:year']||String(f.tags.source??'').includes('CORINE')?20:0):-Infinity}
 export function coverAt(x,z,features){
- let best=null;
- for(const f of features){const type=coverClass(f.tags);if(!type||best&&COVER[type].priority<=COVER[best].priority)continue;
-  if(insideRing(x,z,f.rings[0])&&!f.rings.slice(1).some(r=>insideRing(x,z,r)))best=type;
+ let best=null,priority=-Infinity;
+ for(const f of features){const type=coverClass(f.tags),rank=coverPriority(f);if(!type||rank<=priority)continue;
+  if(insideRing(x,z,f.rings[0])&&!f.rings.slice(1).some(r=>insideRing(x,z,r))){best=type;priority=rank;}
  }return best;
 }

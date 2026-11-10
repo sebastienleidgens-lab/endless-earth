@@ -1,0 +1,142 @@
+{
+  "checkedOn": "2026-11-10",
+  "status": "files-inaccessible-not-integrated",
+  "product": "IGN LiDAR HD MNT",
+  "catalogue": "https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_MNT-LIDAR-HD",
+  "requestedResolutionM": 0.5,
+  "requiredCRS": "EPSG:2154",
+  "requiredVerticalDatum": "IGN69, to verify against delivered metadata",
+  "corners": [
+    {
+      "local": [
+        -1050,
+        -1050
+      ],
+      "wgs84": [
+        0.8706478944542111,
+        46.704732267337405
+      ],
+      "lambert93": [
+        537333.3751293286,
+        6624930.527098633
+      ]
+    },
+    {
+      "local": [
+        1050,
+        -1050
+      ],
+      "wgs84": [
+        0.8981521055457888,
+        46.704732267337405
+      ],
+      "lambert93": [
+        539433.9922816731,
+        6624874.2328936905
+      ]
+    },
+    {
+      "local": [
+        1050,
+        1050
+      ],
+      "wgs84": [
+        0.8981521055457888,
+        46.6858677326626
+      ],
+      "lambert93": [
+        539378.2309977056,
+        6622779.881239032
+      ]
+    },
+    {
+      "local": [
+        -1050,
+        1050
+      ],
+      "wgs84": [
+        0.8706478944542111,
+        46.6858677326626
+      ],
+      "lambert93": [
+        537276.8843440723,
+        6622836.194993799
+      ]
+    }
+  ],
+  "lambert93EnvelopeM": [
+    537276,
+    6622779,
+    539434,
+    6624931
+  ],
+  "kilometreCellsSouthwest": [
+    [
+      537,
+      6622
+    ],
+    [
+      537,
+      6623
+    ],
+    [
+      537,
+      6624
+    ],
+    [
+      538,
+      6622
+    ],
+    [
+      538,
+      6623
+    ],
+    [
+      538,
+      6624
+    ],
+    [
+      539,
+      6622
+    ],
+    [
+      539,
+      6623
+    ],
+    [
+      539,
+      6624
+    ]
+  ],
+  "catalogueFilenames": null,
+  "filenameLimit": "Catalogue tile names, URLs, local availability and acquisition dates not resolved; do not fabricate them. Select actual files intersecting these exact cells.",
+  "requiredDelivery": [
+    "native one-band MNT GeoTIFFs or lossless native-resolution crop covering the envelope",
+    "source assembly index and acquisition dates",
+    "CRS and vertical datum metadata",
+    "nodata definition and coverage mask",
+    "licence and source attribution",
+    "original public download URLs and SHA-256 per file"
+  ],
+  "notRequested": [
+    "MNS",
+    "MNH",
+    "bathymetry",
+    "invented replacement heights"
+  ],
+  "optionalCopernicusCandidates": {
+    "catalogue": "https://land.copernicus.eu/en/products/high-resolution-layer-forests-and-tree-cover",
+    "layers": [
+      "Tree Cover Density 2021/2023 10 m",
+      "Dominant Leaf Type 2021/2023 10 m",
+      "Forest Type 2021 10 m"
+    ],
+    "requiredChecks": [
+      "actual local tile availability",
+      "original CRS and acquisition/reference year",
+      "quality and nodata masks",
+      "licence and attribution of selected release",
+      "coverage versus forest-use definitions; not individual trees"
+    ]
+  }
+}

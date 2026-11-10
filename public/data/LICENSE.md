@@ -8,3 +8,7 @@
 - `angles-earth.json`: checksums, offsets and provenance of these derivatives. It does not certify data availability or acquisition years beyond the supplied metadata.
 
 Rebuild derivatives using `node scripts/prepare-earth.mjs` and `npm run geo:roads`. Do not add proprietary tiles or imagery without checking their individual rights. Application code and original procedural assets are separate from the geographic databases. See `docs/mission-07.md` in the source repository for the source audit and remaining limitations.
+
+Mission 08: `angles-surface.*` also partitions the five explicit OSM water polygons into the common terrain surface. These are OSM-derived outlines with the same database attribution and ODbL source availability. Water elevations are draped on the existing IGN samples for visualization; they are not measured water levels, flow or bathymetry. Roads remain geometrically prioritized. There is no extra overlapping water layer in the prepared surface.
+
+The two forest polygons retain their supplied attribution **Union européenne – SOeS, CORINE Land Cover, 2006**, through the OSM source database. The extraction date in 2026 does not change that observation year. `angles-landcover.png` uses original procedural floor colors and a slope-dependent artistic blend weight; its alpha is not measurement confidence. Unknown land does not acquire a mapped grassland or forest class. No new imagery or external 3D assets are redistributed. See `docs/mission-08-sources.md` and `docs/mission-08-references.json` for reviewed products and linked photographs.

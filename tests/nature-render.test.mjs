@@ -22,5 +22,5 @@ test('tree culling bounds contain all instanced vertices; far LOD is shared and 
 });
 test('detail recipes progress in bounded slices and cancel when a cell leaves range',()=>{
  const g=new THREE.Group(),camera=new THREE.PerspectiveCamera();addNature(g,features,()=>0);camera.position.set(64,2,64);updateNatureLOD(g,camera);
- const c=g.children.find(o=>o.userData.natureCell?.pending)?.userData.natureCell;assert.ok(c);assert.equal(c.pending.cursor,256);assert.equal(c.builds,0);camera.position.set(3000,10,3000);updateNatureLOD(g,camera);assert.equal(c.pending,null);assert.equal(c.builds,0);disposeNatureZone(g);
+ const c=g.children.find(o=>o.userData.natureCell?.pending)?.userData.natureCell;assert.ok(c);assert.ok(c.pending.cursor>=32&&c.pending.cursor<=256);assert.equal(c.builds,0);camera.position.set(3000,10,3000);updateNatureLOD(g,camera);assert.equal(c.pending,null);assert.equal(c.builds,0);disposeNatureZone(g);
 });

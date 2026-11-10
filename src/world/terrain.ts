@@ -23,8 +23,9 @@ export class Terrain {
   roadEdges:RoadEdges|null=null;
   singleSurface:any=null;
   get roadsAvailable(){return this.singleSurface!==null;}
+  get waterIntegrated(){return this.singleSurface?.manifest.water?.mode==='mapped-outline-dem-drape-v1';}
   prepared:any=null;
-  metrics={preparationMs:0,tiles:0,fineTriangles:0,farTriangles:0,farTiles:0,maxFarErrorM:0,surface:'source'};
+  metrics={preparationMs:0,tiles:0,fineTriangles:0,farTriangles:0,farTiles:0,maxFarErrorM:0,surface:'source',water:'legacy'};
   constructor(readonly grid: TerrainGrid) {}
   static validate(raw: unknown): TerrainGrid {
     if(!raw || typeof raw !== 'object') throw new Error('Invalid terrain payload');
@@ -45,8 +46,8 @@ export class Terrain {
     const started=performance.now();
     const g=this.grid,geometry=this.singleSurface?null:sourceGeometry(g);
     const material=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.FrontSide});
-    groundDetail(material,!!this.singleSurface,this.roadEdges);
-    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial,!!this.singleSurface,this.roadEdges);
+    groundDetail(material,!!this.singleSurface,this.roadEdges,this.waterIntegrated);
+    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial,!!this.singleSurface,this.roadEdges,this.waterIntegrated);
     if(this.landcover){
       const detail=material.onBeforeCompile;
       material.onBeforeCompile=(shader,renderer)=>{
@@ -57,12 +58,14 @@ export class Terrain {
         shader.uniforms.earthExtent={value:new THREE.Vector2(...c.extent)};
         shader.fragmentShader='uniform sampler2D earthCover; uniform vec2 earthOrigin; uniform vec2 earthExtent;\n'+shader.fragmentShader;
         shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
+          ${this.singleSurface?'if(earthRoadType<.5){':''}
           vec2 coverUV=(naturePosition.xz-earthOrigin)/earthExtent;
           vec4 cover=texture2D(earthCover,coverUV);
           float inCover=step(0.,coverUV.x)*step(0.,coverUV.y)*step(coverUV.x,1.)*step(coverUV.y,1.)${this.singleSurface?'*(1.-step(.5,earthRoadType))':''};
-          diffuseColor.rgb=diffuseColor.rgb*(1.-cover.a*inCover)+cover.rgb*inCover;`);
+          diffuseColor.rgb=diffuseColor.rgb*(1.-cover.a*inCover)+cover.rgb*inCover;
+          ${this.singleSurface?'}':''}`);
       };
-      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-mineral-v3-'+!!this.roadEdges:'earth-cover-v1';
+      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-landscape-v2-'+!!this.roadEdges+'-'+this.waterIntegrated:'earth-cover-v1';
     }
     const group=new THREE.Group();group.name='IGN source terrain';group.userData.terrainTexture=this.landcover;
     group.userData.roadEdgeTexture=this.roadEdges?.texture;
@@ -80,7 +83,7 @@ export class Terrain {
         mesh.onBeforeRender=renderer=>configureRoadFiltering(renderer,this.roadEdges);
         mesh.userData.earthTile={fineIndex:tile.fine,farIndex:tile.far,fineGeometry:geom,farGeometry,far:false,x:g.origin_x_m+t.x*g.step_m,z:g.origin_z_m+t.z*g.step_m,size:t.size*g.step_m};group.add(mesh);
       }
-      this.metrics.tiles=tiles.length;this.metrics.fineTriangles=manifest.stats.fineTriangles;this.metrics.farTriangles=manifest.stats.farTriangles;this.metrics.maxFarErrorM=manifest.maxFarErrorM;this.metrics.surface='integrated';
+      this.metrics.tiles=tiles.length;this.metrics.fineTriangles=manifest.stats.fineTriangles;this.metrics.farTriangles=manifest.stats.farTriangles;this.metrics.maxFarErrorM=manifest.maxFarErrorM;this.metrics.surface='integrated';this.metrics.water=this.waterIntegrated?'mapped-outline-dem-drape-v1':'legacy';
     }else if(this.prepared){
       const {manifest,indices:far}=this.prepared;
       for(const tile of manifest.tiles){

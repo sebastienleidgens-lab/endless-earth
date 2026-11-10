@@ -1,0 +1,333 @@
+{
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+  },
+  "load": {
+    "before": {
+      "samplesMs": [
+        8021,
+        8973,
+        8044
+      ],
+      "medianMs": 8044,
+      "terrainPreparationSamplesMs": [
+        2.7000000001862645,
+        1.7999999998137355,
+        1.7999999998137355,
+        3.3000000002793968,
+        1.8999999999068677,
+        3.3999999999068677,
+        2.2999999998137355,
+        1.7000000001862645,
+        2.1000000000931323
+      ]
+    },
+    "after": {
+      "samplesMs": [
+        8414,
+        8950,
+        8741
+      ],
+      "medianMs": 8741,
+      "terrainPreparationSamplesMs": [
+        3.6000000000931323,
+        2.3999999999068677,
+        1.8000000002793968,
+        4.399999999906868,
+        4.399999999906868,
+        3.7000000001862645,
+        1.8000000002793968,
+        2.6999999997206032,
+        2
+      ]
+    }
+  },
+  "comparison": {
+    "village": {
+      "before": {
+        "medianMs": 425.40000000037253,
+        "p95Ms": 544.3999999999069,
+        "maxMs": 1015.2999999998137,
+        "cpuSubmitMedianMs": 2,
+        "roundMedians": [
+          417,
+          438.39999999990687,
+          425.40000000037253
+        ],
+        "calls": 120,
+        "triangles": 247134,
+        "memory": {
+          "geometryBytes": 31008672,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 367
+        },
+        "lodP95Ms": 4.199999999720603
+      },
+      "after": {
+        "medianMs": 435.5,
+        "p95Ms": 547.6000000000931,
+        "maxMs": 611.1000000000931,
+        "cpuSubmitMedianMs": 1.8999999999068677,
+        "roundMedians": [
+          455.5,
+          414.6999999997206,
+          456.60000000009313
+        ],
+        "calls": 109,
+        "triangles": 245249,
+        "memory": {
+          "geometryBytes": 31151561,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 361
+        },
+        "lodP95Ms": 4.699999999720603
+      },
+      "percent": 2.3742360130744267
+    },
+    "riviere": {
+      "before": {
+        "medianMs": 270.89999999990687,
+        "p95Ms": 410.1999999997206,
+        "maxMs": 485.20000000018626,
+        "cpuSubmitMedianMs": 1.6000000000931323,
+        "roundMedians": [
+          267.8000000002794,
+          321.10000000009313,
+          266.10000000009313
+        ],
+        "calls": 102,
+        "triangles": 194213,
+        "memory": {
+          "geometryBytes": 33677676,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 376
+        },
+        "lodP95Ms": 1.3999999999068677
+      },
+      "after": {
+        "medianMs": 232.39999999990687,
+        "p95Ms": 263.6999999997206,
+        "maxMs": 273.5,
+        "cpuSubmitMedianMs": 1.6000000000931323,
+        "roundMedians": [
+          234.10000000009313,
+          228.79999999981374,
+          232.39999999990687
+        ],
+        "calls": 91,
+        "triangles": 190528,
+        "memory": {
+          "geometryBytes": 33820565,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 370
+        },
+        "lodP95Ms": 0.7000000001862645
+      },
+      "percent": -14.211886304914445
+    },
+    "foret": {
+      "before": {
+        "medianMs": 198.60000000009313,
+        "p95Ms": 379.6999999997206,
+        "maxMs": 610.3000000002794,
+        "cpuSubmitMedianMs": 1.2999999998137355,
+        "roundMedians": [
+          190.1999999997206,
+          279.5,
+          190
+        ],
+        "calls": 39,
+        "triangles": 111379,
+        "memory": {
+          "geometryBytes": 33708936,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 379
+        },
+        "lodP95Ms": 3.5
+      },
+      "after": {
+        "medianMs": 193.5,
+        "p95Ms": 210,
+        "maxMs": 226.1999999997206,
+        "cpuSubmitMedianMs": 1.2000000001862645,
+        "roundMedians": [
+          191.5,
+          191.70000000018626,
+          199.1999999997206
+        ],
+        "calls": 35,
+        "triangles": 108768,
+        "memory": {
+          "geometryBytes": 33851825,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 373
+        },
+        "lodP95Ms": 2.3999999999068677
+      },
+      "percent": -2.567975830861402
+    },
+    "aerienne": {
+      "before": {
+        "medianMs": 417.10000000009313,
+        "p95Ms": 557.3999999999069,
+        "maxMs": 597.7999999998137,
+        "cpuSubmitMedianMs": 2,
+        "roundMedians": [
+          403.29999999981374,
+          500.89999999990687,
+          389.29999999981374
+        ],
+        "calls": 151,
+        "triangles": 262305,
+        "memory": {
+          "geometryBytes": 33037704,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 378
+        },
+        "lodP95Ms": 0.6000000000931323
+      },
+      "after": {
+        "medianMs": 394.89999999990687,
+        "p95Ms": 450.60000000009313,
+        "maxMs": 564.5999999996275,
+        "cpuSubmitMedianMs": 1.7999999998137355,
+        "roundMedians": [
+          394.29999999981374,
+          395.60000000009313,
+          394.3000000002794
+        ],
+        "calls": 140,
+        "triangles": 259224,
+        "memory": {
+          "geometryBytes": 33180593,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 372
+        },
+        "lodP95Ms": 0.6999999997206032
+      },
+      "percent": -5.3224646368212225
+    },
+    "eco": {
+      "before": {
+        "medianMs": 266.39999999990687,
+        "p95Ms": 396.1999999997206,
+        "maxMs": 481.40000000037253,
+        "cpuSubmitMedianMs": 1.6000000000931323,
+        "roundMedians": [
+          263,
+          356.89999999990687,
+          257
+        ],
+        "calls": 100,
+        "triangles": 172611,
+        "memory": {
+          "geometryBytes": 32506788,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 376
+        },
+        "lodP95Ms": 0.7999999998137355
+      },
+      "after": {
+        "medianMs": 213.70000000018626,
+        "p95Ms": 230.60000000009313,
+        "maxMs": 261.39999999990687,
+        "cpuSubmitMedianMs": 1.5,
+        "roundMedians": [
+          219.70000000018626,
+          213.29999999981374,
+          210.3000000002794
+        ],
+        "calls": 89,
+        "triangles": 169530,
+        "memory": {
+          "geometryBytes": 32649677,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 370
+        },
+        "lodP95Ms": 0.7999999998137355
+      },
+      "percent": -19.782282282184315
+    },
+    "mobile": {
+      "before": {
+        "medianMs": 156.8000000002794,
+        "p95Ms": 267.5,
+        "maxMs": 285.59999999962747,
+        "cpuSubmitMedianMs": 1.3999999999068677,
+        "roundMedians": [
+          151.6999999997206,
+          240,
+          146.6999999997206
+        ],
+        "calls": 52,
+        "triangles": 122266,
+        "memory": {
+          "geometryBytes": 32506788,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 376
+        },
+        "lodP95Ms": 0.5
+      },
+      "after": {
+        "medianMs": 112.10000000009313,
+        "p95Ms": 151.1999999997206,
+        "maxMs": 236.79999999981374,
+        "cpuSubmitMedianMs": 1.1000000000931323,
+        "roundMedians": [
+          119.29999999981374,
+          111.5,
+          110.29999999981374
+        ],
+        "calls": 41,
+        "triangles": 118837,
+        "memory": {
+          "geometryBytes": 32649677,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 370
+        },
+        "lodP95Ms": 0.5
+      },
+      "percent": -28.50765306129248
+    }
+  },
+  "walk": {
+    "metres": 450.0000000000013,
+    "seconds": 391.43889999999993,
+    "frames": 1686,
+    "message": "Fin du parcours OSM validé",
+    "cpuMs": {
+      "median": 7.7999999998137355,
+      "p95": 22.5,
+      "max": 95.60000000009313
+    },
+    "submitMs": {
+      "median": 1.3999999999068677,
+      "p95": 6.7000000001862645,
+      "max": 1041.5
+    },
+    "intervalMs": {
+      "median": 230.8000000002794,
+      "p95": 384.3000000002794,
+      "max": 1067.7000000001863
+    },
+    "preparation": {
+      "maxSliceMs": 2.7999999998137355,
+      "maxBuildMs": 6.100000000093132,
+      "slices": 53
+    },
+    "traceCapped": false
+  }
+}

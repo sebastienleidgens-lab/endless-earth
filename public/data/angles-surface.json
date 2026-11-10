@@ -58,13 +58,15 @@
   "stats": {
     "roadCells": 5191,
     "roadAreaM2": 142909.74322481788,
+    "waterCells": 1478,
+    "waterAreaM2": 112029.96889144543,
     "legacyOverlapExcessM2": 2274.398230648792,
     "legacyConflictCells": 1387,
     "sliversDiscarded": 34,
     "sliverAreaM2": 0.0000028147148822357533,
-    "fineTriangles": 117318,
-    "farTriangles": 103334,
-    "vertices": 81495,
+    "fineTriangles": 119960,
+    "farTriangles": 106008,
+    "vertices": 85339,
     "materialAreasM2": {
       "1": 32324.37179281069,
       "2": 916.6251727094733,
@@ -80,35 +82,40 @@
       "z": 0,
       "size": 40,
       "cover": true,
-      "protectedCells": 152,
+      "protectedCells": 156,
       "position": {
         "offset": 0,
-        "length": 7914,
+        "length": 7968,
         "type": "f32"
       },
       "normal": {
-        "offset": 31656,
-        "length": 7914,
+        "offset": 31872,
+        "length": 7968,
         "type": "i16"
       },
       "color": {
-        "offset": 47484,
-        "length": 7914,
+        "offset": 47808,
+        "length": 7968,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 55400,
-        "length": 2638,
+        "offset": 55776,
+        "length": 2656,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 58432,
+        "length": 2656,
         "type": "u8"
       },
       "fine": {
-        "offset": 58040,
-        "length": 12276,
+        "offset": 61088,
+        "length": 12312,
         "type": "u16"
       },
       "far": {
-        "offset": 82592,
-        "length": 10836,
+        "offset": 85712,
+        "length": 10872,
         "type": "u16"
       }
     },
@@ -117,35 +124,40 @@
       "z": 0,
       "size": 40,
       "cover": true,
-      "protectedCells": 248,
+      "protectedCells": 477,
       "position": {
-        "offset": 104264,
-        "length": 10053,
+        "offset": 107456,
+        "length": 12162,
         "type": "f32"
       },
       "normal": {
-        "offset": 144476,
-        "length": 10053,
+        "offset": 156104,
+        "length": 12162,
         "type": "i16"
       },
       "color": {
-        "offset": 164584,
-        "length": 10053,
+        "offset": 180428,
+        "length": 12162,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 174640,
-        "length": 3351,
+        "offset": 192592,
+        "length": 4054,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 196648,
+        "length": 4054,
         "type": "u8"
       },
       "fine": {
-        "offset": 177992,
-        "length": 14346,
+        "offset": 200704,
+        "length": 15864,
         "type": "u16"
       },
       "far": {
-        "offset": 206684,
-        "length": 13770,
+        "offset": 232432,
+        "length": 15288,
         "type": "u16"
       }
     },
@@ -156,32 +168,37 @@
       "cover": false,
       "protectedCells": 94,
       "position": {
-        "offset": 234224,
+        "offset": 263008,
         "length": 7020,
         "type": "f32"
       },
       "normal": {
-        "offset": 262304,
+        "offset": 291088,
         "length": 7020,
         "type": "i16"
       },
       "color": {
-        "offset": 276344,
+        "offset": 305128,
         "length": 7020,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 283364,
+        "offset": 312148,
+        "length": 2340,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 314488,
         "length": 2340,
         "type": "u8"
       },
       "fine": {
-        "offset": 285704,
+        "offset": 316828,
         "length": 11496,
         "type": "u16"
       },
       "far": {
-        "offset": 308696,
+        "offset": 339820,
         "length": 9480,
         "type": "u16"
       }
@@ -193,32 +210,37 @@
       "cover": false,
       "protectedCells": 159,
       "position": {
-        "offset": 327656,
+        "offset": 358780,
         "length": 8328,
         "type": "f32"
       },
       "normal": {
-        "offset": 360968,
+        "offset": 392092,
         "length": 8328,
         "type": "i16"
       },
       "color": {
-        "offset": 377624,
+        "offset": 408748,
         "length": 8328,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 385952,
+        "offset": 417076,
+        "length": 2776,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 419852,
         "length": 2776,
         "type": "u8"
       },
       "fine": {
-        "offset": 388728,
+        "offset": 422628,
         "length": 12636,
         "type": "u16"
       },
       "far": {
-        "offset": 414000,
+        "offset": 447900,
         "length": 9516,
         "type": "u16"
       }
@@ -230,32 +252,37 @@
       "cover": false,
       "protectedCells": 227,
       "position": {
-        "offset": 433032,
+        "offset": 466932,
         "length": 9246,
         "type": "f32"
       },
       "normal": {
-        "offset": 470016,
+        "offset": 503916,
         "length": 9246,
         "type": "i16"
       },
       "color": {
-        "offset": 488508,
+        "offset": 522408,
         "length": 9246,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 497756,
+        "offset": 531656,
+        "length": 3082,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 534740,
         "length": 3082,
         "type": "u8"
       },
       "fine": {
-        "offset": 500840,
+        "offset": 537824,
         "length": 13548,
         "type": "u16"
       },
       "far": {
-        "offset": 527936,
+        "offset": 564920,
         "length": 10764,
         "type": "u16"
       }
@@ -265,35 +292,40 @@
       "z": 40,
       "size": 40,
       "cover": true,
-      "protectedCells": 131,
+      "protectedCells": 332,
       "position": {
-        "offset": 549464,
-        "length": 8460,
+        "offset": 586448,
+        "length": 10095,
         "type": "f32"
       },
       "normal": {
-        "offset": 583304,
-        "length": 8460,
+        "offset": 626828,
+        "length": 10095,
         "type": "i16"
       },
       "color": {
-        "offset": 600224,
-        "length": 8460,
+        "offset": 647020,
+        "length": 10095,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 608684,
-        "length": 2820,
+        "offset": 657116,
+        "length": 3365,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 660484,
+        "length": 3365,
         "type": "u8"
       },
       "fine": {
-        "offset": 611504,
-        "length": 12864,
+        "offset": 663852,
+        "length": 14034,
         "type": "u16"
       },
       "far": {
-        "offset": 637232,
-        "length": 11952,
+        "offset": 691920,
+        "length": 13122,
         "type": "u16"
       }
     },
@@ -302,35 +334,40 @@
       "z": 40,
       "size": 40,
       "cover": true,
-      "protectedCells": 208,
+      "protectedCells": 305,
       "position": {
-        "offset": 661136,
-        "length": 9876,
+        "offset": 718164,
+        "length": 11217,
         "type": "f32"
       },
       "normal": {
-        "offset": 700640,
-        "length": 9876,
+        "offset": 763032,
+        "length": 11217,
         "type": "i16"
       },
       "color": {
-        "offset": 720392,
-        "length": 9876,
+        "offset": 785468,
+        "length": 11217,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 730268,
-        "length": 3292,
+        "offset": 796688,
+        "length": 3739,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 800428,
+        "length": 3739,
         "type": "u8"
       },
       "fine": {
-        "offset": 733560,
-        "length": 14181,
+        "offset": 804168,
+        "length": 15297,
         "type": "u16"
       },
       "far": {
-        "offset": 761924,
-        "length": 13701,
+        "offset": 834764,
+        "length": 14817,
         "type": "u16"
       }
     },
@@ -341,32 +378,37 @@
       "cover": true,
       "protectedCells": 223,
       "position": {
-        "offset": 789328,
+        "offset": 864400,
         "length": 9240,
         "type": "f32"
       },
       "normal": {
-        "offset": 826288,
+        "offset": 901360,
         "length": 9240,
         "type": "i16"
       },
       "color": {
-        "offset": 844768,
+        "offset": 919840,
         "length": 9240,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 854008,
+        "offset": 929080,
+        "length": 3080,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 932160,
         "length": 3080,
         "type": "u8"
       },
       "fine": {
-        "offset": 857088,
+        "offset": 935240,
         "length": 13539,
         "type": "u16"
       },
       "far": {
-        "offset": 884168,
+        "offset": 962320,
         "length": 12435,
         "type": "u16"
       }
@@ -378,32 +420,37 @@
       "cover": false,
       "protectedCells": 270,
       "position": {
-        "offset": 909040,
+        "offset": 987192,
         "length": 10140,
         "type": "f32"
       },
       "normal": {
-        "offset": 949600,
+        "offset": 1027752,
         "length": 10140,
         "type": "i16"
       },
       "color": {
-        "offset": 969880,
+        "offset": 1048032,
         "length": 10140,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 980020,
+        "offset": 1058172,
+        "length": 3380,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 1061552,
         "length": 3380,
         "type": "u8"
       },
       "fine": {
-        "offset": 983400,
+        "offset": 1064932,
         "length": 14364,
         "type": "u16"
       },
       "far": {
-        "offset": 1012128,
+        "offset": 1093660,
         "length": 12444,
         "type": "u16"
       }
@@ -415,32 +462,37 @@
       "cover": false,
       "protectedCells": 197,
       "position": {
-        "offset": 1037016,
+        "offset": 1118548,
         "length": 8211,
         "type": "f32"
       },
       "normal": {
-        "offset": 1069860,
+        "offset": 1151392,
         "length": 8211,
         "type": "i16"
       },
       "color": {
-        "offset": 1086284,
+        "offset": 1167816,
         "length": 8211,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 1094496,
+        "offset": 1176028,
+        "length": 2737,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 1178768,
         "length": 2737,
         "type": "u8"
       },
       "fine": {
-        "offset": 1097236,
+        "offset": 1181508,
         "length": 12564,
         "type": "u16"
       },
       "far": {
-        "offset": 1122364,
+        "offset": 1206636,
         "length": 10692,
         "type": "u16"
       }
@@ -450,35 +502,40 @@
       "z": 80,
       "size": 40,
       "cover": true,
-      "protectedCells": 273,
+      "protectedCells": 336,
       "position": {
-        "offset": 1143748,
-        "length": 10461,
+        "offset": 1228020,
+        "length": 10917,
         "type": "f32"
       },
       "normal": {
-        "offset": 1185592,
-        "length": 10461,
+        "offset": 1271688,
+        "length": 10917,
         "type": "i16"
       },
       "color": {
-        "offset": 1206516,
-        "length": 10461,
+        "offset": 1293524,
+        "length": 10917,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 1216980,
-        "length": 3487,
+        "offset": 1304444,
+        "length": 3639,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 1308084,
+        "length": 3639,
         "type": "u8"
       },
       "fine": {
-        "offset": 1220468,
-        "length": 14730,
+        "offset": 1311724,
+        "length": 15018,
         "type": "u16"
       },
       "far": {
-        "offset": 1249928,
-        "length": 13338,
+        "offset": 1341760,
+        "length": 13626,
         "type": "u16"
       }
     },
@@ -487,35 +544,40 @@
       "z": 80,
       "size": 40,
       "cover": true,
-      "protectedCells": 295,
+      "protectedCells": 575,
       "position": {
-        "offset": 1276604,
-        "length": 11277,
+        "offset": 1369012,
+        "length": 13287,
         "type": "f32"
       },
       "normal": {
-        "offset": 1321712,
-        "length": 11277,
+        "offset": 1422160,
+        "length": 13287,
         "type": "i16"
       },
       "color": {
-        "offset": 1344268,
-        "length": 11277,
+        "offset": 1448736,
+        "length": 13287,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 1355548,
-        "length": 3759,
+        "offset": 1462024,
+        "length": 4429,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 1466456,
+        "length": 4429,
         "type": "u8"
       },
       "fine": {
-        "offset": 1359308,
-        "length": 15456,
+        "offset": 1470888,
+        "length": 16752,
         "type": "u16"
       },
       "far": {
-        "offset": 1390220,
-        "length": 14880,
+        "offset": 1504392,
+        "length": 16176,
         "type": "u16"
       }
     },
@@ -524,35 +586,40 @@
       "z": 80,
       "size": 40,
       "cover": true,
-      "protectedCells": 578,
+      "protectedCells": 606,
       "position": {
-        "offset": 1419980,
-        "length": 23901,
+        "offset": 1536744,
+        "length": 24282,
         "type": "f32"
       },
       "normal": {
-        "offset": 1515584,
-        "length": 23901,
+        "offset": 1633872,
+        "length": 24282,
         "type": "i16"
       },
       "color": {
-        "offset": 1563388,
-        "length": 23901,
+        "offset": 1682436,
+        "length": 24282,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 1587292,
-        "length": 7967,
+        "offset": 1706720,
+        "length": 8094,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 1714816,
+        "length": 8094,
         "type": "u8"
       },
       "fine": {
-        "offset": 1595260,
-        "length": 27573,
+        "offset": 1722912,
+        "length": 27801,
         "type": "u16"
       },
       "far": {
-        "offset": 1650408,
-        "length": 27429,
+        "offset": 1778516,
+        "length": 27657,
         "type": "u16"
       }
     },
@@ -563,32 +630,37 @@
       "cover": false,
       "protectedCells": 302,
       "position": {
-        "offset": 1705268,
+        "offset": 1833832,
         "length": 12495,
         "type": "f32"
       },
       "normal": {
-        "offset": 1755248,
+        "offset": 1883812,
         "length": 12495,
         "type": "i16"
       },
       "color": {
-        "offset": 1780240,
+        "offset": 1908804,
         "length": 12495,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 1792736,
+        "offset": 1921300,
+        "length": 4165,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 1925468,
         "length": 4165,
         "type": "u8"
       },
       "fine": {
-        "offset": 1796904,
+        "offset": 1929636,
         "length": 16692,
         "type": "u16"
       },
       "far": {
-        "offset": 1830288,
+        "offset": 1963020,
         "length": 15636,
         "type": "u16"
       }
@@ -600,32 +672,37 @@
       "cover": false,
       "protectedCells": 104,
       "position": {
-        "offset": 1861560,
+        "offset": 1994292,
         "length": 6909,
         "type": "f32"
       },
       "normal": {
-        "offset": 1889196,
+        "offset": 2021928,
         "length": 6909,
         "type": "i16"
       },
       "color": {
-        "offset": 1903016,
+        "offset": 2035748,
         "length": 6909,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 1909928,
+        "offset": 2042660,
+        "length": 2303,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 2044964,
         "length": 2303,
         "type": "u8"
       },
       "fine": {
-        "offset": 1912232,
+        "offset": 2047268,
         "length": 11358,
         "type": "u16"
       },
       "far": {
-        "offset": 1934948,
+        "offset": 2069984,
         "length": 9246,
         "type": "u16"
       }
@@ -637,32 +714,37 @@
       "cover": false,
       "protectedCells": 119,
       "position": {
-        "offset": 1953440,
+        "offset": 2088476,
         "length": 7683,
         "type": "f32"
       },
       "normal": {
-        "offset": 1984172,
+        "offset": 2119208,
         "length": 7683,
         "type": "i16"
       },
       "color": {
-        "offset": 1999540,
+        "offset": 2134576,
         "length": 7683,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2007224,
+        "offset": 2142260,
+        "length": 2561,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 2144824,
         "length": 2561,
         "type": "u8"
       },
       "fine": {
-        "offset": 2009788,
+        "offset": 2147388,
         "length": 12108,
         "type": "u16"
       },
       "far": {
-        "offset": 2034004,
+        "offset": 2171604,
         "length": 8124,
         "type": "u16"
       }
@@ -674,32 +756,37 @@
       "cover": true,
       "protectedCells": 200,
       "position": {
-        "offset": 2050252,
+        "offset": 2187852,
         "length": 10701,
         "type": "f32"
       },
       "normal": {
-        "offset": 2093056,
+        "offset": 2230656,
         "length": 10701,
         "type": "i16"
       },
       "color": {
-        "offset": 2114460,
+        "offset": 2252060,
         "length": 10701,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2125164,
+        "offset": 2262764,
+        "length": 3567,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 2266332,
         "length": 3567,
         "type": "u8"
       },
       "fine": {
-        "offset": 2128732,
+        "offset": 2269900,
         "length": 14958,
         "type": "u16"
       },
       "far": {
-        "offset": 2158648,
+        "offset": 2299816,
         "length": 14334,
         "type": "u16"
       }
@@ -709,35 +796,40 @@
       "z": 120,
       "size": 40,
       "cover": true,
-      "protectedCells": 388,
+      "protectedCells": 662,
       "position": {
-        "offset": 2187316,
-        "length": 16491,
+        "offset": 2328484,
+        "length": 18465,
         "type": "f32"
       },
       "normal": {
-        "offset": 2253280,
-        "length": 16491,
+        "offset": 2402344,
+        "length": 18465,
         "type": "i16"
       },
       "color": {
-        "offset": 2286264,
-        "length": 16491,
+        "offset": 2439276,
+        "length": 18465,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2302756,
-        "length": 5497,
+        "offset": 2457744,
+        "length": 6155,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 2463900,
+        "length": 6155,
         "type": "u8"
       },
       "fine": {
-        "offset": 2308256,
-        "length": 20505,
+        "offset": 2470056,
+        "length": 21753,
         "type": "u16"
       },
       "far": {
-        "offset": 2349268,
-        "length": 20361,
+        "offset": 2513564,
+        "length": 21705,
         "type": "u16"
       }
     },
@@ -748,32 +840,37 @@
       "cover": false,
       "protectedCells": 160,
       "position": {
-        "offset": 2389992,
+        "offset": 2556976,
         "length": 8622,
         "type": "f32"
       },
       "normal": {
-        "offset": 2424480,
+        "offset": 2591464,
         "length": 8622,
         "type": "i16"
       },
       "color": {
-        "offset": 2441724,
+        "offset": 2608708,
         "length": 8622,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2450348,
+        "offset": 2617332,
+        "length": 2874,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 2620208,
         "length": 2874,
         "type": "u8"
       },
       "fine": {
-        "offset": 2453224,
+        "offset": 2623084,
         "length": 12996,
         "type": "u16"
       },
       "far": {
-        "offset": 2479216,
+        "offset": 2649076,
         "length": 11028,
         "type": "u16"
       }
@@ -785,32 +882,37 @@
       "cover": false,
       "protectedCells": 148,
       "position": {
-        "offset": 2501272,
+        "offset": 2671132,
         "length": 7710,
         "type": "f32"
       },
       "normal": {
-        "offset": 2532112,
+        "offset": 2701972,
         "length": 7710,
         "type": "i16"
       },
       "color": {
-        "offset": 2547532,
+        "offset": 2717392,
         "length": 7710,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2555244,
+        "offset": 2725104,
+        "length": 2570,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 2727676,
         "length": 2570,
         "type": "u8"
       },
       "fine": {
-        "offset": 2557816,
+        "offset": 2730248,
         "length": 12096,
         "type": "u16"
       },
       "far": {
-        "offset": 2582008,
+        "offset": 2754440,
         "length": 8640,
         "type": "u16"
       }
@@ -822,32 +924,37 @@
       "cover": false,
       "protectedCells": 51,
       "position": {
-        "offset": 2599288,
+        "offset": 2771720,
         "length": 5901,
         "type": "f32"
       },
       "normal": {
-        "offset": 2622892,
+        "offset": 2795324,
         "length": 5901,
         "type": "i16"
       },
       "color": {
-        "offset": 2634696,
+        "offset": 2807128,
         "length": 5901,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2640600,
+        "offset": 2813032,
+        "length": 1967,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 2815000,
         "length": 1967,
         "type": "u8"
       },
       "fine": {
-        "offset": 2642568,
+        "offset": 2816968,
         "length": 10386,
         "type": "u16"
       },
       "far": {
-        "offset": 2663340,
+        "offset": 2837740,
         "length": 5682,
         "type": "u16"
       }
@@ -859,32 +966,37 @@
       "cover": true,
       "protectedCells": 191,
       "position": {
-        "offset": 2674704,
+        "offset": 2849104,
         "length": 9339,
         "type": "f32"
       },
       "normal": {
-        "offset": 2712060,
+        "offset": 2886460,
         "length": 9339,
         "type": "i16"
       },
       "color": {
-        "offset": 2730740,
+        "offset": 2905140,
         "length": 9339,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2740080,
+        "offset": 2914480,
+        "length": 3113,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 2917596,
         "length": 3113,
         "type": "u8"
       },
       "fine": {
-        "offset": 2743196,
+        "offset": 2920712,
         "length": 13680,
         "type": "u16"
       },
       "far": {
-        "offset": 2770556,
+        "offset": 2948072,
         "length": 12336,
         "type": "u16"
       }
@@ -894,35 +1006,40 @@
       "z": 160,
       "size": 40,
       "cover": true,
-      "protectedCells": 284,
+      "protectedCells": 456,
       "position": {
-        "offset": 2795228,
-        "length": 11019,
+        "offset": 2972744,
+        "length": 12591,
         "type": "f32"
       },
       "normal": {
-        "offset": 2839304,
-        "length": 11019,
+        "offset": 3023108,
+        "length": 12591,
         "type": "i16"
       },
       "color": {
-        "offset": 2861344,
-        "length": 11019,
+        "offset": 3048292,
+        "length": 12591,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2872364,
-        "length": 3673,
+        "offset": 3060884,
+        "length": 4197,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 3065084,
+        "length": 4197,
         "type": "u8"
       },
       "fine": {
-        "offset": 2876040,
-        "length": 15240,
+        "offset": 3069284,
+        "length": 16266,
         "type": "u16"
       },
       "far": {
-        "offset": 2906520,
-        "length": 14952,
+        "offset": 3101816,
+        "length": 15978,
         "type": "u16"
       }
     },
@@ -933,32 +1050,37 @@
       "cover": false,
       "protectedCells": 115,
       "position": {
-        "offset": 2936424,
+        "offset": 3133772,
         "length": 7128,
         "type": "f32"
       },
       "normal": {
-        "offset": 2964936,
+        "offset": 3162284,
         "length": 7128,
         "type": "i16"
       },
       "color": {
-        "offset": 2979192,
+        "offset": 3176540,
         "length": 7128,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 2986320,
+        "offset": 3183668,
+        "length": 2376,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 3186044,
         "length": 2376,
         "type": "u8"
       },
       "fine": {
-        "offset": 2988696,
+        "offset": 3188420,
         "length": 11526,
         "type": "u16"
       },
       "far": {
-        "offset": 3011748,
+        "offset": 3211472,
         "length": 10230,
         "type": "u16"
       }
@@ -970,38 +1092,49 @@
       "cover": false,
       "protectedCells": 74,
       "position": {
-        "offset": 3032208,
+        "offset": 3231932,
         "length": 6360,
         "type": "f32"
       },
       "normal": {
-        "offset": 3057648,
+        "offset": 3257372,
         "length": 6360,
         "type": "i16"
       },
       "color": {
-        "offset": 3070368,
+        "offset": 3270092,
         "length": 6360,
         "type": "u8"
       },
       "earthRoad": {
-        "offset": 3076728,
+        "offset": 3276452,
+        "length": 2120,
+        "type": "u8"
+      },
+      "earthWater": {
+        "offset": 3278572,
         "length": 2120,
         "type": "u8"
       },
       "fine": {
-        "offset": 3078848,
+        "offset": 3280692,
         "length": 10836,
         "type": "u16"
       },
       "far": {
-        "offset": 3100520,
+        "offset": 3302364,
         "length": 8196,
         "type": "u16"
       }
     }
   ],
-  "binaryBytes": 3116912,
-  "binarySha256": "cb5d8048e3e4d6cdf9cb9c6de1b96111b41dab3790b5be7b1b15e96d29bdc115",
-  "compressedBytes": 1561640
+  "binaryBytes": 3318756,
+  "binarySha256": "999574fffcc6670dbc7ae706ea4613778332f1061f831751de54e3c849f43ff5",
+  "water": {
+    "mode": "mapped-outline-dem-drape-v1",
+    "polygons": 5,
+    "source": "OSM water polygons; source DEM heights unchanged",
+    "interpretation": "Terrain-draped visual water, not measured level, flow or bathymetry. Roads take priority. No separate water depth layer."
+  },
+  "compressedBytes": 1636714
 }
