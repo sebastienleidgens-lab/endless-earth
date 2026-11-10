@@ -1,6 +1,6 @@
 # Mission 09 — Le monde vivant
 
-Travail en cours sur la base fusionnée f11f165 (PR #15). Aucune fusion ni mise en production.
+Version jouable livrée en PR brouillon sur la base fusionnée f11f165 (PR #15). Aucune fusion ni mise en production.
 
 ## Audit initial
 
@@ -25,7 +25,7 @@ Les modules `src/earthlife/` séparent les modèles purs du rendu :
 
 `naturalSky` reste l'orchestrateur de l'heure, du soleil et de la météo déjà présents. Il fournit les mêmes références aux modules autonomes. `main.ts` raccorde les données chargées, le réglage existant et Soundscape. Il n'existe ni gestionnaire d'animation par arbre, ni boucle d'événements indépendante par tuile.
 
-Le temps avance avec le temps de simulation existant (pas borné à 250 ms lors d'une image longue). La graine de rendu est fixée à 9 ; les modèles purs acceptent une graine explicite. Le vent utilise les coordonnées métriques continues, sans arrondi aux cellules. Les phases spatiales empêchent les arbres de bouger ensemble. Le feuillage proche reçoit le champ complet ; Éco utilise une sinusoïde simple sur les feuillages proches ; ses troncs et couronnes éloignées restent statiques. Les couronnes éloignées des autres profils emploient une sinusoïde simple. Les branches du maillage de tronc ont une faible flexion, nulle à la base. Les positions d'instances, ancrages et collisions restent stables. Les herbes et fougères utilisent les attributs existants : `natureBend` fixe les points d'attache ; la palette de fougère existante permet une réponse plus lente, sans ajouter un attribut à tous les blocs précalculés. Cette identification par palette est une limite à remplacer par une métadonnée explicite lors d'une prochaine version du format.
+Le temps avance avec le temps de simulation existant (pas borné à 250 ms lors d'une image longue). La graine de rendu est fixée à 9 ; les modèles purs acceptent une graine explicite. Le vent utilise les coordonnées métriques continues, sans arrondi aux cellules. Les phases spatiales empêchent les arbres de bouger ensemble. Le vecteur est converti dans le repère de chaque instance avant déformation : orientations et échelles différentes conservent la même direction mondiale, sans animation CPU par arbre. Le feuillage proche reçoit le champ complet ; Éco utilise une sinusoïde simple sur les feuillages proches ; ses troncs et couronnes éloignées restent statiques. Les couronnes éloignées des autres profils emploient une sinusoïde simple. Les branches du maillage de tronc ont une faible flexion, nulle à la base. Les positions d'instances, ancrages et collisions restent stables. Les herbes et fougères utilisent les attributs existants : `natureBend` fixe les points d'attache ; la palette de fougère existante permet une réponse plus lente, sans ajouter un attribut à tous les blocs précalculés. Cette identification par palette est une limite à remplacer par une métadonnée explicite lors d'une prochaine version du format.
 
 Les matériaux de terrain, végétation, eau et architecture composent leur personnalisation avec le récepteur d'ombre. Le champ est évalué aux sommets en coordonnées du monde, puis interpolé sur les triangles : son échelle lente permet d’éviter les sinus par pixel. L’opacité est appliquée après interpolation du champ brut, avec un simple smoothstep dans le fragment, ce qui limite les différences entre LOD fins et éloignés. Les frontières partagent leurs sommets, donc ne créent pas de raccord par tuile. La couche visible emploie une grille de 48 × 48 quads avec le même échantillonnage ; les ombres et les nuages ont une correspondance approchée, limitée par leur interpolation géométrique. La projection suit le soleil, tient compte de la hauteur du récepteur et s'éteint progressivement sous l'horizon. Les clones de matériaux sont traités individuellement via WeakSet. Aucune shadow map supplémentaire n'est calculée.
 
@@ -86,7 +86,7 @@ La revue a conduit à déplacer les cadrages masqués par des troncs ou le relie
 
 ## Validation fonctionnelle
 
-- 125 tests JavaScript réussis : données/provenance, architecture, navigation et collisions, caches, LOD, streaming, déchargement, identité et neuf tests EarthLife.
+- 126 tests JavaScript réussis : données/provenance, architecture, navigation et collisions, caches, LOD, streaming, déchargement, identité et dix tests EarthLife.
 - Deux tests Python réels (`import-mnt.test.py`, `normalize-mnt.test.py`) réussis dans un environnement local contenant NumPy, rasterio et pyproj. La découverte générique unittest ne reconnaissait pas leurs noms ; les fichiers ont été exécutés directement.
 - TypeScript strict et production Vite réussis. Le message existant sur la taille du bundle (>500 ko) reste présent.
 - Les tests EarthLife vérifient la continuité et la détermination du vent, la projection des ombres, les périodes vides et trajectoires des oiseaux, l'éligibilité saisonnière, les plafonds entre 500 cellules, les clones de matériaux, les visites répétées et la libération des ressources réelles Three.js.

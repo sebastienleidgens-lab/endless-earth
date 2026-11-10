@@ -11,8 +11,17 @@ export function windAtWorld(x,z,t,mean=.35,seed=9,out={}){
  out.z=(WIND_DIRECTION.z+turn*WIND_DIRECTION.x)*speed;
  out.speed=speed;out.gust=gust;return out;
 }
+// Convert a world-horizontal displacement to the instance frame while retaining
+// a geometric-mean size response. Rotated/scaled instances keep the same axis.
+export function windToInstance(w,x,z){const det=x.x*z.z-x.z*z.x,a=Math.sign(det)/Math.sqrt(Math.max(.0001,Math.abs(det)));return {x:(w.x*z.z-w.z*z.x)*a,z:(w.z*x.x-w.x*x.z)*a};}
 // Equivalent carrier used by vegetation, water and particles on the GPU.
 export const windGLSL=`
+vec2 lifeInstanceWind(vec2 w,vec2 x,vec2 z){
+ float det=x.x*z.y-x.y*z.x;
+ float area=sign(det)*inversesqrt(max(.0001,abs(det)));
+ return vec2(w.x*z.y-w.y*z.x,w.y*x.x-w.x*x.y)*area;
+}
+
 vec2 lifeWind(vec2 p,float t,float mean){
  float slow=.82+.12*sin(t*.031+9.)+.06*sin(t*.077+18.);
  float gust=pow(max(0.,sin(p.x*.0031+p.y*.0023-t*.11+9.)),12.)*(.5+.5*pow(sin(t*.019+9.),2.));

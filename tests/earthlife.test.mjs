@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import {windAtWorld} from '../src/earthlife/wind.mjs';
+import {windAtWorld,windToInstance} from '../src/earthlife/wind.mjs';
 import {cloudField,cloudRawField,cloudShadow,CLOUD_HEIGHT} from '../src/earthlife/clouds.mjs';
 import {flockAt,birdPosition} from '../src/earthlife/fauna.mjs';
 import {eventAt,eligibleLeaves} from '../src/earthlife/events.mjs';
@@ -47,4 +47,9 @@ test('actual fauna/events respect profile changes and dispose after repeated cel
 test('vertex cloud-field interpolation keeps 40 m terrain LOD shadow changes below 2.5 percent',()=>{
  const step=40,smooth=f=>{const v=Math.max(0,Math.min(1,(f-(.84-.7*.53))/.16));return v*v*(3-2*v)*.15};
  for(let i=0;i<4000;i++){const x=Math.sin(i*17.1)*1000,z=Math.cos(i*13.7)*1000,t=i*.13,bx=Math.floor(x/step)*step,bz=Math.floor(z/step)*step,u=(x-bx)/step,v=(z-bz)/step,f=(x,z)=>cloudRawField(x,z,t);const value=u+v<=1?f(bx,bz)*(1-u-v)+f(bx+step,bz)*u+f(bx,bz+step)*v:f(bx+step,bz+step)*(u+v-1)+f(bx+step,bz)*(1-v)+f(bx,bz+step)*(1-u);assert.ok(Math.abs(smooth(value)-smooth(f(x,z)))<.025)}
+});
+
+test('world wind direction survives every tree orientation and anisotropic scale',()=>{
+ const w={x:.88,z:-.475},expected=new THREE.Vector3(w.x,0,w.z).normalize();
+ for(let i=0;i<64;i++)for(const [sx,sz] of [[.5,1.4],[1.8,.7],[1,1]]){const m=new THREE.Matrix4().compose(new THREE.Vector3(),new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),i*Math.PI/32),new THREE.Vector3(sx,1,sz)),x=new THREE.Vector3().setFromMatrixColumn(m,0),z=new THREE.Vector3().setFromMatrixColumn(m,2),local=windToInstance(w,x,z),world=new THREE.Vector3(local.x,0,local.z).applyMatrix4(m);assert.ok(world.clone().normalize().dot(expected)>1-1e-12);assert.ok(Math.abs(world.length()/Math.hypot(w.x,w.z)-Math.sqrt(sx*sz))<1e-12)}
 });
