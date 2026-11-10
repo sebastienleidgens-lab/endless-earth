@@ -2,6 +2,7 @@
 
 Base complète 09.1 : `447f891` (arbre identique à `27dcdc3`). Aucun fichier de workflow de publication modifié. Données/artefacts des anciennes missions conservés.
 
+- `production/` : build propre `d822e27`, quatre résolutions, identité embarquée et jeu chargé ; les captures remplacent le premier aperçu de développement.
 - `runtime.json` : activation clavier, aucun contexte avant action, bascules rapides, reprise, profils, douze créations/destructions, erreurs HTTP/décodage gérées. `mobile.png` : viewport 390×844, pas Android réel.
 - `offline.json` : cinq rendus PCM de 42 s (le cinquième reproduit le quatrième), RMS/crête/différence d’échantillons, reproduction avec tolérance native. `spatial.json` : inversion de l’énergie stéréo après rotation, atténuation avec distance, obstruction fournie et saturation des budgets.
 - Quatre fichiers Ogg et `ecoute.html` : véritables extraits d’écoute à télécharger ensemble ; le lecteur est utilisable localement ou via Vite `/endless-earth/docs/mission-10-evidence/ecoute.html`. Le visualiseur GitHub n’exécute pas le HTML. PCM intermédiaires dans `work/mission-10/renders` lors de la reproduction ; Ogg encodés à partir de ces PCM, mesures prises avant compression. Audio mixé sous CC BY-SA 4.0 ; attributions dans le lecteur et `public/audio/credits.html`.
