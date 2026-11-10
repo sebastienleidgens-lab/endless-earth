@@ -1,5 +1,6 @@
+process.env.PLAYWRIGHT_BROWSERS_PATH??=new URL('../work/playwright',import.meta.url).pathname;
 // Realtime recordings complement held-time artistic samples. Software renderer only.
-import {chromium} from 'playwright';import {mkdir,writeFile} from 'node:fs/promises';import {execFileSync} from 'node:child_process';import assert from 'node:assert/strict';import {injection} from './lib/browser-road-fixture.mjs';
+const {chromium}=await import('playwright');import {mkdir,writeFile} from 'node:fs/promises';import {execFileSync} from 'node:child_process';import assert from 'node:assert/strict';import {injection} from './lib/browser-road-fixture.mjs';
 const dir='docs/mission-09-captures';await mkdir('work/life-video',{recursive:true});const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});const results=[];
 try{for(const phase of ['before','after'])for(const name of ['foret','mobile-eau']){
  const mobile=name==='mobile-eau',viewport=mobile?{width:390,height:844}:{width:640,height:480};const context=await browser.newContext({viewport,recordVideo:{dir:'work/life-video',size:viewport}}),page=await context.newPage();page.setDefaultTimeout(180000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});await page.route('**/src/main.ts*',async route=>{const r=await route.fetch();await route.fulfill({response:r,body:(await r.text())+injection})});

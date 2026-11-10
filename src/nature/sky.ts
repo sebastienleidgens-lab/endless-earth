@@ -38,7 +38,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   const profile=lifeSettings.profile;
   lifeUniforms.lifeVegetation.value=profile.vegetation;lifeUniforms.lifeFine.value=profile.fine;lifeUniforms.lifeWater.value=profile.water;lifeUniforms.lifeCloudCover.value=state.cloud;lifeUniforms.lifeShadow.value=profile.shadows*profile.clouds;
   lifeUniforms.lifeSun.value.copy(sun.position).sub(player.position).normalize();
-  cloudLayer.update(player.position,day,profile.clouds);
+  cloudLayer.update(player.position,day,profile.clouds,lifeSettings.name==='eco');
   cpuElapsed+=dt;if(cpuElapsed>=1/Math.max(1,profile.cpuHz)){
    cpuElapsed=0;const started=performance.now(),habitat=scene.userData.lifeHabitat?.(player.position.x,player.position.z)??'unknown';
    const conditions={habitat,day,rain:state.rain,wind:state.wind,month:s.month,latitude:site.lat,longitude:site.lon,altitude:player.position.y};

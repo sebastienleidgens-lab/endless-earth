@@ -11,6 +11,7 @@ export function animateFoliage(material:THREE.MeshLambertMaterial,season=false,g
   Object.assign(shader.uniforms,lifeUniforms);shader.uniforms.livingTime=windUniform;shader.uniforms.natureWind=environmentalWind;shader.uniforms.natureSeason=seasonUniform;
   shader.vertexShader=(grounded?'attribute float natureBend;\n':'')+'uniform float lifeTime,lifeMeanWind,lifeVegetation,lifeFine;\n'+windGLSL+shader.vertexShader;
   shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
+    if(lifeVegetation>0.${stationary||trunk?'&&lifeFine>.01':''}){
     vec4 anchor=vec4(position,1.);
     #ifdef USE_INSTANCING
     anchor=instanceMatrix*vec4(0.,0.,0.,1.);
@@ -23,7 +24,8 @@ export function animateFoliage(material:THREE.MeshLambertMaterial,season=false,g
     ${stationary?'':`if(lifeFine>.01){wind=lifeWind(worldAnchor,lifeTime,lifeMeanWind);sway=sway*.65+sin(lifeTime*inertia*.53+phase*.73)*.35;}`}
     float bend=${grounded?'natureBend':trunk?'pow(clamp((position.y+2.25)/4.5,0.,1.),2.)*.025':'(.10+clamp((position.y+2.4)/5.1,0.,1.)*.16)'};
     float fine=${stationary||trunk?'0.':'sin(lifeTime*2.3+phase+position.x*1.7+position.z)*lifeFine*.08'};
-    transformed.xz+=wind*bend*(sway+fine)*lifeVegetation*${grounded?'1.1':'1.'};`);
+    transformed.xz+=wind*bend*(sway+fine)*lifeVegetation*${grounded?'1.1':'1.'};
+    }`);
   if(season){shader.fragmentShader='uniform float natureSeason;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(1.32,.86,.48),natureSeason);`)}
  };
