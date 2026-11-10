@@ -142,16 +142,26 @@ export class ArchitectureBatch{
  }
 }
 export function updateArchitectureLOD(scene:THREE.Object3D,camera:THREE.Camera,low=false){
- const slots:THREE.Object3D[]=[];scene.traverse(o=>{if(o.userData.architectureDetail)slots.push(o)});
+ const slots:THREE.Object3D[]=[],requests:any[]=[];const stream=scene.userData.decorationStream;scene.traverse(o=>{if(o.userData.architectureDetail)slots.push(o)});
  const distance=(o:THREE.Object3D)=>Math.hypot(Math.max(0,Math.abs(camera.position.x-o.userData.centerX)-o.userData.architectureStyle.cellSize/2),Math.max(0,Math.abs(camera.position.z-o.userData.centerZ)-o.userData.architectureStyle.cellSize/2));
  slots.sort((a,b)=>distance(a)-distance(b));let generated=0;
  for(const o of slots){const wanted=detailVisible(o.visible,distance(o),low,o.userData.architectureStyle);
-  if(wanted&&!o.children.length&&generated===0){const start=performance.now();o.userData.create();o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;generated++;}
+  if(o.userData.prepared&&!o.children.length){if(distance(o)<(low?65:125)+(stream?.policy.prefetchM??48))requests.push({id:o.userData.prepared,priority:distance(o)-(wanted?1000:0),d:distance(o),wanted,install:(data:any)=>{const start=performance.now();const m=new THREE.Mesh(data.meshes[0].geometry,plain);m.name='architecture-detail';m.receiveShadow=true;o.add(m);o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;}});}
+  else if(wanted&&!o.children.length&&generated===0){const start=performance.now();o.userData.create();o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;generated++;}
   o.visible=wanted&&o.children.length>0;if(o.userData.openingMesh)o.userData.openingMesh.visible=!o.visible;
  }
+ if(stream){const reserve=[...slots.filter(o=>!o.visible&&o.children.length).map(o=>({id:o.userData.prepared,d:distance(o)})),...requests.filter(r=>!r.wanted)].sort((a,b)=>a.d-b.d).slice(0,12);const keep=new Set(reserve.map(r=>r.id));stream.want('architecture',requests.filter(r=>r.wanted||keep.has(r.id)));}
  // Keep at most twelve invisible cached cells. Required visible cells always win.
- let hidden=0;for(const o of slots){if(o.visible||!o.children.length)continue;if(++hidden<=12)continue;for(const child of [...o.children]){(child as THREE.Mesh).geometry.dispose();o.remove(child)}o.userData.evictions=(o.userData.evictions??0)+1;}
+ let hidden=0;for(const o of slots){if(o.visible||!o.children.length)continue;if(++hidden<=12)continue;for(const child of [...o.children]){(child as THREE.Mesh).geometry.dispose();o.remove(child)}o.userData.evictions=(o.userData.evictions??0)+1;if(o.userData.prepared)stream?.release(o.userData.prepared);}
 }
 export function architectureMemory(scene:THREE.Object3D){let triangles=0,bytes=0,meshes=0,detailCells=0,detailBuilds=0,detailMs=0,evictions=0;
  scene.traverse(o=>{if(o.userData.architectureDetail){detailCells+=Number(o.children.length>0);detailBuilds+=o.userData.builds??0;detailMs+=o.userData.generationMs??0;evictions+=o.userData.evictions??0;}if(!(o instanceof THREE.Mesh)||!o.name.startsWith('architecture-'))return;const g=o.geometry;triangles+=(g.index?.count??g.attributes.position.count)/3;meshes++;for(const a of Object.values(g.attributes) as THREE.BufferAttribute[])bytes+=a.array.byteLength;bytes+=g.index?.array.byteLength??0;});return {triangles,bytes,meshes,detailCells,detailBuilds,detailMs,evictions};
+}
+
+// Hydrate the exact offline buffers. Regional materials/animation remain runtime
+// resources; no facade planning, triangulation or normal computation on a walk.
+export function installPreparedArchitecture(scene:THREE.Object3D,prepared:any){
+ const start=performance.now(),meshes:THREE.Mesh[]=[];for(const r of prepared.static.meshes){const kind=r.name.slice('architecture-'.length),material=kind==='shell'?stone:kind==='render'?plaster:kind==='roof'?tile:plain;const m=new THREE.Mesh(r.geometry,material);m.receiveShadow=true;m.name=r.name;meshes.push(m);scene.add(m)}
+ for(const r of prepared.manifest.architectureSlots){const slot=new THREE.Group();slot.name='architecture-detail-cache';Object.assign(slot.userData,{architectureDetail:true,architectureStyle:POITOU,centerX:r.x,centerZ:r.z,openingMesh:meshes[r.openingIndex],prepared:r.id});slot.visible=false;scene.add(slot)}
+ scene.userData.architecture={...prepared.manifest.architectureStats,generationMs:performance.now()-start,builds:1};scene.userData.architectureAnchors=prepared.manifest.architectureAnchors;
 }

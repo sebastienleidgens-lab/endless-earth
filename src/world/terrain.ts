@@ -29,6 +29,7 @@ export class Terrain {
   prepared:any=null;
   environment:any=null;
   environmentSha256:string|null=null;
+  sourceSha256:string|null=null;
   metrics={preparationMs:0,tiles:0,fineTriangles:0,farTriangles:0,farTiles:0,maxFarErrorM:0,surface:'source',water:'legacy'};
   constructor(readonly grid: TerrainGrid) {}
   static validate(raw: unknown): TerrainGrid {
@@ -165,6 +166,7 @@ export async function fetchTerrain():Promise<Terrain|null>{
   const base=`${import.meta.env.BASE_URL}data/`,response=await fetch(base+'angles-terrain.json');
   if(!response.ok)return null;
   const text=await response.text(),terrain=new Terrain(Terrain.validate(JSON.parse(text)));
+  terrain.sourceSha256=await sha256(new TextEncoder().encode(text));
   try{
     const r=await fetch(base+'angles-environment.json');if(!r.ok)throw new Error('Normalized environment unavailable');
     const content=await r.text();terrain.environment=validateEnvironment(JSON.parse(content));terrain.environmentSha256=await sha256(new TextEncoder().encode(content));

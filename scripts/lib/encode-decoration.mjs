@@ -1,0 +1,6 @@
+import {DECORATION_VERSION} from '../../src/world/decoration-pack.mjs';
+export function encodeDecoration(meshes){const arrays=[],records=[];let length=0;
+ const append=(a,itemSize=1,normalized=false)=>{const pad=(4-length%4)%4;if(pad){arrays.push(Buffer.alloc(pad));length+=pad}const type=a instanceof Float32Array?'f32':a instanceof Uint32Array?'u32':a instanceof Uint16Array?'u16':a instanceof Uint8Array?'u8':null;if(!type)throw Error('Unsupported attribute');const d={offset:length,length:a.length,type,itemSize,normalized};const bytes=Buffer.from(a.buffer,a.byteOffset,a.byteLength);arrays.push(bytes);length+=bytes.length;return d};
+ for(const m of meshes){const g=m.geometry;if(!g.boundingSphere)g.computeBoundingSphere();const attributes={};for(const [name,a] of Object.entries(g.attributes))attributes[name]=append(a.array,a.itemSize,a.normalized);records.push({name:m.name,attributes,index:g.index?append(g.index.array):null,sphere:[...g.boundingSphere.center.toArray(),g.boundingSphere.radius]})}
+ const header=Buffer.from(JSON.stringify({version:DECORATION_VERSION,meshes:records})),prefix=Buffer.alloc(4);prefix.writeUInt32LE(header.length);return Buffer.concat([prefix,header,Buffer.alloc((4-(header.length+4)%4)%4),...arrays]);
+}
