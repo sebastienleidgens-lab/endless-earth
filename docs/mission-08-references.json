@@ -1,0 +1,122 @@
+{
+  "checkedOn": "2026-11-10",
+  "photos": [
+    {
+      "title": "Anglin — Pont et Château",
+      "author": "Floppy36",
+      "date": "2024-10-05",
+      "url": "https://commons.wikimedia.org/wiki/File:Anglin_-_Angles-sur-l%27Anglin_(86)_-_Pont_et_Ch%C3%A2teau.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "camera": {
+        "latitude": 46.693642,
+        "longitude": 0.881419,
+        "headingDegrees": 57.949554397175
+      },
+      "limits": "Coordinates and heading are photo metadata, not a survey. Eye height, lens calibration and pitch are not validated. EXIF altitude is not treated as IGN69. Linked, not bundled or texture-mapped.",
+      "id": "pont-chateau"
+    },
+    {
+      "title": "Angles-sur-l'Anglin, Vienne, France",
+      "author": "Pom'",
+      "date": "2023-07-27",
+      "url": "https://commons.wikimedia.org/wiki/File:Angles-sur-l%27Anglin,_Vienne,_France_-_Flickr_-_pom%27..jpg",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "camera": {
+        "latitude": 46.693803,
+        "longitude": 0.881233,
+        "headingDegrees": null
+      },
+      "limits": "GPS supplied, orientation not established. Square crop and camera height prevent an exact camera match. Linked, not redistributed.",
+      "id": "panorama-pom"
+    },
+    {
+      "id": "vallee-chateau",
+      "title": "Angles-sur-l’Anglin (Vienne). (38330150601)",
+      "author": "Daniel Jolivet (sybarite48)",
+      "date": "2017-11-07",
+      "url": "https://commons.wikimedia.org/wiki/File:Angles-sur-l%27Anglin_(Vienne)._(38330150601).jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "camera": {
+        "latitude": 46.693461,
+        "longitude": 0.883975,
+        "headingDegrees": 270.96
+      },
+      "limits": "GPS and heading from metadata; EXIF altitude is not a verified IGN69 ground or eye height. Autumn image, summer simulation. Not a calibrated camera match; no photo pixels redistributed."
+    },
+    {
+      "id": "chateau-2009",
+      "title": "Château de Angles sur l’Anglin (Vienne) 02",
+      "author": "Daniel Jolivet (sybarite48)",
+      "date": "2009-05-30",
+      "url": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Angles_sur_l%27Anglin_(Vienne)_02.jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "camera": null,
+      "limits": "No GPS validated. Contextual ruins reference; no dimensions, towers or arches reconstructed from it. Linked only."
+    }
+  ],
+  "viewpointReview": [
+    {
+      "view": "panorama village / aerienne",
+      "known": "OSM street and building plan, DEM hill, Anglin outline",
+      "photo": "panorama-pom",
+      "cameraComparable": false,
+      "remainingGap": "Most building heights and roofs inferred; no exact image alignment."
+    },
+    {
+      "view": "riviere",
+      "known": "Mapped Anglin bank polygons and old cadastral provenance",
+      "photo": "pont-chateau",
+      "cameraComparable": false,
+      "correction": "Restore actual mapped water width instead of hidden flat polygon and weir ribbons. DEM drape remains an approximation."
+    },
+    {
+      "view": "chateau",
+      "known": "OSM perimeter and DEM promontory",
+      "photo": "chateau-2009",
+      "cameraComparable": false,
+      "remainingGap": "Fragmented wall heights are illustrative; no measured ruin silhouette or stone geometry."
+    },
+    {
+      "view": "pont",
+      "known": "OSM Rue du Pont axis, layer and bridge tags",
+      "photo": "pont-chateau",
+      "cameraComparable": false,
+      "correction": "Water-ground partition keeps crossing road visible. Elevated deck and arches remain absent."
+    },
+    {
+      "view": "rue ancienne / village",
+      "known": "OSM street plans and footprints",
+      "search": "Commons category and La Cueille / rue de l’Église candidate pages",
+      "photo": null,
+      "cameraComparable": false,
+      "remainingGap": "Candidate file metadata not retrieved reliably; no verified street-camera comparison claimed."
+    },
+    {
+      "view": "chemin-rural",
+      "known": "OSM rural path; terrain from unchanged IGN grid",
+      "search": "Commons Angles-sur-l’Anglin / Sentier de grande randonnée de pays de la Brenne",
+      "photo": null,
+      "cameraComparable": false,
+      "remainingGap": "No camera-located licensed rural image confirmed; field boundaries and hedges unknown."
+    },
+    {
+      "view": "foret",
+      "known": "Two OSM forest polygons, CLC 2006, broadleaved / mixed tags",
+      "search": "Commons Angles-sur-l’Anglin forêt / panorama categories",
+      "photo": null,
+      "cameraComparable": false,
+      "correction": "No invented forest on unknown banks, multi-lobed crowns, inferred floor tones. No verified local understory photograph."
+    },
+    {
+      "view": "vallee depuis les hauteurs",
+      "known": "IGN slope, OSM water contours and settlement plan",
+      "photo": "vallee-chateau",
+      "cameraComparable": false,
+      "remainingGap": "GPS/heading metadata exists but pitch, height and crop are not calibrated. No photographic correspondence claimed."
+    }
+  ]
+}

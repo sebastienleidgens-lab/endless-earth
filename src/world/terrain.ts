@@ -58,12 +58,14 @@ export class Terrain {
         shader.uniforms.earthExtent={value:new THREE.Vector2(...c.extent)};
         shader.fragmentShader='uniform sampler2D earthCover; uniform vec2 earthOrigin; uniform vec2 earthExtent;\n'+shader.fragmentShader;
         shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
+          ${this.singleSurface?'if(earthRoadType<.5){':''}
           vec2 coverUV=(naturePosition.xz-earthOrigin)/earthExtent;
           vec4 cover=texture2D(earthCover,coverUV);
           float inCover=step(0.,coverUV.x)*step(0.,coverUV.y)*step(coverUV.x,1.)*step(coverUV.y,1.)${this.singleSurface?'*(1.-step(.5,earthRoadType))':''};
-          diffuseColor.rgb=diffuseColor.rgb*(1.-cover.a*inCover)+cover.rgb*inCover;`);
+          diffuseColor.rgb=diffuseColor.rgb*(1.-cover.a*inCover)+cover.rgb*inCover;
+          ${this.singleSurface?'}':''}`);
       };
-      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-landscape-v1-'+!!this.roadEdges+'-'+this.waterIntegrated:'earth-cover-v1';
+      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-landscape-v2-'+!!this.roadEdges+'-'+this.waterIntegrated:'earth-cover-v1';
     }
     const group=new THREE.Group();group.name='IGN source terrain';group.userData.terrainTexture=this.landcover;
     group.userData.roadEdgeTexture=this.roadEdges?.texture;

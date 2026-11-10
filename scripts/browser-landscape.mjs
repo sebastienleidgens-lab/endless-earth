@@ -1,6 +1,6 @@
 // Fixed, held-frame stations: identical geographic cameras before and after.
 import {chromium} from 'playwright';
-import {mkdir,writeFile} from 'node:fs/promises';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const phase=process.argv[2]??'after',port=process.env.TEST_PORT??'5173';
 const dir='docs/mission-08-captures';await mkdir(dir,{recursive:true});
@@ -18,7 +18,7 @@ const views=[
  ['eco',-120,245,.9,.15,15,'third'],
  ['mobile',-120,245,.9,.15,15,'third'],
  ['chateau',-100,155,.5,.5,110,'aerial'],
- ['pont',-228,185,-1.0114,-.06,0,'first'],
+ ['pont',-184,158,.5,.5,85,'aerial'],
  ['repere-photo',(.881419-.8844)*111320*Math.cos(46.6953*Math.PI/180),-(46.693642-46.6953)*111320,-57.949554397175*Math.PI/180,-.06,0,'first']
 ];
 const injection=`
@@ -43,7 +43,7 @@ try{
  await page.route('**/src/main.ts*',async route=>{const response=await route.fetch();let body=await response.text();body=body.replace(/function frame\(\)\s*\{\s*requestAnimationFrame\(frame\);/,m=>m+'if(window.earthHold)return;');assert.ok(body.includes('if(window.earthHold)return;'));await route.fulfill({response,body:body+injection})});
  const start=Date.now();await page.goto(`http://localhost:${port}/endless-earth/?perf=1&date=2026-06-21T12:00:00Z`);await page.waitForFunction(()=>window.endlessDiagnostics?.ready&&!document.querySelector('#auto-walk').disabled);const loadMs=Date.now()-start;
  const environment=await page.evaluate(()=>{const gl=document.querySelector('canvas').getContext('webgl2'),e=gl.getExtension('WEBGL_debug_renderer_info');return {gpu:e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):null,userAgent:navigator.userAgent,cores:navigator.hardwareConcurrency}});
- const terrainCpuMs=await page.evaluate(()=>window.earthTest.terrainCpu());const results={};
+ const terrainCpuMs=await page.evaluate(()=>window.earthTest.terrainCpu());const results=process.env.TEST_VIEWS?await readFile(`${dir}/${phase}.json`,'utf8').then(t=>JSON.parse(t).results).catch(()=>({})):{};
  for(const v of views.filter(v=>!process.env.TEST_VIEWS||process.env.TEST_VIEWS.split(',').includes(v[0]))){const name=v[0];await page.setViewportSize(name==='mobile'?{width:390,height:844}:{width:800,height:600});await page.evaluate(v=>window.earthTest.setup(v),v);
   const lodMs=await page.evaluate(()=>Array.from({length:100},()=>window.earthTest.lod()));
   await page.evaluate(()=>window.earthTest.render());await page.evaluate(()=>window.earthTest.render());

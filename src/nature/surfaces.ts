@@ -15,11 +15,17 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
   }}
   s.vertexShader=(roads?'attribute float earthRoad; varying float earthRoadType;\n':'')+'varying vec3 naturePosition;\n'+s.vertexShader;
   s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nnaturePosition=position;'+(roads?'earthRoadType=earthRoad;':''));
-  if(water){s.vertexShader='attribute float earthWater; varying float earthWaterType;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nearthWaterType=earthWater;');}
+  if(water){s.vertexShader='attribute float earthWater;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('earthRoadType=earthRoad;','earthRoadType=earthWater>.5?7.:earthRoad;');}
   s.fragmentShader=(roads?'varying float earthRoadType;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
-  if(water)s.fragmentShader='varying float earthWaterType; uniform float natureTime; uniform float natureWind;\n'+s.fragmentShader;
+  if(water)s.fragmentShader='uniform float natureTime; uniform float natureWind;\n'+s.fragmentShader;
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    vec2 p=naturePosition.xz;
+   ${water?`float mineralHeight=0.;float mineralDetail=0.;
+   if(earthRoadType>6.5){
+    float ripple=sin(p.x*.9+p.y*.55+natureTime*.55)*sin(p.y*1.3-p.x*.3+natureTime*.31);
+    float grazing=1.-abs(dot(normalize(vViewPosition),viewMatrix[1].xyz));grazing=grazing*grazing*grazing;
+    diffuseColor.rgb=mix(vec3(.092,.168,.145)*(.96+ripple*(.025+natureWind*.035)*(1.-smoothstep(25.,100.,length(vViewPosition)))),vec3(.32,.43,.45),grazing*.38);
+   }else{`:''}
    vec4 soilA=texture2D(natureSoil,p*.017);
    vec4 soilB=texture2D(natureSoil,mat2(.8,.6,-.6,.8)*p*.0113+vec2(.37,.13));
    float groundPatch=(soilA.g+soilB.g)*.5-.5;
@@ -27,17 +33,11 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
    float nearDetail=1.0-smoothstep(8.0,65.0,vViewPosition.z);
    float grain=0.0; if(nearDetail>.001${roads?'&&earthRoadType<.5':''})grain=texture2D(natureSoil,p*1.7).r-.5;
    diffuseColor.rgb *= .98+groundPatch*.42+groundMineral*.08+grain*.13*nearDetail;
-   ${roads?roadColorShader:''}
-   ${water?`if(earthWaterType>.5){
-    // A visual surface on the original DEM, never a measured water level.
-    float ripple=sin(p.x*.9+p.y*.55+natureTime*.55)*sin(p.y*1.3-p.x*.3+natureTime*.31);
-    float grazing=1.-abs(dot(normalize(vViewPosition),viewMatrix[1].xyz));
-    grazing=grazing*grazing*grazing;
-    diffuseColor.rgb=mix(vec3(.092,.168,.145)*(.96+ripple*(.025+natureWind*.035)*(1.-smoothstep(25.,100.,length(vViewPosition)))),vec3(.32,.43,.45),grazing*.38);
-   }`:''}`);
+   ${roads?(water?roadColorShader.replace('float mineralHeight=0.;','').replace('float mineralDetail=0.;',''):roadColorShader):''}
+   ${water?'}':''}`);
   if(roads)s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n'+roadNormalShader);
  };
- material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v1-'+!!edges+'-'+water:'nature-ground-atlas-v4';
+ material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v2-'+!!edges+'-'+water:'nature-ground-atlas-v4';
 }
 export function waterMaterial(){const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;material.onBeforeCompile=s=>{s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=position;');s.fragmentShader='uniform float natureTime; uniform float natureWind; varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
  float ripple=sin(waterPosition.x*.9+waterPosition.z*.55+natureTime*.55)*sin(waterPosition.z*1.3-waterPosition.x*.3+natureTime*.31);
