@@ -51,6 +51,21 @@
       "command": "node scripts/browser-fluidity-data.mjs",
       "exitCode": 0,
       "log": "validation/data.log"
+    },
+    {
+      "command": "npm run test:build-identity",
+      "exitCode": 0,
+      "log": "validation/build-identity.log"
     }
-  ]
+  ],
+  "productionIdentity": {
+    "commit": "5db960212596d29fb78dd5fc42913be7e7202801",
+    "dirty": false,
+    "mission": {
+      "number": "08.6",
+      "name": "La fluidité des paysages réels",
+      "source": "docs/mission-08-6.md"
+    },
+    "layouts": 4
+  }
 }
