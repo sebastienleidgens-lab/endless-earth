@@ -125,7 +125,7 @@ Navigateur : chargement et déplacement manuel, trois caméras, zooms et pinceme
 
 **Promenade réelle : 450,000 m horizontaux dans le repère local en 391,44 s, 1 686 images de déplacement**, arrivée normale « Fin du parcours OSM validé ». Le script complet, relevé du graphe et contrôles caméra compris, prend 425,82 s. Les **939 nœuds / 918 arêtes**, 921 bâtiments, 10 723 ouvertures et `builds: 1` restent conservés. Pas d'accélération temporelle ni d'autre test navigateur pendant la marche. [Trace complète](mission-08-captures/walk.json), [graphe](mission-08-captures/walk-survey.json), [arrivée mobile](mission-08-captures/walk-arrivee-mobile.png). Les reconstructions de petits détails de proximité restent distinctes de la génération initiale des bâtiments.
 
-Le badge est sélectionné explicitement par `package.json` et le rapport Mission 08. Son vrai commit et son statut sont embarqués dans le bundle ; le contrôle navigateur de production est ajouté au dernier checkpoint de livraison.
+Le badge **ENDLESS EARTH · Mission 08 — Le paysage authentique** est sélectionné explicitement par `package.json`. Le vrai bundle de production a été vérifié depuis le commit propre `3049ae3d818b106356fbb7aca8ad228a1137875b` : hash réel, état Git propre, statut **Production**, titre complet à **1280×800, 390×844, 320×568 et 844×390**, aucune commande recouverte et aucune requête réseau de version. [Preuve du bundle](mission-08-captures/build-production-validation.json), [bureau](mission-08-captures/build-production-1280x800.png), [mobile étroit](mission-08-captures/build-production-320x568.png). Les captures artistiques précédentes portent honnêtement une base de travail modifiée ; elles ne servent pas de preuve du hash de production.
 
 
 ## 11. Limites restantes
