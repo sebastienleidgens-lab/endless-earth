@@ -1,0 +1,111 @@
+{
+  "method": "Node CPU inclusive nested spans, instrumented copies of unmodified 08.5 algorithms; instrumentation overhead present. No renderer, GPU upload or frame timing inferred.",
+  "node": "v24.22.1",
+  "indexMs": 7.898829999999862,
+  "samples": {
+    "read+parse.osm": {
+      "count": 1,
+      "totalMs": 5.33990799999998,
+      "maxMs": 5.33990799999998
+    },
+    "read+parse.environment": {
+      "count": 1,
+      "totalMs": 8.908448000000021,
+      "maxMs": 8.908448000000021
+    },
+    "read+parse.terrain": {
+      "count": 1,
+      "totalMs": 2.636339000000021,
+      "maxMs": 2.636339000000021
+    },
+    "validate+merge.environment": {
+      "count": 1,
+      "totalMs": 9.078041000000042,
+      "maxMs": 9.078041000000042
+    },
+    "index.completed": {
+      "count": 2,
+      "totalMs": 0.019440999999801534,
+      "maxMs": 0.018689999999992324
+    },
+    "habitat.query": {
+      "count": 62618,
+      "totalMs": 559.2177290000034,
+      "maxMs": 3.823171000000002
+    },
+    "slope+ground.sample": {
+      "count": 228684,
+      "totalMs": 30.13934800001192,
+      "maxMs": 0.3364240000000791
+    },
+    "exclusions+slope": {
+      "count": 24257,
+      "totalMs": 153.13838899998967,
+      "maxMs": 3.5717879999999695
+    },
+    "water.distance": {
+      "count": 9166,
+      "totalMs": 359.79982199999745,
+      "maxMs": 2.3549279999999726
+    },
+    "ecology.total": {
+      "count": 1,
+      "totalMs": 557.725021,
+      "maxMs": 557.725021
+    },
+    "recipe.32": {
+      "count": 400,
+      "totalMs": 84.59091999999976,
+      "maxMs": 1.6288949999999431
+    },
+    "geometry.computeVertexNormals": {
+      "count": 421,
+      "totalMs": 38.12949399999911,
+      "maxMs": 3.053339000000051
+    },
+    "geometry.dispose": {
+      "count": 436,
+      "totalMs": 0.26882500000169784,
+      "maxMs": 0.11418200000025536
+    },
+    "geometry.computeBoundingSphere": {
+      "count": 269,
+      "totalMs": 14.83010599999875,
+      "maxMs": 0.6750139999999192
+    },
+    "full-geography.generation": {
+      "count": 1,
+      "totalMs": 1091.9541619999998,
+      "maxMs": 1091.9541619999998
+    },
+    "nature.lod+recipe+buffer": {
+      "count": 600,
+      "totalMs": 134.3464519999984,
+      "maxMs": 15.984343999999965
+    },
+    "architecture.lod+buffer": {
+      "count": 600,
+      "totalMs": 141.40112799999997,
+      "maxMs": 29.588835000000017
+    },
+    "zone.dispose": {
+      "count": 1,
+      "totalMs": 1.3925110000000132,
+      "maxMs": 1.3925110000000132
+    }
+  },
+  "memoryBeforeDispose": {
+    "rss": 359899136,
+    "heapTotal": 249843712,
+    "heapUsed": 139374792,
+    "external": 51153283,
+    "arrayBuffers": 27936999
+  },
+  "memoryAfterDispose": {
+    "rss": 359899136,
+    "heapTotal": 249843712,
+    "heapUsed": 139930176,
+    "external": 51153323,
+    "arrayBuffers": 27936999
+  }
+}
