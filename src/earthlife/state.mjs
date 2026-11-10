@@ -11,18 +11,20 @@ export function cloudReceiver(material){
  if(receivers.has(material))return;receivers.add(material);
  const previous=material.onBeforeCompile,key=material.customProgramCacheKey();
  material.onBeforeCompile=function(s,r){previous.call(this,s,r);Object.assign(s.uniforms,lifeUniforms);
- s.vertexShader='varying vec3 lifeWorldPosition;\n'+s.vertexShader;
+ s.uniforms.lifeShadowTime=lifeUniforms.lifeTime;s.uniforms.lifeShadowCover=lifeUniforms.lifeCloudCover;s.uniforms.lifeShadowAmount=lifeUniforms.lifeShadow;s.uniforms.lifeShadowSun=lifeUniforms.lifeSun;
+ s.vertexShader='uniform float lifeShadowTime,lifeShadowCover,lifeShadowAmount;uniform vec3 lifeShadowSun;varying float lifeCloudShade;\n'+cloudGLSL+s.vertexShader;
  s.vertexShader=s.vertexShader.replace('#include <project_vertex>',`vec4 lifeWorld=vec4(transformed,1.);
  #ifdef USE_INSTANCING
  lifeWorld=instanceMatrix*lifeWorld;
  #endif
- lifeWorldPosition=(modelMatrix*lifeWorld).xyz;
+ vec3 lifeWorldPosition=(modelMatrix*lifeWorld).xyz;
+ lifeCloudShade=-1.;
+ if(lifeShadowAmount>0.&&lifeShadowSun.y>.08){
+ vec2 projection=lifeWorldPosition.xz-(230.-lifeWorldPosition.y)*lifeShadowSun.xz/max(.2,lifeShadowSun.y);
+ lifeCloudShade=lifeCloudField(projection,lifeShadowTime);
+ }
  #include <project_vertex>`);
- s.fragmentShader=lifePrelude+'varying vec3 lifeWorldPosition;\n'+s.fragmentShader;
- s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(lifeShadow>0.&&lifeSun.y>.08){
- vec2 projection=lifeWorldPosition.xz-(230.-lifeWorldPosition.y)*lifeSun.xz/max(.2,lifeSun.y);
- float shade=lifeCloud(projection,lifeTime,lifeCloudCover)*clamp((lifeSun.y-.08)/.2,0.,1.);
- outgoingLight*=1.-shade*lifeShadow;
- }\n#include <opaque_fragment>`);
- };material.customProgramCacheKey=()=>key+'-earthlife-cloud-v1';
+ s.fragmentShader=lifePrelude+'varying float lifeCloudShade;\n'+s.fragmentShader;
+ s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>','outgoingLight*=1.-smoothstep(.84-lifeCloudCover*.53,1.-lifeCloudCover*.53,lifeCloudShade)*lifeShadow*clamp((lifeSun.y-.08)/.2,0.,1.);\n#include <opaque_fragment>');
+ };material.customProgramCacheKey=()=>key+'-earthlife-cloud-vertex-v2';
 }

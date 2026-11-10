@@ -16,7 +16,7 @@ Les modules `src/earthlife/` séparent les modèles purs du rendu :
 | --- | --- |
 | `wind.mjs` | Champ continu, direction dominante, variations lentes, fronts de rafale, turbulence ; calcul CPU/GPU équivalent |
 | `state.mjs` | Références d'uniformes partagées et composition des récepteurs d'ombre avec les shaders existants |
-| `clouds.mjs`, `cloud-layer.ts` | Même champ de densité pour le ciel et sa projection solaire ; un plan de deux triangles, sans texture |
+| `clouds.mjs`, `cloud-layer.ts` | Même champ de densité pour le ciel et sa projection solaire ; une grille de 48 × 48 quads, sans texture |
 | `fauna.mjs`, `fauna-render.ts` | Fenêtres déterministes, vol seul/couple/groupe, plané/traversée rapide, virage analytique, fondu et enveloppe de sécurité |
 | `events.mjs`, `micro-events.ts` | Calendrier irrégulier, calme temporaire, feuilles automnales proches et annulation par distance |
 | `habitat.mjs` | Index spatial des habitats cartographiés, priorités et trous conservés ; inconnu reste inconnu |
@@ -27,7 +27,7 @@ Les modules `src/earthlife/` séparent les modèles purs du rendu :
 
 Le temps avance avec le temps de simulation existant (pas borné à 250 ms lors d'une image longue). Le vent utilise les coordonnées métriques continues, sans arrondi aux cellules. Les phases spatiales empêchent les arbres de bouger ensemble. Le feuillage proche reçoit le champ complet ; Éco et les couronnes éloignées emploient une sinusoïde simple. Les branches du maillage de tronc ont une faible flexion, nulle à la base. Les positions d'instances, ancrages et collisions restent stables. Les herbes et fougères utilisent les attributs existants : `natureBend` fixe les points d'attache ; la palette de fougère existante permet une réponse plus lente, sans ajouter un attribut à tous les blocs précalculés. Cette identification par palette est une limite à remplacer par une métadonnée explicite lors d'une prochaine version du format.
 
-Les matériaux de terrain, végétation, eau et architecture composent leur personnalisation avec le récepteur d'ombre. Le champ est évalué en coordonnées du monde, donc sans raccord par tuile. La projection suit le soleil, tient compte de la hauteur du récepteur et s'éteint progressivement sous l'horizon. Les clones de matériaux sont traités individuellement via WeakSet. Aucune shadow map supplémentaire n'est calculée.
+Les matériaux de terrain, végétation, eau et architecture composent leur personnalisation avec le récepteur d'ombre. Le champ est évalué aux sommets en coordonnées du monde, puis interpolé sur les triangles : son échelle lente permet d’éviter les sinus par pixel. L’opacité est appliquée après interpolation du champ brut, avec un simple smoothstep dans le fragment, ce qui limite les différences entre LOD fins et éloignés. Les frontières partagent leurs sommets, donc ne créent pas de raccord par tuile. La couche visible emploie une grille de 48 × 48 quads avec le même échantillonnage ; les ombres et les nuages ont une correspondance approchée, limitée par leur interpolation géométrique. La projection suit le soleil, tient compte de la hauteur du récepteur et s'éteint progressivement sous l'horizon. Les clones de matériaux sont traités individuellement via WeakSet. Aucune shadow map supplémentaire n'est calculée.
 
 Les oiseaux sont des silhouettes, au-dessus de l'enveloppe maximale des bâtiments et du terrain chargés, avec 12 m de marge supplémentaires sur cette enveloppe. Leur propriétaire spatial reste stable au franchissement d'une cellule ; un fondu à 240–350 m précède son remplacement à 360 m. Il n'y a pas de simulation physique ni de recherche de chemin par oiseau. Une période de vol peut rester vide. Les événements proches sont abandonnés après un déplacement de 45 m, et les propriétaires libèrent leurs allocations lors des changements de profil et du démontage.
 
@@ -86,7 +86,7 @@ La revue a conduit à déplacer les cadrages masqués par des troncs ou le relie
 
 ## Validation fonctionnelle
 
-- 124 tests JavaScript réussis : données/provenance, architecture, navigation et collisions, caches, LOD, streaming, déchargement, identité et huit tests EarthLife.
+- 125 tests JavaScript réussis : données/provenance, architecture, navigation et collisions, caches, LOD, streaming, déchargement, identité et neuf tests EarthLife.
 - Deux tests Python réels (`import-mnt.test.py`, `normalize-mnt.test.py`) réussis dans un environnement local contenant NumPy, rasterio et pyproj. La découverte générique unittest ne reconnaissait pas leurs noms ; les fichiers ont été exécutés directement.
 - TypeScript strict et production Vite réussis. Le message existant sur la taille du bundle (>500 ko) reste présent.
 - Les tests EarthLife vérifient la continuité et la détermination du vent, la projection des ombres, les périodes vides et trajectoires des oiseaux, l'éligibilité saisonnière, les plafonds entre 500 cellules, les clones de matériaux, les visites répétées et la libération des ressources réelles Three.js.

@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {windAtWorld} from '../src/earthlife/wind.mjs';
-import {cloudField,cloudShadow,CLOUD_HEIGHT} from '../src/earthlife/clouds.mjs';
+import {cloudField,cloudRawField,cloudShadow,CLOUD_HEIGHT} from '../src/earthlife/clouds.mjs';
 import {flockAt,birdPosition} from '../src/earthlife/fauna.mjs';
 import {eventAt,eligibleLeaves} from '../src/earthlife/events.mjs';
 import {lifeProfile,WorldLifeBudget} from '../src/earthlife/budget.mjs';
@@ -42,4 +42,9 @@ test('actual fauna/events respect profile changes and dispose after repeated cel
  const budget=new WorldLifeBudget(lifeProfile('quality')),fauna=createFauna(scene,budget,()=>0),events=createMicroEvents(scene,budget),p=new THREE.Vector3(10,0,10);
  for(let t=0;t<2200;t+=.5){if(t===1100)budget.setProfile(lifeProfile('eco'));if(t%200===0)p.x+=260;fauna.update(t,p,conditions);events.update(t,p,conditions);assert.ok(budget.allocated.birds<=budget.profile.birds);assert.ok(budget.allocated.events<=budget.profile.events);assert.ok(budget.allocated.particles<=budget.profile.particles);scene.traverse(o=>{if(o.isLine&&o.visible)assert.ok(o.position.y>=157)})}
  const resources=new Set();scene.traverse(o=>{if(o.geometry)resources.add(o.geometry);if(o.material)resources.add(o.material)});for(const r of resources)r.addEventListener('dispose',()=>disposed++);fauna.dispose();events.dispose();assert.equal(disposed,resources.size);assert.equal(scene.children.length,0);assert.equal(budget.cells.size,0);
+});
+
+test('vertex cloud-field interpolation keeps 40 m terrain LOD shadow changes below 2.5 percent',()=>{
+ const step=40,smooth=f=>{const v=Math.max(0,Math.min(1,(f-(.84-.7*.53))/.16));return v*v*(3-2*v)*.15};
+ for(let i=0;i<4000;i++){const x=Math.sin(i*17.1)*1000,z=Math.cos(i*13.7)*1000,t=i*.13,bx=Math.floor(x/step)*step,bz=Math.floor(z/step)*step,u=(x-bx)/step,v=(z-bz)/step,f=(x,z)=>cloudRawField(x,z,t);const value=u+v<=1?f(bx,bz)*(1-u-v)+f(bx+step,bz)*u+f(bx,bz+step)*v:f(bx+step,bz+step)*(u+v-1)+f(bx+step,bz)*(1-v)+f(bx,bz+step)*(1-u);assert.ok(Math.abs(smooth(value)-smooth(f(x,z)))<.025)}
 });
