@@ -49,7 +49,18 @@ const sprite = document.createElement("canvas"),
   buffer = document.createElement("canvas");
 sprite.width = 64;
 sprite.height = 80;
-const sc = sprite.getContext("2d")!;
+type Traveller = {
+  tileWidth: number;
+  tileHeight: number;
+  foot: Point;
+  pixelsPerMetre: number;
+};
+let traveller: HTMLImageElement, travellerMeta: Traveller;
+let detailView = true;
+$("zoom").onclick = () => {
+  detailView = !detailView;
+  $("zoom").textContent = detailView ? "Vue large" : "Vue rapprochée";
+};
 type Art = {
   image: HTMLImageElement;
   depth: Uint16Array;
@@ -63,7 +74,7 @@ function image(url: string) {
     const i = new Image();
     i.onload = () => resolve(i);
     i.onerror = () => reject(Error("Chargement impossible : " + url));
-    i.src = url;
+    i.src = url + (url.includes("?") ? "&" : "?") + "art=lp02-20261110";
   });
 }
 function pixels(i: HTMLImageElement) {
@@ -83,7 +94,7 @@ function load(i: number) {
           image(`./scene-${i}-image.webp`),
           image(`./scene-${i}-depth.png`),
           image(`./scene-${i}-water.png`),
-          fetch(`./scene-${i}-leaves.json`).then((r) => {
+          fetch(`./scene-${i}-leaves.json?art=lp02-20261110`).then((r) => {
             if (!r.ok) throw Error("Feuillage manquant");
             return r.json();
           }),
@@ -266,79 +277,54 @@ function hidden(x: number, y: number, dep: number) {
   );
 }
 function character(p: Point) {
-  const s = scenes[index],
-    P = projector(s),
-    top = P.project(position, surfaceHeight(s, position) + 1.75),
-    scale = Math.abs(top[1] - p[1]) / 48;
-  sc.clearRect(0, 0, 64, 80);
-  sc.save();
-  sc.translate(32, 68);
-  const phase = moving
-    ? Math.sin(elapsed * 11)
-    : animations
-      ? Math.sin(elapsed * 2) * 0.08
-      : 0;
-  sc.scale(orientation[0] * -0.65 + orientation[1] * 0.76 < 0 ? -1 : 1, 1);
-  sc.fillStyle = "#102e3270";
-  sc.beginPath();
-  sc.ellipse(0, 1, 12, 4, 0, 0, Math.PI * 2);
-  sc.fill();
-  sc.lineCap = "round";
-  sc.strokeStyle = "#303a37";
-  sc.lineWidth = 5;
-  for (const side of [-1, 1]) {
-    sc.beginPath();
-    sc.moveTo(side * 3, -20);
-    sc.lineTo(side * 4 + phase * side * 5, -10);
-    sc.lineTo(side * 4 - phase * side * 7, 0);
-    sc.stroke();
-  }
-  sc.fillStyle = "#c3aa70";
-  sc.beginPath();
-  sc.moveTo(-8, -34);
-  sc.lineTo(7, -34);
-  sc.lineTo(10, -17);
-  sc.lineTo(-10, -17);
-  sc.closePath();
-  sc.fill();
-  sc.strokeStyle = "#a58b57";
-  sc.lineWidth = 4;
-  sc.beginPath();
-  sc.moveTo(6, -31);
-  sc.lineTo(10 + phase * 4, -20);
-  sc.stroke();
-  sc.fillStyle = "#2c5b56";
-  sc.fillRect(-7, -33, 13, 7);
-  sc.fillStyle = "#d1aa80";
-  sc.beginPath();
-  sc.ellipse(0, -41, 5, 6, 0, 0, Math.PI * 2);
-  sc.fill();
-  sc.fillStyle = "#493e30";
-  sc.beginPath();
-  sc.ellipse(-1, -45, 6, 3, 0, 0, Math.PI * 2);
-  sc.fill();
-  sc.fillStyle = "#614b35";
-  sc.fillRect(-9, -31, 6, 13);
-  sc.restore();
-  const sw = Math.max(1, Math.round(64 * scale)),
-    sh = Math.max(1, Math.round(80 * scale)),
-    left = Math.round(p[0] - 32 * scale),
-    up = Math.round(p[1] - 68 * scale);
+  const m = travellerMeta,
+    scale = WIDTH / scenes[index].span / m.pixelsPerMetre,
+    sw = Math.max(1, Math.round(m.tileWidth * scale)),
+    sh = Math.max(1, Math.round(m.tileHeight * scale)),
+    left = Math.round(p[0] - m.foot[0] * scale),
+    top = Math.round(p[1] - m.foot[1] * scale),
+    angle = Math.atan2(orientation[0], orientation[1]),
+    dir = ((Math.round(angle / (Math.PI / 4)) % 8) + 8) % 8,
+    row = moving
+      ? 1 + (Math.floor(elapsed * 10) % 8)
+      : animations && elapsed % 5 < 0.14
+        ? 9
+        : 0;
   if (buffer.width !== sw || buffer.height !== sh) {
     buffer.width = sw;
     buffer.height = sh;
   }
   const bc = buffer.getContext("2d", { willReadFrequently: true })!;
   bc.clearRect(0, 0, sw, sh);
-  bc.drawImage(sprite, 0, 0, sw, sh);
-  const data = bc.getImageData(0, 0, sw, sh),
+  bc.drawImage(
+    traveller,
+    dir * m.tileWidth,
+    row * m.tileHeight,
+    m.tileWidth,
+    m.tileHeight,
+    0,
+    0,
+    sw,
+    sh,
+  );
+  const pixels = bc.getImageData(0, 0, sw, sh),
     dep = depth(position);
   for (let y = 0; y < sh; y++)
     for (let x = 0; x < sw; x++)
-      if (hidden(left + x, up + y, dep)) data.data[(y * sw + x) * 4 + 3] = 0;
-  bc.putImageData(data, 0, 0);
-  ctx.drawImage(buffer, left, up);
+      if (hidden(left + x, top + y, dep)) pixels.data[(y * sw + x) * 4 + 3] = 0;
+  bc.putImageData(pixels, 0, 0);
+  ctx.fillStyle = "#17292145";
+  ctx.beginPath();
+  ctx.ellipse(p[0], p[1], 5.2, 2.2, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#d2bd8566";
+  ctx.lineWidth = 0.8;
+  ctx.beginPath();
+  ctx.ellipse(p[0], p[1], 6.4, 2.7, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.drawImage(buffer, left, top);
 }
+
 function render() {
   const s = scenes[index],
     P = projector(s),
@@ -352,18 +338,15 @@ function render() {
     canvas.width = w;
     canvas.height = h;
   }
-  crop =
-    r.width < 650
-      ? {
-          w: Math.min(WIDTH, HEIGHT * ratio),
-          h: HEIGHT,
-          x: Math.max(
-            0,
-            Math.min(WIDTH - HEIGHT * ratio, p[0] - (HEIGHT * ratio) / 2),
-          ),
-          y: 0,
-        }
-      : { x: 0, y: (HEIGHT - WIDTH / ratio) / 2, w: WIDTH, h: WIDTH / ratio };
+  const factor = detailView ? (r.width < 650 ? 2.2 : 1.9) : 1;
+  const cropH = Math.min(HEIGHT, WIDTH / ratio) / factor,
+    cropW = cropH * ratio;
+  crop = {
+    w: cropW,
+    h: cropH,
+    x: Math.max(0, Math.min(WIDTH - cropW, p[0] - cropW * 0.5)),
+    y: Math.max(0, Math.min(HEIGHT - cropH, p[1] - cropH * 0.56)),
+  };
   ctx.setTransform(
     w / crop.w,
     0,
@@ -411,12 +394,12 @@ function render() {
             Math.sin(elapsed * 2 + i) * 4,
           y = leaf.p[1] + Math.cos(i * 7 + leaf.seed) * leaf.r * 0.4;
         if (!hidden(x, y, leaf.depth - 0.2)) {
-          ctx.fillStyle = "#c4c38288";
+          ctx.fillStyle = "#b3c08d44";
           ctx.beginPath();
           ctx.ellipse(
             x,
             y,
-            3 + Math.sin(elapsed * 2 + i),
+            1.5 + Math.sin(elapsed * 2 + i) * 0.5,
             1.5,
             -0.5,
             0,
@@ -580,11 +563,19 @@ function frame(now: number) {
 }
 async function boot() {
   try {
-    const r = await fetch("./world.json");
+    const r = await fetch("./world.json?art=lp02-20261110");
     if (!r.ok) throw Error("Données absentes");
     scenes = (await r.json()).scenes;
     position = [...scenes[0].route[0]];
-    art = await load(0);
+    const initial = await Promise.all([
+      load(0),
+      image("./traveller.png"),
+      fetch("./traveller.json?art=lp02-20261110").then((r) => r.json()),
+    ]);
+    art = initial[0];
+    traveller = initial[1];
+    travellerMeta = initial[2];
+    last = performance.now();
     $("loading").style.display = "none";
     hud();
     for (let i = 1; i < 3; i++) void load(i).catch((e) => tell(String(e)));
@@ -611,7 +602,11 @@ async function boot() {
         routeMetres: scenes.map((s) => routeLength(s.route)),
         ready: true,
         animations,
-        decodedBytes: cache.size * WIDTH * HEIGHT * 7,
+        detailView,
+        rendererVersion: "lp02-volumetric",
+        decodedBytes:
+          cache.size * WIDTH * HEIGHT * 7 +
+          traveller.width * traveller.height * 4,
         heap: (performance as any).memory?.usedJSHeapSize,
       }),
       project: (p: Point) => projector(scenes[index]).project(p),

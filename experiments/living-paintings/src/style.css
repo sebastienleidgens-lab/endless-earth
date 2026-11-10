@@ -473,3 +473,26 @@ dialog a {
   color: inherit;
   text-underline-offset: 3px;
 }
+
+#zoom {
+  position: absolute;
+  right: 22px;
+  bottom: 24px;
+  background: #182c28d9;
+  border: 1px solid #cab88788;
+  padding: 10px 14px;
+  font-size: 10px;
+  letter-spacing: 0.4px;
+}
+@media (max-width: 650px) {
+  #zoom {
+    right: 12px;
+    top: 88px;
+    bottom: auto;
+    padding: 8px 10px;
+    font-size: 9px;
+  }
+  .scene-label p {
+    max-width: 200px;
+  }
+}

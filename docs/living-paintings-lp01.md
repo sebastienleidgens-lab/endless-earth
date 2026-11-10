@@ -1,5 +1,7 @@
 # Endless Earth — LP-01 : Living Paintings
 
+**État initial du prototype.** La [révision graphique suivante](living-paintings-visual-upgrade.md) remplace le précalcul Canvas et actualise les ressources, captures et mesures. Les descriptions techniques et chiffres ci-dessous restent ceux de la livraison initiale.
+
 ## Statut et périmètre
 
 Prototype indépendant de trois tableaux jouables, dans `experiments/living-paintings/`. Les coordonnées OSM et le relief IGN restent séparés des coordonnées projetées des images. Le personnage marche à 1,38 m/s, possède une hauteur logique de 1,75 m et conserve sa position et son orientation aux transitions. Silence intégral, sans import de la Mission 10.

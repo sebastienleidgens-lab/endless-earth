@@ -51,7 +51,7 @@ export function projector(s: Scene) {
   const target = new Vector3(s.center[0], s.baseHeight, s.center[1]);
   camera.position
     .copy(target)
-    .add(new Vector3(-0.76, 1.2, -0.65).multiplyScalar(350));
+    .add(new Vector3(-0.76, 0.85, -0.65).multiplyScalar(350));
   camera.lookAt(target);
   camera.updateMatrixWorld();
   const project = (p: Point, h = terrain(s, ...p)) => {
@@ -60,6 +60,7 @@ export function projector(s: Scene) {
   };
   return {
     project,
+    camera,
     pixelsPerMetre: WIDTH / s.span,
     unproject: (p: Point, seed: Point = s.center) => {
       let x = seed[0],

@@ -1,6 +1,6 @@
 # Ressources et licences LP-01
 
-Inventaire du 10 novembre 2026. Aucun achat, texture, modèle, police téléchargée, son, photo ou image IA. Les peintures sont les sorties du rasteriseur de géométrie simplifiée `src/baker.ts`, pas des photos ou des captures du moteur 3D existant.
+Inventaire mis à jour le 10 novembre 2026. Matériaux photographiques gratuits Poly Haven sous CC0 ; modèles et atlas originaux. Aucun achat, police embarquée, son, photographie du lieu ou image IA. Les peintures sont des rendus 3D précalculés par `src/baker.ts`, distincts du moteur 3D de production.
 
 | Ressource | Origine et périmètre | Licence / attribution |
 |---|---|---|
@@ -8,8 +8,9 @@ Inventaire du 10 novembre 2026. Aucun achat, texture, modèle, police téléchar
 | Relief | Lecture de `../../public/data/angles-terrain.json`, échantillonnage bilinéaire du MNT IGN LiDAR HD déjà préparé dans le dépôt | **IGN, Licence Ouverte / Open Licence 2.0**, [texte](https://www.etalab.gouv.fr/licence-ouverte-open-licence/). Résolution source 10 m ; grille LP-01 5 m interpolée, donc aucun gain de précision. |
 | Zones boisées et végétation | Lecture de `../../public/data/angles-environment.json`, BD Forêt V2 et zones de végétation BD TOPO V3 préparées | **IGN, Licence Ouverte 2.0** ; polygones cartographiés. Chaque arbre dessiné est procédural et non recensé individuellement. Les zones herbacées de fond sont une interprétation, pas une carte floristique. |
 | `public/world.json` | Extraction et combinaison des données ci-dessus ; empreintes SHA-256 des trois entrées incluses dans le fichier | Base dérivée diffusée sous **ODbL 1.0**, avec attribution IGN conservée. Source modifiable et procédure d'extraction livrées. |
-| WebP, masques, personnage, animations | Création originale déterministe LP-01 à partir de la base, sans contenu graphique tiers | Œuvres produites à partir des données précédentes ; garder les crédits OSM et IGN. Les contributions graphiques originales LP-01 sont proposées sous [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/), sans annuler les droits sur les données sous-jacentes. |
-| Three.js | Projection orthographique par `OrthographicCamera` et `Vector3` ; version exacte dans `package-lock.json` | MIT, notice complète dans `public/ATTRIBUTION.txt`, issue du paquet effectivement installé. |
+| WebP, masques, personnage, animations | Volumes et atlas originaux LP-01, enrichis des matériaux photographiques Poly Haven listés ci-dessous | Œuvres produites à partir des données précédentes ; garder les crédits OSM et IGN. Les contributions graphiques originales LP-01 sont proposées sous [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/), sans annuler les droits sur les données sous-jacentes. |
+| Matériaux de pierre, pavés, tuiles, ardoises et sols | 14 fichiers albedo/normales pour 7 matériaux Poly Haven ; URLs et SHA-256 dans `art/materials/sources.json` | [CC0 1.0](https://polyhaven.com/license), consultée le 10 novembre 2026. Ressources gratuites, réutilisation et dérivés autorisés ; aucun droit exclusif revendiqué sur ces textures. |
+| Three.js | Projection orthographique en jeu ; scène, éclairage, matériaux et précalcul hors ligne ; version exacte dans `package-lock.json` | MIT, notice complète dans `public/ATTRIBUTION.txt`, issue du paquet effectivement installé. |
 | TypeScript, Vite, `@types/three` | Outils de développement / compilation | Apache-2.0 pour TypeScript ; MIT pour Vite et les types. Notices des paquets installés et dépendances transitives dans leurs fichiers LICENSE. |
 | Playwright / Chromium | Précalcul et tests locaux uniquement | Apache-2.0 pour Playwright ; licences libres Chromium. Ni navigateur ni Playwright distribué dans le build. |
 | Texte et polices | Georgia et Arial de la plateforme, avec familles de repli | Aucune police embarquée ou redistribuée. |

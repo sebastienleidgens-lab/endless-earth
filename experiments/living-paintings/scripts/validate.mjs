@@ -2,10 +2,9 @@ import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import { writeFile, mkdir } from "node:fs/promises";
 const url = process.env.LP_URL ?? "http://localhost:5181/";
-const output = new URL(
-  "../../../docs/living-paintings-evidence/",
-  import.meta.url,
-);
+const output = process.env.LP_EVIDENCE_DIR
+  ? new URL("file://" + process.env.LP_EVIDENCE_DIR + "/")
+  : new URL("../../../docs/living-paintings-evidence/", import.meta.url);
 await mkdir(output, { recursive: true });
 const save = (name, value) =>
   writeFile(new URL(name, output), JSON.stringify(value, null, 2));

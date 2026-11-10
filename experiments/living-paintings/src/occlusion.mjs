@@ -6,5 +6,5 @@ export function occluded(data, width, height, x, y, actorDepth, centerDepth) {
   y = Math.round(y);
   if (x < 0 || y < 0 || x >= width || y >= height) return true;
   const raw = data[y * width + x];
-  return raw !== 65535 && actorDepth > raw / 100 - 300 + centerDepth + 0.12;
+  return raw !== 65535 && actorDepth > raw / 100 - 300 + centerDepth + 0.18;
 }

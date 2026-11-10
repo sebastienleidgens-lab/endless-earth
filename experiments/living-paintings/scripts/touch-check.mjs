@@ -1,6 +1,7 @@
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
+const evidence=process.env.LP_EVIDENCE_DIR?new URL('file://'+process.env.LP_EVIDENCE_DIR+'/'):new URL('../../../docs/living-paintings-evidence/',import.meta.url);
 const b = await chromium.launch({
   executablePath: "/usr/bin/chromium",
   args: ["--no-sandbox"],
@@ -35,18 +36,12 @@ try {
     await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
   );
   await p.screenshot({
-    path: new URL(
-      "../../../docs/living-paintings-evidence/touch-390.png",
-      import.meta.url,
-    ).pathname,
+    path: new URL("touch-390.png", evidence).pathname,
     fullPage: true,
   });
   delete state.frames;
   await writeFile(
-    new URL(
-      "../../../docs/living-paintings-evidence/touch.json",
-      import.meta.url,
-    ),
+    new URL("touch.json", evidence),
     JSON.stringify(
       {
         method:
