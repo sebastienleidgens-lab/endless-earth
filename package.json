@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-10-1.md"
+    "missionReport": "docs/mission-11.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -30,7 +30,9 @@
     "test:audio": "node --test tests/audio.test.mjs",
     "test:audio:browser": "node scripts/browser-audio-naturalist.mjs && node scripts/browser-audio-spatial.mjs",
     "bench:audio": "node scripts/benchmark-audio-naturalist.mjs",
-    "test:audio:soak": "node scripts/browser-audio-soak-101.mjs"
+    "test:audio:soak": "node scripts/browser-audio-soak-101.mjs",
+    "test:atmosphere": "node --test tests/atmosphere.test.mjs",
+    "test:atmosphere:browser": "node scripts/browser-atmosphere-controls.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

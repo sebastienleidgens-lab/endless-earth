@@ -13,6 +13,7 @@ export class InputController {
     this.base.appendChild(this.knob);
     document.body.appendChild(this.base);
     window.addEventListener('keydown', e => {
+      if ((e.target as HTMLElement)?.closest('input,select,button,summary')) return;
       if (['arrowup','arrowdown','arrowleft','arrowright',' '].includes(e.key.toLowerCase())) e.preventDefault();
       this.keys.add(e.key.toLowerCase());
     });

@@ -209,12 +209,12 @@ function setViewMode(mode:ViewMode){
   smoothZoom=zoom;
 }
 viewButton.addEventListener('click',()=>setViewMode(nextView(viewMode)));
-addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat)setViewMode(nextView(viewMode))});
+addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat&&!(event.target as HTMLElement)?.closest('input,select,textarea,[contenteditable="true"]'))setViewMode(nextView(viewMode))});
 root.append(viewButton);
 setViewMode('third');
 const input = new InputController();
 const walker=new AutoWalk(), sound=new Soundscape();
-const updateAtmosphere=naturalSky(scene,sun,(x,z)=>activeTerrain?.relativeHeight(x,z)??0,ANGLES,hemisphere,avatar);
+const updateAtmosphere=naturalSky(scene,sun,(x,z)=>activeTerrain?.relativeHeight(x,z)??0,ANGLES,hemisphere,avatar,camera);
 const panel=document.createElement('div');panel.className='living-panel';
 panel.innerHTML='<button id="auto-walk" disabled>Promenade automatique</button><button id="sound">Activer le son</button><span id="walk-status" role="status">Chargement des voies OSM…</span><small id="profile"></small>';
 root.append(panel);
@@ -242,8 +242,8 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-if(import.meta.hot)import.meta.hot.dispose(()=>{void sound.dispose()});
-addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted)void sound.dispose()});
+if(import.meta.hot)import.meta.hot.dispose(()=>{updateAtmosphere.dispose();void sound.dispose()});
+addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){updateAtmosphere.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
 const audioForward=new THREE.Vector3(),audioUp=new THREE.Vector3(),worldUp=new THREE.Vector3(0,1,0);
 const canvas=renderer.domElement;canvas.style.touchAction='none';
@@ -306,7 +306,7 @@ const groundHeight=walkingHeight(terrainHeight);
 if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep);
 const moved=avatar.position.distanceTo(previous);
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
-updateAtmosphere(dt,quality==='low');sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[]);
+updateAtmosphere(dt,quality==='low',elapsed);sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[]);
 panel.querySelector('#profile')!.textContent='Profil · '+({eco:'Éco',balanced:'Équilibré',quality:'Qualité',custom:'Personnalisé'}[lifeSettings.name]);
 if(moved>.0001){
   const facing=Math.atan2(displacement.x,displacement.z);

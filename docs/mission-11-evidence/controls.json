@@ -1,0 +1,688 @@
+{
+  "checks": [
+    "Five exact primary moments; six weather options",
+    "Real RAF loop: clear → overcast → rain → clear in 2.5 s per command",
+    "All moment changes reach effective solar date in the running game",
+    "Keyboard selection does not move the walker",
+    "Choices survive first/third/aerial view cycle",
+    "Audio enable/disable and tab round trip preserve choices",
+    "Selected moment and weather persist after reload",
+    "Automatic OSM walk still runs",
+    "Visible rain in all three profiles",
+    "390×844 weather panel fits viewport",
+    "844×390 opened controls stay scrollable"
+  ],
+  "metrics": [
+    {
+      "weather": "overcast",
+      "wallMs": 2547,
+      "climate": {
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-06-21T13:57:47.015Z",
+        "localTime": "21 juin, 15:57",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "overcast",
+        "weatherTau": 0.65,
+        "solar": {
+          "altitude": 0.9849118505468907,
+          "azimuth": 4.121808471121176,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.8813033849540417,
+          "mist": 0.2144415468782286,
+          "wind": 0.5129256051177455,
+          "rain": 0
+        },
+        "wind": {
+          "x": 0.4296140774801631,
+          "z": -0.19977876234652764,
+          "speed": 0.4729434767102264,
+          "gust": 0.14895964353136826
+        },
+        "simulation": true,
+        "rainDrops": 0
+      },
+      "earthLife": {
+        "time": 5.206500000000233,
+        "profile": "eco",
+        "budget": {
+          "birds": 0,
+          "particles": 0,
+          "events": 0
+        },
+        "limits": {
+          "vegetation": 0.55,
+          "fine": 0,
+          "water": 0.5,
+          "clouds": 0.7,
+          "shadows": 0,
+          "birds": 2,
+          "particles": 0,
+          "events": 1,
+          "cpuHz": 5
+        },
+        "activeBirds": 0,
+        "activeEvents": 0,
+        "habitat": "built",
+        "wind": {
+          "x": 0.4288539899342516,
+          "z": -0.19943687268960164,
+          "speed": 0.47211222286413057,
+          "gust": 0.1470849764835389
+        },
+        "cpuMs": 0.09999999997671694,
+        "maxCpuMs": 1.1999999999534339,
+        "provenance": {
+          "habitat": "mapped classification, unknown preserved",
+          "wind": "simulated",
+          "weather": "simulated, not forecast",
+          "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+          "birds": "generic artistic silhouettes",
+          "current": "unverified artistic direction"
+        },
+        "resources": {
+          "cpuObjects": 10,
+          "extraDrawCallsMax": 12,
+          "extraTextures": 0,
+          "cloudMaterials": 1,
+          "birdMaterials": 1,
+          "particleMaterials": 1,
+          "rainMaterials": 1
+        }
+      }
+    },
+    {
+      "weather": "rain",
+      "wallMs": 2533,
+      "climate": {
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-06-21T13:57:47.015Z",
+        "localTime": "21 juin, 15:57",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 0.65,
+        "solar": {
+          "altitude": 0.9849118505468907,
+          "azimuth": 4.121808471121176,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.9583759645035168,
+          "mist": 0.4341673198881377,
+          "wind": 0.6368107017544766,
+          "rain": 0.5841220769777336
+        },
+        "wind": {
+          "x": 0.6432065454744642,
+          "z": -0.2994829310545762,
+          "speed": 0.708258445807307,
+          "gust": 0.4387769397420851
+        },
+        "simulation": true,
+        "rainDrops": 260
+      },
+      "earthLife": {
+        "time": 7.726200000000302,
+        "profile": "eco",
+        "budget": {
+          "birds": 0,
+          "particles": 0,
+          "events": 0
+        },
+        "limits": {
+          "vegetation": 0.55,
+          "fine": 0,
+          "water": 0.5,
+          "clouds": 0.7,
+          "shadows": 0,
+          "birds": 2,
+          "particles": 0,
+          "events": 1,
+          "cpuHz": 5
+        },
+        "activeBirds": 0,
+        "activeEvents": 0,
+        "habitat": "built",
+        "wind": {
+          "x": 0.6432065454744642,
+          "z": -0.2994829310545762,
+          "speed": 0.708258445807307,
+          "gust": 0.4387769397420851
+        },
+        "cpuMs": 0,
+        "maxCpuMs": 1.1999999999534339,
+        "provenance": {
+          "habitat": "mapped classification, unknown preserved",
+          "wind": "simulated",
+          "weather": "simulated, not forecast",
+          "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+          "birds": "generic artistic silhouettes",
+          "current": "unverified artistic direction"
+        },
+        "resources": {
+          "cpuObjects": 10,
+          "extraDrawCallsMax": 12,
+          "extraTextures": 0,
+          "cloudMaterials": 1,
+          "birdMaterials": 1,
+          "particleMaterials": 1,
+          "rainMaterials": 1
+        }
+      }
+    },
+    {
+      "weather": "clear",
+      "wallMs": 2520,
+      "climate": {
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-06-21T13:57:47.015Z",
+        "localTime": "21 juin, 15:57",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "solar": {
+          "altitude": 0.9849118505468907,
+          "azimuth": 4.121808471121176,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.17669045724695615,
+          "mist": 0.009167763146091485,
+          "wind": 0.24833945883430109,
+          "rain": 0.012482262568625729
+        },
+        "wind": {
+          "x": 0.26141680189464134,
+          "z": -0.12377443551449922,
+          "speed": 0.2888324217261284,
+          "gust": 0.513991883006
+        },
+        "simulation": true,
+        "rainDrops": 260
+      },
+      "earthLife": {
+        "time": 9.983900000000256,
+        "profile": "eco",
+        "budget": {
+          "birds": 0,
+          "particles": 0,
+          "events": 0
+        },
+        "limits": {
+          "vegetation": 0.55,
+          "fine": 0,
+          "water": 0.5,
+          "clouds": 0.7,
+          "shadows": 0,
+          "birds": 2,
+          "particles": 0,
+          "events": 1,
+          "cpuHz": 5
+        },
+        "activeBirds": 0,
+        "activeEvents": 0,
+        "habitat": "built",
+        "wind": {
+          "x": 0.26141680189464134,
+          "z": -0.12377443551449922,
+          "speed": 0.2888324217261284,
+          "gust": 0.513991883006
+        },
+        "cpuMs": 0,
+        "maxCpuMs": 1.1999999999534339,
+        "provenance": {
+          "habitat": "mapped classification, unknown preserved",
+          "wind": "simulated",
+          "weather": "simulated, not forecast",
+          "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+          "birds": "generic artistic silhouettes",
+          "current": "unverified artistic direction"
+        },
+        "resources": {
+          "cpuObjects": 10,
+          "extraDrawCallsMax": 12,
+          "extraTextures": 0,
+          "cloudMaterials": 1,
+          "birdMaterials": 1,
+          "particleMaterials": 1,
+          "rainMaterials": 1
+        }
+      }
+    },
+    {
+      "moment": "morning",
+      "climate": {
+        "moment": "morning",
+        "mode": "morning",
+        "date": "2026-06-21T05:33:11.000Z",
+        "localTime": "21 juin, 07:33",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "solar": {
+          "altitude": 0.22186825606893526,
+          "azimuth": 1.2118521521551222,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.1600101801379956,
+          "mist": 0.000005591763758005848,
+          "wind": 0.24000508654978622,
+          "rain": 0.000007613401692092295
+        },
+        "wind": {
+          "x": 0.21461028946179517,
+          "z": -0.1052279643689991,
+          "speed": 0.23883436694248075,
+          "gust": 0.2521217833920843
+        },
+        "simulation": true,
+        "rainDrops": 0
+      }
+    },
+    {
+      "moment": "afternoon",
+      "climate": {
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-06-21T13:57:47.015Z",
+        "localTime": "21 juin, 15:57",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "solar": {
+          "altitude": 0.9849118505468907,
+          "azimuth": 4.121808471121176,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.16000019945296834,
+          "mist": 1.0955587049721712e-7,
+          "wind": 0.2400000996575345,
+          "rain": 1.49164536614761e-7
+        },
+        "wind": {
+          "x": 0.1926116751556982,
+          "z": -0.09703420727469815,
+          "speed": 0.21558413298917128,
+          "gust": 0.10118988109732384
+        },
+        "simulation": true,
+        "rainDrops": 0
+      }
+    },
+    {
+      "moment": "evening",
+      "climate": {
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-06-21T19:27:25.000Z",
+        "localTime": "21 juin, 21:27",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "solar": {
+          "altitude": 0.04742811649406747,
+          "azimuth": 5.266797421216712,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.16000000266497277,
+          "mist": 1.4638208481936787e-9,
+          "wind": 0.24000000133156513,
+          "rain": 1.9930484557044614e-9
+        },
+        "wind": {
+          "x": 0.18249945325886005,
+          "z": -0.09423990190289606,
+          "speed": 0.20535833831321465,
+          "gust": 0.034250128295766104
+        },
+        "simulation": true,
+        "rainDrops": 0
+      }
+    },
+    {
+      "moment": "night",
+      "climate": {
+        "moment": "night",
+        "mode": "night",
+        "date": "2026-06-21T23:08:43.400Z",
+        "localTime": "22 juin, 01:08",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "solar": {
+          "altitude": -0.33428450333506726,
+          "azimuth": 6.075049611942648,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.1600000000284794,
+          "mist": 1.5643196355798503e-11,
+          "wind": 0.24000000001422983,
+          "rain": 2.1298814248805347e-11
+        },
+        "wind": {
+          "x": 0.17742680708227798,
+          "z": -0.09459761130572082,
+          "speed": 0.20106442899189722,
+          "gust": 0.005368063238824769
+        },
+        "simulation": true,
+        "rainDrops": 0
+      }
+    },
+    {
+      "moment": "real",
+      "climate": {
+        "moment": "real",
+        "mode": "real",
+        "date": "2026-06-21T12:00:00.000Z",
+        "localTime": "21 juin, 14:00",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "solar": {
+          "altitude": 1.1619879781021678,
+          "azimuth": 3.163871325434188,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.16000000000038792,
+          "mist": 2.1307357266470928e-13,
+          "wind": 0.2400000000001938,
+          "rain": 2.901078745222539e-13
+        },
+        "wind": {
+          "x": 0.1752290488813819,
+          "z": -0.09727053358345843,
+          "speed": 0.20040005646634718,
+          "gust": 0.00015562193003194666
+        },
+        "simulation": true,
+        "rainDrops": 0
+      }
+    },
+    {
+      "walk": {
+        "active": true,
+        "length": 450,
+        "position": [
+          -13.168144140973698,
+          -1.4867745728149089,
+          -33.31709694303554
+        ]
+      }
+    },
+    {
+      "profile": "eco",
+      "render": {
+        "calls": 125,
+        "triangles": 210467,
+        "geometries": 156
+      },
+      "life": {
+        "time": 4.134500000000001,
+        "profile": "eco",
+        "budget": {
+          "birds": 0,
+          "particles": 0,
+          "events": 0
+        },
+        "limits": {
+          "vegetation": 0.55,
+          "fine": 0,
+          "water": 0.5,
+          "clouds": 0.7,
+          "shadows": 0,
+          "birds": 2,
+          "particles": 0,
+          "events": 1,
+          "cpuHz": 5
+        },
+        "activeBirds": 0,
+        "activeEvents": 0,
+        "habitat": "built",
+        "wind": {
+          "x": 0.5053899330441155,
+          "z": -0.23614645918893842,
+          "speed": 0.5568987867238994,
+          "gust": 0.06996155509128024
+        },
+        "cpuMs": 0.09999999997671694,
+        "maxCpuMs": 0.30000000004656613,
+        "provenance": {
+          "habitat": "mapped classification, unknown preserved",
+          "wind": "simulated",
+          "weather": "simulated, not forecast",
+          "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+          "birds": "generic artistic silhouettes",
+          "current": "unverified artistic direction"
+        },
+        "resources": {
+          "cpuObjects": 10,
+          "extraDrawCallsMax": 12,
+          "extraTextures": 0,
+          "cloudMaterials": 1,
+          "birdMaterials": 1,
+          "particleMaterials": 1,
+          "rainMaterials": 1
+        }
+      },
+      "climate": {
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-06-21T19:27:25.000Z",
+        "localTime": "21 juin, 21:27",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "solar": {
+          "altitude": 0.04742811649406747,
+          "azimuth": 5.266797421216712,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "wind": {
+          "x": 0.5053899330441155,
+          "z": -0.23614645918893842,
+          "speed": 0.5568987867238994,
+          "gust": 0.06996155509128024
+        },
+        "simulation": true,
+        "rainDrops": 260
+      }
+    },
+    {
+      "profile": "balanced",
+      "render": {
+        "calls": 125,
+        "triangles": 220331,
+        "geometries": 157
+      },
+      "life": {
+        "time": 4.691500000000001,
+        "profile": "balanced",
+        "budget": {
+          "birds": 0,
+          "particles": 0,
+          "events": 0
+        },
+        "limits": {
+          "vegetation": 1,
+          "fine": 0.45,
+          "water": 0.8,
+          "clouds": 1,
+          "shadows": 0.1,
+          "birds": 6,
+          "particles": 8,
+          "events": 2,
+          "cpuHz": 10
+        },
+        "activeBirds": 0,
+        "activeEvents": 0,
+        "habitat": "built",
+        "wind": {
+          "x": 0.5202470924645752,
+          "z": -0.2424238896877976,
+          "speed": 0.5729544651089024,
+          "gust": 0.1081579923202169
+        },
+        "cpuMs": 0,
+        "maxCpuMs": 0.30000000004656613,
+        "provenance": {
+          "habitat": "mapped classification, unknown preserved",
+          "wind": "simulated",
+          "weather": "simulated, not forecast",
+          "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+          "birds": "generic artistic silhouettes",
+          "current": "unverified artistic direction"
+        },
+        "resources": {
+          "cpuObjects": 11,
+          "extraDrawCallsMax": 12,
+          "extraTextures": 0,
+          "cloudMaterials": 1,
+          "birdMaterials": 1,
+          "particleMaterials": 1,
+          "rainMaterials": 1
+        }
+      },
+      "climate": {
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-06-21T19:27:25.000Z",
+        "localTime": "21 juin, 21:27",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "solar": {
+          "altitude": 0.04742811649406747,
+          "azimuth": 5.266797421216712,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "wind": {
+          "x": 0.5206597748953385,
+          "z": -0.2426022525162147,
+          "speed": 0.57340233679468,
+          "gust": 0.10922411528093383
+        },
+        "simulation": true,
+        "rainDrops": 520
+      }
+    },
+    {
+      "profile": "quality",
+      "render": {
+        "calls": 125,
+        "triangles": 220331,
+        "geometries": 157
+      },
+      "life": {
+        "time": 5.199299999999932,
+        "profile": "quality",
+        "budget": {
+          "birds": 0,
+          "particles": 0,
+          "events": 0
+        },
+        "limits": {
+          "vegetation": 1,
+          "fine": 1,
+          "water": 1,
+          "clouds": 1,
+          "shadows": 0.15,
+          "birds": 9,
+          "particles": 16,
+          "events": 3,
+          "cpuHz": 10
+        },
+        "activeBirds": 0,
+        "activeEvents": 0,
+        "habitat": "built",
+        "wind": {
+          "x": 0.537470483941887,
+          "z": -0.24998531702816032,
+          "speed": 0.5917022589007642,
+          "gust": 0.15280477848154225
+        },
+        "cpuMs": 0,
+        "maxCpuMs": 0.30000000004656613,
+        "provenance": {
+          "habitat": "mapped classification, unknown preserved",
+          "wind": "simulated",
+          "weather": "simulated, not forecast",
+          "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+          "birds": "generic artistic silhouettes",
+          "current": "unverified artistic direction"
+        },
+        "resources": {
+          "cpuObjects": 11,
+          "extraDrawCallsMax": 12,
+          "extraTextures": 0,
+          "cloudMaterials": 1,
+          "birdMaterials": 1,
+          "particleMaterials": 1,
+          "rainMaterials": 1
+        }
+      },
+      "climate": {
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-06-21T19:27:25.000Z",
+        "localTime": "21 juin, 21:27",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "solar": {
+          "altitude": 0.04742811649406747,
+          "azimuth": 5.266797421216712,
+          "month": 6
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "wind": {
+          "x": 0.537470483941887,
+          "z": -0.24998531702816032,
+          "speed": 0.5917022589007642,
+          "gust": 0.15280477848154225
+        },
+        "simulation": true,
+        "rainDrops": 900
+      }
+    }
+  ],
+  "errors": [],
+  "method": "Unmodified main.ts, actual requestAnimationFrame loop, Playwright native UI selection and keyboard. Cloud shared engine running Chromium SwiftShader. Separate tab round trip is observed, without claiming OS background throttling."
+}

@@ -1,0 +1,158 @@
+{
+  "rows": [
+    {
+      "profile": "eco",
+      "weather": "clear",
+      "beforeMs": 129.54999999993015,
+      "afterMs": 173.80000000004657,
+      "changePercent": 34.15669625637998,
+      "beforeCpuMs": 0.09999999997671694,
+      "afterCpuMs": 0.19999999995343387,
+      "beforeCalls": 170,
+      "afterCalls": 170,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    },
+    {
+      "profile": "eco",
+      "weather": "overcast",
+      "beforeMs": 130.94999999995343,
+      "afterMs": 167.5,
+      "changePercent": 27.911416571255863,
+      "beforeCpuMs": 0.09999999997671694,
+      "afterCpuMs": 0.19999999995343387,
+      "beforeCalls": 170,
+      "afterCalls": 170,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    },
+    {
+      "profile": "eco",
+      "weather": "rain",
+      "beforeMs": 133.15000000002328,
+      "afterMs": 172.99999999988358,
+      "changePercent": 29.928651896247338,
+      "beforeCpuMs": 0.04999999993015081,
+      "afterCpuMs": 0.15000000002328306,
+      "beforeCalls": 170,
+      "afterCalls": 171,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    },
+    {
+      "profile": "balanced",
+      "weather": "clear",
+      "beforeMs": 142.70000000006985,
+      "afterMs": 181.05000000004657,
+      "changePercent": 26.874562018190563,
+      "beforeCpuMs": 0.10000000009313226,
+      "afterCpuMs": 0.19999999995343387,
+      "beforeCalls": 170,
+      "afterCalls": 170,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    },
+    {
+      "profile": "balanced",
+      "weather": "overcast",
+      "beforeMs": 132.29999999993015,
+      "afterMs": 178,
+      "changePercent": 34.54270597134843,
+      "beforeCpuMs": 0.09999999986030161,
+      "afterCpuMs": 0.15000000002328306,
+      "beforeCalls": 170,
+      "afterCalls": 170,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    },
+    {
+      "profile": "balanced",
+      "weather": "rain",
+      "beforeMs": 135.60000000009313,
+      "afterMs": 169.09999999997672,
+      "changePercent": 24.705014749159716,
+      "beforeCpuMs": 0.09999999997671694,
+      "afterCpuMs": 0.15000000002328306,
+      "beforeCalls": 170,
+      "afterCalls": 171,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    },
+    {
+      "profile": "quality",
+      "weather": "clear",
+      "beforeMs": 153.09999999997672,
+      "afterMs": 183,
+      "changePercent": 19.529719137836587,
+      "beforeCpuMs": 0.10000000009313226,
+      "afterCpuMs": 0.19999999995343387,
+      "beforeCalls": 170,
+      "afterCalls": 170,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    },
+    {
+      "profile": "quality",
+      "weather": "overcast",
+      "beforeMs": 134.85000000009313,
+      "afterMs": 173,
+      "changePercent": 28.290693362907327,
+      "beforeCpuMs": 0.09999999986030161,
+      "afterCpuMs": 0.19999999995343387,
+      "beforeCalls": 170,
+      "afterCalls": 170,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    },
+    {
+      "profile": "quality",
+      "weather": "rain",
+      "beforeMs": 144.44999999983702,
+      "afterMs": 187.19999999995343,
+      "changePercent": 29.595015576437977,
+      "beforeCpuMs": 0.05000000004656613,
+      "afterCpuMs": 0.15000000002328306,
+      "beforeCalls": 170,
+      "afterCalls": 171,
+      "beforePrograms": 18,
+      "afterPrograms": 19,
+      "textures": 7,
+      "geometries": 307
+    }
+  ],
+  "renderer": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+  },
+  "robustness": {
+    "cycles": 36,
+    "geometries": [
+      307
+    ],
+    "programs": [
+      19
+    ],
+    "disposed": {
+      "geometries": 304,
+      "textures": 7,
+      "panels": 0
+    }
+  },
+  "method": "Medians of 8 warmed synchronous render + gl.finish + RGBA readback samples per profile/weather; same physical camera and viewport. CPU update measured separately. Sequential before/after runs. Software SwiftShader only; no physical GPU or realtime FPS claim; readback is intrusive and shared-host variation remains."
+}
