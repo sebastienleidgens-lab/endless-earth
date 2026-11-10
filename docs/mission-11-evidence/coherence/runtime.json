@@ -1,0 +1,698 @@
+{
+  "rain": {
+    "first": [
+      0,
+      0,
+      0
+    ],
+    "sameTime": [
+      0,
+      0,
+      0
+    ],
+    "next": [
+      0.2700000000009823,
+      -2.500000000009095,
+      -0.12000000000043658
+    ],
+    "count": 900,
+    "reset": [
+      0,
+      0,
+      0
+    ],
+    "visible": false,
+    "children": 0
+  },
+  "bird": {
+    "played": true,
+    "before": [
+      {
+        "asset": "bird-blackbird-fs-811988-1",
+        "recording": "fs-811988",
+        "position": {
+          "x": 0,
+          "y": 3,
+          "z": 0
+        },
+        "diffuse": false,
+        "gain": 0.4000000059604645,
+        "retirementGain": 1,
+        "masterGain": 0.2119632065296173,
+        "distance": 0,
+        "refDistance": 4,
+        "transition": "playing"
+      }
+    ],
+    "retiring": true,
+    "remaining": 0,
+    "method": "Explicitly injected existing real bird sample to exercise retirement of an already-playing call. Not evidence of a naturally occurring bird event."
+  },
+  "profiles": [
+    {
+      "profile": "eco",
+      "firstVoice": 0.09599999999999997,
+      "firstGain": 0.6079999999999999,
+      "on": {
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.20409998297691345,
+            "targetGain": 0.24,
+            "masterGain": 0.3825725018978119,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 23.919248084641993
+          },
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.18932542204856873,
+            "targetGain": 0.2226266244230793,
+            "masterGain": 0.3825725018978119,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 20.094523543596267
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.3825725018978119,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          },
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.3825725018978119,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 14,
+        "voices": 2,
+        "peakVoices": 2,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "eco",
+        "cacheBytes": 13440540,
+        "peakBytes": 13440540,
+        "cached": 3,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 3,
+        "decodes": 3,
+        "failures": {}
+      },
+      "off": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.22038857638835907,
+            "targetGain": 0.2226266244230793,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 19.23052354359627
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.021377265453338623,
+            "targetGain": 0.02291760057869202,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 26
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "transition": "scheduled"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 14,
+        "voices": 2,
+        "peakVoices": 2,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "eco",
+        "cacheBytes": 17280540,
+        "peakBytes": 17280540,
+        "cached": 4,
+        "pending": 1,
+        "activeLoads": 1,
+        "loads": 5,
+        "decodes": 4,
+        "failures": {}
+      },
+      "disposed": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [],
+        "nodes": 0,
+        "voices": 0,
+        "peakVoices": 2,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "eco",
+        "cacheBytes": 0,
+        "peakBytes": 17280540,
+        "cached": 0,
+        "pending": 0,
+        "activeLoads": 1,
+        "loads": 5,
+        "decodes": 4,
+        "failures": {}
+      }
+    },
+    {
+      "profile": "balanced",
+      "firstVoice": 0.09600000000000009,
+      "firstGain": 0.6080000000000001,
+      "on": {
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.20409998297691345,
+            "targetGain": 0.24,
+            "masterGain": 0.3825725018978119,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 23.919248084641993
+          },
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.18932542204856873,
+            "targetGain": 0.2226266244230793,
+            "masterGain": 0.3825725018978119,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 20.094523543596267
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.019489508122205734,
+            "targetGain": 0.02291760057869202,
+            "masterGain": 0.3825725018978119,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 25.584
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.3825725018978119,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          },
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.3825725018978119,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.3825725018978119,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 20,
+        "voices": 3,
+        "peakVoices": 3,
+        "hrtf": 0,
+        "beds": 3,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 21120540,
+        "peakBytes": 21120540,
+        "cached": 5,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 5,
+        "decodes": 5,
+        "failures": {}
+      },
+      "off": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.22015316784381866,
+            "targetGain": 0.2226266244230793,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 19.262523543596267
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.022662991657853127,
+            "targetGain": 0.02291760057869202,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 24.752
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 14,
+        "voices": 2,
+        "peakVoices": 3,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 21120540,
+        "peakBytes": 21120540,
+        "cached": 5,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 5,
+        "decodes": 5,
+        "failures": {}
+      },
+      "disposed": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [],
+        "nodes": 0,
+        "voices": 0,
+        "peakVoices": 3,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 0,
+        "peakBytes": 21120540,
+        "cached": 0,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 5,
+        "decodes": 5,
+        "failures": {}
+      }
+    },
+    {
+      "profile": "quality",
+      "firstVoice": 0.12799999999999967,
+      "firstGain": 0.6080000000000001,
+      "on": {
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.20409998297691345,
+            "targetGain": 0.24,
+            "masterGain": 0.3825725018978119,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 23.951248084641996
+          },
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.18932542204856873,
+            "targetGain": 0.2226266244230793,
+            "masterGain": 0.3825725018978119,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 20.126523543596267
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.019489508122205734,
+            "targetGain": 0.02291760057869202,
+            "masterGain": 0.3825725018978119,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 25.616
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.3825725018978119,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          },
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.3825725018978119,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.6981669664382935,
+            "retirementGain": 1,
+            "masterGain": 0.3825725018978119,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 20,
+        "voices": 3,
+        "peakVoices": 3,
+        "hrtf": 0,
+        "beds": 3,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "quality",
+        "cacheBytes": 21120540,
+        "peakBytes": 21120540,
+        "cached": 5,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 5,
+        "decodes": 5,
+        "failures": {}
+      },
+      "off": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.22038857638835907,
+            "targetGain": 0.2226266244230793,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 19.262523543596267
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.022687219083309174,
+            "targetGain": 0.02291760057869202,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 24.752
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 1.00 × shared wind 0.53, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.09 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 14,
+        "voices": 2,
+        "peakVoices": 3,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "quality",
+        "cacheBytes": 21120540,
+        "peakBytes": 21120540,
+        "cached": 5,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 5,
+        "decodes": 5,
+        "failures": {}
+      },
+      "disposed": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [],
+        "nodes": 0,
+        "voices": 0,
+        "peakVoices": 3,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "dropped": 0,
+        "steps": 0,
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "quality",
+        "cacheBytes": 0,
+        "peakBytes": 21120540,
+        "cached": 0,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 5,
+        "decodes": 5,
+        "failures": {}
+      }
+    }
+  ],
+  "thunder": {
+    "started": true,
+    "remaining": 0,
+    "method": "Storm source preloaded while ordinary rain is cold; existing source must retire and cannot be restarted from cache after changing to ordinary rain."
+  },
+  "errors": [],
+  "method": "Component inspection with actual realtime AudioContext and loaded game. Main rendering/logic held; explicit conditions are technical fixtures. Three fresh renderer caches exercise manual rain admission and retirement. Separate AV capture keeps rendering and the native game loop active."
+}

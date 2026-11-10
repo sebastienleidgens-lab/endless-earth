@@ -34,7 +34,10 @@
     "test:atmosphere": "node --test tests/atmosphere.test.mjs",
     "test:atmosphere:browser": "node scripts/browser-atmosphere-controls.mjs",
     "audio:prepare:10-1": "python scripts/prepare-audio-naturalist.py",
-    "audio:evidence": "node scripts/browser-audio-immersive.mjs before && node scripts/browser-audio-immersive.mjs after"
+    "audio:evidence": "node scripts/browser-audio-immersive.mjs before && node scripts/browser-audio-immersive.mjs after",
+    "test:coherence": "node --test tests/coherence.test.mjs",
+    "test:coherence:browser": "node scripts/browser-coherence.mjs after && node scripts/browser-coherence-runtime.mjs && node scripts/browser-coherence-camera.mjs && node scripts/browser-coherence-gallery.mjs",
+    "coherence:evidence": "node scripts/browser-coherence.mjs before && node scripts/browser-coherence.mjs after && node scripts/browser-coherence.mjs record"
   },
   "dependencies": {
     "three": "^0.180.0"

@@ -1,3 +1,4 @@
+import {seasonAt} from '../nature/climate.mjs';
 /** Acoustic context v1. Unknown values are null, never guessed observations.
  * geo: WGS84 degrees; altitudeM: absolute elevation or null (not render y).
  * position/listener/sources: metres in the SAME current render frame, +Y up,
@@ -19,8 +20,7 @@ export function temporalContext(worldTimeMs,geo,timeZone=null){
  const d=new Date(worldTimeMs);let localHour=null,timeBasis='unknown';
  if(timeZone){try{const p=new Intl.DateTimeFormat('en-GB',{timeZone,hourCycle:'h23',hour:'2-digit',minute:'2-digit'}).formatToParts(d);localHour=Number(p.find(p=>p.type==='hour').value)+Number(p.find(p=>p.type==='minute').value)/60;timeBasis='civil'}catch{/* Invalid zones fall back to explicit solar estimate. */}}
  if(localHour===null&&Number.isFinite(geo?.lon)){localHour=((d.getUTCHours()+d.getUTCMinutes()/60+geo.lon/15)%24+24)%24;timeBasis='mean-solar-estimate'}
- const month=d.getUTCMonth(),north=['winter','winter','spring','spring','spring','summer','summer','summer','autumn','autumn','autumn','winter'][month];
- const season=!Number.isFinite(geo?.lat)?null:geo.lat<0?({winter:'summer',summer:'winter',spring:'autumn',autumn:'spring'})[north]:north;
+ const season=seasonAt(d.getUTCMonth()+1,geo?.lat);
  return {localHour,timeBasis,season};
 }
 export function acousticContext(input={}){
@@ -54,4 +54,12 @@ export function habitatInfluences(p,habitatAt){
  const out={};for(const [dx,dz,w] of [[0,0,.4],[-32,0,.15],[32,0,.15],[0,-32,.15],[0,32,.15]]){
  const h=habitatAt?.(p.x+dx,p.z+dz)??'unknown';for(const [k,v] of Object.entries(HABITAT_INFLUENCES[h]??{}))out[k]=(out[k]??0)+v*w;
  }return out;
+}
+
+/** Cheap frame synchronization. Spatial evidence retains its bounded cadence. */
+export function syncEnvironment(context,environment){
+ if(!context||!environment?.transition)return;
+ context.worldTimeMs=environment.worldTimeMs;context.solarAltitude=environment.solar.altitude;
+ context.localHour=environment.localHour;context.timeBasis='civil';context.season=environment.season;
+ context.weather=environment.acousticWeather;context.environment=environment.transition;
 }

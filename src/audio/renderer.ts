@@ -1,5 +1,5 @@
 // @ts-ignore Shared pure data and deterministic helpers, tested directly in Node.
-import {AUDIO_BUDGETS,layerMix,MATERIALS} from './profiles.mjs';
+import {AUDIO_BUDGETS,layerMix,MATERIALS,diurnalBirdsAllowed} from './profiles.mjs';
 // @ts-ignore Pure clock/memory module.
 import {seededRandom} from './director.mjs';
 // @ts-ignore Pure visibility guard for distant road recordings.
@@ -7,7 +7,7 @@ import {roadSourceHidden} from './geography.mjs';
 import type {Vec3,SoundContext} from './types';
 import {AudioResources,ASSETS} from './resources';
 type Voice={source:AudioBufferSourceNode;nodes:AudioNode[];gain:GainNode;fadeGain:GainNode;asset:string;priority:number;panner:PannerNode|null;end:number;position?:Vec3;velocity?:Vec3;started:number;retiring:boolean;bedId?:string;reason?:string;refDistance?:number;maxDistance?:number;roadEvent?:boolean};
-type Bed={id:string;asset:string;assets:string[];previous:string|null;reason:string;gain:GainNode;filter:BiquadFilterNode;next:number;weight:number;priority:number;retiring:boolean;pan:StereoPannerNode|null};
+type Bed={id:string;asset:string;assets:string[];previous:string|null;reason:string;gain:GainNode;filter:BiquadFilterNode;next:number;weight:number;priority:number;retiring:boolean;pan:StereoPannerNode|null;entryFade:number};
 /** Same graph in realtime and OfflineAudioContext. Native audio-clock envelopes
  * run independently of Three.js frames. Diffuse beds never get HRTF nodes. */
 export class AcousticRenderer{
@@ -28,7 +28,7 @@ export class AcousticRenderer{
  private retire(v:Voice,duration=.25){if(v.retiring)return;v.retiring=true;const t=this.context.currentTime;v.fadeGain.gain.cancelScheduledValues(t);v.fadeGain.gain.setTargetAtTime(0,t,duration/4);v.source.stop(t+duration);v.end=Math.min(v.end,t+duration)}
  private release(v:Voice){if(!this.voices.delete(v))return;v.source.disconnect();for(const n of v.nodes)n.disconnect();v.source.onended=null}
  private admit(priority:number){if(this.voices.size<this.budget.voices)return true;const low=[...this.voices].filter(v=>!v.retiring&&v.priority<priority).sort((a,b)=>a.priority-b.priority)[0];if(low)this.retire(low,.08);this.dropped++;return false}
- private play(asset:string,buffer:AudioBuffer,options:{gain:number;duration?:number;offset?:number;rate?:number;priority:number;position?:Vec3;velocity?:Vec3;filter?:number;bus?:AudioNode;fade?:number;refDistance?:number;maxDistance?:number;reason?:string}){
+ private play(asset:string,buffer:AudioBuffer,options:{gain:number;duration?:number;offset?:number;rate?:number;priority:number;position?:Vec3;velocity?:Vec3;filter?:number;bus?:AudioNode;fade?:number;entryFade?:number;refDistance?:number;maxDistance?:number;reason?:string}){
  if(this.closed||!this.admit(options.priority))return null;
  const c=this.context,duration=Math.min(options.duration??buffer.duration,(buffer.duration-(options.offset??0))/(options.rate??1));if(duration<=.01)return null;
  if(options.position&&[...this.voices].filter(v=>v.panner).length>=this.budget.hrtf){this.dropped++;return null;}
@@ -37,14 +37,49 @@ export class AcousticRenderer{
  source.connect(filter).connect(gain).connect(fadeGain);if(panner){panner.panningModel='HRTF';panner.distanceModel='inverse';panner.refDistance=options.refDistance??4;panner.maxDistance=options.maxDistance??110;panner.rolloffFactor=1.2;panner.positionX.value=options.position!.x;panner.positionY.value=options.position!.y;panner.positionZ.value=options.position!.z;fadeGain.connect(panner).connect(options.bus??this.master)}else fadeGain.connect(options.bus??this.master);
  const fade=Math.min(options.fade??.025,duration*.35),curve=new Float32Array(64);for(let i=0;i<64;i++)curve[i]=Math.sin(i/63*Math.PI/2)*options.gain;
  // Schedule after graph construction: currentTime may advance during HRTF setup.
- gain.gain.value=0;const t=c.currentTime+.05;gain.gain.setValueCurveAtTime(curve,t,fade);gain.gain.setValueCurveAtTime(Float32Array.from(curve).reverse(),t+duration-fade,fade);
+ gain.gain.value=0;const t=c.currentTime+.05;gain.gain.setValueCurveAtTime(curve,t,Math.min(options.entryFade??fade,fade));gain.gain.setValueCurveAtTime(Float32Array.from(curve).reverse(),t+duration-fade,fade);
  const voice:Voice={source,nodes:[filter,gain,fadeGain,...(panner?[panner]:[])],gain,fadeGain,asset,priority:options.priority,panner,end:t+duration,position:options.position?{...options.position}:undefined,velocity:options.velocity,started:t,retiring:false,reason:options.reason,refDistance:options.refDistance??4,maxDistance:options.maxDistance??110};this.voices.add(voice);this.peakVoices=Math.max(this.peakVoices,this.voices.size);source.onended=()=>this.release(voice);source.start(t,options.offset??0);source.stop(t+duration);return voice;
  }
- updateContext(c:SoundContext){if(this.closed)return;this.lastContext=c;const t=this.context.currentTime,mix=layerMix(c).slice(0,this.budget.beds),selected=new Set(mix.map((l:any)=>l.id));
- for(const bed of this.beds.values())if(!selected.has(bed.id)&&!bed.retiring){bed.retiring=true;bed.weight=0;bed.gain.gain.setTargetAtTime(0,t,1.2);bed.next=t+6;for(const v of this.voices)if(v.bedId===bed.id)this.retire(v,4)}
- for(const layer of mix){let b=this.beds.get(layer.id);if(!b){const gain=this.context.createGain(),filter=this.context.createBiquadFilter();gain.gain.value=0;filter.type='lowpass';filter.Q.value=.5;filter.frequency.value=layer.filter;const pan=layer.diffuse?null:this.context.createStereoPanner();gain.connect(filter);if(pan)filter.connect(pan).connect(this.master);else filter.connect(this.master);b={pan,id:layer.id,asset:layer.asset,assets:layer.assets,previous:null,reason:layer.reason,gain,filter,next:t,weight:0,priority:layer.priority,retiring:false};this.beds.set(layer.id,b)}if(b.retiring)b.next=t;b.retiring=false;b.assets=layer.assets;b.reason=layer.reason;b.weight=layer.weight;b.gain.gain.setTargetAtTime(layer.weight,t,1.2);b.filter.frequency.setTargetAtTime(layer.filter*(1-.3*(c.weather?.rain??0)),t,1);if(b.pan&&c.water){const dx=c.water.point.x-this.lastListener.x,dz=c.water.point.z-this.lastListener.z,f=this.lastForward;b.pan.pan.setTargetAtTime(.7*(dx*-f.z+dz*f.x)/(Math.hypot(dx,dz)*Math.hypot(f.x,f.z)||1),t,.3)}void this.resources.request(layer.asset)}
-
- this.pump();
+ environmentGuard(c:SoundContext){
+  if(!diurnalBirdsAllowed(c))for(const v of this.voices)if(v.asset.startsWith('bird-'))this.retire(v,.45);
+ }
+ updateContext(c:SoundContext){
+  if(this.closed)return;
+  this.lastContext=c;this.environmentGuard(c);
+  const t=this.context.currentTime,manual=c.environment?.manual===true;
+  const mix=layerMix(c).slice(0,this.budget.beds),selected=new Set(mix.map((l:any)=>l.id));
+  for(const bed of this.beds.values())if(!selected.has(bed.id)&&!bed.retiring){
+   bed.retiring=true;bed.weight=0;bed.gain.gain.setTargetAtTime(0,t,manual?.16:1.2);bed.next=t+6;
+   for(const v of this.voices)if(v.bedId===bed.id)this.retire(v,manual?.65:4);
+  }
+  for(const layer of mix){
+   let b=this.beds.get(layer.id);
+   if(!b){
+    const gain=this.context.createGain(),filter=this.context.createBiquadFilter();
+    gain.gain.value=0;filter.type='lowpass';filter.Q.value=.5;filter.frequency.value=layer.filter;
+    const pan=layer.diffuse?null:this.context.createStereoPanner();gain.connect(filter);
+    if(pan)filter.connect(pan).connect(this.master);else filter.connect(this.master);
+    b={pan,id:layer.id,asset:layer.asset,assets:layer.assets,previous:null,reason:layer.reason,gain,filter,next:t,weight:0,priority:layer.priority,retiring:false,entryFade:manual?.35:4};
+    this.beds.set(layer.id,b);
+   }
+   if(b.retiring){b.next=t;b.previous=null;b.entryFade=manual?.35:4}
+   b.retiring=false;b.assets=layer.assets;
+   if(!b.assets.includes(b.asset))b.asset=layer.asset;
+   // An old storm recording must leave even if the ordinary rain bed survives.
+   if(b.previous&&!b.assets.includes(b.previous)){
+    for(const v of this.voices)if(v.bedId===b.id&&!b.assets.includes(v.asset))this.retire(v,.65);
+    b.previous=null;b.next=t;b.entryFade=manual?.35:4;
+   }
+   b.reason=layer.reason;b.weight=layer.weight;
+   b.gain.gain.setTargetAtTime(layer.weight,t,manual?.32:['wind','foliage'].includes(layer.id)?.45:1.2);
+   b.filter.frequency.setTargetAtTime(layer.filter*(1-.3*(c.weather?.rain??0)),t,manual?.32:1);
+   if(b.pan&&c.water){
+    const dx=c.water.point.x-this.lastListener.x,dz=c.water.point.z-this.lastListener.z,f=this.lastForward;
+    b.pan.pan.setTargetAtTime(.7*(dx*-f.z+dz*f.x)/(Math.hypot(dx,dz)*Math.hypot(f.x,f.z)||1),t,.3);
+   }
+   void this.resources.request(layer.asset);
+  }
+  this.pump();
  }
  pump(){if(this.closed)return;const t=this.context.currentTime;
  // Offline rendering/tests can advance clocks without onended delivery yet.
@@ -54,7 +89,7 @@ export class AcousticRenderer{
  if(b.retiring){if(!active){b.gain.disconnect();b.filter.disconnect();b.pan?.disconnect();this.beds.delete(id)}continue}
  if(t<b.next)continue;const available=b.assets.filter(id=>this.resources.cache.has(id));if(available.length){const options=available.filter(id=>id!==b.previous);b.asset=(options.length?options:available)[Math.floor(this.random()*(options.length||available.length))]}const buffer=this.resources.get(b.asset);if(!buffer){const candidate=this.resources.failures.has(b.asset)?b.assets.find(id=>!this.resources.failures.has(id)):b.asset;if(candidate){b.asset=candidate;void this.resources.request(candidate)}continue}
  const duration=Math.min(buffer.duration,24+this.random()*12),fade=Math.min(4,duration*.2),offset=this.random()*Math.max(0,buffer.duration-duration-.1);
- const v=this.play(b.asset,buffer,{gain:.7,duration,offset,priority:b.priority,bus:b.gain,fade,reason:b.reason});if(v){v.bedId=b.id;b.previous=b.asset;const next=b.assets.find(id=>id!==b.asset);if(next)void this.resources.request(next);b.next=t+duration-fade}else b.next=t+.5;
+ const v=this.play(b.asset,buffer,{gain:.7,duration,offset,priority:b.priority,bus:b.gain,fade,entryFade:b.previous===null?b.entryFade:fade,reason:b.reason});if(v){v.bedId=b.id;b.previous=b.asset;const next=b.assets.find(id=>id!==b.asset);if(next)void this.resources.request(next);b.next=t+duration-fade}else b.next=t+.5;
  }
  for(const v of this.voices)if(v.panner&&v.position&&v.velocity){const age=t-v.started;v.panner.positionX.setTargetAtTime(v.position.x+v.velocity.x*age,t,.15);v.panner.positionY.setTargetAtTime(v.position.y+v.velocity.y*age,t,.15);v.panner.positionZ.setTargetAtTime(v.position.z+v.velocity.z*age,t,.15)}
  }

@@ -1,0 +1,29 @@
+{
+  "baseline": "a990a12b5325084dcbd87a94e4278f154f4f010f",
+  "captureSource": "C working tree on baseline B, before third commit; source contents below",
+  "files": {
+    "src/audio/context.mjs": "9cb3776b465cdd6f7581396dcafed31d0d47953c1231704a0c2dae6ff5d0c116",
+    "src/audio/profiles.mjs": "cbbcdaefced26f3e824e8c36ba93020b30a8e0b62d391db82f0ade8b1f42497b",
+    "src/audio/renderer.ts": "f177da962ce3d262b3a2eb86d9013a5779a988925404c57c42c27c647f05f427",
+    "src/audio/types.ts": "2af4ede3fcb8ff100c695010ae050bceea868d7cf7312097b8718ad5ba02924a",
+    "src/earthlife/micro-events.ts": "b65468a78e20ec02bc7742ea4282381ba5e2af4fadc402a6aa1d0af08dce05d2",
+    "src/earthlife/state.mjs": "a8395febb4e409d24daac94640dd9ba20dee935cc8761b441b298120d5c465d3",
+    "src/earthlife/wind.mjs": "6e82d91e4ef10d4d2fbcf1cd8a448c0b6d6c79f9478b01550ad8eb9688719715",
+    "src/living/atmosphere.ts": "e370e3771254c9802a6b5c109754ecb84b86e75c2608991a0c18c9c3ef68a021",
+    "src/living/sound.ts": "cba6cc7028089eebf8673a385b0d89fff0330c54d20f9ce9288e2486753d2da7",
+    "src/main.ts": "f74c15b90031b527bcb6cf1f3a42b734822507db279e218b091376f0fecd25ba",
+    "src/nature/atmosphere.ts": "c23d3370f0ab5c57cf61d27084fe190cd51e2508b2cc6ed6954b85a25d33b42b",
+    "src/nature/climate.mjs": "8aff246b615a27844aa9c64a05e61e864979526b9050ccbe1be6881886b5f0c7",
+    "src/nature/precipitation.ts": "45b7327688ef7c0a374519f2a8d31fc821a5d4d291e2d072b3ff8f7b70f6fc4a",
+    "src/nature/sky.ts": "94e21b0933a69ae68953924b1959e576a7b126a8787c40b8ff2ed125cfe38de7"
+  },
+  "preservedComparedWithB": {
+    "public": true,
+    "docs/mission-11-evidence/audio": true,
+    "src/world": true,
+    "src/controls": true,
+    "src/living/geography.ts": true,
+    "src/living/walk.mjs": true
+  },
+  "method": "Capture hook inspects objects and copies the canvas after rendering, plus native post-limiter audio. It does not replace clocks, gains, render submission or event scheduling. Component runtime tests explicitly use fixtures separately."
+}

@@ -1,8 +1,68 @@
 # Mission 11 — Le monde prend vie
 
-## État courant — Jalon B soumis à l’évaluation acoustique
+## État courant — Jalon C soumis à votre validation
 
-Le Jalon B est implémenté sur la même branche `mission/11-monde-vivant-immersif`, à la suite de votre « Continue ». Ce message autorise cette étape ; aucune appréciation artistique humaine détaillée n’est inventée. **Arrêt au Jalon B : le Jalon C n’a pas commencé.** Aucune fusion ou mise en production, aucun changement Living Paintings / LP-01 ou workflow de production.
+Votre **« Go jalon c »** autorise le Jalon C à la suite des commits A `dbafd13` et B `a990a12`. Cette étape corrige et démontre la cohérence perceptive des cinq ambiances et du retour à l’heure réelle. **Le Jalon D reste en attente de votre validation.** La branche et la PR #20 restent en brouillon, sans fusion ou déploiement public.
+
+Ouvrir la **[galerie audiovisuelle du Jalon C](mission-11-evidence/coherence/index.html)** sur le serveur de développement. Elle propose une capture continue avec chapitres, les six paires d’images avant/après et les traces de synchronisation. Pour la lancer : `npm run dev -- --port 5173`, puis `http://localhost:5173/endless-earth/docs/mission-11-evidence/coherence/index.html`. Cette galerie locale ne nécessite pas WebGL ; la capture du jeu provient d’un Chromium distinct avec SwiftShader. Elle complète les galeries A et B conservées ci-dessous.
+
+## C — Corrections de cohérence
+
+L’audit trouvait quatre décalages concrets : les requêtes acoustiques et la pluie utilisaient la caméra de l’image précédente ; l’audio conservait une copie de l’heure et du vent jusqu’à la prochaine requête géographique ; les gouttes recalculaient leur position en multipliant la nouvelle vitesse par tout le temps écoulé ; les fondus de quatre secondes pouvaient prolonger un ancien lit météorologique.
+
+- **Un état partagé.** `climate` et `acousticClimate` désignent maintenant le même objet mutable. L’heure UTC, l’heure civile Europe/Paris, la saison, la hauteur solaire et le vent local sont synchronisés à chaque image. Les calculs de proximité, perchoirs et décisions de mix restent bornés à 2 Hz en Éco/Équilibré et 4 Hz en Qualité, avec une actualisation supplémentaire par commande. L’égalité des données n’est pas une promesse de synchronisation instantanée des échantillons audio.
+- **Un vent local commun.** Le champ existant fournit les rafales aux gouttes, au feuillage proche et au mix. Éco reçoit le même vecteur local que l’écouteur ; les autres profils gardent leur champ spatial aux arbres. L’advection des nuages intègre ce porteur local, avec une faible dérive résiduelle de la couche haute. Le bruissement conserve sa loi de gain B, avec un lissage de .45 s ; un enregistrement n’est pas une simulation du son de chaque feuille. Le vent est une force simulée normalisée, sans revendication de mesure en m/s.
+- **Pluie continue.** Le déplacement des gouttes est intégré. Changer le vent sans avancer le temps ne déplace plus toute la pluie. Changer de caméra place ciel, gouttes et écouteur sur la position courante de la même image. Nombre de gouttes conservé : 260 / 520 / 900.
+- **Transitions manuelles.** Le bus audio répond avec une constante de .32 s pendant la transition ; l’entrée initiale d’un nouveau lit utilise .35 s et le retrait d’un ancien lit .65 s. Les fenêtres de captations continuent à se croiser sur quatre secondes en régime établi. Les charges météo sont demandées avant le préchargement d’oiseaux, sans augmenter cache ou concurrence. Le volume maître, les pas et les gains stationnaires de rivière sont conservés.
+- **Animaux et nuit.** Les chants diurnes déjà en lecture s’effacent en .45 s lorsque le soleil passe sous l’horizon, que la pluie dépasse .2 ou que le vent local dépasse .8. La même condition ferme la programmation des nouveaux chants. La nuit claire ne reçoit aucun chœur nocturne inventé. Les étoiles utilisent un uniforme explicite et disparaissent sous la couverture de pluie/orage.
+- **Tonnerre admissible seulement en orage.** La source existante `fs-501243` annonce explicitement du tonnerre très lointain. Elle est maintenant exclue de la pluie ordinaire (force ≤ .8) et ses voix se retirent en .65 s si elles deviennent inadmissibles. La source `fs-231687` couvre les averses ordinaires. Aucune nouvelle ressource ou générateur de foudre n’est ajouté ; un éventuel tonnerre enregistré n’est pas accompagné d’un éclair synchronisé.
+
+## C — Vérifications et démonstrations
+
+Les commandes utilisent les véritables sélecteurs du jeu. La caméra reste à la station forestière cartographiée du Jalon B (`214.42, 530.66` dans le repère local) pour comparer les changements sans déplacer le joueur. La date de référence du matin jusqu’au retour au calme est le 10 mai 2026 ; la nuit franchit minuit. Le dernier chapitre retire la référence de diagnostic et revient à l’heure UTC actuelle avec affichage Europe/Paris.
+
+| Situation | Éléments vérifiés ensemble |
+| --- | --- |
+| Matin ensoleillé | Soleil bas, lumière douce, ciel clair, vent léger, perchoirs et activité diurne plausibles ; chants laissés au directeur naturel |
+| Après-midi venteux | Couverture accrue, nuages advectés, feuillage et bruissements alimentés par le même champ |
+| Soir pluvieux | Baisse de lumière, couverture et brume, gouttes et lit de pluie réel |
+| Nuit claire | Hauteur solaire négative, lumière réduite, étoiles admissibles et absence de chants diurnes actifs |
+| Nuit orageuse | Étoiles masquées, nuages sombres, pluie, vent et rafales ; captation avec tonnerre lointain admissible |
+| Retour au temps réel | Date UTC proche de l’horloge courante, heure locale Europe/Paris identique dans le rendu et l’audio |
+
+La séquence couvre **soleil → pluie → soleil**, **jour → nuit → jour** et **vent léger → vent renforcé → vent léger**, avec un passage supplémentaire par l’orage. Le profil « Couvert » fournit l’après-midi venteux sans ajouter de réglage isolé du vent. Les six météos et cinq moments A restent disponibles.
+
+Les résultats chiffrés sont dans **[summary.json](mission-11-evidence/coherence/summary.json)**. Dans les comparaisons courtes, l’écart maximal entre date simulée graphique et contexte audio passe de **12 575 789 ms à 0 ms** sur les observations collectées. Le grand nombre avant C correspond à une date simulée parcourant des heures pendant une transition de 2.4 s ; il ne signifie pas un son resté en retard pendant des heures réelles. L’écart maximal de force de vent passe de **.1703 à 0**. Les objets météo restent identiques par référence après C. Les décisions de mix gardent leur cadence et leurs fondus.
+
+La capture continue dure **234.3 s**, avec **513 observations**, **1 178 rendus pendant la séquence**, un pic de **cinq voix** et **24 937 820 octets** décodés (sous 24 MiB). Deux chants sont admis naturellement, aucun chant diurne ne reste actif dans les nuits stabilisées. Le retour à l’heure courante présente au plus **189 ms** d’écart à l’horloge lors des observations stabilisées. La pluie ordinaire devient visible et sa voix joue au premier relevé à **.551 s** ; après le retour au sec, ses voix sont absentes au relevé à **2.754 s**. Ces délais sont bornés par l’échantillonnage, sans prétendre à une mesure audio au sample près. Les [niveaux décodés](mission-11-evidence/coherence/levels.json) ne montrent aucun écrêtage (pic .0492), sans normalisation.
+
+Les tests techniques séparés constatent :
+
+- Position des gouttes inchangée quand la vitesse change au même instant ; pas de saut proportionnel à 10 000 s de temps passé. Après .1 s, déplacement attendu de `.27, −2.5, −.12` dans le cas de contrôle.
+- Une voix d’oiseau explicitement injectée pour tester le retrait est absente après .6 s de nuit. Ce test n’est pas présenté comme un événement naturel.
+- Sur trois caches de rendu audio neufs, première voix de pluie après **.096 à .128 s**, et gain du bus supérieur à .20 après **.608 s**. Ce délai mesure l’admission d’une condition déjà fournie au renderer, sans coût du sélecteur ni de la transition météo.
+- Retrait des voix de pluie vérifié après .85 s, et retrait d’une captation de tonnerre même lorsque le lit de pluie ordinaire reste actif et que son fichier est encore froid.
+- Budgets de voix/HRTF et cache de 24 MiB conservés ; destruction des renderers de contrôle sans nœud ou cache restant.
+
+[Contrôles techniques](mission-11-evidence/coherence/runtime.json) · [Caméras en mouvement](mission-11-evidence/coherence/camera.json) · [Trace avant](mission-11-evidence/coherence/before.json) · [Trace après](mission-11-evidence/coherence/after.json) · [Capture simultanée et trace](mission-11-evidence/coherence/realtime.json) · [Rafale et réponse sonore](mission-11-evidence/coherence/gust-coherence.svg).
+
+## C — Reproductibilité, préservation et limites
+
+**Validation exécutée :** compilation de production et **161 tests Node réussis** ; comparaisons avant/après, capture simultanée, contrôles des trois profils audio et caméras en mouvement ; smoke 3D (chargement, cycle des vues, déplacement, hauteur d’œil, arrêt sans dérive, audio, profil et viewport mobile) réussi. Les résultats de vérification figurent dans [validation.json](mission-11-evidence/coherence/validation.json).
+
+Les scripts `browser-coherence.mjs before|after|record`, `browser-coherence-runtime.mjs`, `browser-coherence-camera.mjs`, `browser-coherence-gallery.mjs` et `report-coherence.py` produisent les pièces de revue. Le « before » utilise le worktree détaché du commit B `a990a12` sur le port 5178 ; le résultat courant utilise le port 5173. Les images de revue affichent honnêtement le badge de base B avec modifications locales. Les empreintes des sources capturées figurent dans [source.json](mission-11-evidence/coherence/source.json) et correspondent aux fichiers du troisième commit C.
+
+Les 93 ressources audio / 40 sources et leurs crédits, les données géographiques, navigation, collisions, profils de budget et galeries A/B restent conservés. Aucun changement Living Paintings / LP-01 ou workflow de production. La réorganisation de la boucle principale intervient après le calcul de caméra, sans modifier les règles de déplacement.
+
+La capture audiovisuelle copie le canevas **après chaque vrai rendu** et le flux **du véritable AudioContext après limiteur** vers le même MediaRecorder. Elle garde le rendu et la logique actifs, sans événement forcé, horloge d’animation remplacée ou normalisation sonore. Le titre incrusté indique le chapitre et l’heure. Le conteneur WebM est remultiplexé sans réencodage pour permettre la navigation par chapitres. Le protocole est distinct des relectures OfflineAudioContext et de la capture B qui suspendait la soumission WebGL. Les courtes comparaisons et la vidéo n’utilisent pas une même graine acoustique : les oiseaux restent occasionnels et non déterminés pour la démonstration.
+
+Les égalités de temps et vent concernent l’état partagé observé, les délais sont échantillonnés à environ .45–.8 s plus le coût des commandes. L’audio garde un lissage volontaire. L’impression d’ensemble demande votre écoute et votre appréciation visuelle ; les assertions ne valent pas validation artistique. Le ciel reste une interprétation 2.5D, sans lune ni éclairage architectural inventé. Le tonnerre éventuel vient d’un fichier enregistré, sans garantie d’événement dans cet extrait et sans éclair synchronisé. Aucune nouvelle faune nocturne n’est inventée.
+
+Le rendu SwiftShader est logiciel et la cadence de capture réduite ne valide pas Android ou un GPU physique. Le surcoût A de 19.5–34.5 % reste une limite documentée. Le travail d’optimisation, les campagnes prolongées et la robustesse élargie appartiennent au **Jalon D après votre validation de C**.
+
+## Archive — état à la soumission du Jalon B
+
+Le Jalon B est implémenté sur la même branche `mission/11-monde-vivant-immersif`, à la suite de votre « Continue ». Ce message autorise cette étape ; aucune appréciation artistique humaine détaillée n’est inventée. **À cette soumission, arrêt au Jalon B : le Jalon C n’avait pas commencé.** Aucune fusion ou mise en production, aucun changement Living Paintings / LP-01 ou workflow de production.
 
 Le commit A `dbafd13` est conservé. Les données IGN/OSM, le relief, les bâtiments, distances, collisions, déplacements, profils et animations restent conservés. L’évolution de `src/living/geography.ts` construit des vues acoustiques supplémentaires depuis le GeoJSON déjà chargé ; elle ne modifie pas les données ou chemins de navigation.
 

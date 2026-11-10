@@ -29,3 +29,9 @@ export function momentDate(moment,reference,site){
 // Generic local passerine silhouette: a regional interpretation, not a sighting.
 export const BIRD_SPECIES=Object.freeze({id:'small-passerine',perchSeconds:9,flightSeconds:20,windowSeconds:480});
 export function birdState(seconds,id){const clock=seconds+id*73,slot=Math.floor(clock/BIRD_SPECIES.windowSeconds),phase=clock-slot*BIRD_SPECIES.windowSeconds,v=Math.sin(slot*71.3+id*17.1)*43758.5453,start=(v-Math.floor(v))*260,age=phase-start;return {visible:age>=0&&age<29,perched:age>=0&&age<9,progress:Math.max(0,Math.min(1,(age-9)/20))};}
+
+// Civil seasons are a broad regional acoustic interpretation, not phenology.
+export function seasonAt(month,latitude){
+ const north=['winter','winter','spring','spring','spring','summer','summer','summer','autumn','autumn','autumn','winter'][month-1];
+ return !Number.isFinite(latitude)?null:latitude<0?({winter:'summer',summer:'winter',spring:'autumn',autumn:'spring'})[north]:north;
+}

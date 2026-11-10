@@ -1,0 +1,137 @@
+{
+  "before": {
+    "observations": 95,
+    "maxClockDifferenceMs": 12575789.0,
+    "maxWindDifference": 0.17027805649195787,
+    "sameEnvironmentAll": false,
+    "sameWeatherReferenceAll": false,
+    "maxVoices": 4,
+    "maxCacheBytes": 23785820,
+    "errors": []
+  },
+  "after": {
+    "observations": 112,
+    "maxClockDifferenceMs": 0,
+    "maxWindDifference": 0.0,
+    "sameEnvironmentAll": true,
+    "sameWeatherReferenceAll": true,
+    "maxVoices": 4,
+    "maxCacheBytes": 24730140,
+    "errors": []
+  },
+  "realtime": {
+    "observations": 513,
+    "maxClockDifferenceMs": 0,
+    "maxWindDifference": 0.0,
+    "sameEnvironmentAll": true,
+    "sameWeatherReferenceAll": true,
+    "maxVoices": 5,
+    "maxCacheBytes": 24937820,
+    "errors": [],
+    "frames": 1178,
+    "audioSeconds": 233.536,
+    "birdsAccepted": 2,
+    "maxRealtimeClockErrorMs": 189
+  },
+  "chapters": [
+    {
+      "name": "matin-ensoleille",
+      "seconds": 0.0,
+      "moment": "morning",
+      "weather": "clear"
+    },
+    {
+      "name": "apres-midi-venteux",
+      "seconds": 65.856,
+      "moment": "afternoon",
+      "weather": "overcast"
+    },
+    {
+      "name": "soir-pluvieux",
+      "seconds": 102.08,
+      "moment": "evening",
+      "weather": "rain"
+    },
+    {
+      "name": "nuit-claire",
+      "seconds": 133.184,
+      "moment": "night",
+      "weather": "clear"
+    },
+    {
+      "name": "nuit-orageuse",
+      "seconds": 159.04,
+      "moment": "night",
+      "weather": "storm"
+    },
+    {
+      "name": "retour-matin-calme",
+      "seconds": 200.224,
+      "moment": "morning",
+      "weather": "clear"
+    },
+    {
+      "name": "temps-reel",
+      "seconds": 221.152,
+      "moment": "real",
+      "weather": "clear"
+    }
+  ],
+  "transitions": [
+    {
+      "name": "apres-midi-venteux",
+      "rainVisibleAtSeconds": null,
+      "rainSourceAtSeconds": null,
+      "noRainSourceAtSeconds": 0.466,
+      "rainSettledAtSeconds": 0.466,
+      "solarAtEnd": 0.9035101608187034,
+      "birdVoicesAtEnd": 0
+    },
+    {
+      "name": "soir-pluvieux",
+      "rainVisibleAtSeconds": 0.551,
+      "rainSourceAtSeconds": 0.551,
+      "noRainSourceAtSeconds": null,
+      "rainSettledAtSeconds": 2.372,
+      "solarAtEnd": 0.05335689087588172,
+      "birdVoicesAtEnd": 0
+    },
+    {
+      "name": "nuit-claire",
+      "rainVisibleAtSeconds": 0.465,
+      "rainSourceAtSeconds": 0.465,
+      "noRainSourceAtSeconds": 2.754,
+      "rainSettledAtSeconds": 2.299,
+      "solarAtEnd": -0.42914186027285706,
+      "birdVoicesAtEnd": 0
+    },
+    {
+      "name": "nuit-orageuse",
+      "rainVisibleAtSeconds": 0.461,
+      "rainSourceAtSeconds": 0.461,
+      "noRainSourceAtSeconds": null,
+      "rainSettledAtSeconds": 2.756,
+      "solarAtEnd": -0.42914186027285706,
+      "birdVoicesAtEnd": 0
+    },
+    {
+      "name": "retour-matin-calme",
+      "rainVisibleAtSeconds": 0.483,
+      "rainSourceAtSeconds": 0.483,
+      "noRainSourceAtSeconds": 2.77,
+      "rainSettledAtSeconds": 2.77,
+      "solarAtEnd": 0.23933916779687237,
+      "birdVoicesAtEnd": 0
+    },
+    {
+      "name": "temps-reel",
+      "rainVisibleAtSeconds": null,
+      "rainSourceAtSeconds": null,
+      "noRainSourceAtSeconds": 0.482,
+      "rainSettledAtSeconds": 0.482,
+      "solarAtEnd": -0.978339479846608,
+      "birdVoicesAtEnd": 0
+    }
+  ],
+  "limits": "Clock/wind equality refers to shared state at sampled frames. Audio beds retain their bounded 2/4 Hz mix cadence and native smoothing; samples are real recordings, not a physical leaf-by-leaf sound model. Timing observations are bracketed by roughly .45–.8 s polling plus browser/UI cost. SwiftShader AV recording is not physical GPU/Android validation. No human listening or aesthetic acceptance claimed."
+}

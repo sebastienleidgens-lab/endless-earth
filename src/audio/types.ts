@@ -1,5 +1,6 @@
 export type Vec3={x:number;y:number;z:number};
 export interface SoundContext {
+ environment?:{revision:number;commandRevision:number;manual:boolean};mixRevision?:number;
  version:1;geo:{lat:number;lon:number}|null;key:string;worldTimeMs:number|null;
  altitudeM:number|null;habitat:string;solarAltitude:number|null;
  localHour:number|null;timeBasis:'civil'|'mean-solar-estimate'|'unknown';season:string|null;
