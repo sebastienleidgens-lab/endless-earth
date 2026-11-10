@@ -2,6 +2,8 @@
 
 Prototype indépendant de la version 3D. Trois peintures précalculées à partir de géométrie simplifiée, parcourues dans une perspective fixe. Pas de backend, pas d'audio, pas de requête de données géographiques en ligne.
 
+**Tester sans installation : [ouvrir la prévisualisation privée](https://endless-earth-living-paintings-lp01.spicy-zebra-0777.chatgpt.site)**, puis cliquer « Commencer la promenade ». Utiliser le même compte ChatGPT si une connexion est demandée. Cet hébergement est séparé du site public et du dépôt GitHub de production.
+
 Depuis la racine du dépôt, **sur `prototype/living-paintings`** :
 
 ```sh

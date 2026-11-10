@@ -106,6 +106,6 @@ npm run dev
 # http://localhost:5181/
 ```
 
-Pour un test du build final : `npm run build && npm run preview`. Le port 5181 est indépendant et strict. Ne pas copier cette sortie vers le `dist/` racine et ne pas lancer le workflow Pages. Aucune prévisualisation publique indépendante n'est configurée dans le dépôt : la livraison utilise le serveur local / navigateur partagé de l'environnement, sans publier d'URL de production. Le dossier autonome peut être servi par n'importe quel serveur statique local.
+Pour un test du build final : `npm run build && npm run preview`. Le port 5181 est indépendant et strict. Ne pas copier cette sortie vers le `dist/` racine et ne pas lancer le workflow Pages. Une [prévisualisation privée indépendante](https://endless-earth-living-paintings-lp01.spicy-zebra-0777.chatgpt.site) a été publiée via Sites le 10 novembre 2026 après constat que l’adresse localhost était inaccessible depuis le navigateur de l’utilisateur. Elle reprend exactement les 17 fichiers du build testé, dans un dépôt d’hébergement séparé. Elle ne modifie ni le site public GitHub Pages ni `main`. Utiliser le même compte ChatGPT si une connexion est demandée. Le dossier autonome reste également testable par un serveur statique local.
 
 Livraison : branche dédiée et PR **en brouillon**, sans fusion automatique. Le propriétaire doit parcourir les trois tableaux, examiner les silhouettes et le personnage, puis décider si cette direction artistique mérite une itération avec un artiste.
