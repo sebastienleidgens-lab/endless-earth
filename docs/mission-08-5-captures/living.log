@@ -1,0 +1,185 @@
+START {
+  terrain: {
+    preparationMs: 9,
+    tiles: 25,
+    fineTriangles: 120128,
+    farTriangles: 111104,
+    farTiles: 16,
+    maxFarErrorM: 0.25,
+    surface: 'integrated',
+    water: 'mapped-outline-dem-drape-v1'
+  },
+  nature: {
+    treeCells: 125,
+    farCells: 99,
+    cells: 250,
+    resident: 0,
+    builds: 0,
+    pending: 1,
+    work: 256,
+    needed: 3,
+    preparation: { maxSliceMs: 1.2000000001862645, maxBuildMs: 0, slices: 1 }
+  },
+  climate: {
+    mode: 'real',
+    date: '2026-11-10T08:44:39.368Z',
+    solar: {
+      altitude: 0.2615742897291394,
+      azimuth: 2.383810260352262,
+      month: 11
+    },
+    weather: { cloud: 0.16, mist: 0, wind: 0.35, rain: 0 },
+    simulation: true
+  },
+  render: { calls: 128, triangles: 206873, geometries: 92 },
+  architecture: [
+    {
+      version: 'poitou-v1',
+      buildings: 921,
+      inferredHeights: 920,
+      pitchedRoofs: 921,
+      openings: 10713,
+      cells: 69,
+      meshes: 258,
+      triangles: 189939,
+      generationMs: 454.8000000002794,
+      builds: 1
+    }
+  ],
+  architectureMemory: {
+    triangles: 219465,
+    bytes: 19058378,
+    meshes: 259,
+    detailCells: 1,
+    detailBuilds: 1,
+    detailMs: 20.200000000186265,
+    evictions: 0
+  },
+  mode: 'third',
+  ready: true,
+  position: [ -12.277392682727118, -1.48157948633812, -32.416383999943434 ],
+  camera: [ -9.32672227959425, 1.6656196346312953, -28.5349668356973 ],
+  zoom: 5,
+  smoothZoom: 5,
+  yaw: 0.65,
+  routeLength: undefined,
+  routePoints: undefined,
+  routeIndex: 1,
+  quality: 'low',
+  natureAnchors: 2500,
+  autoWalk: false,
+  walkMessage: 'Prêt · rejoindre une voie OSM',
+  sound: false,
+  soundState: 'uninitialized',
+  avatarVisible: true
+}
+WALK {
+  terrain: {
+    preparationMs: 9,
+    tiles: 25,
+    fineTriangles: 120128,
+    farTriangles: 111104,
+    farTiles: 17,
+    maxFarErrorM: 0.25,
+    surface: 'integrated',
+    water: 'mapped-outline-dem-drape-v1'
+  },
+  nature: {
+    treeCells: 125,
+    farCells: 111,
+    cells: 250,
+    resident: 0,
+    builds: 0,
+    pending: 0,
+    work: 0,
+    needed: 0,
+    preparation: { maxSliceMs: 1.2000000001862645, maxBuildMs: 0, slices: 1 }
+  },
+  climate: {
+    mode: 'real',
+    date: '2026-11-10T08:44:44.359Z',
+    solar: {
+      altitude: 0.26174567177182134,
+      azimuth: 2.3841233844103407,
+      month: 11
+    },
+    weather: { cloud: 0.16, mist: 0, wind: 0.35, rain: 0 },
+    simulation: true
+  },
+  render: { calls: 126, triangles: 218379, geometries: 93 },
+  architecture: [
+    {
+      version: 'poitou-v1',
+      buildings: 921,
+      inferredHeights: 920,
+      pitchedRoofs: 921,
+      openings: 10713,
+      cells: 69,
+      meshes: 258,
+      triangles: 189939,
+      generationMs: 454.8000000002794,
+      builds: 1
+    }
+  ],
+  architectureMemory: {
+    triangles: 286207,
+    bytes: 24264254,
+    meshes: 262,
+    detailCells: 4,
+    detailBuilds: 4,
+    detailMs: 113.10000000009313,
+    evictions: 0
+  },
+  mode: 'third',
+  ready: true,
+  position: [ -12.7508386796368, -1.484340742436288, -32.895124655738854 ],
+  camera: [ -9.47273987260823, 1.659005822614712, -29.25269033559542 ],
+  zoom: 5,
+  smoothZoom: 5,
+  yaw: 0.7328011347053672,
+  routeLength: 450,
+  routePoints: [
+    {
+      x: -12.7508386796368,
+      y: -1.484340742436288,
+      z: -32.895124655738854
+    },
+    { x: -18.43135941299998, z: -38.63917199989373 },
+    { x: -31.594434652441496, z: -44.65045199974526 },
+    { x: -48.010102729480714, z: -52.76567999966346 },
+    { x: -67.05991289329494, z: -62.43938799960176 },
+    { x: -88.2933886710723, z: -77.79041599944378 },
+    { x: -122.97244188311758, z: -90.79259199952105 },
+    { x: -131.01230164363483, z: -99.24177999938706 },
+    { x: -149.58872975126897, z: -130.90118799997612 },
+    { x: -163.07248315779748, z: -151.48425599926412 },
+    { x: -182.03830618261475, z: -168.54961199936554 },
+    { x: -211.30400652645892, z: -184.26799599954563 },
+    { x: -253.0532498033101, z: -202.93635999939653 },
+    { x: -269.4307419080718, z: -214.97005200002064 },
+    { x: -297.6275150282983, z: -258.1176839996053 },
+    { x: -313.78358649387934, z: -276.6858599998673 },
+    { x: -328.9394474859304, z: -293.6844239999792 },
+    { x: -338.9415522212385, z: -299.8738159995392 },
+    { x: -337.15140628868664, z: -315.1730579613076 }
+  ],
+  routeIndex: 1,
+  quality: 'low',
+  natureAnchors: 2500,
+  autoWalk: true,
+  walkMessage: 'Rue Saint-Jean · 450 m validés',
+  sound: true,
+  soundState: 'running',
+  avatarVisible: true
+}
+AUDIO PASS: six full cycles + 12 rapid toggles, one context, two ambient sources
+PERF FPS ≈ 1
+Draw calls : 49
+Triangles : 140 143
+Géométries : 117
+Textures : 7
+Ratio pixels : 1.0
+Vue : third · terrain prêt : true
+Position : -16.75, -1.67, -36.94
+GPU ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)
+PASS: auto movement, three views, manual takeover, sound on/off, stop button, mobile, no JS errors

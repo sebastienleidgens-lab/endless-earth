@@ -1,3 +1,4 @@
+import {mergeEnvironment} from '../src/world/environment.mjs';
 // Offline derivatives only. No network, stochastic heights, or browser processing.
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -49,14 +50,19 @@ function chunk(type,data){const tag=Buffer.from(type),n=Buffer.alloc(4);n.writeU
 export function png(width,height,rgba){const header=Buffer.alloc(13);header.writeUInt32BE(width);header.writeUInt32BE(height,4);header[8]=8;header[9]=6;const scan=Buffer.alloc((width*4+1)*height);for(let z=0;z<height;z++)Buffer.from(rgba.buffer,rgba.byteOffset+z*width*4,width*4).copy(scan,z*(width*4+1)+1);return Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]),chunk('IHDR',header),chunk('IDAT',deflateSync(scan,{level:9})),chunk('IEND',Buffer.alloc(0))])}
 const hash=s=>createHash('sha256').update(s).digest('hex');
 export async function prepare(dir='public/data'){
+ const environmentText=await readFile(`${dir}/angles-environment.json`,'utf8').catch(e=>{if(e.code==='ENOENT')return null;throw e});
  const text=await readFile(`${dir}/angles-terrain.json`,'utf8'),osm=await readFile(`${dir}/angles-osm.geojson`,'utf8'),g=JSON.parse(text),data=JSON.parse(osm);
+ const TILE=400/g.step_m;if(!Number.isInteger(TILE)||TILE%8||TILE>248)throw new Error('Unsupported physical tile size');
+ const mapped=mergeEnvironment(data.features,environmentText?JSON.parse(environmentText):null);
  if((g.width-1)%TILE||(g.height-1)%TILE)throw new Error('Unsupported tile extent: reconfigure offline tile size');
  const tiles=[],all=[];for(let z=0;z<g.height-1;z+=TILE)for(let x=0;x<g.width-1;x+=TILE){const index=farIndices(g,x,z,TILE);tiles.push({x,z,size:TILE,offset:all.length,count:index.length,cover:false});all.push(...index)}
  const bytes=Buffer.alloc(all.length*2);all.forEach((v,i)=>bytes.writeUInt16LE(v,i*2));
- const features=data.features.filter(f=>f.geometry?.type==='Polygon'&&coverClass(f.properties??{})).map(f=>({tags:f.properties,rings:f.geometry.coordinates.map(r=>r.map(p=>({x:(p[0]-.8844)*111320*Math.cos(46.6953*Math.PI/180),z:-(p[1]-46.6953)*111320})))}));
+ const features=mapped.filter(f=>f.geometry?.type==='Polygon'&&coverClass(f.properties??{})).map(f=>({tags:f.properties,rings:f.geometry.coordinates.map(r=>r.map(p=>({x:(p[0]-.8844)*111320*Math.cos(46.6953*Math.PI/180),z:-(p[1]-46.6953)*111320})))}));
+ const coverCells=new Map(),boxes=features.map(f=>({f,x0:Math.min(...f.rings[0].map(p=>p.x)),z0:Math.min(...f.rings[0].map(p=>p.z)),x1:Math.max(...f.rings[0].map(p=>p.x)),z1:Math.max(...f.rings[0].map(p=>p.z))}));
+ const nearby=(x,z)=>{const cx=Math.floor(x/64),cz=Math.floor(z/64),key=`${cx}:${cz}`;let list=coverCells.get(key);if(!list){list=boxes.filter(b=>b.x0<=(cx+1)*64&&b.x1>=cx*64&&b.z0<=(cz+1)*64&&b.z1>=cz*64).map(b=>b.f);coverCells.set(key,list)}return list};
  const step=2,width=(g.width-1)*g.step_m/step,height=(g.height-1)*g.step_m/step,pixels=new Uint8Array(width*height*4),counts={};
  for(let z=0;z<height;z++)for(let x=0;x<width;x++){
-  const type=coverAt(g.origin_x_m+(x+.5)*step,g.origin_z_m+(z+.5)*step,features);if(!type)continue;
+  const type=coverAt(g.origin_x_m+(x+.5)*step,g.origin_z_m+(z+.5)*step,nearby(g.origin_x_m+(x+.5)*step,g.origin_z_m+(z+.5)*step));if(!type)continue;
   counts[type]=(counts[type]??0)+1;
   // Include a 16 m halo for filtered mask transitions, without imposing an
   // atlas lookup on distant tiles that contain no mapped habitat at all.
@@ -73,9 +79,9 @@ export async function prepare(dir='public/data'){
   pixels[i]=Math.round(linear(((c>>16)&255)/255)*tint.shade*weight);pixels[i+1]=Math.round(linear(((c>>8)&255)/255)*tint.shade*weight);pixels[i+2]=Math.round(linear((c&255)/255)*tint.shade*weight);pixels[i+3]=tint.alpha;
  }
  const image=png(width,height,pixels);
- const manifest={schema:'endless-earth-prepared-v1',terrainSha256:hash(text),osmSha256:hash(osm),horizontalFrame:'legacy local tangent plane, X east / Z south, metres; see geo.ts',source:g.source,sourceRetrievedAt:g.provenance.retrieved_at,sourceSpacingM:g.step_m,verticalDatum:g.vertical_datum,maxFarErrorM:ERROR,tileCells:TILE,tiles,farTriangles:all.length/3,fineTriangles:2*(g.width-1)*(g.height-1),lodSha256:hash(bytes),coverSha256:hash(image),cover:{origin:[g.origin_x_m,g.origin_z_m],extent:[width*step,height*step],width,height,stepM:step,counts,source:data.metadata,interpretation:'Material palette inferred from explicit OSM land use only; unknown is transparent. Raster spacing is not survey accuracy.'}};
- manifest.cover.sourceFeatures=data.features.filter(f=>f.geometry?.type==='Polygon'&&coverClass(f.properties??{})).map(f=>({id:f.id,source:f.properties.source,year:f.properties['CLC:year']??null,leafType:f.properties.leaf_type??null}));
- manifest.cover.provenanceByAttribute={outline:'OSM polygon; inherited source and year per feature',classification:'Explicit OSM tags only; no use assigned to unknown ground',floorColor:'Original procedural art; litter is illustrative',slopeBlend:'Existing IGN 10 m DEM; changes color only',alpha:'Artistic blend weight, not measurement confidence'};
+ const manifest={schema:'endless-earth-prepared-v1',environmentSha256:environmentText?hash(environmentText):null,terrainSha256:hash(text),osmSha256:hash(osm),horizontalFrame:'legacy local tangent plane, X east / Z south, metres; see geo.ts',source:g.source,environmentSources:environmentText?JSON.parse(environmentText).sources:[],sourceRetrievedAt:g.provenance.retrieved_at,sourceSpacingM:g.step_m,verticalDatum:g.vertical_datum,maxFarErrorM:ERROR,tileCells:TILE,tiles,farTriangles:all.length/3,fineTriangles:2*(g.width-1)*(g.height-1),lodSha256:hash(bytes),coverSha256:hash(image),cover:{origin:[g.origin_x_m,g.origin_z_m],extent:[width*step,height*step],width,height,stepM:step,counts,source:data.metadata,interpretation:'Original material palette within normalized source classes and retained OSM; unknown is transparent. Raster spacing is not survey accuracy.'}};
+ manifest.cover.sourceFeatures=mapped.filter(f=>f.geometry?.type==='Polygon'&&coverClass(f.properties??{})).map(f=>({id:f.id,source:f.properties['world:source']??f.properties.source,classification:f.properties['world:class']??null,year:f.properties['CLC:year']??null,leafType:f.properties.leaf_type??null}));
+ manifest.cover.provenanceByAttribute={outline:'Normalized source polygons (IGN/ASP) and retained OSM; source identity per feature',classification:'Normalized IGN/ASP classes where available, explicit OSM elsewhere; no use assigned to unknown ground',floorColor:'Original procedural art; litter is illustrative',slopeBlend:`Source DEM at ${g.step_m} m spacing; changes color only`,alpha:'Artistic blend weight, not measurement confidence'};
  await writeFile(`${dir}/angles-terrain-lod.bin`,bytes);await writeFile(`${dir}/angles-landcover.png`,image);await writeFile(`${dir}/angles-earth.json`,JSON.stringify(manifest,null,2)+'\n');return manifest;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url))console.log(JSON.stringify(await prepare(),null,2));

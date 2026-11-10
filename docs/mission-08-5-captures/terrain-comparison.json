@@ -1,0 +1,43 @@
+{
+  "reference": "Nearest native 0.5 m MNT pixel, same inverse game frame and EPSG:2154; not independent ground truth",
+  "sample_count": 40000,
+  "sample_positions": "200\u00d7200 cell-offset points: x,z=-997.5 + i*10 m",
+  "interpolation_error": {
+    "before": {
+      "mean_signed_m": -0.027698879669189425,
+      "mean_absolute_m": 0.2009595546264649,
+      "rmse_m": 0.38760026307051787,
+      "p95_absolute_m": 0.6287126007079977,
+      "max_absolute_m": 13.736185607910159,
+      "min_signed_m": -13.736185607910159,
+      "max_signed_m": 7.776529541015634
+    },
+    "5m": {
+      "mean_signed_m": -0.002844129669189443,
+      "mean_absolute_m": 0.08796167945098875,
+      "rmse_m": 0.2121822688941518,
+      "p95_absolute_m": 0.3427275695800814,
+      "max_absolute_m": 8.25362518310547,
+      "min_signed_m": -8.25362518310547,
+      "max_signed_m": 7.208725585937501
+    },
+    "10m": {
+      "mean_signed_m": -0.0015659421691894093,
+      "mean_absolute_m": 0.1284658782730102,
+      "rmse_m": 0.30972360016732065,
+      "p95_absolute_m": 0.48717617797852864,
+      "max_absolute_m": 13.923725585937504,
+      "min_signed_m": -13.106125183105476,
+      "max_signed_m": 13.923725585937504
+    }
+  },
+  "shared_node_difference": {
+    "mean_signed_m": 0.02770005692928393,
+    "mean_absolute_m": 0.17410435385262749,
+    "rmse_m": 0.3323695765372328,
+    "p95_absolute_m": 0.5499999999999972,
+    "max_absolute_m": 12.61,
+    "min_signed_m": -7.609999999999999,
+    "max_signed_m": 12.61
+  }
+}

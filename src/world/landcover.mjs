@@ -1,5 +1,6 @@
-// Explicit OSM semantics only. Unknown land never acquires an invented use.
+// Normalized observed classes and explicit OSM semantics; unknown stays unknown.
 export const COVER=Object.freeze({
+ bare:{color:0xb3ad9a,priority:35},open:{color:0x929b70,priority:30},
  wood:{color:0x767b5d,priority:40},scrub:{color:0x8a916a,priority:45},
  meadow:{color:0x929b70,priority:30},farmland:{color:0xa89c76,priority:35},
  orchard:{color:0x929572,priority:36},garden:{color:0x8b9673,priority:50},
@@ -7,6 +8,7 @@ export const COVER=Object.freeze({
  built:{color:0xaaa18e,priority:70}
 });
 export function coverClass(t){
+ if(Object.hasOwn(COVER,t['world:class']))return t['world:class'];
  if(t.building||t.natural==='water'||t.water||t.highway)return null;
  if(t.natural==='wood'||t.landuse==='forest')return 'wood';
  if(t.natural==='scrub')return 'scrub';
@@ -23,7 +25,7 @@ export function insideRing(x,z,ring){let yes=false;for(let i=0,j=ring.length-1;i
 // CLC is a generalized inventory, not a parcel boundary. Explicit local use
 // overrides an overlapping inherited CLC polygon. This is a fusion policy,
 // not a claim that an undated OSM tag is a more recent observation.
-export function coverPriority(f){const type=coverClass(f.tags);return type?COVER[type].priority-(f.tags['CLC:year']||String(f.tags.source??'').includes('CORINE')?20:0):-Infinity}
+export function coverPriority(f){const type=coverClass(f.tags);return type?(Number.isFinite(f.tags['world:priority'])?f.tags['world:priority']:COVER[type].priority)-(f.tags['CLC:year']||String(f.tags.source??'').includes('CORINE')?20:0):-Infinity}
 export function coverAt(x,z,features){
  let best=null,priority=-Infinity;
  for(const f of features){const type=coverClass(f.tags),rank=coverPriority(f);if(!type||rank<=priority)continue;

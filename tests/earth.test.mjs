@@ -14,7 +14,7 @@ await mkdir('work',{recursive:true});
 for(const [source,out,replacements] of [
  ['src/world/road-material.ts','earth-road-material',[["'./road-texture.mjs'","'../src/world/road-texture.mjs'"]]],
  ['src/nature/surfaces.ts','earth-surfaces',[["'../world/road-material'","'./earth-road-material.mjs'"]]],
- ['src/world/terrain.ts','earth-terrain',[["'./road-material'","'./earth-road-material.mjs'"],["'../nature/surfaces'","'./earth-surfaces.mjs'"],["'./terrain-grid.mjs'","'../src/world/terrain-grid.mjs'"],["'./source-geometry.mjs'","'../src/world/source-geometry.mjs'"],["'./surface-mesh.mjs'","'../src/world/surface-mesh.mjs'"]]],
+ ['src/world/terrain.ts','earth-terrain',[["'./environment.mjs'","'../src/world/environment.mjs'"],["'./road-material'","'./earth-road-material.mjs'"],["'../nature/surfaces'","'./earth-surfaces.mjs'"],["'./terrain-grid.mjs'","'../src/world/terrain-grid.mjs'"],["'./source-geometry.mjs'","'../src/world/source-geometry.mjs'"],["'./surface-mesh.mjs'","'../src/world/surface-mesh.mjs'"]]],
  ['src/world/geo.ts','earth-geo',[]]
 ]){let code=transpileModule(await readFile(source,'utf8'),{compilerOptions:{target:9,module:99}}).outputText;for(const [a,b] of replacements)code=code.replaceAll(a,b);await writeFile(`work/${out}.mjs`,code)}
 const {Terrain,updateTerrainLOD}=await import('../work/earth-terrain.mjs');
@@ -56,7 +56,7 @@ test('river lines crossing DEM bounds never receive the unsupported local-zero a
 test('terrain tiles retain identical boundary positions/normals and every boundary vertex in far LOD',()=>{
  const t=prepared(),group=t.createMesh();assert.equal(group.children.length,25);
  const points=new Map();for(const mesh of group.children){const a=mesh.geometry.attributes.position,n=mesh.geometry.attributes.normal,used=new Set(mesh.userData.earthTile.farIndex.array);
-  for(let z=0;z<=40;z++)for(let x=0;x<=40;x++){if(x&&x!==40&&z&&z!==40)continue;const i=z*41+x,key=`${a.getX(i)},${a.getZ(i)}`,v=[a.getY(i),n.getX(i),n.getY(i),n.getZ(i)];if(points.has(key))assert.deepEqual(v,points.get(key));else points.set(key,v);assert.ok(used.has(i))}
+  for(let z=0;z<=m.tileCells;z++)for(let x=0;x<=m.tileCells;x++){if(x&&x!==m.tileCells&&z&&z!==m.tileCells)continue;const i=z*(m.tileCells+1)+x,key=`${a.getX(i)},${a.getZ(i)}`,v=[a.getY(i),n.getX(i),n.getY(i),n.getZ(i)];if(points.has(key))assert.deepEqual(v,points.get(key));else points.set(key,v);assert.ok(used.has(i))}
  }
 });
 test('unknown-only tiles omit atlas sampling while mapped habitat tiles retain it',()=>{
@@ -66,7 +66,7 @@ test('unknown-only tiles omit atlas sampling while mapped habitat tiles retain i
   const material=group.children[i].material,shader={uniforms:{},vertexShader:THREE.ShaderLib.lambert.vertexShader,fragmentShader:THREE.ShaderLib.lambert.fragmentShader};
   material.onBeforeCompile(shader,{});
   if(m.tiles[i].cover){assert.ok(shader.uniforms.earthCover);covered++}else{assert.equal(shader.uniforms.earthCover,undefined);bare++}
- }assert.ok(covered>0&&bare>0);assert.equal(covered,12);
+ }assert.ok(covered>0);assert.equal(covered,m.tiles.filter(t=>t.cover).length);assert.equal(covered+bare,m.tiles.length);
 });
 test('all far triangles stay within their declared error throughout each intersected source plane',()=>{
  let max=0;
@@ -104,8 +104,8 @@ test('forest leaf shapes use explicit OSM leaf_type while roots retain source te
 });
 test('offline assets are byte deterministic and retain source provenance',async()=>{
  const dir=await mkdtemp(join(tmpdir(),'endless-earth-'));try{
-  for(const f of ['angles-terrain.json','angles-osm.geojson'])await copyFile(`public/data/${f}`,`${dir}/${f}`);
+  for(const f of ['angles-terrain.json','angles-osm.geojson','angles-environment.json'])await copyFile(`public/data/${f}`,`${dir}/${f}`);
   await prepare(dir);for(const f of ['angles-earth.json','angles-terrain-lod.bin','angles-landcover.png'])assert.deepEqual(await readFile(`${dir}/${f}`),await readFile(`public/data/${f}`));
-  assert.equal(m.cover.source.license,'ODbL 1.0');assert.deepEqual(Object.keys(m.cover.counts),['wood']);assert.equal(m.cover.stepM,2);
+  assert.equal(m.cover.source.license,'ODbL 1.0');assert.ok(m.cover.counts.wood>0&&m.cover.counts.farmland>0&&m.cover.counts.meadow>0);assert.equal(m.cover.stepM,2);
  }finally{await rm(dir,{recursive:true,force:true})}
 });

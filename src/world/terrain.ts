@@ -1,3 +1,5 @@
+// @ts-ignore Shared provider-neutral provenance validation.
+import {validateEnvironment} from './environment.mjs';
 import {configureRoadFiltering,type RoadEdges,roadTexture} from './road-material';
 import {groundDetail} from '../nature/surfaces';
 import * as THREE from 'three';
@@ -25,6 +27,8 @@ export class Terrain {
   get roadsAvailable(){return this.singleSurface!==null;}
   get waterIntegrated(){return this.singleSurface?.manifest.water?.mode==='mapped-outline-dem-drape-v1';}
   prepared:any=null;
+  environment:any=null;
+  environmentSha256:string|null=null;
   metrics={preparationMs:0,tiles:0,fineTriangles:0,farTriangles:0,farTiles:0,maxFarErrorM:0,surface:'source',water:'legacy'};
   constructor(readonly grid: TerrainGrid) {}
   static validate(raw: unknown): TerrainGrid {
@@ -162,8 +166,13 @@ export async function fetchTerrain():Promise<Terrain|null>{
   if(!response.ok)return null;
   const text=await response.text(),terrain=new Terrain(Terrain.validate(JSON.parse(text)));
   try{
+    const r=await fetch(base+'angles-environment.json');if(!r.ok)throw new Error('Normalized environment unavailable');
+    const content=await r.text();terrain.environment=validateEnvironment(JSON.parse(content));terrain.environmentSha256=await sha256(new TextEncoder().encode(content));
+  }catch(error){console.warn('Environment unavailable; legacy OSM habitats retained',error);}
+  try{
     const r=await fetch(base+'angles-earth.json');if(!r.ok)throw new Error('Prepared landcover unavailable');const m=await r.json();
     if(m.schema!=='endless-earth-prepared-v1'||m.terrainSha256!==await sha256(new TextEncoder().encode(text)))throw new Error('Stale prepared terrain');
+    if(m.environmentSha256&&m.environmentSha256!==terrain.environmentSha256)throw new Error('Stale environment derivative');
     const [lod,image,osm]=await Promise.all([fetch(base+'angles-terrain-lod.bin'),fetch(base+'angles-landcover.png'),fetch(base+'angles-osm.geojson')]);
     if(!lod.ok||!image.ok||!osm.ok)throw new Error('Prepared data missing');
     if(await sha256(new TextEncoder().encode(await osm.text()))!==m.osmSha256)throw new Error('Stale landcover source');

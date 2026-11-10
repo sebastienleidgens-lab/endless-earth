@@ -1,0 +1,27 @@
+# Geographic import contract
+
+The renderer does not call national geographic services. Acquisition, CRS repair, projection, clipping, simplification, sampling and triangulation run offline. `world/tiles.mjs`, the deduplicating loader and the bounded tile stream remain the global addressing/loading foundation. This mission adds an actual provider-neutral land-use adapter at `src/world/environment.mjs`; it does not implement world coverage or replace the existing pilot coordinate frame.
+
+`endless-earth-environment-v1` stores EPSG:4326 Polygon features with holes, a declared extent, source records, original identifiers and original attributes. A source records name, HTTPS URL, source checksum, licence, vintage (explicit null when unknown), vintage status, extent and CRS, resolution (null for vectors), retrieval date and confidence. Feature attributes retain `class`, source identity, confidence and a documented merge priority. Unknown classes and broken provenance fail closed. The runtime validates one local file once; it performs no GIS reprojection or archive decoding. It uses the same merged features for the baked ground palette and vegetation habitats. Cached habitat candidate lists are bounded to 128 entries; the existing instancing, LOD, culling and four hidden detail-cell cache remain.
+
+Current adapters: IGN LiDAR HD MNT, BD TOPO vegetation, BD Forêt V2, OCS GE and ASP/IGN RPG. They are French sources. The same class/provenance contract can receive other countries' sources through additional offline adapters; no IGN availability is implied outside its coverage. Copernicus TCD is European in the tested product; its 2018 export is reference-only. OSM's database is global but coverage and attributes vary, and ODbL obligations remain distinct.
+
+For elevation the existing `endless-earth-terrain-v1` contract remains a rectangular metric grid with explicit source, vertical datum and provenance. The tested LiDAR importer is deliberately an IGN adapter: it refuses MNS and an undeclared vertical datum. Other providers need a reviewed adapter that declares source/target CRS and vertical datum and verifies any vertical transformation, nodata and coverage. Replacing the country name in a manifest is not such an adapter. Native 0.5 m rasters remain offline. The selected browser grid is 10 m after measuring and rejecting the 5 m candidate's cost; 400 m terrain tiles, exact common road/water/ground partition and 0.25 m distant LOD bound remain.
+
+The pilot retains its legacy X-east/Z-south local frame and origin (0.8844 E, 46.6953 N); all imported layers use its same inverse before projection with PROJ. It approximates WGS84 distances to within the existing ~0.2% bound over this footprint, rather than claiming geodetic accuracy of the renderer. A later world-tile adapter must store a per-tile local frame and common border samples. The world is not rescaled for visual convenience.
+
+A future production data store should keep immutable originals by SHA-256 outside Git, normalized source extracts and independently loadable versioned tiles. Keep each licence attached to its layer; do not combine an ODbL base and open-licence source into an unattributed opaque file. This pilot versions the small normalized extract, native attribute records and browser derivatives; the raw ~144 MB MNT, 124 MB OCS archive and extracted department GeoPackages are in ignored `work/mission-08-5/`, not in Git. That workspace is not a durable archive service. The acquisition script and source manifest allow retrieval from the official providers. Dated OCS archive URLs identify an edition; MNT WMS exports may change as the service updates. Compare a fresh download with the recorded SHA-256 before treating it as the same source.
+
+Reproduction (Python dependencies in a project-local venv):
+
+```sh
+python -m venv work/geo-venv
+work/geo-venv/bin/pip install rasterio pyproj numpy shapely py7zr
+python scripts/fetch-geographic-pilot.py --output work/mission-08-5/raw
+work/geo-venv/bin/python scripts/normalize-ign-wms-mnt.py work/mission-08-5/raw/mnt-manifest.json work/mission-08-5/normalized
+work/geo-venv/bin/python scripts/import-mnt.py work/mission-08-5/normalized/mnt-manifest.json work/mission-08-5/terrain-10m.json --step 10
+```
+
+Extract OCS with `py7zr.SevenZipFile(...).extractall('work/mission-08-5/ocs-extracted')`, then run `scripts/extract-ocs-pilot.py <OCCUPATION_SOL.gpkg> <ocs-2023.7z> work/mission-08-5/raw/ocs.geojson`. This uses its RTree spatial index and verifies the GeoPackage. Run `scripts/prepare-geographic-environment.py <raw-dir> <candidate-environment.json>`; validate before copying the two candidates to `public/data/angles-terrain.json` and `angles-environment.json`. Finally run `npm run geo:prepare`, `npm run geo:roads` and `node scripts/prepare-road-edges.mjs` together. Surface, palette and shoulders must belong to the same grid/source hashes; loaders reject stale derivatives.
+
+A known IGN WMS serialization defect is repaired by `normalize-ign-wms-mnt.py`: the response is named EPSG:2154 with all Lambert-93 projection parameters but contains a fallback WGS84 ellipsoid/unnamed datum. Repair requires official WFS LAMB93/IGN69 metadata, the MNT layer URL and every exact Lambert-93 conversion parameter. It rewrites the CRS declaration to EPSG:2154 without changing any pixel, transform or nodata, retains original WKT and both checksums, and rejects a different projection or datum declaration. There is no guessed datum shift or vertical transformation.

@@ -1,0 +1,1195 @@
+{
+  "schema": "endless-earth-geographic-acquisition-v1",
+  "checked_at": "2026-11-10T08:38:15.046032+00:00",
+  "base_commit": "b440dd7",
+  "github_mission08": {
+    "pr": 14,
+    "merged": true
+  },
+  "footprint": {
+    "game_half_extent_m": 1000,
+    "margin_m": 50,
+    "margin_reason": "border samples, normals and later neighboring processing; provider MNT tiles are the minimum intersecting 1 km units",
+    "wgs84": [
+      0.870647894,
+      46.685867733,
+      0.898152106,
+      46.704732267
+    ],
+    "lambert93": [
+      537276,
+      6622779,
+      539434,
+      6624931
+    ]
+  },
+  "mnt": {
+    "product": "IGN LiDAR HD MNT",
+    "vertical_datum": "IGN69",
+    "license": "Licence Ouverte 2.0",
+    "acquired_at": "2023-04-09",
+    "edition": "2025-01-24",
+    "retrieved_at": "2026-11-10T08:05:11.651767+00:00",
+    "source_url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=IGNF_LIDAR-HD_METADONNEE:metadata&OUTPUTFORMAT=application/json&SRSNAME=EPSG:2154&BBOX=537276,6622779,539434,6624931,EPSG:2154&COUNT=30",
+    "files": [
+      {
+        "path": "LHD_FXX_0539_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "2e84bebb313e301efbecb2982070bf18039f2506df28e835c0f4a6f52f214d6e",
+        "bytes": 11130910,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6623000.25,539999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6623000.25,539999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6624_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6623000.25,539999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6624_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6623000.25,539999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0539_6624_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 18221747,
+          "coordonnees_nw": "0539-6624",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "8e963920199463ee991908a3df56ffdd371bffa1b4d2527231a907db98f1504f",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      },
+      {
+        "path": "LHD_FXX_0538_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "d70667675a7749b1c04a09e6dcdbd668f9f2d6eb9ea63f01981230f7d70499f2",
+        "bytes": 12215908,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6622000.25,538999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6622000.25,538999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6623_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6622000.25,538999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6623_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6622000.25,538999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0538_6623_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 29330592,
+          "coordonnees_nw": "0538-6623",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "f57f67381a6eafdeeeeed7e1766b06e39dbb9de341d732f674fdeae9e1e44758",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      },
+      {
+        "path": "LHD_FXX_0538_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "0bff02e9ff3c5afd98c06ecdd5fcca8b20f36f4ebc170a6e13221c2921f87130",
+        "bytes": 12066878,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6623000.25,538999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6623000.25,538999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6624_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6623000.25,538999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6624_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6623000.25,538999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0538_6624_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 28403001,
+          "coordonnees_nw": "0538-6624",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "e6caa7bea6438f02b300cd5361cb9195e64540b2cf20dd2cf8ed3ddc7a96b572",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      },
+      {
+        "path": "LHD_FXX_0539_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "8379a41df6fd6381e5ed4c95fb7809ba8944da61cebe966b7bfccfa64ab9b9a2",
+        "bytes": 11274242,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6624000.25,539999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6624000.25,539999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6625_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6624000.25,539999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6625_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6624000.25,539999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0539_6625_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 17392417,
+          "coordonnees_nw": "0539-6625",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "9e8d62ee25ef2431f5ffaa5e98f8674482d16e7f64c4e2ff8e1685f63c7b5361",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      },
+      {
+        "path": "LHD_FXX_0537_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "794d8bea202dd495774475dcb712ba20e5e1671b40765fd4e91c33cdd4b7efbf",
+        "bytes": 11940838,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6624000.25,537999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6624000.25,537999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6625_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6624000.25,537999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6625_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6624000.25,537999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0537_6625_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 31150986,
+          "coordonnees_nw": "0537-6625",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "a76c6bafce8ae3e2a406d98f140825915f5aeb541bf147d07e0195d1646be521",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      },
+      {
+        "path": "LHD_FXX_0538_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "6472c04fcf5517eab1b6f0489da09e3c74832e8dc4363c733c78c770d49d8775",
+        "bytes": 11574164,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6624000.25,538999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6624000.25,538999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6625_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6624000.25,538999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6625_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537999.75,6624000.25,538999.75,6625000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0538_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0538_6625_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 22099557,
+          "coordonnees_nw": "0538-6625",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "a25f0c4b380b5642317311336f9c4c796db58df24579cb81b447db9bb4e52cb6",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      },
+      {
+        "path": "LHD_FXX_0537_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "dec8376992968450ffe65e2806ca7b271c7fa654ecfb9de22eccf84cdd42a8b0",
+        "bytes": 11488736,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6622000.25,537999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6622000.25,537999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6623_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6622000.25,537999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6623_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6622000.25,537999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0537_6623_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 24719157,
+          "coordonnees_nw": "0537-6623",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "fd1286f3064cb0231418a73020dcc0455c456c40522a5a9abf2f09ee7e6cc4b9",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      },
+      {
+        "path": "LHD_FXX_0539_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "27bffbbb970dc965e6e706f2b4b0deadb6f0a8ddcd89aed908cc1d991ba3076f",
+        "bytes": 11639324,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6622000.25,539999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6622000.25,539999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6623_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6622000.25,539999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6623_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=538999.75,6622000.25,539999.75,6623000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0539_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0539_6623_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 29654970,
+          "coordonnees_nw": "0539-6623",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "fa5b9f8a890178827a10ce496ceb3e6009939638eb6d7d6e7d83fa891471e5d2",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      },
+      {
+        "path": "LHD_FXX_0537_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+        "sha256": "5866e7975e11f7bac24ddb5dde27cb30a45010f4a0eac6a48a40034c8d6aeae2",
+        "bytes": 11642168,
+        "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6623000.25,537999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+        "metadata": {
+          "capteur": "[\"Leica TerrainMapper:90560\"]",
+          "url_mnh": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6623000.25,537999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6624_MNH_O_0M50_LAMB93_IGN69.tif",
+          "url_mns": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6623000.25,537999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6624_MNS_O_0M50_LAMB93_IGN69.tif",
+          "url_mnt": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&EXCEPTIONS=text/xml&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=536999.75,6623000.25,537999.75,6624000.25&WIDTH=2000&HEIGHT=2000&FILENAME=LHD_FXX_0537_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+          "url_npl": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_IJ_2025-01-24/LHD_FXX_0537_6624_PTS_LAMB93_IGN69.copc.laz",
+          "code_mission": "23LHD5IJ",
+          "date_edition": "2025-01-24Z",
+          "nombre_points": 27038820,
+          "coordonnees_nw": "0537-6624",
+          "moa_acquisition": "IGN",
+          "moe_acquisition": "APEI",
+          "procede_classement": "IGN_AUTO_V5",
+          "date_fin_acquisition": "2023-04-09Z",
+          "systeme_altimetrique": "IGN69",
+          "moe_classement_manuel": "NR",
+          "systeme_planimetrique": "LAMB93",
+          "date_debut_acquisition": "2023-04-09Z",
+          "moe_classement_automatique": "IGN"
+        },
+        "http": 200,
+        "raw_sha256": "e4be2d6ecaa7b3e2d5f7abfa9987b102ba9533612c1ba580f89324c4bba40277",
+        "raw_bytes": 16000513,
+        "original_crs_wkt": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+        "crs_normalization": "WFS declares LAMB93; exact conversion parameters checked; replace invalid WMS datum serialization with EPSG:2154; no resampling"
+      }
+    ]
+  },
+  "raster_validation": [
+    {
+      "file": "LHD_FXX_0537_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        536999.75,
+        6622000.25,
+        537999.75,
+        6623000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 95.69000244140625,
+      "max": 121.94258880615234,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "file": "LHD_FXX_0537_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        536999.75,
+        6623000.25,
+        537999.75,
+        6624000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 65.1440658569336,
+      "max": 121.57221984863281,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "file": "LHD_FXX_0537_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        536999.75,
+        6624000.25,
+        537999.75,
+        6625000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 62.77145767211914,
+      "max": 118.14857482910156,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "file": "LHD_FXX_0538_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        537999.75,
+        6622000.25,
+        538999.75,
+        6623000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 66.41944885253906,
+      "max": 118.5545425415039,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "file": "LHD_FXX_0538_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        537999.75,
+        6623000.25,
+        538999.75,
+        6624000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 65.14637756347656,
+      "max": 122.25413513183594,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "file": "LHD_FXX_0538_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        537999.75,
+        6624000.25,
+        538999.75,
+        6625000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 78.95379638671875,
+      "max": 126.98780822753906,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "file": "LHD_FXX_0539_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        538999.75,
+        6622000.25,
+        539999.75,
+        6623000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 66.83187103271484,
+      "max": 118.9879150390625,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "file": "LHD_FXX_0539_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        538999.75,
+        6623000.25,
+        539999.75,
+        6624000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 105.4391098022461,
+      "max": 130.02444458007812,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "file": "LHD_FXX_0539_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+      "crs": "PROJCS[\"EPSG:2154\",GEOGCS[\"unknown\",DATUM[\"unnamed\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "res": [
+        0.5,
+        0.5
+      ],
+      "size": [
+        2000,
+        2000
+      ],
+      "dtype": [
+        "float32"
+      ],
+      "bounds": [
+        538999.75,
+        6624000.25,
+        539999.75,
+        6625000.25
+      ],
+      "nodata": -9999.0,
+      "masked": 0,
+      "min": 108.22583770751953,
+      "max": 127.39733123779297,
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      }
+    }
+  ],
+  "vector_extractions": [
+    {
+      "name": "buildings",
+      "layer": "BDTOPO_V3:batiment",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=BDTOPO_V3%3Abatiment&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "http": "200",
+      "exit": 0,
+      "error": "",
+      "matched": 911,
+      "returned": 911,
+      "sha256": "b82c1271c8e086a2f1a3e9360d6d9bb1cbaa77e59abf25675872450e3319e689"
+    },
+    {
+      "name": "hedges",
+      "layer": "BDTOPO_V3:haie",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=BDTOPO_V3%3Ahaie&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "http": "200",
+      "exit": 0,
+      "error": "",
+      "matched": 661,
+      "returned": 661,
+      "sha256": "9ff7e4ceaf139dcd4154499f2c3b3e08d122d8523ae9f67578423a13090dbf65"
+    },
+    {
+      "name": "vegetation",
+      "layer": "BDTOPO_V3:zone_de_vegetation",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=BDTOPO_V3%3Azone_de_vegetation&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "http": "200",
+      "exit": 0,
+      "error": "",
+      "matched": 264,
+      "returned": 264,
+      "sha256": "e231c557db421175aaca8a0de5a7dddcc1fc61af4c9eadc6e93fde3d2c71d585"
+    },
+    {
+      "name": "forest",
+      "layer": "LANDCOVER.FORESTINVENTORY.V2:formation_vegetale",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=LANDCOVER.FORESTINVENTORY.V2%3Aformation_vegetale&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "http": "200",
+      "exit": 0,
+      "error": "",
+      "matched": 30,
+      "returned": 30,
+      "sha256": "593f311ce68df91713787d111276d239beb2b4089a9712da09beafb396082aa7"
+    },
+    {
+      "name": "rpg",
+      "layer": "RPG.2024:parcelles_graphiques",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=RPG.2024%3Aparcelles_graphiques&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "http": "200",
+      "exit": 0,
+      "error": "",
+      "matched": 128,
+      "returned": 128,
+      "sha256": "2fb2ec4efb0762f485f71f93dd8918437d6d08aeafd1942acd9465892542cfc6"
+    },
+    {
+      "name": "water",
+      "layer": "BDTOPO_V3:surface_hydrographique",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=BDTOPO_V3%3Asurface_hydrographique&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "http": "200",
+      "exit": 0,
+      "error": "",
+      "matched": 9,
+      "returned": 9,
+      "sha256": "ae7c07461d34abdfccd8a1190a103de7cdc0e805b478d4117ad5bcd9be7f84f8"
+    },
+    {
+      "name": "structures",
+      "layer": "BDTOPO_V3:construction_lineaire",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=BDTOPO_V3%3Aconstruction_lineaire&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "http": "200",
+      "exit": 0,
+      "error": "",
+      "matched": 18,
+      "returned": 18,
+      "sha256": "ee3b70d7a02a6c8881356b88e4d062569a2626cf647a631a9b4fddbe033175e4"
+    },
+    {
+      "name": "ortho-dates",
+      "layer": "ORTHOIMAGERY.ORTHOPHOTOS.GRAPHE-MOSAIQUAGE:graphe_bdortho",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ORTHOIMAGERY.ORTHOPHOTOS.GRAPHE-MOSAIQUAGE%3Agraphe_bdortho&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "http": "200",
+      "exit": 0,
+      "error": "",
+      "matched": 8,
+      "returned": 8,
+      "sha256": "468319be9dfba5d239c810affda7ed28497ee836cfa21f70a32551bacfedb28a"
+    }
+  ],
+  "other_extractions": [
+    {
+      "name": "OCS GE 2023 D086",
+      "url": "https://data.geopf.fr/telechargement/download/OCSGE/OCS-GE_2-0__GPKG_LAMB93_D086_2023-01-01/OCS-GE_2-0__GPKG_LAMB93_D086_2023-01-01.7z",
+      "http": 200,
+      "bytes": 123792783,
+      "md5": "6d8f4cdeccc7000cb7645fc963442bae",
+      "license": "Licence Ouverte 2.0",
+      "vintage": "2023",
+      "source_crs": "EPSG:2154",
+      "format": "7z containing GeoPackages and metadata",
+      "local_features": 451
+    },
+    {
+      "name": "BD TOPAGE 2026 surfaces élémentaires",
+      "url": "https://services.sandre.eaufrance.fr/geo/topage2026?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=sa:SurfaceElementaire_FXX_Topage2026&SRSNAME=EPSG:4326&BBOX=537276,6622779,539434,6624931,EPSG:2154&COUNT=100&OUTPUTFORMAT=application/json%3B%20subtype%3Dgeojson",
+      "http": 200,
+      "local_features": 8,
+      "license": "Licence Ouverte 2.0",
+      "vintage": "2026",
+      "format": "GeoJSON; native attributes retained; reference only"
+    },
+    {
+      "name": "Copernicus TCD 2018",
+      "url": "https://image.discomap.eea.europa.eu/arcgis/rest/services/GioLandPublic/HRL_TreeCoverDensity_2018/ImageServer/exportImage?bbox=537276%2C6622779%2C539434%2C6624931&bboxSR=2154&imageSR=2154&size=216%2C216&format=tiff&pixelType=U8&f=image&interpolation=RSP_NearestNeighbor&renderingRule=%7B%22rasterFunction%22%3A+%22None%22%7D",
+      "http": 200,
+      "license": "Copernicus open data policy, EU/EEA attribution and modifications specified",
+      "vintage": "2018",
+      "resolution_m": 10,
+      "format": "GeoTIFF raw pixel export, nearest-neighbor reprojected, ~9.99 m output spacing; reference only"
+    },
+    {
+      "name": "OSM small API map diagnostic",
+      "url": "https://www.openstreetmap.org/api/0.6/map?bbox=0.8838,46.6948,0.8850,46.6958",
+      "http": 200,
+      "license": "ODbL 1.0",
+      "format": "OSM XML",
+      "integrated": false
+    }
+  ],
+  "raw_files": [
+    {
+      "path": "work/mission-08-5/raw/DC_LiDAR_HD_1-0.pdf",
+      "bytes": 6108976,
+      "sha256": "bd9cfabe7d3dd6267286c77ae06842a353c56788fb4b79be65f901ff3676c35c"
+    },
+    {
+      "path": "work/mission-08-5/raw/DC_LiDAR_HD_1-0.txt",
+      "bytes": 90674,
+      "sha256": "b3f540f077d9f23d8b00ba674679328d27968cd0e2c5c37b291407b0fb72f3cf"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0537_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "fd1286f3064cb0231418a73020dcc0455c456c40522a5a9abf2f09ee7e6cc4b9"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0537_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "e4be2d6ecaa7b3e2d5f7abfa9987b102ba9533612c1ba580f89324c4bba40277"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0537_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "a76c6bafce8ae3e2a406d98f140825915f5aeb541bf147d07e0195d1646be521"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0538_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "f57f67381a6eafdeeeeed7e1766b06e39dbb9de341d732f674fdeae9e1e44758"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0538_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "e6caa7bea6438f02b300cd5361cb9195e64540b2cf20dd2cf8ed3ddc7a96b572"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0538_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "a25f0c4b380b5642317311336f9c4c796db58df24579cb81b447db9bb4e52cb6"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0539_6623_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "fa5b9f8a890178827a10ce496ceb3e6009939638eb6d7d6e7d83fa891471e5d2"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0539_6624_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "8e963920199463ee991908a3df56ffdd371bffa1b4d2527231a907db98f1504f"
+    },
+    {
+      "path": "work/mission-08-5/raw/LHD_FXX_0539_6625_MNT_O_0M50_LAMB93_IGN69.tif",
+      "bytes": 16000513,
+      "sha256": "9e8d62ee25ef2431f5ffaa5e98f8674482d16e7f64c4e2ff8e1685f63c7b5361"
+    },
+    {
+      "path": "work/mission-08-5/raw/buildings.geojson",
+      "bytes": 1140854,
+      "sha256": "b82c1271c8e086a2f1a3e9360d6d9bb1cbaa77e59abf25675872450e3319e689"
+    },
+    {
+      "path": "work/mission-08-5/raw/copernicus-metadata.xml",
+      "bytes": 50264,
+      "sha256": "1225bad96342a23d3dcfde213d3efa4183ef917a0fb22b726385f69300c2dba6"
+    },
+    {
+      "path": "work/mission-08-5/raw/copernicus-policy.body",
+      "bytes": 988057,
+      "sha256": "972c7413914dee73d01af8ac1256c4dd8de282bb0afa2751caa2a2fb79dc2aec"
+    },
+    {
+      "path": "work/mission-08-5/raw/copernicus-tcd-2018.tiff",
+      "bytes": 66760,
+      "sha256": "5011a0bd3ebb8b359890520125b2921e28f0b88a2e06a0f9c71828198976facb"
+    },
+    {
+      "path": "work/mission-08-5/raw/copernicus-tcd-2018.url",
+      "bytes": 324,
+      "sha256": "990c363c629d0cff249d037363b9a15323b77a635f4106b15a95f6ccdc72cdc0"
+    },
+    {
+      "path": "work/mission-08-5/raw/copernicus-wms.xml",
+      "bytes": 91,
+      "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6"
+    },
+    {
+      "path": "work/mission-08-5/raw/copernicus.body",
+      "bytes": 1058773,
+      "sha256": "09d72784a803d21d78caa13cfe295b750ea7e5dc73a3b7224e089680cc7e160b"
+    },
+    {
+      "path": "work/mission-08-5/raw/download-api.html",
+      "bytes": 80876,
+      "sha256": "16334554c52700a8a92de5a36996900f92688be0a005775f0a48f391dc19fb9e"
+    },
+    {
+      "path": "work/mission-08-5/raw/download-app.js",
+      "bytes": 3284547,
+      "sha256": "3f6c4358f1de590d95bdd6f3badaeae8a44806e01b1e7daf24f4157507edefd1"
+    },
+    {
+      "path": "work/mission-08-5/raw/download-capabilities.json",
+      "bytes": 29082,
+      "sha256": "029969e97aa61fcfbb52600e82a25534d6458edbab145c72722681244878caa3"
+    },
+    {
+      "path": "work/mission-08-5/raw/eea-image-server.json",
+      "bytes": 5598,
+      "sha256": "2504f61f2d048fa190341c81338ee51a84bd55c272e76d67fa61d056c79869e9"
+    },
+    {
+      "path": "work/mission-08-5/raw/extra-probes.json",
+      "bytes": 2290,
+      "sha256": "08e39d804930b1b5b3b301b0bf7e75f9a45be3842f24b704cf2292e4f951bdf4"
+    },
+    {
+      "path": "work/mission-08-5/raw/forest-catalog.body",
+      "bytes": 26582,
+      "sha256": "81ce3c46f4c17cd6ae12c869f81993a2427f9b89b680e5f4557603eeebc6c5af"
+    },
+    {
+      "path": "work/mission-08-5/raw/forest-download.xml",
+      "bytes": 8876,
+      "sha256": "04417e5cb113d427c79116ff04547fbc8c74ccb3bb4859883c3ea3bb2f6aae51"
+    },
+    {
+      "path": "work/mission-08-5/raw/forest-product.html",
+      "bytes": 115512,
+      "sha256": "00699ae78cbc684bd21d071c099d3ee484979872c8b85e05c152f9fbf086356f"
+    },
+    {
+      "path": "work/mission-08-5/raw/forest.geojson",
+      "bytes": 181003,
+      "sha256": "593f311ce68df91713787d111276d239beb2b4089a9712da09beafb396082aa7"
+    },
+    {
+      "path": "work/mission-08-5/raw/foret.body",
+      "bytes": 1593,
+      "sha256": "a9eea65e5b3b8bcd6405e757423919e4d664eef11bad8d33c457341243aa803d"
+    },
+    {
+      "path": "work/mission-08-5/raw/geofabrik.body",
+      "bytes": 24401,
+      "sha256": "d6fb4da663110adb10bf13614ad12f8ac13cd445c17d41fb45bc6feb5c81899b"
+    },
+    {
+      "path": "work/mission-08-5/raw/hedges.geojson",
+      "bytes": 413035,
+      "sha256": "9ff7e4ceaf139dcd4154499f2c3b3e08d122d8523ae9f67578423a13090dbf65"
+    },
+    {
+      "path": "work/mission-08-5/raw/lidar-catalog.body",
+      "bytes": 23752,
+      "sha256": "c1c7ffaf3fcffaf3105d03f0fc09824467bcb31f6e46f01c76a6dda2a154647e"
+    },
+    {
+      "path": "work/mission-08-5/raw/lidar-metadata.json",
+      "bytes": 17331,
+      "sha256": "3a60496a0db1e0d61241496148e9a916f1d85b9ec13d133124c735d02783ebf5"
+    },
+    {
+      "path": "work/mission-08-5/raw/lidar.body",
+      "bytes": 115512,
+      "sha256": "00699ae78cbc684bd21d071c099d3ee484979872c8b85e05c152f9fbf086356f"
+    },
+    {
+      "path": "work/mission-08-5/raw/mnt-index.body",
+      "bytes": 523,
+      "sha256": "61864c486cdd872e37941367b1c984939a03e297af97bfed9db81b4e816506eb"
+    },
+    {
+      "path": "work/mission-08-5/raw/mnt-manifest.json",
+      "bytes": 21547,
+      "sha256": "160082ce242fdea8582fed6fa7d44496512da72d5bad07990ce3f0c9907895c8"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-2023.7z",
+      "bytes": 123792783,
+      "sha256": "99daf7cae94e78674783d73c27c11f0da270301ae0bb4cb71cadccc068b04f8d"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-2023.md5",
+      "bytes": 131,
+      "sha256": "c2b586d5fc0d12899a4118a7daa32fd5975cd5be9727497f48c978fd6665ec9d"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-catalog.html",
+      "bytes": 115512,
+      "sha256": "00699ae78cbc684bd21d071c099d3ee484979872c8b85e05c152f9fbf086356f"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-datagouv.json",
+      "bytes": 59770,
+      "sha256": "62379bc82c5abb1c7239091d92dc55cc77a06acec2098446c4a67e4c7a81230e"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-download.xml",
+      "bytes": 11838,
+      "sha256": "34fea8c507ffbe4a5a1a0e997100fdb93e68214ffdf62fc1c2ed2bb8a785ba8a"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-files.xml",
+      "bytes": 3006,
+      "sha256": "5760a87fc0de07e1ce619efea6103d2e0bc6178fdb5fba2e028c48aa73fb9aa1"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-index.pbf",
+      "bytes": 115,
+      "sha256": "4dc507f2473ad20dfb2532a60f91746f4cba3e96d2eef2653683d2f563161275"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-product.html",
+      "bytes": 115512,
+      "sha256": "00699ae78cbc684bd21d071c099d3ee484979872c8b85e05c152f9fbf086356f"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs-reference.body",
+      "bytes": 484049,
+      "sha256": "13b8521424ac2e7a86c6df690bf9d330d2a8a6b8af5ef6e05640fc9a8ec13a02"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs.body",
+      "bytes": 1593,
+      "sha256": "a9eea65e5b3b8bcd6405e757423919e4d664eef11bad8d33c457341243aa803d"
+    },
+    {
+      "path": "work/mission-08-5/raw/ocs.geojson",
+      "bytes": 1388872,
+      "sha256": "c11c7f4a53ee15d13618e90d02f8ff8a46c3a9ab2777a730eb13212bf6ad9111"
+    },
+    {
+      "path": "work/mission-08-5/raw/ortho-dates.geojson",
+      "bytes": 16683549,
+      "sha256": "468319be9dfba5d239c810affda7ed28497ee836cfa21f70a32551bacfedb28a"
+    },
+    {
+      "path": "work/mission-08-5/raw/ortho-reference.body",
+      "bytes": 161268,
+      "sha256": "9ec2a421c95cd2a0290628cb87372fb9c6a2971849ef0eaceb2e70885a2e9256"
+    },
+    {
+      "path": "work/mission-08-5/raw/ortho.body",
+      "bytes": 1593,
+      "sha256": "a9eea65e5b3b8bcd6405e757423919e4d664eef11bad8d33c457341243aa803d"
+    },
+    {
+      "path": "work/mission-08-5/raw/osm-map.osm",
+      "bytes": 197034,
+      "sha256": "59942f647d8fbf304a27065cae4d64db4697376783dc7a5fe05c9dd0cf7937a7"
+    },
+    {
+      "path": "work/mission-08-5/raw/osm.body",
+      "bytes": 21314,
+      "sha256": "528ef6de9c4be216d0608206b26ce4dea6be2058b41df4b17835bd6d7c2d37c2"
+    },
+    {
+      "path": "work/mission-08-5/raw/overpass.body",
+      "bytes": 156,
+      "sha256": "7cd905d731bc5983f218aa91824747ef52e7b2cef4a2bf4aa2adba91dc3e61e6"
+    },
+    {
+      "path": "work/mission-08-5/raw/rpg.body",
+      "bytes": 1593,
+      "sha256": "a9eea65e5b3b8bcd6405e757423919e4d664eef11bad8d33c457341243aa803d"
+    },
+    {
+      "path": "work/mission-08-5/raw/rpg.geojson",
+      "bytes": 108413,
+      "sha256": "2fb2ec4efb0762f485f71f93dd8918437d6d08aeafd1942acd9465892542cfc6"
+    },
+    {
+      "path": "work/mission-08-5/raw/sandre-wfs.body",
+      "bytes": 188516,
+      "sha256": "20c9ce40f45f508b50c4e9863d6a0d58230b7df4893eecf97b81151cfdbac1a5"
+    },
+    {
+      "path": "work/mission-08-5/raw/sandre.body",
+      "bytes": 2086,
+      "sha256": "e7fe52b242a9a3394fcecde0709dedf597fa4a8a4898c2ddb05207101485a707"
+    },
+    {
+      "path": "work/mission-08-5/raw/structures.geojson",
+      "bytes": 14724,
+      "sha256": "ee3b70d7a02a6c8881356b88e4d062569a2626cf647a631a9b4fddbe033175e4"
+    },
+    {
+      "path": "work/mission-08-5/raw/tms.xml",
+      "bytes": 148432,
+      "sha256": "6b3e021b8fbade98a8b88312e68ee64bf52aa936ec93e5d5183fee9fece0bc22"
+    },
+    {
+      "path": "work/mission-08-5/raw/topage-files.html",
+      "bytes": 2280,
+      "sha256": "c7e4f8de050508679073befcdd1cb2db3ae17a54a97d0afb0eca5653d0b568db"
+    },
+    {
+      "path": "work/mission-08-5/raw/topage.geojson",
+      "bytes": 627,
+      "sha256": "d87504f1ce31d02fdee8b616d3ed3f5dd79a56cb2a5ef76719ad338c8ca6a162"
+    },
+    {
+      "path": "work/mission-08-5/raw/topage2026-cap.xml",
+      "bytes": 105288,
+      "sha256": "2b5d354c2061ad028c26d1110fe42fe14aaa6ae4ef7a798f722c8450d0e605ad"
+    },
+    {
+      "path": "work/mission-08-5/raw/topage2026.geojson",
+      "bytes": 522846,
+      "sha256": "eb42cbe298ec5af69935062c75ee5a08e73e830e0fa4c5949213b33088bb774d"
+    },
+    {
+      "path": "work/mission-08-5/raw/topo.body",
+      "bytes": 1593,
+      "sha256": "a9eea65e5b3b8bcd6405e757423919e4d664eef11bad8d33c457341243aa803d"
+    },
+    {
+      "path": "work/mission-08-5/raw/vectors-index.json",
+      "bytes": 4042,
+      "sha256": "5685a0302a731bed91de636408a55c4e702ce7575a64cdd67850215dae2843b0"
+    },
+    {
+      "path": "work/mission-08-5/raw/vegetation.geojson",
+      "bytes": 713218,
+      "sha256": "e231c557db421175aaca8a0de5a7dddcc1fc61af4c9eadc6e93fde3d2c71d585"
+    },
+    {
+      "path": "work/mission-08-5/raw/water.geojson",
+      "bytes": 694490,
+      "sha256": "ae7c07461d34abdfccd8a1190a103de7cdc0e805b478d4117ad5bcd9be7f84f8"
+    },
+    {
+      "path": "work/mission-08-5/raw/wfs.body",
+      "bytes": 5563741,
+      "sha256": "6371c3f09127fe8085a4861b095c98f6b2f8f0cb62daef9bf38cfa4be2c7bc9a"
+    },
+    {
+      "path": "work/mission-08-5/raw/wms.xml",
+      "bytes": 959452,
+      "sha256": "dd94a034d2bf34c2e52c4c0af22f1f3fd3d963a108f194a08964ba6215fdd08f"
+    }
+  ],
+  "integrated_environment_sources": [
+    {
+      "id": "forest",
+      "name": "IGN BD Forêt V2",
+      "license": "Licence Ouverte 2.0",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=LANDCOVER.FORESTINVENTORY.V2%3Aformation_vegetale&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "sha256": "593f311ce68df91713787d111276d239beb2b4089a9712da09beafb396082aa7",
+      "vintage": null,
+      "vintage_status": "acquisition not supplied per object; native dates retained, not treated as survey date",
+      "extent": [
+        537276,
+        6622779,
+        539434,
+        6624931
+      ],
+      "source_crs": "EPSG:4326",
+      "query_extent_crs": "EPSG:2154",
+      "resolution_m": null,
+      "resolution_status": "vector; not a raster resolution",
+      "confidence": "mapped; classifications depend on original product",
+      "retrieved_at": "2026-11-10",
+      "original_features": 30
+    },
+    {
+      "id": "vegetation",
+      "name": "IGN BD TOPO V3 végétation",
+      "license": "Licence Ouverte 2.0",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=BDTOPO_V3%3Azone_de_vegetation&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "sha256": "e231c557db421175aaca8a0de5a7dddcc1fc61af4c9eadc6e93fde3d2c71d585",
+      "vintage": null,
+      "vintage_status": "acquisition not supplied per object; native dates retained, not treated as survey date",
+      "extent": [
+        537276,
+        6622779,
+        539434,
+        6624931
+      ],
+      "source_crs": "EPSG:4326",
+      "query_extent_crs": "EPSG:2154",
+      "resolution_m": null,
+      "resolution_status": "vector; not a raster resolution",
+      "confidence": "mapped; classifications depend on original product",
+      "retrieved_at": "2026-11-10",
+      "original_features": 264
+    },
+    {
+      "id": "rpg",
+      "name": "ASP / IGN RPG 2024",
+      "license": "Licence Ouverte 2.0",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=RPG.2024%3Aparcelles_graphiques&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "sha256": "2fb2ec4efb0762f485f71f93dd8918437d6d08aeafd1942acd9465892542cfc6",
+      "vintage": "2024",
+      "vintage_status": "annual declaration",
+      "extent": [
+        537276,
+        6622779,
+        539434,
+        6624931
+      ],
+      "source_crs": "EPSG:4326",
+      "query_extent_crs": "EPSG:2154",
+      "resolution_m": null,
+      "resolution_status": "vector; not a raster resolution",
+      "confidence": "mapped; classifications depend on original product",
+      "retrieved_at": "2026-11-10",
+      "original_features": 128
+    },
+    {
+      "id": "ocs",
+      "name": "IGN OCS GE 2023 Vienne",
+      "license": "Licence Ouverte 2.0",
+      "url": "https://data.geopf.fr/telechargement/download/OCSGE/OCS-GE_2-0__GPKG_LAMB93_D086_2023-01-01/OCS-GE_2-0__GPKG_LAMB93_D086_2023-01-01.7z",
+      "sha256": "c11c7f4a53ee15d13618e90d02f8ff8a46c3a9ab2777a730eb13212bf6ad9111",
+      "vintage": "2023",
+      "vintage_status": "source millesime 2023",
+      "extent": [
+        537276,
+        6622779,
+        539434,
+        6624931
+      ],
+      "source_crs": "EPSG:4326",
+      "query_extent_crs": "EPSG:2154",
+      "resolution_m": null,
+      "resolution_status": "vector; not a raster resolution",
+      "confidence": "mapped; classifications depend on original product",
+      "retrieved_at": "2026-11-10",
+      "original_features": 451,
+      "archive_sha256": "99daf7cae94e78674783d73c27c11f0da270301ae0bb4cb71cadccc068b04f8d",
+      "gpkg_sha256": "d26b313b500e8a3aea09954ad2e1e6966c3686c4514561f88ea483870b63f1b4",
+      "original_crs": "EPSG:2154"
+    }
+  ],
+  "not_integrated": [
+    "BD TOPO buildings / height attributes and linear structures",
+    "BD TOPAGE 2026",
+    "Copernicus TCD 2018",
+    "BD ORTHO reference pixels",
+    "OSM API diagnostic extract"
+  ],
+  "original_storage": "Ignored work/mission-08-5/raw and normalized rasters; OCS department GeoPackages in work/mission-08-5/ocs-extracted. Local workspace only, not durable object storage. OCS has an edition URL; MNT WMS exports may evolve. Compare fresh downloads with recorded SHA-256 before treating them as identical; never commit these archives.",
+  "browser_derivatives": [
+    {
+      "path": "public/data/angles-earth.json",
+      "bytes": 166699,
+      "sha256": "4e76c200eeb8f43fc3f0dd54522760328ec2e87dc4bab4ffc2955b0a7a68d29d"
+    },
+    {
+      "path": "public/data/angles-environment.json",
+      "bytes": 1379094,
+      "sha256": "dfcc8100915c0d65f95c57eb063885d35067326e9f51887a9d9c74415f544fba"
+    },
+    {
+      "path": "public/data/angles-landcover.png",
+      "bytes": 289083,
+      "sha256": "46c8d0e006a4511d0a976ef099bb01800c2c00915f6bb9dcf8af869ff5d6610f"
+    },
+    {
+      "path": "public/data/angles-osm.geojson",
+      "bytes": 491060,
+      "sha256": "06b79e259d8cca94ed6619d90a058e650d1a9bb5e245802f0dd141b679587aac"
+    },
+    {
+      "path": "public/data/angles-road-edge.json",
+      "bytes": 621,
+      "sha256": "2f622f8efc88fa2b7b04259801f7d717f609bd2bbb98e04abe249bdc3f9352c3"
+    },
+    {
+      "path": "public/data/angles-road-edge.pack",
+      "bytes": 352937,
+      "sha256": "56105f50397fa23b1a0e000fa51e2331a70fba0a1d2b17d492124c7657c2064a"
+    },
+    {
+      "path": "public/data/angles-surface.json",
+      "bytes": 22758,
+      "sha256": "9e5e9c53756ae38b2d2a939ef8c19ebbd4b94e5b17ffa4acad12c8da0b1e69e5"
+    },
+    {
+      "path": "public/data/angles-surface.pack",
+      "bytes": 1643444,
+      "sha256": "f41b742db528a8737d7cf225004cae13631a1ce36feec7b966d47419fd5049c9"
+    },
+    {
+      "path": "public/data/angles-terrain-lod.bin",
+      "bytes": 418944,
+      "sha256": "0390908830741ce7dd7490e913220fbc2c189e51d2e1853502bccaae8ba76eca"
+    },
+    {
+      "path": "public/data/angles-terrain.json",
+      "bytes": 294461,
+      "sha256": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1"
+    }
+  ]
+}

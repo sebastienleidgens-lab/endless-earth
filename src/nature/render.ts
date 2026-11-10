@@ -1,7 +1,7 @@
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
 // @ts-ignore Shared ecological rules exercised by Node.
-import {createEcology,detailRecipe,noise,POITOU} from './ecology.mjs';
+import {createEcology,detailRecipe,noise,POITOU,habitat} from './ecology.mjs';
 import {animateFoliage} from '../living/atmosphere';
 type Tree={x:number;y:number;z:number;kind:string;leaf?:string;scale:number};
 const dummy=new THREE.Object3D();
@@ -38,7 +38,7 @@ export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z
  }
  const detailCells=new Set<string>();
  // Detail cells use a separate, finer grid than the shared tree batches.
- for(const f of features){if(!f.rings||!['meadow','grass','village_green','forest'].includes(f.tags.landuse)&&!['wood','grassland','scrub'].includes(f.tags.natural))continue;const r=f.rings[0],xs=r.map((p:any)=>p.x),zs=r.map((p:any)=>p.z);for(let cz=Math.floor(Math.max(-980,Math.min(...zs))/128);cz<=Math.floor(Math.min(980,Math.max(...zs))/128);cz++)for(let cx=Math.floor(Math.max(-980,Math.min(...xs))/128);cx<=Math.floor(Math.min(980,Math.max(...xs))/128);cx++){const k=`${cx}:${cz}`;if(detailCells.has(k))continue;detailCells.add(k);const g=new THREE.Group();g.userData.natureCell={cx,cz,ecology,height,builds:0};scene.add(g)}}
+ for(const f of features){if(!f.rings||!habitat(f.tags))continue;const r=f.rings[0],xs=r.map((p:any)=>p.x),zs=r.map((p:any)=>p.z);for(let cz=Math.floor(Math.max(-980,Math.min(...zs))/128);cz<=Math.floor(Math.min(980,Math.max(...zs))/128);cz++)for(let cx=Math.floor(Math.max(-980,Math.min(...xs))/128);cx<=Math.floor(Math.min(980,Math.max(...xs))/128);cx++){const k=`${cx}:${cz}`;if(detailCells.has(k))continue;detailCells.add(k);const g=new THREE.Group();g.userData.natureCell={cx,cz,ecology,height,builds:0};scene.add(g)}}
  scene.userData.nature={trees:ecology.trees.length,cells:cells.size,detailCells:detailCells.size,profile:POITOU.id};
  return ecology.trees;
 }

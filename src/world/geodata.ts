@@ -1,3 +1,5 @@
+// @ts-ignore Shared normalized environmental features.
+import {mergeEnvironment} from './environment.mjs';
 // @ts-ignore Water line clipping shared with offline tests.
 import {clipLineToGrid} from './terrain-grid.mjs';
 // @ts-ignore Explicitly illustrative ruin profile.
@@ -194,7 +196,7 @@ export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain
   if(!response.ok)return 0;
   const data=await response.json() as Collection;
   if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
-  const count=renderGeoFeatures(scene,data.features,terrain);
+  const count=renderGeoFeatures(scene,mergeEnvironment(data.features,terrain?.environment),terrain);
   if(count>0)setBuildingFootprints(data.features);
   return count;
 }

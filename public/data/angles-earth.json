@@ -1,12 +1,106 @@
 {
   "schema": "endless-earth-prepared-v1",
-  "terrainSha256": "bfe0ce976a290d46e2db13200d2d1341a1876583b55e1cdbaa556236e726d151",
+  "environmentSha256": "dfcc8100915c0d65f95c57eb063885d35067326e9f51887a9d9c74415f544fba",
+  "terrainSha256": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1",
   "osmSha256": "06b79e259d8cca94ed6619d90a058e650d1a9bb5e245802f0dd141b679587aac",
   "horizontalFrame": "legacy local tangent plane, X east / Z south, metres; see geo.ts",
-  "source": "IGN RGE ALTI via Géoplateforme altitude API",
-  "sourceRetrievedAt": "2026-11-08T18:13:59.380191+00:00",
+  "source": "IGN LiDAR HD MNT, offline Lambert-93 sampling",
+  "environmentSources": [
+    {
+      "id": "forest",
+      "name": "IGN BD Forêt V2",
+      "license": "Licence Ouverte 2.0",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=LANDCOVER.FORESTINVENTORY.V2%3Aformation_vegetale&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "sha256": "593f311ce68df91713787d111276d239beb2b4089a9712da09beafb396082aa7",
+      "vintage": null,
+      "vintage_status": "acquisition not supplied per object; native dates retained, not treated as survey date",
+      "extent": [
+        537276,
+        6622779,
+        539434,
+        6624931
+      ],
+      "source_crs": "EPSG:4326",
+      "query_extent_crs": "EPSG:2154",
+      "resolution_m": null,
+      "resolution_status": "vector; not a raster resolution",
+      "confidence": "mapped; classifications depend on original product",
+      "retrieved_at": "2026-11-10",
+      "original_features": 30
+    },
+    {
+      "id": "vegetation",
+      "name": "IGN BD TOPO V3 végétation",
+      "license": "Licence Ouverte 2.0",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=BDTOPO_V3%3Azone_de_vegetation&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "sha256": "e231c557db421175aaca8a0de5a7dddcc1fc61af4c9eadc6e93fde3d2c71d585",
+      "vintage": null,
+      "vintage_status": "acquisition not supplied per object; native dates retained, not treated as survey date",
+      "extent": [
+        537276,
+        6622779,
+        539434,
+        6624931
+      ],
+      "source_crs": "EPSG:4326",
+      "query_extent_crs": "EPSG:2154",
+      "resolution_m": null,
+      "resolution_status": "vector; not a raster resolution",
+      "confidence": "mapped; classifications depend on original product",
+      "retrieved_at": "2026-11-10",
+      "original_features": 264
+    },
+    {
+      "id": "rpg",
+      "name": "ASP / IGN RPG 2024",
+      "license": "Licence Ouverte 2.0",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=RPG.2024%3Aparcelles_graphiques&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&BBOX=537276%2C6622779%2C539434%2C6624931%2CEPSG%3A2154&COUNT=5000",
+      "sha256": "2fb2ec4efb0762f485f71f93dd8918437d6d08aeafd1942acd9465892542cfc6",
+      "vintage": "2024",
+      "vintage_status": "annual declaration",
+      "extent": [
+        537276,
+        6622779,
+        539434,
+        6624931
+      ],
+      "source_crs": "EPSG:4326",
+      "query_extent_crs": "EPSG:2154",
+      "resolution_m": null,
+      "resolution_status": "vector; not a raster resolution",
+      "confidence": "mapped; classifications depend on original product",
+      "retrieved_at": "2026-11-10",
+      "original_features": 128
+    },
+    {
+      "id": "ocs",
+      "name": "IGN OCS GE 2023 Vienne",
+      "license": "Licence Ouverte 2.0",
+      "url": "https://data.geopf.fr/telechargement/download/OCSGE/OCS-GE_2-0__GPKG_LAMB93_D086_2023-01-01/OCS-GE_2-0__GPKG_LAMB93_D086_2023-01-01.7z",
+      "sha256": "c11c7f4a53ee15d13618e90d02f8ff8a46c3a9ab2777a730eb13212bf6ad9111",
+      "vintage": "2023",
+      "vintage_status": "source millesime 2023",
+      "extent": [
+        537276,
+        6622779,
+        539434,
+        6624931
+      ],
+      "source_crs": "EPSG:4326",
+      "query_extent_crs": "EPSG:2154",
+      "resolution_m": null,
+      "resolution_status": "vector; not a raster resolution",
+      "confidence": "mapped; classifications depend on original product",
+      "retrieved_at": "2026-11-10",
+      "original_features": 451,
+      "archive_sha256": "99daf7cae94e78674783d73c27c11f0da270301ae0bb4cb71cadccc068b04f8d",
+      "gpkg_sha256": "d26b313b500e8a3aea09954ad2e1e6966c3686c4514561f88ea483870b63f1b4",
+      "original_crs": "EPSG:2154"
+    }
+  ],
+  "sourceRetrievedAt": "2026-11-10T08:05:11.651767+00:00",
   "sourceSpacingM": 10,
-  "verticalDatum": "IGN normal elevations (see RGE ALTI metadata)",
+  "verticalDatum": "IGN69",
   "maxFarErrorM": 0.25,
   "tileCells": 40,
   "tiles": [
@@ -15,206 +109,206 @@
       "z": 0,
       "size": 40,
       "offset": 0,
-      "count": 8112,
-      "cover": true
-    },
-    {
-      "x": 40,
-      "z": 0,
-      "size": 40,
-      "offset": 8112,
-      "count": 8880,
-      "cover": true
-    },
-    {
-      "x": 80,
-      "z": 0,
-      "size": 40,
-      "offset": 16992,
-      "count": 7344,
-      "cover": false
-    },
-    {
-      "x": 120,
-      "z": 0,
-      "size": 40,
-      "offset": 24336,
-      "count": 6000,
-      "cover": false
-    },
-    {
-      "x": 160,
-      "z": 0,
-      "size": 40,
-      "offset": 30336,
-      "count": 4320,
-      "cover": false
-    },
-    {
-      "x": 0,
-      "z": 40,
-      "size": 40,
-      "offset": 34656,
-      "count": 8352,
-      "cover": true
-    },
-    {
-      "x": 40,
-      "z": 40,
-      "size": 40,
-      "offset": 43008,
-      "count": 8976,
-      "cover": true
-    },
-    {
-      "x": 80,
-      "z": 40,
-      "size": 40,
-      "offset": 51984,
-      "count": 8208,
-      "cover": true
-    },
-    {
-      "x": 120,
-      "z": 40,
-      "size": 40,
-      "offset": 60192,
-      "count": 6432,
-      "cover": false
-    },
-    {
-      "x": 160,
-      "z": 40,
-      "size": 40,
-      "offset": 66624,
-      "count": 7344,
-      "cover": false
-    },
-    {
-      "x": 0,
-      "z": 80,
-      "size": 40,
-      "offset": 73968,
-      "count": 7632,
-      "cover": true
-    },
-    {
-      "x": 40,
-      "z": 80,
-      "size": 40,
-      "offset": 81600,
-      "count": 9024,
-      "cover": true
-    },
-    {
-      "x": 80,
-      "z": 80,
-      "size": 40,
-      "offset": 90624,
-      "count": 9312,
-      "cover": true
-    },
-    {
-      "x": 120,
-      "z": 80,
-      "size": 40,
-      "offset": 99936,
       "count": 8064,
-      "cover": false
-    },
-    {
-      "x": 160,
-      "z": 80,
-      "size": 40,
-      "offset": 108000,
-      "count": 7152,
-      "cover": false
-    },
-    {
-      "x": 0,
-      "z": 120,
-      "size": 40,
-      "offset": 115152,
-      "count": 4944,
-      "cover": false
+      "cover": true
     },
     {
       "x": 40,
-      "z": 120,
+      "z": 0,
       "size": 40,
-      "offset": 120096,
-      "count": 8976,
+      "offset": 8064,
+      "count": 9216,
       "cover": true
     },
     {
       "x": 80,
-      "z": 120,
+      "z": 0,
       "size": 40,
-      "offset": 129072,
-      "count": 9408,
+      "offset": 17280,
+      "count": 8784,
       "cover": true
     },
     {
       "x": 120,
-      "z": 120,
+      "z": 0,
       "size": 40,
-      "offset": 138480,
-      "count": 7200,
-      "cover": false
-    },
-    {
-      "x": 160,
-      "z": 120,
-      "size": 40,
-      "offset": 145680,
-      "count": 5424,
-      "cover": false
-    },
-    {
-      "x": 0,
-      "z": 160,
-      "size": 40,
-      "offset": 151104,
-      "count": 4704,
-      "cover": false
-    },
-    {
-      "x": 40,
-      "z": 160,
-      "size": 40,
-      "offset": 155808,
-      "count": 7776,
+      "offset": 26064,
+      "count": 7536,
       "cover": true
     },
     {
-      "x": 80,
-      "z": 160,
+      "x": 160,
+      "z": 0,
       "size": 40,
-      "offset": 163584,
+      "offset": 33600,
+      "count": 7200,
+      "cover": true
+    },
+    {
+      "x": 0,
+      "z": 40,
+      "size": 40,
+      "offset": 40800,
+      "count": 8784,
+      "cover": true
+    },
+    {
+      "x": 40,
+      "z": 40,
+      "size": 40,
+      "offset": 49584,
       "count": 9264,
       "cover": true
     },
     {
+      "x": 80,
+      "z": 40,
+      "size": 40,
+      "offset": 58848,
+      "count": 9120,
+      "cover": true
+    },
+    {
+      "x": 120,
+      "z": 40,
+      "size": 40,
+      "offset": 67968,
+      "count": 7632,
+      "cover": true
+    },
+    {
+      "x": 160,
+      "z": 40,
+      "size": 40,
+      "offset": 75600,
+      "count": 7920,
+      "cover": true
+    },
+    {
+      "x": 0,
+      "z": 80,
+      "size": 40,
+      "offset": 83520,
+      "count": 9120,
+      "cover": true
+    },
+    {
+      "x": 40,
+      "z": 80,
+      "size": 40,
+      "offset": 92640,
+      "count": 9312,
+      "cover": true
+    },
+    {
+      "x": 80,
+      "z": 80,
+      "size": 40,
+      "offset": 101952,
+      "count": 9456,
+      "cover": true
+    },
+    {
+      "x": 120,
+      "z": 80,
+      "size": 40,
+      "offset": 111408,
+      "count": 8736,
+      "cover": true
+    },
+    {
+      "x": 160,
+      "z": 80,
+      "size": 40,
+      "offset": 120144,
+      "count": 7824,
+      "cover": true
+    },
+    {
+      "x": 0,
+      "z": 120,
+      "size": 40,
+      "offset": 127968,
+      "count": 6576,
+      "cover": true
+    },
+    {
+      "x": 40,
+      "z": 120,
+      "size": 40,
+      "offset": 134544,
+      "count": 9360,
+      "cover": true
+    },
+    {
+      "x": 80,
+      "z": 120,
+      "size": 40,
+      "offset": 143904,
+      "count": 9504,
+      "cover": true
+    },
+    {
+      "x": 120,
+      "z": 120,
+      "size": 40,
+      "offset": 153408,
+      "count": 8400,
+      "cover": true
+    },
+    {
+      "x": 160,
+      "z": 120,
+      "size": 40,
+      "offset": 161808,
+      "count": 6624,
+      "cover": true
+    },
+    {
+      "x": 0,
+      "z": 160,
+      "size": 40,
+      "offset": 168432,
+      "count": 7440,
+      "cover": true
+    },
+    {
+      "x": 40,
+      "z": 160,
+      "size": 40,
+      "offset": 175872,
+      "count": 8544,
+      "cover": true
+    },
+    {
+      "x": 80,
+      "z": 160,
+      "size": 40,
+      "offset": 184416,
+      "count": 9456,
+      "cover": true
+    },
+    {
       "x": 120,
       "z": 160,
       "size": 40,
-      "offset": 172848,
-      "count": 8304,
-      "cover": false
+      "offset": 193872,
+      "count": 8544,
+      "cover": true
     },
     {
       "x": 160,
       "z": 160,
       "size": 40,
-      "offset": 181152,
-      "count": 6816,
-      "cover": false
+      "offset": 202416,
+      "count": 7056,
+      "cover": true
     }
   ],
-  "farTriangles": 62656,
+  "farTriangles": 69824,
   "fineTriangles": 80000,
-  "lodSha256": "148a2ab1a6ced0d59287765a5c3e5c341c8dbcb90f7b907ae457dbaa7cb0094e",
-  "coverSha256": "52ba6e059ea45ea544215da7fa8b53bc5d1d922eee97fd2e58527dee91694bc3",
+  "lodSha256": "0390908830741ce7dd7490e913220fbc2c189e51d2e1853502bccaae8ba76eca",
+  "coverSha256": "46c8d0e006a4511d0a976ef099bb01800c2c00915f6bb9dcf8af869ff5d6610f",
   "cover": {
     "origin": [
       -1000,
@@ -228,7 +322,12 @@
     "height": 1000,
     "stepM": 2,
     "counts": {
-      "wood": 107651
+      "meadow": 152710,
+      "scrub": 96991,
+      "wood": 271222,
+      "built": 51178,
+      "open": 135350,
+      "farmland": 272184
     },
     "source": {
       "source": "© OpenStreetMap contributors",
@@ -243,26 +342,6160 @@
       "method": "one-time OSM API bbox bootstrap",
       "warning": "Incomplete OSM tags; no authoritative elevation or building heights."
     },
-    "interpretation": "Material palette inferred from explicit OSM land use only; unknown is transparent. Raster spacing is not survey accuracy.",
+    "interpretation": "Original material palette within normalized source classes and retained OSM; unknown is transparent. Raster spacing is not survey accuracy.",
     "sourceFeatures": [
       {
-        "id": "osm-way-42055926",
-        "source": "Union européenne - SOeS, CORINE Land Cover, 2006.",
-        "year": "2006",
+        "id": "forest/formation_vegetale.599945/0",
+        "source": "forest",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "forest/formation_vegetale.600110/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
         "leafType": "broadleaved"
       },
       {
-        "id": "osm-way-42055940",
-        "source": "Union européenne - SOeS, CORINE Land Cover, 2006.",
-        "year": "2006",
+        "id": "forest/formation_vegetale.600147/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600148/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600183/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600203/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600204/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600226/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600397/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600398/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600399/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600399/1",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600400/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600403/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600406/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600424/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600539/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600539/1",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600552/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600553/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600554/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600555/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600556/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600678/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
         "leafType": "mixed"
+      },
+      {
+        "id": "forest/formation_vegetale.600750/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "mixed"
+      },
+      {
+        "id": "forest/formation_vegetale.600804/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600805/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600807/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600834/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600839/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600840/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "forest/formation_vegetale.600861/0",
+        "source": "forest",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4320279/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4320552/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4324283/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4325996/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4326326/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4326370/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4326558/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4326694/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4326883/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4326897/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4326937/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4327017/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4327694/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4327923/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4328908/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329714/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329714/1",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329852/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329887/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329917/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329922/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329934/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329938/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329941/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329969/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329970/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329970/1",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4329974/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330001/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330008/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330019/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330020/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330022/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330025/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330027/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330028/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330029/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330030/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330031/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330032/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330033/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330035/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330036/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330037/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330038/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330039/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330040/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330041/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330044/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330045/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330049/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330050/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330051/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330052/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330054/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330055/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330057/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330058/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330061/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330062/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330063/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330064/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330068/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330070/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330101/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330124/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330126/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330127/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330128/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330129/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330131/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330132/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330133/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330134/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330135/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330136/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330137/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330138/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330139/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330140/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330141/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330142/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330143/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330144/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330146/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330147/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330148/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330149/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330150/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330151/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "mixed"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330152/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330153/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330155/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330156/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330157/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330158/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330159/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330160/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330162/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330163/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330164/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330180/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330189/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330210/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330211/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330212/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330213/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330214/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330215/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330216/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330217/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330218/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330219/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330220/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330221/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330224/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330225/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330226/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330227/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330228/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330229/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330230/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330234/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330235/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330236/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330237/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330238/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330239/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330240/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330241/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330242/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330243/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330244/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330246/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330247/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330249/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330250/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330251/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330252/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330253/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330254/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330255/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330256/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330257/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330258/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330259/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330260/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330261/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330262/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330263/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330264/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330266/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330300/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330301/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330308/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330310/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330330/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330331/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330332/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330337/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330338/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330339/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330341/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330342/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330343/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330344/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330345/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330346/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330347/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330348/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330349/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330350/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330351/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330352/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330354/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330355/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330356/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330357/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330358/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330359/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330360/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330361/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330362/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330363/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330364/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330365/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330366/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330367/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330368/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330369/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330370/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330372/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330373/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330374/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330375/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330376/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330377/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330378/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330379/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330380/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330381/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330382/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330383/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330384/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330385/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330386/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330387/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330389/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330393/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330396/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330397/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330415/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330453/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330467/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330478/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330479/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330481/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330482/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330483/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330484/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330485/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330487/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330489/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330490/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330491/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330492/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330493/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330494/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330495/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330496/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330497/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330498/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330499/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330500/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330501/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330502/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330503/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330504/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330505/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330506/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330507/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330508/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330509/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330511/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330514/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330515/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330516/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330517/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330519/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330521/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330596/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330598/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330599/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330604/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330606/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330607/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330610/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330611/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "mixed"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330612/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330617/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330618/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330620/0",
+        "source": "vegetation",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330622/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330624/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "vegetation/zone_de_vegetation.4330625/0",
+        "source": "vegetation",
+        "classification": "scrub",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1273114/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1452259/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1540548/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1730151/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1808898/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1882983/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1882986/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1930776/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.1930777/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2027046/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2076257/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2299877/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2342181/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2383477/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2415196/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2589883/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2659231/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2666399/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2744742/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2744823/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.2967110/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3077029/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3089727/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3111346/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3134445/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3189484/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3425483/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3426834/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3527291/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3569719/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3581041/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3846590/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3917984/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3946336/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.3979315/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4093186/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4126762/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4227468/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4234400/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4275102/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4301516/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4308824/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4308828/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4415476/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4491355/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4515425/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4591941/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4591942/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4708897/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4798530/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4835870/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.4999201/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5056838/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5107382/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5160844/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5176577/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5184164/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5250165/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5267808/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5281523/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5285320/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5289838/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5306705/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5349149/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5474503/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5510299/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5670583/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5676102/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5805030/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5812094/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5910896/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.5933555/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6285898/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6294497/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6392394/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6403615/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6539960/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6550341/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6660401/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6700016/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6814058/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.6921338/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7104611/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7118296/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7181537/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7281657/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7285944/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7496901/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7602580/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7888080/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.791494/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.7924066/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8006699/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8036766/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8058349/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8274464/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8312720/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8377747/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8481030/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8481030/1",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8541592/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8603813/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8654731/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8717181/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8772980/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8802480/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8937892/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.8997012/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.91009/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9120220/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9137409/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9177556/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9199274/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9212369/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9229058/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9279640/0",
+        "source": "rpg",
+        "classification": "meadow",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9301921/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9306825/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9365797/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9392813/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9433385/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9442355/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9505426/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "rpg/parcelles_graphiques.9614749/0",
+        "source": "rpg",
+        "classification": "farmland",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323387/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323388/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323389/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323389/1",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323390/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323391/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323392/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323393/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323395/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323435/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323436/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323442/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323451/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323452/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323453/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323454/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323455/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323456/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323457/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323458/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323459/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323461/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323462/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323463/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323464/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323465/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323500/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323501/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323502/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323503/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323504/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323505/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323506/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323507/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323508/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323509/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323510/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323512/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323513/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323514/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323515/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323516/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323517/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323518/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323519/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323524/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323531/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "mixed"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323537/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323562/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323563/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323564/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323565/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323566/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323567/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323568/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323569/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323570/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323571/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323572/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323573/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323579/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323595/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323596/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323597/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323598/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323599/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323600/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323601/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323602/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323604/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323605/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323611/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323612/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323616/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323618/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323636/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323637/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323653/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323654/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323657/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323661/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323662/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323664/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323666/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323671/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323672/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323673/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323674/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323714/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323715/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323716/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323717/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323718/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323719/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323720/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323721/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323722/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323723/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323724/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323725/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323727/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323728/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323729/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323730/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323731/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323732/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323735/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323736/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323738/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323739/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323740/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323741/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323742/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323743/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323744/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323745/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323746/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323747/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323748/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323749/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323750/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323751/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323754/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323774/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "mixed"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323775/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323776/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323777/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323778/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323779/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323780/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323781/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323782/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323783/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323784/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323785/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323786/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323787/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323788/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323789/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323829/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323830/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323831/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323832/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323833/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323834/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323838/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323839/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323840/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323846/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323848/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323849/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323850/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323852/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323854/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323855/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323861/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323862/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323867/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323867/1",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323867/2",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323868/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323869/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323870/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323871/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063323872/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063324537/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326262/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326263/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326264/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326265/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326266/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326267/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326269/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326270/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326271/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326280/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326297/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326299/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326314/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326321/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326325/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326335/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326335/1",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326342/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326374/1",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326389/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326390/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326391/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326392/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326394/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326395/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326397/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326399/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326429/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326431/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326432/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326433/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326436/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326438/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326439/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326442/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326443/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326447/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326449/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326450/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326454/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326455/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326461/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326463/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326466/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326481/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326484/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326486/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326490/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326562/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326563/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326564/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326575/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326576/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326579/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326580/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326581/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326582/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326583/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326584/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326587/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326588/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326590/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326591/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326593/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326594/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326597/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326598/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326635/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326636/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326637/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326656/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326657/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326658/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326659/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326660/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326662/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326664/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326665/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326666/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326671/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326672/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326676/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326679/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326682/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326684/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326720/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326724/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326726/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326729/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326730/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326794/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326796/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326797/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326803/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326823/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326824/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326825/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326859/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326863/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326865/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326868/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326873/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326874/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326878/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326882/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326884/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326888/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326889/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326891/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326892/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326893/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326894/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326895/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326896/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326897/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326898/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326901/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326903/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326904/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326906/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326909/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326910/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326912/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326913/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326915/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326918/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326919/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326923/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326924/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326928/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326929/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326934/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326935/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326937/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063326938/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327024/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327025/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327026/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327027/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327028/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327029/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327030/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327031/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327032/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327033/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327038/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327076/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327128/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327142/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327146/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327147/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327155/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327156/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327157/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327162/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327166/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327172/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327178/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327185/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063327194/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329050/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329051/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329057/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329173/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329175/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329249/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329250/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329251/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329252/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329253/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329254/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329255/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329320/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329321/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329322/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329323/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329324/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329325/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329326/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329327/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329328/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329329/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329532/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329625/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329647/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329652/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329653/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329654/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329655/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329656/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329766/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329785/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329822/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329823/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329824/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329825/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329906/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329907/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329908/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329942/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329945/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329946/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329947/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329948/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329949/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329950/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329951/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329952/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329953/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329954/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329955/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329956/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329957/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329958/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329959/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329960/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329961/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329962/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063329963/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330519/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330520/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330521/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330522/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330523/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330524/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330525/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330526/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330527/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330528/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330529/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330530/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330531/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330532/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330533/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330534/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330538/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330842/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330845/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063330845/1",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334856/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334866/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334874/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334880/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334881/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334898/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334907/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334947/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334958/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334975/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334976/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063334987/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335029/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335036/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335038/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335084/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335098/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335110/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335126/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335133/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335170/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335185/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335199/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335202/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335213/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335215/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335221/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335228/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335238/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335245/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335259/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335264/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335270/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335312/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335324/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335367/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335381/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335387/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335391/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335394/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335410/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335429/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063335436/0",
+        "source": "ocs",
+        "classification": "built",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336105/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336156/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336156/1",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336264/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336388/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336447/0",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336447/1",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336447/2",
+        "source": "ocs",
+        "classification": "open",
+        "year": null,
+        "leafType": null
+      },
+      {
+        "id": "ocs/OCSGE0000000010063336455/0",
+        "source": "ocs",
+        "classification": "wood",
+        "year": null,
+        "leafType": "broadleaved"
       }
     ],
     "provenanceByAttribute": {
-      "outline": "OSM polygon; inherited source and year per feature",
-      "classification": "Explicit OSM tags only; no use assigned to unknown ground",
+      "outline": "Normalized source polygons (IGN/ASP) and retained OSM; source identity per feature",
+      "classification": "Normalized IGN/ASP classes where available, explicit OSM elsewhere; no use assigned to unknown ground",
       "floorColor": "Original procedural art; litter is illustrative",
-      "slopeBlend": "Existing IGN 10 m DEM; changes color only",
+      "slopeBlend": "Source DEM at 10 m spacing; changes color only",
       "alpha": "Artistic blend weight, not measurement confidence"
     }
   }

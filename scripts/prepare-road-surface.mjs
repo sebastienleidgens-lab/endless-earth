@@ -135,7 +135,7 @@ export async function prepareRoadSurface(dir='public/data'){
  const g=JSON.parse(terrainText),data=JSON.parse(osmText),earth=JSON.parse(earthText);
  const local=([lon,lat])=>[(lon-.8844)*111320*Math.cos(46.6953*Math.PI/180),-(lat-46.6953)*111320];
  const waterAreas=data.features.filter(f=>f.geometry?.type==='Polygon'&&(f.properties.natural==='water'||f.properties.water)).map(f=>f.geometry.coordinates.map(r=>r.map(local)));
- const segments=roadSegments(data.features,local),surface=buildSurface(g,segments,{coverTiles:earth.tiles,auditLegacy:true,waterAreas});
+ const segments=roadSegments(data.features,local),surface=buildSurface(g,segments,{tileCells:earth.tileCells,coverTiles:earth.tiles,auditLegacy:true,waterAreas});
  const result=packSurface(surface,{terrainSha256:digest(terrainText),osmSha256:digest(osmText),terrainSource:g.source,osmSource:data.metadata,sourceSpacingM:g.step_m,segments:segments.length,estimatedWidthSegments:segments.filter(s=>s.estimated).length,roadOffsetM:0,polygonOffset:false});
  result.manifest.water={mode:'mapped-outline-dem-drape-v1',polygons:waterAreas.length,source:'OSM water polygons; source DEM heights unchanged',interpretation:'Terrain-draped visual water, not measured level, flow or bathymetry. Roads take priority. No separate water depth layer.'};
  const packed=gzipSync(result.binary,{level:9,mtime:0});result.manifest.compressedBytes=packed.length;

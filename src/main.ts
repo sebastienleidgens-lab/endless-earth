@@ -29,7 +29,7 @@ if(import.meta.hot)import.meta.hot.accept('virtual:build-identity',module=>{
  if(module)identityElement.innerHTML=buildIdentityMarkup(module.buildIdentity,ANGLES.name);
 });
 const credits=document.createElement('div');credits.className='geo-credit';
-credits.innerHTML='<a href="https://www.data.gouv.fr/datasets/referentiel-a-grande-echelle-rge" target="_blank" rel="noopener">IGN · RGE ALTI · extraction 08/11/2026</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a>';
+credits.innerHTML='<a href="https://www.data.gouv.fr/datasets/mnt-lidar-hd" target="_blank" rel="noopener">IGN · LiDAR HD 2023 / OCS GE 2023 / BD TOPO / BD Forêt · ASP RPG 2024 · Licence Ouverte 2.0</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a>';
 root.append(credits);
 
 const scene=new THREE.Scene(); scene.background=new THREE.Color(0xdce8df); scene.fog=new THREE.Fog(0xdce8df,300,1000);
@@ -151,7 +151,7 @@ if(tilesPreview && !terrainPreview){
       await navigationLoaded();
       if(count>0)prepareWalk();
       if(hint)hint.textContent=count>0
-        ? `OSM réel : ${count} objets · ${terrain?`relief IGN ${terrain.grid.step_m} m · dénivelé ${(Math.max(...terrain.grid.elevations_m)-Math.min(...terrain.grid.elevations_m)).toFixed(0)} m`:'relief indisponible, sol plat'}${terrain&&!terrain.roadsAvailable?' · voies visuelles indisponibles':''}`
+        ? `Sources IGN / ASP / OSM · ${terrain?`relief IGN ${terrain.grid.step_m} m · dénivelé ${(terrain.grid.elevations_m.reduce((a,b)=>Math.max(a,b),-Infinity)-terrain.grid.elevations_m.reduce((a,b)=>Math.min(a,b),Infinity)).toFixed(0)} m`:'relief indisponible, sol plat'}${terrain&&!terrain.roadsAvailable?' · voies visuelles indisponibles':''}${terrain&&!terrain.environment?' · occupation IGN/ASP indisponible':''}`
         : 'ERREUR OSM : aucun objet géographique chargé';
     }catch(error){
       console.error('OSM geography rendering failed',error);

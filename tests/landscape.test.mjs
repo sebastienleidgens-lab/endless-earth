@@ -53,7 +53,7 @@ test('weir linework never creates a river habitat and mapped roots retain their 
  assert.ok(a.trees.length>0);for(const p of b.trees)assert.equal(p.y,h(p.x,p.z));assert.ok(b.trees.every(p=>p.leaf==='broad'));
 });
 test('forest material colors are decorative, slope weighted and do not classify unknown land',()=>{
- const m=JSON.parse(read('angles-earth.json'));assert.deepEqual(Object.keys(m.cover.counts),['wood']);assert.ok(m.cover.sourceFeatures.every(f=>f.year==='2006'));
+ const m=JSON.parse(read('angles-earth.json'));assert.ok(m.cover.counts.wood>0&&m.cover.counts.farmland>0&&m.cover.counts.meadow>0);assert.ok(m.cover.sourceFeatures.some(f=>f.source==='ocs'));assert.ok(!m.cover.sourceFeatures.some(f=>f.year==='2006'));
  assert.match(m.cover.provenanceByAttribute.classification,/unknown/);assert.match(m.cover.provenanceByAttribute.floorColor,/procedural/);
  assert.ok(floorTint('wood',10,10,1).alpha<floorTint('wood',10,10,0).alpha);assert.notDeepEqual(floorTint('wood',10,10,0),floorTint('wood',40,30,0));
 });

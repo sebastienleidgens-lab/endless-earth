@@ -1,0 +1,115 @@
+[
+  {
+    "name": "browser-smoke",
+    "command": [
+      "node",
+      "scripts/browser-smoke.mjs"
+    ],
+    "exit_code": 0,
+    "seconds": 40.066,
+    "completed_at": "2026-11-10T08:43:09.628320+00:00",
+    "log": "browser-smoke.log",
+    "sha256": "10a2093a9091d4c24576793b5b7a4b59a21eef0de4d1e2a294cbb3655da816a2"
+  },
+  {
+    "name": "camera",
+    "command": [
+      "node",
+      "scripts/browser-camera.mjs"
+    ],
+    "exit_code": 0,
+    "seconds": 29.314,
+    "completed_at": "2026-11-10T08:43:38.942448+00:00",
+    "log": "camera.log",
+    "sha256": "54b62f744095f51e68126fb6b9fa5c4489c3c033bff9e4311f6150b4f5ed1aba"
+  },
+  {
+    "name": "collisions",
+    "command": [
+      "node",
+      "scripts/browser-safety.mjs"
+    ],
+    "exit_code": 0,
+    "seconds": 50.51,
+    "completed_at": "2026-11-10T08:44:29.453190+00:00",
+    "log": "collisions.log",
+    "sha256": "6ba69f8dedcd003b2033f7bc074c0201ed1746bca62c7e74d6e5dcd93b0d4db9"
+  },
+  {
+    "name": "living",
+    "command": [
+      "node",
+      "scripts/browser-living.mjs"
+    ],
+    "exit_code": 0,
+    "seconds": 47.097,
+    "completed_at": "2026-11-10T08:45:16.550721+00:00",
+    "log": "living.log",
+    "sha256": "9d7ba91a8dd3ce24412cdd8dbed4ac0c351f4f5ec22146e2ace43e1fa637da9d"
+  },
+  {
+    "name": "degraded-data",
+    "command": [
+      "node",
+      "scripts/browser-geography-data.mjs"
+    ],
+    "exit_code": 0,
+    "seconds": 125.287,
+    "completed_at": "2026-11-10T08:47:21.839466+00:00",
+    "log": "degraded-data.log",
+    "sha256": "61484abf56d5e78077c75124700794566751b1d8ff38efe691b1ba6c844ba51f"
+  },
+  {
+    "name": "walk-450m",
+    "command": [
+      "node",
+      "scripts/browser-geography-walk.mjs"
+    ],
+    "exit_code": 0,
+    "seconds": 463.747,
+    "completed_at": "2026-11-10T08:55:05.589607+00:00",
+    "log": "walk-450m.log",
+    "sha256": "c45c5eedb5c8cc1c284f89d80e987baff492ed03d32e0b37d376e2ea911a34b4"
+  },
+  {
+    "name": "unit",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit_code": 0,
+    "log": "unit-tests.log",
+    "sha256": "31914e8d7e06a2db55f5275ca3ac59906a1ada41aab0a3004b5e40fca71fcb7a"
+  },
+  {
+    "name": "build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit_code": 0,
+    "log": "build.log",
+    "sha256": "6591cb244168c999da5b2b30a9e96cf9a96401c00974a9ba9a0978d0b4e1d33e"
+  },
+  {
+    "name": "python-import",
+    "command": [
+      "work/geo-venv/bin/python",
+      "tests/import-mnt.test.py"
+    ],
+    "exit_code": 0,
+    "log": "python-import-test.log",
+    "sha256": "723252ce15063934e4296ed17a028152978beb1af188456f5c0ff7ecbd1a8eb8"
+  },
+  {
+    "name": "python-normalize",
+    "command": [
+      "work/geo-venv/bin/python",
+      "tests/normalize-mnt.test.py"
+    ],
+    "exit_code": 0,
+    "log": "python-normalize-test.log",
+    "sha256": "524730683b6b7c42385583c65df292c2c1aaaf92e86e40a041fe759bef547df1"
+  }
+]
