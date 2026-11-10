@@ -4,140 +4,141 @@
 > endless-earth@0.1.0 test
 > node --test tests/*.test.mjs
 
-✔ actual meshes stay within mapped footprint, valid height and contain no degenerate triangles (112.75311ms)
-✔ roof triangles preserve concavities and courtyard holes, including their centroids (4.610431ms)
-✔ LOD updates reuse geometry, materials and anchors; no reconstruction or collision mutation (6.534002ms)
+✔ actual meshes stay within mapped footprint, valid height and contain no degenerate triangles (378.652634ms)
+✔ roof triangles preserve concavities and courtyard holes, including their centroids (17.987665ms)
+✔ LOD updates reuse geometry, materials and anchors; no reconstruction or collision mutation (17.672495ms)
 Validated decoration envelopes for 921 actual OSM buildings
-✔ real OSM corpus has no decorative vertices outside its existing collision footprints (5153.148315ms)
-✔ tiny mapped footprints retain a visible volume without projecting recessed details outside (1.170976ms)
-✔ far details allocate no buffers, near details build once and hidden cache is bounded (116.694327ms)
-✔ regional plans are deterministic, order independent and configurable without geography (18.668816ms)
-✔ heights respect explicit OSM total and units, levels, slopes and small buildings (0.697476ms)
-✔ openings have corner margins, valid headroom and ground attached doors; shared walls stay closed (0.893961ms)
-✔ concave footprints have continuous bounded pitched roofs and explicit roof modes (1.349358ms)
-✔ detail LOD has quality limits and hysteresis without changing a plan (0.19771ms)
-✔ compiled production badge matches the actual checkout and its explicitly selected mission (443.340086ms)
-✔ compiled dirty builds identify a base commit and local modifications (210.301811ms)
-✔ source export without Git retains the declared mission but never invents a commit (63.114229ms)
-✔ missing or inconsistent mission metadata remains explicitly unknown (110.00903ms)
-✔ an export inside another repository cannot borrow its parent commit (79.120435ms)
-✔ build labels escape source text rather than interpreting it as HTML (0.480747ms)
-✔ a checkout that changes during compilation cannot publish a falsely clean identity (198.926078ms)
-✔ corrective mission 07.1 is taken from its declared report, including in the compiled badge (172.472097ms)
-✔ mission 07.2 material build retains the exact mission name and actual Git commit (163.301731ms)
-✔ mission 07.3 optimization build uses its explicit name and the real commit (187.876682ms)
-✔ assigns verified geographic features to stable tiles (1.49161ms)
-✔ writes a versioned manifest and tile files (12.717521ms)
-✔ refuses empty data rather than inventing geography (0.756942ms)
-✔ prepared decorations retain exact source fingerprints, 2500 finite anchors and generator versions (26.294785ms)
-✔ all offline chunks pass checksums, schema, typed ranges and finite bounding spheres (1315.666769ms)
-✔ anchors and prepared geometry remain identical to the verified 08.5 reference (8.723116ms)
-✔ pack roundtrip preserves original float/index bytes and rejects corrupt ranges (10.206589ms)
-✔ work budgets preserve geography and reduce optional work on long frames (0.359755ms)
-✔ detail queue cancels stale requests, bounds concurrency and never installs cancelled data (100.070031ms)
-✔ metric frame preserves orientation, original source positions and declared distance limits (2.252242ms)
-✔ rendered fine triangles and collision interpolation agree on cliffs and both diagonals (1539.656805ms)
-✔ road draping splits every source edge without lost area, buried corners or floating centres (1.240159ms)
-✔ river lines crossing DEM bounds never receive the unsupported local-zero altitude (6.777648ms)
-✔ terrain tiles retain identical boundary positions/normals and every boundary vertex in far LOD (252.069464ms)
-✔ unknown-only tiles omit atlas sampling while mapped habitat tiles retain it (169.910638ms)
-✔ all far triangles stay within their declared error throughout each intersected source plane (139.297459ms)
-✔ LOD keeps walking terrain exact, has hysteresis and reuses all buffers at rest and on return (226.657499ms)
-✔ explicit land use respects clearings, water, agricultural semantics and unknown areas (2.631311ms)
-✔ inferred ruin heights remain continuous, bounded and deterministic (2.82684ms)
-✔ forest leaf shapes use explicit OSM leaf_type while roots retain source terrain contact (59.669091ms)
-✔ offline assets are byte deterministic and retain source provenance (13574.043903ms)
-✔ wind is seeded, bounded and continuous through cell boundaries and time (173.13834ms)
-✔ cloud shadow is precisely the visible field projected along the sun, continuous and absent at night (14.00515ms)
-✔ analytic flocks contain silence, solo/pair/groups, varied durations and safe altitude (86.00758ms)
-✔ rare micro-events have deterministic jitter, gaps and seasonal habitat constraints (57.899126ms)
-✔ one world budget stays bounded over hundreds of cells and releases every claim (4.715171ms)
-✔ mapped habitat query preserves holes and unknown areas across cells (2.190393ms)
-✔ cloud receiver composes with owners, handles clones and reuses uniform references (2.963049ms)
-✔ actual fauna/events respect profile changes and dispose after repeated cell visits (52.668649ms)
-✔ vertex cloud-field interpolation keeps 40 m terrain LOD shadow changes below 2.5 percent (17.856484ms)
-✔ normalized dataset has complete provenance and matches the rendered atlas dependency (85.601674ms)
-✔ incomplete provenance, wrong projection, invalid geometry and unrecognized classes fail closed (392.598068ms)
-✔ replaces generalized CLC only with a valid dataset, keeps OSM roads and footprints byte-equivalent (55.337564ms)
-✔ land-use priority preserves clearings and polygon holes; unknown remains unclassified (8.492598ms)
-✔ bounded procedural trees cover separated mapped woods independently of input order (356.854551ms)
-✔ OSM shared vertices connect consecutive ways, without revisiting vertices (26.221167ms)
-✔ gaps, geometric crossings and different layers never connect (1.004ms)
-✔ private, unsupported bridge and blocked segments never enter graph (0.305174ms)
-✔ graph route stops on new obstacle and manual stop stays stopped (2.173262ms)
-✔ camera zoom clamps, and recenter follows shortest angular arc smoothly (0.345418ms)
-✔ pedestrian directional restrictions are preserved (1.049399ms)
-✔ camera blocks mapped walls independently of pedestrian road restrictions (2.16155ms)
-✔ cyclic networks never repeat a vertex to inflate walking distance (1.506091ms)
-✔ mapped water shares exact collision terrain, has constant classes and identical near/far faces (791.059221ms)
-✔ water union respects islands, overlap, DEM bounds and crossing road priorities without extra area (97.268201ms)
-✔ decoder refuses missing, truncated, mixed and conflicting water attributes (45.322281ms)
-✔ weir linework never creates a river habitat and mapped roots retain their DEM heights (53.917935ms)
-✔ forest material colors are decorative, slope weighted and do not classify unknown land (6.737597ms)
-✔ an agricultural overlay overrides coarse woodland and unknown banks gain no invented forest (10.219485ms)
-✔ auto walk excludes restricted and unsupported roads (4.614453ms)
-✔ planning never connects a remote position and stops before obstacles (7.020369ms)
-✔ walk accelerates, reaches end without teleport and can be interrupted (25.017274ms)
-✔ dynamic obstacle stops safely (0.465101ms)
-✔ bounded smooth wind and four surface mappings (3.208207ms)
-✔ auto walk stops before real navigation restrictions introduced after planning (159.852788ms)
-✔ automatic collision sweep stops along its route instead of sliding sideways (0.693515ms)
-✔ nature detail buffers build once at rest, remain hysteretic and evict with a bounded cache (990.155046ms)
-✔ zone unload disposes each unique geometry and owned material once, releases recipes (135.740546ms)
-✔ tree culling bounds contain all instanced vertices; far LOD is shared and hysteretic (124.444375ms)
-✔ detail recipes progress in bounded slices and cancel when a cell leaves range (53.395455ms)
-✔ regional placements repeat exactly, including detail recipes (78.521234ms)
-✔ trees and all detail types exclude buildings, water and road corridors (47.809813ms)
-✔ slope, missing DEM, clearings and unmapped habitats do not receive invented forest (37.780487ms)
-✔ solar position follows UTC, longitude, latitude and calendar, including night (0.638362ms)
-✔ weather transitions are bounded, gradual and approach selected simulated regime (13.804647ms)
-✔ bird species have long absences and brief perching windows, never perpetual player orbits (8.353906ms)
-✔ courtyard margins keep crowns away from inner building walls (0.329639ms)
-✔ incremental recipes preserve every deterministic detail in the same order (88.768332ms)
-✔ water banks block the body; supported real bridge crosses only within deck width (15.773567ms)
-✔ layer and unknown bridge height never create a crossing; restrictions win over support (2.310709ms)
-✔ mapped steps allow bounded slopes without teleporting over cliffs or missing terrain (0.869293ms)
-✔ barriers, forbidden roads and tunnels block independently of building footprints (1.9865ms)
-✔ acceleration is frame-rate independent, deceleration settles without drift (0.973465ms)
-✔ view transitions have bounded smooth endpoints and monotonic progress (0.326601ms)
-✔ original mineral atlas is deterministic, bounded and materials have distinct spatial statistics (418.04259ms)
-✔ atlas gutters wrap their own material, not adjacent quadrants; metric UV is independent of mesh density (228.266426ms)
-✔ edge field uses exterior union boundary: no shoulder across a crossing or seam (87.239169ms)
-✔ delivered shoulder field belongs to exact source data, with bounded one-channel memory (36.405783ms)
-✔ road shader adds filtered dry relief on the existing surface, with a distinct optional-shoulder program (4.652158ms)
-✔ signed field interpolates subpixel straight edges and keeps exterior scanlines outside (54.877991ms)
-✔ RG atlas preserves every original tone and height byte without unused channels (515.580642ms)
-✔ material filtering cap preserves the shoulder filter and respects the device capability (1.63661ms)
-✔ experimental support mask is deterministic, byte-sized and never alters positions or LOD topology (52.837226ms)
-✔ experimental mask covers crossing face interiors even when vertices alone miss the signed band (2.159894ms)
-✔ complex crossings, T, acute joins, width changes, loops and duplicates form one partition (758.743387ms)
-✔ material and width interpretations distinguish known data from estimates (0.755807ms)
-✔ prepared surface belongs to exact OSM/DEM sources and has no depth bias (119.009037ms)
-✔ all actual source-cell triangles cover the terrain once, with no overlap or degeneracy (1006.538181ms)
-✔ road faces are identical in near and far LOD; shared positions have identical normals across tile seams (293.320214ms)
-✔ surface decoder rejects truncated buffers, unsafe descriptors and invalid indices (26.071016ms)
-✔ real IGN elevation file has valid provenance and 2 km extent (62.035098ms)
-✔ stream keeps a bounded number of visible tiles (3.84933ms)
-✔ outdated responses never mount after moving (2.335548ms)
-✔ missing tiles do not create objects (0.553947ms)
-✔ Angles-sur-l Anglin is within its global tile bounds (4.136104ms)
-✔ antimeridian wrapping and polar clamp (3.952491ms)
-✔ deduplicates in-flight requests and caches successful tiles (3.31954ms)
-✔ 404 is not cached (0.680969ms)
-✔ human walking, sprint, diagonal normalization and forward relative to gaze (2.099147ms)
-✔ camera cycle returns freely to aerial (0.607733ms)
-✔ body radius, polygon interior and exterior (0.544078ms)
-✔ swept movement cannot tunnel through walls and slides along them (3.930701ms)
-✔ gentle slopes follow ground; steep slopes, cliffs and unknown terrain block (1.001902ms)
-✔ camera sweep stops before walls, terrain and unknown coverage (11.192838ms)
-ℹ tests 125
+✔ real OSM corpus has no decorative vertices outside its existing collision footprints (5310.0552ms)
+✔ tiny mapped footprints retain a visible volume without projecting recessed details outside (1.034437ms)
+✔ far details allocate no buffers, near details build once and hidden cache is bounded (23.565671ms)
+✔ regional plans are deterministic, order independent and configurable without geography (30.546724ms)
+✔ heights respect explicit OSM total and units, levels, slopes and small buildings (1.252209ms)
+✔ openings have corner margins, valid headroom and ground attached doors; shared walls stay closed (1.160907ms)
+✔ concave footprints have continuous bounded pitched roofs and explicit roof modes (2.500648ms)
+✔ detail LOD has quality limits and hysteresis without changing a plan (0.428095ms)
+✔ compiled production badge matches the actual checkout and its explicitly selected mission (408.822247ms)
+✔ compiled dirty builds identify a base commit and local modifications (125.264104ms)
+✔ source export without Git retains the declared mission but never invents a commit (64.24186ms)
+✔ missing or inconsistent mission metadata remains explicitly unknown (149.04422ms)
+✔ an export inside another repository cannot borrow its parent commit (53.884565ms)
+✔ build labels escape source text rather than interpreting it as HTML (0.853818ms)
+✔ a checkout that changes during compilation cannot publish a falsely clean identity (331.739271ms)
+✔ corrective mission 07.1 is taken from its declared report, including in the compiled badge (233.473916ms)
+✔ mission 07.2 material build retains the exact mission name and actual Git commit (170.784486ms)
+✔ mission 07.3 optimization build uses its explicit name and the real commit (170.373362ms)
+✔ assigns verified geographic features to stable tiles (2.631588ms)
+✔ writes a versioned manifest and tile files (34.934277ms)
+✔ refuses empty data rather than inventing geography (1.088738ms)
+✔ prepared decorations retain exact source fingerprints, 2500 finite anchors and generator versions (55.087632ms)
+✔ all offline chunks pass checksums, schema, typed ranges and finite bounding spheres (2099.126744ms)
+✔ anchors and prepared geometry remain identical to the verified 08.5 reference (17.241038ms)
+✔ pack roundtrip preserves original float/index bytes and rejects corrupt ranges (4.21135ms)
+✔ work budgets preserve geography and reduce optional work on long frames (0.438251ms)
+✔ detail queue cancels stale requests, bounds concurrency and never installs cancelled data (102.492265ms)
+✔ metric frame preserves orientation, original source positions and declared distance limits (1.709149ms)
+✔ rendered fine triangles and collision interpolation agree on cliffs and both diagonals (897.058251ms)
+✔ road draping splits every source edge without lost area, buried corners or floating centres (2.06092ms)
+✔ river lines crossing DEM bounds never receive the unsupported local-zero altitude (1.904763ms)
+✔ terrain tiles retain identical boundary positions/normals and every boundary vertex in far LOD (139.413248ms)
+✔ unknown-only tiles omit atlas sampling while mapped habitat tiles retain it (76.353231ms)
+✔ all far triangles stay within their declared error throughout each intersected source plane (75.945224ms)
+✔ LOD keeps walking terrain exact, has hysteresis and reuses all buffers at rest and on return (79.196559ms)
+✔ explicit land use respects clearings, water, agricultural semantics and unknown areas (1.285094ms)
+✔ inferred ruin heights remain continuous, bounded and deterministic (5.892654ms)
+✔ forest leaf shapes use explicit OSM leaf_type while roots retain source terrain contact (35.734118ms)
+✔ offline assets are byte deterministic and retain source provenance (8706.847467ms)
+✔ wind is seeded, bounded and continuous through cell boundaries and time (26.396682ms)
+✔ cloud shadow is precisely the visible field projected along the sun, continuous and absent at night (3.718157ms)
+✔ analytic flocks contain silence, solo/pair/groups, varied durations and safe altitude (47.662224ms)
+✔ rare micro-events have deterministic jitter, gaps and seasonal habitat constraints (9.166595ms)
+✔ one world budget stays bounded over hundreds of cells and releases every claim (2.290442ms)
+✔ mapped habitat query preserves holes and unknown areas across cells (0.587988ms)
+✔ cloud receiver composes with owners, handles clones and reuses uniform references (1.089312ms)
+✔ actual fauna/events respect profile changes and dispose after repeated cell visits (138.010885ms)
+✔ vertex cloud-field interpolation keeps 40 m terrain LOD shadow changes below 2.5 percent (12.92345ms)
+✔ world wind direction survives every tree orientation and anisotropic scale (3.180501ms)
+✔ normalized dataset has complete provenance and matches the rendered atlas dependency (97.568962ms)
+✔ incomplete provenance, wrong projection, invalid geometry and unrecognized classes fail closed (287.180116ms)
+✔ replaces generalized CLC only with a valid dataset, keeps OSM roads and footprints byte-equivalent (35.531174ms)
+✔ land-use priority preserves clearings and polygon holes; unknown remains unclassified (4.680055ms)
+✔ bounded procedural trees cover separated mapped woods independently of input order (185.464514ms)
+✔ OSM shared vertices connect consecutive ways, without revisiting vertices (13.183788ms)
+✔ gaps, geometric crossings and different layers never connect (1.011003ms)
+✔ private, unsupported bridge and blocked segments never enter graph (0.47334ms)
+✔ graph route stops on new obstacle and manual stop stays stopped (1.781466ms)
+✔ camera zoom clamps, and recenter follows shortest angular arc smoothly (0.44209ms)
+✔ pedestrian directional restrictions are preserved (1.846525ms)
+✔ camera blocks mapped walls independently of pedestrian road restrictions (1.130405ms)
+✔ cyclic networks never repeat a vertex to inflate walking distance (0.773732ms)
+✔ mapped water shares exact collision terrain, has constant classes and identical near/far faces (379.482878ms)
+✔ water union respects islands, overlap, DEM bounds and crossing road priorities without extra area (57.636934ms)
+✔ decoder refuses missing, truncated, mixed and conflicting water attributes (56.998379ms)
+✔ weir linework never creates a river habitat and mapped roots retain their DEM heights (19.11877ms)
+✔ forest material colors are decorative, slope weighted and do not classify unknown land (2.841186ms)
+✔ an agricultural overlay overrides coarse woodland and unknown banks gain no invented forest (1.940809ms)
+✔ auto walk excludes restricted and unsupported roads (1.994186ms)
+✔ planning never connects a remote position and stops before obstacles (1.323485ms)
+✔ walk accelerates, reaches end without teleport and can be interrupted (12.862929ms)
+✔ dynamic obstacle stops safely (1.055883ms)
+✔ bounded smooth wind and four surface mappings (3.514854ms)
+✔ auto walk stops before real navigation restrictions introduced after planning (40.643367ms)
+✔ automatic collision sweep stops along its route instead of sliding sideways (0.611093ms)
+✔ nature detail buffers build once at rest, remain hysteretic and evict with a bounded cache (416.365607ms)
+✔ zone unload disposes each unique geometry and owned material once, releases recipes (56.069942ms)
+✔ tree culling bounds contain all instanced vertices; far LOD is shared and hysteretic (37.76811ms)
+✔ detail recipes progress in bounded slices and cancel when a cell leaves range (28.669758ms)
+✔ regional placements repeat exactly, including detail recipes (34.822357ms)
+✔ trees and all detail types exclude buildings, water and road corridors (21.366162ms)
+✔ slope, missing DEM, clearings and unmapped habitats do not receive invented forest (2.90397ms)
+✔ solar position follows UTC, longitude, latitude and calendar, including night (0.89886ms)
+✔ weather transitions are bounded, gradual and approach selected simulated regime (4.936292ms)
+✔ bird species have long absences and brief perching windows, never perpetual player orbits (1.18982ms)
+✔ courtyard margins keep crowns away from inner building walls (1.676889ms)
+✔ incremental recipes preserve every deterministic detail in the same order (25.980372ms)
+✔ water banks block the body; supported real bridge crosses only within deck width (3.186742ms)
+✔ layer and unknown bridge height never create a crossing; restrictions win over support (2.118857ms)
+✔ mapped steps allow bounded slopes without teleporting over cliffs or missing terrain (0.83618ms)
+✔ barriers, forbidden roads and tunnels block independently of building footprints (0.464725ms)
+✔ acceleration is frame-rate independent, deceleration settles without drift (0.895806ms)
+✔ view transitions have bounded smooth endpoints and monotonic progress (0.324171ms)
+✔ original mineral atlas is deterministic, bounded and materials have distinct spatial statistics (395.775693ms)
+✔ atlas gutters wrap their own material, not adjacent quadrants; metric UV is independent of mesh density (158.073554ms)
+✔ edge field uses exterior union boundary: no shoulder across a crossing or seam (27.241609ms)
+✔ delivered shoulder field belongs to exact source data, with bounded one-channel memory (15.019837ms)
+✔ road shader adds filtered dry relief on the existing surface, with a distinct optional-shoulder program (1.486169ms)
+✔ signed field interpolates subpixel straight edges and keeps exterior scanlines outside (11.648304ms)
+✔ RG atlas preserves every original tone and height byte without unused channels (159.272861ms)
+✔ material filtering cap preserves the shoulder filter and respects the device capability (1.113418ms)
+✔ experimental support mask is deterministic, byte-sized and never alters positions or LOD topology (9.13538ms)
+✔ experimental mask covers crossing face interiors even when vertices alone miss the signed band (2.072753ms)
+✔ complex crossings, T, acute joins, width changes, loops and duplicates form one partition (344.9225ms)
+✔ material and width interpretations distinguish known data from estimates (0.439462ms)
+✔ prepared surface belongs to exact OSM/DEM sources and has no depth bias (35.720711ms)
+✔ all actual source-cell triangles cover the terrain once, with no overlap or degeneracy (549.901512ms)
+✔ road faces are identical in near and far LOD; shared positions have identical normals across tile seams (402.04043ms)
+✔ surface decoder rejects truncated buffers, unsafe descriptors and invalid indices (7.568516ms)
+✔ real IGN elevation file has valid provenance and 2 km extent (99.531351ms)
+✔ stream keeps a bounded number of visible tiles (1.864387ms)
+✔ outdated responses never mount after moving (2.04388ms)
+✔ missing tiles do not create objects (0.413602ms)
+✔ Angles-sur-l Anglin is within its global tile bounds (1.863542ms)
+✔ antimeridian wrapping and polar clamp (1.425137ms)
+✔ deduplicates in-flight requests and caches successful tiles (2.226347ms)
+✔ 404 is not cached (0.26474ms)
+✔ human walking, sprint, diagonal normalization and forward relative to gaze (1.107479ms)
+✔ camera cycle returns freely to aerial (0.177842ms)
+✔ body radius, polygon interior and exterior (0.256477ms)
+✔ swept movement cannot tunnel through walls and slides along them (2.607967ms)
+✔ gentle slopes follow ground; steep slopes, cliffs and unknown terrain block (0.868246ms)
+✔ camera sweep stops before walls, terrain and unknown coverage (1.4433ms)
+ℹ tests 126
 ℹ suites 0
-ℹ pass 125
+ℹ pass 126
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 19508.449961
+ℹ duration_ms 13499.344123
 
 === python-tests.log ===
 
@@ -165,13 +166,13 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.56 kB │ gzip:   0.37 kB
 dist/assets/index-Flf8nrz2.css    4.71 kB │ gzip:   1.51 kB
-dist/assets/index-D_Ff0soH.js   639.70 kB │ gzip: 178.08 kB
+dist/assets/index-2d-Vq8LJ.js   640.03 kB │ gzip: 178.20 kB
 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 3.50s
+✓ built in 2.44s
 
 === smoke.log ===
 
@@ -481,64 +482,64 @@ PASS EarthLife runtime {
   before: { objects: 10, controls: 1 },
   timings: [
     {
-      createCpuMs: 4.3999999994412065,
-      updateCpuMs: 0.900000000372529,
-      disposeCpuMs: 1.2999999998137355
+      createCpuMs: 3.099999999627471,
+      updateCpuMs: 0.30000000074505806,
+      disposeCpuMs: 0.39999999944120646
     },
     {
-      createCpuMs: 6.599999999627471,
-      updateCpuMs: 0.20000000018626451,
-      disposeCpuMs: 0.20000000018626451
-    },
-    {
-      createCpuMs: 3.2000000001862645,
-      updateCpuMs: 0.39999999944120646,
-      disposeCpuMs: 0.20000000018626451
-    },
-    {
-      createCpuMs: 3.1000000005587935,
-      updateCpuMs: 0.19999999925494194,
-      disposeCpuMs: 0.20000000018626451
-    },
-    {
-      createCpuMs: 3.1000000005587935,
-      updateCpuMs: 0.2999999998137355,
-      disposeCpuMs: 0.09999999962747097
-    },
-    {
-      createCpuMs: 3,
-      updateCpuMs: 0.19999999925494194,
-      disposeCpuMs: 0.20000000018626451
-    },
-    {
-      createCpuMs: 2.7000000001862645,
+      createCpuMs: 1.5,
       updateCpuMs: 0.20000000018626451,
       disposeCpuMs: 0.09999999962747097
     },
     {
-      createCpuMs: 5,
+      createCpuMs: 2.300000000745058,
       updateCpuMs: 0.19999999925494194,
-      disposeCpuMs: 0.20000000018626451
+      disposeCpuMs: 0
     },
     {
-      createCpuMs: 3.2999999998137355,
-      updateCpuMs: 0.6000000005587935,
-      disposeCpuMs: 0.7000000001862645
+      createCpuMs: 2.5,
+      updateCpuMs: 0.30000000074505806,
+      disposeCpuMs: 0
     },
     {
-      createCpuMs: 3.2999999998137355,
+      createCpuMs: 4.599999999627471,
       updateCpuMs: 0.20000000018626451,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 4,
+      updateCpuMs: 0.20000000018626451,
+      disposeCpuMs: 0
+    },
+    {
+      createCpuMs: 2.900000000372529,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 2.800000000745058,
+      updateCpuMs: 0,
       disposeCpuMs: 0.2999999998137355
     },
     {
-      createCpuMs: 2.099999999627471,
+      createCpuMs: 2.2000000001862645,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0
+    },
+    {
+      createCpuMs: 1.7999999998137355,
       updateCpuMs: 0.10000000055879354,
-      disposeCpuMs: 0.2999999998137355
+      disposeCpuMs: 0.09999999962747097
     },
     {
-      createCpuMs: 2.2999999998137355,
-      updateCpuMs: 0.20000000018626451,
+      createCpuMs: 1.099999999627471,
+      updateCpuMs: 0.10000000055879354,
       disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 2.1000000005587935,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.10000000055879354
     }
   ],
   after: { objects: 10, controls: 1 }

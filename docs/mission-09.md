@@ -105,59 +105,59 @@ Les valeurs finales sont détaillées dans `mission-09-captures/summary.json`, a
 
 | Station / profil | 08.6 médiane synchronisée | 09 médiane synchronisée | Écart |
 | --- | ---: | ---: | ---: |
-| Village · Qualité | 421.9 ms | 603.3 ms | +43.0 % |
-| Forêt proche · Qualité | 249.5 ms | 346.5 ms | +38.9 % |
-| Rivière · Qualité | 224.7 ms | 305.2 ms | +35.8 % |
-| Vue aérienne · Qualité | 478.7 ms | 472.4 ms | -1.3 % |
-| Éco ordinateur | 249.4 ms | 260.9 ms | +4.6 % |
-| Mobile Éco émulé | 123.9 ms | 152.1 ms | +22.8 % |
+| Village · Qualité | 429.3 ms | 491.7 ms | +14.5 % |
+| Forêt proche · Qualité | 312.7 ms | 272.5 ms | -12.9 % |
+| Rivière · Qualité | 271.6 ms | 253.4 ms | -6.7 % |
+| Vue aérienne · Qualité | 417.5 ms | 464.3 ms | +11.2 % |
+| Éco ordinateur | 228.7 ms | 276.7 ms | +21.0 % |
+| Mobile Éco émulé | 111.9 ms | 151.4 ms | +35.3 % |
 
-Les chiffres regroupent 45 échantillons synchronisés par station et version (15 × 3 passages). Le rendu logiciel régresse sur plusieurs vues : ce coût n’est pas masqué par une réduction de géographie. Le déplacement des sinus vers les sommets et les chemins Éco simplifiés limitent le travail, sans démontrer un gain de FPS. Les passages présentent une forte dispersion. Les essais intermédiaires et de timer GPU sont conservés séparément et ne sont pas mélangés à ce tableau.
+Les chiffres regroupent 45 échantillons synchronisés par station et version (15 × 3 passages). Les six passages finaux sont réalisés sur le vent corrigé (`033df74`), sans modifier le rendu entre passages. Le rendu logiciel régresse sur plusieurs vues : ce coût n’est pas masqué par une réduction de géographie. Les différences de signe entre scènes et la dispersion des passages interdisent une conclusion générale de gain de fluidité. Les essais intermédiaires et de timer GPU ne sont pas mélangés à ce tableau.
 
-Chargement local médian : 9.003 → 8.720 s, trois pages neuves par version ; maxima 11.241 → 12.168 s. Cette différence n’établit pas un gain de démarrage en production.
+Chargement local médian : 8.540 → 7.659 s, trois pages neuves par version ; maxima 9.031 → 8.586 s. Cette différence n’établit pas un gain de démarrage en production.
 
 | Boucle réelle · mobile Éco à l’arrêt | 08.6 | 09 |
 | --- | ---: | ---: |
-| Intervalle d’image p50 | 124.8 ms | 156.6 ms |
-| Intervalle d’image p95 | 153.6 ms | 447.3 ms |
-| Intervalle d’image p99 | 186.8 ms | 623.8 ms |
-| Intervalle d’image max | 219.5 ms | 755.3 ms |
-| CPU avant soumission p50 | 7.6 ms | 9.5 ms |
-| CPU avant soumission p95 | 24.9 ms | 32.3 ms |
-| CPU avant soumission p99 | 26.3 ms | 123.7 ms |
-| CPU avant soumission max | 30.2 ms | 192.9 ms |
-| Soumission CPU p50 | 1.5 ms | 1.8 ms |
-| Soumission CPU p95 | 4.1 ms | 16.5 ms |
-| Soumission CPU p99 | 17.7 ms | 29.6 ms |
-| Soumission CPU max | 19.4 ms | 52.3 ms |
+| Intervalle d’image p50 | 116.9 ms | 153.7 ms |
+| Intervalle d’image p95 | 217.2 ms | 212.3 ms |
+| Intervalle d’image p99 | 233.4 ms | 298.1 ms |
+| Intervalle d’image max | 238.2 ms | 363.0 ms |
+| CPU avant soumission p50 | 7.3 ms | 9.5 ms |
+| CPU avant soumission p95 | 23.6 ms | 29.5 ms |
+| CPU avant soumission p99 | 40.8 ms | 37.0 ms |
+| CPU avant soumission max | 99.2 ms | 43.3 ms |
+| Soumission CPU p50 | 1.7 ms | 1.7 ms |
+| Soumission CPU p95 | 5.4 ms | 5.6 ms |
+| Soumission CPU p99 | 6.5 ms | 14.1 ms |
+| Soumission CPU max | 13.0 ms | 16.1 ms |
 
-Cette courte trace comprend 120 images par version (40 × 3), après dix images d’échauffement. Elle conserve les pics, notamment les intervalles longs et le CPU p99 plus élevé de Mission 09. Les marches complètes ci-dessous constituent un scénario distinct et plus long.
+Cette courte trace comprend 120 images par version (40 × 3), après dix images d’échauffement. Elle conserve les pics et ne remplace pas une mesure sur appareil. Les marches ci-dessous constituent un scénario distinct et plus long.
 
-La mise à jour entière d’atmosphère mesurée séparément a un p95 de 0,1–0,2 ms sur les stations ; plusieurs valeurs sont quantifiées à 0,1 ms par le navigateur. Le temps synchronisé comprend le rendu, le pilote logiciel et la lecture des pixels : il ne peut pas être attribué exclusivement à EarthLife ni assimilé au temps d’un GPU matériel. L’essai aérien sans ombres donne 471,0 ms médians, contre 472,4 ms avec ombres ; la dispersion ne permet pas d’en isoler précisément le coût. L’extension de timer GPU est annoncée par SwiftShader, mais plusieurs requêtes restent indisponibles : aucune estimation matérielle n’est publiée.
+Le p95 de la mise à jour entière d’atmosphère est compris entre 0.1 et 0.3 ms selon la station et la version ; la résolution des mesures est d’environ 0,1 ms. Le temps synchronisé inclut le pilote logiciel et la lecture des pixels : il n’est pas une durée GPU matérielle. L’essai aérien sans ombres donne 457.6 ms médians, contre 464.3 ms avec ombres ; la dispersion ne permet pas d’en isoler précisément le coût. L’extension de timer GPU est annoncée par SwiftShader, mais plusieurs requêtes restent indisponibles : aucune estimation matérielle n’est publiée.
 
-Les draw calls sont stables dans cinq stations (80, 102, 161, 98 et 54 selon la vue), et passent de 125 à 124 au village. Les triangles baissent de 192 dans les vues Qualité, et de 1 248 en Éco : seules les représentations atmosphériques ont changé. Les arbres, bâtiments, terrain et routes restent identiques. Les nombres actifs de faune et d’événements sont conservés dans les traces ; neuf objets CPU sont réservés en Éco, dix dans les autres profils, sans boucle CPU par arbre.
+Les draw calls sont stables dans cinq stations (80, 102, 161, 98 et 54 selon la vue), et passent de 125 à 124 au village. Les triangles baissent de 192 dans les vues Qualité, et de 1 248 en Éco : seules les représentations atmosphériques ont changé. Les arbres, bâtiments, terrain et routes sont identiques. Les nombres de faune et d’événements sont conservés dans les traces ; neuf objets CPU sont réservés en Éco, dix dans les autres profils, sans boucle CPU par arbre.
 
 | Promenade réelle, même route | 08.6 | 09 |
 | --- | ---: | ---: |
 | Distance mesurée image par image | 450.000000 m | 450.000000 m |
-| Durée murale de marche | 403.6 s | 458.2 s |
-| Images mobiles dans la trace | 1679 | 1581 |
-| CPU avant soumission p50 | 8.1 ms | 8.9 ms |
-| CPU avant soumission p95 | 24.3 ms | 27.6 ms |
-| CPU avant soumission p99 | 40.0 ms | 45.7 ms |
-| CPU avant soumission max | 104.4 ms | 106.2 ms |
-| Intervalle d’image p50 | 221.6 ms | 272.8 ms |
-| Intervalle d’image p95 | 472.0 ms | 575.1 ms |
-| Intervalle d’image p99 | 670.5 ms | 860.1 ms |
-| Intervalle d’image max | 1039.1 ms | 1258.6 ms |
-| Soumission CPU p50 | 1.8 ms | 1.9 ms |
-| Soumission CPU p95 | 8.4 ms | 8.4 ms |
-| Soumission CPU p99 | 19.4 ms | 18.8 ms |
-| Soumission CPU max | 1029.7 ms | 1106.4 ms |
+| Durée murale de marche | 403.6 s | 427.2 s |
+| Images mobiles dans la trace | 1679 | 1689 |
+| CPU avant soumission p50 | 8.1 ms | 7.6 ms |
+| CPU avant soumission p95 | 24.3 ms | 24.6 ms |
+| CPU avant soumission p99 | 40.0 ms | 54.7 ms |
+| CPU avant soumission max | 104.4 ms | 120.6 ms |
+| Intervalle d’image p50 | 221.6 ms | 217.6 ms |
+| Intervalle d’image p95 | 472.0 ms | 533.9 ms |
+| Intervalle d’image p99 | 670.5 ms | 797.8 ms |
+| Intervalle d’image max | 1039.1 ms | 1291.4 ms |
+| Soumission CPU p50 | 1.8 ms | 1.8 ms |
+| Soumission CPU p95 | 8.4 ms | 8.1 ms |
+| Soumission CPU p99 | 19.4 ms | 20.5 ms |
+| Soumission CPU max | 1029.7 ms | 1064.9 ms |
 
-Les deux marches atteignent effectivement 450 m sans téléportation au lancement. Elles passent les gestes de zoom, le pincement et les trois caméras ; l’architecture est générée une seule fois. Le pincement est testé sur une zone du canvas dégagée du nouveau panneau de réglages. La limite de pas de simulation de 250 ms, conservée, explique qu’un rendu logiciel plus lent allonge la durée murale. Les mêmes 23 blocs sont demandés, décodés et installés dans les deux versions, avec les mêmes 2 978 046 octets demandés, 15 annulations, zéro échec et zéro résultat périmé.
+Les deux marches atteignent 450 m sans téléportation au lancement, passent le zoom, le pincement et les trois caméras, et ne régénèrent pas l’architecture. Le pincement est testé sur une partie dégagée du canvas. La marche 09 finale est refaite sur `033df74`, avec correction du repère de vent et des interrupteurs personnalisés ; la référence 08.6 est `f11f165`. La marche intermédiaire 09 demeure accessible dans l’historique Git mais n’est pas mélangée aux chiffres finaux. Le pas de simulation borné à 250 ms explique qu’un rendu logiciel lent allonge la durée murale.
 
-Heap JavaScript maximal observé : 195.58 → 196.95 Mo. Ce n’est pas le RSS du navigateur ni une mesure de fuite sur plusieurs heures. Les pics de décodage CPU du streaming sont de 3,1 → 1,2 ms, d’installation 1,6 → 0,7 ms et de tick 2,5 → 2,3 ms ; le maximum de récupération/décodage mural passe en revanche de 126,5 à 324,3 ms. Ces variations ne sont pas attribuées à une optimisation du chargeur, qui est conservé. Aucun déchargement nécessaire n’a été observé sur ce trajet monotone : les tests de retour/éviction/démontage distincts restent indispensables.
+Heap JavaScript maximal sur les marches : 195.58 → 197.00 Mo. Ce n’est ni le RSS, ni la VRAM, ni une preuve de stabilité sur plusieurs heures. Les mêmes 23 blocs sont demandés, décodés et installés, avec 2 978 046 octets demandés, 15 annulations, zéro échec et zéro résultat périmé. Les pics de décodage CPU sont de 3,1 → 1,2 ms, d’installation 1,6 → 0,7 ms et de tick 2,5 → 2,3 ms ; le maximum de récupération/décodage mural augmente de 126,5 à 324,3 ms. Ces variations ne sont pas attribuées à une modification du chargeur. Aucun déchargement nécessaire n’a été observé sur ce trajet monotone ; les tests distincts de retour, éviction et démontage complètent donc la marche.
 
 | Mémoire retenue, scène et caches amorcés | 08.6 | 09 |
 | --- | ---: | ---: |
@@ -167,13 +167,11 @@ Heap JavaScript maximal observé : 195.58 → 196.95 Mo. Ce n’est pas le RSS d
 | Textures source + mipmaps estimées · forêt | 12.094 Mo | 12.094 Mo |
 | Textures téléversées · forêt | 7 | 7 |
 
-L’audit inclut les matrices/couleurs d’instances, les géométries retenues hors écran et les textures des matériaux et uniformes compilés. Il ne mesure pas la VRAM du pilote. Les tampons des deux grilles de nuages (48 et 24 quads par côté) restent bornés ; aucune texture nouvelle n’est ajoutée. Les valeurs détaillées par station, matériaux et résidences sont dans `memory-validation.json`.
+L’audit inclut les matrices/couleurs d’instances, les géométries retenues hors écran et les textures des matériaux/uniformes compilés. Il ne mesure pas la mémoire privée du pilote. Le surcroît retenu est de 120 064 octets de géométrie, dont les grilles de nuages bornées ; aucune texture nouvelle. Les résidences et détails par station sont conservés dans `memory-validation.json`.
 
-Sur douze créations/destructions supplémentaires de la couche naturelle : création CPU médiane 3.15 ms, maximum 6.60 ms ; destruction CPU médiane 0.20 ms, maximum 1.30 ms. Ces cycles sans compilation GPU supplémentaire vérifient le démontage et les allocations CPU, pas la libération instantanée de VRAM.
+Sur douze créations/destructions supplémentaires de la couche naturelle : création CPU médiane 2.40 ms, maximum 4.60 ms ; destruction CPU médiane 0.10 ms, maximum 0.40 ms. Ces cycles sans compilation GPU supplémentaire vérifient le démontage et les allocations CPU, pas la libération instantanée de VRAM.
 
-Les quatre fichiers `realtime-*-foret.webm` et `realtime-*-mobile-eau.webm` contiennent six secondes murales de la boucle normale avant/après, après chargement. Aucun pas de simulation manuel ni interpolation d’image n’est utilisé. Ils complètent les échantillons WebP et montrent les limites du rendu logiciel.
-
-Les mesures finales ont été recueillies sur le code `39d6381` ; les correctifs suivants concernent la coupure des effets personnalisés (eau zéro et nuage masqué) et ne changent pas les réglages comparés. Le test de pixels vérifie deux images identiques lorsque l’eau est coupée, puis deux images différentes après réactivation. Les résultats de timer GPU exploratoires ne sont pas utilisés dans les tableaux.
+Les quatre fichiers `realtime-*-foret.webm` et `realtime-*-mobile-eau.webm` contiennent six secondes murales de la boucle normale avant/après, après chargement, sans pas de simulation manuel ni interpolation d’image. Ils complètent les WebP et montrent les limites du rendu logiciel. Le test de pixels vérifie aussi deux images identiques lorsque le courant est coupé, puis deux images différentes après réactivation.
 
 ## Limites et extension mondiale
 
@@ -189,7 +187,9 @@ Les modules ne dépendent pas d'Angles : ils consomment site, temps, état mét�
 - Branche : `mission/09-monde-vivant`. Une seule [PR en brouillon #16](https://github.com/sebastienleidgens-lab/endless-earth/pull/16), vers `main`.
 - Démarrage : `npm ci`, `npm run dev -- --port 5173`. Baseline détachée au port 5176 avec son propre cache Vite.
 - Vérification : `npm test`, les deux fichiers Python, `npm run build`, `node scripts/browser-earthlife-runtime.mjs`, `node scripts/browser-earthlife-data.mjs`, smoke et safety existants.
-- Images : `node scripts/browser-earthlife.mjs before`, puis `after`. Mesures : `node scripts/benchmark-earthlife.mjs`. Marches : `node scripts/browser-earthlife-walk.mjs before`, puis `after`. Synthèse : `node scripts/report-earthlife.mjs`.
-- Le rapport sélectionné dans `package.json` donne l'identité « ENDLESS EARTH — Mission 09 : Le monde vivant » ; le badge conserve le vrai commit Git et indique explicitement les sources modifiées et l'environnement. La production est vérifiée séparément sur quatre résolutions.
+- Images : `node scripts/browser-earthlife.mjs before`, puis `after`. Pour les vidéos, installer une fois le binaire officiel avec `PLAYWRIGHT_BROWSERS_PATH=work/playwright npx playwright install ffmpeg`, puis `node scripts/browser-earthlife-video.mjs`. Mesures : `node scripts/benchmark-earthlife.mjs`. Marches : `node scripts/browser-earthlife-walk.mjs before`, puis `after`. Synthèse : `node scripts/report-earthlife.mjs`, puis `python3 scripts/report-earthlife-details.py`. Audit mémoire : `node scripts/browser-earthlife-memory.mjs`. Production avec géographie chargée : `EARTHLIFE_WAIT_WORLD=1 npm run test:build-identity`.
+- Le rapport sélectionné dans `package.json` donne l'identité « ENDLESS EARTH — Mission 09 : Le monde vivant » ; le badge conserve le vrai commit Git et indique explicitement les sources modifiées et l'environnement. La production est vérifiée séparément sur quatre résolutions après chargement de la géographie, avec commit embarqué exact et sources propres.
+
+[Forêt en temps réel : avant](mission-09-captures/realtime-before-foret.webm) · [après](mission-09-captures/realtime-after-foret.webm) · [Mobile eau : avant](mission-09-captures/realtime-before-mobile-eau.webm) · [après](mission-09-captures/realtime-after-mobile-eau.webm).
 
 Aucune fusion, modification directe de `main` ou mise en production.
