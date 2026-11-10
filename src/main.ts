@@ -1,4 +1,4 @@
-import {lifeSettings,setLifeProfile,type LifeProfileName} from './earthlife/preferences';
+import {lifeSettings,setLifeProfile,readLifePreferences,saveLifePreferences,type LifeProfileName} from './earthlife/preferences';
 import {natureMemory} from './nature/render';
 import { updateArchitectureLOD, architectureMemory } from './architecture/render';
 // @ts-ignore Pure camera helpers.
@@ -270,13 +270,13 @@ function applyQuality(level:'low'|'high'){
 }
 qualityButton.innerHTML='<summary>Paysage vivant · réglages</summary><label>Profil graphique <select aria-label="Profil graphique"><option value="eco">Éco</option><option value="balanced" selected>Équilibré</option><option value="quality">Qualité</option><option value="custom">Personnalisé</option></select></label><div class="life-custom" hidden></div>';
 const profileSelect=qualityButton.querySelector<HTMLSelectElement>('select')!,customControls=qualityButton.querySelector<HTMLElement>('.life-custom')!;
-const customEffects:Record<string,number>={};
+const savedLife=readLifePreferences();const customEffects:Record<string,number>={...(savedLife?.custom??{})};
 for(const [key,label] of [['vegetation','Vent végétal'],['water','Courant visuel'],['clouds','Nuages'],['shadows','Ombres des nuages'],['birds','Oiseaux'],['events','Événements naturels']]){
- const row=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.checked=true;check.setAttribute('aria-label',label);row.append(check,label);customControls.append(row);
- check.onchange=()=>{customEffects[key]=check.checked?({shadows:.1,birds:6,events:2} as Record<string,number>)[key]??1:0;setLifeProfile('custom',customEffects)};
+ const row=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.checked=customEffects[key]!==0;check.setAttribute('aria-label',label);row.append(check,label);customControls.append(row);
+ check.onchange=()=>{customEffects[key]=check.checked?({shadows:.1,birds:6,events:2} as Record<string,number>)[key]??1:0;setLifeProfile('custom',customEffects);saveLifePreferences('custom',customEffects)};
 }
-profileSelect.onchange=()=>{qualityAuto=false;const name=profileSelect.value as LifeProfileName;applyQuality(name==='eco'?'low':'high');profileSelect.value=name;setLifeProfile(name,customEffects);customControls.hidden=name!=='custom'};
-root.append(qualityButton);applyQuality('high');setLifeProfile('balanced');profileSelect.value='balanced';
+profileSelect.onchange=()=>{qualityAuto=false;const name=profileSelect.value as LifeProfileName;applyQuality(name==='eco'?'low':'high');profileSelect.value=name;setLifeProfile(name,customEffects);customControls.hidden=name!=='custom';saveLifePreferences(name,customEffects)};
+root.append(qualityButton);applyQuality(savedLife?.name==='eco'?'low':'high');setLifeProfile(savedLife?.name??'balanced',customEffects);profileSelect.value=lifeSettings.name;customControls.hidden=lifeSettings.name!=='custom';qualityAuto=savedLife===null;
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;

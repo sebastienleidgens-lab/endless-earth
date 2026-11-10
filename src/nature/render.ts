@@ -1,3 +1,5 @@
+// @ts-ignore Static instancing metadata, no per-frame tree CPU animation.
+import {instanceWindGeometry} from '../earthlife/instance-wind.mjs';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
 // @ts-ignore Shared ecological rules exercised by Node.
@@ -25,16 +27,20 @@ export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z
   for(let i=0;i<p.count;i++){const t=THREE.MathUtils.smoothstep(p.getY(i),-2.4,2.7),shade=.72+t*.32;values.set([shade,shade,shade],i*3)}
   g.setAttribute('color',new THREE.BufferAttribute(values,3));
  }
- const stem=new THREE.CylinderGeometry(.19,.36,4.5,5),branches=[stem];for(const side of [-1,1]){const branch=new THREE.CylinderGeometry(.07,.16,2.6,3,1,true);branch.rotateZ(side*.65);branch.translate(-side*.7,1.1,0);branches.push(branch)}const trunk=mergeGeometries(branches)!;branches.forEach(g=>g.dispose());const bark=new THREE.MeshLambertMaterial({color:0x716653}),leaves=new THREE.MeshLambertMaterial({color:0xffffff,vertexColors:true});animateFoliage(bark,false,false,false,true);animateFoliage(leaves,true);const distantLeaves=new THREE.MeshLambertMaterial({color:0xffffff,vertexColors:true});animateFoliage(distantLeaves,true,false,true);
+ const stem=new THREE.CylinderGeometry(.19,.36,4.5,5),branches=[stem];for(const side of [-1,1]){const branch=new THREE.CylinderGeometry(.07,.16,2.6,3,1,true);branch.rotateZ(side*.65);branch.translate(-side*.7,1.1,0);branches.push(branch)}const trunk=mergeGeometries(branches)!;branches.forEach(g=>g.dispose());const bark=new THREE.MeshLambertMaterial({color:0x716653}),leaves=new THREE.MeshLambertMaterial({color:0xffffff,vertexColors:true});animateFoliage(bark,false,false,false,true,true);animateFoliage(leaves,true,false,false,false,true);const distantLeaves=new THREE.MeshLambertMaterial({color:0xffffff,vertexColors:true});animateFoliage(distantLeaves,true,false,true,false,true);
  scene.userData.natureResources={geometries:[trunk,crown,distantCrown,needleCrown,farNeedleCrown],materials:[bark,leaves,distantLeaves]};
  // Geometry/materials belong to this geographic zone, shared only within it.
  const palette=[0x566d48,0x617548,0x6d7d50,0x506951,0x758052];
+ scene.updateWorldMatrix(true,false);
  for(const [key,points] of cells){const [cx,cz]=key.split(':').map(Number),needle=key.endsWith(':needle'),nearGeometry=needle?needleCrown:crown,farGeometry=needle?farNeedleCrown:distantCrown,group=new THREE.Group();group.userData.natureTreeCell={x:(cx+.5)*180,z:(cz+.5)*180,nearGeometry,farGeometry,nearMaterial:leaves,farMaterial:distantLeaves,lod:'near'};
   const trunks=new THREE.InstancedMesh(trunk,bark,points.length),crowns=new THREE.InstancedMesh(nearGeometry,leaves,points.length);
   points.forEach((p,i)=>{const f=noise(p.x,p.z,2),wet=p.kind==='riparian',s=p.scale,w=wet?.7:.85+f*.35,h=wet?1.35:1;
    dummy.rotation.set(0,f*6.28,0);dummy.position.set(p.x,p.y+2.25*s*h,p.z);dummy.scale.set(s,s*h,s);dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
    dummy.position.y=p.y+5.6*s*h;dummy.scale.set(s*w,s*h,s*(.85+noise(p.x,p.z,4)*.3));dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);crowns.setColorAt(i,new THREE.Color(needle?0x586d56:palette[Math.floor(f*palette.length)]));
-  });trunks.computeBoundingSphere();crowns.computeBoundingSphere();trunks.boundingSphere!.radius+=.5;crowns.boundingSphere!.radius+=.5;trunks.frustumCulled=crowns.frustumCulled=true;group.add(trunks,crowns);scene.add(group);
+  });
+  const trunkWrap=instanceWindGeometry(trunks,scene.matrixWorld),crownWrap=instanceWindGeometry(crowns,scene.matrixWorld),nearWind=crownWrap(nearGeometry),farWind=crownWrap(farGeometry),trunkWind=trunkWrap(trunk);
+  trunks.geometry=trunkWind;crowns.geometry=nearWind;group.userData.natureTreeCell.nearGeometry=nearWind;group.userData.natureTreeCell.farGeometry=farWind;scene.userData.natureResources.geometries.push(trunkWind,nearWind,farWind);
+  trunks.computeBoundingSphere();crowns.computeBoundingSphere();trunks.boundingSphere!.radius+=.5;crowns.boundingSphere!.radius+=.5;trunks.frustumCulled=crowns.frustumCulled=true;group.add(trunks,crowns);scene.add(group);
  }
  const detailCells=new Set<string>();
  if(prepared){for(const e of prepared.manifest.entries.filter((e:any)=>e.kind==='nature')){const g=new THREE.Group();g.userData.natureCell={cx:e.cx,cz:e.cz,ecology,height,builds:0,prepared:e.id};scene.add(g)}scene.userData.nature={trees:ecology.trees.length,cells:cells.size,detailCells:prepared.manifest.entries.filter((e:any)=>e.kind==='nature').length,profile:POITOU.id};return ecology.trees;}

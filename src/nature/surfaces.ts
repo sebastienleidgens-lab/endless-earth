@@ -40,10 +40,10 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
   if(roads)s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n'+roadNormalShader);
  };
  material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v3-'+!!edges+'-'+water:'nature-ground-atlas-v4';
- cloudReceiver(material);
+ cloudReceiver(material,{water});
 }
 export function waterMaterial(){
  const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;
  material.onBeforeCompile=s=>{Object.assign(s.uniforms,lifeUniforms);s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=(modelMatrix*vec4(position,1.)).xyz;');s.fragmentShader=waterPrelude+'varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\n'+waterColor('waterPosition'))};
- material.customProgramCacheKey=()=> 'earthlife-current-v1';cloudReceiver(material);return material;
+ material.customProgramCacheKey=()=> 'earthlife-current-v1';cloudReceiver(material,{water:true});return material;
 }
