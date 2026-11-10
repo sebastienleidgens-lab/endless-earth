@@ -1,0 +1,71 @@
+{
+  "protocol": "All commands ran sequentially in fail-fast shell; entire final sequence exited 0. Performance data retained separately, no slow-frame exclusions.",
+  "javascriptTests": 116,
+  "pythonTests": 2,
+  "degradedDataCases": 19,
+  "motionCombinations": 36,
+  "fullWalks": 2,
+  "walkMetres": 450,
+  "results": [
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "log": "validation/unit.log"
+    },
+    {
+      "command": "work/geo-venv/bin/python tests/import-mnt.test.py",
+      "exitCode": 0,
+      "log": "validation/python-import.log"
+    },
+    {
+      "command": "work/geo-venv/bin/python tests/normalize-mnt.test.py",
+      "exitCode": 0,
+      "log": "validation/python-normalize.log"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "log": "validation/build.log"
+    },
+    {
+      "command": "npm run test:browser",
+      "exitCode": 0,
+      "log": "validation/smoke.log"
+    },
+    {
+      "command": "node scripts/browser-safety.mjs",
+      "exitCode": 0,
+      "log": "validation/safety.log"
+    },
+    {
+      "command": "node scripts/browser-camera.mjs",
+      "exitCode": 0,
+      "log": "validation/camera.log"
+    },
+    {
+      "command": "node scripts/browser-living.mjs",
+      "exitCode": 0,
+      "log": "validation/living.log"
+    },
+    {
+      "command": "node scripts/browser-fluidity-data.mjs",
+      "exitCode": 0,
+      "log": "validation/data.log"
+    },
+    {
+      "command": "npm run test:build-identity",
+      "exitCode": 0,
+      "log": "validation/build-identity.log"
+    }
+  ],
+  "productionIdentity": {
+    "commit": "5db960212596d29fb78dd5fc42913be7e7202801",
+    "dirty": false,
+    "mission": {
+      "number": "08.6",
+      "name": "La fluidité des paysages réels",
+      "source": "docs/mission-08-6.md"
+    },
+    "layouts": 4
+  }
+}

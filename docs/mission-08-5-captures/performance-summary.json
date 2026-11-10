@@ -1,0 +1,235 @@
+{
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+  },
+  "method": "Three alternating isolated rounds; 21 synchronized render/readback samples per station and round. SwiftShader software only. CPU submission is inside completion, not additive.",
+  "comparison": {
+    "village": {
+      "before": {
+        "median_ms": 379.60000000009313,
+        "p95_ms": 492.74000000017696,
+        "max_ms": 647,
+        "calls": 109,
+        "triangles": 245249,
+        "geometry_bytes": 31151561,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          374.69999999995343,
+          385.5,
+          382.79999999981374
+        ]
+      },
+      "after": {
+        "median_ms": 369.89999999990687,
+        "p95_ms": 392.69000000003723,
+        "max_ms": 460.5,
+        "calls": 125,
+        "triangles": 246163,
+        "geometry_bytes": 31432209,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          388.5999999998603,
+          366.5,
+          367.40000000037253
+        ]
+      },
+      "percent": -2.555321390986276
+    },
+    "riviere": {
+      "before": {
+        "median_ms": 211.10000000009313,
+        "p95_ms": 235.22999999998137,
+        "max_ms": 247.4000000001397,
+        "calls": 91,
+        "triangles": 190528,
+        "geometry_bytes": 33820565,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          214.60000000009313,
+          206.60000000009313,
+          209.3000000002794
+        ]
+      },
+      "after": {
+        "median_ms": 207.6999999997206,
+        "p95_ms": 236.91999999997205,
+        "max_ms": 247.9000000001397,
+        "calls": 106,
+        "triangles": 185548,
+        "geometry_bytes": 34690149,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          210.5,
+          206.89999999990687,
+          207.5
+        ]
+      },
+      "percent": -1.610611084969693
+    },
+    "boisement-reel": {
+      "before": {
+        "median_ms": 305.3000000002794,
+        "p95_ms": 383.23999999985097,
+        "max_ms": 458.1999999997206,
+        "calls": 161,
+        "triangles": 233607,
+        "geometry_bytes": 33641057,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          301.80000000004657,
+          315.70000000018626,
+          307.89999999990687
+        ]
+      },
+      "after": {
+        "median_ms": 368.8000000002794,
+        "p95_ms": 484.75999999963665,
+        "max_ms": 536.7999999998137,
+        "calls": 184,
+        "triangles": 301148,
+        "geometry_bytes": 36378441,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          373.4000000001397,
+          361.29999999981374,
+          368.8000000002794
+        ]
+      },
+      "percent": 20.79921388796
+    },
+    "aerienne": {
+      "before": {
+        "median_ms": 368.0,
+        "p95_ms": 457.1699999999953,
+        "max_ms": 541,
+        "calls": 140,
+        "triangles": 259224,
+        "geometry_bytes": 33641057,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          374.89999999990687,
+          373.5,
+          363.60000000009313
+        ]
+      },
+      "after": {
+        "median_ms": 365.0,
+        "p95_ms": 385.8100000000792,
+        "max_ms": 452.8000000002794,
+        "calls": 161,
+        "triangles": 260259,
+        "geometry_bytes": 35391201,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          364.0,
+          361.10000000009313,
+          368.09999999962747
+        ]
+      },
+      "percent": -0.8152173913043459
+    },
+    "eco": {
+      "before": {
+        "median_ms": 197.29999999981374,
+        "p95_ms": 300.8300000001676,
+        "max_ms": 420.89999999990687,
+        "calls": 89,
+        "triangles": 169530,
+        "geometry_bytes": 33641057,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          196.80000000004657,
+          217.20000000018626,
+          193.40000000037253
+        ]
+      },
+      "after": {
+        "median_ms": 195.20000000018626,
+        "p95_ms": 204.91000000010246,
+        "max_ms": 246.10000000009313,
+        "calls": 98,
+        "triangles": 159954,
+        "geometry_bytes": 34234281,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          197.1999999997206,
+          190.5,
+          197.3000000002794
+        ]
+      },
+      "percent": -1.0643689810590273
+    },
+    "mobile": {
+      "before": {
+        "median_ms": 105.8000000002794,
+        "p95_ms": 185.51999999983235,
+        "max_ms": 193,
+        "calls": 41,
+        "triangles": 118837,
+        "geometry_bytes": 33641057,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          104.0999999998603,
+          149.5,
+          103.3000000002794
+        ]
+      },
+      "after": {
+        "median_ms": 112.0,
+        "p95_ms": 134.52999999974855,
+        "max_ms": 150.29999999981374,
+        "calls": 54,
+        "triangles": 115701,
+        "geometry_bytes": 34234281,
+        "texture_bytes_estimated_with_mipmaps": 11810474.666666666,
+        "round_medians_ms": [
+          113.5,
+          103.10000000009313,
+          119.5
+        ]
+      },
+      "percent": 5.86011342127053
+    }
+  },
+  "load": {
+    "before": {
+      "median_ms": 6304.0,
+      "samples_ms": [
+        6304,
+        6143,
+        8710
+      ],
+      "terrain_cpu_ms": [
+        2,
+        1.4000000001396984,
+        1.3000000000465661,
+        2.2000000001862645,
+        1.2000000001862645,
+        1.5,
+        3.1000000000931323,
+        3.8999999999068677,
+        2.1000000000931323
+      ]
+    },
+    "after": {
+      "median_ms": 6891.0,
+      "samples_ms": [
+        6572,
+        8439,
+        6891
+      ],
+      "terrain_cpu_ms": [
+        1.8000000000465661,
+        1.5,
+        1.3000000000465661,
+        5.399999999906868,
+        1.8999999999068677,
+        6.100000000093132,
+        2,
+        1.5,
+        1.2999999998137355
+      ]
+    }
+  }
+}

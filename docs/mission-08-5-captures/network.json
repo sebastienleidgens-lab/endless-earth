@@ -1,0 +1,271 @@
+{
+  "checked_at": "2026-11-10T08:03:35.639395+00:00",
+  "probes": [
+    {
+      "name": "wfs",
+      "url": "https://data.geopf.fr/wfs/ows?service=WFS&request=GetCapabilities",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://data.geopf.fr/wfs/ows?service=WFS&request=GetCapabilities",
+      "redirects": 0,
+      "bytes": 5563741,
+      "seconds": 2.890793,
+      "headers": "wfs.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:30 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:32 GMT\ncontent-type: application/xml\ncontent-length: 5563741\nx-ratelimit-limit-second: 1\nratelimit-limit: 30\nwww-authenticate: Key realm=\"kong\"\nstrict-transport-security: max-age=31536000; includeSubDomains\naccess-control-allow-origin: *\naccess-control-allow-credentials: true\naccess-control-allow-methods: GET, PUT, POST, DELETE, PATCH, OPTIONS\naccess-control-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Content-Disposition,Content-Length,X-Community\naccess-control-max-age: 1728000\nx-iplb-request-id: 5A60BE8C:C492_91EFC1E7:01BB_6AF2CFD3_4A55FEB2:253CE7\nx-iplb-instance: 61217\nx-envoy-upstream-service-time: 507\nserver: envoy\n\n"
+    },
+    {
+      "name": "lidar",
+      "url": "https://geoservices.ign.fr/lidarhd",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_NUAGES-DE-POINTS-LIDAR-HD",
+      "redirects": 1,
+      "bytes": 115512,
+      "seconds": 1.927636,
+      "headers": "lidar.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:30 GMT\nserver: envoy\n\nHTTP/2 301 \ndate: Tue, 10 Nov 2026 08:03:32 GMT\ncontent-type: text/html\ncontent-length: 162\nlocation: https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_NUAGES-DE-POINTS-LIDAR-HD\nstrict-transport-security: max-age=31536000; includeSubDomains\nx-envoy-upstream-service-time: 387\nserver: envoy\n\nHTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:32 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:32 GMT\ncontent-type: text/html\ncontent-length: 115512\nlast-modified: Thu, 05 Nov 2026 17:07:02 GMT\netag: \"1c338-65f8a8634d980;65f8a8634d980\naccept-ranges: bytes\nvary: Accept-Encoding\nstrict-transport-security: max-age=31536000; includeSubDomains\nx-cp-via: C2-61df9373-9bb6e096\nx-envoy-upstream-service-time: 162\nserver: envoy\n\n"
+    },
+    {
+      "name": "mnt-index",
+      "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=IGNF_MNT-LIDAR-HD:dalle&OUTPUTFORMAT=application/json&SRSNAME=EPSG:2154&BBOX=537276,6622779,539434,6624931,EPSG:2154&COUNT=30",
+      "exit": 0,
+      "error": "",
+      "http": 400,
+      "effective_url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=IGNF_MNT-LIDAR-HD:dalle&OUTPUTFORMAT=application/json&SRSNAME=EPSG:2154&BBOX=537276,6622779,539434,6624931,EPSG:2154&COUNT=30",
+      "redirects": 0,
+      "bytes": 523,
+      "seconds": 0.799333,
+      "headers": "mnt-index.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:30 GMT\nserver: envoy\n\nHTTP/2 400 \ndate: Tue, 10 Nov 2026 08:03:31 GMT\ncontent-type: application/xml\nx-ratelimit-limit-second: 1\nratelimit-limit: 30\nwww-authenticate: Key realm=\"kong\"\ncache-control: private, max-age=1814400\nx-content-type-options: nosniff\nx-frame-options: SAMEORIGIN\ncontent-security-policy: base-uri 'self'; form-action 'self'; default-src 'none'; child-src 'self'; connect-src 'self'; font-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self';, frame-ancestors 'self';\nstrict-transport-security: max-age=31536000; includeSubDomains\naccess-control-allow-origin: *\naccess-control-allow-credentials: true\naccess-control-allow-methods: GET, PUT, POST, DELETE, PATCH, OPTIONS\naccess-control-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Content-Disposition,Content-Length,X-Community\naccess-control-max-age: 1728000\nx-iplb-request-id: 5A60BE8C:C492_91EFC1E7:01BB_6AF2CFD3_4A55FCE4:253CE7\nx-iplb-instance: 61217\nx-envoy-upstream-service-time: 390\nserver: envoy\n\n"
+    },
+    {
+      "name": "ortho",
+      "url": "https://cartes.gouv.fr/telechargement/IGNF_BD-ORTHO",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://cartes.gouv.fr/telechargement/IGNF_BD-ORTHO",
+      "redirects": 0,
+      "bytes": 1593,
+      "seconds": 0.914353,
+      "headers": "ortho.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:31 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:31 GMT\ncontent-type: text/html\ncontent-length: 1593\nlast-modified: Tue, 06 Oct 2026 13:19:28 GMT\netag: \"6ac4f560-639\"\naccept-ranges: bytes\nstrict-transport-security: max-age=31536000; includeSubDomains\nvary: Accept-Encoding\nx-cp-via: C2-fc5f0ff4-9bb6e096\nx-envoy-upstream-service-time: 363\nserver: envoy\n\n"
+    },
+    {
+      "name": "topo",
+      "url": "https://cartes.gouv.fr/telechargement/IGNF_BD-TOPO",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://cartes.gouv.fr/telechargement/IGNF_BD-TOPO",
+      "redirects": 0,
+      "bytes": 1593,
+      "seconds": 0.536119,
+      "headers": "topo.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:31 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:32 GMT\ncontent-type: text/html\ncontent-length: 1593\nlast-modified: Tue, 06 Oct 2026 13:19:28 GMT\netag: \"6ac4f560-639\"\naccept-ranges: bytes\nstrict-transport-security: max-age=31536000; includeSubDomains\nvary: Accept-Encoding\nx-cp-via: C2-fc5f0ff4-9bb6e096\nx-envoy-upstream-service-time: 126\nserver: envoy\n\n"
+    },
+    {
+      "name": "foret",
+      "url": "https://cartes.gouv.fr/telechargement/IGNF_BD-FORET",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://cartes.gouv.fr/telechargement/IGNF_BD-FORET",
+      "redirects": 0,
+      "bytes": 1593,
+      "seconds": 0.756685,
+      "headers": "foret.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:31 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:32 GMT\ncontent-type: text/html\ncontent-length: 1593\nlast-modified: Tue, 06 Oct 2026 13:19:28 GMT\netag: \"6ac4f560-639\"\naccept-ranges: bytes\nstrict-transport-security: max-age=31536000; includeSubDomains\nvary: Accept-Encoding\nx-cp-via: C2-61df9373-b3b2ec47\nx-envoy-upstream-service-time: 353\nserver: envoy\n\n"
+    },
+    {
+      "name": "ocs",
+      "url": "https://cartes.gouv.fr/telechargement/IGNF_OCS-GE",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://cartes.gouv.fr/telechargement/IGNF_OCS-GE",
+      "redirects": 0,
+      "bytes": 1593,
+      "seconds": 0.667495,
+      "headers": "ocs.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:32 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:32 GMT\ncontent-type: text/html\ncontent-length: 1593\nlast-modified: Tue, 06 Oct 2026 13:19:28 GMT\netag: \"6ac4f560-639\"\naccept-ranges: bytes\nstrict-transport-security: max-age=31536000; includeSubDomains\nvary: Accept-Encoding\nx-cp-via: C3-9bfbc671-33991579\nx-envoy-upstream-service-time: 374\nserver: envoy\n\n"
+    },
+    {
+      "name": "rpg",
+      "url": "https://cartes.gouv.fr/telechargement/IGNF_RPG",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://cartes.gouv.fr/telechargement/IGNF_RPG",
+      "redirects": 0,
+      "bytes": 1593,
+      "seconds": 0.431979,
+      "headers": "rpg.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:32 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:33 GMT\ncontent-type: text/html\ncontent-length: 1593\nlast-modified: Tue, 06 Oct 2026 13:19:28 GMT\netag: \"6ac4f560-639\"\naccept-ranges: bytes\nstrict-transport-security: max-age=31536000; includeSubDomains\nvary: Accept-Encoding\nx-cp-via: C2-fc5f0ff4-9bb6e096\nx-envoy-upstream-service-time: 120\nserver: envoy\n\n"
+    },
+    {
+      "name": "sandre",
+      "url": "https://services.sandre.eaufrance.fr/telechargement/geo/ETH/BDTopage/2025/",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://services.sandre.eaufrance.fr/telechargement/geo/ETH/BDTopage/2025/",
+      "redirects": 0,
+      "bytes": 2086,
+      "seconds": 1.166997,
+      "headers": "sandre.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:32 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:03:33 GMT\ncontent-type: text/html; charset=utf-8\nvary: Accept-Encoding\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\naccess-control-allow-origin: *\naccess-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept\naccess-control-allow-methods: GET,POST,HEAD,DELETE,PUT,OPTIONS\nx-envoy-upstream-service-time: 525\n\n"
+    },
+    {
+      "name": "copernicus",
+      "url": "https://land.copernicus.eu/en/products/high-resolution-layer-forests-and-tree-cover",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://land.copernicus.eu/en/products/high-resolution-layer-forests-and-tree-cover",
+      "redirects": 0,
+      "bytes": 1058773,
+      "seconds": 2.654569,
+      "headers": "copernicus.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:33 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:34 GMT\ncontent-type: text/html; charset=utf-8\naccept-ranges: bytes\nage: 0\ncontent-security-policy: default-src https: data: 'unsafe-inline' 'unsafe-eval'; img-src https: data: blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src https: data:; frame-src http: data:; upgrade-insecure-requests\ncontent-security-policy: default-src 'self'; object-src 'self'; base-uri 'self'; form-action 'self'; connect-src 'self' blob: https://globalland.vito.be https://api.friendlycaptcha.com/ https://cryo.land.copernicus.eu/ https://copernicus.discomap.eea.europa.eu/ https://servicios.idee.es/ https://phenology.vgt.vito.be/ https://public.tableau.com/ https://sh.dataspace.copernicus.eu/ https://mapserver.dataspace.copernicus.eu/ https://gisco-services.ec.europa.eu/ https://s3-eu-west-1.amazonaws.com/ https://geoserver.geoville.com/ https://geoserver.vlcc.geoville.com https://clms-prod.eea.europa.eu https://land.copernicus.eu https://*.eea.europa.eu https://cdn.arcgis.com/ https://www.arcgis.com/ https://utility.arcgisonline.com/ https://js.arcgis.com/ https://services.arcgisonline.com https://services.arcgis.com https://static.arcgis.com https://basemaps.arcgis.com/ https://*.arcgis.com/ https://*.eionet.europa.eu http://*.eea.europa.eu https://*.land.copernicus.eu https://cloudferro.sentinel-hub.com https://geospatial.jrc.ec.europa.eu https://image.discomap.eea.europa.eu; font-src 'self' data: https://cdn.arcgis.com/ https://js.arcgis.com/ https://fonts.gstatic.com/ https://*.eea.europa.eu https://*.eionet.europa.eu https://land.copernicus.eu https://*.land.copernicus.eu; frame-src 'self' https://europa.eu/ https://*.europa.eu/ https://*.eea.europa.eu https://*.eionet.europa.eu http://*.eea.europa.eu https://eea.maps.arcgis.com/ https://land.copernicus.eu https://*.land.copernicus.eu https://www.youtube.com https://youtube.com; img-src 'self' data: blob: https://*.s3.amazonaws.com https:; script-src 'self' 'nonce-IT0KxhvohgeGEsFh2gNrWw==' 'unsafe-inline' 'unsafe-eval' blob: data: https://matomo.eea.europa.eu https://js.arcgis.com/ https://services.arcgis.com https://*.eea.europa.eu https://*.eionet.europa.eu http://*.eea.europa.eu https://cdnjs.cloudflare.com https://land.copernicus.eu https://*.land.copernicus.eu https://public.tableau.com; frame-ancestors 'self' *.europa.eu *.eionet.europa.eu *.eea.europa.eu *.discomap.eea.europa.eu https://eu-space.europa.eu/; media-src https://*.eea.europa.eu; style-src 'self' 'unsafe-inline' https://js.arcgis.com/ https://*.eionet.europa.eu https://*.eea.europa.eu https://cdnjs.cloudflare.com; report-uri https://sentry.eea.europa.eu/api/28/security/?sentry_key=6afdc4d9e7a148509fa0841b0e58a958;\netag: W/\"1027d5-o/2qTW5oZk8aLYsaAXX0yhAoTM0-gzip\"\ngrace: \nvary: Accept-Encoding\nvia: 1.1 clms-frontend-dpl-varnish-5c4d749f49-dcbw6 (Varnish/7.7)\nx-backend: cluster(frontend-volto:(null))\nx-backend-name: cluster(10.43.60.107:3000)\nx-cache: MISS\nx-cacheable: YES\nx-content-type-options: nosniff\nx-url: /en/products/high-resolution-layer-forests-and-tree-cover\nx-varnish: 15633930\nx-xss-protection: \"1; mode=block\"\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\nserver: envoy\nexpect-ct: max-age=604800, report-uri='https://sentry.eea.europa.eu/api/45/security/?sentry_key=0343e20fc4e0469790b6016561f032e3'\nx-frame-options: 'SAMEORIGIN'\nreferrer-policy: strict-origin-when-cross-origin\naccess-control-allow-headers: Authorization, Content-Type, content-type\npermissions-policy: accelerometer=(), autoplay=(), camera=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), sync-xhr=(self), usb=()\nx-envoy-upstream-service-time: 1344\n\n"
+    },
+    {
+      "name": "osm",
+      "url": "https://www.openstreetmap.org/copyright",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://www.openstreetmap.org/copyright",
+      "redirects": 0,
+      "bytes": 21314,
+      "seconds": 0.30506,
+      "headers": "osm.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:32 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ncache-control: max-age=0, private, must-revalidate\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\nreferrer-policy: strict-origin-when-cross-origin\nx-permitted-cross-domain-policies: none\nx-xss-protection: 0\ncontent-language: en\ncross-origin-opener-policy: same-origin\nx-request-id: avLP1c7jdNgscFDYSGfCOAAAAsQ\nlink: </assets/turbo-c17cce38062be94687ab3e688cf14213be635ee2b55e63d9d5778659fab0c27b.js>; rel=modulepreload; as=script; nopush,</assets/application-51f95e852077544f9446ba54e7f803574766433fbe9fc9f73af4f0fad73e4205.js>; rel=preload; as=script; nopush,</assets/i18n/en-83d0da0813ba7219cd52f970c9ff50214a87b448d7de780c86130ea543f8a338.js>; rel=preload; as=script; nopush,</assets/screen-auto-ltr-d1fba5979d2f387276d738920086742b0f4116326208bcd5cb034f984def84cb.css>; rel=preload; as=style; nopush,</assets/print-ltr-97dee1ca487394c852f28c2906a930316ab6d2cacf7f73e47c1c31fad8919051.css>; rel=preload; as=style; nopush,</assets/leaflet-all-d3e8505f47e0f0615d3daf2619f2267c086cbe9e17e276f393ee686dca54e0d3.css>; rel=preload; as=style; nopush,</assets/maplibre-gl-all-20d18df1d89490f1022cce8a156e2ff3958396ddad7f015c94b31f4da45543e6.css>; rel=preload; as=style; nopush\nx-frame-options: SAMEORIGIN\nx-runtime: 0.021489\nx-content-type-options: nosniff\ncontent-security-policy: default-src 'self'; child-src 'self'; connect-src 'self' tile.openstreetmap.org api.thunderforest.com tile.tracestrack.com *.openstreetmap.fr vector.openstreetmap.org api.maptiler.com matomo.openstreetmap.org; font-src 'self'; form-action 'self'; frame-ancestors 'self'; frame-src 'self'; img-src 'self' data: www.gravatar.com *.wp.com tile.openstreetmap.org gps.tile.openstreetmap.org api.thunderforest.com tile.tracestrack.com *.openstreetmap.fr matomo.openstreetmap.org https://openstreetmap-user-avatars.s3.dualstack.eu-west-1.amazonaws.com https://openstreetmap-gps-images.s3.dualstack.eu-west-1.amazonaws.com; manifest-src 'self'; media-src 'none'; object-src 'none'; script-src 'self' matomo.openstreetmap.org 'nonce-mI9vgy0SVbrEjBltVLGPWkt4h+GSXzwn'; style-src 'self' 'nonce-mI9vgy0SVbrEjBltVLGPWkt4h+GSXzwn'; worker-src blob:\nx-powered-by: Phusion Passenger(R) 6.2.1\nset-cookie: _osm_session=8d0ae25453540e4b3b19085b7034930b; path=/; secure; httponly; samesite=lax\netag: W/\"528ef6de9c4be216d0608206b26ce4de\"\nstatus: 200 OK\ncontent-type: text/html; charset=utf-8\naccept-ranges: bytes\ndate: Tue, 10 Nov 2026 08:03:33 GMT\nvia: 1.1 varnish\nx-served-by: cache-chi-kmdw8640023-CHI\nx-cache: MISS\nx-cache-hits: 0\nx-timer: S1794297813.197681,VS0,VE130\nvary: Accept-Language,Accept-Encoding\nalt-svc: h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400\nx-envoy-upstream-service-time: 185\n\n"
+    },
+    {
+      "name": "overpass",
+      "url": "https://overpass-api.de/api/status",
+      "exit": 0,
+      "error": "",
+      "http": 406,
+      "effective_url": "https://overpass-api.de/api/status",
+      "redirects": 0,
+      "bytes": 156,
+      "seconds": 0.93179,
+      "headers": "overpass.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:33 GMT\nserver: envoy\n\nHTTP/2 406 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:03:34 GMT\ncontent-type: text/html\ncontent-length: 156\nx-envoy-upstream-service-time: 399\n\n"
+    },
+    {
+      "name": "geofabrik",
+      "url": "https://download.geofabrik.de/europe/france/poitou-charentes.html",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://download.geofabrik.de/europe/france/poitou-charentes.html",
+      "redirects": 0,
+      "bytes": 24401,
+      "seconds": 1.16565,
+      "headers": "geofabrik.headers",
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:33 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:34 GMT\nserver: envoy\nlast-modified: Tue, 10 Nov 2026 07:48:35 GMT\netag: \"5f51-65fe74e48a316\"\naccept-ranges: bytes\ncontent-length: 24401\ncache-control: max-age=900, public\ncontent-type: text/html\ncache-status: download-proxy9;fwd=miss;detail=match\nvia: 1.1 download-proxy9 (squid/6.14)\nx-envoy-upstream-service-time: 481\n\n"
+    }
+  ],
+  "additional_probes": [
+    {
+      "name": "ortho-reference",
+      "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG%3A2154&BBOX=537276%2C6622779%2C539434%2C6624931&WIDTH=1080&HEIGHT=1076&FORMAT=image%2Fjpeg&STYLES=&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG%3A2154&BBOX=537276%2C6622779%2C539434%2C6624931&WIDTH=1080&HEIGHT=1076&FORMAT=image%2Fjpeg&STYLES=&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS",
+      "redirects": 0,
+      "bytes": 161268,
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:11:52 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:11:54 GMT\ncontent-type: image/jpeg\nx-ratelimit-limit-second: 1\nratelimit-limit: 40\nwww-authenticate: Key realm=\"kong\"\ncache-control: private, max-age=1814400\ncontent-disposition: filename=\"image.jpg\"\naccess-control-allow-origin: *\nstrict-transport-security: max-age=31536000; includeSubDomains\naccess-control-allow-credentials: true\naccess-control-allow-methods: GET, PUT, POST, DELETE, PATCH, OPTIONS\naccess-control-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Content-Disposition,Content-Length,X-Community\naccess-control-max-age: 1728000\nx-iplb-request-id: 5A60BE8C:C5B7_91EFC1E7:01BB_6AF2D1C8_4A78F137:253CE7\nx-iplb-instance: 61217\nx-envoy-upstream-service-time: 1601\nserver: envoy\n\n"
+    },
+    {
+      "name": "ocs-reference",
+      "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG%3A2154&BBOX=537276%2C6622779%2C539434%2C6624931&WIDTH=1080&HEIGHT=1076&FORMAT=image%2Fpng&STYLES=&LAYERS=OCSGE.COUVERTURE.2021-2023",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG%3A2154&BBOX=537276%2C6622779%2C539434%2C6624931&WIDTH=1080&HEIGHT=1076&FORMAT=image%2Fpng&STYLES=&LAYERS=OCSGE.COUVERTURE.2021-2023",
+      "redirects": 0,
+      "bytes": 484049,
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:11:51 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:11:56 GMT\ncontent-type: image/png\nx-ratelimit-limit-second: 1\nratelimit-limit: 40\nwww-authenticate: Key realm=\"kong\"\ncache-control: private, max-age=1814400\ncontent-disposition: filename=\"image.png\"\naccess-control-allow-origin: *\nstrict-transport-security: max-age=31536000; includeSubDomains\naccess-control-allow-credentials: true\naccess-control-allow-methods: GET, PUT, POST, DELETE, PATCH, OPTIONS\naccess-control-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Content-Disposition,Content-Length,X-Community\naccess-control-max-age: 1728000\nx-iplb-request-id: 5A60BE8C:C5B7_91EFC1E7:01BB_6AF2D1C8_4A78F136:253CE7\nx-iplb-instance: 61217\nx-envoy-upstream-service-time: 4382\nserver: envoy\n\n"
+    },
+    {
+      "name": "sandre-wfs",
+      "url": "https://services.sandre.eaufrance.fr/geo/eth?service=WFS&request=GetCapabilities",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://services.sandre.eaufrance.fr/geo/eth?service=WFS&request=GetCapabilities",
+      "redirects": 0,
+      "bytes": 188516,
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:11:51 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:11:52 GMT\ncontent-type: text/xml; charset=UTF-8\ncontent-length: 188516\nvary: Accept-Encoding\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\naccess-control-allow-origin: *\naccess-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept\naccess-control-allow-methods: GET,POST,HEAD,DELETE,PUT,OPTIONS\nx-envoy-upstream-service-time: 806\n\n"
+    },
+    {
+      "name": "copernicus-policy",
+      "url": "https://land.copernicus.eu/en/data-policy",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://land.copernicus.eu/en/data-policy",
+      "redirects": 0,
+      "bytes": 988057,
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:11:54 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:11:56 GMT\ncontent-type: text/html; charset=utf-8\naccept-ranges: bytes\nage: 0\ncontent-security-policy: default-src https: data: 'unsafe-inline' 'unsafe-eval'; img-src https: data: blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src https: data:; frame-src http: data:; upgrade-insecure-requests\ncontent-security-policy: default-src 'self'; object-src 'self'; base-uri 'self'; form-action 'self'; connect-src 'self' blob: https://globalland.vito.be https://api.friendlycaptcha.com/ https://cryo.land.copernicus.eu/ https://copernicus.discomap.eea.europa.eu/ https://servicios.idee.es/ https://phenology.vgt.vito.be/ https://public.tableau.com/ https://sh.dataspace.copernicus.eu/ https://mapserver.dataspace.copernicus.eu/ https://gisco-services.ec.europa.eu/ https://s3-eu-west-1.amazonaws.com/ https://geoserver.geoville.com/ https://geoserver.vlcc.geoville.com https://clms-prod.eea.europa.eu https://land.copernicus.eu https://*.eea.europa.eu https://cdn.arcgis.com/ https://www.arcgis.com/ https://utility.arcgisonline.com/ https://js.arcgis.com/ https://services.arcgisonline.com https://services.arcgis.com https://static.arcgis.com https://basemaps.arcgis.com/ https://*.arcgis.com/ https://*.eionet.europa.eu http://*.eea.europa.eu https://*.land.copernicus.eu https://cloudferro.sentinel-hub.com https://geospatial.jrc.ec.europa.eu https://image.discomap.eea.europa.eu; font-src 'self' data: https://cdn.arcgis.com/ https://js.arcgis.com/ https://fonts.gstatic.com/ https://*.eea.europa.eu https://*.eionet.europa.eu https://land.copernicus.eu https://*.land.copernicus.eu; frame-src 'self' https://europa.eu/ https://*.europa.eu/ https://*.eea.europa.eu https://*.eionet.europa.eu http://*.eea.europa.eu https://eea.maps.arcgis.com/ https://land.copernicus.eu https://*.land.copernicus.eu https://www.youtube.com https://youtube.com; img-src 'self' data: blob: https://*.s3.amazonaws.com https:; script-src 'self' 'nonce-G9BDTVZT27jcGSUEb2lOxQ==' 'unsafe-inline' 'unsafe-eval' blob: data: https://matomo.eea.europa.eu https://js.arcgis.com/ https://services.arcgis.com https://*.eea.europa.eu https://*.eionet.europa.eu http://*.eea.europa.eu https://cdnjs.cloudflare.com https://land.copernicus.eu https://*.land.copernicus.eu https://public.tableau.com; frame-ancestors 'self' *.europa.eu *.eionet.europa.eu *.eea.europa.eu *.discomap.eea.europa.eu https://eu-space.europa.eu/; media-src https://*.eea.europa.eu; style-src 'self' 'unsafe-inline' https://js.arcgis.com/ https://*.eionet.europa.eu https://*.eea.europa.eu https://cdnjs.cloudflare.com; report-uri https://sentry.eea.europa.eu/api/28/security/?sentry_key=6afdc4d9e7a148509fa0841b0e58a958;\netag: W/\"f1399-6coEtQSj469TuZNiAWw7NXjMPlg-gzip\"\ngrace: \nvary: Accept-Encoding\nvia: 1.1 clms-frontend-dpl-varnish-5c4d749f49-dcbw6 (Varnish/7.7)\nx-backend: cluster(frontend-volto:(null))\nx-backend-name: cluster(10.43.60.107:3000)\nx-cache: MISS\nx-cacheable: YES\nx-content-type-options: nosniff\nx-url: /en/data-policy\nx-varnish: 34889\nx-xss-protection: \"1; mode=block\"\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\nserver: envoy\nexpect-ct: max-age=604800, report-uri='https://sentry.eea.europa.eu/api/45/security/?sentry_key=0343e20fc4e0469790b6016561f032e3'\nx-frame-options: 'SAMEORIGIN'\nreferrer-policy: strict-origin-when-cross-origin\naccess-control-allow-headers: Authorization, Content-Type, content-type\npermissions-policy: accelerometer=(), autoplay=(), camera=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), sync-xhr=(self), usb=()\nx-envoy-upstream-service-time: 960\n\n"
+    },
+    {
+      "name": "forest-catalog",
+      "url": "https://www.data.gouv.fr/api/1/datasets/bd-foret-r/",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://www.data.gouv.fr/api/1/datasets/bd-foret-r/",
+      "redirects": 0,
+      "bytes": 26582,
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:11:56 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:11:56 GMT\ncontent-type: application/json\ncontent-length: 26582\nvary: Accept-Encoding,Origin, Cookie\npragma: public\ncache-control: public\nx-content-type-options: nosniff\nx-xss-protection: 1; mode=block\nx-frame-options: SAMEORIGIN\nstrict-transport-security: max-age=15768000; includeSubDomains; preload;\nx-envoy-upstream-service-time: 449\n\n"
+    },
+    {
+      "name": "lidar-catalog",
+      "url": "https://www.data.gouv.fr/api/1/datasets/mnt-lidar-hd/",
+      "exit": 0,
+      "error": "",
+      "http": 200,
+      "effective_url": "https://www.data.gouv.fr/api/1/datasets/mnt-lidar-hd/",
+      "redirects": 0,
+      "bytes": 23752,
+      "response_headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:11:56 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:11:57 GMT\ncontent-type: application/json\ncontent-length: 23752\nvary: Accept-Encoding,Origin, Cookie\npragma: public\ncache-control: public\nx-content-type-options: nosniff\nx-xss-protection: 1; mode=block\nx-frame-options: SAMEORIGIN\nstrict-transport-security: max-age=15768000; includeSubDomains; preload;\nx-envoy-upstream-service-time: 668\n\n"
+    }
+  ],
+  "additional_headers": {
+    "osm-map.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:36:11 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ncontent-encoding: identity\ncache-control: private, max-age=0, must-revalidate\ncontent-disposition: attachment; filename=\"map.osm\"\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\ncontent-type: application/xml; charset=utf-8\naccept-ranges: bytes\ndate: Tue, 10 Nov 2026 08:36:12 GMT\nvia: 1.1 varnish\nx-served-by: cache-chi-kmdw8640021-CHI\nx-cache: MISS\nx-cache-hits: 0\nx-timer: S1794299772.428208,VS0,VE359\nvary: Accept-Encoding\nalt-svc: h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400\nx-envoy-upstream-service-time: 411\n\n",
+    "topage-files.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:18:52 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:18:53 GMT\ncontent-type: text/html; charset=utf-8\nvary: Accept-Encoding\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\naccess-control-allow-origin: *\naccess-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept\naccess-control-allow-methods: GET,POST,HEAD,DELETE,PUT,OPTIONS\nx-envoy-upstream-service-time: 373\n\n",
+    "ocs-2023.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:17:46 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:17:47 GMT\ncontent-type: application/x-7z-compressed\ncontent-length: 123792783\nx-ratelimit-limit-second: 1\nratelimit-limit: 10\nwww-authenticate: Key realm=\"kong\"\ncache-control: private, max-age=1814400\nvary: Origin,Access-Control-Request-Method,Access-Control-Request-Headers\ncontent-disposition: attachment; filename=\"OCS-GE_2-0__GPKG_LAMB93_D086_2023-01-01.7z\"\naccept-ranges: bytes\nstrict-transport-security: max-age=31536000; includeSubDomains\naccess-control-allow-origin: *\naccess-control-allow-credentials: true\naccess-control-allow-methods: GET, PUT, POST, DELETE, PATCH, OPTIONS\naccess-control-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Content-Disposition,Content-Length,X-Community\naccess-control-max-age: 1728000\nx-iplb-request-id: 5A60BE8D:7100_91EFC1E7:01BB_6AF2D32B_4A90C8FA:2C6F24\nx-iplb-instance: 61218\nx-envoy-upstream-service-time: 473\nserver: envoy\n\n",
+    "copernicus-wms.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:15:34 GMT\nserver: envoy\n\nHTTP/2 503 \ncontent-length: 91\ncontent-type: text/plain\ndate: Tue, 10 Nov 2026 08:15:39 GMT\nserver: envoy\n\n",
+    "topage2026-cap.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:21:42 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:21:42 GMT\ncontent-type: text/xml; charset=UTF-8\nvary: Accept-Encoding\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\naccess-control-allow-origin: *\naccess-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept\naccess-control-allow-methods: GET,POST,HEAD,DELETE,PUT,OPTIONS\nx-envoy-upstream-service-time: 588\n\n",
+    "copernicus-policy.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:11:54 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:11:56 GMT\ncontent-type: text/html; charset=utf-8\naccept-ranges: bytes\nage: 0\ncontent-security-policy: default-src https: data: 'unsafe-inline' 'unsafe-eval'; img-src https: data: blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src https: data:; frame-src http: data:; upgrade-insecure-requests\ncontent-security-policy: default-src 'self'; object-src 'self'; base-uri 'self'; form-action 'self'; connect-src 'self' blob: https://globalland.vito.be https://api.friendlycaptcha.com/ https://cryo.land.copernicus.eu/ https://copernicus.discomap.eea.europa.eu/ https://servicios.idee.es/ https://phenology.vgt.vito.be/ https://public.tableau.com/ https://sh.dataspace.copernicus.eu/ https://mapserver.dataspace.copernicus.eu/ https://gisco-services.ec.europa.eu/ https://s3-eu-west-1.amazonaws.com/ https://geoserver.geoville.com/ https://geoserver.vlcc.geoville.com https://clms-prod.eea.europa.eu https://land.copernicus.eu https://*.eea.europa.eu https://cdn.arcgis.com/ https://www.arcgis.com/ https://utility.arcgisonline.com/ https://js.arcgis.com/ https://services.arcgisonline.com https://services.arcgis.com https://static.arcgis.com https://basemaps.arcgis.com/ https://*.arcgis.com/ https://*.eionet.europa.eu http://*.eea.europa.eu https://*.land.copernicus.eu https://cloudferro.sentinel-hub.com https://geospatial.jrc.ec.europa.eu https://image.discomap.eea.europa.eu; font-src 'self' data: https://cdn.arcgis.com/ https://js.arcgis.com/ https://fonts.gstatic.com/ https://*.eea.europa.eu https://*.eionet.europa.eu https://land.copernicus.eu https://*.land.copernicus.eu; frame-src 'self' https://europa.eu/ https://*.europa.eu/ https://*.eea.europa.eu https://*.eionet.europa.eu http://*.eea.europa.eu https://eea.maps.arcgis.com/ https://land.copernicus.eu https://*.land.copernicus.eu https://www.youtube.com https://youtube.com; img-src 'self' data: blob: https://*.s3.amazonaws.com https:; script-src 'self' 'nonce-G9BDTVZT27jcGSUEb2lOxQ==' 'unsafe-inline' 'unsafe-eval' blob: data: https://matomo.eea.europa.eu https://js.arcgis.com/ https://services.arcgis.com https://*.eea.europa.eu https://*.eionet.europa.eu http://*.eea.europa.eu https://cdnjs.cloudflare.com https://land.copernicus.eu https://*.land.copernicus.eu https://public.tableau.com; frame-ancestors 'self' *.europa.eu *.eionet.europa.eu *.eea.europa.eu *.discomap.eea.europa.eu https://eu-space.europa.eu/; media-src https://*.eea.europa.eu; style-src 'self' 'unsafe-inline' https://js.arcgis.com/ https://*.eionet.europa.eu https://*.eea.europa.eu https://cdnjs.cloudflare.com; report-uri https://sentry.eea.europa.eu/api/28/security/?sentry_key=6afdc4d9e7a148509fa0841b0e58a958;\netag: W/\"f1399-6coEtQSj469TuZNiAWw7NXjMPlg-gzip\"\ngrace: \nvary: Accept-Encoding\nvia: 1.1 clms-frontend-dpl-varnish-5c4d749f49-dcbw6 (Varnish/7.7)\nx-backend: cluster(frontend-volto:(null))\nx-backend-name: cluster(10.43.60.107:3000)\nx-cache: MISS\nx-cacheable: YES\nx-content-type-options: nosniff\nx-url: /en/data-policy\nx-varnish: 34889\nx-xss-protection: \"1; mode=block\"\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\nserver: envoy\nexpect-ct: max-age=604800, report-uri='https://sentry.eea.europa.eu/api/45/security/?sentry_key=0343e20fc4e0469790b6016561f032e3'\nx-frame-options: 'SAMEORIGIN'\nreferrer-policy: strict-origin-when-cross-origin\naccess-control-allow-headers: Authorization, Content-Type, content-type\npermissions-policy: accelerometer=(), autoplay=(), camera=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), sync-xhr=(self), usb=()\nx-envoy-upstream-service-time: 960\n\n",
+    "copernicus-tcd-2018.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:26:52 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:26:53 GMT\ncontent-type: image/tiff\ncontent-length: 66760\ncache-control: must-revalidate,max-age=43200,public\netag: \"cd17cfd1\"\nvary: Origin\nx-content-type-options: nosniff\nx-powered-by: ASP.NET\nstrict-transport-security: max-age=31536000;includeSubDomains\nx-content-type-options: nosniff\nx-frame-options: SAMEORIGIN\nx-xss-protection: 1;mode=block\ncontent-security-policy: frame-ancestors 'self' https://map.geo.admin.ch;\nstrict-transport-security: max-age=15780000; includeSubDomains\nx-envoy-upstream-service-time: 855\n\n",
+    "topage.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:17:47 GMT\nserver: envoy\n\nHTTP/2 400 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:17:48 GMT\ncontent-type: text/xml; charset=UTF-8\ncontent-length: 627\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\naccess-control-allow-origin: *\naccess-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept\naccess-control-allow-methods: GET,POST,HEAD,DELETE,PUT,OPTIONS\nx-envoy-upstream-service-time: 559\n\n",
+    "eea-image-server.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:26:31 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:26:32 GMT\ncontent-type: application/json; charset=UTF-8\ncontent-length: 5598\ncache-control: must-revalidate,max-age=0,public\netag: \"d8dc9c4f\"\nvary: Origin\nx-content-type-options: nosniff\nx-powered-by: ASP.NET\nstrict-transport-security: max-age=31536000;includeSubDomains\nx-content-type-options: nosniff\nx-frame-options: SAMEORIGIN\nx-xss-protection: 1;mode=block\ncontent-security-policy: frame-ancestors 'self' https://map.geo.admin.ch;\nstrict-transport-security: max-age=15780000; includeSubDomains\nx-envoy-upstream-service-time: 382\n\n",
+    "copernicus.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:03:33 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Tue, 10 Nov 2026 08:03:34 GMT\ncontent-type: text/html; charset=utf-8\naccept-ranges: bytes\nage: 0\ncontent-security-policy: default-src https: data: 'unsafe-inline' 'unsafe-eval'; img-src https: data: blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src https: data:; frame-src http: data:; upgrade-insecure-requests\ncontent-security-policy: default-src 'self'; object-src 'self'; base-uri 'self'; form-action 'self'; connect-src 'self' blob: https://globalland.vito.be https://api.friendlycaptcha.com/ https://cryo.land.copernicus.eu/ https://copernicus.discomap.eea.europa.eu/ https://servicios.idee.es/ https://phenology.vgt.vito.be/ https://public.tableau.com/ https://sh.dataspace.copernicus.eu/ https://mapserver.dataspace.copernicus.eu/ https://gisco-services.ec.europa.eu/ https://s3-eu-west-1.amazonaws.com/ https://geoserver.geoville.com/ https://geoserver.vlcc.geoville.com https://clms-prod.eea.europa.eu https://land.copernicus.eu https://*.eea.europa.eu https://cdn.arcgis.com/ https://www.arcgis.com/ https://utility.arcgisonline.com/ https://js.arcgis.com/ https://services.arcgisonline.com https://services.arcgis.com https://static.arcgis.com https://basemaps.arcgis.com/ https://*.arcgis.com/ https://*.eionet.europa.eu http://*.eea.europa.eu https://*.land.copernicus.eu https://cloudferro.sentinel-hub.com https://geospatial.jrc.ec.europa.eu https://image.discomap.eea.europa.eu; font-src 'self' data: https://cdn.arcgis.com/ https://js.arcgis.com/ https://fonts.gstatic.com/ https://*.eea.europa.eu https://*.eionet.europa.eu https://land.copernicus.eu https://*.land.copernicus.eu; frame-src 'self' https://europa.eu/ https://*.europa.eu/ https://*.eea.europa.eu https://*.eionet.europa.eu http://*.eea.europa.eu https://eea.maps.arcgis.com/ https://land.copernicus.eu https://*.land.copernicus.eu https://www.youtube.com https://youtube.com; img-src 'self' data: blob: https://*.s3.amazonaws.com https:; script-src 'self' 'nonce-IT0KxhvohgeGEsFh2gNrWw==' 'unsafe-inline' 'unsafe-eval' blob: data: https://matomo.eea.europa.eu https://js.arcgis.com/ https://services.arcgis.com https://*.eea.europa.eu https://*.eionet.europa.eu http://*.eea.europa.eu https://cdnjs.cloudflare.com https://land.copernicus.eu https://*.land.copernicus.eu https://public.tableau.com; frame-ancestors 'self' *.europa.eu *.eionet.europa.eu *.eea.europa.eu *.discomap.eea.europa.eu https://eu-space.europa.eu/; media-src https://*.eea.europa.eu; style-src 'self' 'unsafe-inline' https://js.arcgis.com/ https://*.eionet.europa.eu https://*.eea.europa.eu https://cdnjs.cloudflare.com; report-uri https://sentry.eea.europa.eu/api/28/security/?sentry_key=6afdc4d9e7a148509fa0841b0e58a958;\netag: W/\"1027d5-o/2qTW5oZk8aLYsaAXX0yhAoTM0-gzip\"\ngrace: \nvary: Accept-Encoding\nvia: 1.1 clms-frontend-dpl-varnish-5c4d749f49-dcbw6 (Varnish/7.7)\nx-backend: cluster(frontend-volto:(null))\nx-backend-name: cluster(10.43.60.107:3000)\nx-cache: MISS\nx-cacheable: YES\nx-content-type-options: nosniff\nx-url: /en/products/high-resolution-layer-forests-and-tree-cover\nx-varnish: 15633930\nx-xss-protection: \"1; mode=block\"\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\nserver: envoy\nexpect-ct: max-age=604800, report-uri='https://sentry.eea.europa.eu/api/45/security/?sentry_key=0343e20fc4e0469790b6016561f032e3'\nx-frame-options: 'SAMEORIGIN'\nreferrer-policy: strict-origin-when-cross-origin\naccess-control-allow-headers: Authorization, Content-Type, content-type\npermissions-policy: accelerometer=(), autoplay=(), camera=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), sync-xhr=(self), usb=()\nx-envoy-upstream-service-time: 1344\n\n",
+    "topage2026.headers": "HTTP/1.1 200 OK\ndate: Tue, 10 Nov 2026 08:22:44 GMT\nserver: envoy\n\nHTTP/2 200 \nserver: envoy\ndate: Tue, 10 Nov 2026 08:22:45 GMT\ncontent-type: application/json; subtype=geojson\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\naccess-control-allow-origin: *\naccess-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept\naccess-control-allow-methods: GET,POST,HEAD,DELETE,PUT,OPTIONS\nx-envoy-upstream-service-time: 635\n\n"
+  },
+  "policy": {
+    "environment_id": "ccarenv_b64_Y2NhcmVudl8zMjViYzc0ZWM4ZmM4MTkxYjNiOGYxZTNhZmZlZWJmOQ",
+    "observations_current": true,
+    "network_policy": {
+      "mode": "unrestricted",
+      "state": "enforced"
+    },
+    "checked_at": "2026-11-10"
+  },
+  "interpretation": [
+    "Previous Mission 08 failures were CONNECT HTTP 403 at the proxy, not absent datasets.",
+    "IGN old MNT layer name now returns provider InvalidParameterValue 400; current metadata layer supplies all nine URLs.",
+    "Download interface HTTP 200 is an HTML shell, not proof of local data; WFS, validated TIFFs and the checked OCS archive establish availability.",
+    "Overpass status HTTP 406 is an nginx supplier response, not a CONNECT denial; OSM map API and Geofabrik are independently available.",
+    "Linked Geoville Copernicus WMS returns upstream connection-timeout HTTP 503 from envoy; current catalog and public EEA TCD 2018 export work. No quota 429 observed."
+  ]
+}

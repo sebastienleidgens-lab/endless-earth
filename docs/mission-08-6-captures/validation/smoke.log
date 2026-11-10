@@ -1,0 +1,203 @@
+
+> endless-earth@0.1.0 test:browser
+> node scripts/browser-smoke.mjs
+
+AERIAL {
+  decorations: {
+    requests: 8,
+    completed: 8,
+    cancelled: 15,
+    stale: 0,
+    failed: 0,
+    installed: 8,
+    cacheHits: 0,
+    bytes: 1835333,
+    maxDecodeCpuMs: 0.2000000011175871,
+    maxFetchDecodeWallMs: 91.69999999925494,
+    maxInstallMs: 1.400000000372529,
+    maxDisposeMs: 0,
+    maxTickMs: 2.900000000372529,
+    active: 0,
+    ready: 0
+  },
+  terrain: {
+    preparationMs: 7.100000001490116,
+    tiles: 25,
+    fineTriangles: 120128,
+    farTriangles: 111104,
+    farTiles: 17,
+    maxFarErrorM: 0.25,
+    surface: 'integrated',
+    water: 'mapped-outline-dem-drape-v1'
+  },
+  nature: {
+    treeCells: 125,
+    farCells: 111,
+    cells: 250,
+    resident: 2,
+    builds: 2,
+    pending: 0,
+    work: 0,
+    needed: 0,
+    preparation: null
+  },
+  climate: {
+    mode: 'real',
+    date: '2026-11-10T10:31:09.158Z',
+    solar: {
+      altitude: 0.42535162831867873,
+      azimuth: 2.823122763163503,
+      month: 11
+    },
+    weather: { cloud: 0.16, mist: 0, wind: 0.35, rain: 0 },
+    simulation: true
+  },
+  render: { calls: 134, triangles: 222761, geometries: 102 },
+  architecture: [
+    {
+      version: 'poitou-v1',
+      buildings: 921,
+      inferredHeights: 920,
+      pitchedRoofs: 921,
+      openings: 10713,
+      cells: 69,
+      meshes: 258,
+      triangles: 189939,
+      builds: 1,
+      generationMs: 1.299999998882413
+    }
+  ],
+  architectureMemory: {
+    triangles: 308515,
+    bytes: 26004278,
+    meshes: 264,
+    detailCells: 6,
+    detailBuilds: 6,
+    detailMs: 0.40000000037252903,
+    evictions: 0
+  },
+  mode: 'aerial',
+  ready: true,
+  position: [ -12.277392682727118, -1.48157948633812, -32.416383999943434 ],
+  camera: [ -9.311777836289362, 1.6617671667856506, -28.515308381573757 ],
+  zoom: 125,
+  smoothZoom: 125,
+  yaw: 0.65,
+  routeLength: undefined,
+  routePoints: undefined,
+  routeIndex: 1,
+  quality: 'low',
+  natureAnchors: 2500,
+  autoWalk: false,
+  walkMessage: 'Prêt · rejoindre une voie OSM',
+  sound: false,
+  soundState: 'uninitialized',
+  avatarVisible: true
+} FPS ≈ 2
+Draw calls : 134
+Triangles : 222 761
+Géométries : 102
+Textures : 7
+Ratio pixels : 1.0
+Vue : third · terrain prêt : true
+Position : -12.28, -1.48, -32.42
+FINAL {
+  decorations: {
+    requests: 18,
+    completed: 17,
+    cancelled: 21,
+    stale: 0,
+    failed: 0,
+    installed: 13,
+    cacheHits: 0,
+    bytes: 3085668,
+    maxDecodeCpuMs: 0.2000000011175871,
+    maxFetchDecodeWallMs: 1505.199999999255,
+    maxInstallMs: 1.400000000372529,
+    maxDisposeMs: 0.09999999962747097,
+    maxTickMs: 2.900000000372529,
+    active: 1,
+    ready: 1
+  },
+  terrain: {
+    preparationMs: 7.100000001490116,
+    tiles: 25,
+    fineTriangles: 120128,
+    farTriangles: 111104,
+    farTiles: 16,
+    maxFarErrorM: 0.25,
+    surface: 'integrated',
+    water: 'mapped-outline-dem-drape-v1'
+  },
+  nature: {
+    treeCells: 125,
+    farCells: 102,
+    cells: 250,
+    resident: 4,
+    builds: 4,
+    pending: 0,
+    work: 0,
+    needed: 0,
+    preparation: null
+  },
+  climate: {
+    mode: 'real',
+    date: '2026-11-10T10:31:31.006Z',
+    solar: {
+      altitude: 0.4256943632819258,
+      azimuth: 2.824759468745881,
+      month: 11
+    },
+    weather: { cloud: 0.16, mist: 0, wind: 0.35, rain: 0 },
+    simulation: true
+  },
+  render: { calls: 57, triangles: 186221, geometries: 177 },
+  architecture: [
+    {
+      version: 'poitou-v1',
+      buildings: 921,
+      inferredHeights: 920,
+      pitchedRoofs: 921,
+      openings: 10713,
+      cells: 69,
+      meshes: 258,
+      triangles: 189939,
+      builds: 1,
+      generationMs: 1.299999998882413
+    }
+  ],
+  architectureMemory: {
+    triangles: 335801,
+    bytes: 28132586,
+    meshes: 267,
+    detailCells: 9,
+    detailBuilds: 9,
+    detailMs: 0.7000000029802322,
+    evictions: 0
+  },
+  mode: 'aerial',
+  ready: true,
+  position: [ -10.288889186969577, -1.398540153811254, -35.16843460767447 ],
+  camera: [ -62.76957509210962, 72.74818006958795, 41.542371279747634 ],
+  zoom: 125,
+  smoothZoom: 125,
+  yaw: -0.6,
+  routeLength: undefined,
+  routePoints: undefined,
+  routeIndex: 1,
+  quality: 'high',
+  natureAnchors: 2500,
+  autoWalk: false,
+  walkMessage: 'Prêt · rejoindre une voie OSM',
+  sound: true,
+  soundState: 'running',
+  avatarVisible: true
+} FPS ≈ 4
+Draw calls : 55
+Triangles : 171 339
+Géométries : 176
+Textures : 7
+Ratio pixels : 1.0
+Vue : aerial · terrain prêt : true
+Position : -10.29, -1.40, -35.17
+PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors.

@@ -1,0 +1,464 @@
+{
+  "cpuTraceCapped": false,
+  "traceScope": "all frames from startup through walk completion, including graph survey and camera checks; autoWalk permits moving-only distributions",
+  "architecture": [
+    {
+      "version": "poitou-v1",
+      "buildings": 921,
+      "inferredHeights": 920,
+      "pitchedRoofs": 921,
+      "openings": 10713,
+      "cells": 69,
+      "meshes": 258,
+      "triangles": 189939,
+      "generationMs": 470.3000000002794,
+      "builds": 1
+    }
+  ],
+  "frameMeasuredMetres": 450,
+  "frameMeasuredSeconds": 428.8972999999998,
+  "frames": 1845,
+  "wallSeconds": 430.624,
+  "measuredMetres": 449.83344581540047,
+  "plannedMetres": 450,
+  "samples": 393,
+  "message": "Fin du parcours OSM valid\u00e9",
+  "trace_file": "walk-cpu.json.gz",
+  "cpu_frames": 1914,
+  "moving_frames_analyzed": 1845,
+  "latency": {
+    "cpuMs": {
+      "median": 6.600000000093132,
+      "p95": 23.399999999906868,
+      "max": 557.1999999997206
+    },
+    "submitMs": {
+      "median": 1.7000000001862645,
+      "p95": 9.339999999850974,
+      "max": 1249.7000000001863
+    },
+    "intervalMs": {
+      "median": 173.79999999981374,
+      "p95": 467.02000000011174,
+      "max": 3909.2000000001863
+    }
+  },
+  "js_heap_bytes": {
+    "max": 213117651,
+    "final": 145596125,
+    "measurement": "Chromium performance.memory.usedJSHeapSize with --enable-precise-memory-info; JS heap only, not total browser or GPU memory"
+  },
+  "peak_frames": {
+    "cpuMs": [
+      {
+        "cpuMs": 557.1999999997206,
+        "submitMs": 4.900000000372529,
+        "intervalMs": 1180.1000000000931,
+        "heapBytes": 144687254,
+        "autoWalk": true,
+        "timeMs": 329821.6999999997,
+        "quality": "low",
+        "x": -249.992336953125,
+        "z": -201.5676588979142,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 114,
+          "cells": 250,
+          "resident": 2,
+          "builds": 2,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 494.5,
+        "submitMs": 4.5,
+        "intervalMs": 1509,
+        "heapBytes": 143872335,
+        "autoWalk": true,
+        "timeMs": 447211.8999999999,
+        "quality": "low",
+        "x": -338.8687920480669,
+        "z": -300.49565105459857,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 114,
+          "cells": 250,
+          "resident": 3,
+          "builds": 3,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 382.39999999990687,
+        "submitMs": 4.699999999720603,
+        "intervalMs": 2863.899999999907,
+        "heapBytes": 144535346,
+        "autoWalk": true,
+        "timeMs": 316762.8999999999,
+        "quality": "low",
+        "x": -241.52868698344523,
+        "z": -197.78309932270096,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 114,
+          "cells": 250,
+          "resident": 2,
+          "builds": 2,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 338.29999999981374,
+        "submitMs": 21.700000000186265,
+        "intervalMs": 3909.2000000001863,
+        "heapBytes": 138995842,
+        "autoWalk": true,
+        "timeMs": 230650.3999999999,
+        "quality": "low",
+        "x": -166.8050844258076,
+        "z": -154.84283260106344,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 1,
+          "builds": 1,
+          "pending": 1,
+          "work": 160,
+          "needed": 1,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 281.60000000009313,
+        "submitMs": 8.899999999906868,
+        "intervalMs": 1667.7000000001863,
+        "heapBytes": 160422795,
+        "autoWalk": true,
+        "timeMs": 75746.29999999981,
+        "quality": "low",
+        "x": -38.64708919039689,
+        "z": -48.13699298678077,
+        "terrain": 17,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 1,
+          "builds": 1,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      }
+    ],
+    "submitMs": [
+      {
+        "cpuMs": 38.39999999990687,
+        "submitMs": 1249.7000000001863,
+        "intervalMs": 348.89999999990687,
+        "heapBytes": 146661215,
+        "autoWalk": true,
+        "timeMs": 65175.69999999972,
+        "quality": "low",
+        "x": -30.76184400078356,
+        "z": -44.270226600943474,
+        "terrain": 17,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 1,
+          "builds": 1,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 27.100000000093132,
+        "submitMs": 457.10000000009313,
+        "intervalMs": 434.29999999981374,
+        "heapBytes": 159784076,
+        "autoWalk": true,
+        "timeMs": 48341.299999999814,
+        "quality": "low",
+        "x": -24.57139213345833,
+        "z": -41.4431866560077,
+        "terrain": 17,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 0,
+          "builds": 0,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 13.399999999906868,
+        "submitMs": 399.1999999997206,
+        "intervalMs": 299.60000000009313,
+        "heapBytes": 146857575,
+        "autoWalk": true,
+        "timeMs": 445617,
+        "quality": "low",
+        "x": -338.9050340436985,
+        "z": -300.185913702876,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 114,
+          "cells": 250,
+          "resident": 3,
+          "builds": 3,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 202.70000000018626,
+        "submitMs": 335.09999999962747,
+        "intervalMs": 2867.100000000093,
+        "heapBytes": 139180258,
+        "autoWalk": true,
+        "timeMs": 226918.8999999999,
+        "quality": "low",
+        "x": -166.55419710070072,
+        "z": -154.61708539709247,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 1,
+          "builds": 1,
+          "pending": 1,
+          "work": 32,
+          "needed": 1,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 27.899999999906868,
+        "submitMs": 188.79999999981374,
+        "intervalMs": 359,
+        "heapBytes": 149210636,
+        "autoWalk": true,
+        "timeMs": 61808.799999999814,
+        "quality": "low",
+        "x": -29.533997369945702,
+        "z": -43.709496698502065,
+        "terrain": 17,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 0,
+          "builds": 0,
+          "pending": 1,
+          "work": 2432,
+          "needed": 1,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      }
+    ],
+    "intervalMs": [
+      {
+        "cpuMs": 338.29999999981374,
+        "submitMs": 21.700000000186265,
+        "intervalMs": 3909.2000000001863,
+        "heapBytes": 138995842,
+        "autoWalk": true,
+        "timeMs": 230650.3999999999,
+        "quality": "low",
+        "x": -166.8050844258076,
+        "z": -154.84283260106344,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 1,
+          "builds": 1,
+          "pending": 1,
+          "work": 160,
+          "needed": 1,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 180.89999999990687,
+        "submitMs": 13.899999999906868,
+        "intervalMs": 3771.7000000001863,
+        "heapBytes": 165578008,
+        "autoWalk": true,
+        "timeMs": 51818.5,
+        "quality": "low",
+        "x": -24.878393769481246,
+        "z": -41.58338738881338,
+        "terrain": 17,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 0,
+          "builds": 0,
+          "pending": 1,
+          "work": 32,
+          "needed": 1,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 165.6999999997206,
+        "submitMs": 5.2000000001862645,
+        "intervalMs": 3183.8000000002794,
+        "heapBytes": 140603494,
+        "autoWalk": true,
+        "timeMs": 246508.69999999972,
+        "quality": "low",
+        "x": -169.77217828745148,
+        "z": -157.5126093341059,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 1,
+          "builds": 1,
+          "pending": 1,
+          "work": 1216,
+          "needed": 1,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 202.70000000018626,
+        "submitMs": 335.09999999962747,
+        "intervalMs": 2867.100000000093,
+        "heapBytes": 139180258,
+        "autoWalk": true,
+        "timeMs": 226918.8999999999,
+        "quality": "low",
+        "x": -166.55419710070072,
+        "z": -154.61708539709247,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 113,
+          "cells": 250,
+          "resident": 1,
+          "builds": 1,
+          "pending": 1,
+          "work": 32,
+          "needed": 1,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      },
+      {
+        "cpuMs": 382.39999999990687,
+        "submitMs": 4.699999999720603,
+        "intervalMs": 2863.899999999907,
+        "heapBytes": 144535346,
+        "autoWalk": true,
+        "timeMs": 316762.8999999999,
+        "quality": "low",
+        "x": -241.52868698344523,
+        "z": -197.78309932270096,
+        "terrain": 21,
+        "nature": {
+          "treeCells": 125,
+          "farCells": 114,
+          "cells": 250,
+          "resident": 2,
+          "builds": 2,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": {
+            "maxSliceMs": 164.90000000037253,
+            "maxBuildMs": 13.700000000186265,
+            "slices": 99
+          }
+        }
+      }
+    ]
+  }
+}

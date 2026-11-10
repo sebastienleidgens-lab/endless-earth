@@ -29,7 +29,7 @@ if(import.meta.hot)import.meta.hot.accept('virtual:build-identity',module=>{
  if(module)identityElement.innerHTML=buildIdentityMarkup(module.buildIdentity,ANGLES.name);
 });
 const credits=document.createElement('div');credits.className='geo-credit';
-credits.innerHTML='<a href="https://www.data.gouv.fr/datasets/referentiel-a-grande-echelle-rge" target="_blank" rel="noopener">IGN · RGE ALTI · extraction 08/11/2026</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a>';
+credits.innerHTML='<a href="https://www.data.gouv.fr/datasets/mnt-lidar-hd" target="_blank" rel="noopener">IGN · LiDAR HD 2023 / OCS GE 2023 / BD TOPO / BD Forêt · ASP RPG 2024 · Licence Ouverte 2.0</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a>';
 root.append(credits);
 
 const scene=new THREE.Scene(); scene.background=new THREE.Color(0xdce8df); scene.fog=new THREE.Fog(0xdce8df,300,1000);
@@ -146,12 +146,13 @@ if(tilesPreview && !terrainPreview){
     }
     try{
       const count=await loadAnglesGeography(realWorld,terrain??undefined);
+      scene.userData.decorationStream=realWorld.userData.decorationStream;
       geographyReady=count>0&&terrain!==null;
       if(geographyReady)geographyReady=placeSafeStart(terrain!);
       await navigationLoaded();
       if(count>0)prepareWalk();
       if(hint)hint.textContent=count>0
-        ? `OSM réel : ${count} objets · ${terrain?`relief IGN ${terrain.grid.step_m} m · dénivelé ${(Math.max(...terrain.grid.elevations_m)-Math.min(...terrain.grid.elevations_m)).toFixed(0)} m`:'relief indisponible, sol plat'}${terrain&&!terrain.roadsAvailable?' · voies visuelles indisponibles':''}`
+        ? `Sources IGN / ASP / OSM · ${terrain?`relief IGN ${terrain.grid.step_m} m · dénivelé ${(terrain.grid.elevations_m.reduce((a,b)=>Math.max(a,b),-Infinity)-terrain.grid.elevations_m.reduce((a,b)=>Math.min(a,b),Infinity)).toFixed(0)} m`:'relief indisponible, sol plat'}${terrain&&!terrain.roadsAvailable?' · voies visuelles indisponibles':''}${terrain&&!terrain.environment?' · occupation IGN/ASP indisponible':''}`
         : 'ERREUR OSM : aucun objet géographique chargé';
     }catch(error){
       console.error('OSM geography rendering failed',error);
@@ -268,7 +269,7 @@ const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
@@ -335,6 +336,7 @@ if(transitionElapsed<.8){
 
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateTerrainLOD(scene,camera.position,avatar.position,quality==='low');updateVegetationLOD(scene,camera,quality==='low');updateArchitectureLOD(scene,camera,quality==='low')}
+scene.userData.decorationStream?.tick(quality==='low',elapsed*1000,dt>0?moved/dt:0);
 renderer.render(scene,camera);
 if(qualityAuto&&geographyReady&&!document.hidden){
   qualitySeconds+=elapsed;qualityFrames++;

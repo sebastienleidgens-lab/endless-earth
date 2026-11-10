@@ -1,3 +1,5 @@
+// @ts-ignore Shared normalized environmental features.
+import {mergeEnvironment} from './environment.mjs';
 // @ts-ignore Water line clipping shared with offline tests.
 import {clipLineToGrid} from './terrain-grid.mjs';
 // @ts-ignore Explicitly illustrative ruin profile.
@@ -5,7 +7,9 @@ import {ruinHeight} from './ruins.mjs';
 import {addNature,updateNatureLOD} from '../nature/render';
 import {waterMaterial} from '../nature/surfaces';
 import * as THREE from 'three';
-import { ArchitectureBatch } from '../architecture/render';
+// @ts-ignore Validated, source-bound offline geometry and progressive detail stream.
+import {loadDecorations} from './decoration-stream.mjs';
+import { ArchitectureBatch,installPreparedArchitecture } from '../architecture/render';
 // @ts-ignore Pure shared footprint helper.
 import { edgeKey } from '../architecture/plan.mjs';
 import { nature } from '../living/geography';
@@ -119,9 +123,9 @@ function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
   return shape;
 }
 // Mapped habitat boundaries constrain deterministic, inferred individual trees.
-function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain):number{
+function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain,prepared?:any):number{
  const local=features.map(f=>{const g=f.geometry,tags=f.properties??{},c=g?.coordinates;if(!g||!Array.isArray(c))return {tags};if(g.type==='Polygon')return {tags,rings:c.map(r=>coordsToPoints(r))};if(g.type==='LineString')return {tags,line:coordsToPoints(c)};if(g.type==='Point'&&typeof c[0]==='number'&&typeof c[1]==='number')return {tags,point:toLocal({lon:c[0],lat:c[1]})};return {tags};});
- const trees=addNature(scene,local,(x,z)=>terrain?terrain.relativeHeight(x,z):0);
+ const trees=addNature(scene,local,(x,z)=>terrain?terrain.relativeHeight(x,z):0,prepared);
  const anchors=trees.map((p:{x:number;y:number;z:number;scale:number;kind:string})=>({x:p.x,z:p.z,perchY:p.y+8.5*p.scale*(p.kind==='riparian'?1.35:1)}));nature.push(...anchors);scene.userData.natureAnchors=anchors;
  return trees.length;
 }
@@ -142,10 +146,11 @@ function batchLinearFeatures(scene:THREE.Object3D):void{
     scene.add(combined);
   }
 }
-export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain):number{
-  let count=addMappedTrees(scene,features,terrain);
+export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain,prepared?:any):number{
+  if(prepared)scene.userData.decorationStream=prepared.stream;
+  let count=addMappedTrees(scene,features,terrain,prepared);
   const sharedEdges=sharedBuildingEdges(features);
-  const architecture=new ArchitectureBatch(scene);
+  const architecture=prepared?null:new ArchitectureBatch(scene);
   for(const f of features){
     const tags=f.properties??{};
     if(f.geometry?.type==='LineString'){
@@ -162,7 +167,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         addHistoricWall(scene,ring,terrain,true);count++;
       } else if(tags.building){
         const holes=(f.geometry.coordinates.slice(1) as unknown[]).map(h=>coordsToPoints(h,terrain)).map(h=>h.length>1&&h[0].distanceTo(h[h.length-1])<.01?h.slice(0,-1):h).filter(h=>h.length>=3);
-        architecture.add(ring,tags,sharedEdges,(x,z)=>terrain?terrain.relativeHeight(x,z):0,holes);
+        architecture?.add(ring,tags,sharedEdges,(x,z)=>terrain?terrain.relativeHeight(x,z):0,holes);
         count++;
       } else if(tags.natural==='wood'||tags.natural==='scrub'||tags.landuse==='forest'||tags.landuse==='orchard'||tags.leisure==='park'){
         // Habitat colors are now baked into the source terrain material.
@@ -186,15 +191,16 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
     }
   }
   batchLinearFeatures(scene);
-  architecture.finish();
+  if(prepared)installPreparedArchitecture(scene,prepared);else architecture!.finish();
   return count;
 }
 export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain):Promise<number>{
   const response=await fetch(`${import.meta.env.BASE_URL}data/angles-osm.geojson`);
   if(!response.ok)return 0;
-  const data=await response.json() as Collection;
+  const text=await response.text(),data=JSON.parse(text) as Collection;
+  const prepared=await loadDecorations(terrain,text);
   if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
-  const count=renderGeoFeatures(scene,data.features,terrain);
+  const count=renderGeoFeatures(scene,mergeEnvironment(data.features,terrain?.environment),terrain,prepared);
   if(count>0)setBuildingFootprints(data.features);
   return count;
 }
