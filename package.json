@@ -37,7 +37,12 @@
     "audio:evidence": "node scripts/browser-audio-immersive.mjs before && node scripts/browser-audio-immersive.mjs after",
     "test:coherence": "node --test tests/coherence.test.mjs",
     "test:coherence:browser": "node scripts/browser-coherence.mjs after && node scripts/browser-coherence-runtime.mjs && node scripts/browser-coherence-camera.mjs && node scripts/browser-coherence-gallery.mjs",
-    "coherence:evidence": "node scripts/browser-coherence.mjs before && node scripts/browser-coherence.mjs after && node scripts/browser-coherence.mjs record"
+    "coherence:evidence": "node scripts/browser-coherence.mjs before && node scripts/browser-coherence.mjs after && node scripts/browser-coherence.mjs record",
+    "test:immersive": "node --test tests/optimization.test.mjs && node scripts/browser-immersive-runtime.mjs && node scripts/browser-immersive-missing.mjs && node scripts/browser-immersive-checks.mjs",
+    "test:immersive:visibility": "node scripts/browser-immersive-visibility.mjs",
+    "test:immersive:soak": "node scripts/browser-immersive-soak.mjs",
+    "bench:immersive": "node scripts/benchmark-immersive.mjs && node scripts/browser-immersive-timers.mjs",
+    "report:immersive": "python scripts/report-immersive.py && python scripts/report-immersive-audio.py"
   },
   "dependencies": {
     "three": "^0.180.0"

@@ -9,15 +9,24 @@ export function createAtmosphere(scene:THREE.Scene){
  const u=sky.material.uniforms;
  Object.assign(u,{starVisibility:{value:0},daylight:{value:1},cover:{value:0},horizonTint:{value:new THREE.Color()},zenithTint:{value:new THREE.Color()}});
  sky.material.fragmentShader='uniform float daylight,cover,starVisibility;uniform vec3 horizonTint,zenithTint;\n'+sky.material.fragmentShader;
- sky.material.fragmentShader=sky.material.fragmentShader.replace('gl_FragColor = vec4( retColor, 1.0 );',`
+ // Night contributes no analytic daylight. Keep the identical daytime model,
+ // but avoid its transcendental work when its final multiplier is zero.
+ sky.material.fragmentShader=sky.material.fragmentShader
+ .replace('float zenithAngle = acos( max( 0.0, dot( up, direction ) ) );','float cosZenith = max(0.0, dot(up, direction)); float zenithAngle = acos(cosZenith);')
+ .replace('cos( zenithAngle )','cosZenith')
+ .replace('// optical length\n','vec3 atmosphere=vec3(0.); if(daylight>0.) {\n// optical length\n')
+ .replace('gl_FragColor = vec4( retColor, 1.0 );',`
   // Compress the analytic sky's HDR range without a scene-wide tone mapper.
-  vec3 atmosphere=vec3(1.)-exp(-retColor*.72);
+  atmosphere=vec3(1.)-exp(-retColor*.72);
+  }
   vec3 night=mix(horizonTint,zenithTint,smoothstep(-.03,.65,direction.y));
+  if(starVisibility>0.){
   vec2 cell=vec2(atan(direction.z,direction.x)*420.,asin(direction.y)*420.);
   vec2 id=floor(cell);vec2 q=fract(cell)-.5;
   float hash=fract(sin(dot(id,vec2(127.1,311.7)))*43758.5453);
   float star=step(.996,hash)*(1.-smoothstep(.015,.095,length(q)));
   night+=vec3(.55,.62,.72)*star*starVisibility*smoothstep(0.,.2,direction.y);
+  }
   vec3 cloudy=mix(horizonTint,zenithTint,smoothstep(0.,.8,direction.y));
   vec3 color=mix(night,atmosphere,daylight);
   color=mix(color,cloudy,smoothstep(.48,1.,cover)*.88);

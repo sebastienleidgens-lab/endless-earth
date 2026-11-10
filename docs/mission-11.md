@@ -1,8 +1,83 @@
 # Mission 11 — Le monde prend vie
 
-## État courant — Jalon C soumis à votre validation
+## État courant — Jalon D livré pour revue finale
 
-Votre **« Go jalon c »** autorise le Jalon C à la suite des commits A `dbafd13` et B `a990a12`. Cette étape corrige et démontre la cohérence perceptive des cinq ambiances et du retour à l’heure réelle. **Le Jalon D reste en attente de votre validation.** La branche et la PR #20 restent en brouillon, sans fusion ou déploiement public.
+Votre **« Go »** ouvre le Jalon D après le commit C `95bc4b3`. Le travail porte sur le coût des calculs, les chargements audio sous pression et les reprises du navigateur. Les effets, les profils et les ressources sonores de A/B/C sont conservés. **Quatrième commit identifiable, PR #20 toujours en brouillon, sans fusion ni publication sur la version principale.** L’appréciation artistique finale appartient au propriétaire.
+
+Ouvrir la **[galerie de synthèse D](mission-11-evidence/optimization/index.html)** : comparaison C/D, mesures par profil/condition, capture audio de quinze minutes et accès aux galeries A/B/C. La [vidéo simultanée du Jalon C](mission-11-evidence/coherence/ambiances.webm) reste disponible. Aucun rendu généré ou retouché ne sert de preuve.
+
+Pour une prévisualisation isolée : `npm run build`, puis `npm run preview -- --port 5180`, et ouvrir `http://localhost:5180/endless-earth/?perf=1` dans un navigateur avec WebGL. La galerie se consulte sur le serveur de développement, `http://localhost:5173/endless-earth/docs/mission-11-evidence/optimization/index.html`. Aucun de ces serveurs locaux ne modifie l’hébergement public. Le Chrome partagé de cet environnement ne fournit pas WebGL ; la galerie et les lecteurs y fonctionnent, tandis que les tests 3D utilisent un Chromium distinct avec SwiftShader.
+
+## D — Optimisations retenues
+
+- **Calcul solaire et heure locale mis en cache à la seconde.** Le modèle solaire existant n’utilise pas les millisecondes. La date UTC continue à suivre l’horloge à chaque image ; le soleil et les deux formatages civils ne sont recalculés que lorsque la seconde change, y compris pendant les transitions. Les moments manuels figés réutilisent leurs valeurs. Le contexte acoustique reçoit les informations temporelles déjà calculées, ce qui évite un second `Intl.DateTimeFormat` par requête géographique.
+- **Travail shader inutile écarté.** À luminosité diurne nulle, la diffusion solaire ne contribue pas à la couleur : son calcul est évité. Les étoiles sont calculées lorsque leur visibilité est positive. `cos(acos(x))` devient directement `x`. Ces conditions conservent les contributions demandées pendant les transitions.
+- **Nuages en pleine résolution.** Les couleurs et seuils dépendant uniquement de l’état commun sont calculés une fois par image. Les deux altitudes, bruits, éclairage de détail, advection, ombres et budgets existants restent en place. Aucun framebuffer, texture ou programme supplémentaire n’est ajouté. Des essais préliminaires de filtrage dans une texture et de fusion des passages n’ont pas été retenus : ils augmentaient le coût logiciel. Le résultat conserve le pipeline de rendu à deux passages de C.
+- **Admission audio avant fetch/décodage.** Le chargeur vérifie si le fichier peut coexister avec les buffers réellement épinglés par les voix. Il utilise la durée du catalogue mono et la fréquence réelle du contexte, puis conserve le contrôle exact des octets après décodage. Un manque de place reporte la demande ; il ne marque pas la ressource comme défaillante. Le contrôle est répété avant le décodage si le jeu de buffers épinglés a changé pendant le fetch. Le cache reste à 24 MiB et la concurrence à deux opérations.
+
+Le test de pression charge et épingle six captations réelles, soit **23 040 000 octets**, puis demande huit fois une captation de pluie trop grande pour l’espace restant. C effectue huit appels fetch et huit décodages supplémentaires ; D n’en effectue aucun. Après libération de deux buffers, la même pluie est admise normalement. Ce sont des **appels au chargeur**, pas une affirmation de huit transferts complets sur le réseau : le cache HTTP du navigateur peut intervenir. [Preuve et protocole](mission-11-evidence/optimization/audio-cache.json).
+
+## D — Mesures comparatives
+
+La matrice compare C et D à la même station forestière, en 800 × 600 : **trois profils × cinq situations × son coupé/actif × deux tours**, huit rendus synchronisés par version et cas. L’ordre C/D alterne à chaque échantillon. Les situations couvrent matin clair, après-midi couvert/venteux, soir pluvieux, nuit claire et nuit orageuse. Toutes les six météos sont aussi exercées dans le test de changements rapides.
+
+| Profil | Médiane C | Médiane D | Évolution du temps |
+| --- | ---: | ---: | ---: |
+| Éco | 177.00 ms | 177.80 ms | +0.45 % |
+| Équilibré | 186.50 ms | 179.05 ms | −3.99 % |
+| Qualité | 184.40 ms | 174.80 ms | −5.21 % |
+
+Il s’agit du temps de rendu avec synchronisation et lecture des pixels sous **SwiftShader**, sur une machine partagée. Ces résultats ne sont pas des FPS physiques ou une garantie de gain sur Android. Les différences sont modestes ; Éco reste proche de C. Les cas individuels et leurs P95, y compris ceux moins favorables, sont dans le [CSV](mission-11-evidence/optimization/performance.csv) et la [synthèse complète](mission-11-evidence/optimization/summary.json). La [trace brute compressée](mission-11-evidence/optimization/matrix.json.gz) conserve tous les échantillons et compteurs.
+
+Le coût moyen isolé d’actualisation de l’atmosphère passe respectivement de **.0078/.0072/.0055 ms à .0055/.0045/.0037 ms** en Éco/Équilibré/Qualité. Les durées sont très petites et quantifiées par l’horloge du navigateur ; il s’agit de moyennes sur des appels contrôlés, sans coût de rendu, pas d’un gain équivalent de temps d’image.
+
+Les intervalles réels entre images et les durées de soumission sont mesurés séparément sur matin clair et nuit orageuse, son coupé/actif. Les deux premières images après chaque pause volontaire du banc sont exclues de leur résumé, mais conservées dans la trace. La soumission WebGL peut attendre le moteur logiciel ; elle ne représente pas uniquement la logique JavaScript.
+
+L’extension `EXT_disjoint_timer_query_webgl2` étant présente, elle est effectivement interrogée dans un protocole séparé. Les [requêtes brutes](mission-11-evidence/optimization/timers.json) gardent disponibilité et indicateur disjoint. **Ces mesures sont celles de la file graphique logicielle** ; leurs petits groupes séquentiels restent variables et ne démontrent pas une amélioration GPU uniforme. Aucun GPU physique n’est disponible ici.
+
+Les quinze paires d’images issues du canevas réel ont un **écart maximal d’un niveau sur 255**, avec un P99 nul dans ces captures. La plus grande erreur moyenne par canal RGBA est .000702/255. Les appels de rendu, triangles et lignes coïncident dans les 480 paires d’échantillons. L’inventaire séparé attend aussi la fin du préchargement asynchrone : mêmes matériaux, géométries, textures et programmes à station/profil identiques. Les nombres de matériaux et programmes sont détaillés dans l’[inventaire](mission-11-evidence/optimization/inventory.json).
+
+Cette matrice compare **C à D à une station donnée**. Elle ne refait pas les six stations du benchmark A et n’efface pas le surcoût A de **19.5–34.5 %** observé face à la version antérieure de la mission. La validation de la fluidité sur GPU physique et Android reste ouverte.
+
+## D — Robustesse exécutée
+
+- **30 changements rapides** de profil, heure et météo dans la véritable boucle rendue ; état final orageux cohérent, pluie visible dans les trois profils et absence de chants diurnes dans la nuit stabilisée.
+- **36 destructions/recréations de l’atmosphère**, avec rendu effectif, un seul panneau météo, sept textures et un plateau de géométries/programmes par profil. **24 créations/destructions de contextes audio**, fermeture idempotente et compteurs de nœuds/cache à zéro. Ces compteurs ne prétendent pas mesurer toute la mémoire du pilote ou du processus.
+- **Véritable onglet en arrière-plan** : `document.hidden` devient vrai, le véritable AudioContext est suspendu et la marche s’arrête. Au retour, le son reprend et les choix restent conservés ; la marche attend une nouvelle action. Un gel/reprise natif CDP de trois secondes est testé séparément sur le build local compilé. Playwright est connecté avec son option publique `noDefaults` pour désactiver son émulation habituelle de pages toujours actives. Aucun remplacement de `document.hidden` ou événement de visibilité synthétique n’est utilisé. Le serveur de développement rechargeait la page lors de la reconnexion Vite après gel ; ce cas est donc vérifié sur le build local sans client HMR.
+- **Retour au temps réel**, sur build compilé sans date de diagnostic : date UTC courante, heure Europe/Paris et soleil comparés au modèle original de part et d’autre d’une seconde civile.
+- **Données manquantes** : réponses 404 volontaires du descripteur MNT ou d’OSM. Le statut signale l’indisponibilité, les déplacements restent bloqués tant que la géographie n’est pas prête et la météo reste réactive. Les diagnostics d’erreur attendus sont conservés.
+- **Navigation et caméra** : obstacles de bâtiment, zone privée, eau, mur et ruines injectés dans le test après démarrage de la marche ; arrêt avant chaque obstacle. Zoom mémorisé, verrou de caméra pendant le glissement, recentrage et retrait devant un mur vérifiés. Smoke 3D : chargement, trois vues, déplacement, hauteur d’œil, arrêt sans dérive, son, choix de profil et viewport mobile.
+- **Mobile et clavier** : panneaux météo dans les orientations portrait et paysage, consommation des flèches par les sélecteurs sans déplacement du joueur ; commandes tactiles dans une émulation mobile Chromium. Une émulation ne vaut pas un appareil Android physique.
+
+[Cycles et changements rapides](mission-11-evidence/optimization/runtime.json) · [Visibilité native et gel](mission-11-evidence/optimization/visibility.json) · [Horloge actuelle](mission-11-evidence/optimization/clock.json) · [Données manquantes](mission-11-evidence/optimization/missing-data.json) · [Mobile tactile](mission-11-evidence/optimization/mobile.json) · [Validation](mission-11-evidence/optimization/validation.json).
+
+## D — Promenade prolongée et écoute
+
+Session réelle de **903.952 s** (quinze minutes), dont neuf minutes consacrées à la marche automatique. La distance cumulée entre relevés est d’environ **696.1 m**, avec une reprise de route existante et sans téléportation pendant les phases de marche. Le moteur admet **329 pas sonores, 6 chants et 2 événements routiers**. Pic de **6 voix**, cache maximal **24,730,140 octets**, aucun dépassement de 24 MiB, deux demandes reportées par le contrôle d’admission et aucune erreur JavaScript détectée. La capture décodée ne présente aucun écrêtage (pic 0.0961, RMS -46.35 dBFS), sans normalisation.
+
+La mémoire JS après collecte passe de **77.50 à 78.88 MiB** ; cette seconde mesure précède l’arrêt du recorder et inclut son instrumentation. Ce n’est pas une mesure de toute la mémoire native. Le renderer reste à au plus **19 programmes / 352 géométries** pendant les changements de zone/profil. Après fermeture : AudioContext **closed**, **zéro nœud, zéro octet de cache et zéro chargement actif**. Les empreintes des sources sont vérifiées inchangées sur toute la session.
+
+L’enregistrement vient du véritable AudioContext après limiteur, avec la boucle du jeu et le rendu WebGL actifs. La capture et l’observation ajoutent du travail : cette session ne sert pas de benchmark comparatif de FPS. Les déplacements de station sont des changements explicites de poste de test, pas une promenade continue ni des chemins publics inventés. Le compteur de distance additionne les positions relevées pendant les phases de marche ; il constitue une approximation inférieure de la longueur effectivement parcourue.
+
+[Capture intégrale](mission-11-evidence/optimization/session-15min.webm) · [Résumé de session](mission-11-evidence/optimization/session-15min.json) · [Relevés temporels compressés](mission-11-evidence/optimization/session-trace.json.gz) · [Évolution des ressources](mission-11-evidence/optimization/session-stability.svg).
+
+## D — Préservation et limites finales
+
+Les **93 ressources / 40 sources audio**, leurs empreintes et crédits, les données IGN/ASP/OSM et les règles de relief/navigation/collision restent conservés. Aucun changement Living Paintings / LP-01 ou workflow de production. Les preuves A, B et C restent archivées ci-dessous et leurs fichiers sont conservés à l’identique.
+
+Budgets conservés : Éco **8 voix / 1 HRTF / 2 lits / 2 Hz** ; Équilibré **12 / 2 / 3 / 2 Hz** ; Qualité **12 / 3 / 3 / 4 Hz**. Cache décodé **24 MiB**, deux chargements/décodages simultanés au plus. La mémoire native transitoire d’un décodage, le cache HTTP et les buffers d’enregistrement sont distincts de ce cache ; ils ne sont pas présentés comme inclus dans les 24 MiB. Les dégradations structurelles de profils, dont la réduction de détail Éco, sont celles déjà documentées dans A/C.
+
+Reproduction développeur : le banc C utilise le commit `95bc4b3` dans un worktree détaché servi sur le port 5179 ; D utilise le port 5173. `npm run bench:immersive` exécute matrice et minuterie, puis `npm run report:immersive` produit la synthèse. `npm run test:immersive` couvre les contrôles rapides, `npm run test:immersive:soak` la session réelle et `npm run test:immersive:visibility` le contrôle X11 sur le build compilé du port 5180.
+
+Compilation et **163 tests Node réussis**. L’avertissement Vite du bundle supérieur à 500 kB reste visible. Les commandes et scripts reproductibles figurent dans la [validation](mission-11-evidence/optimization/validation.json) ; les empreintes des sources de la session dans son résumé. Un affichage X11 de test est nécessaire au contrôle natif de visibilité ; la galerie et l’écoute n’en nécessitent aucune manipulation technique.
+
+À valider humainement : naturel et présence des sons, équilibre des ambiances, lisibilité de la nuit et plaisir de promenade. Limitations conservées : captations réalisées ailleurs qu’à Angles, données de débit/trafic/espèces locales non mesurées, nuages 2.5D et ombres fines approximatives, pluie sans occlusion fine des toits/impacts/flaques, surfaces mouillées non ajoutées, nuit sans lune ni éclairage architectural inventé, orage sans nouveau système d’éclairs et tonnerre synchronisés. Les P2 ne sont pas développés au détriment des priorités principales.
+
+**La revue artistique finale et les mesures sur appareil Android/GPU physique restent nécessaires. Aucune fusion ou publication n’est effectuée.**
+
+## Archive — état à la soumission du Jalon C
+
+Votre **« Go jalon c »** autorise le Jalon C à la suite des commits A `dbafd13` et B `a990a12`. Cette étape corrige et démontre la cohérence perceptive des cinq ambiances et du retour à l’heure réelle. **À cette soumission, le Jalon D restait en attente de votre validation.** La branche et la PR #20 restent en brouillon, sans fusion ou déploiement public.
 
 Ouvrir la **[galerie audiovisuelle du Jalon C](mission-11-evidence/coherence/index.html)** sur le serveur de développement. Elle propose une capture continue avec chapitres, les six paires d’images avant/après et les traces de synchronisation. Pour la lancer : `npm run dev -- --port 5173`, puis `http://localhost:5173/endless-earth/docs/mission-11-evidence/coherence/index.html`. Cette galerie locale ne nécessite pas WebGL ; la capture du jeu provient d’un Chromium distinct avec SwiftShader. Elle complète les galeries A et B conservées ci-dessous.
 

@@ -41,6 +41,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  let lifeRevision=-1,cpuElapsed=Infinity,calm=0,stamp=-1;const localWind={x:0,z:0,speed:0,gust:0},rainWind=new THREE.Vector2(),sunDirection=new THREE.Vector3();
  const hourFormat=new Intl.DateTimeFormat('en-GB',{timeZone:site.timeZone??'UTC',hourCycle:'h23',hour:'2-digit',minute:'2-digit',second:'2-digit'});
  const dateFormat=new Intl.DateTimeFormat('fr-FR',{timeZone:site.timeZone??'UTC',hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'}),horizon=new THREE.Color(),zenith=new THREE.Color();
+ let solarSecond=NaN,solarState=solar(effectiveTime,site.lat,site.lon),localTime='',localHour=0;
  const palette={dayHorizon:new THREE.Color(0xc2d0d4),warm:new THREE.Color(0xd4b19b),cloudHorizon:new THREE.Color(0x89979f),dayZenith:new THREE.Color(0x719bb9),cloudZenith:new THREE.Color(0x75848e),sunWarm:new THREE.Color(0xffd3a3),white:new THREE.Color(0xffffff)};
  const previousAcousticClimate=scene.userData.acousticClimate,environment:any={worldTimeMs:0,solar:{altitude:0},weather:state,acousticWeather:{...state,gust:0},wind:localWind,transition:{revision:0,commandRevision:0,manual:false},simulation:true};
  scene.userData.acousticClimate=environment;
@@ -55,7 +56,9 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   commandAge+=transitionDt;elapsed+=dt;environmentalTime.value+=dt;state=weatherStep(state,target,weatherTau<45?transitionDt:dt,state,weatherTau);windUniform.value=elapsed;updateLifeTime(elapsed,state.wind*(1-calm*.45),player.position.x,player.position.z,localWind);environmentalWind.value=localWind.speed;
   if(demo)effectiveTime+=dt*72000;
   else{timeBlend=Math.min(1,timeBlend+transitionDt/2.4);const blend=timeBlend*timeBlend*(3-2*timeBlend),to=moment==='real'?+(fixed??new Date()):selectedTime;effectiveTime=timeBlend===1?to:fromTime+(to-fromTime)*blend;}
-  const date=new Date(effectiveTime),s=solar(date,site.lat,site.lon),day=THREE.MathUtils.smoothstep(s.altitude,-.18,.12),lightDay=THREE.MathUtils.smoothstep(s.altitude,-.11,.28),warm=Math.max(0,1-Math.abs(s.altitude-.035)/.24)*day;
+  const date=new Date(effectiveTime),second=Math.floor(effectiveTime/1000);
+  if(second!==solarSecond){solarSecond=second;solarState=solar(date,site.lat,site.lon);localTime=dateFormat.format(date);const hour=hourFormat.format(date);localHour=Number(hour.slice(0,2))+Number(hour.slice(3,5))/60+Number(hour.slice(6,8))/3600}
+  const s=solarState,day=THREE.MathUtils.smoothstep(s.altitude,-.18,.12),lightDay=THREE.MathUtils.smoothstep(s.altitude,-.11,.28),warm=Math.max(0,1-Math.abs(s.altitude-.035)/.24)*day;
   seasonUniform.value=s.month>=9&&s.month<=11?.7:s.month<=2?.4:0;
   horizon.set(0x101a2b).lerp(palette.dayHorizon,day).lerp(palette.warm,warm*.36*(1-state.cloud*.6)).lerp(palette.cloudHorizon,state.cloud*.48*day).multiplyScalar(1-state.rain*.24);
   zenith.set(0x030915).lerp(palette.dayZenith,day).lerp(palette.cloudZenith,state.cloud*.68*day).multiplyScalar(1-state.rain*.34);
@@ -79,11 +82,10 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
    diagnostic.time=elapsed;diagnostic.profile=lifeSettings.name;Object.assign(diagnostic.budget,budget.allocated);diagnostic.limits=profile;diagnostic.activeBirds=activeBirds;diagnostic.activeEvents=micro.active;diagnostic.habitat=cachedHabitat;Object.assign(diagnostic.wind,localWind);diagnostic.resources.cpuObjects=10+Number(profile.particles>0);diagnostic.cpuMs=performance.now()-started;diagnostic.maxCpuMs=Math.max(diagnostic.maxCpuMs,diagnostic.cpuMs);
   }
   // Both consumers retain this one environment; only geographic queries are throttled.
-  const hour=hourFormat.format(date);
-  Object.assign(environment,{worldTimeMs:+date,moment,mode:demo?'demo':moment,date:date.toISOString(),localTime:dateFormat.format(date),localHour:Number(hour.slice(0,2))+Number(hour.slice(3,5))/60+Number(hour.slice(6,8))/3600,season:seasonAt(s.month,site.lat),timeZone:site.timeZone??'UTC',polar:selected.polar,targetWeather:weatherKey,weatherTau,solar:s,effectiveMeanWind:lifeUniforms.lifeMeanWind.value,starVisibility:atmosphere.starVisibility,rainDrops:state.rain>.005?(lifeSettings.name==='eco'?260:lifeSettings.name==='quality'?900:520):0});
+  Object.assign(environment,{worldTimeMs:+date,moment,mode:demo?'demo':moment,date:date.toISOString(),localTime,localHour,season:seasonAt(s.month,site.lat),timeZone:site.timeZone??'UTC',polar:selected.polar,targetWeather:weatherKey,weatherTau,solar:s,effectiveMeanWind:lifeUniforms.lifeMeanWind.value,starVisibility:atmosphere.starVisibility,rainDrops:state.rain>.005?(lifeSettings.name==='eco'?260:lifeSettings.name==='quality'?900:520):0});
   Object.assign(environment.acousticWeather,state,{wind:localWind.speed,gust:localWind.gust});
   environment.transition.revision++;environment.transition.commandRevision=commandRevision;environment.transition.manual=commandAge<3.5;
-  if(Math.floor(elapsed*2)!==stamp){stamp=Math.floor(elapsed*2);status.textContent=`${MOMENTS[moment]} · ${dateFormat.format(date)} (${site.timeZone??'UTC'})${selected.polar==='polar-day'?' · soleil de minuit':selected.polar==='polar-night'?' · nuit polaire':''}`;}
+  if(Math.floor(elapsed*2)!==stamp){stamp=Math.floor(elapsed*2);status.textContent=`${MOMENTS[moment]} · ${localTime} (${site.timeZone??'UTC'})${selected.polar==='polar-day'?' · soleil de minuit':selected.polar==='polar-night'?' · nuit polaire':''}`;}
  };
  return Object.assign(update,{dispose(){if(scene.userData.acousticClimate===environment)scene.userData.acousticClimate=previousAcousticClimate;scene.userData.climate=previousClimate;lifecycle.abort();atmosphere.dispose();cloudLayer.dispose();rain.dispose();fauna.dispose();events.dispose();budget.clear();controls.remove()}});
 }

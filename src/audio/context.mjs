@@ -25,7 +25,7 @@ export function temporalContext(worldTimeMs,geo,timeZone=null){
 }
 export function acousticContext(input={}){
  const geo=input.geo??null,worldTimeMs=Number.isFinite(input.worldTimeMs)?input.worldTimeMs:null;
- return {version:1,geo,key:geographicKey(geo),worldTimeMs,...temporalContext(worldTimeMs,geo,input.timeZone),
+ return {version:1,geo,key:geographicKey(geo),worldTimeMs,...(input.temporal??temporalContext(worldTimeMs,geo,input.timeZone)),
  altitudeM:Number.isFinite(input.altitudeM)?input.altitudeM:null,habitat:input.habitat??'unknown',
  solarAltitude:Number.isFinite(input.solarAltitude)?input.solarAltitude:null,weather:input.weather??null,
  position:input.position??{x:0,y:0,z:0},water:input.water??null,emitters:input.emitters??[],ground:input.ground??null,influences:Object.fromEntries(Object.entries(input.influences??{}).map(([k,v])=>[k,clamp01(v)])),
