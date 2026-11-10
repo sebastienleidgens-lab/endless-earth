@@ -16,7 +16,8 @@ import {environmentalTime,environmentalWind} from './surfaces';
 export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(x:number,z:number)=>number|null,site:{lat:number;lon:number},hemisphere:THREE.HemisphereLight,player:THREE.Object3D){
  const params=new URLSearchParams(location.search),mode=params.get('time')==='demo'?'demo':'real';
  let fixed=params.get('date')?new Date(params.get('date')!):null;if(fixed&&!Number.isFinite(+fixed))fixed=null;
- if(params.has('perf'))addEventListener('nature-test-date',((event:CustomEvent)=>{const date=new Date(event.detail);if(Number.isFinite(+date))fixed=date}) as EventListener);
+ const lifecycle=new AbortController();
+ if(params.has('perf'))addEventListener('nature-test-date',((event:CustomEvent)=>{const date=new Date(event.detail);if(Number.isFinite(+date))fixed=date}) as EventListener,{signal:lifecycle.signal});
  let elapsed=0,state={...WEATHER.clear},target=WEATHER[params.get('weather') as keyof typeof WEATHER]??WEATHER.clear;
  const status=document.createElement('small');status.className='nature-status';status.style.cssText='display:block;color:#e6eddf;background:#283c34bb;border-radius:5px;padding:4px 8px;font:11px system-ui;pointer-events:none';document.querySelector('#app')!.append(status);
  const controls=document.createElement('details');controls.className='nature-controls';controls.style.cssText='position:fixed;right:14px;top:224px;background:#283c34df;color:#eef0e6;padding:8px;border-radius:6px;font:12px system-ui;z-index:20';controls.innerHTML='<summary>Temps et atmosphère</summary><label>Horloge <select aria-label="Horloge"><option value="real">Heure réelle du lieu</option><option value="demo">Démonstration · ×72</option></select></label><br><label>Météo simulée <select aria-label="Météo simulée"><option value="clear">Clair</option><option value="overcast">Couvert</option><option value="mist">Brume</option><option value="rain">Pluie · ambiance couverte</option></select></label>';document.querySelector('#app')!.append(controls);controls.append(status);let clockMode=mode;const selects=controls.querySelectorAll('select');selects[0].value=mode;selects[0].onchange=()=>{clockMode=selects[0].value as typeof mode};selects[1].value=params.get('weather')??'clear';selects[1].onchange=()=>{target=WEATHER[selects[1].value as keyof typeof WEATHER]};
@@ -48,6 +49,6 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   }
   if(Math.floor(elapsed)!==stamp){stamp=Math.floor(elapsed);status.textContent=`${fixed?'Date de référence':clockMode==='real'?'Heure locale':'Démo ×72'} · ${dateFormat.format(date)} · météo simulée`;scene.userData.climate={mode:clockMode,date:date.toISOString(),solar:s,weather:{...state,wind:lifeUniforms.lifeMeanWind.value},simulation:true}}
  };
- return Object.assign(update,{dispose(){cloudLayer.dispose();fauna.dispose();events.dispose();budget.clear();controls.remove();scene.remove(dome);skyGeo.dispose();skyMaterial.dispose()}});
+ return Object.assign(update,{dispose(){lifecycle.abort();cloudLayer.dispose();fauna.dispose();events.dispose();budget.clear();controls.remove();scene.remove(dome);skyGeo.dispose();skyMaterial.dispose()}});
 }
 

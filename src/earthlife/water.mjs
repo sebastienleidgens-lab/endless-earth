@@ -13,5 +13,6 @@ export function waterColor(position){return `
  float ripple=(ribbon*.55+shimmer*.25)*(.03+lifeMeanWind*.045)*lifeWater*distanceFade;
  float grazing=1.-abs(dot(normalize(vViewPosition),viewMatrix[1].xyz));
  grazing=grazing*grazing*grazing;
- diffuseColor.rgb=mix(vec3(.092,.168,.145)*(.94+ripple+slow*.045),vec3(.32,.43,.45),grazing*.38);
+ float glint=pow(max(0.,ribbon*.5+shimmer*.5),8.)*.055*distanceFade*lifeWater;
+ diffuseColor.rgb=mix(vec3(.092,.168,.145)*(.94+ripple+slow*.045),vec3(.32,.43,.45),grazing*.38)+vec3(.35,.43,.42)*glint;
  `}

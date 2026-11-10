@@ -1,0 +1,342 @@
+{
+  "method": "8 rendered simulation frames at 0.5 s (cloud/air views: 4 s, playback ×8); four-second animated WebP, held geographic camera; 240 s weather settling per station. Natural deterministic flight/gust windows selected without forced spawning. Interface hidden except build badge for desktop artistic review; mobile retains controls. Herb station uses a 25 cm inspection camera. Not a realtime FPS measurement.",
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+  },
+  "comparisons": [
+    {
+      "name": "foret-calme",
+      "label": "Forêt calme",
+      "station": [
+        "foret-calme",
+        214.42,
+        530.66,
+        1,
+        0.22,
+        8,
+        "third"
+      ],
+      "aim": null,
+      "simulationStart": 240,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0,
+      "errors": []
+    },
+    {
+      "name": "foret-rafale",
+      "label": "Forêt avec rafale",
+      "station": [
+        "foret-rafale",
+        214.42,
+        530.66,
+        1,
+        0.22,
+        8,
+        "third"
+      ],
+      "aim": null,
+      "simulationStart": 484,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0.6802542666943602,
+      "errors": []
+    },
+    {
+      "name": "arbres",
+      "label": "Arbres proches",
+      "station": [
+        "arbres",
+        214.42,
+        530.66,
+        1,
+        -0.16,
+        0,
+        "first"
+      ],
+      "aim": null,
+      "simulationStart": 728,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0,
+      "errors": []
+    },
+    {
+      "name": "herbes",
+      "label": "Herbes · caméra d’inspection à 25 cm",
+      "station": [
+        "herbes",
+        330,
+        -400,
+        1,
+        0.4,
+        0,
+        "first",
+        0.25
+      ],
+      "aim": null,
+      "simulationStart": 972,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0.00007547310248965572,
+      "errors": []
+    },
+    {
+      "name": "oiseau-isole",
+      "label": "Vol isolé",
+      "station": [
+        "oiseau-isole",
+        -140,
+        716,
+        1.4,
+        -0.48,
+        0,
+        "first"
+      ],
+      "aim": [
+        17.65532790634991,
+        107.25811038452247,
+        568.4818255250331
+      ],
+      "simulationStart": 1290.5,
+      "activeBirds": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "windGust": 1.0491045236392721e-10,
+      "errors": []
+    },
+    {
+      "name": "oiseaux-groupe",
+      "label": "Petit groupe",
+      "station": [
+        "oiseaux-groupe",
+        -140,
+        716,
+        1.4,
+        -0.48,
+        0,
+        "first"
+      ],
+      "aim": [
+        -59.317675962698175,
+        108.96534740268876,
+        685.8837961993166
+      ],
+      "simulationStart": 1724,
+      "activeBirds": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "windGust": 0.000013700163559442734,
+      "errors": []
+    },
+    {
+      "name": "riviere",
+      "label": "Courant de rivière",
+      "station": [
+        "riviere",
+        -150,
+        245,
+        -1.57,
+        0.18,
+        0,
+        "first"
+      ],
+      "aim": null,
+      "simulationStart": 240,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0.8249628279136028,
+      "errors": []
+    },
+    {
+      "name": "berge",
+      "label": "Berge",
+      "station": [
+        "berge",
+        -155,
+        245,
+        -1.57,
+        0.35,
+        0,
+        "first"
+      ],
+      "aim": null,
+      "simulationStart": 484,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0,
+      "errors": []
+    },
+    {
+      "name": "ciel",
+      "label": "Nuages mobiles · lecture ×8",
+      "station": [
+        "ciel",
+        330,
+        -400,
+        0.5,
+        -0.8,
+        0,
+        "first"
+      ],
+      "aim": null,
+      "simulationStart": 728,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0,
+      "errors": []
+    },
+    {
+      "name": "ombres",
+      "label": "Ombres des nuages · lecture ×8",
+      "station": [
+        "ombres",
+        -100,
+        155,
+        0.5,
+        0.5,
+        210,
+        "aerial"
+      ],
+      "aim": null,
+      "simulationStart": 2728,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0,
+      "errors": []
+    },
+    {
+      "name": "aerienne",
+      "label": "Vue aérienne · lecture ×8",
+      "station": [
+        "aerienne",
+        -100,
+        155,
+        0.5,
+        0.5,
+        210,
+        "aerial"
+      ],
+      "aim": null,
+      "simulationStart": 3000,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0,
+      "errors": []
+    },
+    {
+      "name": "mobile",
+      "label": "Mobile Éco · interface visible",
+      "station": [
+        "mobile",
+        -155,
+        245,
+        -1.57,
+        0.15,
+        15,
+        "third"
+      ],
+      "aim": null,
+      "simulationStart": 1000,
+      "activeBirds": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "windGust": 0,
+      "errors": []
+    }
+  ]
+}

@@ -16,10 +16,11 @@ export function animateFoliage(material:THREE.MeshLambertMaterial,season=false,g
     anchor=instanceMatrix*vec4(0.,0.,0.,1.);
     #endif
     vec2 worldAnchor=(modelMatrix*anchor).xz;
-    vec2 wind=lifeWind(worldAnchor,lifeTime,lifeMeanWind);
+    vec2 wind=vec2(.88,-.475)*lifeMeanWind;
     float phase=worldAnchor.x*.17+worldAnchor.y*.13;
     float inertia=${grounded?'(1.7-step(.04,color.g-color.r))':trunk?'.43':stationary?'.45':'.72'};
-    float sway=sin(lifeTime*inertia+phase)*.65+sin(lifeTime*inertia*.53+phase*.73)*.35;
+    float sway=sin(lifeTime*inertia+phase);
+    ${stationary?'':`if(lifeFine>.01){wind=lifeWind(worldAnchor,lifeTime,lifeMeanWind);sway=sway*.65+sin(lifeTime*inertia*.53+phase*.73)*.35;}`}
     float bend=${grounded?'natureBend':trunk?'pow(clamp((position.y+2.25)/4.5,0.,1.),2.)*.025':'(.10+clamp((position.y+2.4)/5.1,0.,1.)*.16)'};
     float fine=${stationary||trunk?'0.':'sin(lifeTime*2.3+phase+position.x*1.7+position.z)*lifeFine*.08'};
     transformed.xz+=wind*bend*(sway+fine)*lifeVegetation*${grounded?'1.1':'1.'};`);
