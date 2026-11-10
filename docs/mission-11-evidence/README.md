@@ -14,3 +14,7 @@ Ouvrir [la galerie](index.html) depuis le serveur Vite du dépôt (`/endless-ear
 Base avant : `0f699fa50cb9d9b8158fc88776d27ec75594f575`, main contenant la Mission 10.1. Le badge après indique cette base et « modifié », car la capture précède le commit de livraison. Aucun enregistrement audio enrichi ; Jalon B non commencé. Aucune validation artistique humaine revendiquée.
 
 Le Chrome partagé du bureau a WebGL désactivé (`chrome://gpu` observé). Il affiche la galerie/vidéo ; le moteur est testé par les scripts dans un Chromium distinct avec SwiftShader. Pour une promenade interactive, utiliser un navigateur avec WebGL et la méthode du rapport.
+
+## Suite autorisée — Jalon B
+
+Les preuves ci-dessus restent celles du Jalon A. Les comparaisons sonores et la capture temps réel de trois minutes du Jalon B se trouvent dans [la galerie d’écoute](audio/index.html) et son [protocole](audio/README.md). Évaluation acoustique du propriétaire attendue avant le Jalon C.

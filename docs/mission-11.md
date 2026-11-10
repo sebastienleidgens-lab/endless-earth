@@ -1,6 +1,161 @@
 # Mission 11 — Le monde prend vie
 
-## Résumé et arrêt au Jalon A
+## État courant — Jalon B soumis à l’évaluation acoustique
+
+Le Jalon B est implémenté sur la même branche `mission/11-monde-vivant-immersif`, à la suite de votre « Continue ». Ce message autorise cette étape ; aucune appréciation artistique humaine détaillée n’est inventée. **Arrêt au Jalon B : le Jalon C n’a pas commencé.** Aucune fusion ou mise en production, aucun changement Living Paintings / LP-01 ou workflow de production.
+
+Le commit A `dbafd13` est conservé. Les données IGN/OSM, le relief, les bâtiments, distances, collisions, déplacements, profils et animations restent conservés. L’évolution de `src/living/geography.ts` construit des vues acoustiques supplémentaires depuis le GeoJSON déjà chargé ; elle ne modifie pas les données ou chemins de navigation.
+
+Ouvrir la **[galerie d’écoute](mission-11-evidence/audio/index.html)** sur le serveur de développement : trois extraits courts pour commencer, une capture temps réel de trois minutes et quatorze comparaisons avant/après. Les gains sont conservés, sans normalisation des fichiers de revue. Le jugement de présence et de timbre appartient au propriétaire.
+
+## B — Ce qui causait le manque de présence
+
+- Les deux captations d’eau 10.1 décrivent explicitement un petit burn et un petit stream. Leur usage principal pour l’Anglin contribuait au caractère de ruisseau. Elles restent disponibles pour un cours d’eau de type stream, sans être les lits principaux du polygone de l’Anglin.
+- Le modèle ignorait les deux polygones de rivière OSM et traitait également les lignes de seuil comme une proximité de rivière. Au poste de comparaison, environ 39.2 m de distance à la ligne centrale masquaient une berge située à environ 7.0 m horizontalement.
+- Le feuillage exigeait une force de vent déjà élevée, puis passait par plusieurs gains faibles. Aucun lit de vent aérien n’existait ; augmenter le volume général aurait aussi augmenté les pas et la pluie.
+- Les oiseaux cumulaient activité saisonnière, horaires, faible probabilité, perchoirs clairsemés et forte atténuation avec une distance de référence de 3–4 m. Le préchargement pouvait choisir deux perchoirs de la même espèce en laissant les autres ressources froides.
+- `paths`, prévu pour la marche, exclut les routes secondaires/tertiaires et les ponts. Il ne pouvait pas devenir directement un modèle de circulation automobile. Les événements routiers étaient absents.
+
+## B — L’Anglin : contours, relief et textures
+
+`src/audio/geography.mjs` construit un index de berges depuis les **deux polygones OSM `water=river`**, et un index séparé des **deux seuils OSM `waterway=weir`**. Ces contours portent notamment une source cadastrale datée de 2010 : ils sont documentés comme contours cartographiques, pas comme un relevé actuel de berge. Aucun débit, largeur mesurée, profondeur ou obstacle nouveau n’est inventé.
+
+La proximité sonore utilise la distance au polygone, puis la différence verticale entre l’oreille et une approximation issue du MNT lorsqu’elle est disponible. Le niveau d’eau n’est pas mesuré : la provenance le précise. Une position dans un trou de polygone reste une terre émergée. Sans polygone, le calcul conserve une distance à la ligne centrale et signale une largeur de berge inconnue ; sans donnée d’eau, aucune rivière n’est ajoutée.
+
+Les trois nouveaux extraits de rivière modérée sont issus de deux fichiers sources : River Flow 1 de deadrobotmusic et Soft flowing water very close to the river de Mixigodo. Une autre source de Mixigodo fournit une texture plus turbulente, uniquement près d’un seuil cartographié. La largeur et le débit des lieux de captation ne sont pas mesurés ; une impression de rivière plus ample est à juger à l’écoute, pas à déduire du titre. Aucune captation de mer ou cascade torrentielle n’est utilisée. Les deux découpes du même fichier ne comptent pas comme deux sources indépendantes.
+
+La loi de gain cible du lit de rivière est :
+
+`0.56 / (1 + (d / 18)^1.5) × (1 − smoothstep(95,150,d))`
+
+`d` est la proximité physique estimée en mètres, pas la distance à une ligne centrale assimilée arbitrairement à une berge. La courbe décroît sans socle lointain et s’annule à 150 m. Le filtre sous .001 ne retire que des niveaux numériques très faibles. La texture de seuil a une enveloppe locale séparée, limitée à 38 m du seuil et réduite avec la distance à l’eau. La météo ne change pas le débit.
+
+Une panoramisation stéréo légère place l’eau du côté de sa géométrie. Elle ne consomme pas de voix HRTF supplémentaires. Le filtre des nouvelles captations d’eau conserve davantage de corps (coupe-bas 90 Hz, au lieu des 170 Hz des anciens petits écoulements), sans créer un grondement permanent ailleurs dans le village.
+
+[Courbe du gain et promenade](mission-11-evidence/audio/river-gain-and-walk.svg) · [valeurs CSV](mission-11-evidence/audio/river-gain.csv).
+
+## B — Vent et feuilles, selon leur contexte
+
+Le vent utilise deux véritables captations de terrain ouvert (Globofonia et wrinex). Le feuillage conserve les prises 10.1 et ajoute celle de teadrinker. L’enveloppe dépend du vent et des rafales déjà partagés avec EarthLife ; aucune nouvelle horloge météo n’est créée, ni aucun balancement de tronc ajouté.
+
+L’exposition est conditionnée par l’habitat cartographié : champ, prairie, eau ou roche plus exposés, sous-bois abrité, village partiellement abrité, broussailles et jardins intermédiaires. L’absence d’exposition pour les broussailles, repérée dans le premier essai, a été corrigée. Une place sans végétation proche ne reçoit pas un lit de feuilles. Le calme ne reçoit pas un bruit d’air pour remplir le silence.
+
+Le feuillage devient audible plus tôt dans une brise, puis se renforce avec le vent et ses rafales. Les petites variations internes des captations restent celles du lieu d’enregistrement : la modulation suit le vent du jeu, pas une mesure locale ni une correspondance parfaite de chaque froissement. Cette dernière cohérence perceptive complète reste à examiner au Jalon C après votre approbation.
+
+Le volume maître, les gains de pas, le limiteur et le niveau de pluie sont conservés. Les familles eau, feuilles, vent et oiseaux sont calibrées séparément.
+
+## B — Oiseaux occasionnels, toujours fixés au lieu
+
+Les perchoirs WGS84 de 10.1 sont conservés et testés à travers déplacement et changement de repère. Les quatre espèces restent des interprétations européennes plausibles, **pas des observations confirmées à Angles**.
+
+Les probabilités, facteurs saisonniers et atténuations sont recalibrés par famille : distances de référence de 8–12 m et gains distincts, avec cooldowns de 55–65 s par perchoir et au moins 20 s entre appels programmés. Le chargement privilégie deux espèces distinctes proches, avec deux décodages simultanés maximum. La phrase suivante évite de reprendre le même fichier source lorsqu’une alternative existe. Aucun changement de hauteur de son ne fabrique une fausse diversité de captations.
+
+Les scènes réelles de contexte couvrent matin de printemps, après-midi d’été, soir d’automne, jour d’hiver et nuit. Leurs nombres de voix démarrées dans la visite déterministe sont respectivement **3 en 3 min, 1 en 2 min, 2 en 2 min, 1 en 2 min, 0 en 2 min**. Ce ne sont pas des taux garantis pour chaque promenade. Les silences restent présents. La capture temps réel distincte comporte quatre voix démarrées en trois minutes, sans forcer leur présence.
+
+Les compteurs `heardBirds` indiquent les voix acceptées par le moteur, pas une certification qu’un humain les a entendues. Les pistes isolées et leurs niveaux permettent de juger la différence.
+
+## B — Une voiture parfois, avec un garde-fou visuel
+
+Une seule nouvelle source de passage automobile (Anya_Media) contient une approche, un passage et un éloignement réels. L’ancrage est choisi sur la géométrie OSM des routes carrossables du GeoJSON complet, incluant les routes absentes du graphe piéton. Les sentiers, chemins, escaliers, voies piétonnes, accès privés/interdits/conditionnels et accès de service inadaptés sont écartés.
+
+La source est initialement à **65–170 m**, derrière l’écouteur, avec une différence d’altitude limitée. Le passage enregistré porte déjà son évolution acoustique ; aucun véhicule proche invisible ne traverse la scène. L’ancrage reste fixe sur le segment cartographié durant cet enregistrement, sans prétendre simuler la trajectoire exacte de cette voiture. Si le joueur tourne vers la source, s’en approche à moins de 45 m ou la cohérence n’est plus réunie, la voix se retire progressivement.
+
+Un délai d’installation de 45 s, un cooldown global de 150 s, une faible probabilité et une fréquence nocturne beaucoup plus faible préservent les longues absences. Dans la visite déterministe de onze minutes, les deux passages surviennent à **6 min 22.5 s et 10 min 08 s** ; la galerie propose un extrait court du premier pour éviter une longue attente. Ce n’est ni un comptage du trafic réel, ni un événement forcé pour la preuve.
+
+Aucune foule, voix humaine, cloche, marché ou activité rurale permanente n’est ajoutée. Les autres micro-événements restent différés faute d’un besoin et de ressources vérifiées suffisants.
+
+## B — Preuves sonores et méthode
+
+- **[Galerie d’écoute](mission-11-evidence/audio/index.html)** : extraits courts, comparaisons avant/après et pistes isolées eau, vent, feuillage, oiseaux, voiture.
+- **[Capture temps réel de trois minutes](mission-11-evidence/audio/realtime-forest.webm)** : sortie post-limiteur du véritable AudioContext, enregistrée par MediaRecorder. Le rendu WebGL est suspendu dans ce harnais logiciel pour éviter le coût SwiftShader ; la boucle réelle du jeu, les timers audio, le contexte géographique et le vent continuent. Le conteneur est réindexé sans réencoder l’audio. [Chronologie et diagnostics](mission-11-evidence/audio/realtime.json).
+- **[Quatorze scénarios comparés](mission-11-evidence/audio/levels.json)** : mêmes positions, dates, météos, volume maître et graines de programmation, contexte issu du jeu chargé, sortie du même AcousticRenderer/SoundDirector dans OfflineAudioContext. Les fichiers de revue Opus ne sont pas normalisés. Les WAV intermédiaires restent dans `work/`.
+- **Promenade continue de 6 min 26** : approche depuis environ 90 m de la berge, arrêt 30 s à environ 4 m, puis éloignement. Le tracé utilise AutoWalk sur le graphe OSM, complété par 25.8 m de déplacement libre vérifié avec le relief et les collisions du moteur. Il n’est pas présenté comme un chemin public réel ou une vidéo de marche en temps réel. [Tracé et protocole](mission-11-evidence/audio/walk-route.json).
+- [Courbe et niveaux de la promenade](mission-11-evidence/audio/river-gain-and-walk.svg), [extraits et points de coupe](mission-11-evidence/audio/excerpts.json), [niveaux CSV](mission-11-evidence/audio/levels.csv).
+
+Aucune image ou piste générée par IA ne remplace une preuve du moteur. Aucun niveau numérique n’est présenté comme un dB acoustique calibré au casque. Une hausse du RMS ne certifie ni le timbre de rivière, ni le plaisir de promenade.
+
+### B — Niveaux comparatifs, à volume maître identique
+
+| Scène | RMS avant (dBFS) | RMS après (dBFS) | Voix d’oiseaux après | Passages routiers après |
+| --- | ---: | ---: | ---: | ---: |
+| village | silence | -77.0 | 1 | 0 |
+| forest-spring-morning | -83.7 | -61.3 | 3 | 0 |
+| forest-summer-afternoon | silence | -63.2 | 1 | 0 |
+| forest-autumn-evening | silence | -63.1 | 2 | 0 |
+| forest-winter-day | silence | -63.2 | 1 | 0 |
+| forest-night | silence | -63.2 | 0 | 0 |
+| river-bank | -69.7 | -40.5 | 1 | 0 |
+| river-weir | -59.6 | -37.8 | 2 | 0 |
+| river-walk | -73.6 | -46.7 | 5 | 1 |
+| wind-open | silence | -52.8 | 0 | 0 |
+| foliage | -65.8 | -51.1 | 0 | 0 |
+| river-isolated | -69.7 | -40.5 | 0 | 0 |
+| birds-isolated | -83.7 | -65.6 | 3 | 0 |
+| village-traffic | silence | -74.6 | 0 | 2 |
+
+La moyenne inclut les silences de chaque scénario. Près de la berge, le changement d’environ **+29 dB RMS** résulte du contour de berge reconnu, de la captation et du gain de cette famille. Il ne provient pas d’une augmentation du volume global. Le village conserve une moyenne très basse et des événements ponctuels. Les sorties mesurées ne contiennent aucun échantillon écrêté ; le plus haut pic de cette série reste inférieur à .087 en amplitude numérique.
+
+## B — Ressources, licences et préservation
+
+Budget **0 €**. Sept nouveaux fichiers sources CC0, préparés en onze extraits, portent la bibliothèque à **40 sources et 93 ressources**. Les découpes ne comptent pas comme de nouvelles captations. L’indépendance des sessions de prise de son d’un même auteur n’est pas certifiée ; les fichiers, hashes et transformations sont distincts et documentés.
+
+Les **82 ressources et 33 sources de 10.1 conservent exactement leur contenu audio et leurs métadonnées**, vérifiés contre le commit A. [Preuve de préservation](mission-11-evidence/audio/preservation.json). Les manifestes globaux et les crédits sont étendus ; les empreintes de manifestes de l’archive A ci-dessous décrivent donc cet état historique, pas les manifestes actuels.
+
+Pour chaque ajout, `public/audio/sources.json` conserve auteur, URL de page et média, CC0 exact, fragment et empreinte de page vérifiés, empreinte source et format. `manifest.json` conserve début/durée de coupe, filtres, gain linéaire borné, fondus, codec, canaux et empreinte du fichier final. Les aperçus HQ MP3 fournis par Freesound ne sont pas présentés comme les WAV originaux. La sortie FLAC ne rajoute pas une compression perceptuelle ; la revue utilise Opus pour limiter le poids.
+
+- [River Flow 1 — deadrobotmusic](https://freesound.org/people/deadrobotmusic/sounds/591733/).
+- [Soft flowing water — Mixigodo](https://freesound.org/people/Mixigodo/sounds/553606/) et [Flowing water — Mixigodo](https://freesound.org/people/Mixigodo/sounds/553607/).
+- [wind open field — Globofonia](https://freesound.org/people/Globofonia/sounds/553733/) et [wind MS — wrinex](https://freesound.org/people/wrinex/sounds/72563/).
+- [wind_forest_08 — teadrinker](https://freesound.org/people/teadrinker/sounds/403051/).
+- [Quiet rural road car pass — Anya_Media](https://freesound.org/people/Anya_Media/sounds/873189/).
+
+Ces prises viennent d’autres lieux et leurs timbres doivent être jugés comme interprétations. Aucun relevé local de largeur, débit, espèce ou trafic n’est revendiqué. Les crédits CC BY 4.0 existants restent visibles, ainsi que les crédits IGN/ASP/OSM.
+
+Reproduction de la préparation : `python scripts/prepare-audio-immersive.py --download`, avec Python/numpy et FFmpeg. Ce script reconstruit les ajouts et conserve les ressources 10.1 ; le préparateur historique reste disponible séparément.
+
+## B — Budgets, tests et limites
+
+**157 tests Node et compilation réussis**, dont les six tests nouveaux sur berges/polygones/îlots, seuils, données réelles de l’Anglin, routes et visibilité, rareté/cooldowns et cinq cas saisonniers. Les tests de perchoirs fixes, matériaux prudents, données inconnues, collisions et navigation restent actifs.
+
+Les tests navigateur vérifient chargement audio seulement après geste utilisateur, proximité réelle de berge et panoramisation, vent exposé, trois profils, arrêt/reprise/volume, visibilité d’onglet, douze destructions/réinitialisations, saturation des voix, rotation HRTF et atténuation. Une ressource de rivière volontairement indisponible est signalée et remplacée par une autre captation admissible, sans plantage. Le smoke test 3D existant passe : chargement IGN/OSM, marche, vues, hauteur des yeux, arrêt de caméra, son et mobile, sans erreur JavaScript.
+
+Les budgets 10.1 restent inchangés : Éco **8 voix / 1 HRTF / 2 lits**, Équilibré **12 / 2 / 3**, Qualité **12 / 3 / 3**, cache décodé **24 MiB**, au plus deux chargements/décodages simultanés. L’eau utilise une panoramisation légère. Les trois lits prioritaires, ou deux en Éco, varient selon les gains contextuels ; les captations de feuillage contiennent déjà le vent dans les feuilles. Des sorties de lits précédents peuvent finir leur fondu dans les mêmes budgets de voix. Aucun bruit d’air permanent n’est créé pour remplir les emplacements libres.
+
+Dans les quatorze rendus de revue : **six voix simultanées maximum**, pic de cache **24 981 100 octets**, inférieur à 24 MiB. Le test temps réel de trois minutes reste à trois voix actives au maximum. La mémoire du cache augmente à l’intérieur de sa limite existante ; elle n’est pas présentée comme inchangée en consommation.
+
+La [matrice CPU avant/après](mission-11-evidence/audio/performance.json) couvre trois profils et trois postes, son coupé/activé. Soixante mises à jour acoustiques forcées par condition donnent une borne de coût de contexte : médianes B de **.1 à .3 ms**, P95 de **.3 à 1.0 ms**, pic **2.5 ms**. Ce n’est pas un coût par image constant : les contextes réels tournent à 2 ou 4 Hz. Le test ne mesure pas le coût GPU physique ou tout le thread audio natif. Le surcoût graphique A sous SwiftShader et l’absence de validation Android/GPU physique restent des limites ; ce jalon ne les prétend pas résolus.
+
+Les sons restent progressifs à l’arrêt/reprise et à l’éloignement. Les sources et panoramiseurs ajoutés sont déconnectés à la destruction ; les douze cycles ferment leurs AudioContexts et reviennent à zéro nœud/cache. Les diagnostics `?perf=1` exposent le type de proximité de l’eau, les distances berge/centre/verticale quand connues, les gains, panoramisation, voix, ressources, erreurs, compteurs d’oiseaux et passages effectivement démarrés.
+
+### B — Ce qui reste à juger ou à faire après approbation
+
+L’ampleur et le timbre de l’Anglin, le niveau du vent, la douceur des feuilles et la distance perçue des oiseaux exigent votre écoute. Il n’y a pas eu d’écoute humaine revendiquée par Codex. La capture de rivière n’est pas prise à Angles ; les bruits internes des captations ne sont pas une mesure du vent local. La topographie intervient par distance verticale approximative, sans occlusion détaillée des bâtiments/reliefs ni niveau d’eau mesuré. La source automobile est l’ancrage lointain d’un passage enregistré, sans véhicule rendu ou trajectoire détaillée. Les autres sons humains et insectes nouveaux ne sont pas ajoutés.
+
+La cohérence perceptive complète des météos visibles/audibles et l’optimisation générale restent les Jalons C et D. **Ne pas les commencer sans votre approbation acoustique du Jalon B.**
+
+## Prévisualiser le Jalon B sans modifier la production
+
+La branche de travail et la PR restent en brouillon. Sur un checkout séparé :
+
+```sh
+git fetch origin mission/11-monde-vivant-immersif
+git switch mission/11-monde-vivant-immersif
+npm ci
+npm run dev -- --port 5173
+```
+
+Galerie audio : `http://localhost:5173/endless-earth/docs/mission-11-evidence/audio/index.html`. Elle fonctionne sans WebGL et propose les comparaisons en un écran. Promenade : `http://localhost:5173/endless-earth/?moment=morning&weather=clear`, activer le son puis rejoindre la rivière ou la forêt. Le Chrome partagé du bureau conserve son blocage WebGL ; le moteur a été vérifié dans Chromium distinct et la galerie audio ne requiert pas de WebGL.
+
+Reproduction des preuves : worktree du commit A `dbafd13` sur le port 5177, puis `node scripts/browser-audio-immersive.mjs plan`, `npm run audio:evidence`, `node scripts/browser-audio-immersive-live.mjs` et `python scripts/report-audio-immersive.py`. Tests : `npm test`, `npm run build`, `npm run test:audio:browser`, `npm run bench:audio`, `npm run test:browser`.
+
+---
+
+## Archive du Jalon A — commit `dbafd13`
+
+Ce texte décrit l’étape A au moment de sa livraison, avant votre « Continue ». Les mentions « B non commencé » et les empreintes des manifestes sont historiques. Les preuves visuelles et mesures de cette étape restent conservées.
+
+
+### Résumé et arrêt au Jalon A
 
 Le Jalon A apporte un ciel atmosphérique Three.js, des nuages à deux altitudes, une véritable nuit, les cinq moments demandés et les six météos simulées. Le soleil, la lumière, la brume, la pluie, le vent et l’état temporel transmis à la faune et au moteur sonore partagent la même situation effective. Les commandes restent mémorisées.
 
@@ -8,13 +163,13 @@ Le Jalon A apporte un ciel atmosphérique Three.js, des nuages à deux altitudes
 
 La différence est observable dans les captures du moteur et la vidéo. Les nuages restent une interprétation légère, avec des contours parfois encore doux ; leur qualité et la lisibilité de la nuit demandent votre jugement. Aucun succès de compilation n’est assimilé à une validation artistique.
 
-## Isolation et provenance Git
+### Isolation et provenance Git
 
 Le checkout fourni était à la Mission 08.6 (`f11f165`). Avant toute modification de l’application, interrogation de GitHub, récupération du dernier `main`, inspection de son historique et création de `mission/11-monde-vivant-immersif` sur **`0f699fa50cb9d9b8158fc88776d27ec75594f575`**. Ce main fusionne la PR #18 / Mission 10.1, après les Missions 09 et 10. Aucun travail local préexistant n’était modifié.
 
 Une worktree détachée de ce même commit sert exclusivement à la comparaison avant, sur le port 5176. La branche de mission utilise 5173. Living Paintings / LP-01, ses branches et ses fichiers n’ont pas été modifiés. Aucune modification de `.github/workflows/`, des données `public/data/` ou `public/tiles/`, des distances, du relief, des bâtiments, de la navigation ou des collisions. Aucun merge ou déploiement de production. Le workflow Pages existant ne se déclenche que sur main ; il n’a pas été modifié.
 
-## Audit du code effectivement exécuté
+### Audit du code effectivement exécuté
 
 | Système inspecté | Cause confirmée sur main | Intervention du Jalon A |
 | --- | --- | --- |
@@ -31,7 +186,7 @@ Une worktree détachée de ce même commit sert exclusivement à la comparaison 
 
 Le silence du vent est donc aussi un choix explicite de la bibliothèque 10.1, pas un simple problème de volume général. L’Anglin n’est pas arbitrairement amplifié dans cette étape.
 
-## Ciel et éclairage
+### Ciel et éclairage
 
 Réutilisation du **Sky / modèle analytique de Preetham livré dans Three.js 0.180.0**, sous MIT. Cette solution existante évite une nouvelle dépendance, des textures téléchargées, une API ou un ray marching volumétrique. Les alternatives considérées étaient le dégradé existant, la couche plane actuelle, une projection à plusieurs altitudes et le volumétrique. La projection à deux altitudes offre ici le compromis le plus léger ; aucun comparatif universel de bibliothèques n’est revendiqué.
 
@@ -41,7 +196,7 @@ La nuit utilise un ciel sombre, une ambiance réduite et de petites étoiles pro
 
 Les ombres portées restent désactivées dans le mode tuiles existant ; activer des shadow maps sur tout le village aurait changé brutalement le coût. Les profils Équilibré et Qualité conservent les ombres de nuages projetées aux sommets. Leur macro-couverture et leur dérive sont communes au ciel ; les petits détails des nouveaux nuages et leur altitude ne donnent pas des ombres exactes. C’est une approximation documentée.
 
-## Nuages et vent
+### Nuages et vent
 
 Une enveloppe courbe couvre toutes les directions sans bord de plan autour du joueur. Deux altitudes apparentes (environ 280 et 540 m dans le repère local), du bruit à plusieurs échelles, une déformation de domaine et des variations de densité donnent de la profondeur apparente, des bords éclairés et des bases plus sombres. La densité augmente avec la couverture et l’orage assombrit aussi les nuages.
 
@@ -49,7 +204,7 @@ La projection utilise des coordonnées du monde. La dérive est intégrée, dans
 
 Éco conserve le ciel et la couche basse, avec la couche haute omise explicitement pour réduire le calcul. Équilibré et Qualité affichent les deux couches. Une personnalisation qui désactive les nuages reste respectée.
 
-## Heure et météo : commandes et contrat partagé
+### Heure et météo : commandes et contrat partagé
 
 Le panneau **« Heure et météo »** propose exactement **Matin, Après-midi, Soir, Nuit, Temps réel**. La démo ×72 reste secondaire, sous `?perf=1` ou `?time=demo`.
 
@@ -80,7 +235,7 @@ Sous `?perf=1`, `window.endlessDiagnostics.climate` expose le moment, la date ef
 
 Les sélecteurs natifs restent utilisables au clavier. Les flèches dans un champ de réglage ne font plus marcher le personnage. Les choix restent stables lors des changements de vue, d’onglet, d’arrêt/reprise du son et de la recharge. Les nouveaux objets graphiques et écouteurs du ciel sont libérés lors du remplacement HMR ou de la fermeture définitive de page ; le retour du cache de navigation conserve sa scène.
 
-## Preuves à regarder
+### Preuves à regarder
 
 Ouvrir la [galerie comparative](mission-11-evidence/index.html) avec le serveur de développement. Elle propose les cinq moments, toutes les conditions météo, la vue aérienne, une vue du ciel et le soir vers l’ouest. Les images s’ouvrent aussi individuellement dans ce dossier GitHub.
 
@@ -99,7 +254,7 @@ La vidéo utilise la boucle de rendu réelle avec sélection des commandes dans 
 
 Les badges des captures indiquent honnêtement le commit de base et les modifications locales : les captures précèdent le commit de livraison. Le titre de mission est passé à 11 avec le rapport déclaré dans `package.json`.
 
-## Ressources, droits et coût
+### Ressources, droits et coût
 
 Budget de nouvelles ressources : **0 €**. Aucune API payante, dépendance nouvelle, texture externe ou fichier sonore nouveau.
 
@@ -109,7 +264,7 @@ Budget de nouvelles ressources : **0 €**. Aucune API payante, dépendance nouv
 - Audio : `public/audio/sources.json`, `manifest.json` et `credits.html` conservés intégralement, avec auteurs, URLs, licences, transformations et empreintes existantes. SHA-256 manifeste : `59e9e25fe398ae0dc391364e39bc45693bd841d0bcefbaddc233a444ca8cbc00` ; sources : `51c5b976a9066a3ecaa23f14a5b5c8ab8506aef61503e26ca2a50785822d1696`.
 - Données IGN/ASP sous Licence Ouverte 2.0 et OSM sous ODbL : crédits visibles et données inchangés.
 
-## Tests et limites de validation
+### Tests et limites de validation
 
 `npm run build` et **151 tests Node réussis**, dont cinq nouveaux tests sur les moments géographiques/saisonniers, le fuseau à travers la ligne de date, les cas polaires, la transition rapide/inversée et la dérive continue selon le vent. Les tests existants de navigation, collisions, relief inconnu, audio, budgets et spécialisations restent actifs.
 
@@ -119,7 +274,7 @@ Les mesures de rendu et cycles de ressources sont ci-dessous. Les longs parcours
 
 Le Chrome du bureau partagé a été effectivement essayé : `chrome://gpu` y indique **WebGL désactivé**, et le moteur ne s’y initialise pas. Sa galerie HTML et la vidéo s’affichent ; elles sont ouvertes dans Desktop. Le moteur a bien été exécuté et testé dans un Chromium distinct avec les options SwiftShader explicites des scripts. Ce blocage du Chrome partagé n’est pas masqué par une fausse démonstration navigable.
 
-## Premières mesures de performance
+### Premières mesures de performance
 
 [Mesures brutes avant](mission-11-evidence/before.json), [après](mission-11-evidence/after.json), [synthèse](mission-11-evidence/metrics-summary.json). Huit échantillons après chauffe par profil et météo, son coupé, même caméra et viewport. Chaque durée inclut soumission, gl.finish et lecture RGBA ; c’est une mesure intrusive sur **SwiftShader logiciel**, pas un temps GPU physique ou une promesse de FPS. Les captures principales couvrent aussi le jour, la nuit et le vent renforcé de l’orage.
 
@@ -141,7 +296,7 @@ Le test de 36 cycles garde **307 géométries, 19 programmes et 7 textures**. Ap
 
 Le smoke test navigateur existant passe : chargement IGN/OSM, cycle des vues, marche réelle, hauteur des yeux, caméra stable après relâchement, activation sonore et viewport mobile, sans erreur JavaScript. L’activation et l’arrêt du son sont vérifiés ; **le benchmark complet son coupé/activé et les mesures de voix/décodages comparatifs n’ont pas été refaits au Jalon A**, l’audio étant conservé.
 
-## Prévisualisation indépendante
+### Prévisualisation indépendante
 
 Depuis le dépôt, sans toucher à main ni à Pages :
 
@@ -158,7 +313,7 @@ Galerie : `http://localhost:5173/endless-earth/docs/mission-11-evidence/index.ht
 
 Reproduction des preuves : lancer une worktree du commit main de référence sur le port 5176, puis `node scripts/browser-atmosphere.mjs before`, `node scripts/browser-atmosphere.mjs after`, `npm run test:atmosphere:browser` et `node scripts/browser-atmosphere-motion.mjs`. Les scripts utilisent `/usr/bin/chromium` ; la vidéo utilise `ffmpeg`.
 
-## Points à valider par le propriétaire
+### Points à valider par le propriétaire
 
 Juger la douceur du matin, l’après-midi ordinaire, le soir et la lisibilité de la nuit ; observer les nouveaux nuages dans les deux vues ; essayer soleil → couvert → pluie → soleil et jour → nuit → jour ; vérifier la présence perceptible de pluie et la brume. Les volumes de rivière, vent, feuillage et oiseaux restent ceux de 10.1 et ne constituent pas une amélioration audio livrée ici.
 

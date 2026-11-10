@@ -1,0 +1,331 @@
+{
+  "method": "Unnormalized float output of the actual AcousticRenderer graph; master .7; RMS over full scenario including natural silence, not acoustic dB SPL. Before/after are same mapped stations, date, weather and director seeds. Silence is null rather than a fabricated floor. Event counts mean accepted audio voices, not a claim of human hearing. Ogg review files use Opus 96 kbps without gain normalization.",
+  "rows": [
+    {
+      "id": "village",
+      "durationSeconds": 120,
+      "beforeRmsDbFS": null,
+      "afterRmsDbFS": -77.00015624314197,
+      "rmsChangeDb": null,
+      "beforePeakDbFS": null,
+      "afterPeakDbFS": -44.86867171908297,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 1,
+      "birdsStarted": 1,
+      "roadPassesStarted": 0,
+      "peakVoices": 1,
+      "peakCacheBytes": 12953600,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "forest-spring-morning",
+      "durationSeconds": 180,
+      "beforeRmsDbFS": -83.65787777071196,
+      "afterRmsDbFS": -61.25087487938608,
+      "rmsChangeDb": 22.407002891325874,
+      "beforePeakDbFS": -50.634746304687084,
+      "afterPeakDbFS": -31.32613090720111,
+      "beforeStartedEvents": 2,
+      "afterStartedEvents": 3,
+      "birdsStarted": 3,
+      "roadPassesStarted": 0,
+      "peakVoices": 3,
+      "peakCacheBytes": 21376000,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "forest-summer-afternoon",
+      "durationSeconds": 120,
+      "beforeRmsDbFS": null,
+      "afterRmsDbFS": -63.17567067216057,
+      "rmsChangeDb": null,
+      "beforePeakDbFS": null,
+      "afterPeakDbFS": -39.4964108628176,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 1,
+      "birdsStarted": 1,
+      "roadPassesStarted": 0,
+      "peakVoices": 3,
+      "peakCacheBytes": 18048000,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "forest-autumn-evening",
+      "durationSeconds": 120,
+      "beforeRmsDbFS": null,
+      "afterRmsDbFS": -63.112609292916765,
+      "rmsChangeDb": null,
+      "beforePeakDbFS": null,
+      "afterPeakDbFS": -39.497346041176364,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 2,
+      "birdsStarted": 2,
+      "roadPassesStarted": 0,
+      "peakVoices": 4,
+      "peakCacheBytes": 18255680,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "forest-winter-day",
+      "durationSeconds": 120,
+      "beforeRmsDbFS": null,
+      "afterRmsDbFS": -63.184567961309206,
+      "rmsChangeDb": null,
+      "beforePeakDbFS": null,
+      "afterPeakDbFS": -39.4964108628176,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 1,
+      "birdsStarted": 1,
+      "roadPassesStarted": 0,
+      "peakVoices": 3,
+      "peakCacheBytes": 18048000,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "forest-night",
+      "durationSeconds": 120,
+      "beforeRmsDbFS": null,
+      "afterRmsDbFS": -63.21927283655909,
+      "rmsChangeDb": null,
+      "beforePeakDbFS": null,
+      "afterPeakDbFS": -39.4964108628176,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 0,
+      "birdsStarted": 0,
+      "roadPassesStarted": 0,
+      "peakVoices": 3,
+      "peakCacheBytes": 16384000,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "river-bank",
+      "durationSeconds": 90,
+      "beforeRmsDbFS": -69.7326012056906,
+      "afterRmsDbFS": -40.501500661904444,
+      "rmsChangeDb": 29.231100543786162,
+      "beforePeakDbFS": -43.039705231388666,
+      "afterPeakDbFS": -21.26478657354099,
+      "beforeStartedEvents": 1,
+      "afterStartedEvents": 1,
+      "birdsStarted": 1,
+      "roadPassesStarted": 0,
+      "peakVoices": 5,
+      "peakCacheBytes": 24576512,
+      "waterBefore": {
+        "distanceM": 36.15495070556389,
+        "point": {
+          "x": -114.66605605890587,
+          "z": 237.33887305356635
+        },
+        "provenance": "mapped OSM waterway centreline; not a measured bank distance"
+      },
+      "waterAfter": {
+        "distanceM": 7.758885937056603,
+        "horizontalDistanceM": 6.990656858737505,
+        "bankDistanceM": 6.990656858737505,
+        "centrelineDistanceM": 39.21524781383603,
+        "verticalDistanceM": 3.36615918631918,
+        "point": {
+          "x": -143.95424521616363,
+          "z": 241.4902802946199
+        },
+        "insideMappedWater": false,
+        "kind": "river",
+        "weirDistanceM": 36.15495070556389,
+        "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+        "heightBasis": "DEM approximation, not measured water level"
+      }
+    },
+    {
+      "id": "river-weir",
+      "durationSeconds": 90,
+      "beforeRmsDbFS": -59.603413204232055,
+      "afterRmsDbFS": -37.843955668007716,
+      "rmsChangeDb": 21.759457536224343,
+      "beforePeakDbFS": -32.9470037354624,
+      "afterPeakDbFS": -21.418525031708526,
+      "beforeStartedEvents": 2,
+      "afterStartedEvents": 2,
+      "birdsStarted": 2,
+      "roadPassesStarted": 0,
+      "peakVoices": 6,
+      "peakCacheBytes": 24784192,
+      "waterBefore": {
+        "distanceM": 6.776744736326033,
+        "point": {
+          "x": -159.4220231710646,
+          "z": 185.13517091204278
+        },
+        "provenance": "mapped OSM waterway centreline; not a measured bank distance"
+      },
+      "waterAfter": {
+        "distanceM": 0.5400234638398587,
+        "horizontalDistanceM": 0,
+        "bankDistanceM": 0,
+        "centrelineDistanceM": 6.776744736326033,
+        "verticalDistanceM": 0.5400234638398587,
+        "point": {
+          "x": -155,
+          "z": 180
+        },
+        "insideMappedWater": true,
+        "kind": "river",
+        "weirDistanceM": 7.57250304843765,
+        "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+        "heightBasis": "DEM approximation, not measured water level"
+      }
+    },
+    {
+      "id": "river-walk",
+      "durationSeconds": 386,
+      "beforeRmsDbFS": -73.62405475021274,
+      "afterRmsDbFS": -46.74814692209671,
+      "rmsChangeDb": 26.875907828116024,
+      "beforePeakDbFS": -38.95777737324987,
+      "afterPeakDbFS": -21.851411912132427,
+      "beforeStartedEvents": 5,
+      "afterStartedEvents": 6,
+      "birdsStarted": 5,
+      "roadPassesStarted": 1,
+      "peakVoices": 5,
+      "peakCacheBytes": 24981100,
+      "waterBefore": {
+        "distanceM": 108.67230440146065,
+        "point": {
+          "x": -351.8984772104086,
+          "z": 59.93468800038869
+        },
+        "provenance": "mapped OSM waterway centreline; not a measured bank distance"
+      },
+      "waterAfter": {
+        "distanceM": 90.61164816817578,
+        "horizontalDistanceM": 90.10893776141633,
+        "bankDistanceM": 90.10893776141633,
+        "centrelineDistanceM": 108.67230440146065,
+        "verticalDistanceM": 9.531532891538035,
+        "point": {
+          "x": -350.5042551938725,
+          "z": 91.96441119663761
+        },
+        "insideMappedWater": false,
+        "kind": "river",
+        "weirDistanceM": null,
+        "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+        "heightBasis": "DEM approximation, not measured water level"
+      }
+    },
+    {
+      "id": "wind-open",
+      "durationSeconds": 90,
+      "beforeRmsDbFS": null,
+      "afterRmsDbFS": -52.777218116956774,
+      "rmsChangeDb": null,
+      "beforePeakDbFS": null,
+      "afterPeakDbFS": -29.21061084864188,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 0,
+      "birdsStarted": 0,
+      "roadPassesStarted": 0,
+      "peakVoices": 3,
+      "peakCacheBytes": 17216000,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "foliage",
+      "durationSeconds": 90,
+      "beforeRmsDbFS": -65.75545113721407,
+      "afterRmsDbFS": -51.07180074069282,
+      "rmsChangeDb": 14.683650396521248,
+      "beforePeakDbFS": -40.11518135843592,
+      "afterPeakDbFS": -30.68725460575209,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 0,
+      "birdsStarted": 0,
+      "roadPassesStarted": 0,
+      "peakVoices": 3,
+      "peakCacheBytes": 18048000,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "river-isolated",
+      "durationSeconds": 90,
+      "beforeRmsDbFS": -69.74247514005329,
+      "afterRmsDbFS": -40.5042643440121,
+      "rmsChangeDb": 29.23821079604119,
+      "beforePeakDbFS": -43.08295670100671,
+      "afterPeakDbFS": -21.252402506359005,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 0,
+      "birdsStarted": 0,
+      "roadPassesStarted": 0,
+      "peakVoices": 5,
+      "peakCacheBytes": 24576512,
+      "waterBefore": {
+        "distanceM": 36.15495070556389,
+        "point": {
+          "x": -114.66605605890587,
+          "z": 237.33887305356635
+        },
+        "provenance": "mapped OSM waterway centreline; not a measured bank distance"
+      },
+      "waterAfter": {
+        "distanceM": 7.758885937056603,
+        "horizontalDistanceM": 6.990656858737505,
+        "bankDistanceM": 6.990656858737505,
+        "centrelineDistanceM": 39.21524781383603,
+        "verticalDistanceM": 3.36615918631918,
+        "point": {
+          "x": -143.95424521616363,
+          "z": 241.4902802946199
+        },
+        "insideMappedWater": false,
+        "kind": "river",
+        "weirDistanceM": 36.15495070556389,
+        "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+        "heightBasis": "DEM approximation, not measured water level"
+      }
+    },
+    {
+      "id": "birds-isolated",
+      "durationSeconds": 180,
+      "beforeRmsDbFS": -83.65787777071289,
+      "afterRmsDbFS": -65.59524218283417,
+      "rmsChangeDb": 18.062635587878717,
+      "beforePeakDbFS": -50.634746304687084,
+      "afterPeakDbFS": -31.34326331037119,
+      "beforeStartedEvents": 2,
+      "afterStartedEvents": 3,
+      "birdsStarted": 3,
+      "roadPassesStarted": 0,
+      "peakVoices": 3,
+      "peakCacheBytes": 21376000,
+      "waterBefore": null,
+      "waterAfter": null
+    },
+    {
+      "id": "village-traffic",
+      "durationSeconds": 660,
+      "beforeRmsDbFS": null,
+      "afterRmsDbFS": -74.63011018845515,
+      "rmsChangeDb": null,
+      "beforePeakDbFS": null,
+      "afterPeakDbFS": -36.2288569604008,
+      "beforeStartedEvents": 0,
+      "afterStartedEvents": 2,
+      "birdsStarted": 0,
+      "roadPassesStarted": 2,
+      "peakVoices": 2,
+      "peakCacheBytes": 12953600,
+      "waterBefore": null,
+      "waterAfter": null
+    }
+  ]
+}

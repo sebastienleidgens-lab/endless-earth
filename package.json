@@ -26,13 +26,15 @@
     "test:landscape": "node scripts/browser-landscape.mjs after",
     "geo:decorations": "node scripts/prepare-decorations.mjs",
     "test:earthlife": "node scripts/browser-earthlife.mjs after",
-    "audio:prepare": "python scripts/prepare-audio-naturalist.py",
-    "test:audio": "node --test tests/audio.test.mjs",
-    "test:audio:browser": "node scripts/browser-audio-naturalist.mjs && node scripts/browser-audio-spatial.mjs",
-    "bench:audio": "node scripts/benchmark-audio-naturalist.mjs",
+    "audio:prepare": "python scripts/prepare-audio-immersive.py",
+    "test:audio": "node --test tests/audio.test.mjs tests/audio-immersive.test.mjs",
+    "test:audio:browser": "node scripts/browser-audio-immersive-runtime.mjs && AUDIO_EVIDENCE_DIR=docs/mission-11-evidence/audio node scripts/browser-audio-spatial.mjs",
+    "bench:audio": "node scripts/benchmark-audio-immersive.mjs",
     "test:audio:soak": "node scripts/browser-audio-soak-101.mjs",
     "test:atmosphere": "node --test tests/atmosphere.test.mjs",
-    "test:atmosphere:browser": "node scripts/browser-atmosphere-controls.mjs"
+    "test:atmosphere:browser": "node scripts/browser-atmosphere-controls.mjs",
+    "audio:prepare:10-1": "python scripts/prepare-audio-naturalist.py",
+    "audio:evidence": "node scripts/browser-audio-immersive.mjs before && node scripts/browser-audio-immersive.mjs after"
   },
   "dependencies": {
     "three": "^0.180.0"

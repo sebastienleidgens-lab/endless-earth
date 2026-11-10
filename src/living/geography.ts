@@ -10,6 +10,11 @@ export const paths:{points:Point[];surface:string;name:string;tags:Record<string
 export const nature:Point[]=[];
 export const water:Point[]=[];
 export const waterLines:Point[][]=[];
+// Additional acoustic views of the same source; never change walking geometry.
+export const riverAreas:{rings:Point[][];tags:Record<string,string>}[]=[];
+export const riverLines:Point[][]=[];
+export const mappedWeirs:Point[][]=[];
+export const acousticRoads:{points:Point[];tags:Record<string,string>}[]=[];
 let ready=false;
 export function navigationReady(){return ready;}
 export async function loadNavigation(){
@@ -22,6 +27,10 @@ export async function loadNavigation(){
   if(g?.type==='LineString'&&allowed(t))paths.push({points:g.coordinates.map(local),surface:t.surface??'',name:t.name??'Voie OSM',tags:t});
   if(g?.type==='Point'&&t.natural==='tree')nature.push(local(g.coordinates));
   if(g?.type==='LineString'&&t.waterway){const line=g.coordinates.map(local);water.push(...line);waterLines.push(line);}
+  if(g?.type==='LineString'&&['river','stream'].includes(t.waterway))riverLines.push(Object.assign(g.coordinates.map(local),{tags:t}));
+  if(g?.type==='LineString'&&t.waterway==='weir')mappedWeirs.push(g.coordinates.map(local));
+  if(g?.type==='Polygon'&&t.natural==='water'&&t.water==='river')riverAreas.push({rings:g.coordinates.map((r:number[][])=>r.map(local)),tags:t});
+  if(g?.type==='LineString'&&t.highway)acousticRoads.push({points:g.coordinates.map(local),tags:t});
  }
  ready=true;
 }
