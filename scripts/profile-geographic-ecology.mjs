@@ -1,6 +1,7 @@
 // CPU-only detail recipe comparison, no rendering or hardware-GPU inference.
 import {readFile,writeFile,mkdir} from 'node:fs/promises';import {execFileSync} from 'node:child_process';import {mergeEnvironment} from '../src/world/environment.mjs';import {sampleGrid} from '../src/world/terrain-grid.mjs';
-const root='work/mission-08-5/cpu';await mkdir(root,{recursive:true});await writeFile(`${root}/before.mjs`,execFileSync('git',['show','b440dd7:src/nature/ecology.mjs'],{encoding:'utf8'}).replace("'../world/landcover.mjs'","'../../../src/world/landcover.mjs'"));
+const root='work/mission-08-5/cpu';await mkdir(root,{recursive:true});await writeFile(`${root}/before.mjs`,execFileSync('git',['show','b440dd7:src/nature/ecology.mjs'],{encoding:'utf8'}).replace("'../world/landcover.mjs'","'./before-landcover.mjs'"));
+await writeFile(`${root}/before-landcover.mjs`,execFileSync('git',['show','b440dd7:src/world/landcover.mjs'],{encoding:'utf8'}));
 const old=await import(`../${root}/before.mjs`),current=await import('../src/nature/ecology.mjs');const read=async root=>JSON.parse(await readFile(`${root}/angles-terrain.json`));const data=JSON.parse(await readFile('public/data/angles-osm.geojson')),environment=JSON.parse(await readFile('public/data/angles-environment.json'));
 const local=([lon,lat])=>({x:(lon-.8844)*111320*Math.cos(46.6953*Math.PI/180),z:-(lat-46.6953)*111320});
 const normalize=features=>features.map(f=>{const g=f.geometry;return {tags:f.properties??{},...g.type==='Polygon'?{rings:g.coordinates.map(r=>r.map(local))}:g.type==='LineString'?{line:g.coordinates.map(local)}:g.type==='Point'?{point:local(g.coordinates)}:{}}});
