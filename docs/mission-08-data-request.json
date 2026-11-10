@@ -123,5 +123,20 @@
     "MNH",
     "bathymetry",
     "invented replacement heights"
-  ]
+  ],
+  "optionalCopernicusCandidates": {
+    "catalogue": "https://land.copernicus.eu/en/products/high-resolution-layer-forests-and-tree-cover",
+    "layers": [
+      "Tree Cover Density 2021/2023 10 m",
+      "Dominant Leaf Type 2021/2023 10 m",
+      "Forest Type 2021 10 m"
+    ],
+    "requiredChecks": [
+      "actual local tile availability",
+      "original CRS and acquisition/reference year",
+      "quality and nodata masks",
+      "licence and attribution of selected release",
+      "coverage versus forest-use definitions; not individual trees"
+    ]
+  }
 }

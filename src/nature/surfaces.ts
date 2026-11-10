@@ -32,12 +32,12 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
    float groundMineral=(soilA.r+soilB.r)*.5-.5;
    float nearDetail=1.0-smoothstep(8.0,65.0,vViewPosition.z);
    float grain=0.0; if(nearDetail>.001${roads?'&&earthRoadType<.5':''})grain=texture2D(natureSoil,p*1.7).r-.5;
-   diffuseColor.rgb *= .98+groundPatch*.42+groundMineral*.08+grain*.13*nearDetail;
+   diffuseColor.rgb *= .98+groundPatch*mix(.17,.42,nearDetail)+groundMineral*.08*nearDetail+grain*.13*nearDetail;
    ${roads?(water?roadColorShader.replace('float mineralHeight=0.;','').replace('float mineralDetail=0.;',''):roadColorShader):''}
    ${water?'}':''}`);
   if(roads)s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n'+roadNormalShader);
  };
- material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v2-'+!!edges+'-'+water:'nature-ground-atlas-v4';
+ material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v3-'+!!edges+'-'+water:'nature-ground-atlas-v4';
 }
 export function waterMaterial(){const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;material.onBeforeCompile=s=>{s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=position;');s.fragmentShader='uniform float natureTime; uniform float natureWind; varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
  float ripple=sin(waterPosition.x*.9+waterPosition.z*.55+natureTime*.55)*sin(waterPosition.z*1.3-waterPosition.x*.3+natureTime*.31);

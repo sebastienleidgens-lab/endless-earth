@@ -2,7 +2,7 @@
 
 The application supports a regular grid of real-world elevations stored as `public/data/angles-terrain.json`. **The committed pilot grid contains real IGN RGE ALTI API samples, retrieved on 8 November 2026, at 10 m spacing over 2 × 2 km. No new LiDAR MNT has been imported.**
 
-Schema: `endless-earth-terrain-v1`. Fields: `origin_x_m`, `origin_z_m` (southwest/local minimum coordinates in the local frame), `step_m` (positive grid spacing), `width`, `height`, `elevations_m` (row-major absolute elevations, rows toward local +Z), `source` (required provenance), optional `vertical_datum`.
+Schema: `endless-earth-terrain-v1`. Fields: `origin_x_m`, `origin_z_m` (northwest corner: local minimum X and Z, since +Z points south), `step_m` (positive grid spacing), `width`, `height`, `elevations_m` (row-major absolute elevations, rows toward local +Z), `source` (required provenance), optional `vertical_datum`.
 
 Coordinates must use the exact `toLocal` convention in `src/world/geo.ts`, where positive Z points south. The height at local (0,0) becomes the Three.js zero baseline.
 

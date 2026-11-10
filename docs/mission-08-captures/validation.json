@@ -1,0 +1,45 @@
+[
+  {
+    "name": "smoke",
+    "command": "node scripts/browser-smoke.mjs",
+    "exitCode": 0,
+    "seconds": 43.966
+  },
+  {
+    "name": "camera",
+    "command": "node scripts/browser-camera.mjs",
+    "exitCode": 0,
+    "seconds": 28.28
+  },
+  {
+    "name": "safety",
+    "command": "node scripts/browser-safety.mjs",
+    "exitCode": 0,
+    "seconds": 54.974
+  },
+  {
+    "name": "living",
+    "command": "node scripts/browser-living.mjs",
+    "exitCode": 0,
+    "seconds": 56.058,
+    "previousAttempt": {
+      "name": "living",
+      "command": "node scripts/browser-living.mjs",
+      "exitCode": 1,
+      "seconds": 1.238
+    },
+    "previousFailure": "Local Vite server stopped; ERR_CONNECTION_REFUSED before page load"
+  },
+  {
+    "name": "data",
+    "command": "node scripts/browser-landscape-data.mjs",
+    "exitCode": 0,
+    "seconds": 104.151
+  },
+  {
+    "name": "walk",
+    "command": "node scripts/browser-landscape-walk.mjs",
+    "exitCode": 0,
+    "seconds": 425.824
+  }
+]

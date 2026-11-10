@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {injection} from './lib/browser-road-fixture.mjs';
-const phase=process.argv[2]??'after',port=phase==='before'?5176:5173,dir='docs/mission-08-captures';await mkdir(dir,{recursive:true});
+const phase=process.argv[2]??'after',port=process.env.TEST_PORT??(phase==='before'?5176:5173),dir='docs/mission-08-captures';await mkdir(dir,{recursive:true});
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 try{
  const page=await browser.newPage({viewport:{width:800,height:600}});page.setDefaultTimeout(180000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
