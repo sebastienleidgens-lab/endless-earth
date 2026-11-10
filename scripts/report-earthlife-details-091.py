@@ -9,7 +9,13 @@ labels={'village':'Village · Qualité','foret-dense':'Forêt · Qualité','rivi
 for n,label in labels.items():
  v=[s[p]['stations'][n]['synchronizedRenderMs']['p50'] for p in ['086','09','091']]
  rows.append(f'| {label} | {v[0]:.1f} ms | {v[1]:.1f} ms | {v[2]:.1f} ms | {(v[2]/v[1]-1)*100:+.1f} % |')
-rows+=['','Le gain est démontré sur ces rendus logiciels pour six stations, particulièrement Éco et mobile. Le village ne progresse pas. L’écart Équilibré reste faible au regard de la dispersion. Le mobile revient près du niveau 08.6 avec les fonctions de vie conservées ; ce résultat ne prouve aucun gain sur GPU matériel ou Android physique. Les premières mesures de dépistage (`screening.json`) sont séparées et ne remplacent pas les trois passages finaux.','', '| Boucle normale mobile · p50 / p95 / p99 / max | 08.6 | 09 | 09.1 |','| --- | ---: | ---: | ---: |']
+raw=read('benchmark.json')
+rows+=['','| Médianes des trois passages, sans retrait | 09 | 09.1 |','| --- | ---: | ---: |']
+for n in ['village','balanced','eco','mobile']:
+ vals=[' / '.join(f"{st.median(t['completeMs'] for t in r['results'][n]['samples']):.1f}" for r in raw['runs'] if r['phase']==p) for p in ['09','091']]
+ rows.append('| '+labels[n]+' (ms) | '+' | '.join(vals)+' |')
+rows+=['','Un passage Éco 09.1 et le premier mobile sont plus lents que leur référence 09. Aucun échantillon n’est retiré. Les médianes regroupées décrivent ce protocole ; elles ne garantissent pas un gain dans chaque passage.']
+rows+=['','La médiane de ces rendus logiciels baisse dans six stations, particulièrement Éco et mobile. Le village ne progresse pas. L’écart Équilibré reste faible au regard de la dispersion. Le mobile revient près du niveau 08.6 avec les fonctions de vie conservées ; ce résultat ne prouve aucun gain sur GPU matériel ou Android physique. Les premières mesures de dépistage (`screening.json`) sont séparées et ne remplacent pas les trois passages finaux.','', '| Boucle normale mobile · p50 / p95 / p99 / max | 08.6 | 09 | 09.1 |','| --- | ---: | ---: | ---: |']
 for k,label in [('mobileIntervals','Intervalle'),('mobileCpu','CPU avant soumission'),('mobileSubmit','Soumission GL CPU')]:
  vals=[' / '.join(f'{s[p][k][q]:.1f}' for q in ['p50','p95','p99','max']) for p in ['086','09','091']]
  rows.append(f'| {label} (ms) | '+ ' | '.join(vals)+' |')
@@ -30,15 +36,19 @@ if (root/'memory-validation.json').exists():
  for n in ['village','foret','eco']:
   rows.append(f"| Géométrie et instances · {n} | "+' | '.join(f"{m[p]['stations'][n]['geometryAndInstanceBytes']:,} octets" for p in ['before','after'])+' |')
  for k,label in [('estimatedTextureBytes','Textures source + mipmaps estimés (octets)'),('uploadedTextures','Textures téléversées'),('retainedGeometries','Objets géométrie retenus')]:
-  rows.append(f'| {label} · forêt | '+' | '.join(str(m[p]['stations']['foret'][k]) for p in ['before','after'])+' |')
+  rows.append(f'| {label} · forêt | '+' | '.join(str(round(m[p]['stations']['foret'][k])) for p in ['before','after'])+' |')
  rows+=['','Les tableaux dédupliquent les typed arrays partagés, incluent matrices, couleurs, géométries retenues hors écran et textures des uniformes compilés. Le surcroît attendu de 120 000 octets correspond à six Float32 × 5 000 instances tronc/couronne, sans copie des sommets. Les objets wrapper et VAO coûtent aussi de la mémoire interne non mesurée ici. Ce n’est ni la VRAM pilote, ni le RSS.','']
+if (root/'memory-validation.json').exists():
+ cycles=read('memory-validation.json')['results']['after'].get('programCycles',[])
+ rows += [f"Après trois cycles complets Éco/Équilibré/Qualité/Personnalisé, programmes actifs/cache {', '.join(str(c['programs']) for c in cycles)}, matériaux enregistrés {', '.join(str(c['materials']) for c in cycles)}, textures {', '.join(str(c['textures']) for c in cycles)} : aucune croissance après échauffement.",'']
 r=read('runtime-validation.json');t=r['lifecycle']['timings']
 rows += [f"Douze créations/destructions de la couche atmosphérique : création médiane/max {st.median(v['createCpuMs'] for v in t):.2f}/{max(v['createCpuMs'] for v in t):.2f} ms ; destruction {st.median(v['disposeCpuMs'] for v in t):.2f}/{max(v['disposeCpuMs'] for v in t):.2f} ms. Nombre d’objets et contrôles identique après démontage. Les matériaux se désinscrivent à dispose ; les tests unitaires vérifient le registre. Les caches de LOD restent bornés, les matrices d’arbres inchangées après déplacements et retours.",'']
+rows += ['Pour contexte seulement, les douze cycles historiques 09 avaient une création médiane/max de 2,40/4,60 ms et une destruction de 0,10/0,40 ms. Les nouveaux maxima sont plus élevés ; ces sessions séparées n’établissent pas une régression causale, mais aucun gain de création/destruction n’est revendiqué.','']
 if (root/'walk-after/walk.json').exists():
  w=read('walk-after/walk.json');f=[x for x in w['cpuFrames'] if x['autoWalk']];q=lambda a,p:sorted(a)[min(len(a)-1,int(len(a)*p))]
  rows+=['## Promenade de 450 mètres','',f"Distance mesurée à chaque image : {w['frameMeasuredMetres']:.6f} m ; durée {w['frameMeasuredSeconds']:.2f} s ; {len(f)} images en marche. Même départ et route de 450 m, graphe de 920 nœuds/896 arêtes. Architecture identique avant/après ; trois caméras, rotation, zoom proche/moyen/lointain et pincement testés. Aucun changement des données, collisions ou navigation.",'','| Marche 09.1 · p50 / p95 / p99 / max | Valeurs |','| --- | ---: |']
  for k,label in [('cpuMs','CPU avant soumission'),('submitMs','Soumission GL CPU'),('intervalMs','Intervalle')]:
   vals=[q([x[k] for x in f],p) for p in [.5,.95,.99,1]];rows.append(f'| {label} (ms) | '+' / '.join(f'{v:.1f}' for v in vals)+' |')
- rows += [f"| Heap JS maximal | {max(x['heapBytes'] for x in f)/1e6:.2f} Mo |",'', 'La marche historique 09 (`docs/mission-09-captures/walk-after`) atteignait 450 m en 427,21 s, avec intervalle p50/p95/p99/max 217,6/533,9/797,8/1291,4 ms et CPU 7,6/24,6/54,7/120,6 ms. Cette référence n’est pas alternée dans la session courante : comparaison descriptive, pas preuve causale. Le pas borné à 250 ms peut allonger la durée murale du trajet sur SwiftShader. Les données de streaming, erreurs et mémoire de chaque image restent dans la trace brute.','']
+ rows += [f"| Heap JS maximal | {max(x['heapBytes'] for x in f)/1e6:.2f} Mo |",'', 'La marche historique 09 (`docs/mission-09-captures/walk-after`) atteignait 450 m en 427,21 s, avec intervalle p50/p95/p99/max 217,6/533,9/797,8/1291,4 ms et CPU 7,6/24,6/54,7/120,6 ms. Cette référence n’est pas alternée dans la session courante : comparaison descriptive, pas preuve causale. Le pas borné à 250 ms peut allonger la durée murale du trajet sur SwiftShader. Les données de streaming, erreurs et mémoire de chaque image restent dans la trace brute. Le maximum d’intervalle et le p99 sont plus mauvais malgré une durée et des médianes plus basses. Au pire intervalle (1 813,1 ms), CPU courant 17,9 ms et soumission 1,4 ms ; image précédente 24,3/3,4 ms, sans requête ou bloc prêt en attente. Cette trace ne permet pas d’attribuer le reste du délai à EarthLife, au pilote logiciel ou à l’ordonnanceur.','']
 (root/'numerical-report.md').write_text('\n'.join(rows))
 print('PASS numerical report')

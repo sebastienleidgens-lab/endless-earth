@@ -12,7 +12,16 @@ Trois passages par état, ordre alterné/rotatif, un seul navigateur de test, m�
 | Éco ordinateur | 235.3 ms | 269.3 ms | 224.8 ms | -16.5 % |
 | Mobile Éco émulé | 124.8 ms | 142.9 ms | 122.4 ms | -14.3 % |
 
-Le gain est démontré sur ces rendus logiciels pour six stations, particulièrement Éco et mobile. Le village ne progresse pas. L’écart Équilibré reste faible au regard de la dispersion. Le mobile revient près du niveau 08.6 avec les fonctions de vie conservées ; ce résultat ne prouve aucun gain sur GPU matériel ou Android physique. Les premières mesures de dépistage (`screening.json`) sont séparées et ne remplacent pas les trois passages finaux.
+| Médianes des trois passages, sans retrait | 09 | 09.1 |
+| --- | ---: | ---: |
+| Village · Qualité (ms) | 453.1 / 451.3 / 455.9 | 444.3 / 452.3 / 478.5 |
+| Forêt · Équilibré (ms) | 272.4 / 278.1 / 445.3 | 275.4 / 307.2 / 257.5 |
+| Éco ordinateur (ms) | 283.5 / 270.7 / 262.4 | 211.1 / 413.8 / 206.8 |
+| Mobile Éco émulé (ms) | 134.3 / 162.4 / 140.8 | 162.5 / 126.2 / 107.8 |
+
+Un passage Éco 09.1 et le premier mobile sont plus lents que leur référence 09. Aucun échantillon n’est retiré. Les médianes regroupées décrivent ce protocole ; elles ne garantissent pas un gain dans chaque passage.
+
+La médiane de ces rendus logiciels baisse dans six stations, particulièrement Éco et mobile. Le village ne progresse pas. L’écart Équilibré reste faible au regard de la dispersion. Le mobile revient près du niveau 08.6 avec les fonctions de vie conservées ; ce résultat ne prouve aucun gain sur GPU matériel ou Android physique. Les premières mesures de dépistage (`screening.json`) sont séparées et ne remplacent pas les trois passages finaux.
 
 | Boucle normale mobile · p50 / p95 / p99 / max | 08.6 | 09 | 09.1 |
 | --- | ---: | ---: | ---: |
@@ -69,4 +78,34 @@ Six rendus par case ; références complètes encadrantes. Les suppressions sont
 
 Audit séparé : CDP CPU, tâches longues et spans de startup puis quatre fenêtres de mouvement. Le graphe absorbe environ 3,3–3,6 secondes au chargement ; le réduire est hors du périmètre EarthLife. Les longues tâches incluent aussi rendu logiciel, construction initiale et mises à jour de visibilité. Nature démarre ici plus lentement (45,1 → 73,1 ms) : le précalcul statique déplace une petite charge à l’initialisation. 981 → 1 156 appels bufferData et 11 → 17 programmes liés dans cet audit instrumenté : les variantes économisent du travail actif au prix de compilation/VAO supplémentaires. Ces observations ne sont pas mélangées aux rendus synchronisés. Profils CDP compressés et tous les spans bruts sont conservés.
 
+## Mémoire et démontage
+
+| Ressources retenues | 09 | 09.1 |
+| --- | ---: | ---: |
+| Géométrie et instances · village | 38,094,249 octets | 38,214,249 octets |
+| Géométrie et instances · foret | 33,990,345 octets | 34,110,345 octets |
+| Géométrie et instances · eco | 30,973,833 octets | 31,093,833 octets |
+| Textures source + mipmaps estimés (octets) · forêt | 12094464 | 12094464 |
+| Textures téléversées · forêt | 7 | 7 |
+| Objets géométrie retenus · forêt | 373 | 748 |
+
+Les tableaux dédupliquent les typed arrays partagés, incluent matrices, couleurs, géométries retenues hors écran et textures des uniformes compilés. Le surcroît attendu de 120 000 octets correspond à six Float32 × 5 000 instances tronc/couronne, sans copie des sommets. Les objets wrapper et VAO coûtent aussi de la mémoire interne non mesurée ici. Ce n’est ni la VRAM pilote, ni le RSS.
+
+Après trois cycles complets Éco/Équilibré/Qualité/Personnalisé, programmes actifs/cache 21, 21, 21, matériaux enregistrés 16, 16, 16, textures 7, 7, 7 : aucune croissance après échauffement.
+
 Douze créations/destructions de la couche atmosphérique : création médiane/max 3.05/5.40 ms ; destruction 0.15/1.50 ms. Nombre d’objets et contrôles identique après démontage. Les matériaux se désinscrivent à dispose ; les tests unitaires vérifient le registre. Les caches de LOD restent bornés, les matrices d’arbres inchangées après déplacements et retours.
+
+Pour contexte seulement, les douze cycles historiques 09 avaient une création médiane/max de 2,40/4,60 ms et une destruction de 0,10/0,40 ms. Les nouveaux maxima sont plus élevés ; ces sessions séparées n’établissent pas une régression causale, mais aucun gain de création/destruction n’est revendiqué.
+
+## Promenade de 450 mètres
+
+Distance mesurée à chaque image : 450.000000 m ; durée 418.45 s ; 1729 images en marche. Même départ et route de 450 m, graphe de 920 nœuds/896 arêtes. Architecture identique avant/après ; trois caméras, rotation, zoom proche/moyen/lointain et pincement testés. Aucun changement des données, collisions ou navigation.
+
+| Marche 09.1 · p50 / p95 / p99 / max | Valeurs |
+| --- | ---: |
+| CPU avant soumission (ms) | 7.4 / 23.9 / 38.3 / 113.0 |
+| Soumission GL CPU (ms) | 1.7 / 9.4 / 19.4 / 688.3 |
+| Intervalle (ms) | 201.6 / 511.2 / 805.1 / 1813.1 |
+| Heap JS maximal | 197.79 Mo |
+
+La marche historique 09 (`docs/mission-09-captures/walk-after`) atteignait 450 m en 427,21 s, avec intervalle p50/p95/p99/max 217,6/533,9/797,8/1291,4 ms et CPU 7,6/24,6/54,7/120,6 ms. Cette référence n’est pas alternée dans la session courante : comparaison descriptive, pas preuve causale. Le pas borné à 250 ms peut allonger la durée murale du trajet sur SwiftShader. Les données de streaming, erreurs et mémoire de chaque image restent dans la trace brute. Le maximum d’intervalle et le p99 sont plus mauvais malgré une durée et des médianes plus basses. Au pire intervalle (1 813,1 ms), CPU courant 17,9 ms et soumission 1,4 ms ; image précédente 24,3/3,4 ms, sans requête ou bloc prêt en attente. Cette trace ne permet pas d’attribuer le reste du délai à EarthLife, au pilote logiciel ou à l’ordonnanceur.
