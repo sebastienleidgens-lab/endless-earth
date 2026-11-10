@@ -11,7 +11,7 @@ Références : `f11f165` (08.6), `c3f4b7c` (09), code optimisé `2712c3e` (09.1)
 - `motion-pixels.json`, `visual-equivalence.json`, planches JPEG : différences réellement rendues et inspection visuelle. Les variations de pixels n’établissent pas seules la qualité artistique.
 - `runtime-validation.json` : profils, compilation sans effets, préférences, budgets, faune réelle, LOD, audio et douze démontages.
 - `preparation.json` : régénération des décorations, sans changement des données préparées.
-- `memory-validation.json`, `data-validation.json`, `walk-after/`, `realtime-video.json`, `production/` : audits complémentaires produits à leur achèvement ; le rapport précise leur statut.
+- `memory-validation.json`, `data-validation.json`, `walk-after/`, `realtime-video.json`, `production/` : audits complémentaires réussis ; le rapport précise leur protocole et leurs limites.
 
 ## Reproduction
 
