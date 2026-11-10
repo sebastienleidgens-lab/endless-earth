@@ -1,0 +1,430 @@
+{
+  "base": "8cefef9",
+  "method": "Actual pilot contexts; 35 s OfflineAudioContext per mix/stem, same Mission 10 graph. Isolated bed gains, steps once per second for baseline walk illustration. Not human-listened.",
+  "contexts": {
+    "village": {
+      "version": 1,
+      "geo": {
+        "lat": 46.69559119655049,
+        "lon": 0.8842392051430612
+      },
+      "key": "wgs84-v1:69988:92612",
+      "worldTimeMs": 1778392800000,
+      "localHour": 8,
+      "timeBasis": "civil",
+      "season": "spring",
+      "altitudeM": 99.718423,
+      "habitat": "built",
+      "solarAltitude": 0.242423479570934,
+      "weather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.2886098882171235,
+        "rain": 0
+      },
+      "position": {
+        "x": -12.277,
+        "y": -1.4815770000000015,
+        "z": -32.416
+      },
+      "influences": {
+        "settlement": 0.5999999999999999
+      },
+      "sources": [],
+      "provenance": {
+        "geography": "IGN/ASP/OSM classifications; mix inferred",
+        "weather": "EarthLife simulated",
+        "region": "temperate-europe"
+      },
+      "fixture": false
+    },
+    "forest": {
+      "version": 1,
+      "geo": {
+        "lat": 46.690533021918796,
+        "lon": 0.8872083109248838
+      },
+      "key": "wgs84-v1:69985:92614",
+      "worldTimeMs": 1778392800000,
+      "localHour": 8,
+      "timeBasis": "civil",
+      "season": "spring",
+      "altitudeM": 112.28446000000001,
+      "habitat": "wood",
+      "solarAltitude": 0.242423479570934,
+      "weather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.2884572328683468,
+        "rain": 0
+      },
+      "position": {
+        "x": 214.42,
+        "y": 11.084460000000007,
+        "z": 530.66
+      },
+      "influences": {
+        "vegetation": 1,
+        "forest": 1
+      },
+      "sources": [],
+      "provenance": {
+        "geography": "IGN/ASP/OSM classifications; mix inferred",
+        "weather": "EarthLife simulated",
+        "region": "temperate-europe"
+      },
+      "fixture": false
+    },
+    "river": {
+      "version": 1,
+      "geo": {
+        "lat": 46.693099137621275,
+        "lon": 0.8824354134934587
+      },
+      "key": "wgs84-v1:69986:92611",
+      "worldTimeMs": 1778392800000,
+      "localHour": 8,
+      "timeBasis": "civil",
+      "season": "spring",
+      "altitudeM": 67.69,
+      "habitat": "scrub",
+      "solarAltitude": 0.242423479570934,
+      "weather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.2884597333956977,
+        "rain": 0
+      },
+      "position": {
+        "x": -150,
+        "y": -33.510000000000005,
+        "z": 245
+      },
+      "influences": {
+        "vegetation": 0.24,
+        "settlement": 0.09,
+        "water": 0.24893212074358634
+      },
+      "sources": [],
+      "provenance": {
+        "geography": "IGN/ASP/OSM classifications; mix inferred",
+        "weather": "EarthLife simulated",
+        "region": "temperate-europe"
+      },
+      "fixture": false
+    }
+  },
+  "renders": [
+    {
+      "name": "village-full",
+      "context": {
+        "version": 1,
+        "geo": {
+          "lat": 46.69559119655049,
+          "lon": 0.8842392051430612
+        },
+        "key": "wgs84-v1:69988:92612",
+        "worldTimeMs": 1778392800000,
+        "localHour": 8,
+        "timeBasis": "civil",
+        "season": "spring",
+        "altitudeM": 99.718423,
+        "habitat": "built",
+        "solarAltitude": 0.242423479570934,
+        "weather": {
+          "cloud": 0.16,
+          "mist": 0,
+          "wind": 0.2886098882171235,
+          "rain": 0
+        },
+        "position": {
+          "x": -12.277,
+          "y": -1.4815770000000015,
+          "z": -32.416
+        },
+        "influences": {
+          "settlement": 0.5999999999999999
+        },
+        "sources": [],
+        "provenance": {
+          "geography": "IGN/ASP/OSM classifications; mix inferred",
+          "weather": "EarthLife simulated",
+          "region": "temperate-europe"
+        },
+        "fixture": false
+      },
+      "mix": [
+        {
+          "id": "air",
+          "asset": "air",
+          "base": 0.025,
+          "axes": {
+            "wind": 0.16,
+            "exposure": 0.03
+          },
+          "gain": 1.5,
+          "priority": 30,
+          "filter": 1800,
+          "weight": 0.10676637317210964
+        }
+      ]
+    },
+    {
+      "name": "village-air",
+      "context": {
+        "version": 1,
+        "geo": {
+          "lat": 46.69559119655049,
+          "lon": 0.8842392051430612
+        },
+        "key": "wgs84-v1:69988:92612",
+        "worldTimeMs": 1778392800000,
+        "localHour": 8,
+        "timeBasis": "civil",
+        "season": "spring",
+        "altitudeM": 99.718423,
+        "habitat": "built",
+        "solarAltitude": 0.242423479570934,
+        "weather": {
+          "cloud": 0.16,
+          "mist": 0,
+          "wind": 0.2886098882171235,
+          "rain": 0
+        },
+        "position": {
+          "x": -12.277,
+          "y": -1.4815770000000015,
+          "z": -32.416
+        },
+        "influences": {
+          "settlement": 0.5999999999999999
+        },
+        "sources": [],
+        "provenance": {
+          "geography": "IGN/ASP/OSM classifications; mix inferred",
+          "weather": "EarthLife simulated",
+          "region": "temperate-europe"
+        },
+        "fixture": false
+      },
+      "mix": [
+        {
+          "id": "air",
+          "asset": "air",
+          "base": 0.025,
+          "axes": {
+            "wind": 0.16,
+            "exposure": 0.03
+          },
+          "gain": 1.5,
+          "priority": 30,
+          "filter": 1800,
+          "weight": 0.10676637317210964
+        }
+      ]
+    },
+    {
+      "name": "forest-foliage",
+      "context": {
+        "version": 1,
+        "geo": {
+          "lat": 46.690533021918796,
+          "lon": 0.8872083109248838
+        },
+        "key": "wgs84-v1:69985:92614",
+        "worldTimeMs": 1778392800000,
+        "localHour": 8,
+        "timeBasis": "civil",
+        "season": "spring",
+        "altitudeM": 112.28446000000001,
+        "habitat": "wood",
+        "solarAltitude": 0.242423479570934,
+        "weather": {
+          "cloud": 0.16,
+          "mist": 0,
+          "wind": 0.2884572328683468,
+          "rain": 0
+        },
+        "position": {
+          "x": 214.42,
+          "y": 11.084460000000007,
+          "z": 530.66
+        },
+        "influences": {
+          "vegetation": 1,
+          "forest": 1
+        },
+        "sources": [],
+        "provenance": {
+          "geography": "IGN/ASP/OSM classifications; mix inferred",
+          "weather": "EarthLife simulated",
+          "region": "temperate-europe"
+        },
+        "fixture": false
+      },
+      "mix": [
+        {
+          "id": "foliage",
+          "asset": "woodland",
+          "axes": {
+            "vegetation": 0.22
+          },
+          "multiply": "wind",
+          "gain": 3,
+          "priority": 45,
+          "filter": 3600,
+          "daylight": true,
+          "weight": 0.3077863302698317
+        },
+        {
+          "id": "air",
+          "asset": "air",
+          "base": 0.025,
+          "axes": {
+            "wind": 0.16,
+            "exposure": 0.03
+          },
+          "gain": 1.5,
+          "priority": 30,
+          "filter": 1800,
+          "weight": 0.10672973588840322
+        }
+      ]
+    },
+    {
+      "name": "river-water",
+      "context": {
+        "version": 1,
+        "geo": {
+          "lat": 46.693099137621275,
+          "lon": 0.8824354134934587
+        },
+        "key": "wgs84-v1:69986:92611",
+        "worldTimeMs": 1778392800000,
+        "localHour": 8,
+        "timeBasis": "civil",
+        "season": "spring",
+        "altitudeM": 67.69,
+        "habitat": "scrub",
+        "solarAltitude": 0.242423479570934,
+        "weather": {
+          "cloud": 0.16,
+          "mist": 0,
+          "wind": 0.2884597333956977,
+          "rain": 0
+        },
+        "position": {
+          "x": -150,
+          "y": -33.510000000000005,
+          "z": 245
+        },
+        "influences": {
+          "vegetation": 0.24,
+          "settlement": 0.09,
+          "water": 0.24893212074358634
+        },
+        "sources": [],
+        "provenance": {
+          "geography": "IGN/ASP/OSM classifications; mix inferred",
+          "weather": "EarthLife simulated",
+          "region": "temperate-europe"
+        },
+        "fixture": false
+      },
+      "mix": [
+        {
+          "id": "air",
+          "asset": "air",
+          "base": 0.025,
+          "axes": {
+            "wind": 0.16,
+            "exposure": 0.03
+          },
+          "gain": 1.5,
+          "priority": 30,
+          "filter": 1800,
+          "weight": 0.10673033601496745
+        },
+        {
+          "id": "water",
+          "asset": "water",
+          "axes": {
+            "water": 0.25,
+            "coast": 0.25
+          },
+          "gain": 1.6,
+          "priority": 55,
+          "filter": 3200,
+          "weight": 0.09957284829743454
+        },
+        {
+          "id": "foliage",
+          "asset": "woodland",
+          "axes": {
+            "vegetation": 0.22
+          },
+          "multiply": "wind",
+          "gain": 3,
+          "priority": 45,
+          "filter": 3600,
+          "daylight": true,
+          "weight": 0.07386901632740889
+        }
+      ]
+    },
+    {
+      "name": "village-walk",
+      "context": {
+        "version": 1,
+        "geo": {
+          "lat": 46.69559119655049,
+          "lon": 0.8842392051430612
+        },
+        "key": "wgs84-v1:69988:92612",
+        "worldTimeMs": 1778392800000,
+        "localHour": 8,
+        "timeBasis": "civil",
+        "season": "spring",
+        "altitudeM": 99.718423,
+        "habitat": "built",
+        "solarAltitude": 0.242423479570934,
+        "weather": {
+          "cloud": 0.16,
+          "mist": 0,
+          "wind": 0.2886098882171235,
+          "rain": 0
+        },
+        "position": {
+          "x": -12.277,
+          "y": -1.4815770000000015,
+          "z": -32.416
+        },
+        "influences": {
+          "settlement": 0.5999999999999999
+        },
+        "sources": [],
+        "provenance": {
+          "geography": "IGN/ASP/OSM classifications; mix inferred",
+          "weather": "EarthLife simulated",
+          "region": "temperate-europe"
+        },
+        "fixture": false
+      },
+      "mix": [
+        {
+          "id": "air",
+          "asset": "air",
+          "base": 0.025,
+          "axes": {
+            "wind": 0.16,
+            "exposure": 0.03
+          },
+          "gain": 1.5,
+          "priority": 30,
+          "filter": 1800,
+          "weight": 0.10676637317210964
+        }
+      ]
+    }
+  ]
+}

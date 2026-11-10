@@ -28,7 +28,7 @@ export function acousticContext(input={}){
  return {version:1,geo,key:geographicKey(geo),worldTimeMs,...temporalContext(worldTimeMs,geo,input.timeZone),
  altitudeM:Number.isFinite(input.altitudeM)?input.altitudeM:null,habitat:input.habitat??'unknown',
  solarAltitude:Number.isFinite(input.solarAltitude)?input.solarAltitude:null,weather:input.weather??null,
- position:input.position??{x:0,y:0,z:0},influences:Object.fromEntries(Object.entries(input.influences??{}).map(([k,v])=>[k,clamp01(v)])),
+ position:input.position??{x:0,y:0,z:0},water:input.water??null,emitters:input.emitters??[],ground:input.ground??null,influences:Object.fromEntries(Object.entries(input.influences??{}).map(([k,v])=>[k,clamp01(v)])),
  sources:input.sources??[],provenance:input.provenance??{geography:'unknown',weather:'unknown'},fixture:input.fixture??false};
 }
 /** Built once per dataset revision, not per frame. Long segments are indexed by
@@ -37,15 +37,15 @@ export function proximityIndex(lines,cellSize=128){
  const cells=new Map();let segments=0;
  for(const line of lines)for(let i=1;i<line.length;i++){
  const a=line[i-1],b=line[i],length=Math.hypot(b.x-a.x,b.z-a.z);if(!Number.isFinite(length))continue;
- const seg={a,b,id:segments++,surface:line.surface??null},steps=Math.max(1,Math.ceil(length/(cellSize*.5))),keys=new Set();
+ const seg={a,b,id:segments++,surface:line.surface??null,tags:line.tags??null,width:line.width??null},steps=Math.max(1,Math.ceil(length/(cellSize*.5))),keys=new Set();
  for(let j=0;j<=steps;j++)keys.add(`${Math.floor((a.x+(b.x-a.x)*j/steps)/cellSize)}:${Math.floor((a.z+(b.z-a.z)*j/steps)/cellSize)}`);
  for(const key of keys){if(!cells.has(key))cells.set(key,[]);cells.get(key).push(seg)}
  }
  return {segments,cells:cells.size,query(p,radius=120){
- radius=Math.max(0,Math.min(radius,256));let distance=Infinity,point=null,surface=null,checked=0;const seen=new Set();
+ radius=Math.max(0,Math.min(radius,256));let distance=Infinity,point=null,surface=null,tags=null,width=null,checked=0;const seen=new Set();
  for(let z=Math.floor((p.z-radius)/cellSize);z<=Math.floor((p.z+radius)/cellSize);z++)for(let x=Math.floor((p.x-radius)/cellSize);x<=Math.floor((p.x+radius)/cellSize);x++)for(const s of cells.get(`${x}:${z}`)??[]){
- if(seen.has(s.id))continue;seen.add(s.id);checked++;const dx=s.b.x-s.a.x,dz=s.b.z-s.a.z,n=dx*dx+dz*dz,t=n?Math.max(0,Math.min(1,((p.x-s.a.x)*dx+(p.z-s.a.z)*dz)/n)):0,q={x:s.a.x+t*dx,z:s.a.z+t*dz},d=Math.hypot(p.x-q.x,p.z-q.z);if(d<distance&&d<=radius){distance=d;point=q;surface=s.surface}
- }return {distance,point,surface,checked};
+ if(seen.has(s.id))continue;seen.add(s.id);checked++;const dx=s.b.x-s.a.x,dz=s.b.z-s.a.z,n=dx*dx+dz*dz,t=n?Math.max(0,Math.min(1,((p.x-s.a.x)*dx+(p.z-s.a.z)*dz)/n)):0,q={x:s.a.x+t*dx,z:s.a.z+t*dz},d=Math.hypot(p.x-q.x,p.z-q.z);if(d<distance&&d<=radius){distance=d;point=q;surface=s.surface;tags=s.tags;width=s.width}
+ }return {distance,point,surface,tags,width,checked};
  }};
 }
 export const HABITAT_INFLUENCES=Object.freeze({wood:{vegetation:1,forest:1},forest:{vegetation:1,forest:1},riparian:{vegetation:.8,forest:.6},scrub:{vegetation:.6},meadow:{vegetation:.35,rural:.5},farmland:{vegetation:.2,rural:.7},garden:{vegetation:.6,rural:.3},built:{settlement:.6},rock:{exposure:.8},water:{water:.7},unknown:{}});

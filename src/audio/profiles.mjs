@@ -1,30 +1,36 @@
-// All environments use this one set of declarative contribution rules.
-// Weights are artistic mix affinities, never measured activity/decibels.
+import {AUDIO_GROUPS} from './catalog.mjs';
 export const AUDIO_BUDGETS=Object.freeze({eco:{voices:8,hrtf:1,beds:2,hz:2},balanced:{voices:12,hrtf:2,beds:3,hz:2},quality:{voices:12,hrtf:3,beds:3,hz:4}});
+const smooth=(a,b,x)=>{const v=Math.max(0,Math.min(1,(x-a)/(b-a)));return v*v*(3-2*v)};
 export const LAYERS=Object.freeze([
- {id:'air',asset:'air',base:.025,axes:{wind:.16,exposure:.03},gain:1.5,priority:30,filter:1800},
- {id:'foliage',asset:'woodland',axes:{vegetation:.22},multiply:'wind',gain:3,priority:45,filter:3600,daylight:true},
- {id:'water',asset:'water',axes:{water:.25,coast:.25},gain:1.6,priority:55,filter:3200},
- {id:'rain',asset:'rain',axes:{rain:.35},gain:1.8,priority:60,filter:3400},
- {id:'human',asset:'human-placeholder',axes:{settlement:.12,urban:.23,port:.08},gain:2.5,priority:40,filter:1600,provisional:true,fixtureOnly:true},
- {id:'traffic',asset:'traffic-placeholder',axes:{road:.16,urban:.13},gain:1.8,priority:42,filter:1100,provisional:true,fixtureOnly:true}
+ {id:'foliage',assets:[...(AUDIO_GROUPS.foliage??[]),...(AUDIO_GROUPS['foliage-dry']??[])],priority:35,filter:8500},
+ {id:'water',assets:AUDIO_GROUPS.water??[],priority:55,filter:8500},
+ {id:'rain',assets:AUDIO_GROUPS.rain??[],priority:50,filter:9000}
 ]);
-export const EVENTS=Object.freeze([
- {id:'bird',assets:['bird-a','bird-b','bird-c'],affinity:'forest',perMinute:.65,cooldown:22,priority:60,gain:.35,daylight:true,maxRain:.2,maxWind:.75,regions:['temperate-europe'],sourceKind:'bird'},
- {id:'rustle',assets:['rustle-a','rustle-b'],affinity:'vegetation',perMinute:.13,cooldown:75,priority:45,gain:.045},
- {id:'rare-gust',assets:['gust'],affinity:'exposure',perMinute:.015,cooldown:600,priority:35,gain:.05,rare:true},
- {id:'rare-human',assets:['human-event-placeholder'],affinity:'settlement',perMinute:.01,cooldown:900,priority:35,gain:.035,rare:true,provisional:true,fixtureOnly:true}
-]);
-export const MATERIALS=Object.freeze({herbe:{assets:['step-soft-a','step-soft-b','step-soft-c'],gain:.13,filter:950},terre:{assets:['step-soft-a','step-soft-b','step-soft-c'],gain:.16,filter:1600},gravier:{assets:['step-gravel-a','step-gravel-b','step-gravel-c'],gain:.17,filter:5000},route:{assets:['step-gravel-a','step-gravel-b','step-gravel-c'],gain:.10,filter:2300}});
+// There is deliberately no air/filler bed and no composite birdsong bed.
 export function layerMix(c){
- const axes={...c.influences,wind:c.weather?.wind??0,rain:c.weather?.rain??0};
- return LAYERS.filter(l=>!l.fixtureOnly||c.fixture).map(l=>{let weight=l.base??0;for(const [k,v] of Object.entries(l.axes))weight+=(axes[k]??0)*v;if(l.multiply)weight*=.25+.75*(axes[l.multiply]??0);if(l.daylight&&c.solarAltitude!==null&&c.solarAltitude<=0)weight*=.08;return {...l,weight:Math.min(.8,Math.min(.4,weight)*l.gain)}}).filter(l=>l.weight>.0005).sort((a,b)=>b.weight-a.weight);
+ const v=c.influences.vegetation??0,wind=c.weather?.wind??0,rain=c.weather?.rain??0;
+ const weights={foliage:v*.16*smooth(.30,.72,wind),water:c.water&&Number.isFinite(c.water.distanceM)?.22*(1-smooth(4,55,c.water.distanceM)):0,rain:.24*smooth(.05,.55,rain)};
+ const reasons={foliage:`mapped vegetation ${v.toFixed(2)} × simulated wind ${wind.toFixed(2)}; no sound below wind threshold`,water:c.water?`${c.water.provenance}; nearest mapped waterway ${c.water.distanceM.toFixed(1)} m`:'no nearby water evidence',rain:`EarthLife simulated rain ${rain.toFixed(2)}`};
+ return LAYERS.map(l=>{const assets=l.id==='foliage'&&!['autumn','winter'].includes(c.season)?(AUDIO_GROUPS.foliage??[]):l.assets;return {...l,assets,asset:assets[0],weight:weights[l.id],reason:reasons[l.id],diffuse:true}}).filter(l=>l.asset&&l.weight>.0001).sort((a,b)=>b.weight-a.weight);
 }
+// Generic European interpretations, never confirmed sightings in Angles.
+export const BIRD_PROFILES=Object.freeze([
+ {id:'blackbird',assets:AUDIO_GROUPS['bird-blackbird']??[],habitats:['wood','forest','garden','orchard','built','riparian'],perMinute:.32,cooldown:55,range:110,refDistance:4,gain:.30,activity:[4,22],season:{spring:1,summer:.65,autumn:.2,winter:.08}},
+ {id:'robin',assets:AUDIO_GROUPS['bird-robin']??[],habitats:['wood','forest','scrub','garden','riparian'],perMinute:.27,cooldown:65,range:85,refDistance:3,gain:.23,activity:[4,22],season:{spring:1,summer:.5,autumn:.55,winter:.35}},
+ {id:'tit',assets:AUDIO_GROUPS['bird-tit']??[],habitats:['wood','forest','garden','orchard','built'],perMinute:.30,cooldown:60,range:75,refDistance:3,gain:.19,activity:[6,20],season:{spring:1,summer:.6,autumn:.25,winter:.4}},
+ {id:'chaffinch',assets:AUDIO_GROUPS['bird-chaffinch']??[],habitats:['wood','forest','orchard','meadow','scrub'],perMinute:.24,cooldown:70,range:100,refDistance:4,gain:.25,activity:[5,20],season:{spring:1,summer:.6,autumn:.15,winter:.05}}
+]);
+export const EVENTS=Object.freeze([]); // Extension point for documented rare local events.
+export const MATERIALS=Object.freeze(Object.fromEntries(['stone','hard','dry-earth','wet-earth','gravel','grass','leaves'].map(kind=>[kind,{assets:AUDIO_GROUPS['step-'+(kind==='hard'?'stone':kind)]??[],gain:kind==='grass'?.105:kind==='leaves'?.10:kind==='gravel'?.13:.145,filter:9500}])));
 export function eventAffinity(e,c){
  if(e.fixtureOnly&&!c.fixture)return 0;
  if(e.daylight&&(c.solarAltitude===null||c.solarAltitude<=0))return 0;
  if(e.regions&&!e.regions.includes(c.provenance.region))return 0;
- if((e.maxRain!==undefined&&(c.weather?.rain??1)>e.maxRain)||(e.maxWind!==undefined&&(c.weather?.wind??1)>e.maxWind))return 0;
- const seasonal=e.id==='bird'?(c.season==='winter'?.28:c.season==='spring'?1:.6):1;
- return (c.influences[e.affinity]??0)*seasonal;
+ return c.influences[e.affinity]??0;
+}
+export function birdActivity(b,c,habitat){
+ if(c.provenance.region!=='temperate-europe'||!b.habitats.includes(habitat)||c.solarAltitude===null||c.solarAltitude<=0||c.localHour===null||!c.weather||c.weather.rain>.2||c.weather.wind>.8)return 0;
+ if(c.localHour<b.activity[0]||c.localHour>b.activity[1])return 0;
+ const dawn=c.localHour<10?1:c.localHour>16?.65:.35;
+ return (b.season[c.season]??0)*dawn*(habitat==='built'?.35:1);
 }

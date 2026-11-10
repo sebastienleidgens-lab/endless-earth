@@ -1,0 +1,89 @@
+{
+  "method": "Real wall-clock 15-minute Chromium/SwiftShader session, actual Three.js frame loop and active native audio, with stereo capture from final limiter. Scene transitions are explicit test relocations between mapped stations; 120 s real automatic walking. No human listening; no physical GPU/Android claim. Recording adds MediaRecorder/Opus work and is not the comparative benchmark.",
+  "wallSeconds": 900.01,
+  "phases": [
+    {
+      "phase": 0,
+      "seconds": 0
+    },
+    {
+      "phase": 1,
+      "seconds": 181.466
+    },
+    {
+      "phase": 2,
+      "seconds": 300.142
+    },
+    {
+      "phase": 3,
+      "seconds": 600.082
+    },
+    {
+      "phase": 4,
+      "seconds": 781.546
+    }
+  ],
+  "sourceSha256": {
+    "src/living/sound.ts": "db9a074d8f78921b06efd4c294051bb20f24c244fd1d702104e24b8576ec0239",
+    "src/audio/renderer.ts": "012bdb5b0acdf64024ed9b6010b12c58e8233eb407d9373d401c469ebc482209",
+    "src/audio/resources.ts": "1b1844217f939d18492ab11712934f99267127fad1fe564505d36ef52fc47b97",
+    "src/audio/profiles.mjs": "c43db2353dba0474527696f3b5355a19fbcd4b528240fd627e806946c71ad1a3",
+    "src/audio/director.mjs": "b0735b6fb92d7a2c346ac18a74e0c7277dd3be405193094ad6f5d356ce0ba43e",
+    "src/audio/emitters.mjs": "ec6d756e5c5387bac2461d6c1de60c838f2fa0e08b8f23ba88c8df5ab63c2b15",
+    "src/audio/materials.mjs": "a00121b825498c6783fa49ae4b3d69b54346883dec8f856308df43d19364cda9",
+    "src/audio/catalog.mjs": "24dfc278f89884cdb20f5604e1040b895430942b77c6d3319358652126baa2c9"
+  },
+  "maxVoices": 3,
+  "maxCacheBytes": 18267820,
+  "loads": 19,
+  "decodes": 19,
+  "steps": 224,
+  "errors": [],
+  "recording": {
+    "disposed": {
+      "layers": [],
+      "activeSources": [],
+      "recentEvents": [],
+      "nodes": 0,
+      "voices": 0,
+      "peakVoices": 3,
+      "hrtf": 0,
+      "beds": 0,
+      "budget": {
+        "voices": 8,
+        "hrtf": 1,
+        "beds": 2,
+        "hz": 2
+      },
+      "dropped": 0,
+      "steps": 224,
+      "profile": "eco",
+      "cacheBytes": 0,
+      "peakBytes": 18267820,
+      "cached": 0,
+      "pending": 0,
+      "activeLoads": 0,
+      "loads": 19,
+      "decodes": 19,
+      "failures": {},
+      "contextUpdates": 1555,
+      "cpuMs": 0,
+      "maxCpuMs": 20.299999999813735,
+      "nearbyChecks": 67,
+      "memoryCells": 0,
+      "perches": 0,
+      "contact": {
+        "surface": "asphalt",
+        "material": "hard",
+        "basis": "explicit OSM hard surface; generic hard-contact recording",
+        "confidence": "mapped"
+      },
+      "context": null
+    },
+    "state": "closed"
+  },
+  "maxSampledCpuMs": 2.7999999998137355,
+  "maxCpuMs": 20.299999999813735,
+  "recordingPostprocess": "MediaRecorder WebM remuxed with ffmpeg -c:a copy for duration and seeking; no audio re-encoding. Captured media duration 899.985 s, measured test wall time 900.01 s; startup/timestamp boundary explains the difference.",
+  "sourceAfterSessionNote": "Only trailing whitespace in renderer.ts removed after capture; no semantic audio change. Source hashes above freeze the tested engine."
+}
