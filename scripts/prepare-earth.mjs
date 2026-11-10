@@ -6,6 +6,16 @@ import {fileURLToPath} from 'node:url';
 import {sampleGrid,cellIndices,sourceTriangles,clipConvex} from '../src/world/terrain-grid.mjs';
 import {COVER,coverClass,coverAt} from '../src/world/landcover.mjs';
 export const TILE=40,ERROR=.25;
+// Decorative floor tones within an explicit mapped habitat only. This is not
+// an observation of litter, species, wetness or a new land-use classification.
+export function floorTint(type,x,z,slope){
+ const patch=(Math.sin(x*.071+Math.sin(z*.043)*1.8)+Math.sin(z*.097-x*.029))*.5;
+ if(type!=='wood')return {color:COVER[type].color,shade:1,alpha:255};
+ const warm=(patch+1)*.5,green=[.36,.40,.28],litter=[.43,.385,.285];
+ const rgb=green.map((c,i)=>Math.round(255*(c+(litter[i]-c)*warm)));
+ const t=Math.max(0,Math.min(1,(slope-.3)/.6));
+ return {color:(rgb[0]<<16)|(rgb[1]<<8)|rgb[2],shade:.96+patch*.16,alpha:Math.round(255*(1-t*t*(3-2*t)*.88))};
+}
 export function farIndices(g,ox,oz,size,tolerance=ERROR,blocked=new Set()){
  const out=[],stride=size+1,id=(x,z)=>(z-oz)*stride+x-ox;
  const point=(x,z)=>({x:g.origin_x_m+x*g.step_m,z:g.origin_z_m+z*g.step_m});
@@ -52,13 +62,20 @@ export async function prepare(dir='public/data'){
   // atlas lookup on distant tiles that contain no mapped habitat at all.
   const columns=(g.width-1)/TILE,tilePixels=TILE*g.step_m/step;
   for(const dx of [-8,0,8])for(const dz of [-8,0,8]){const tx=Math.floor((x+dx)/tilePixels),tz=Math.floor((z+dz)/tilePixels);if(tx>=0&&tz>=0&&tx<columns&&tz<(g.height-1)/TILE)tiles[tz*columns+tx].cover=true;}
-  const c=COVER[type].color,i=(z*width+x)*4;
-  // Linear RGB premultiplied by the known-use mask (0 or 1).
+  const wx=g.origin_x_m+(x+.5)*step,wz=g.origin_z_m+(z+.5)*step;
+  const hx0=sampleGrid(g,Math.max(g.origin_x_m,wx-5),wz),hx1=sampleGrid(g,Math.min(g.origin_x_m+(g.width-1)*g.step_m,wx+5),wz);
+  const hz0=sampleGrid(g,wx,Math.max(g.origin_z_m,wz-5)),hz1=sampleGrid(g,wx,Math.min(g.origin_z_m+(g.height-1)*g.step_m,wz+5));
+  const tint=floorTint(type,wx,wz,Math.hypot(hx1-hx0,hz1-hz0)/10),c=tint.color,i=(z*width+x)*4;
+  // Linear RGB premultiplied by an artistic blend weight. Known coverage
+  // and source provenance are kept separately; alpha is not confidence.
   const linear=v=>Math.round(255*(v<=.04045?v/12.92:((v+.055)/1.055)**2.4));
-  pixels[i]=linear(((c>>16)&255)/255);pixels[i+1]=linear(((c>>8)&255)/255);pixels[i+2]=linear((c&255)/255);pixels[i+3]=255;
+  const weight=tint.alpha/255;
+  pixels[i]=Math.round(linear(((c>>16)&255)/255)*tint.shade*weight);pixels[i+1]=Math.round(linear(((c>>8)&255)/255)*tint.shade*weight);pixels[i+2]=Math.round(linear((c&255)/255)*tint.shade*weight);pixels[i+3]=tint.alpha;
  }
  const image=png(width,height,pixels);
  const manifest={schema:'endless-earth-prepared-v1',terrainSha256:hash(text),osmSha256:hash(osm),horizontalFrame:'legacy local tangent plane, X east / Z south, metres; see geo.ts',source:g.source,sourceRetrievedAt:g.provenance.retrieved_at,sourceSpacingM:g.step_m,verticalDatum:g.vertical_datum,maxFarErrorM:ERROR,tileCells:TILE,tiles,farTriangles:all.length/3,fineTriangles:2*(g.width-1)*(g.height-1),lodSha256:hash(bytes),coverSha256:hash(image),cover:{origin:[g.origin_x_m,g.origin_z_m],extent:[width*step,height*step],width,height,stepM:step,counts,source:data.metadata,interpretation:'Material palette inferred from explicit OSM land use only; unknown is transparent. Raster spacing is not survey accuracy.'}};
+ manifest.cover.sourceFeatures=data.features.filter(f=>f.geometry?.type==='Polygon'&&coverClass(f.properties??{})).map(f=>({id:f.id,source:f.properties.source,year:f.properties['CLC:year']??null,leafType:f.properties.leaf_type??null}));
+ manifest.cover.provenanceByAttribute={outline:'OSM polygon; inherited source and year per feature',classification:'Explicit OSM tags only; no use assigned to unknown ground',floorColor:'Original procedural art; litter is illustrative',slopeBlend:'Existing IGN 10 m DEM; changes color only',alpha:'Artistic blend weight, not measurement confidence'};
  await writeFile(`${dir}/angles-terrain-lod.bin`,bytes);await writeFile(`${dir}/angles-landcover.png`,image);await writeFile(`${dir}/angles-earth.json`,JSON.stringify(manifest,null,2)+'\n');return manifest;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url))console.log(JSON.stringify(await prepare(),null,2));

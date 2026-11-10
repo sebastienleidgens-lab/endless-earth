@@ -152,7 +152,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
       if(tags.historic==='citywalls'||tags.historic==='castle'||tags.historic==='ruins'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain,tags.historic==='castle'||tags.historic==='ruins');count++;}
       else if(tags.highway){count++;} // Rendered once inside the prepared ground surface.
-      else if(tags.waterway){addLine(scene,pts,6,terrain);count++;}
+      else if(tags.waterway){if(!terrain?.waterIntegrated&&['river','stream','canal'].includes(String(tags.waterway)))addLine(scene,pts,6,terrain);count++;}
     } else if(f.geometry?.type==='Polygon' && Array.isArray(f.geometry.coordinates)){
       const ring=coordsToPoints(f.geometry.coordinates[0],terrain);
       if(ring.length<4 || !ring.some(insideArea))continue;
@@ -173,6 +173,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
         // Only its surveyed perimeter is represented as a low schematic wall.
         addHistoricWall(scene,ring,terrain);count++;
       } else if(tags.natural==='water'){
+        if(terrain?.waterIntegrated){count++;continue;}
         // Water surfaces remain level at their lowest mapped edge.
         const shape=makeFootprint(ring);
         for(const coords of f.geometry.coordinates.slice(1)){const hole=coordsToPoints(coords);const path=new THREE.Path();hole.forEach((p,i)=>i===0?path.moveTo(p.x,-p.z):path.lineTo(p.x,-p.z));shape.holes.push(path)}

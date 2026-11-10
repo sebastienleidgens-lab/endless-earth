@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-07-3.md"
+    "missionReport": "docs/mission-08.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -22,7 +22,8 @@
     "test:road-optimization": "node scripts/browser-road-performance.mjs 073",
     "test:road-optimization:motion": "node scripts/browser-road-optimization-motion.mjs 073",
     "test:road-optimization:walk": "node scripts/browser-road-optimization-walk.mjs",
-    "bench:roads": "node scripts/benchmark-road-optimization.mjs"
+    "bench:roads": "node scripts/benchmark-road-optimization.mjs",
+    "test:landscape": "node scripts/browser-landscape.mjs after"
   },
   "dependencies": {
     "three": "^0.180.0"

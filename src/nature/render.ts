@@ -8,18 +8,27 @@ const dummy=new THREE.Object3D();
 export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z:number)=>number|null){
  const ecology=createEcology(features,height),cells=new Map<string,Tree[]>();
  for(const p of ecology.trees){const key=`${Math.floor(p.x/180)}:${Math.floor(p.z/180)}:${p.leaf==='needle'&&p.kind!=='riparian'?'needle':'broad'}`;if(!cells.has(key))cells.set(key,[]);cells.get(key)!.push(p)}
- // Three overlapping, asymmetric lobes in ONE shared crown geometry.
+ // Six low-poly lobes describe a spreading canopy instead of an egg. The
+ // near budget stays at 120 triangles; distant crowns keep 60 triangles.
  function makeCrown(detail:number){const positions:number[]=[],normals:number[]=[];
- for(const [x,y,z,sx,sy,sz] of [[0,0,0,2.3,2.9,2.2],[-1.3,-.5,.2,1.9,2.0,1.7],[1.1,.4,-.5,1.7,2.2,1.8]]){const g=new THREE.IcosahedronGeometry(1,x===0?detail:0);const a=g.attributes.position,n=g.attributes.normal;for(let i=0;i<a.count;i++){const v=new THREE.Vector3().fromBufferAttribute(a,i).normalize();n.setXYZ(i,v.x,v.y,v.z)}g.scale(sx,sy,sz);g.translate(x,y,z);positions.push(...g.attributes.position.array);normals.push(...g.attributes.normal.array);g.dispose()}
+ const lobes=detail?[[0,-.15,0,2.35,2.05,2.2],[-1.5,-.05,.45,1.6,1.75,1.65],[1.4,.2,-.6,1.75,1.8,1.55],[-.25,1.3,-.25,1.8,1.5,1.7],[.1,.15,1.45,1.7,1.5,1.5],[-.55,.2,-1.45,1.65,1.6,1.45]]:[[0,0,0,2.5,2.5,2.45],[-1.35,-.3,.3,1.9,1.9,1.9],[1.1,.35,-.5,1.8,2.0,1.8]];
+ for(const [x,y,z,sx,sy,sz] of lobes){const g=new THREE.IcosahedronGeometry(1,0);const a=g.attributes.position,n=g.attributes.normal;for(let i=0;i<a.count;i++){const v=new THREE.Vector3().fromBufferAttribute(a,i).normalize();n.setXYZ(i,v.x,v.y,v.z)}g.scale(sx,sy,sz);g.translate(x,y,z);positions.push(...g.attributes.position.array);normals.push(...g.attributes.normal.array);g.dispose()}
  const crown=new THREE.BufferGeometry();crown.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));crown.setAttribute('normal',new THREE.Float32BufferAttribute(normals,3));return crown;}
  const crown=makeCrown(1),distantCrown=makeCrown(0);crown.name='nature-crown-near';distantCrown.name='nature-crown-far';
  // OSM mixed/needle-leaved stands permit a conifer silhouette, not a species claim.
  const conifer=(sides:number)=>{const parts:THREE.BufferGeometry[]=[];for(const [radius,height,y] of [[2.1,3.4,-.6],[1.65,3.2,.65],[1.1,2.6,1.75]]){const part=new THREE.ConeGeometry(radius,height,sides,1,true);part.translate(0,y,0);parts.push(part)}const g=mergeGeometries(parts)!;parts.forEach(p=>p.dispose());return g};
  const needleCrown=conifer(7),farNeedleCrown=conifer(4);
- const stem=new THREE.CylinderGeometry(.19,.36,4.5,5),branches=[stem];for(const side of [-1,1]){const branch=new THREE.CylinderGeometry(.07,.16,2.6,3,1,true);branch.rotateZ(side*.65);branch.translate(-side*.7,1.1,0);branches.push(branch)}const trunk=mergeGeometries(branches)!;branches.forEach(g=>g.dispose());const bark=new THREE.MeshLambertMaterial({color:0x716653}),leaves=new THREE.MeshLambertMaterial({color:0xffffff});animateFoliage(leaves,true);const distantLeaves=new THREE.MeshLambertMaterial({color:0xffffff});animateFoliage(distantLeaves,true,false,true);
+ // Baked canopy occlusion, shared by every instance and both LODs. It is an
+ // artistic light cue, not an observation of the stand or a per-frame pass.
+ for(const g of [crown,distantCrown,needleCrown,farNeedleCrown]){
+  const p=g.attributes.position,values=new Float32Array(p.count*3);
+  for(let i=0;i<p.count;i++){const t=THREE.MathUtils.smoothstep(p.getY(i),-2.4,2.7),shade=.72+t*.32;values.set([shade,shade,shade],i*3)}
+  g.setAttribute('color',new THREE.BufferAttribute(values,3));
+ }
+ const stem=new THREE.CylinderGeometry(.19,.36,4.5,5),branches=[stem];for(const side of [-1,1]){const branch=new THREE.CylinderGeometry(.07,.16,2.6,3,1,true);branch.rotateZ(side*.65);branch.translate(-side*.7,1.1,0);branches.push(branch)}const trunk=mergeGeometries(branches)!;branches.forEach(g=>g.dispose());const bark=new THREE.MeshLambertMaterial({color:0x716653}),leaves=new THREE.MeshLambertMaterial({color:0xffffff,vertexColors:true});animateFoliage(leaves,true);const distantLeaves=new THREE.MeshLambertMaterial({color:0xffffff,vertexColors:true});animateFoliage(distantLeaves,true,false,true);
  scene.userData.natureResources={geometries:[trunk,crown,distantCrown,needleCrown,farNeedleCrown],materials:[bark,leaves,distantLeaves]};
  // Geometry/materials belong to this geographic zone, shared only within it.
- const palette=[0x526c45,0x66794b,0x74865a,0x546f58,0x7d8552];
+ const palette=[0x566d48,0x617548,0x6d7d50,0x506951,0x758052];
  for(const [key,points] of cells){const [cx,cz]=key.split(':').map(Number),needle=key.endsWith(':needle'),nearGeometry=needle?needleCrown:crown,farGeometry=needle?farNeedleCrown:distantCrown,group=new THREE.Group();group.userData.natureTreeCell={x:(cx+.5)*180,z:(cz+.5)*180,nearGeometry,farGeometry,nearMaterial:leaves,farMaterial:distantLeaves,lod:'near'};
   const trunks=new THREE.InstancedMesh(trunk,bark,points.length),crowns=new THREE.InstancedMesh(nearGeometry,leaves,points.length);
   points.forEach((p,i)=>{const f=noise(p.x,p.z,2),wet=p.kind==='riparian',s=p.scale,w=wet?.7:.85+f*.35,h=wet?1.35:1;
@@ -70,10 +79,12 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
  near.sort((a,b)=>a.d-b.d);
  // One bounded recipe slice per update, then one final buffer build. Same sequence.
  const next=near[0];if(next){const {o,c}=next;c.pending??={cursor:0,points:[]};const job=c.pending;
-  job.points.push(...detailRecipe(c.cx,c.cz,c.ecology,job.cursor,job.cursor+256));job.cursor=Math.min(3200,job.cursor+256);
-  if(job.cursor===3200){buildDetail(o,job.points);c.pending=null}
+  const started=performance.now(),limit=Math.min(3200,job.cursor+256);
+  do{const end=Math.min(limit,job.cursor+32);job.points.push(...detailRecipe(c.cx,c.cz,c.ecology,job.cursor,end));job.cursor=end}while(job.cursor<limit&&performance.now()-started<2);
+  scene.userData.natureWork??={maxSliceMs:0,maxBuildMs:0,slices:0};const work=scene.userData.natureWork;work.slices++;work.maxSliceMs=Math.max(work.maxSliceMs,performance.now()-started);
+  if(job.cursor===3200){const started=performance.now();buildDetail(o,job.points);work.maxBuildMs=Math.max(work.maxBuildMs,performance.now()-started);c.pending=null}
  }
  hidden.sort((a,b)=>a.d-b.d);for(const {o,c} of hidden.slice(4)){o.remove(c.detail);c.detail.geometry.dispose();c.detail.material.dispose();c.detail=null}
 }
-export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,cells=0,resident=0,builds=0,pending=0,work=0,needed=0;scene.traverse(o=>{const t=o.userData.natureTreeCell;if(t){treeCells++;if(t.lod==='far')farCells++}const c=o.userData.natureCell;if(c){cells++;if(c.detail)resident++;else if(c.wanted)needed++;builds+=c.builds;if(c.pending){pending++;work+=c.pending.cursor}}});return {treeCells,farCells,cells,resident,builds,pending,work,needed}}
+export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,cells=0,resident=0,builds=0,pending=0,work=0,needed=0;scene.traverse(o=>{const t=o.userData.natureTreeCell;if(t){treeCells++;if(t.lod==='far')farCells++}const c=o.userData.natureCell;if(c){cells++;if(c.detail)resident++;else if(c.wanted)needed++;builds+=c.builds;if(c.pending){pending++;work+=c.pending.cursor}}});return {treeCells,farCells,cells,resident,builds,pending,work,needed,preparation:scene.userData.natureWork??null}}
 export function disposeNatureZone(group:THREE.Object3D){const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{const resources=o.userData.natureResources??o.userData.terrainResources;if(resources){for(const g of resources.geometries)geometries.add(g);for(const m of resources.materials)materials.add(m)}if(o instanceof THREE.Mesh){geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.traverse(o=>{for(const t of [o.userData.terrainTexture,o.userData.roadEdgeTexture])if(t){t.dispose();t.image?.close?.()}});group.clear();group.userData={};}

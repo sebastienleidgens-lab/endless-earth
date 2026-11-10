@@ -214,7 +214,7 @@
   "farTriangles": 62656,
   "fineTriangles": 80000,
   "lodSha256": "148a2ab1a6ced0d59287765a5c3e5c341c8dbcb90f7b907ae457dbaa7cb0094e",
-  "coverSha256": "5328d00d97ca8c0d28100757f2589749d290ed5e0eb826cc46e6e9cccb190133",
+  "coverSha256": "52ba6e059ea45ea544215da7fa8b53bc5d1d922eee97fd2e58527dee91694bc3",
   "cover": {
     "origin": [
       -1000,
@@ -243,6 +243,27 @@
       "method": "one-time OSM API bbox bootstrap",
       "warning": "Incomplete OSM tags; no authoritative elevation or building heights."
     },
-    "interpretation": "Material palette inferred from explicit OSM land use only; unknown is transparent. Raster spacing is not survey accuracy."
+    "interpretation": "Material palette inferred from explicit OSM land use only; unknown is transparent. Raster spacing is not survey accuracy.",
+    "sourceFeatures": [
+      {
+        "id": "osm-way-42055926",
+        "source": "Union européenne - SOeS, CORINE Land Cover, 2006.",
+        "year": "2006",
+        "leafType": "broadleaved"
+      },
+      {
+        "id": "osm-way-42055940",
+        "source": "Union européenne - SOeS, CORINE Land Cover, 2006.",
+        "year": "2006",
+        "leafType": "mixed"
+      }
+    ],
+    "provenanceByAttribute": {
+      "outline": "OSM polygon; inherited source and year per feature",
+      "classification": "Explicit OSM tags only; no use assigned to unknown ground",
+      "floorColor": "Original procedural art; litter is illustrative",
+      "slopeBlend": "Existing IGN 10 m DEM; changes color only",
+      "alpha": "Artistic blend weight, not measurement confidence"
+    }
   }
 }
