@@ -97,12 +97,12 @@ Chromium/ANGLE, **SwiftShader logiciel**, mêmes stations et éclairage. Trois p
 
 | Station | Médiane avant → après (ms) | Écart | Appels avant → après | Triangles avant → après |
 |---|---:|---:|---:|---:|
-| Village Qualité | 425 4 → 435 5 | +2.4 % | 120 → 109 | 247 134 → 245 249 |
-| Rivière Qualité | 270 9 → 232 4 | -14.2 % | 102 → 91 | 194 213 → 190 528 |
-| Forêt Qualité | 198 6 → 193 5 | -2.6 % | 39 → 35 | 111 379 → 108 768 |
-| Aérienne Qualité | 417 1 → 394 9 | -5.3 % | 151 → 140 | 262 305 → 259 224 |
-| Rivière Éco | 266 4 → 213 7 | -19.8 % | 100 → 89 | 172 611 → 169 530 |
-| Mobile Éco | 156 8 → 112 1 | -28.5 % | 52 → 41 | 122 266 → 118 837 |
+| Village Qualité | 425,4 → 435,5 | +2,4 % | 120 → 109 | 247 134 → 245 249 |
+| Rivière Qualité | 270,9 → 232,4 | -14,2 % | 102 → 91 | 194 213 → 190 528 |
+| Forêt Qualité | 198,6 → 193,5 | -2,6 % | 39 → 35 | 111 379 → 108 768 |
+| Aérienne Qualité | 417,1 → 394,9 | -5,3 % | 151 → 140 | 262 305 → 259 224 |
+| Rivière Éco | 266,4 → 213,7 | -19,8 % | 100 → 89 | 172 611 → 169 530 |
+| Mobile Éco | 156,8 → 112,1 | -28,5 % | 52 → 41 | 122 266 → 118 837 |
 
 Le gain est net dans les stations rivière, Éco et mobile ; la forêt et l'aérienne sont également moins coûteuses dans cette série. **Le village reste plus lent de 2,4 %** : aucun gain universel n'est établi. Les p95 et maximums de chaque station sont conservés dans la [synthèse](mission-08-captures/summary.json). Le p95 village après atteint 547,6 ms sur ce moteur logiciel. Aucun 60 FPS, débit GPU physique ou résultat Android matériel n'est revendiqué.
 
