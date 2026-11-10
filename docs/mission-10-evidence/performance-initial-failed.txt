@@ -1,0 +1,48 @@
+PASS 0 base091 forest balanced false
+PASS 0 base091 forest balanced true
+PASS 0 base091 forest eco false
+PASS 0 base091 forest eco true
+PASS 0 base091 river balanced false
+PASS 0 base091 river balanced true
+PASS 0 base091 river eco false
+PASS 0 base091 river eco true
+PASS 0 base091 village balanced false
+PASS 0 base091 village balanced true
+PASS 0 base091 village eco false
+PASS 0 base091 village eco true
+PASS 0 mission10 forest balanced false
+PASS 0 mission10 forest balanced true
+PASS 0 mission10 forest eco false
+PASS 0 mission10 forest eco true
+PASS 0 mission10 river balanced false
+PASS 0 mission10 river balanced true
+PASS 0 mission10 river eco false
+PASS 0 mission10 river eco true
+PASS 0 mission10 village balanced false
+PASS 0 mission10 village balanced true
+PASS 0 mission10 village eco false
+PASS 0 mission10 village eco true
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   "NotSupportedError: Failed to execute 'setValueAtTime' on 'AudioParam': setValueAtTime(0.7, 4.325333333333333) overlaps setValueCurveAtTime(..., 0.3413333333333333, 4)"
++ ]
+- []
+
+    at file:///workspace/endless-earth/scripts/benchmark-audio.mjs:29:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    "NotSupportedError: Failed to execute 'setValueAtTime' on 'AudioParam': setValueAtTime(0.7, 4.325333333333333) overlaps setValueCurveAtTime(..., 0.3413333333333333, 4)"
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

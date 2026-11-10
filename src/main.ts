@@ -31,7 +31,7 @@ if(import.meta.hot)import.meta.hot.accept('virtual:build-identity',module=>{
 });
 const credits=document.createElement('div');credits.className='geo-credit';
 credits.innerHTML='<a href="https://www.data.gouv.fr/datasets/mnt-lidar-hd" target="_blank" rel="noopener">IGN · LiDAR HD 2023 / OCS GE 2023 / BD TOPO / BD Forêt · ASP RPG 2024 · Licence Ouverte 2.0</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a>';
-root.append(credits);
+const audioCredit=document.createElement('a');audioCredit.href=`${import.meta.env.BASE_URL}audio/credits.html`;audioCredit.target='_blank';audioCredit.rel='noopener';audioCredit.textContent='Sons et licences';root.append(credits);
 
 const scene=new THREE.Scene(); scene.background=new THREE.Color(0xdce8df); scene.fog=new THREE.Fog(0xdce8df,300,1000);
 const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,1500);
@@ -221,7 +221,7 @@ root.append(panel);
 const autoButton=panel.querySelector<HTMLButtonElement>('#auto-walk')!;
 const soundButton=panel.querySelector<HTMLButtonElement>('#sound')!;
 const walkStatus=panel.querySelector<HTMLElement>('#walk-status')!;
-const volume=document.createElement('input');volume.type='range';volume.min='0';volume.max='100';volume.value='70';volume.setAttribute('aria-label',"Volume de l’ambiance");volume.oninput=()=>sound.setVolume(Number(volume.value)/100);const volumeLabel=document.createElement('label');volumeLabel.className='ambience-volume';volumeLabel.append('Ambiance ',volume);panel.append(volumeLabel);
+const volume=document.createElement('input');volume.type='range';volume.min='0';volume.max='100';volume.value='70';volume.setAttribute('aria-label',"Volume de l’ambiance");volume.oninput=()=>sound.setVolume(Number(volume.value)/100);const volumeLabel=document.createElement('label');volumeLabel.className='ambience-volume';volumeLabel.append('Ambiance ',volume,audioCredit);audioCredit.style.cssText='color:inherit;font-size:10px';panel.append(volumeLabel);
 autoButton.onclick=()=>{if(walker.active)walker.stop();else walker.start(routeAt(avatar.position,activeTerrain));};
 soundButton.onclick=async()=>{try{const on=await sound.toggle();soundButton.textContent=on?'Désactiver le son':'Activer le son';soundButton.setAttribute('aria-pressed',String(on));}catch{walkStatus.textContent='Son indisponible dans ce navigateur';}};
 let worldReady=false;
@@ -241,6 +241,11 @@ function prepareWalk(){
 addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive'));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
+document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
+if(import.meta.hot)import.meta.hot.dispose(()=>{void sound.dispose()});
+addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted)void sound.dispose()});
+const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
+const audioForward=new THREE.Vector3(),audioUp=new THREE.Vector3(),worldUp=new THREE.Vector3(0,1,0);
 const canvas=renderer.domElement;canvas.style.touchAction='none';
 const touchCamera=()=>{lastCameraInteraction=performance.now();};
 canvas.addEventListener('pointerdown',e=>{touchCamera();pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});dragging=true;canvas.setPointerCapture(e.pointerId);});
@@ -281,7 +286,7 @@ const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
@@ -301,7 +306,7 @@ const groundHeight=walkingHeight(terrainHeight);
 if(!tilesPreview||geographyReady)moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep);
 const moved=avatar.position.distanceTo(previous);
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
-updateAtmosphere(dt,quality==='low');sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.climate);
+updateAtmosphere(dt,quality==='low');sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[]);
 panel.querySelector('#profile')!.textContent='Profil · '+({eco:'Éco',balanced:'Équilibré',quality:'Qualité',custom:'Personnalisé'}[lifeSettings.name]);
 if(moved>.0001){
   const facing=Math.atan2(displacement.x,displacement.z);
@@ -346,6 +351,7 @@ if(transitionElapsed<.8){
   }
 }
 
+camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateTerrainLOD(scene,camera.position,avatar.position,quality==='low');updateVegetationLOD(scene,camera,quality==='low');updateArchitectureLOD(scene,camera,quality==='low')}
 scene.userData.decorationStream?.tick(quality==='low',elapsed*1000,dt>0?moved/dt:0);

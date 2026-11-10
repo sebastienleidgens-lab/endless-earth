@@ -1,0 +1,56 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'running'
+- 'suspended'
+
+    at file:///workspace/endless-earth/work/mission-10/regression-runtime.mjs:32:213 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'running',
+  expected: 'suspended',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+PASS memory audit before
+PASS memory audit after
+PASS Earth data none 21235
+PASS Earth data missing-manifest 21235
+PASS Earth data bad-lod 21235
+PASS Earth data stale-osm 21235
+PASS Earth data missing-surface 0
+PASS Earth data bad-surface 0
+PASS Earth data stale-surface 0
+PASS Earth data missing-edge 21235
+PASS Earth data bad-edge 21235
+PASS Earth data stale-edge 21235
+PASS Earth data missing-water-class 0
+PASS Earth data missing-environment 21235
+PASS Earth data bad-environment 21235
+PASS Earth data stale-environment 21235
+PASS Earth data missing-decorations 21235
+PASS Earth data stale-decorations 21235
+PASS Earth data bad-decoration-static 21235
+PASS Earth data missing-nature-detail 21235
+PASS Earth data missing-architecture-detail 21235
+PASS camera: remembered wheel zoom, drag lock, idle delay, recenter, mapped wall collision, three views
+STOP PASS { building: 'yes' } [ -13.002890079345807, -1.4858107695756928, -33.149994806037896 ] samples 13
+STOP PASS { highway: 'footway', access: 'private' } [ -13.704547469670853, -1.4899030119021859, -33.85949899739343 ] samples 11
+STOP PASS { natural: 'water' } [ -14.311625206959265, -1.4934436419108863, -34.473365829017936 ] samples 11
+STOP PASS { barrier: 'wall' } [ -14.996927435921414, -1.5047871694316655, -35.1663319553616 ] samples 13
+STOP PASS { historic: 'castle' } [ -15.278654112570951, -1.5319274488775534, -35.45120924826222 ] samples 9
+PASS: live building, private area, water, wall and historic ruins injected AFTER Auto Walk starts; every sampled frame legal.
+file:///workspace/endless-earth/scripts/browser-audio-regression.mjs:10
+await writeFile('docs/mission-10-evidence/regression/summary.json',JSON.stringify(results,null,2));if(results.some(r=>!r.passed))throw Error('Regression harness failed; inspect retained report/log');console.log('PASS existing runtime, memory, 19 degraded-data cases, camera and collision safety');
+                                                                                                                                       ^
+
+Error: Regression harness failed; inspect retained report/log
+    at file:///workspace/endless-earth/scripts/browser-audio-regression.mjs:10:136
+
+Node.js v24.22.1

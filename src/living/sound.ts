@@ -1,69 +1,52 @@
-// @ts-ignore Shared geometric distance, independent of renderer.
-import {segmentDistance} from '../nature/ecology.mjs';
-import { nature,waterLines,surfaceAt } from './geography';
-// @ts-ignore Shared pure module.
-import { surfaceKind } from './walk.mjs';
-// Original procedural synthesis: no external recordings or asset licenses.
+import {waterLines,paths,navigationReady} from './geography';
+import {ANGLES} from '../world/geo';
+import {AcousticRenderer} from '../audio/renderer';
+import type {SoundContext,Vec3} from '../audio/types';
+// @ts-ignore Shared pure geographic/context helpers.
+import {acousticContext,proximityIndex,habitatInfluences} from '../audio/context.mjs';
+// @ts-ignore Pure bounded stochastic director.
+import {SoundDirector} from '../audio/director.mjs';
+// @ts-ignore Existing extensible material mapping.
+import {surfaceKind} from './walk.mjs';
+/** Host adapter. No ecology, weather model, or per-frame proximity scan here. */
 export class Soundscape {
- context:AudioContext|null=null; master:GainNode|null=null;wind:GainNode|null=null;river:GainNode|null=null;
- volume=.7;
- setVolume(value:number){this.volume=Math.max(0,Math.min(1,value));if(this.context&&this.master)this.master.gain.setTargetAtTime(this.enabled?this.volume*.4:0,this.context.currentTime,.15)}
- enabled=false;distance=0;nextBird=0;stepBuffer:AudioBuffer|null=null;
- private transition:Promise<boolean>=Promise.resolve(false);
- toggle(){
-  // Serialize resume/suspend even when several clicks arrive before a promise settles.
-  const next=this.transition.then(()=>this.applyToggle(),()=>this.applyToggle());
-  this.transition=next;return next;
- }
+ context:AudioContext|null=null;renderer:AcousticRenderer|null=null;enabled=false;volume=.7;distance=0;
+ private transition:Promise<boolean>=Promise.resolve(false);private disposed=false;private hidden=false;
+ private timer:ReturnType<typeof setInterval>|null=null;private director=new SoundDirector({seed:crypto.getRandomValues(new Uint32Array(1))[0]});
+ private nextContext=0;private waterIndex:ReturnType<typeof proximityIndex>|null=null;private roadsIndex:ReturnType<typeof proximityIndex>|null=null;
+ private lastStep=-Infinity;private roadSurface='ground';private frameContext:SoundContext|null=null;
+ contextUpdates=0;cpuMs=0;maxCpuMs=0;nearbyChecks=0;
+ get master(){return this.renderer?.master??null}
+ setVolume(value:number){this.volume=Number.isFinite(value)?Math.max(0,Math.min(1,value)):0;this.renderer?.setVolume(this.volume,this.enabled&&!this.hidden)}
+ toggle(){const p=this.transition.then(()=>this.applyToggle(),()=>this.applyToggle());this.transition=p;return p}
  private async applyToggle(){
-  if(!this.context){
-   this.context=new AudioContext();const c=this.context;
-   this.master=c.createGain();this.master.gain.value=0;this.master.connect(c.destination);
-   const buffer=c.createBuffer(1,c.sampleRate*17,c.sampleRate),data=buffer.getChannelData(0);
-   let brown=0;for(let i=0;i<data.length;i++){const white=Math.random()*2-1;brown=(brown+.02*white)/1.02;data[i]=brown*1.8+white*.10;}
-   this.stepBuffer=buffer;
-   for(const [frequency,kind] of [[480,'wind'],[950,'river']] as const){
-    const source=c.createBufferSource();source.buffer=buffer;source.loop=true;
-    const filter=c.createBiquadFilter();filter.type='lowpass';filter.frequency.value=frequency;
-    const gain=c.createGain();gain.gain.value=0;source.connect(filter).connect(gain).connect(this.master);source.start(0,kind==='river'?7.3:0);this[kind]=gain;
-   }
-  }
-  const enable=!this.enabled;
-  if(enable)await this.context.resume();
-  this.master!.gain.cancelScheduledValues(this.context.currentTime);
-  this.master!.gain.setTargetAtTime(enable?this.volume*.4:0,this.context.currentTime,.08);
-  if(!enable)await this.context.suspend();
-  this.enabled=enable;
-  return this.enabled;
+ if(this.disposed)return false;
+ if(!this.context){const c=new AudioContext({sampleRate:24000,latencyHint:'playback'});this.context=c;this.renderer=new AcousticRenderer(c,`${import.meta.env.BASE_URL}audio/`);this.timer=setInterval(()=>{if(this.enabled&&!this.hidden&&c.state==='running')this.renderer?.pump()},100)}
+ const on=!this.enabled;
+ if(on){await this.context.resume();if(this.disposed)return false;this.enabled=true;this.nextContext=0;this.distance=0;this.director.resetClock();this.renderer!.setVolume(this.volume,!this.hidden);if(this.hidden)await this.context.suspend()}
+ else{this.enabled=false;this.renderer!.setVolume(this.volume,false);this.renderer!.silence();await new Promise(r=>setTimeout(r,220));if(!this.disposed)await this.context.suspend();this.distance=0;this.director.resetClock()}
+ return this.enabled;
  }
- tone(frequency:number,duration:number,volume:number,pan=0,noise=false){
-  const c=this.context!;if(!this.enabled)return;
-  const source=c.createOscillator(),gain=c.createGain(),panner=c.createStereoPanner();
-  source.type=noise?'triangle':'sine';source.frequency.setValueAtTime(frequency,c.currentTime);
-  source.frequency.exponentialRampToValueAtTime(frequency*(noise?.45:1.4),c.currentTime+duration);
-  gain.gain.setValueAtTime(volume,c.currentTime);gain.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);
-  panner.pan.value=Math.max(-1,Math.min(1,pan));source.connect(gain).connect(panner).connect(this.master!);source.start();source.stop(c.currentTime+duration);
-  source.onended=()=>{source.disconnect();gain.disconnect();panner.disconnect();};
+ setHidden(hidden:boolean){this.hidden=hidden;const p=this.transition.then(async()=>{if(this.disposed||!this.context)return this.enabled;this.renderer?.setVolume(this.volume,this.enabled&&!this.hidden);if(this.hidden){await this.context.suspend();this.distance=0;this.director.resetClock()}else if(this.enabled){await this.context.resume();this.nextContext=0;this.director.resetClock()}return this.enabled});this.transition=p;return p}
+ update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[]){
+ if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer)return;
+ const start=performance.now(),now=start/1000;
+ if(profile!==this.renderer.profile)this.renderer.setProfile(profile);
+ if(now>=this.nextContext){
+ this.nextContext=now+1/this.renderer.budget.hz;
+ if(!this.waterIndex&&navigationReady()){this.waterIndex=proximityIndex(waterLines);this.roadsIndex=proximityIndex(paths.map(path=>Object.assign([...path.points],{surface:path.surface})))}
+ const near=this.waterIndex?.query(p,120),road=this.roadsIndex?.query(p,40);this.nearbyChecks=(near?.checked??0)+(road?.checked??0);this.roadSurface=road?.distance<3?(road.surface||'asphalt'):'grass';
+ const influences=habitatInfluences(p,habitatAt);if(near?.point)influences.water=Math.max(influences.water??0,Math.exp(-near.distance/26));
+ // Roads are mapped access routes; their mere presence never implies traffic.
+ const geo={lat:ANGLES.lat-p.z/111320,lon:ANGLES.lon+p.x/(111320*Math.cos(ANGLES.lat*Math.PI/180))};
+ this.frameContext=acousticContext({geo,timeZone:ANGLES.timeZone,worldTimeMs:climate?.worldTimeMs??(climate?.date?Date.parse(climate.date):null),position:{...p},altitudeM:typeof altitudeM==='function'?altitudeM(p.x,p.z):altitudeM,habitat:life?.habitat??'unknown',solarAltitude:climate?.solar.altitude,weather:climate?.weather?{...climate.weather,wind:life?.wind.speed??climate.weather.wind}:null,influences,sources,provenance:{geography:'IGN/ASP/OSM classifications; mix inferred',weather:'EarthLife simulated',region:'temperate-europe'}}) as SoundContext;
+ this.renderer.updateContext(this.frameContext);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.contextUpdates++;
  }
- footstep(kind:string){
-  const c=this.context!,source=c.createBufferSource(),filter=c.createBiquadFilter(),gain=c.createGain();
-  source.buffer=this.stepBuffer;filter.type='lowpass';
-  filter.frequency.value=({herbe:450,terre:700,gravier:2400,route:1100} as Record<string,number>)[kind];
-  const t=c.currentTime,duration=kind==='gravier'?.16:.11;
-  gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.2+Math.random()*.06,t+.008);gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
-  source.connect(filter).connect(gain).connect(this.master!);source.start(t,Math.random()*2,duration);source.onended=()=>{source.disconnect();filter.disconnect();gain.disconnect();};
+ if(travel>0&&travel<3){this.distance+=travel;if(this.distance>=.8&&now-this.lastStep>=.21){this.distance%=.8;this.lastStep=now;this.renderer.footstep(surfaceKind(this.roadSurface))}}
+ else if(travel===0)this.distance=0;
+ this.cpuMs=performance.now()-start;this.maxCpuMs=Math.max(this.maxCpuMs,this.cpuMs);
  }
- update(p:{x:number;z:number},travel:number,wind:number,yaw:number,climate?:{solar:{altitude:number};weather:{rain:number;wind:number}}){
-  if(!this.enabled||!this.context)return;
-  const c=this.context;this.wind!.gain.setTargetAtTime(wind*(.17+Math.sin(c.currentTime*.073)*.025),c.currentTime,.5);
-  const nearest=waterLines.reduce((v,line)=>line.slice(1).reduce((d,q,i)=>Math.min(d,segmentDistance(p,line[i],q)),v),Infinity);
-  this.river!.gain.setTargetAtTime(Math.max(0,1-nearest/65)*.10+(climate?.weather.rain??0)*.08,c.currentTime,.5);
-  this.distance+=travel;
-  if(this.distance>.8){this.distance%=.8;const kind=surfaceKind(surfaceAt(p));this.footstep(kind);}
-  if(c.currentTime>this.nextBird){
-   this.nextBird=c.currentTime+24+Math.random()*105;
-   const q=nature[Math.floor(Math.random()*nature.length)];
-   if(q&&(!climate||climate.solar.altitude>0)&&Math.random()>.25){const dx=q.x-p.x,dz=q.z-p.z,d=Math.hypot(dx,dz);if(d<110)this.tone(1500+Math.random()*1700,.12+Math.random()*.18,.07/(1+d/15),(dx*Math.cos(yaw)-dz*Math.sin(yaw))/Math.max(1,d));}
-  }
- }
+ listener(position:Vec3,forward:Vec3,up:Vec3){if(this.enabled&&!this.hidden)this.renderer?.listener(position,forward,up)}
+ stats(){return {...this.renderer?.stats(),contextUpdates:this.contextUpdates,cpuMs:this.cpuMs,maxCpuMs:this.maxCpuMs,nearbyChecks:this.nearbyChecks,memoryCells:this.director.memory.size,context:this.frameContext}}
+ async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.waterIndex=this.roadsIndex=null;this.frameContext=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
 }

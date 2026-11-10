@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-09-1.md"
+    "missionReport": "docs/mission-10.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -25,7 +25,11 @@
     "bench:roads": "node scripts/benchmark-road-optimization.mjs",
     "test:landscape": "node scripts/browser-landscape.mjs after",
     "geo:decorations": "node scripts/prepare-decorations.mjs",
-    "test:earthlife": "node scripts/browser-earthlife.mjs after"
+    "test:earthlife": "node scripts/browser-earthlife.mjs after",
+    "audio:prepare": "python scripts/prepare-audio.py",
+    "test:audio": "node --test tests/audio.test.mjs",
+    "test:audio:browser": "node scripts/browser-audio.mjs && node scripts/browser-audio-spatial.mjs",
+    "bench:audio": "node scripts/benchmark-audio.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

@@ -1,4 +1,4 @@
-export const ANGLES = { name: "Angles-sur-l'Anglin", lat: 46.6953, lon: 0.8844 } as const;
+export const ANGLES = { name: "Angles-sur-l'Anglin", lat: 46.6953, lon: 0.8844, timeZone: "Europe/Paris" } as const;
 export type GeoPoint = { lat: number; lon: number };
 // Approximate local tangent plane in metres; suitable for a small village tile.
 export function toLocal(p: GeoPoint, origin: GeoPoint = ANGLES) {
