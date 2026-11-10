@@ -1,0 +1,758 @@
+{
+  "profiles": {
+    "eco": {
+      "time": 0.2,
+      "profile": "eco",
+      "budget": {
+        "birds": 0,
+        "particles": 0,
+        "events": 0
+      },
+      "limits": {
+        "vegetation": 0.55,
+        "fine": 0,
+        "water": 0.5,
+        "clouds": 0.7,
+        "shadows": 0,
+        "birds": 2,
+        "particles": 0,
+        "events": 1,
+        "cpuHz": 5
+      },
+      "activeBirds": 0,
+      "activeEvents": 0,
+      "habitat": "built",
+      "wind": {
+        "x": 0.2600809582495844,
+        "z": -0.1257226291207441,
+        "speed": 0.28858227753504934,
+        "gust": 0.00029105395820985054
+      },
+      "cpuMs": 3.400000000372529,
+      "maxCpuMs": 3.400000000372529,
+      "provenance": {
+        "habitat": "mapped classification, unknown preserved",
+        "wind": "simulated",
+        "weather": "simulated",
+        "birds": "generic artistic silhouettes",
+        "current": "unverified artistic direction"
+      },
+      "resources": {
+        "cpuObjects": 9,
+        "extraDrawCallsMax": 11,
+        "extraTextures": 0,
+        "cloudMaterials": 1,
+        "birdMaterials": 1,
+        "particleMaterials": 1
+      }
+    },
+    "balanced": {
+      "time": 0.4,
+      "profile": "balanced",
+      "budget": {
+        "birds": 0,
+        "particles": 0,
+        "events": 0
+      },
+      "limits": {
+        "vegetation": 1,
+        "fine": 0.45,
+        "water": 0.8,
+        "clouds": 1,
+        "shadows": 0.1,
+        "birds": 6,
+        "particles": 8,
+        "events": 2,
+        "cpuHz": 10
+      },
+      "activeBirds": 0,
+      "activeEvents": 0,
+      "habitat": "built",
+      "wind": {
+        "x": 0.26020749192369946,
+        "z": -0.12551836871145575,
+        "speed": 0.2885966031157191,
+        "gust": 0.0004381933573605241
+      },
+      "cpuMs": 0.09999999962747097,
+      "maxCpuMs": 3.400000000372529,
+      "provenance": {
+        "habitat": "mapped classification, unknown preserved",
+        "wind": "simulated",
+        "weather": "simulated",
+        "birds": "generic artistic silhouettes",
+        "current": "unverified artistic direction"
+      },
+      "resources": {
+        "cpuObjects": 10,
+        "extraDrawCallsMax": 11,
+        "extraTextures": 0,
+        "cloudMaterials": 1,
+        "birdMaterials": 1,
+        "particleMaterials": 1
+      }
+    },
+    "quality": {
+      "time": 0.6000000000000001,
+      "profile": "quality",
+      "budget": {
+        "birds": 0,
+        "particles": 0,
+        "events": 0
+      },
+      "limits": {
+        "vegetation": 1,
+        "fine": 1,
+        "water": 1,
+        "clouds": 1,
+        "shadows": 0.15,
+        "birds": 9,
+        "particles": 16,
+        "events": 3,
+        "cpuHz": 10
+      },
+      "activeBirds": 0,
+      "activeEvents": 0,
+      "habitat": "built",
+      "wind": {
+        "x": 0.260348381334901,
+        "z": -0.12532340769229514,
+        "speed": 0.28862797852908983,
+        "gust": 0.0006471342019798061
+      },
+      "cpuMs": 0,
+      "maxCpuMs": 3.400000000372529,
+      "provenance": {
+        "habitat": "mapped classification, unknown preserved",
+        "wind": "simulated",
+        "weather": "simulated",
+        "birds": "generic artistic silhouettes",
+        "current": "unverified artistic direction"
+      },
+      "resources": {
+        "cpuObjects": 10,
+        "extraDrawCallsMax": 11,
+        "extraTextures": 0,
+        "cloudMaterials": 1,
+        "birdMaterials": 1,
+        "particleMaterials": 1
+      }
+    },
+    "custom": {
+      "time": 0.8,
+      "profile": "custom",
+      "budget": {
+        "birds": 0,
+        "particles": 0,
+        "events": 0
+      },
+      "limits": {
+        "vegetation": 1,
+        "fine": 0.45,
+        "water": 0.8,
+        "clouds": 1,
+        "shadows": 0.1,
+        "birds": 6,
+        "particles": 8,
+        "events": 2,
+        "cpuHz": 10
+      },
+      "activeBirds": 0,
+      "activeEvents": 0,
+      "habitat": "built",
+      "wind": {
+        "x": 0.26050764553957173,
+        "z": -0.12514014319459868,
+        "speed": 0.28868107906528084,
+        "gust": 0.0009386190401750724
+      },
+      "cpuMs": 0.09999999962747097,
+      "maxCpuMs": 3.400000000372529,
+      "provenance": {
+        "habitat": "mapped classification, unknown preserved",
+        "wind": "simulated",
+        "weather": "simulated",
+        "birds": "generic artistic silhouettes",
+        "current": "unverified artistic direction"
+      },
+      "resources": {
+        "cpuObjects": 10,
+        "extraDrawCallsMax": 11,
+        "extraTextures": 0,
+        "cloudMaterials": 1,
+        "birdMaterials": 1,
+        "particleMaterials": 1
+      }
+    }
+  },
+  "fauna": {
+    "solo": true,
+    "pair": true,
+    "group": true,
+    "max": 6,
+    "leafFrames": 71,
+    "eventFrames": 278
+  },
+  "lod": {
+    "unchanged": true,
+    "nature": {
+      "treeCells": 125,
+      "farCells": 116,
+      "cells": 250,
+      "resident": 0,
+      "builds": 0,
+      "pending": 0,
+      "work": 0,
+      "needed": 4,
+      "preparation": null
+    },
+    "decorations": {
+      "requests": 48,
+      "completed": 0,
+      "cancelled": 152,
+      "stale": 0,
+      "failed": 0,
+      "installed": 0,
+      "cacheHits": 0,
+      "bytes": 3312000,
+      "maxDecodeCpuMs": 0,
+      "maxFetchDecodeWallMs": 0,
+      "maxInstallMs": 0,
+      "maxDisposeMs": 0,
+      "maxTickMs": 0.8000000007450581,
+      "active": 2,
+      "ready": 0
+    }
+  },
+  "lifecycle": {
+    "before": {
+      "objects": 10,
+      "controls": 1
+    },
+    "timings": [
+      {
+        "createCpuMs": 5.400000000372529,
+        "updateCpuMs": 0.3999999985098839,
+        "disposeCpuMs": 1.5
+      },
+      {
+        "createCpuMs": 3.200000001117587,
+        "updateCpuMs": 0.2999999988824129,
+        "disposeCpuMs": 0.5
+      },
+      {
+        "createCpuMs": 2.600000001490116,
+        "updateCpuMs": 0.09999999962747097,
+        "disposeCpuMs": 0.19999999925494194
+      },
+      {
+        "createCpuMs": 2.800000000745058,
+        "updateCpuMs": 0.2999999988824129,
+        "disposeCpuMs": 0.10000000149011612
+      },
+      {
+        "createCpuMs": 3.699999999254942,
+        "updateCpuMs": 0.40000000037252903,
+        "disposeCpuMs": 0.09999999962747097
+      },
+      {
+        "createCpuMs": 3.5,
+        "updateCpuMs": 1.199999999254942,
+        "disposeCpuMs": 0.2000000011175871
+      },
+      {
+        "createCpuMs": 3,
+        "updateCpuMs": 0.19999999925494194,
+        "disposeCpuMs": 0.09999999962747097
+      },
+      {
+        "createCpuMs": 3.100000001490116,
+        "updateCpuMs": 0.19999999925494194,
+        "disposeCpuMs": 0.09999999962747097
+      },
+      {
+        "createCpuMs": 3.599999999627471,
+        "updateCpuMs": 0,
+        "disposeCpuMs": 0.2000000011175871
+      },
+      {
+        "createCpuMs": 3,
+        "updateCpuMs": 0.09999999962747097,
+        "disposeCpuMs": 0.19999999925494194
+      },
+      {
+        "createCpuMs": 2.900000000372529,
+        "updateCpuMs": 0.2000000011175871,
+        "disposeCpuMs": 0.09999999962747097
+      },
+      {
+        "createCpuMs": 2.400000000372529,
+        "updateCpuMs": 0.09999999962747097,
+        "disposeCpuMs": 0.09999999962747097
+      }
+    ],
+    "after": {
+      "objects": 10,
+      "controls": 1
+    }
+  },
+  "silent": {
+    "diagnostics": {
+      "decorations": {
+        "requests": 48,
+        "completed": 2,
+        "cancelled": 152,
+        "stale": 0,
+        "failed": 0,
+        "installed": 0,
+        "cacheHits": 0,
+        "bytes": 3312000,
+        "maxDecodeCpuMs": 0.30000000074505806,
+        "maxFetchDecodeWallMs": 49.90000000037253,
+        "maxInstallMs": 0,
+        "maxDisposeMs": 0,
+        "maxTickMs": 0.8000000007450581,
+        "active": 2,
+        "ready": 0
+      },
+      "terrain": {
+        "preparationMs": 7,
+        "tiles": 25,
+        "fineTriangles": 120128,
+        "farTriangles": 111104,
+        "farTiles": 0,
+        "maxFarErrorM": 0.25,
+        "surface": "integrated",
+        "water": "mapped-outline-dem-drape-v1"
+      },
+      "nature": {
+        "treeCells": 125,
+        "farCells": 116,
+        "cells": 250,
+        "resident": 0,
+        "builds": 0,
+        "pending": 0,
+        "work": 0,
+        "needed": 4,
+        "preparation": null
+      },
+      "climate": {
+        "mode": "real",
+        "date": "2026-10-12T12:00:00.000Z",
+        "solar": {
+          "altitude": 0.6270125559533279,
+          "azimuth": 3.2338196651416067,
+          "month": 10
+        },
+        "weather": {
+          "cloud": 0.16,
+          "mist": 0,
+          "wind": 0.35,
+          "rain": 0
+        },
+        "simulation": true
+      },
+      "earthLife": {
+        "time": 4001.2,
+        "profile": "quality",
+        "budget": {
+          "birds": 1,
+          "particles": 0,
+          "events": 0
+        },
+        "limits": {
+          "vegetation": 1,
+          "fine": 1,
+          "water": 1,
+          "clouds": 1,
+          "shadows": 0.15,
+          "birds": 9,
+          "particles": 16,
+          "events": 3,
+          "cpuHz": 10
+        },
+        "activeBirds": 1,
+        "activeEvents": 0,
+        "habitat": "wood",
+        "wind": {
+          "x": 0.2784144453970411,
+          "z": -0.1406747801914736,
+          "speed": 0.3118174371044185,
+          "gust": 0
+        },
+        "cpuMs": 0,
+        "maxCpuMs": 4.099999999627471,
+        "provenance": {
+          "habitat": "mapped classification, unknown preserved",
+          "wind": "simulated",
+          "weather": "simulated",
+          "birds": "generic artistic silhouettes",
+          "current": "unverified artistic direction"
+        },
+        "resources": {
+          "cpuObjects": 10,
+          "extraDrawCallsMax": 11,
+          "extraTextures": 0,
+          "cloudMaterials": 1,
+          "birdMaterials": 1,
+          "particleMaterials": 1
+        }
+      },
+      "render": {
+        "calls": 166,
+        "triangles": 264941,
+        "geometries": 167
+      },
+      "architecture": [
+        {
+          "version": "poitou-v1",
+          "buildings": 921,
+          "inferredHeights": 920,
+          "pitchedRoofs": 921,
+          "openings": 10713,
+          "cells": 69,
+          "meshes": 258,
+          "triangles": 189939,
+          "builds": 1,
+          "generationMs": 2.800000000745058
+        }
+      ],
+      "architectureMemory": {
+        "triangles": 189939,
+        "bytes": 16755350,
+        "meshes": 258,
+        "detailCells": 0,
+        "detailBuilds": 0,
+        "detailMs": 0,
+        "evictions": 0
+      },
+      "mode": "third",
+      "ready": true,
+      "position": [
+        -140,
+        -4.320000000000007,
+        716
+      ],
+      "camera": [
+        900,
+        40,
+        900
+      ],
+      "zoom": 5,
+      "smoothZoom": 5,
+      "yaw": 0.65,
+      "routeIndex": 1,
+      "quality": "high",
+      "natureAnchors": 2500,
+      "autoWalk": false,
+      "walkMessage": "Prêt · rejoindre une voie OSM",
+      "sound": true,
+      "soundState": "running",
+      "avatarVisible": true
+    },
+    "objects": 10,
+    "controls": 1,
+    "geometry": 167,
+    "textures": 7,
+    "cloudVisible": true,
+    "audioVolume": 0,
+    "audioGain": 0.0009739071829244494,
+    "audioState": "running"
+  },
+  "waterControls": {
+    "off1": 3339096262,
+    "off2": 3339096262,
+    "on1": 369724678,
+    "on2": 3229033993
+  },
+  "shaderModes": [
+    {
+      "water": 0,
+      "uniforms": [
+        "isOrthographic",
+        "modelViewMatrix",
+        "projectionMatrix",
+        "viewMatrix",
+        "normalMatrix",
+        "directionalLights[0].direction",
+        "directionalLights[0].color",
+        "hemisphereLights[0].direction",
+        "hemisphereLights[0].skyColor",
+        "hemisphereLights[0].groundColor",
+        "earthOrigin",
+        "earthExtent",
+        "roadColors[0]",
+        "roadEdgeOrigin",
+        "roadEdgeExtent",
+        "roadEdgeRange",
+        "diffuse",
+        "emissive",
+        "opacity",
+        "fogColor",
+        "fogNear",
+        "fogFar",
+        "ambientLightColor",
+        "earthCover",
+        "roadAtlas",
+        "roadEdges",
+        "natureSoil"
+      ],
+      "attributes": [
+        "position",
+        "normal",
+        "color",
+        "earthWater",
+        "earthRoad"
+      ]
+    },
+    {
+      "wind": 0,
+      "uniforms": [
+        "isOrthographic",
+        "modelViewMatrix",
+        "projectionMatrix",
+        "normalMatrix",
+        "directionalLights[0].direction",
+        "directionalLights[0].color",
+        "hemisphereLights[0].direction",
+        "hemisphereLights[0].skyColor",
+        "hemisphereLights[0].groundColor",
+        "diffuse",
+        "emissive",
+        "opacity",
+        "fogColor",
+        "fogNear",
+        "fogFar",
+        "ambientLightColor"
+      ],
+      "attributes": [
+        "instanceMatrix",
+        "position",
+        "normal"
+      ]
+    },
+    {
+      "wind": 0,
+      "uniforms": [
+        "isOrthographic",
+        "modelViewMatrix",
+        "projectionMatrix",
+        "normalMatrix",
+        "directionalLights[0].direction",
+        "directionalLights[0].color",
+        "hemisphereLights[0].direction",
+        "hemisphereLights[0].skyColor",
+        "hemisphereLights[0].groundColor",
+        "natureSeason",
+        "diffuse",
+        "emissive",
+        "opacity",
+        "fogColor",
+        "fogNear",
+        "fogFar",
+        "ambientLightColor"
+      ],
+      "attributes": [
+        "instanceMatrix",
+        "instanceColor",
+        "position",
+        "normal",
+        "color"
+      ]
+    },
+    {
+      "wind": 0,
+      "uniforms": [
+        "isOrthographic",
+        "modelViewMatrix",
+        "projectionMatrix",
+        "normalMatrix",
+        "directionalLights[0].direction",
+        "directionalLights[0].color",
+        "hemisphereLights[0].direction",
+        "hemisphereLights[0].skyColor",
+        "hemisphereLights[0].groundColor",
+        "natureSeason",
+        "diffuse",
+        "emissive",
+        "opacity",
+        "fogColor",
+        "fogNear",
+        "fogFar",
+        "ambientLightColor"
+      ],
+      "attributes": [
+        "instanceMatrix",
+        "instanceColor",
+        "position",
+        "normal",
+        "color"
+      ]
+    },
+    {
+      "uniforms": [
+        "isOrthographic",
+        "modelViewMatrix",
+        "projectionMatrix",
+        "normalMatrix",
+        "mapTransform",
+        "directionalLights[0].direction",
+        "directionalLights[0].color",
+        "hemisphereLights[0].direction",
+        "hemisphereLights[0].skyColor",
+        "hemisphereLights[0].groundColor",
+        "diffuse",
+        "emissive",
+        "opacity",
+        "fogColor",
+        "fogNear",
+        "fogFar",
+        "ambientLightColor",
+        "map"
+      ],
+      "attributes": [
+        "position",
+        "normal",
+        "uv",
+        "color"
+      ]
+    },
+    {
+      "uniforms": [
+        "isOrthographic",
+        "modelViewMatrix",
+        "projectionMatrix",
+        "normalMatrix",
+        "mapTransform",
+        "directionalLights[0].direction",
+        "directionalLights[0].color",
+        "hemisphereLights[0].direction",
+        "hemisphereLights[0].skyColor",
+        "hemisphereLights[0].groundColor",
+        "diffuse",
+        "emissive",
+        "opacity",
+        "fogColor",
+        "fogNear",
+        "fogFar",
+        "ambientLightColor",
+        "map"
+      ],
+      "attributes": [
+        "position",
+        "normal",
+        "uv",
+        "color"
+      ]
+    },
+    {
+      "uniforms": [
+        "isOrthographic",
+        "modelViewMatrix",
+        "projectionMatrix",
+        "normalMatrix",
+        "mapTransform",
+        "directionalLights[0].direction",
+        "directionalLights[0].color",
+        "hemisphereLights[0].direction",
+        "hemisphereLights[0].skyColor",
+        "hemisphereLights[0].groundColor",
+        "diffuse",
+        "emissive",
+        "opacity",
+        "fogColor",
+        "fogNear",
+        "fogFar",
+        "ambientLightColor",
+        "map"
+      ],
+      "attributes": [
+        "position",
+        "normal",
+        "uv",
+        "color"
+      ]
+    },
+    {
+      "uniforms": [
+        "isOrthographic",
+        "modelViewMatrix",
+        "projectionMatrix",
+        "normalMatrix",
+        "directionalLights[0].direction",
+        "directionalLights[0].color",
+        "hemisphereLights[0].direction",
+        "hemisphereLights[0].skyColor",
+        "hemisphereLights[0].groundColor",
+        "diffuse",
+        "emissive",
+        "opacity",
+        "fogColor",
+        "fogNear",
+        "fogFar",
+        "ambientLightColor"
+      ],
+      "attributes": [
+        "position",
+        "normal",
+        "color"
+      ]
+    }
+  ],
+  "restored": {
+    "time": 0.2,
+    "profile": "custom",
+    "budget": {
+      "birds": 0,
+      "particles": 0,
+      "events": 0
+    },
+    "limits": {
+      "vegetation": 1,
+      "fine": 0.45,
+      "water": 0,
+      "clouds": 1,
+      "shadows": 0.1,
+      "birds": 6,
+      "particles": 8,
+      "events": 2,
+      "cpuHz": 10
+    },
+    "activeBirds": 0,
+    "activeEvents": 0,
+    "habitat": "built",
+    "wind": {
+      "x": 0.2600809582495844,
+      "z": -0.1257226291207441,
+      "speed": 0.28858227753504934,
+      "gust": 0.00029105395820985054
+    },
+    "cpuMs": 1,
+    "maxCpuMs": 1,
+    "provenance": {
+      "habitat": "mapped classification, unknown preserved",
+      "wind": "simulated",
+      "weather": "simulated",
+      "birds": "generic artistic silhouettes",
+      "current": "unverified artistic direction"
+    },
+    "resources": {
+      "cpuObjects": 10,
+      "extraDrawCallsMax": 11,
+      "extraTextures": 0,
+      "cloudMaterials": 1,
+      "birdMaterials": 1,
+      "particleMaterials": 1
+    }
+  },
+  "errors": [],
+  "checks": [
+    "four profiles",
+    "custom cloud toggle",
+    "solo/pair/group real objects",
+    "building/terrain envelope",
+    "LOD does not move instances",
+    "single audio context, volume and mute",
+    "12 create/dispose cycles"
+  ]
+}

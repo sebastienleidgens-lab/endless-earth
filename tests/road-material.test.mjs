@@ -12,7 +12,7 @@ import {roadStyle} from '../src/world/road-style.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 mkdirSync('work/road-tests',{recursive:true});
 for(const [input,output] of [['src/world/road-material.ts','material'],['src/nature/surfaces.ts','surface']]){
- let code=transpileModule(readFileSync(input,'utf8'),{compilerOptions:{target:9,module:99}}).outputText;
+ let code=transpileModule(readFileSync(input,'utf8'),{compilerOptions:{target:9,module:99}}).outputText.replaceAll("'../earthlife/","'../../src/earthlife/");
  code=code.replace("'./road-texture.mjs'","'../../src/world/road-texture.mjs'").replace("'../world/road-material'","'./material.mjs'");writeFileSync(`work/road-tests/${output}.mjs`,code);
 }
 const {groundDetail}=await import('../work/road-tests/surface.mjs');

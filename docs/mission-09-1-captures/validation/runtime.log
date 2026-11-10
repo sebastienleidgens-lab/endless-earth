@@ -1,0 +1,73 @@
+PASS EarthLife runtime {
+  solo: true,
+  pair: true,
+  group: true,
+  max: 6,
+  leafFrames: 71,
+  eventFrames: 278
+} {
+  before: { objects: 10, controls: 1 },
+  timings: [
+    {
+      createCpuMs: 5.400000000372529,
+      updateCpuMs: 0.3999999985098839,
+      disposeCpuMs: 1.5
+    },
+    {
+      createCpuMs: 3.200000001117587,
+      updateCpuMs: 0.2999999988824129,
+      disposeCpuMs: 0.5
+    },
+    {
+      createCpuMs: 2.600000001490116,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.19999999925494194
+    },
+    {
+      createCpuMs: 2.800000000745058,
+      updateCpuMs: 0.2999999988824129,
+      disposeCpuMs: 0.10000000149011612
+    },
+    {
+      createCpuMs: 3.699999999254942,
+      updateCpuMs: 0.40000000037252903,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 3.5,
+      updateCpuMs: 1.199999999254942,
+      disposeCpuMs: 0.2000000011175871
+    },
+    {
+      createCpuMs: 3,
+      updateCpuMs: 0.19999999925494194,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 3.100000001490116,
+      updateCpuMs: 0.19999999925494194,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 3.599999999627471,
+      updateCpuMs: 0,
+      disposeCpuMs: 0.2000000011175871
+    },
+    {
+      createCpuMs: 3,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.19999999925494194
+    },
+    {
+      createCpuMs: 2.900000000372529,
+      updateCpuMs: 0.2000000011175871,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 2.400000000372529,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.09999999962747097
+    }
+  ],
+  after: { objects: 10, controls: 1 }
+}

@@ -1,3 +1,7 @@
+// @ts-ignore Shared shader module.
+import {lifeUniforms,cloudReceiver} from '../earthlife/state.mjs';
+// @ts-ignore Shared shader module.
+import {waterPrelude,waterColor} from '../earthlife/water.mjs';
 import {roadUniforms,roadShaderPrelude,roadColorShader,roadNormalShader,type RoadEdges} from '../world/road-material';
 import * as THREE from 'three';
 export const environmentalTime={value:0},environmentalWind={value:.35};
@@ -7,7 +11,7 @@ for(let z=0;z<64;z++)for(let x=0;x<64;x++){const i=(z*64+x)*4,n=Math.sin(x*127.1
 const soilTexture=new THREE.DataTexture(pixels,64,64);soilTexture.wrapS=soilTexture.wrapT=THREE.RepeatWrapping;soilTexture.minFilter=THREE.LinearMipmapLinearFilter;soilTexture.magFilter=THREE.LinearFilter;soilTexture.generateMipmaps=true;soilTexture.needsUpdate=true;
 export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edges:RoadEdges|null=null,water=false){
  material.onBeforeCompile=s=>{
-  s.uniforms.natureSoil={value:soilTexture};
+  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,lifeUniforms);
   if(water){s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;}
   if(roads){Object.assign(s.uniforms,roadUniforms);if(edges){
    s.uniforms.roadEdges={value:edges.texture};s.uniforms.roadEdgeOrigin={value:new THREE.Vector2(...edges.manifest.origin)};
@@ -17,14 +21,12 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
   s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nnaturePosition=position;'+(roads?'earthRoadType=earthRoad;':''));
   if(water){s.vertexShader='attribute float earthWater;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('earthRoadType=earthRoad;','earthRoadType=earthWater>.5?7.:earthRoad;');}
   s.fragmentShader=(roads?'varying float earthRoadType;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
-  if(water)s.fragmentShader='uniform float natureTime; uniform float natureWind;\n'+s.fragmentShader;
+  if(water)s.fragmentShader=waterPrelude+s.fragmentShader;
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    vec2 p=naturePosition.xz;
    ${water?`float mineralHeight=0.;float mineralDetail=0.;
    if(earthRoadType>6.5){
-    float ripple=sin(p.x*.9+p.y*.55+natureTime*.55)*sin(p.y*1.3-p.x*.3+natureTime*.31);
-    float grazing=1.-abs(dot(normalize(vViewPosition),viewMatrix[1].xyz));grazing=grazing*grazing*grazing;
-    diffuseColor.rgb=mix(vec3(.092,.168,.145)*(.96+ripple*(.025+natureWind*.035)*(1.-smoothstep(25.,100.,length(vViewPosition)))),vec3(.32,.43,.45),grazing*.38);
+    ${waterColor('naturePosition')}
    }else{`:''}
    vec4 soilA=texture2D(natureSoil,p*.017);
    vec4 soilB=texture2D(natureSoil,mat2(.8,.6,-.6,.8)*p*.0113+vec2(.37,.13));
@@ -38,11 +40,10 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
   if(roads)s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n'+roadNormalShader);
  };
  material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v3-'+!!edges+'-'+water:'nature-ground-atlas-v4';
+ cloudReceiver(material,{water});
 }
-export function waterMaterial(){const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;material.onBeforeCompile=s=>{s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=position;');s.fragmentShader='uniform float natureTime; uniform float natureWind; varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
- float ripple=sin(waterPosition.x*.9+waterPosition.z*.55+natureTime*.55)*sin(waterPosition.z*1.3-waterPosition.x*.3+natureTime*.31);
- float calm=sin(waterPosition.x*.019+waterPosition.z*.027)*.5+.5;
- diffuseColor.rgb *= .91+ripple*(.035+natureWind*.045)+calm*.08;
- vec3 waterNormal=viewMatrix[1].xyz;
- float grazing=1.0-abs(dot(normalize(vViewPosition),waterNormal));grazing=grazing*grazing*grazing;
- diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.55,.65,.67),grazing*.16);`)};material.customProgramCacheKey=()=> 'anglin-ripples-v3';return material}
+export function waterMaterial(){
+ const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;
+ material.onBeforeCompile=s=>{Object.assign(s.uniforms,lifeUniforms);s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=(modelMatrix*vec4(position,1.)).xyz;');s.fragmentShader=waterPrelude+'varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\n'+waterColor('waterPosition'))};
+ material.customProgramCacheKey=()=> 'earthlife-current-v1';cloudReceiver(material,{water:true});return material;
+}

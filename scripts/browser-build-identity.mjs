@@ -14,7 +14,7 @@ const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['-
 try{
  const page=await browser.newPage({viewport:{width:1280,height:800}}),requests=[],errors=[];
  page.setDefaultTimeout(90000);page.on('request',r=>requests.push(r.url()));page.on('pageerror',e=>errors.push(String(e)));
- await page.goto('http://127.0.0.1:4173/endless-earth/');const badge=page.locator('.build-indicator');await badge.waitFor();
+ await page.goto('http://127.0.0.1:4173/endless-earth/');if(process.env.EARTHLIFE_WAIT_WORLD==='1')await page.waitForFunction(()=>!document.querySelector('#auto-walk')?.disabled&&document.querySelector('.hud>small')?.textContent.includes('Sources IGN'));const badge=page.locator('.build-indicator');await badge.waitFor();
  assert.equal(await badge.getAttribute('data-commit'),expected.commit);assert.equal(await badge.getAttribute('data-environment'),'production');assert.equal(await badge.getAttribute('data-dirty'),String(expected.dirty));
  assert.equal(await page.locator('.build-indicator__mission').innerText(),`Mission ${expected.mission.number} — ${expected.mission.name}`);assert.match(await badge.innerText(),new RegExp(expected.shortCommit));assert.equal(await page.locator('.build-indicator__status').innerText(),'Production');
  const layouts=[];

@@ -6,6 +6,8 @@ import { surfaceKind } from './walk.mjs';
 // Original procedural synthesis: no external recordings or asset licenses.
 export class Soundscape {
  context:AudioContext|null=null; master:GainNode|null=null;wind:GainNode|null=null;river:GainNode|null=null;
+ volume=.7;
+ setVolume(value:number){this.volume=Math.max(0,Math.min(1,value));if(this.context&&this.master)this.master.gain.setTargetAtTime(this.enabled?this.volume*.4:0,this.context.currentTime,.15)}
  enabled=false;distance=0;nextBird=0;stepBuffer:AudioBuffer|null=null;
  private transition:Promise<boolean>=Promise.resolve(false);
  toggle(){
@@ -29,7 +31,7 @@ export class Soundscape {
   const enable=!this.enabled;
   if(enable)await this.context.resume();
   this.master!.gain.cancelScheduledValues(this.context.currentTime);
-  this.master!.gain.setTargetAtTime(enable?.28:0,this.context.currentTime,.08);
+  this.master!.gain.setTargetAtTime(enable?this.volume*.4:0,this.context.currentTime,.08);
   if(!enable)await this.context.suspend();
   this.enabled=enable;
   return this.enabled;
@@ -53,7 +55,7 @@ export class Soundscape {
  }
  update(p:{x:number;z:number},travel:number,wind:number,yaw:number,climate?:{solar:{altitude:number};weather:{rain:number;wind:number}}){
   if(!this.enabled||!this.context)return;
-  const c=this.context;this.wind!.gain.setTargetAtTime((climate?.weather.wind??wind)*(.17+Math.sin(c.currentTime*.073)*.025),c.currentTime,.5);
+  const c=this.context;this.wind!.gain.setTargetAtTime(wind*(.17+Math.sin(c.currentTime*.073)*.025),c.currentTime,.5);
   const nearest=waterLines.reduce((v,line)=>line.slice(1).reduce((d,q,i)=>Math.min(d,segmentDistance(p,line[i],q)),v),Infinity);
   this.river!.gain.setTargetAtTime(Math.max(0,1-nearest/65)*.10+(climate?.weather.rain??0)*.08,c.currentTime,.5);
   this.distance+=travel;
