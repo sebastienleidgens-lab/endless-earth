@@ -1,0 +1,98 @@
+PASS EarthLife runtime {
+  solo: true,
+  pair: true,
+  group: true,
+  max: 6,
+  leafFrames: 71,
+  eventFrames: 278
+} {
+  before: { objects: 10, controls: 1 },
+  timings: [
+    {
+      createCpuMs: 2.7000000001862645,
+      updateCpuMs: 3.5,
+      disposeCpuMs: 0.7000000001862645
+    },
+    {
+      createCpuMs: 1.3999999994412065,
+      updateCpuMs: 0.10000000055879354,
+      disposeCpuMs: 0
+    },
+    { createCpuMs: 1.099999999627471, updateCpuMs: 0, disposeCpuMs: 0 },
+    {
+      createCpuMs: 3.099999999627471,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.10000000055879354
+    },
+    {
+      createCpuMs: 0.599999999627471,
+      updateCpuMs: 0.20000000018626451,
+      disposeCpuMs: 0
+    },
+    {
+      createCpuMs: 3.900000000372529,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 0.900000000372529,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0
+    },
+    {
+      createCpuMs: 0.7999999998137355,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.10000000055879354
+    },
+    {
+      createCpuMs: 0.8999999994412065,
+      updateCpuMs: 0.10000000055879354,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 0.7999999998137355,
+      updateCpuMs: 0.10000000055879354,
+      disposeCpuMs: 0
+    },
+    {
+      createCpuMs: 0.7000000001862645,
+      updateCpuMs: 0.09999999962747097,
+      disposeCpuMs: 0.09999999962747097
+    },
+    {
+      createCpuMs: 0.7000000001862645,
+      updateCpuMs: 0.20000000018626451,
+      disposeCpuMs: 0
+    }
+  ],
+  after: { objects: 10, controls: 1 }
+}
+PASS memory audit before
+PASS memory audit after
+PASS Earth data none 21235
+PASS Earth data missing-manifest 21235
+PASS Earth data bad-lod 21235
+PASS Earth data stale-osm 21235
+PASS Earth data missing-surface 0
+PASS Earth data bad-surface 0
+PASS Earth data stale-surface 0
+PASS Earth data missing-edge 21235
+PASS Earth data bad-edge 21235
+PASS Earth data stale-edge 21235
+PASS Earth data missing-water-class 0
+PASS Earth data missing-environment 21235
+PASS Earth data bad-environment 21235
+PASS Earth data stale-environment 21235
+PASS Earth data missing-decorations 21235
+PASS Earth data stale-decorations 21235
+PASS Earth data bad-decoration-static 21235
+PASS Earth data missing-nature-detail 21235
+PASS Earth data missing-architecture-detail 21235
+PASS camera: remembered wheel zoom, drag lock, idle delay, recenter, mapped wall collision, three views
+STOP PASS { building: 'yes' } [ -12.979920673087975, -1.4856768062229406, -33.126768527461465 ] samples 13
+STOP PASS { highway: 'footway', access: 'private' } [ -13.716491839912045, -1.489972674472753, -33.87157694436025 ] samples 15
+STOP PASS { natural: 'water' } [ -14.371741691395028, -1.4937942563639126, -34.5341546103589 ] samples 13
+STOP PASS { barrier: 'wall' } [ -15.06705991107569, -1.5115434162896264, -35.237248738621076 ] samples 14
+STOP PASS { historic: 'castle' } [ -15.348884548318425, -1.5386931328179685, -35.52222508763145 ] samples 10
+PASS: live building, private area, water, wall and historic ruins injected AFTER Auto Walk starts; every sampled frame legal.
+PASS existing runtime, memory, 19 degraded-data cases, camera and collision safety

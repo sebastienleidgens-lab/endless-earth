@@ -4,7 +4,7 @@ export interface SoundContext {
  altitudeM:number|null;habitat:string;solarAltitude:number|null;
  localHour:number|null;timeBasis:'civil'|'mean-solar-estimate'|'unknown';season:string|null;
  weather:{wind:number;rain:number;cloud?:number;mist?:number}|null;
- position:Vec3;influences:Record<string,number>;
+ position:Vec3;water:{distanceM:number;point:{x:number;z:number};provenance:string}|null;emitters:{id:string;position:Vec3;habitat:string;geo:{lat:number;lon:number}}[];ground:{surface:string|null;material:string;basis:string;confidence:string}|null;influences:Record<string,number>;
  sources:{id:string;kind:string;position:Vec3;velocity?:Vec3}[];
  provenance:{geography:string;weather:string;region?:string};fixture:boolean;
 }

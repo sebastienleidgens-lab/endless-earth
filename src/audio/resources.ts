@@ -1,6 +1,7 @@
-import manifest from '../../public/audio/manifest.json';
+// @ts-ignore Generated lightweight runtime metadata; full rights manifest is not bundled.
+import {AUDIO_ASSETS} from './catalog.mjs';
 import type {AudioAsset} from './types';
-export const ASSETS=manifest.assets as Record<string,AudioAsset>;
+export const ASSETS=AUDIO_ASSETS as Record<string,Pick<AudioAsset,'file'|'source'|'bytes'|'duration'>>;
 export const CACHE_LIMIT=24*1024*1024;
 /** Progressive, demand-only loader. Active voices pin their buffers in the LRU.
  * AudioContext is fixed at 24 kHz so cache accounting includes decoded resampling. */

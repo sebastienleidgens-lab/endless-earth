@@ -1,0 +1,466 @@
+{
+  "method": "Same actual bird buffer in OfflineAudioContext: listener turns 180 degrees, source distance 12 vs 100 m, explicit host occlusion. Signal energy only, no perceptual claim.",
+  "results": [
+    {
+      "name": "near-left",
+      "energy": [
+        0.4698843978677482,
+        0.03097078564261156
+      ],
+      "stats": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "position": {
+              "x": -12,
+              "y": 3,
+              "z": -5
+            },
+            "time": 0
+          }
+        ],
+        "nodes": 2,
+        "voices": 0,
+        "peakVoices": 1,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "profile": "balanced",
+        "cacheBytes": 624000,
+        "peakBytes": 624000,
+        "cached": 1,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 1,
+        "decodes": 1,
+        "failures": {}
+      }
+    },
+    {
+      "name": "turned",
+      "energy": [
+        0.01577894492454303,
+        0.19800345948470116
+      ],
+      "stats": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "position": {
+              "x": -12,
+              "y": 3,
+              "z": -5
+            },
+            "time": 0
+          }
+        ],
+        "nodes": 2,
+        "voices": 0,
+        "peakVoices": 1,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "profile": "balanced",
+        "cacheBytes": 624000,
+        "peakBytes": 624000,
+        "cached": 1,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 1,
+        "decodes": 1,
+        "failures": {}
+      }
+    },
+    {
+      "name": "far",
+      "energy": [
+        0.0016443358623239458,
+        0.0006143518557766125
+      ],
+      "stats": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "position": {
+              "x": -100,
+              "y": 3,
+              "z": -5
+            },
+            "time": 0
+          }
+        ],
+        "nodes": 2,
+        "voices": 0,
+        "peakVoices": 1,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "profile": "balanced",
+        "cacheBytes": 624000,
+        "peakBytes": 624000,
+        "cached": 1,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 1,
+        "decodes": 1,
+        "failures": {}
+      }
+    },
+    {
+      "name": "occluded",
+      "energy": [
+        0.006904772232633744,
+        0.0005974973367589934
+      ],
+      "stats": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "position": {
+              "x": -12,
+              "y": 3,
+              "z": -5
+            },
+            "time": 0
+          }
+        ],
+        "nodes": 2,
+        "voices": 0,
+        "peakVoices": 1,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "profile": "balanced",
+        "cacheBytes": 624000,
+        "peakBytes": 624000,
+        "cached": 1,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 1,
+        "decodes": 1,
+        "failures": {}
+      }
+    },
+    {
+      "name": "budgets",
+      "saturated": {
+        "layers": [],
+        "activeSources": [
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "recording": "fs-811988",
+            "position": {
+              "x": 0,
+              "y": 2,
+              "z": -12
+            },
+            "diffuse": false,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": 12,
+            "refDistance": 4,
+            "transition": "fading out"
+          },
+          {
+            "asset": "step-stone-fs-521590-1",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "recording": "fs-811988",
+            "position": {
+              "x": 1,
+              "y": 2,
+              "z": -12
+            },
+            "diffuse": false,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": 12.041594578792294,
+            "refDistance": 4,
+            "transition": "fading out"
+          },
+          {
+            "asset": "step-stone-fs-521590-3",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "step-stone-fs-521590-3",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "step-stone-fs-521590-2",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "step-stone-fs-521590-2",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "step-stone-fs-521590-3",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "step-stone-fs-521590-3",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "step-stone-fs-521590-1",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "step-stone-fs-521590-1",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          },
+          {
+            "asset": "step-stone-fs-521590-2",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0,
+            "retirementGain": 1,
+            "masterGain": 0,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual stone contact, speed 1.35 m/s",
+            "transition": "scheduled"
+          }
+        ],
+        "recentEvents": [
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "position": {
+              "x": 0,
+              "y": 2,
+              "z": -12
+            },
+            "time": 0
+          },
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "position": {
+              "x": 1,
+              "y": 2,
+              "z": -12
+            },
+            "time": 0
+          }
+        ],
+        "nodes": 52,
+        "voices": 12,
+        "peakVoices": 12,
+        "hrtf": 2,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 28,
+        "steps": 10,
+        "profile": "balanced",
+        "cacheBytes": 708956,
+        "peakBytes": 708956,
+        "cached": 4,
+        "pending": 1,
+        "activeLoads": 1,
+        "loads": 5,
+        "decodes": 4,
+        "failures": {}
+      },
+      "after": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "position": {
+              "x": 0,
+              "y": 2,
+              "z": -12
+            },
+            "time": 0
+          },
+          {
+            "asset": "bird-blackbird-fs-811988-1",
+            "position": {
+              "x": 1,
+              "y": 2,
+              "z": -12
+            },
+            "time": 0
+          }
+        ],
+        "nodes": 2,
+        "voices": 0,
+        "peakVoices": 12,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "dropped": 28,
+        "steps": 10,
+        "profile": "eco",
+        "cacheBytes": 708956,
+        "peakBytes": 708956,
+        "cached": 4,
+        "pending": 1,
+        "activeLoads": 1,
+        "loads": 5,
+        "decodes": 4,
+        "failures": {}
+      },
+      "disposed": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [],
+        "nodes": 0,
+        "voices": 0,
+        "peakVoices": 12,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "dropped": 28,
+        "steps": 10,
+        "profile": "eco",
+        "cacheBytes": 0,
+        "peakBytes": 708956,
+        "cached": 0,
+        "pending": 0,
+        "activeLoads": 1,
+        "loads": 5,
+        "decodes": 4,
+        "failures": {}
+      }
+    }
+  ]
+}

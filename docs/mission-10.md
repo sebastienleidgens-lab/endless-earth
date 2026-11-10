@@ -1,5 +1,7 @@
 # Mission 10 — Le monde a une voix
 
+> Document historique Mission 10. La correction 10.1 et sa bibliothèque distincte sont décrites dans [mission-10-1.md](mission-10-1.md). Les ressources originales ci-dessous sont archivées sous `public/audio/legacy`, inactives.
+
 ## Résultat et statut
 
 Moteur sonore commun implémenté et intégré au pilote d’Angles-sur-l’Anglin. Enregistrements autorisés de bois venteux, eau et pas ; mixage progressif, pas liés à la distance, spatialisation sélective, mémoire locale et événements probabilistes. Les régions urbaines/côtières/montagneuses sont des **fixtures synthétiques de contexte**, pas de nouveaux lieux rendus dans le jeu. Les sons humains/routiers sont provisoires et réservés à ces fixtures.
@@ -57,7 +59,7 @@ Appels d’oiseau admis selon habitat, soleil, saison, vent, pluie et région ; 
 
 ## Ressources et droits
 
-19 fichiers Ogg Vorbis, environ 1,92 Mo compressés au total, 24 kHz. [Manifestes et empreintes](../public/audio/manifest.json), [preuves de source](../public/audio/sources.json), [attributions visibles](../public/audio/credits.html). Les originaux ne sont pas embarqués ; leur URL et SHA-256 permettent la reproduction via `python scripts/prepare-audio.py --download` (FFmpeg requis). Le script vérifie les empreintes avant transformation. Sans `--download`, il réutilise les originaux dans `work/mission-10/`.
+19 fichiers Ogg Vorbis, environ 1,92 Mo compressés au total, 24 kHz. [Manifestes et empreintes](../public/audio/legacy/manifest.json), [preuves de source](../public/audio/legacy/sources.json), [attributions visibles](../public/audio/legacy/credits.html). Les originaux ne sont pas embarqués ; leur URL et SHA-256 permettent la reproduction via `python scripts/prepare-audio.py --download` (FFmpeg requis). Le script vérifie les empreintes avant transformation. Sans `--download`, il réutilise les originaux dans `work/mission-10/`.
 
 | Original | Auteur / droit | Adaptation |
 | --- | --- | --- |

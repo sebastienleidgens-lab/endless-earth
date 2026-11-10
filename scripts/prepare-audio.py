@@ -3,7 +3,7 @@ No network or synthesis runs in the game. --download fetches the four originals.
 """
 import argparse,json,pathlib,subprocess,hashlib,math,random,wave,struct
 ROOT=pathlib.Path(__file__).resolve().parents[1]
-OUT=ROOT/'public/audio'; WORK=ROOT/'work/mission-10'; OUT.mkdir(parents=True,exist_ok=True);WORK.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'public/audio/legacy'; WORK=ROOT/'work/mission-10'; OUT.mkdir(parents=True,exist_ok=True);WORK.mkdir(parents=True,exist_ok=True)
 def ff(source,target,filters,seconds=None,offset=0,stereo=False):
  args=['ffmpeg','-y','-v','error','-ss',str(offset),'-i',str(source)]
  if seconds:args+=['-t',str(seconds)]
