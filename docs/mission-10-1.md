@@ -72,6 +72,8 @@ Les médianes varient dans les deux sens. Cas défavorables conservés : forêt 
 
 CPU processus, heap, somme RSS, chargements, tailles de cache, p50/p95/max et tous les échantillons figurent dans [les mesures brutes](mission-10-1-evidence/performance-raw.json) et [la synthèse](mission-10-1-evidence/performance-summary.json). Les chargements comparatifs sont cumulatifs sur chaque passage, pas un débit ; la mémoire native décodée est comptée séparément du heap. La somme RSS recompte des pages partagées. Aucune preuve de gain universel de mémoire processus.
 
+Identité et chargement de production vérifiés sur le commit propre `b011811` : quatre formats (1280×800, 390×844, 320×568, 844×390), monde chargé, titre Mission 10.1 lisible, aucune commande recouverte par le badge, aucune erreur navigateur ni requête de métadonnées Git. [Résultats et captures](mission-10-1-evidence/production/validation.json).
+
 Vérifications terminées : **146 tests JavaScript**, les deux suites Python MNT (deux tests), TypeScript/Vite, cinq démonstrations longues et quatre pistes isolées, rotation/distance/obstruction et saturation spatiale, activation utilisateur/clavier, bascules concurrentes, masquage/reprise et douze cycles de destruction. Non-régressions navigateur : EarthLife, mémoire/LOD/matrices, 19 cas de données dégradées, caméra et cinq obstacles injectés pendant la marche automatique. Les sources graphiques, géographiques, de navigation et le workflow Pages restent identiques à la base.
 
 Bibliothèque active : 11 204 378 octets FLAC. Bundle applicatif : 682,02 ko / gzip 190,84 ko, contre 667,18 / 187,73 ko pour Mission 10. L’avertissement Vite de chunk >500 ko reste présent. Aucun chargement audio avant activation volontaire dans les sondes navigateur.

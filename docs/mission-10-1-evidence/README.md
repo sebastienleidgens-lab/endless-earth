@@ -13,6 +13,7 @@ Télécharger le dossier et ouvrir [ecoute.html](ecoute.html), ou servir le dép
 - `spatial.json` : même phrase réelle complète (fenêtre 8 s) pour rotations, éloignement et obstruction fournie ; budgets saturés et nettoyage. La fenêtre historique de 2 s était inadaptée à des phrases de 6,5 s ; le contrôle porte maintenant sur leur durée entière.
 - `selection-rejections.json` : candidats écartés pour bruits parasites déclarés, dérivation artificielle, boucle courte ou preuves de droits insuffisantes. Les captations indépendantes sont les **33 sources**, pas les 82 découpes.
 - `performance-raw.json` / `performance-summary.json` : trois passages alternés, avant/après, son coupé/activé, mêmes stations, profil et adapter EarthLife, CPU préparation et audio, rendu logiciel synchronisé, CPU processus, heap/RSS, voix, cache et chargements. Tous les échantillons et extrêmes conservés.
+- `production/` et `checks/` : build propre, identité Mission 10.1, quatre formats et journaux des suites exécutées.
 - `regression/` : profils/modes shader réels, LOD/matrices/mémoire graphique, 19 cas dégradés, caméra et cinq obstacles pendant la marche. Les destinations historiques ne sont pas écrasées.
 
 ## Reproduire
