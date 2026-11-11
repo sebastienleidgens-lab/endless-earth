@@ -1,14 +1,99 @@
 # Mission 12 — La poésie des lieux
 
-## État : Jalon C livré pour validation artistique
+## État : Mission 12 complète livrée pour validation artistique finale
 
-Les Jalons **A, B et C** sont livrés. Les demandes successives **« Continue »** ont ouvert B après A, puis C après B. **D n'est pas commencé** et exige un nouvel accord explicite. Aucun merge ni déploiement public.
+Les Jalons **A, B, C et D** sont livrés. Les demandes **« Continue »** ont ouvert B puis C, et **« go »** a ouvert D. La validation artistique finale appartient au propriétaire. Aucun merge ni déploiement public.
 
 Branche indépendante `mission/12-poesie-des-lieux`, créée depuis le main GitHub vérifié **83d9258587177593bc3debd681544d7704a68882**, fusion de la Mission 11 par la PR #20. Le checkout fourni était encore à `0f699fa` : il a été actualisé avant de capturer la référence. Living Paintings / LP-01 et les workflows de production sont hors périmètre.
 
-Ouvrir [la galerie avant/après du Jalon C](mission-12-evidence/nature/index.html). Les galeries A et B restent conservées. Les captures et vidéos viennent du vrai moteur Three.js, sans illustration générée.
+Ouvrir [la galerie finale Mission 11 / Mission 12](mission-12-evidence/final/index.html). Les galeries A, B et C restent conservées. Les captures et vidéos viennent du vrai moteur Three.js, sans illustration générée.
 
-## Jalon C — Nature généreuse et vivante
+## Jalon D — ADN commun, harmonie et livraison finale
+
+L’accord **« go »** ouvre D depuis C `3cd692e693dbf727471d25a4a8b0f927ba428dc1`. Les quatre jalons sont maintenant livrés sur la même branche, avec un commit identifiable chacun. **Arrêt pour validation artistique finale**, PR #21 en brouillon, aucun merge ni déploiement public. Les galeries et preuves A/B/C restent conservées comme historique.
+
+Ouvrir **[la galerie finale Mission 11 / Mission 12](mission-12-evidence/final/index.html)**. Douze paires aux mêmes conditions, référence commutable vers C, deux films du même parcours de 450 m, deux observations immobiles et six configurations de fixtures. Les médias sont issus du vrai moteur ; la carte du parcours est explicitement une visualisation des sources. [Index et protocole des preuves](mission-12-evidence/final/README.md).
+
+### Un contrat commun qui règle les générateurs
+
+L’[ADN artistique version 1](art-dna.md) est codé dans `src/art/dna.mjs` et exporté en [JSON consultable](../public/art/dna.json). Il définit palettes, contrastes, échelles métriques, granularité, normales, réponse lumineuse, silhouettes, densités, distances de détail, animation et budgets. Sols, architecture, végétation et eau consomment les valeurs communes. Le ciel, la lumière, les saisons et le vent restent pilotés par Mission 11.
+
+La recherche est un paysage calme, tactile et modérément stylisé. D réduit le contraste des joints, le relief des normales et le grain minéral. Le détail de façade s’atténue de 24 à 110 m vers une moyenne stable ; au-delà, le shader évite la lecture d’atlas. Le sol s’atténue de 18 à 100 m. Les verts, écorces et détails bas partagent une palette ; l’éclat de l’eau est contenu. Aucun déplacement de sommet, nouvelle passe de rendu ou texture supplémentaire en D. Les distances de LOD, budgets d’arbres et caches précédents sont conservés.
+
+Trois niveaux sont explicites : le **moteur universel** garde mètres, navigation, streaming, lumière et budgets ; le **style régional** choisit matières par défaut, pentes de toits, végétation et nuances interprétées ; les **données locales** déterminent relief, emprises, eau, routes et occupation. Les observations restent prioritaires sur les défauts régionaux. Un changement de style ne modifie pas le terrain local. La graine géométrique du Poitou et les estimations précédentes sont conservées.
+
+### Deux terrains synthétiques et trois configurations
+
+La page de validation `/endless-earth/fixtures/regions.html`, servie par Vite, utilise les vrais générateurs communs d’architecture, d’écologie, de sol, d’eau et le ciel/vent Mission 11. Elle propose deux petits jeux de données locaux **entièrement synthétiques**, 220 × 180 m : village atlantique vallonné et terrain minéral méditerranéen. Aucune ville réelle n’est revendiquée. Cette page de développement n’est pas ajoutée aux entrées du build public.
+
+Chaque terrain est testé avec les configurations **Poitou**, **Atlantique pierre/ardoise** et **Méditerranée calcaire/couvert ouvert**, sans modification du code principal. Les toitures, palettes, essences génériques et densités diffèrent ; les cinq emprises et hauteurs synthétiques, la route de **5,5 m**, le repère de **1,65 m** et les octets du relief restent fixes quand le style change. Un toit explicitement documenté en ardoise dans les données de test garde sa priorité. Les deux autres styles ne sont pas importés dans le bundle du jeu principal.
+
+Les six combinaisons passent les tests de placement écologique, de dégagement et de répétition des identités. Trois rechargements de la même fixture conservent les ressources GPU. Les captures larges et proches sont liées dans la galerie ; le sélecteur permet une inspection interactive, également contrôlée à 390 × 844. [Résultats](mission-12-evidence/final/regional-fixtures.json). Ces fixtures démontrent la séparation technique, pas la génération ou la qualité artistique de toute la France. L’ingestion réelle reste celle du pilote d’Angles.
+
+### Une marche continue réelle de 450 mètres
+
+La commande AutoWalk ordinaire suit le graphe OSM inchangé depuis la rue du village vers le nord-ouest, sur **450 m**, avant et après. Première personne, Éco, **640 × 360**, après-midi clair, date fixe du 21 juin. Aucune téléportation, modification de vitesse ou accélération de simulation ; toutes les positions capturées passent le prédicat de collision et chaque déplacement reste inférieur à 0,4 m. La pause finale est incluse. Les fichiers VP8/Opus sont remuxés sans réencodage ou correction sonore.
+
+| Mesure native, enregistrement inclus | Mission 11 | Mission 12 complète |
+| --- | ---: | ---: |
+| Distance | 450 m | 450 m |
+| Temps entre première et dernière frame | 352,217 s | 352,022 s |
+| Images rendues | 3 163 | 2 736 |
+| Intervalle médian / P95 | 101,8 / 160,09 ms | 113,8 / 199,36 ms |
+| Intervalle maximal | 286,8 ms | 454,1 ms |
+| Heap JS après GC, début → fin | 82,00 → 82,72 Mo | 81,84 → 83,19 Mo |
+| Stockage externe après GC, début → fin | 38,97 → 39,56 Mo | 45,48 → 45,78 Mo |
+| Pics géométries / textures / programmes | 223 / 7 / 18 | 201 / 8 / 16 |
+| Cache audio maximal | 24 376 956 octets | 23 582 716 octets |
+| Voix simultanées maximales | 3 | 4 |
+
+Ces intervalles logiciels **ne valident pas une fluidité matérielle**. Les traces conservent les pics et l’enregistrement ; aucun gain de FPS uniforme n’est revendiqué. Les instantanés après GC incluent les caches chauds et ne prouvent pas l’absence de fuite pour toute durée future. [Synthèse et traces](mission-12-evidence/final/summary.json).
+
+Le trajet traverse des secteurs bâtis, passe près de maisons, ouvre le paysage puis atteint une classe de broussailles. L’eau reste à plus de **200 m** dans l’audit tous les 20 m. Les séquences de forêt et de berge sont donc **des inspections diagnostiques distinctes**, sur des poses compatibles avec les collisions ; aucune liaison piétonne inventée n’est montrée. [Carte et audit](mission-12-evidence/final/route-audit.json).
+
+La forêt est filmée sous trois régimes de vent pendant environ 33 s ; la berge du matin clair au soir pluvieux pendant environ 28 s. Eau, feuillage, nuages, oiseaux et petits événements restent sous les pilotes M11. Les événements et oiseaux ne sont pas forcés à apparaître pour une prise ; les calmes restent possibles. Les mouvements sont perceptibles dans les films, mais leur naturel et la discrétion des transitions restent à apprécier visuellement.
+
+### Son, matières et incertitudes
+
+Le son natif post-limiteur est conservé dans les quatre films. L’audit de contact relève des instantanés **durs** et **inconnus**, sans transformer un sol vert en herbe documentée. Les classes et contacts fiables antérieurs restent prioritaires. Les pas, eau, vent et activité ont les mêmes propriétaires M11 ; aucune nouvelle couche de torrent ou de vent n’est ajoutée. Les budgets audio restent respectés pendant les deux longues marches.
+
+Les habitats, classes d’eau et événements sonores restent inférés selon le système existant. Aucun débit mesuré ou couplage exact entre chaque oiseau visible et chaque cri n’est revendiqué. Ces limites restent documentées pour une mission sonore future ; aucun écart important suffisamment étayé n’a motivé une refonte audio. Le grain d’une texture n’ajoute pas une information géographique au moteur sonore.
+
+### Performance : coût complet et optimisation D
+
+**179 tests Node**, TypeScript/Vite et contrôle du jeu compilé passent. La galerie décode **31 images**, vérifie ses 12 paires, les deux références, quatre vidéos, filtres et largeur mobile. Les mesures de rendu portent sur **432 rendus**, quatre vues × trois profils × trois versions × trois passages alternés × quatre échantillons, à **800 × 600**. Caméras, date, météo et limites effectives sont contrôlées ; les appels et triangles C/D restent identiques. Ce sont des temps synchronisés/readback **SwiftShader**, pas des FPS GPU ou Android.
+
+| Profil | Surcoût D / Mission 11, selon la vue | Évolution D / C, selon la vue |
+| --- | --- | --- |
+| Éco | +10,3 à +27,8 % | −22,1 à −9,8 % |
+| Équilibré | +12,1 à +48,0 % | −15,3 à −4,8 % |
+| Qualité | +22,2 à +50,6 % | −14,3 à +2,2 % |
+
+D réduit généralement le coût de C ; la rue en Qualité ne montre pas de gain. Le coût complet par rapport à M11 reste significatif sur ce rendu logiciel. Les médianes par vue, quartiles, appels, triangles, textures et préparations sont dans la [synthèse](mission-12-evidence/final/summary.json) et la [trace complète](mission-12-evidence/final/performance.json.gz).
+
+Une seconde campagne de **252 rendus** inspecte terrain/sols/routes/eau, architecture, végétation, détails fins, atmosphère et ensemble avec effets/microrelief coupés, sur trois vues et trois profils. Ces sous-ensembles se recouvrent, incluent soumission/effacement et **ne s’additionnent pas**. L’eau et les sols appartiennent au maillage intégré ; les réglages coupés forment un groupe, sans prétendre isoler un coût hydrologique ou d’animation. [Mesures par famille](mission-12-evidence/final/families.json.gz). La mémoire GPU en octets n’est pas exposée par WebGL ; inventaires, buffers CPU et estimations de texture restent distingués d’une allocation mesurée.
+
+Le vrai pilote est déchargé puis rechargé **trois fois**, terrain et géographie compris. L’essai a révélé une accumulation du registre d’arbres : la zone libère désormais ses propres références sans retirer celles des autres propriétaires. Un test CPU de trois cycles protège cette correction. Après correction, à la même pose et détails stabilisés : **2 500 ancrages, 125 géométries, 8 textures, 10 programmes, un seul panneau**, caches invisibles nature ≤ 4 et architecture ≤ 12. Heap après GC : **80,09 ; 83,63 ; 83,82 ; 83,93 Mo**. Les traces conservent les différences et aucun test infini n’est revendiqué. [Cycles réels](mission-12-evidence/final/zone-cycles.json).
+
+La même trace relève **19 138 323 octets de corps HTTP / 123 requêtes** après le premier chargement local, puis environ 14,2 Mo par recharge ; ces totaux cumulés incluent modules de développement, géographie et décorations, pas un budget Internet du build compilé. Le streamer charge **3 565 389 octets** de packs à cette pose. Les ressources régionales alternatives ne sont pas chargées par le jeu principal.
+
+Préparation complète : **12,75 s**, génération initiale **1,25 s**, hors marche. Packs naturels compressés : **26 316 177 → 26 323 723 octets** depuis C ; toutes décorations : **35 280 076 → 35 287 622 octets**. Seules les couleurs des 250 packs naturels changent en D ; **1 816 023 sommets** gardent positions, normales, classes et attributs de vent identiques. Les 67 packs architecturaux, leur pack statique et les ancrages restent identiques. Le manifeste porte les versions ADN/style et rejette les préparations périmées.
+
+Une compilation de shader révélée par la fixture sans eau est également corrigée : le mode de sol est testé avant la branche réservée à l’eau. Les données source IGN/ASP/OSM, relief, dimensions, navigation, collisions, commandes, climat, audio, budgets, Living Paintings / LP-01 et workflows de production restent préservés. La seule modification de gestion géographique en D concerne la propriété/libération du registre d’arbres. [Vérification physique et sources](mission-12-evidence/final/preservation.json).
+
+### Livraison, reproduction et décision finale
+
+Budget D **0 €** : contrat, configurations et fixtures originaux, aucune dépendance ou ressource externe supplémentaire. Crédits A/B/C et licences IGN/ASP/OSM, Poly Haven CC0 et créations procédurales conservés. Les matières locales restent interprétées : 921 façades/toitures inconnues dans l’extrait OSM, 920 hauteurs estimées ; les arbres ne constituent pas un inventaire botanique. Relief à 10 m, bâtiments sur pente, ruines illustratives et branches stylisées restent des limites visibles.
+
+Préparer D : `npm run geo:art-dna`. Vérifier : `npm test`, `npm run build`, puis `npm run preview -- --port 5180` et `TEST_URL=http://localhost:5180/endless-earth/?moment=afternoon\&weather=clear npm run test:browser`. Le jeu compilé local reste distinct du serveur Vite sur 5173. La galerie et les fixtures sont consultables sur ce dernier, sans hébergement public revendiqué.
+
+Pour reproduire les preuves : servir M11 `83d9258` sur 5181 et C `3cd692e` sur 5179 dans des checkouts séparés ; garder D sur 5173. Capturer `TEST_PORT=5181 node scripts/browser-art-dna.mjs before`, `TEST_PORT=5179 node scripts/browser-art-dna.mjs prior`, puis `node scripts/browser-art-dna.mjs after`. Exécuter `node scripts/benchmark-art-dna.mjs`, `node scripts/benchmark-art-families.mjs`, `node scripts/browser-final-walk.mjs before`, `node scripts/browser-final-walk.mjs after`, `node scripts/browser-final-still-life.mjs`, `node scripts/browser-regional-fixtures.mjs`, `node scripts/browser-final-runtime.mjs`, `node scripts/audit-final-route.mjs`, `npm run test:art-dna`, puis `python scripts/report-art-dna.py`. Ne pas réécrire les preuves historiques A/B/C depuis D.
+
+Les systèmes sont **implémentés**, leur fonctionnement et leur préservation physique sont **testés** ; les différences sont **perceptibles** dans les comparatifs et les films. Le caractère **artistiquement convaincant** et le plaisir de promenade demandent votre jugement. **Arrêt après le commit D pour validation artistique finale du propriétaire.** Aucun merge, déploiement ou validation artistique automatique.
+
+Les sections A/B/C ci-dessous conservent l’état et les limites de leurs livraisons successives. Leurs anciens points d’arrêt ont été levés par vos accords ultérieurs ; le point d’arrêt actif est la validation finale de D.
+
+## Référence et livraison du Jalon C — Nature généreuse et vivante
 
 Ouvrir **[la galerie du Jalon C](mission-12-evidence/nature/index.html)** : douze paires de vues, saisons, sélection de géométries, deux films de vent et une nouvelle promenade. Référence : B `96c824a2a2d5220d69d31c503dde82ed154e3db6`, servi dans un checkout distinct. Les preuves A et B restent conservées.
 

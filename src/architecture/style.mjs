@@ -1,3 +1,4 @@
+import {ART_DNA} from '../art/dna.mjs';
 // Regional interpretation, not a survey of individual façades. Metres throughout.
 // Add another configuration to the caller later; the generator has no place names.
 export const POITOU = Object.freeze({
@@ -10,5 +11,6 @@ export const POITOU = Object.freeze({
  facade:{plasterEvery:3,metres:[4,2.4],variation:.09,basePatina:.11},
  roof:{defaultMaterial:'clay',metres:[4,4],variation:.10},
  details:{frameWidth:.075,shutterWidth:.19,frames:[0xe5ddc9,0xd8cfb9,0xeee5d1],doors:[0x5b6351,0x596d6b,0x75604a,0x5b5550,0x725a52],glass:[0x3a4e4b,0x455955,0x394d52]},
+ artDNA:ART_DNA.version,
  interpretation:'Poitou material palette and inferred facade details; no individual house survey',
 });

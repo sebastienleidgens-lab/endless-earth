@@ -1,3 +1,5 @@
+// @ts-ignore Shared artistic contract.
+import {ART_DNA,glsl,glslVec} from '../art/dna.mjs';
 import * as THREE from 'three';
 // @ts-ignore Provider-neutral source binding shared with offline tests.
 import {validateSurfaceArt} from './surface-art.mjs';
@@ -33,12 +35,12 @@ vec2 surfaceSample(vec2 uv,vec2 quadrant){
 }
 `;
 // No time dependency or LOD-dependent UVs. Only the contribution fades smoothly.
-export const surfaceColor=`
+export function surfaceColorFor(art=ART_DNA.surfaces){return `
 if(earthRoadType<.5){
  vec3 n=normalize(surfaceNormal);
  float rock=max(surfaceClass.b,smoothstep(.124,.405,1.-abs(n.y))*(1.-surfaceClass.g*.45));
  float forest=surfaceClass.g*(1.-rock),grass=surfaceClass.r*(1.-rock);
- float detail=1.-smoothstep(18.,100.,length(vViewPosition));
+ float detail=1.-smoothstep(${glsl(art.detailM[0])},${glsl(art.detailM[1])},length(vViewPosition));
  vec2 grain=vec2(.5);
  if(detail>.001){
   vec2 quadrant=forest>.5?vec2(0.,1.):grass>.5?vec2(1.,0.):vec2(0.);
@@ -62,17 +64,20 @@ if(earthRoadType<.5){
   if(abs(n.y)<.7&&blend>.01){vec2 otherUV=abs(n.x)>abs(n.z)?naturePosition.xy:naturePosition.zy;stone=mix(stone,surfaceSample(otherUV/27.,vec2(1.)),blend);}
   #endif
  }
- vec3 mineral=vec3(.42,.395,.335)*(1.+groundPatch*.22+(stone.r-.5)*1.05*rockFade);
- diffuseColor.rgb=mix(diffuseColor.rgb,mineral,rock*.82);
- diffuseColor.rgb*=1.+(grain.r-.5)*.70*detail*(1.-rock)+groundPatch*.17;
+ vec3 mineral=${glslVec(art.rockTone)}*(1.+groundPatch*.22+(stone.r-.5)*${glsl(art.rockContrast)}*rockFade);
+ diffuseColor.rgb=mix(diffuseColor.rgb,mineral,rock*${glsl(art.rockMix)});
+ diffuseColor.rgb*=1.+(grain.r-.5)*${glsl(art.grainContrast)}*detail*(1.-rock)+groundPatch*${glsl(art.patchContrast)};
  // Damp/mineral tint on the existing bank; no added strip mesh.
  float bank=(1.-smoothstep(.45,3.2+groundPatch*1.8,waterShore))*(1.-rock*.45);
  vec3 bankTone=mix(diffuseColor.rgb,vec3(.19,.18,.135)*(1.+groundPatch*.15),.42);
  diffuseColor.rgb=mix(diffuseColor.rgb,bankTone,bank);
  artHeight=(grain.g-.5)*(.006+forest*.004)*detail*(1.-rock)+(stone.g-.5)*.20*rock*rockFade;
+ artHeight*=${glsl(art.normalGain)};
  artDetail=max(detail,rock*rockFade);
 }
 `;
+}
+export const surfaceColor=surfaceColorFor();
 export const surfaceNormalShader=`
 #if LIFE_SURFACE_MODE > 0
 if(earthRoadType<.5&&artDetail>.001)normal=mineralNormal(normal,-vViewPosition,artHeight);

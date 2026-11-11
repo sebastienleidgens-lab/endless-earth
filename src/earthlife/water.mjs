@@ -1,3 +1,4 @@
+import {ART_DNA,glsl} from '../art/dna.mjs';
 // Analytic sky reflection and oscillating surface normals, not scene reflections,
 // measured flow, a depth estimate or a hydrological current direction.
 export const waterPrelude='';
@@ -48,7 +49,7 @@ export function waterColor(position,shore='16.'){return `
   sunGlint=pow(max(0.,dot(waterN,normalize(waterV+lifeSun))),mix(240.,65.,roughness));
  }
  #endif
- waterRadiance=mix(body,skyReflection,fresnel)+lifeSunColor*lifeSunIntensity*sunGlint*.34*(1.-lifeRain*.45);
+ waterRadiance=mix(body,skyReflection,fresnel)+lifeSunColor*lifeSunIntensity*sunGlint*${glsl(ART_DNA.water.sunGlint)}*(1.-lifeRain*.45);
  waterMask=1.;diffuseColor.rgb=body;
  #endif
  `}

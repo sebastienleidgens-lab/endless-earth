@@ -1,3 +1,5 @@
+// @ts-ignore Shared artistic contract.
+import {ART_DNA,glsl} from '../art/dna.mjs';
 import * as THREE from 'three';
 // @ts-ignore Shared Mission 11 climate and shader budgets.
 import {lifeUniforms,cloudReceiver} from '../earthlife/state.mjs';
@@ -44,7 +46,7 @@ export function natureArtMaterial(season:{value:THREE.Vector4},texture:THREE.Tex
     diffuseColor.rgb*=mix(vec3(1.),vec3(1.04,1.13,.84),natureCalendar.y);
    }`}`);
   // A restrained transmission cue for thin leaves under the existing daylight.
-  if(!grounded)s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>','outgoingLight+=diffuseColor.rgb*lifeDay*.025;\n#include <opaque_fragment>');
+  if(!grounded)s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`outgoingLight+=diffuseColor.rgb*lifeDay*${glsl(ART_DNA.lighting.leafTransmission)};\n#include <opaque_fragment>`);
  };
  m.customProgramCacheKey=()=>`nature-art-v1-${grounded}-${far}-${!!texture}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,stationary:far});return m;
 }

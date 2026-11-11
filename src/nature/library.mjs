@@ -1,6 +1,7 @@
+import {ART_DNA} from '../art/dna.mjs';
 // Generic temperate families: interpretations of mapped cover, never species IDs.
 export const NATURE_ART_VERSION='temperate-nature-v1';
-export const NATURE_LOD=Object.freeze({eco:0,balanced:75,quality:110,hysteresis:18});
+export const NATURE_LOD=ART_DNA.vegetation.lod;
 const family=(id,type,form,heightM,habitat,leaf,moisture,exposure,variants)=>Object.freeze({id,type,form,heightM,habitat,climate:['temperate'],leaf,seasonal:leaf==='deciduous'?'staggered flush, autumn and winter leaf loss':leaf==='evergreen'?'retained foliage':'seasonal growth and drying',maxSlope:.58,exposure,moisture,visualVariants:variants,lod:{near:'shared geometry and stable instance traits',far:'shared coarse silhouette; no leaf sampling'},confidence:'regional interpretation, not botanical inventory'});
 export const VEGETATION_LIBRARY=Object.freeze([
  family('broadleaf','tree','irregular spreading crown',[6,18],['wood','orchard'],'deciduous','mesic',['sun','partial shade'],['rounded','spreading','asymmetric']),

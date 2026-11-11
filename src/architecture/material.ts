@@ -1,3 +1,5 @@
+// @ts-ignore Shared artistic contract, static shader literals.
+import {ART_DNA,glsl} from '../art/dna.mjs';
 import * as THREE from 'three';
 // @ts-ignore Shared original offline texture model.
 import {createArchitectureAtlas,ARCHITECTURE_ATLAS_VERSION} from './texture.mjs';
@@ -28,6 +30,7 @@ vec4 architectureSample(vec2 uv,float kind){vec2 cell=vec2(mod(kind,3.),floor(ki
 vec3 architectureBump(vec3 n,vec3 eye,float h){vec3 dx=dFdx(eye),dy=dFdy(eye),a=cross(dy,n),b=cross(n,dx);float d=dot(dx,a);return normalize(abs(d)*n-sign(d)*(dFdx(h)*a+dFdy(h)*b));}
 `;
 export function architectureMaterial(heritage=false){
+ const art=ART_DNA.architecture;
  const m=new THREE.MeshLambertMaterial({vertexColors:!heritage,color:heritage?0xc7bda5:0xffffff,map:architectureAtlas,side:heritage?THREE.FrontSide:THREE.DoubleSide});m.userData.architectureShared=true;
  m.onBeforeCompile=s=>{
   Object.assign(s.uniforms,lifeUniforms,{architectureAtlasSize:size,architectureTile:tile});
@@ -37,20 +40,22 @@ export function architectureMaterial(heritage=false){
   s.fragmentShader=s.fragmentShader.replace('#include <map_pars_fragment>','#include <map_pars_fragment>\n'+prelude+(heritage?'varying vec2 vHeritageUV;':''));
   s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`
    float architectureHeight=0.;float architectureKind=floor(vArchitectureMaterial+.5);
-   if(architectureKind<5.5){
+   float architectureFade=1.-smoothstep(${glsl(art.detailM[0])},${glsl(art.detailM[1])},length(vViewPosition));
+   if(architectureKind<5.5&&architectureFade>.001){
     vec4 art=architectureSample(${heritage?'vHeritageUV':'vMapUv'},architectureKind);
-    diffuseColor.rgb*=vec3(.55+art.r*.65)*(vec3(1.)+vec3(.06,0.,-.045)*(art.b-.5));
+    diffuseColor.rgb*=mix(vec3(${glsl(art.meanTone)}),vec3(${glsl(art.toneFloor)}+art.r*${glsl(art.toneRange)}),architectureFade)*(vec3(1.)+vec3(.06,0.,-.045)*(art.b-.5));
     #if LIFE_ARCH_DETAIL == 1
-    float relief=architectureKind<.5?.012:architectureKind<1.5?.0018:architectureKind<2.5?.018:architectureKind<3.5?.008:.0015;
+    float relief=architectureKind<.5?${glsl(art.stoneRelief)}:architectureKind<1.5?${glsl(art.plasterRelief)}:architectureKind<2.5?${glsl(art.tileRelief)}:architectureKind<3.5?${glsl(art.slateRelief)}:${glsl(art.woodRelief)};
     architectureHeight=(art.g-.5)*relief*(1.-smoothstep(12.,85.,length(vViewPosition)));
     #endif
    }
+   else if(architectureKind<5.5)diffuseColor.rgb*=${glsl(art.meanTone)};
    diffuseColor.rgb*=1.-lifeRain*.035;
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n#if LIFE_ARCH_DETAIL == 1\nif(architectureKind<5.5)normal=architectureBump(normal,-vViewPosition,architectureHeight);\n#endif');
   s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35);}\n#include <opaque_fragment>`);
  };
- m.customProgramCacheKey=()=> 'regional-architecture-v2-'+heritage;cloudReceiver(m,{architecture:true});return m;
+ m.customProgramCacheKey=()=> 'regional-architecture-dna-v1-'+heritage;cloudReceiver(m,{architecture:true});return m;
 }
 export const architectureMaterials={stone:architectureMaterial(),plaster:architectureMaterial(),tile:architectureMaterial(),plain:architectureMaterial()};
 export const heritageMaterial=architectureMaterial(true);

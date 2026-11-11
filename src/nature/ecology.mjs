@@ -1,6 +1,7 @@
+import {ART_DNA} from '../art/dna.mjs';
 import {coverClass,coverPriority} from '../world/landcover.mjs';
 // Regional interpretation, not a botanical survey. Metres, local coordinates.
-export const POITOU=Object.freeze({id:'poitou-v2',spacing:14,maxSlope:.58,cellSize:128,detailRange:110,ecoRange:55});
+export const POITOU=Object.freeze({id:'poitou-v2',spacing:14,maxSlope:.58,cellSize:128,detailRange:110,ecoRange:55,defaultLeaf:'broad',needleFraction:.35,latitude:46,palette:ART_DNA.vegetation.palette,needleColor:ART_DNA.vegetation.needle,bark:ART_DNA.vegetation.bark,groundColors:ART_DNA.vegetation.ground});
 export function noise(x,z,s=0){const v=Math.sin(x*127.1+z*311.7+s*74.7)*43758.5453;return v-Math.floor(v)}
 export function inside(p,ring){let yes=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a.z>p.z)!==(b.z>p.z)&&p.x<(b.x-a.x)*(p.z-a.z)/(b.z-a.z)+a.x)yes=!yes}return yes}
 export function segmentDistance(p,a,b){const dx=b.x-a.x,dz=b.z-a.z,n=dx*dx+dz*dz,t=n?Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.z-a.z)*dz)/n)):0;return Math.hypot(p.x-a.x-t*dx,p.z-a.z-t*dz)}
@@ -31,7 +32,7 @@ export function createEcology(features,height=()=>0,profile=POITOU){
  const biomeFeature=p=>{let best=null;for(const f of candidates(p,0).habitats)if(covers(p,f)&&(!best||coverPriority(f)>coverPriority(best)))best=f;return best};
  const biome=p=>{const f=biomeFeature(p);return f?habitat(f.tags):null};
  const trees=[],keys=new Set();
- const add=(p,mapped=false,tags={})=>{if(Math.abs(p.x)>980||Math.abs(p.z)>980||!valid(p,5.8))return;const k=`${Math.round(p.x)}:${Math.round(p.z)}`;if(keys.has(k))return;keys.add(k);const wet=waterDistance(p)<38,young=noise(p.x,p.z,3)<.16;trees.push({...p,y:height(p.x,p.z),kind:wet?'riparian':young?'young':'broadleaf',leaf:tags.leaf_type==='needleleaved'||tags.leaf_type==='mixed'&&noise(p.x,p.z,45)<.35?'needle':'broad',scale:young?.48+noise(p.x,p.z)*.24:.85+noise(p.x,p.z)*.7,mapped});};
+ const add=(p,mapped=false,tags={})=>{if(Math.abs(p.x)>980||Math.abs(p.z)>980||!valid(p,5.8))return;const k=`${Math.round(p.x)}:${Math.round(p.z)}`;if(keys.has(k))return;keys.add(k);const wet=waterDistance(p)<38,young=noise(p.x,p.z,3)<.16;trees.push({...p,y:height(p.x,p.z),kind:wet?'riparian':young?'young':'broadleaf',leaf:['needleleaved','needle'].includes(tags.leaf_type??profile.defaultLeaf)||((tags.leaf_type??profile.defaultLeaf)==='mixed'&&noise(p.x,p.z,45)<(profile.needleFraction??.35))?'needle':'broad',scale:young?.48+noise(p.x,p.z)*.24:.85+noise(p.x,p.z)*.7,mapped});};
  for(const f of features)if(f.point&&f.tags.natural==='tree')add(f.point,true,f.tags);
  for(const f of polygons){const type=habitat(f.tags);if(!type)continue;const step=type==='orchard'?16:profile.spacing;
   for(let z=Math.ceil(Math.max(-980,f.box[1])/step)*step;z<Math.min(980,f.box[3]);z+=step)for(let x=Math.ceil(Math.max(-980,f.box[0])/step)*step;x<Math.min(980,f.box[2]);x+=step){const p={x:x+(noise(x,z)-.5)*step*.8,z:z+(noise(x,z,1)-.5)*step*.8};if(!covers(p,f)||biomeFeature(p)!==f)continue;const n=noise(x,z,5);if(type==='meadow'&&n>.018||type==='scrub'&&n>.23)continue;add(p,false,f.tags)}
