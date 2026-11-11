@@ -1,0 +1,385 @@
+{
+  "method": "Fifteen actual wall-clock minutes. Native game loop and WebGL submission active, real AutoWalk for the first nine minutes, then explicit station relocations labelled as cuts. Captured true post-limiter AudioContext, master .7, Opus 96 kbps; remuxed without gain correction/re-encoding. Three profiles, calm/covered/rain/storm, daylight/evening/night. Per-frame traces drained every five seconds to bound browser instrumentation memory. Private Chromium SwiftShader; not physical GPU/Android FPS.",
+  "wallSeconds": 903.952,
+  "walkDistance": 696.1462091057998,
+  "restarts": 1,
+  "chapters": [
+    {
+      "phase": 0,
+      "seconds": 0,
+      "label": "Promenade · matin calme · Éco"
+    },
+    {
+      "phase": 1,
+      "seconds": 181.735,
+      "label": "Promenade · après-midi couvert · Équilibré"
+    },
+    {
+      "phase": 2,
+      "seconds": 363.695,
+      "label": "Promenade · soir pluvieux · Qualité"
+    },
+    {
+      "phase": 3,
+      "seconds": 540.592,
+      "label": "Station de berge · soirée pluvieuse"
+    },
+    {
+      "phase": 4,
+      "seconds": 663.386,
+      "label": "Station forestière · vent · Éco"
+    },
+    {
+      "phase": 5,
+      "seconds": 781.218,
+      "label": "Station forestière · nuit orageuse · Qualité"
+    }
+  ],
+  "sourceSha256": {
+    "src/nature/sky.ts": "6b603c41f19e14201e7cccc40406bde6f6b249474b5834c7246398963a092f12",
+    "src/nature/atmosphere.ts": "dcab0e42af1295893b8d81149e2bc8481599c189a23341a8871ee65a80d3fcfe",
+    "src/earthlife/cloud-layer.ts": "49cae7b4d4a61745d2ecaa2a72abd84b1405efb2548fd53107ce2a76adf2a2fd",
+    "src/audio/resources.ts": "45a6e6c3f1c1ff214597fcb4150e42fd345863161836b41d1452fcfe630a96dd",
+    "src/audio/context.mjs": "a1d2c797c0ce9b4598867863638bd5b0a89b1ad6bf1e10ee21f9bb84de82f633",
+    "src/living/sound.ts": "35e93f1ef98ec3ab15b23d5add5b640ae190df4e4375b1b2045c123f5681eab5",
+    "src/audio/renderer.ts": "f177da962ce3d262b3a2eb86d9013a5779a988925404c57c42c27c647f05f427",
+    "src/main.ts": "f74c15b90031b527bcb6cf1f3a42b734822507db279e218b091376f0fecd25ba"
+  },
+  "maxVoices": 6,
+  "maxCacheBytes": 24730140,
+  "maxPrograms": 19,
+  "maxGeometries": 352,
+  "loads": 52,
+  "decodes": 52,
+  "deferred": 2,
+  "steps": 329,
+  "heardBirds": 6,
+  "roadEvents": 2,
+  "initialHeap": {
+    "usedSize": 81266380,
+    "totalSize": 82665472,
+    "embedderHeapUsedSize": 1203048,
+    "backingStorageSize": 38966504
+  },
+  "finalHeap": {
+    "usedSize": 82711092,
+    "totalSize": 83714048,
+    "embedderHeapUsedSize": 1387800,
+    "backingStorageSize": 40576786
+  },
+  "dom": {
+    "documents": 1,
+    "nodes": 250,
+    "jsEventListeners": 72
+  },
+  "capture": {
+    "disposed": {
+      "layers": [],
+      "activeSources": [],
+      "recentEvents": [],
+      "nodes": 0,
+      "voices": 0,
+      "peakVoices": 7,
+      "hrtf": 0,
+      "beds": 0,
+      "budget": {
+        "voices": 12,
+        "hrtf": 3,
+        "beds": 3,
+        "hz": 4
+      },
+      "dropped": 0,
+      "steps": 329,
+      "heardBirds": 6,
+      "roadEvents": 2,
+      "profile": "quality",
+      "cacheBytes": 0,
+      "peakBytes": 24730140,
+      "cached": 0,
+      "pending": 0,
+      "activeLoads": 0,
+      "loads": 52,
+      "decodes": 52,
+      "deferred": 2,
+      "deniedDecodes": 0,
+      "failures": {},
+      "contextUpdates": 2125,
+      "cpuMs": 0,
+      "maxCpuMs": 23.900000002235174,
+      "nearbyChecks": 24,
+      "memoryCells": 0,
+      "perches": 0,
+      "contact": {
+        "surface": "unpaved",
+        "material": "unknown",
+        "basis": "no reliable ground material",
+        "confidence": "unknown"
+      },
+      "context": null
+    },
+    "audioState": "closed"
+  },
+  "responses": [
+    {
+      "wallMs": 1794352799326,
+      "url": "/endless-earth/audio/bird-tit-fs-418102-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352799329,
+      "url": "/endless-earth/audio/bird-blackbird-fs-811988-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352799874,
+      "url": "/endless-earth/audio/traffic-fs-873189-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352800902,
+      "url": "/endless-earth/audio/step-stone-fs-521590-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352800902,
+      "url": "/endless-earth/audio/step-stone-fs-813622-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352801942,
+      "url": "/endless-earth/audio/step-stone-fs-521590-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352802363,
+      "url": "/endless-earth/audio/step-stone-fs-813622-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352802964,
+      "url": "/endless-earth/audio/step-stone-fs-521590-3.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352803401,
+      "url": "/endless-earth/audio/step-stone-fs-813622-3.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352803795,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352803850,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352804437,
+      "url": "/endless-earth/audio/step-stone-fs-517141-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352806497,
+      "url": "/endless-earth/audio/step-stone-fs-517141-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352811021,
+      "url": "/endless-earth/audio/step-stone-fs-517141-3.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352861908,
+      "url": "/endless-earth/audio/foliage-commons-85708704-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352861949,
+      "url": "/endless-earth/audio/foliage-fs-403051-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352877697,
+      "url": "/endless-earth/audio/bird-robin-fs-725331-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352888905,
+      "url": "/endless-earth/audio/foliage-fs-403051-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352889599,
+      "url": "/endless-earth/audio/bird-chaffinch-fs-725216-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352919001,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352919047,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352919756,
+      "url": "/endless-earth/audio/foliage-fs-403051-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352921970,
+      "url": "/endless-earth/audio/step-stone-fs-813622-3.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794352947170,
+      "url": "/endless-earth/audio/step-stone-fs-517141-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353009015,
+      "url": "/endless-earth/audio/bird-tit-fs-418102-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353075657,
+      "url": "/endless-earth/audio/bird-blackbird-fs-845518-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353091511,
+      "url": "/endless-earth/audio/bird-chaffinch-fs-725216-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353163543,
+      "url": "/endless-earth/audio/rain-fs-231687-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353163918,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353340396,
+      "url": "/endless-earth/audio/river-moderate-fs-591733-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353340506,
+      "url": "/endless-earth/audio/river-moderate-fs-591733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353348211,
+      "url": "/endless-earth/audio/foliage-fs-403051-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353349919,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353362855,
+      "url": "/endless-earth/audio/river-moderate-fs-591733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353463923,
+      "url": "/endless-earth/audio/foliage-commons-85708704-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353463923,
+      "url": "/endless-earth/audio/bird-chaffinch-fs-725216-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353464045,
+      "url": "/endless-earth/audio/foliage-fs-403051-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353464516,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353464518,
+      "url": "/endless-earth/audio/bird-tit-fs-418102-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353464547,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353465098,
+      "url": "/endless-earth/audio/bird-chaffinch-fs-725216-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353465099,
+      "url": "/endless-earth/audio/traffic-fs-873189-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353473138,
+      "url": "/endless-earth/audio/bird-chaffinch-fs-351666-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353494852,
+      "url": "/endless-earth/audio/foliage-fs-403051-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353581537,
+      "url": "/endless-earth/audio/rain-fs-231687-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353591853,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353613044,
+      "url": "/endless-earth/audio/rain-fs-501243-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353613645,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353619446,
+      "url": "/endless-earth/audio/foliage-fs-403051-m11-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353639446,
+      "url": "/endless-earth/audio/rain-fs-501243-1.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353639705,
+      "url": "/endless-earth/audio/wind-open-fs-553733-m11-2.flac",
+      "status": 200
+    },
+    {
+      "wallMs": 1794353640147,
+      "url": "/endless-earth/audio/foliage-fs-403051-m11-1.flac",
+      "status": 200
+    }
+  ],
+  "errors": []
+}

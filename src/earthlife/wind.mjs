@@ -1,4 +1,4 @@
-// Simulated world wind, metres/seconds on a continuous local metric chart.
+// Normalized simulated wind on a continuous local metric chart, not measured m/s.
 // Coordinates are never rounded to cells. Origin permits another geographic chart.
 export const WIND_DIRECTION=Object.freeze({x:.88,z:-.475});
 export function windAtWorld(x,z,t,mean=.35,seed=9,out={}){
@@ -19,6 +19,7 @@ export function windTemporal(t,out={}){out.slow=.82+.12*Math.sin(t*.031+9)+.06*M
 // Equivalent carrier used by vegetation, water and particles on the GPU.
 export const windGLSL=`
 uniform vec4 lifeTemporal;
+uniform vec2 lifeLocalWind;
 vec2 lifeInstanceWind(vec2 w,vec2 x,vec2 z){
  float det=x.x*z.y-x.y*z.x;
  float area=sign(det)*inversesqrt(max(.0001,abs(det)));

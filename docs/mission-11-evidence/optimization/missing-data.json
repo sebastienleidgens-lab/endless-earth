@@ -1,0 +1,148 @@
+{
+  "method": "Deliberate HTTP 404 for the real terrain descriptor or OSM dataset in separate browser contexts. Rendering and weather stay responsive; movement in geography mode remains blocked while readiness is false, and the UI labels the unavailable data. Expected 404/OSM diagnostics retained.",
+  "cases": [
+    {
+      "missing": "terrain",
+      "hint": "Sources IGN / ASP / OSM · relief indisponible, sol plat",
+      "before": {
+        "position": [
+          -12.277392682727118,
+          0,
+          -32.416383999943434
+        ],
+        "ready": false
+      },
+      "after": {
+        "position": [
+          -12.277392682727118,
+          0,
+          -32.416383999943434
+        ],
+        "ready": false,
+        "climate": {
+          "worldTimeMs": 1794402427815,
+          "solar": {
+            "altitude": 0.4030040550861382,
+            "azimuth": 3.533690549642748,
+            "month": 11
+          },
+          "weather": {
+            "cloud": 0.96,
+            "mist": 0.44,
+            "wind": 0.64,
+            "rain": 0.6
+          },
+          "acousticWeather": {
+            "cloud": 0.96,
+            "mist": 0.44,
+            "wind": 0.5381446270055045,
+            "rain": 0.6,
+            "gust": 0.02541522701960061
+          },
+          "wind": {
+            "x": 0.48774488405639765,
+            "z": -0.22935280558220983,
+            "speed": 0.5381446270055045,
+            "gust": 0.02541522701960061
+          },
+          "transition": {
+            "revision": 28,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-11-11T13:07:07.815Z",
+          "localTime": "11 nov., 14:07",
+          "localHour": 14.118611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "rain",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.64,
+          "starVisibility": 0,
+          "rainDrops": 520
+        }
+      },
+      "errors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ]
+    },
+    {
+      "missing": "osm",
+      "hint": "ERREUR OSM : aucun objet géographique chargé",
+      "before": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "ready": false
+      },
+      "after": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "ready": false,
+        "climate": {
+          "worldTimeMs": 1794402427815,
+          "solar": {
+            "altitude": 0.4030040550861382,
+            "azimuth": 3.533690549642748,
+            "month": 11
+          },
+          "weather": {
+            "cloud": 0.96,
+            "mist": 0.44,
+            "wind": 0.64,
+            "rain": 0.6
+          },
+          "acousticWeather": {
+            "cloud": 0.96,
+            "mist": 0.44,
+            "wind": 0.5292895342266434,
+            "rain": 0.6,
+            "gust": 0.004268318216081654
+          },
+          "wind": {
+            "x": 0.4788535820073908,
+            "z": -0.22718234589156874,
+            "speed": 0.5292895342266434,
+            "gust": 0.004268318216081654
+          },
+          "transition": {
+            "revision": 59,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-11-11T13:07:07.815Z",
+          "localTime": "11 nov., 14:07",
+          "localHour": 14.118611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "rain",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.64,
+          "starVisibility": 0,
+          "rainDrops": 520
+        }
+      },
+      "errors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ]
+    }
+  ]
+}

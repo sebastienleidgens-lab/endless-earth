@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-10-1.md"
+    "missionReport": "docs/mission-11.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -26,11 +26,23 @@
     "test:landscape": "node scripts/browser-landscape.mjs after",
     "geo:decorations": "node scripts/prepare-decorations.mjs",
     "test:earthlife": "node scripts/browser-earthlife.mjs after",
-    "audio:prepare": "python scripts/prepare-audio-naturalist.py",
-    "test:audio": "node --test tests/audio.test.mjs",
-    "test:audio:browser": "node scripts/browser-audio-naturalist.mjs && node scripts/browser-audio-spatial.mjs",
-    "bench:audio": "node scripts/benchmark-audio-naturalist.mjs",
-    "test:audio:soak": "node scripts/browser-audio-soak-101.mjs"
+    "audio:prepare": "python scripts/prepare-audio-immersive.py",
+    "test:audio": "node --test tests/audio.test.mjs tests/audio-immersive.test.mjs",
+    "test:audio:browser": "node scripts/browser-audio-immersive-runtime.mjs && AUDIO_EVIDENCE_DIR=docs/mission-11-evidence/audio node scripts/browser-audio-spatial.mjs",
+    "bench:audio": "node scripts/benchmark-audio-immersive.mjs",
+    "test:audio:soak": "node scripts/browser-audio-soak-101.mjs",
+    "test:atmosphere": "node --test tests/atmosphere.test.mjs",
+    "test:atmosphere:browser": "node scripts/browser-atmosphere-controls.mjs",
+    "audio:prepare:10-1": "python scripts/prepare-audio-naturalist.py",
+    "audio:evidence": "node scripts/browser-audio-immersive.mjs before && node scripts/browser-audio-immersive.mjs after",
+    "test:coherence": "node --test tests/coherence.test.mjs",
+    "test:coherence:browser": "node scripts/browser-coherence.mjs after && node scripts/browser-coherence-runtime.mjs && node scripts/browser-coherence-camera.mjs && node scripts/browser-coherence-gallery.mjs",
+    "coherence:evidence": "node scripts/browser-coherence.mjs before && node scripts/browser-coherence.mjs after && node scripts/browser-coherence.mjs record",
+    "test:immersive": "node --test tests/optimization.test.mjs && node scripts/browser-immersive-runtime.mjs && node scripts/browser-immersive-missing.mjs && node scripts/browser-immersive-checks.mjs",
+    "test:immersive:visibility": "node scripts/browser-immersive-visibility.mjs",
+    "test:immersive:soak": "node scripts/browser-immersive-soak.mjs",
+    "bench:immersive": "node scripts/benchmark-immersive.mjs && node scripts/browser-immersive-timers.mjs",
+    "report:immersive": "python scripts/report-immersive.py && python scripts/report-immersive-audio.py"
   },
   "dependencies": {
     "three": "^0.180.0"

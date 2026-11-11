@@ -1,0 +1,68 @@
+{
+  "build": {
+    "command": "npm run build",
+    "result": "passed",
+    "warning": "Existing >500 kB Vite chunk warning remains."
+  },
+  "node": {
+    "command": "npm test",
+    "passed": 163,
+    "failed": 0
+  },
+  "comparative": {
+    "command": "node scripts/benchmark-immersive.mjs",
+    "pairedConditions": 60,
+    "synchronizedRenders": 960,
+    "matchingRenderCallsTrianglesLinesInAll480Pairs": true,
+    "physicalGpu": false,
+    "gpuTimerCommand": "node scripts/browser-immersive-timers.mjs"
+  },
+  "browser": {
+    "rapidAndCycles": "30 native rapid choices, 36 atmospheric disposal/recreation cycles, 24 fresh AudioContext disposals; keyboard and mobile panel layout passed",
+    "visibility": "Raw private headed Chromium with public noDefaults connection: true hidden tab/audio suspend, return and native freeze/thaw passed on compiled localhost:5180 build",
+    "missingData": "Missing terrain or OSM is labelled; movement gate safe and weather active",
+    "safety": "Live building, private access, water, wall, historic ruin obstruction tests passed",
+    "camera": "Zoom memory, drag lock/idle recenter, wall sweep and three views passed",
+    "smoke": "Load, movement, eye clearance, rest, audio, profile and mobile viewport passed",
+    "mobile": "Touch joystick, one-finger turn, two-finger pinch and portrait/landscape passed in mobile emulation DPR 2",
+    "audio": "Zero FLAC requests before gesture; eight serialized toggles on one context, actual volume ramps, failed primary source fallback, cleanup passed",
+    "clock": "Compiled no-date Night \u2192 Real, UTC/Europe-Paris/solar across seconds passed",
+    "gallery": "Native 904-second Opus metadata/playback/seek, six chapters, image and condition-table filters, 390px layout passed"
+  },
+  "session": {
+    "wallSeconds": 903.952,
+    "walkDistance": 696.1462091057998,
+    "maxVoices": 6,
+    "maxCacheBytes": 24730140,
+    "steps": 329,
+    "heardBirds": 6,
+    "roadEvents": 2,
+    "errors": []
+  },
+  "disposal": {
+    "audioContext": "closed",
+    "nodes": 0,
+    "cacheBytes": 0,
+    "activeLoads": 0
+  },
+  "preservation": {
+    "public": true,
+    "src/world": true,
+    "src/controls": true,
+    "src/living/geography.ts": true,
+    "src/living/walk.mjs": true,
+    "docs/mission-11-evidence/audio": true,
+    "docs/mission-11-evidence/coherence": true
+  },
+  "sources": {
+    "audioAssets": 93,
+    "independentRecordings": 40,
+    "soakHashesMatchFinalSource": true
+  },
+  "limits": [
+    "No human listening or final artistic acceptance claimed",
+    "No physical GPU or Android-device performance validation",
+    "Native JS heap and decoded cache counters do not measure complete process/driver memory",
+    "Software graphics results are modest and protocol-dependent"
+  ]
+}

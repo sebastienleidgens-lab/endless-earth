@@ -17,7 +17,7 @@ export function createMicroEvents(scene:THREE.Scene,budget:InstanceType<typeof W
   if(cell!==key||id!==event.id||!event.active||!eligible||p.distanceTo(anchor)>45){budget.release(cell);active=false;cell=key;id=event.id;}
   if(event.active&&eligible&&!active&&event.age<2&&budget.claim(cell,'events')){active=true;anchor.copy(p);if(event.kind==='leaves')budget.claim(cell,'particles',budget.profile.particles)}
   points.visible=active&&event.kind==='leaves'&&budget.profile.particles>0;
-  if(points.visible){windAtWorld(anchor.x,anchor.z,t,c.wind,9,wind);const n=budget.profile.particles;geometry.setDrawRange(0,n);for(let i=0;i<n;i++){const age=(event.age+i*.73)%8;values[i*3]=anchor.x+spreadX[i]+age*wind.x;values[i*3+1]=anchor.y+4-age*.38+Math.sin(age+i)*.1;values[i*3+2]=anchor.z+spreadZ[i]-age*-wind.z;}geometry.attributes.position.needsUpdate=true;material.opacity=event.envelope*.65;}
+  if(points.visible){windAtWorld(anchor.x,anchor.z,t,c.meanWind??c.wind,9,wind);const n=budget.profile.particles;geometry.setDrawRange(0,n);for(let i=0;i<n;i++){const age=(event.age+i*.73)%8;values[i*3]=anchor.x+spreadX[i]+age*wind.x;values[i*3+1]=anchor.y+4-age*.38+Math.sin(age+i)*.1;values[i*3+2]=anchor.z+spreadZ[i]-age*-wind.z;}geometry.attributes.position.needsUpdate=true;material.opacity=event.envelope*.65;}
   result.active=Number(active);result.calm=active&&event.kind==='calm'?event.envelope:0;return result;
  },dispose(){budget.release(cell);scene.remove(points);geometry.dispose();material.dispose()}};
 }

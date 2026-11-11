@@ -1,9 +1,9 @@
-import {waterLines,paths,navigationReady} from './geography';
+import {paths,navigationReady,riverAreas,riverLines,mappedWeirs,acousticRoads} from './geography';
 import {ANGLES} from '../world/geo';
 import {AcousticRenderer} from '../audio/renderer';
 import type {SoundContext,Vec3} from '../audio/types';
 // @ts-ignore Shared pure geographic/context helpers.
-import {acousticContext,proximityIndex,habitatInfluences} from '../audio/context.mjs';
+import {acousticContext,proximityIndex,habitatInfluences,syncEnvironment} from '../audio/context.mjs';
 // @ts-ignore Pure bounded stochastic director.
 import {SoundDirector} from '../audio/director.mjs';
 // @ts-ignore Existing extensible material mapping.
@@ -12,13 +12,15 @@ import {footContact,stepStride} from '../audio/materials.mjs';
 import {roadWidth} from '../world/road-style.mjs';
 // @ts-ignore Stable acoustic perches, not another visible ecology.
 import {emitterCandidates} from '../audio/emitters.mjs';
+// @ts-ignore Indexed bank geometry and conservative offscreen road eligibility.
+import {riverAcousticIndex,trafficRoadIndex,trafficCandidates} from '../audio/geography.mjs';
 /** Host adapter. No ecology, weather model, or per-frame proximity scan here. */
 export class Soundscape {
  context:AudioContext|null=null;renderer:AcousticRenderer|null=null;enabled=false;volume=.7;distance=0;
  private transition:Promise<boolean>=Promise.resolve(false);private disposed=false;private hidden=false;
  private timer:ReturnType<typeof setInterval>|null=null;private director=new SoundDirector({seed:crypto.getRandomValues(new Uint32Array(1))[0]});
- private emitterCache=new Map();private nextContext=0;private waterIndex:ReturnType<typeof proximityIndex>|null=null;private roadsIndex:ReturnType<typeof proximityIndex>|null=null;
- private lastStep=-Infinity;private lastMove=0;private contact:ReturnType<typeof footContact>=footContact();private frameContext:SoundContext|null=null;
+ private emitterCache=new Map();private nextContext=0;private waterIndex:ReturnType<typeof riverAcousticIndex>|null=null;private roadsIndex:ReturnType<typeof proximityIndex>|null=null;private trafficIndex:ReturnType<typeof trafficRoadIndex>|null=null;
+ private commandRevision=-1;private lastStep=-Infinity;private lastMove=0;private contact:ReturnType<typeof footContact>=footContact();private frameContext:SoundContext|null=null;
  contextUpdates=0;cpuMs=0;maxCpuMs=0;nearbyChecks=0;
  get master(){return this.renderer?.master??null}
  setVolume(value:number){this.volume=Number.isFinite(value)?Math.max(0,Math.min(1,value)):0;this.renderer?.setVolume(this.volume,this.enabled&&!this.hidden)}
@@ -36,15 +38,24 @@ export class Soundscape {
  if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer){this.cpuMs=0;return;}
  const start=performance.now(),now=start/1000;
  if(profile!==this.renderer.profile)this.renderer.setProfile(profile);
- if(now>=this.nextContext){
+ const commandRevision=climate?.transition?.commandRevision??-1,commandChanged=commandRevision!==this.commandRevision;
+ syncEnvironment(this.frameContext,climate);if(this.frameContext)this.renderer.environmentGuard(this.frameContext);
+ if(now>=this.nextContext||commandChanged){
+ this.commandRevision=commandRevision;
  this.nextContext=now+1/this.renderer.budget.hz;
- if(!this.waterIndex&&navigationReady()){this.waterIndex=proximityIndex(waterLines);this.roadsIndex=proximityIndex(paths.map(path=>Object.assign([...path.points],{surface:path.surface,tags:path.tags,width:roadWidth(path.tags).metres})))}
- const near=this.waterIndex?.query(p,120),road=this.roadsIndex?.query(p,40);this.nearbyChecks=(near?.checked??0)+(road?.checked??0);
+ if(!this.waterIndex&&navigationReady()){this.waterIndex=riverAcousticIndex(riverAreas,riverLines,mappedWeirs);this.trafficIndex=trafficRoadIndex(acousticRoads);this.roadsIndex=proximityIndex(paths.map(path=>Object.assign([...path.points],{surface:path.surface,tags:path.tags,width:roadWidth(path.tags).metres})))}
+ const altitude=typeof altitudeM==='function'?altitudeM(p.x,p.z):altitudeM,listener={position:{...this.renderer.lastListener},forward:{...this.renderer.lastForward}};
+ const ear={...listener.position,altitudeM:Number.isFinite(altitude)?altitude!+listener.position.y-p.y:null};
+ const near=this.waterIndex?.query(ear,typeof altitudeM==='function'?altitudeM:null,160),road=this.roadsIndex?.query(p,40);this.nearbyChecks=(near?.checked??0)+(road?.checked??0);
  const influences=habitatInfluences(p,habitatAt);
  // Roads are mapped access routes; their mere presence never implies traffic.
  const geo={lat:ANGLES.lat-p.z/111320,lon:ANGLES.lon+p.x/(111320*Math.cos(ANGLES.lat*Math.PI/180))};
- this.frameContext=acousticContext({geo,timeZone:ANGLES.timeZone,worldTimeMs:climate?.worldTimeMs??(climate?.date?Date.parse(climate.date):null),position:{...p},water:near?.point?{distanceM:near.distance,point:near.point,provenance:'mapped OSM waterway centreline; not a measured bank distance'}:null,altitudeM:typeof altitudeM==='function'?altitudeM(p.x,p.z):altitudeM,habitat:life?.habitat??'unknown',solarAltitude:climate?.solar.altitude,weather:climate?.weather?{...climate.weather,wind:life?.wind.speed??climate.weather.wind}:null,influences,sources,provenance:{geography:'IGN/ASP/OSM classifications; mix inferred',weather:'EarthLife simulated',region:'temperate-europe'}}) as SoundContext;
- this.frameContext!.emitters=emitterCandidates(this.frameContext,habitatAt,typeof altitudeM==='function'?altitudeM:null,this.emitterCache);for(const id of this.director.preload(this.frameContext,now))void this.renderer.resources.request(id);this.renderer.updateContext(this.frameContext);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.contextUpdates++;
+ this.frameContext=acousticContext({temporal:climate?.transition?{localHour:climate.localHour,season:climate.season,timeBasis:'civil'}:undefined,geo,timeZone:ANGLES.timeZone,worldTimeMs:climate?.worldTimeMs??(climate?.date?Date.parse(climate.date):null),position:{...p},water:near?.water??null,altitudeM:altitude,habitat:life?.habitat??'unknown',solarAltitude:climate?.solar.altitude,weather:climate?.weather?{...climate.weather,wind:climate.wind?.speed??life?.wind.speed??climate.weather.wind,gust:climate.wind?.gust??life?.wind.gust??0}:null,influences,sources,provenance:{geography:'IGN/ASP/OSM classifications; mix inferred',weather:'EarthLife simulated',region:'temperate-europe'}}) as SoundContext;
+ syncEnvironment(this.frameContext,climate);this.frameContext!.mixRevision=climate?.transition?.revision;
+ this.frameContext!.listener=listener;
+ const renderHeight=typeof altitudeM==='function'&&Number.isFinite(altitude)?(x:number,z:number)=>{const y=altitudeM(x,z);return y===null?null:p.y+y-altitude!}:null;
+ this.frameContext!.traffic=this.trafficIndex?trafficCandidates(this.trafficIndex,listener,renderHeight):[];
+ this.frameContext!.emitters=emitterCandidates(this.frameContext,habitatAt,typeof altitudeM==='function'?altitudeM:null,this.emitterCache);this.renderer.updateContext(this.frameContext);for(const id of this.director.preload(this.frameContext,now))void this.renderer.resources.request(id);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.contextUpdates++;
  }
  if(travel>0&&travel<3){const dt=this.lastMove?Math.max(.01,Math.min(.5,now-this.lastMove)):.1,speed=Math.min(6,travel/dt);this.lastMove=now;this.distance+=travel;const stride=stepStride(speed);if(this.distance>=stride&&now-this.lastStep>=.17){this.distance%=stride;this.lastStep=now;const road=this.roadsIndex?.query(p,8),onRoad=!!road?.point&&road.distance<=(road.width??5.5)/2;this.contact=footContact({surface:onRoad?road.surface:null,onRoad,habitat:habitatAt?.(p.x,p.z)??'unknown',season:this.frameContext?.season,rain:climate?.weather?.rain??null});if(this.frameContext)this.frameContext.ground=this.contact;this.renderer.footstep(this.contact.material,speed);this.renderer.preloadSteps(this.contact.material)}}
  else if(travel===0){this.distance=0;this.lastMove=0}
@@ -52,5 +63,5 @@ export class Soundscape {
  }
  listener(position:Vec3,forward:Vec3,up:Vec3){if(this.enabled&&!this.hidden)this.renderer?.listener(position,forward,up)}
  stats(){return {...this.renderer?.stats(),contextUpdates:this.contextUpdates,cpuMs:this.cpuMs,maxCpuMs:this.maxCpuMs,nearbyChecks:this.nearbyChecks,memoryCells:this.director.memory.size,perches:this.director.perches.size,contact:this.contact,context:this.frameContext}}
- async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.emitterCache.clear();this.waterIndex=this.roadsIndex=null;this.frameContext=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
+ async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.emitterCache.clear();this.waterIndex=this.roadsIndex=this.trafficIndex=null;this.frameContext=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
 }

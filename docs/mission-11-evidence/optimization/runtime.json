@@ -1,0 +1,3531 @@
+{
+  "method": "Thirty rapid native weather/moment/profile changes in the real rendered loop; then thirty-six naturalSky dispose/recreate/render cycles with real geographic terrain, no hidden effect disabling. Twenty-four fresh AudioContext create/dispose cycles. Keyboard input isolation and portrait/landscape weather UI. Resource counters are live renderer/cache counters, not a proof of native allocator release.",
+  "rapid": [
+    {
+      "i": 0,
+      "profile": "eco",
+      "moment": "morning",
+      "weather": "clear",
+      "climate": {
+        "worldTimeMs": 1778392737000,
+        "solar": {
+          "altitude": 0.23933916779687237,
+          "azimuth": 1.3767236343886966,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.16,
+          "mist": 0,
+          "wind": 0.24,
+          "rain": 0
+        },
+        "acousticWeather": {
+          "cloud": 0.16,
+          "mist": 0,
+          "wind": 0.19836155093788227,
+          "rain": 0,
+          "gust": 0.0036661397495102188
+        },
+        "wind": {
+          "x": 0.17930546064354763,
+          "z": -0.08542674654807116,
+          "speed": 0.19836155093788227,
+          "gust": 0.0036661397495102188
+        },
+        "transition": {
+          "revision": 13,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "morning",
+        "mode": "morning",
+        "date": "2026-05-10T05:58:57.000Z",
+        "localTime": "10 mai, 07:58",
+        "localHour": 7.9825,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.24,
+        "starVisibility": 0,
+        "rainDrops": 0
+      },
+      "audio": {
+        "voices": 0,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 1664000,
+        "loads": 3,
+        "decodes": 2
+      },
+      "render": {
+        "calls": 124,
+        "triangles": 217365,
+        "geometries": 220
+      }
+    },
+    {
+      "i": 1,
+      "profile": "balanced",
+      "moment": "night",
+      "weather": "rain",
+      "climate": {
+        "worldTimeMs": 1778394381221,
+        "solar": {
+          "altitude": 0.3203653348058313,
+          "azimuth": 1.460197573028295,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.4028026867742128,
+          "mist": 0.1335414777258171,
+          "wind": 0.36140134338710644,
+          "rain": 0.18210201508065965
+        },
+        "acousticWeather": {
+          "cloud": 0.4028026867742128,
+          "mist": 0.1335414777258171,
+          "wind": 0.29905684440040414,
+          "rain": 0.18210201508065965,
+          "gust": 0.005175725315457604
+        },
+        "wind": {
+          "x": 0.27045064109893835,
+          "z": -0.12856369821989133,
+          "speed": 0.29905684440040414,
+          "gust": 0.005175725315457604
+        },
+        "transition": {
+          "revision": 14,
+          "commandRevision": 4,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "night",
+        "mode": "night",
+        "date": "2026-05-10T06:26:21.221Z",
+        "localTime": "10 mai, 08:26",
+        "localHour": 8.439166666666667,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.36140134338710644,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 0,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 5273600,
+        "loads": 5,
+        "decodes": 3
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 217365,
+        "geometries": 220
+      }
+    },
+    {
+      "i": 2,
+      "profile": "quality",
+      "moment": "evening",
+      "weather": "storm",
+      "climate": {
+        "worldTimeMs": 1778395979133,
+        "solar": {
+          "altitude": 0.3998561557766008,
+          "azimuth": 1.5427305912594536,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.6073114525797596,
+          "mist": 0.27958116029983526,
+          "wind": 0.5629655201723344,
+          "rain": 0.46218918852622726
+        },
+        "acousticWeather": {
+          "cloud": 0.6073114525797596,
+          "mist": 0.27958116029983526,
+          "wind": 0.4666457218422905,
+          "rain": 0.46218918852622726,
+          "gust": 0.007325915737635241
+        },
+        "wind": {
+          "x": 0.42220728993963597,
+          "z": -0.20024204808096188,
+          "speed": 0.4666457218422905,
+          "gust": 0.007325915737635241
+        },
+        "transition": {
+          "revision": 15,
+          "commandRevision": 6,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-05-10T06:52:59.133Z",
+        "localTime": "10 mai, 08:52",
+        "localHour": 8.883055555555556,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "storm",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.5629655201723344,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 219187,
+        "geometries": 221
+      }
+    },
+    {
+      "i": 3,
+      "profile": "eco",
+      "moment": "afternoon",
+      "weather": "mist",
+      "climate": {
+        "worldTimeMs": 1778401903001,
+        "solar": {
+          "altitude": 0.6911952570711507,
+          "azimuth": 1.8840958708821502,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.6366629475729874,
+          "mist": 0.7749217432979907,
+          "wind": 0.25839436389667886,
+          "rain": 0.1444003558586778
+        },
+        "acousticWeather": {
+          "cloud": 0.6366629475729874,
+          "mist": 0.7749217432979907,
+          "wind": 0.21525069090829152,
+          "rain": 0.1444003558586778,
+          "gust": 0.013574145084051819
+        },
+        "wind": {
+          "x": 0.19491905861953174,
+          "z": -0.09205747492710803,
+          "speed": 0.21525069090829152,
+          "gust": 0.013574145084051819
+        },
+        "transition": {
+          "revision": 17,
+          "commandRevision": 8,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-05-10T08:31:43.001Z",
+        "localTime": "10 mai, 10:31",
+        "localHour": 10.528611111111111,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "mist",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.25839436389667886,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 223
+      }
+    },
+    {
+      "i": 4,
+      "profile": "balanced",
+      "moment": "real",
+      "weather": "overcast",
+      "climate": {
+        "worldTimeMs": 1778401666162,
+        "solar": {
+          "altitude": 0.6799217358484637,
+          "azimuth": 1.868644742031137,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7319629692954019,
+          "mist": 0.5766164669988831,
+          "wind": 0.3515599967156436,
+          "rain": 0.0907797138319287
+        },
+        "acousticWeather": {
+          "cloud": 0.7319629692954019,
+          "mist": 0.5766164669988831,
+          "wind": 0.29399378149574923,
+          "rain": 0.0907797138319287,
+          "gust": 0.018453430928798205
+        },
+        "wind": {
+          "x": 0.26633951544935885,
+          "z": -0.12552075314705438,
+          "speed": 0.29399378149574923,
+          "gust": 0.018453430928798205
+        },
+        "transition": {
+          "revision": 19,
+          "commandRevision": 10,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "real",
+        "mode": "real",
+        "date": "2026-05-10T08:27:46.162Z",
+        "localTime": "10 mai, 10:27",
+        "localHour": 10.462777777777777,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "overcast",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.3515599967156436,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 233213,
+        "geometries": 224
+      }
+    },
+    {
+      "i": 5,
+      "profile": "quality",
+      "moment": "morning",
+      "weather": "cloudy",
+      "climate": {
+        "worldTimeMs": 1778401472677,
+        "solar": {
+          "altitude": 0.6706538355301863,
+          "azimuth": 1.8561500078760746,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.66510750150286,
+          "mist": 0.43387298988287065,
+          "wind": 0.37323332602093007,
+          "rain": 0.06569686643598209
+        },
+        "acousticWeather": {
+          "cloud": 0.66510750150286,
+          "mist": 0.43387298988287065,
+          "wind": 0.3133248885350482,
+          "rain": 0.06569686643598209,
+          "gust": 0.023349991689632654
+        },
+        "wind": {
+          "x": 0.2839465968166375,
+          "z": -0.1335994030707802,
+          "speed": 0.3133248885350482,
+          "gust": 0.023349991689632654
+        },
+        "transition": {
+          "revision": 20,
+          "commandRevision": 12,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "morning",
+        "mode": "morning",
+        "date": "2026-05-10T08:24:32.677Z",
+        "localTime": "10 mai, 10:24",
+        "localHour": 10.408888888888889,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "cloudy",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.37323332602093007,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 233213,
+        "geometries": 224
+      }
+    },
+    {
+      "i": 6,
+      "profile": "eco",
+      "moment": "night",
+      "weather": "clear",
+      "climate": {
+        "worldTimeMs": 1778402516160,
+        "solar": {
+          "altitude": 0.7200824651647353,
+          "azimuth": 1.9250737793192954,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.5305835677154286,
+          "mist": 0.31832075359752665,
+          "wind": 0.3377496496261193,
+          "rain": 0.048199995207223
+        },
+        "acousticWeather": {
+          "cloud": 0.5305835677154286,
+          "mist": 0.31832075359752665,
+          "wind": 0.28478598577971886,
+          "rain": 0.048199995207223,
+          "gust": 0.02895546405160907
+        },
+        "wind": {
+          "x": 0.25816187585205697,
+          "z": -0.12128558879905939,
+          "speed": 0.28478598577971886,
+          "gust": 0.02895546405160907
+        },
+        "transition": {
+          "revision": 21,
+          "commandRevision": 14,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "night",
+        "mode": "night",
+        "date": "2026-05-10T08:41:56.160Z",
+        "localTime": "10 mai, 10:41",
+        "localHour": 10.69888888888889,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.3377496496261193,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 224
+      }
+    },
+    {
+      "i": 7,
+      "profile": "balanced",
+      "moment": "evening",
+      "weather": "rain",
+      "climate": {
+        "worldTimeMs": 1778403285263,
+        "solar": {
+          "altitude": 0.7556858421950854,
+          "azimuth": 1.9787475497464326,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.6476995784027051,
+          "mist": 0.3515066935166773,
+          "wind": 0.42018327955568435,
+          "rain": 0.1986940387507728
+        },
+        "acousticWeather": {
+          "cloud": 0.6476995784027051,
+          "mist": 0.3515066935166773,
+          "wind": 0.3561794242824026,
+          "rain": 0.1986940387507728,
+          "gust": 0.035764926957655784
+        },
+        "wind": {
+          "x": 0.32297643909844903,
+          "z": -0.15151381549763063,
+          "speed": 0.3561794242824026,
+          "gust": 0.035764926957655784
+        },
+        "transition": {
+          "revision": 22,
+          "commandRevision": 16,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-05-10T08:54:45.263Z",
+        "localTime": "10 mai, 10:54",
+        "localHour": 10.9125,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.42018327955568435,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 224
+      }
+    },
+    {
+      "i": 8,
+      "profile": "quality",
+      "moment": "afternoon",
+      "weather": "storm",
+      "climate": {
+        "worldTimeMs": 1778403648620,
+        "solar": {
+          "altitude": 0.7722099023850796,
+          "azimuth": 2.005048694011551,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7423605298513305,
+          "mist": 0.40752755966523124,
+          "wind": 0.5625417661656658,
+          "rain": 0.4140000107090238
+        },
+        "acousticWeather": {
+          "cloud": 0.7423605298513305,
+          "mist": 0.40752755966523124,
+          "wind": 0.47975501955485345,
+          "rain": 0.4140000107090238,
+          "gust": 0.04359418858782473
+        },
+        "wind": {
+          "x": 0.43515170003479814,
+          "z": -0.20386003663098937,
+          "speed": 0.47975501955485345,
+          "gust": 0.04359418858782473
+        },
+        "transition": {
+          "revision": 23,
+          "commandRevision": 18,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-05-10T09:00:48.620Z",
+        "localTime": "10 mai, 11:00",
+        "localHour": 11.013333333333334,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "storm",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.5625417661656658,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 9,
+      "profile": "eco",
+      "moment": "real",
+      "weather": "mist",
+      "climate": {
+        "worldTimeMs": 1778403450436,
+        "solar": {
+          "altitude": 0.7632208758858331,
+          "azimuth": 1.9906219963294707,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7186860330537997,
+          "mist": 0.5593942381469234,
+          "wind": 0.44910636640424106,
+          "rain": 0.3078806332705746
+        },
+        "acousticWeather": {
+          "cloud": 0.7186860330537997,
+          "mist": 0.5593942381469234,
+          "wind": 0.3855382799268686,
+          "rain": 0.3078806332705746,
+          "gust": 0.052133650990790086
+        },
+        "wind": {
+          "x": 0.34977973107535304,
+          "z": -0.16366685271064446,
+          "speed": 0.3855382799268686,
+          "gust": 0.052133650990790086
+        },
+        "transition": {
+          "revision": 24,
+          "commandRevision": 20,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "real",
+        "mode": "real",
+        "date": "2026-05-10T08:57:30.436Z",
+        "localTime": "10 mai, 10:57",
+        "localHour": 10.958333333333332,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "mist",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.44910636640424106,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 10,
+      "profile": "balanced",
+      "moment": "morning",
+      "weather": "overcast",
+      "climate": {
+        "worldTimeMs": 1778403202861,
+        "solar": {
+          "altitude": 0.7518808228778933,
+          "azimuth": 1.9728239429178847,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7702093899138576,
+          "mist": 0.46294976261746745,
+          "wind": 0.46925196271091885,
+          "rain": 0.22039126879702958
+        },
+        "acousticWeather": {
+          "cloud": 0.7702093899138576,
+          "mist": 0.46294976261746745,
+          "wind": 0.4062461581122386,
+          "rain": 0.22039126879702958,
+          "gust": 0.06319147482964624
+        },
+        "wind": {
+          "x": 0.3686615191871439,
+          "z": -0.1722824786979048,
+          "speed": 0.4062461581122386,
+          "gust": 0.06319147482964624
+        },
+        "transition": {
+          "revision": 25,
+          "commandRevision": 22,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "morning",
+        "mode": "morning",
+        "date": "2026-05-10T08:53:22.861Z",
+        "localTime": "10 mai, 10:53",
+        "localHour": 10.889444444444443,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "overcast",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.46925196271091885,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 11,
+      "profile": "quality",
+      "moment": "night",
+      "weather": "cloudy",
+      "climate": {
+        "worldTimeMs": 1778404383554,
+        "solar": {
+          "altitude": 0.8050281535621048,
+          "azimuth": 2.060395253933436,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.6902749136540157,
+          "mist": 0.3480015153665214,
+          "wind": 0.458054675273718,
+          "rain": 0.15752092512671795
+        },
+        "acousticWeather": {
+          "cloud": 0.6902749136540157,
+          "mist": 0.3480015153665214,
+          "wind": 0.40038147560458925,
+          "rain": 0.15752092512671795,
+          "gust": 0.07590668276576479
+        },
+        "wind": {
+          "x": 0.36342545429909856,
+          "z": -0.1696359691753108,
+          "speed": 0.40038147560458925,
+          "gust": 0.07590668276576479
+        },
+        "transition": {
+          "revision": 26,
+          "commandRevision": 24,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "night",
+        "mode": "night",
+        "date": "2026-05-10T09:13:03.554Z",
+        "localTime": "10 mai, 11:13",
+        "localHour": 11.2175,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "cloudy",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.458054675273718,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 12,
+      "profile": "eco",
+      "moment": "evening",
+      "weather": "clear",
+      "climate": {
+        "worldTimeMs": 1778405153531,
+        "solar": {
+          "altitude": 0.8383538225733553,
+          "azimuth": 2.121680975046943,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.5422255814565407,
+          "mist": 0.25084173913139934,
+          "wind": 0.3971752177969222,
+          "rain": 0.1135420998576896
+        },
+        "acousticWeather": {
+          "cloud": 0.5422255814565407,
+          "mist": 0.25084173913139934,
+          "wind": 0.3508250229798053,
+          "rain": 0.1135420998576896,
+          "gust": 0.08992277570653108
+        },
+        "wind": {
+          "x": 0.31851001044512045,
+          "z": -0.14851575666036576,
+          "speed": 0.3508250229798053,
+          "gust": 0.08992277570653108
+        },
+        "transition": {
+          "revision": 27,
+          "commandRevision": 26,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-05-10T09:25:53.531Z",
+        "localTime": "10 mai, 11:25",
+        "localHour": 11.431388888888888,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.3971752177969222,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 13,
+      "profile": "balanced",
+      "moment": "afternoon",
+      "weather": "rain",
+      "climate": {
+        "worldTimeMs": 1778405509984,
+        "solar": {
+          "altitude": 0.8533446257145211,
+          "azimuth": 2.1512652134116563,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.6590507583020622,
+          "mist": 0.3037373839983355,
+          "wind": 0.46507800663270826,
+          "rain": 0.24957371809358367
+        },
+        "acousticWeather": {
+          "cloud": 0.6590507583020622,
+          "mist": 0.3037373839983355,
+          "wind": 0.4155964006864425,
+          "rain": 0.24957371809358367,
+          "gust": 0.10561509504900704
+        },
+        "wind": {
+          "x": 0.37738650097350585,
+          "z": -0.1758035152416306,
+          "speed": 0.4155964006864425,
+          "gust": 0.10561509504900704
+        },
+        "transition": {
+          "revision": 28,
+          "commandRevision": 28,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-05-10T09:31:49.984Z",
+        "localTime": "10 mai, 11:31",
+        "localHour": 11.530277777777778,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.46507800663270826,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 14,
+      "profile": "quality",
+      "moment": "real",
+      "weather": "storm",
+      "climate": {
+        "worldTimeMs": 1778405162919,
+        "solar": {
+          "altitude": 0.8387362316289841,
+          "azimuth": 2.1224188019693004,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7631866977644304,
+          "mist": 0.3820075339289222,
+          "wind": 0.6131874644915571,
+          "rain": 0.47877600484572713
+        },
+        "acousticWeather": {
+          "cloud": 0.7631866977644304,
+          "mist": 0.3820075339289222,
+          "wind": 0.5557524997172046,
+          "rain": 0.47877600484572713,
+          "gust": 0.12500539509297834
+        },
+        "wind": {
+          "x": 0.5047495981406753,
+          "z": -0.23491946771769123,
+          "speed": 0.5557524997172046,
+          "gust": 0.12500539509297834
+        },
+        "transition": {
+          "revision": 29,
+          "commandRevision": 30,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "real",
+        "mode": "real",
+        "date": "2026-05-10T09:26:02.919Z",
+        "localTime": "10 mai, 11:26",
+        "localHour": 11.43388888888889,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "storm",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.6131874644915571,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 15,
+      "profile": "eco",
+      "moment": "morning",
+      "weather": "mist",
+      "climate": {
+        "worldTimeMs": 1778404845923,
+        "solar": {
+          "altitude": 0.8251646498997717,
+          "azimuth": 2.0967368467466123,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7296142020065978,
+          "mist": 0.5653113130419466,
+          "wind": 0.466902305665567,
+          "rain": 0.33676545317216733
+        },
+        "acousticWeather": {
+          "cloud": 0.7296142020065978,
+          "mist": 0.5653113130419466,
+          "wind": 0.4294932154058629,
+          "rain": 0.33676545317216733,
+          "gust": 0.14564769877401698
+        },
+        "wind": {
+          "x": 0.3901364791579151,
+          "z": -0.18143968647848996,
+          "speed": 0.4294932154058629,
+          "gust": 0.14564769877401698
+        },
+        "transition": {
+          "revision": 30,
+          "commandRevision": 32,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "morning",
+        "mode": "morning",
+        "date": "2026-05-10T09:20:45.923Z",
+        "localTime": "10 mai, 11:20",
+        "localHour": 11.345833333333333,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "mist",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.466902305665567,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 16,
+      "profile": "balanced",
+      "moment": "night",
+      "weather": "overcast",
+      "climate": {
+        "worldTimeMs": 1778405998457,
+        "solar": {
+          "altitude": 0.8734550367098198,
+          "azimuth": 2.19328755849854,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7784068482103421,
+          "mist": 0.46642600143834384,
+          "wind": 0.4821076634148958,
+          "rain": 0.24032738260651224
+        },
+        "acousticWeather": {
+          "cloud": 0.7784068482103421,
+          "mist": 0.46642600143834384,
+          "wind": 0.45027809102650546,
+          "rain": 0.24032738260651224,
+          "gust": 0.1671436921003708
+        },
+        "wind": {
+          "x": 0.40906579542651844,
+          "z": -0.1901293642177787,
+          "speed": 0.45027809102650546,
+          "gust": 0.1671436921003708
+        },
+        "transition": {
+          "revision": 31,
+          "commandRevision": 34,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "night",
+        "mode": "night",
+        "date": "2026-05-10T09:39:58.457Z",
+        "localTime": "10 mai, 11:39",
+        "localHour": 11.666111111111112,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "overcast",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.4821076634148958,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 17,
+      "profile": "quality",
+      "moment": "evening",
+      "weather": "cloudy",
+      "climate": {
+        "worldTimeMs": 1778406677463,
+        "solar": {
+          "altitude": 0.9003546920639549,
+          "azimuth": 2.2544729822330454,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7005894728951896,
+          "mist": 0.3567649275490789,
+          "wind": 0.46804807493454437,
+          "rain": 0.1754827152664369
+        },
+        "acousticWeather": {
+          "cloud": 0.7005894728951896,
+          "mist": 0.3567649275490789,
+          "wind": 0.44372571440039493,
+          "rain": 0.1754827152664369,
+          "gust": 0.18857738802789256
+        },
+        "wind": {
+          "x": 0.40314908800272553,
+          "z": -0.18729602126496103,
+          "speed": 0.44372571440039493,
+          "gust": 0.18857738802789256
+        },
+        "transition": {
+          "revision": 32,
+          "commandRevision": 36,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-05-10T09:51:17.463Z",
+        "localTime": "10 mai, 11:51",
+        "localHour": 11.854722222222222,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "cloudy",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.46804807493454437,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 18,
+      "profile": "eco",
+      "moment": "afternoon",
+      "weather": "clear",
+      "climate": {
+        "worldTimeMs": 1778406983188,
+        "solar": {
+          "altitude": 0.9120478354490107,
+          "azimuth": 2.2831876471612365,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.5529110449717908,
+          "mist": 0.2593037554761477,
+          "wind": 0.40574981926018633,
+          "rain": 0.12754428357725517
+        },
+        "acousticWeather": {
+          "cloud": 0.5529110449717908,
+          "mist": 0.2593037554761477,
+          "wind": 0.390781260317326,
+          "rain": 0.12754428357725517,
+          "gust": 0.21156718233314775
+        },
+        "wind": {
+          "x": 0.35507020528750105,
+          "z": -0.16490368251754317,
+          "speed": 0.390781260317326,
+          "gust": 0.21156718233314775
+        },
+        "transition": {
+          "revision": 33,
+          "commandRevision": 38,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-05-10T09:56:23.188Z",
+        "localTime": "10 mai, 11:56",
+        "localHour": 11.939722222222223,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.40574981926018633,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 19,
+      "profile": "balanced",
+      "moment": "real",
+      "weather": "rain",
+      "climate": {
+        "worldTimeMs": 1778406596210,
+        "solar": {
+          "altitude": 0.897213013756533,
+          "azimuth": 2.2469932692700296,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.677204497063175,
+          "mist": 0.3144743999616071,
+          "wind": 0.47727168999029385,
+          "rain": 0.2717956842334627
+        },
+        "acousticWeather": {
+          "cloud": 0.677204497063175,
+          "mist": 0.3144743999616071,
+          "wind": 0.4682863139767489,
+          "rain": 0.2717956842334627,
+          "gust": 0.23911965770992405
+        },
+        "wind": {
+          "x": 0.42551331197593534,
+          "z": -0.19757117178057942,
+          "speed": 0.4682863139767489,
+          "gust": 0.23911965770992405
+        },
+        "transition": {
+          "revision": 34,
+          "commandRevision": 40,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "real",
+        "mode": "real",
+        "date": "2026-05-10T09:49:56.210Z",
+        "localTime": "10 mai, 11:49",
+        "localHour": 11.832222222222223,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.47727168999029385,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 20,
+      "profile": "quality",
+      "moment": "morning",
+      "weather": "storm",
+      "climate": {
+        "worldTimeMs": 1778406286696,
+        "solar": {
+          "altitude": 0.8850177872333369,
+          "azimuth": 2.2188243548458417,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7675773535067102,
+          "mist": 0.38321404968908535,
+          "wind": 0.6096211412949588,
+          "rain": 0.47567059417361707
+        },
+        "acousticWeather": {
+          "cloud": 0.7675773535067102,
+          "mist": 0.38321404968908535,
+          "wind": 0.6084473021515574,
+          "rain": 0.47567059417361707,
+          "gust": 0.26489776056125874
+        },
+        "wind": {
+          "x": 0.552881707625127,
+          "z": -0.25668760131368307,
+          "speed": 0.6084473021515574,
+          "gust": 0.26489776056125874
+        },
+        "transition": {
+          "revision": 35,
+          "commandRevision": 42,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "morning",
+        "mode": "morning",
+        "date": "2026-05-10T09:44:46.696Z",
+        "localTime": "10 mai, 11:44",
+        "localHour": 11.74611111111111,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "storm",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.6096211412949588,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 21,
+      "profile": "eco",
+      "moment": "night",
+      "weather": "mist",
+      "climate": {
+        "worldTimeMs": 1778407287938,
+        "solar": {
+          "altitude": 0.9233772370385745,
+          "azimuth": 2.3124487131570834,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7354969805471057,
+          "mist": 0.5515009070819848,
+          "wind": 0.4760305445245263,
+          "rain": 0.3458863320526342
+        },
+        "acousticWeather": {
+          "cloud": 0.7354969805471057,
+          "mist": 0.5515009070819848,
+          "wind": 0.4830991905684727,
+          "rain": 0.3458863320526342,
+          "gust": 0.2904813887839528
+        },
+        "wind": {
+          "x": 0.4389775259365682,
+          "z": -0.20381272678748827,
+          "speed": 0.4830991905684727,
+          "gust": 0.2904813887839528
+        },
+        "transition": {
+          "revision": 36,
+          "commandRevision": 44,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "night",
+        "mode": "night",
+        "date": "2026-05-10T10:01:27.938Z",
+        "localTime": "10 mai, 12:01",
+        "localHour": 12.024166666666668,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "mist",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.4760305445245263,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 22,
+      "profile": "balanced",
+      "moment": "evening",
+      "weather": "overcast",
+      "climate": {
+        "worldTimeMs": 1778408081283,
+        "solar": {
+          "altitude": 0.9514903224349789,
+          "azimuth": 2.3924733477409945,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7838267313942452,
+          "mist": 0.4541084318668972,
+          "wind": 0.48894844010529737,
+          "rain": 0.24426752709008082
+        },
+        "acousticWeather": {
+          "cloud": 0.7838267313942452,
+          "mist": 0.4541084318668972,
+          "wind": 0.5052644832395137,
+          "rain": 0.24426752709008082,
+          "gust": 0.318723164504763
+        },
+        "wind": {
+          "x": 0.45910188359566684,
+          "z": -0.2131946469208586,
+          "speed": 0.5052644832395137,
+          "gust": 0.318723164504763
+        },
+        "transition": {
+          "revision": 37,
+          "commandRevision": 46,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-05-10T10:14:41.283Z",
+        "localTime": "10 mai, 12:14",
+        "localHour": 12.24472222222222,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "overcast",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.48894844010529737,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 23,
+      "profile": "quality",
+      "moment": "afternoon",
+      "weather": "cloudy",
+      "climate": {
+        "worldTimeMs": 1778408408988,
+        "solar": {
+          "altitude": 0.9623900880488628,
+          "azimuth": 2.4269982659746434,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.6973430898228787,
+          "mist": 0.3381083245924588,
+          "wind": 0.47159782077578066,
+          "rain": 0.1723709193167135
+        },
+        "acousticWeather": {
+          "cloud": 0.6973430898228787,
+          "mist": 0.3381083245924588,
+          "wind": 0.49606844194769106,
+          "rain": 0.1723709193167135,
+          "gust": 0.3469549675736861
+        },
+        "wind": {
+          "x": 0.45071640749064223,
+          "z": -0.20936927382520967,
+          "speed": 0.49606844194769106,
+          "gust": 0.3469549675736861
+        },
+        "transition": {
+          "revision": 38,
+          "commandRevision": 48,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-05-10T10:20:08.988Z",
+        "localTime": "10 mai, 12:20",
+        "localHour": 12.335555555555556,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "cloudy",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.47159782077578066,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 24,
+      "profile": "eco",
+      "moment": "real",
+      "weather": "clear",
+      "climate": {
+        "worldTimeMs": 1778407982761,
+        "solar": {
+          "altitude": 0.9481090624028974,
+          "azimuth": 2.3822039087579414,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.533222685293097,
+          "mist": 0.23484008488123057,
+          "wind": 0.4008610256930226,
+          "rain": 0.11972376418766117
+        },
+        "acousticWeather": {
+          "cloud": 0.533222685293097,
+          "mist": 0.23484008488123057,
+          "wind": 0.42927965728409584,
+          "rain": 0.11972376418766117,
+          "gust": 0.3759156002029601
+        },
+        "wind": {
+          "x": 0.3899943915080911,
+          "z": -0.18125331525980573,
+          "speed": 0.42927965728409584,
+          "gust": 0.3759156002029601
+        },
+        "transition": {
+          "revision": 39,
+          "commandRevision": 50,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "real",
+        "mode": "real",
+        "date": "2026-05-10T10:13:02.761Z",
+        "localTime": "10 mai, 12:13",
+        "localHour": 12.217222222222222,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "clear",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.4008610256930226,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 25,
+      "profile": "balanced",
+      "moment": "morning",
+      "weather": "rain",
+      "climate": {
+        "worldTimeMs": 1778407616833,
+        "solar": {
+          "altitude": 0.9352957171643916,
+          "azimuth": 2.344964995374437,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.656512844289986,
+          "mist": 0.294107992717786,
+          "wind": 0.46994502137097593,
+          "rain": 0.2584690335241919
+        },
+        "acousticWeather": {
+          "cloud": 0.656512844289986,
+          "mist": 0.294107992717786,
+          "wind": 0.5113214324189065,
+          "rain": 0.2584690335241919,
+          "gust": 0.4020355684350264
+        },
+        "wind": {
+          "x": 0.4644705579790106,
+          "z": -0.21600026196460553,
+          "speed": 0.5113214324189065,
+          "gust": 0.4020355684350264
+        },
+        "transition": {
+          "revision": 40,
+          "commandRevision": 52,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "morning",
+        "mode": "morning",
+        "date": "2026-05-10T10:06:56.833Z",
+        "localTime": "10 mai, 12:06",
+        "localHour": 12.115555555555556,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.46994502137097593,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 214005,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 26,
+      "profile": "quality",
+      "moment": "night",
+      "weather": "storm",
+      "climate": {
+        "worldTimeMs": 1778408648265,
+        "solar": {
+          "altitude": 0.9701169576890273,
+          "azimuth": 2.4529348532163557,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7526406775534529,
+          "mist": 0.36852015665817994,
+          "wind": 0.6042925338640104,
+          "rain": 0.46599284895693827
+        },
+        "acousticWeather": {
+          "cloud": 0.7526406775534529,
+          "mist": 0.36852015665817994,
+          "wind": 0.6669690530399076,
+          "rain": 0.46599284895693827,
+          "gust": 0.42588670452174565
+        },
+        "wind": {
+          "x": 0.6057676425852029,
+          "z": -0.28191621429737895,
+          "speed": 0.6669690530399076,
+          "gust": 0.42588670452174565
+        },
+        "transition": {
+          "revision": 41,
+          "commandRevision": 54,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "night",
+        "mode": "night",
+        "date": "2026-05-10T10:24:08.265Z",
+        "localTime": "10 mai, 12:24",
+        "localHour": 12.402222222222223,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "storm",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.6042925338640104,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 27,
+      "profile": "eco",
+      "moment": "evening",
+      "weather": "mist",
+      "climate": {
+        "worldTimeMs": 1778409313800,
+        "solar": {
+          "altitude": 0.9902311049755944,
+          "azimuth": 2.5274773613117683,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7241664020168114,
+          "mist": 0.5437034415287045,
+          "wind": 0.46994152042296333,
+          "rain": 0.3367184803968287
+        },
+        "acousticWeather": {
+          "cloud": 0.7241664020168114,
+          "mist": 0.5437034415287045,
+          "wind": 0.5254736470814049,
+          "rain": 0.3367184803968287,
+          "gust": 0.44785210239507717
+        },
+        "wind": {
+          "x": 0.477173790738923,
+          "z": -0.22226073278385192,
+          "speed": 0.5254736470814049,
+          "gust": 0.44785210239507717
+        },
+        "transition": {
+          "revision": 42,
+          "commandRevision": 56,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "evening",
+        "mode": "evening",
+        "date": "2026-05-10T10:35:13.800Z",
+        "localTime": "10 mai, 12:35",
+        "localHour": 12.586944444444445,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "mist",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.46994152042296333,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 28,
+      "profile": "balanced",
+      "moment": "afternoon",
+      "weather": "overcast",
+      "climate": {
+        "worldTimeMs": 1778409572110,
+        "solar": {
+          "altitude": 0.9975157323587254,
+          "azimuth": 2.557578469897992,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.7728869887242603,
+          "mist": 0.45401056274221274,
+          "wind": 0.4838118985682667,
+          "rain": 0.24341934923907005
+        },
+        "acousticWeather": {
+          "cloud": 0.7728869887242603,
+          "mist": 0.45401056274221274,
+          "wind": 0.5473405998883167,
+          "rain": 0.24341934923907005,
+          "gust": 0.4677997791246299
+        },
+        "wind": {
+          "x": 0.4969321533373809,
+          "z": -0.23169260729772367,
+          "speed": 0.5473405998883167,
+          "gust": 0.4677997791246299
+        },
+        "transition": {
+          "revision": 43,
+          "commandRevision": 58,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-05-10T10:39:32.110Z",
+        "localTime": "10 mai, 12:39",
+        "localHour": 12.658888888888889,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "overcast",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.4838118985682667,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    },
+    {
+      "i": 29,
+      "profile": "quality",
+      "moment": "real",
+      "weather": "cloudy",
+      "climate": {
+        "worldTimeMs": 1778409214020,
+        "solar": {
+          "altitude": 0.9873628059535697,
+          "azimuth": 2.5161297512877514,
+          "month": 5
+        },
+        "weather": {
+          "cloud": 0.6952285852297727,
+          "mist": 0.34584641068801547,
+          "wind": 0.4690394053169342,
+          "rain": 0.17659563943600362
+        },
+        "acousticWeather": {
+          "cloud": 0.6952285852297727,
+          "mist": 0.34584641068801547,
+          "wind": 0.5360307026044407,
+          "rain": 0.17659563943600362,
+          "gust": 0.4852499281370392
+        },
+        "wind": {
+          "x": 0.48655555017318564,
+          "z": -0.22710572467284731,
+          "speed": 0.5360307026044407,
+          "gust": 0.4852499281370392
+        },
+        "transition": {
+          "revision": 44,
+          "commandRevision": 60,
+          "manual": true
+        },
+        "simulation": true,
+        "moment": "real",
+        "mode": "real",
+        "date": "2026-05-10T10:33:34.020Z",
+        "localTime": "10 mai, 12:33",
+        "localHour": 12.559444444444445,
+        "season": "spring",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "cloudy",
+        "weatherTau": 0.65,
+        "effectiveMeanWind": 0.4690394053169342,
+        "starVisibility": 0,
+        "rainDrops": 900
+      },
+      "audio": {
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 3,
+          "beds": 3,
+          "hz": 4
+        },
+        "cacheBytes": 17690140,
+        "loads": 6,
+        "decodes": 6
+      },
+      "render": {
+        "calls": 125,
+        "triangles": 237895,
+        "geometries": 225
+      }
+    }
+  ],
+  "settled": {
+    "climate": {
+      "worldTimeMs": 1778453843400,
+      "solar": {
+        "altitude": -0.42914186027285706,
+        "azimuth": 6.030084815783995,
+        "month": 5
+      },
+      "weather": {
+        "cloud": 0.9979697124759848,
+        "mist": 0.5585733788028284,
+        "wind": 0.9467959977622437,
+        "rain": 0.9945147493516309
+      },
+      "acousticWeather": {
+        "cloud": 0.9979697124759848,
+        "mist": 0.5585733788028284,
+        "wind": 1.0401397094759328,
+        "rain": 0.9945147493516309,
+        "gust": 0.41312611093260143
+      },
+      "wind": {
+        "x": 0.9385790130884473,
+        "z": -0.45098143463333923,
+        "speed": 1.0401397094759328,
+        "gust": 0.41312611093260143
+      },
+      "transition": {
+        "revision": 59,
+        "commandRevision": 62,
+        "manual": true
+      },
+      "simulation": true,
+      "moment": "night",
+      "mode": "night",
+      "date": "2026-05-10T22:57:23.400Z",
+      "localTime": "11 mai, 00:57",
+      "localHour": 0.9563888888888888,
+      "season": "spring",
+      "timeZone": "Europe/Paris",
+      "polar": null,
+      "targetWeather": "storm",
+      "weatherTau": 0.65,
+      "effectiveMeanWind": 0.9467959977622437,
+      "starVisibility": 0,
+      "rainDrops": 900
+    },
+    "audio": {
+      "layers": [
+        {
+          "id": "rain",
+          "asset": "rain-fs-231687-1",
+          "actualBusGain": 0.23998092114925385,
+          "targetGain": 0.24,
+          "masterGain": 0.38499999046325684,
+          "reason": "EarthLife simulated rain 0.99",
+          "diffuse": true,
+          "pan": null,
+          "transition": "steady",
+          "nextWindowIn": 14.685413698032498
+        },
+        {
+          "id": "wind",
+          "asset": "wind-open-fs-553733-m11-2",
+          "actualBusGain": 0.08639046549797058,
+          "targetGain": 0.08639999999999999,
+          "masterGain": 0.38499999046325684,
+          "reason": "mapped exposure 0.24 × shared wind 1.04; silent in calm",
+          "diffuse": true,
+          "pan": null,
+          "transition": "steady",
+          "nextWindowIn": 17.072
+        }
+      ],
+      "activeSources": [
+        {
+          "asset": "wind-open-fs-553733-m11-2",
+          "recording": "fs-553733",
+          "position": null,
+          "diffuse": true,
+          "gain": 0.699999988079071,
+          "retirementGain": 1,
+          "masterGain": 0.38499999046325684,
+          "distance": null,
+          "refDistance": 4,
+          "reason": "mapped exposure 0.24 × shared wind 0.29; silent in calm",
+          "transition": "playing"
+        },
+        {
+          "asset": "rain-fs-231687-1",
+          "recording": "fs-231687",
+          "position": null,
+          "diffuse": true,
+          "gain": 0.699999988079071,
+          "retirementGain": 1,
+          "masterGain": 0.38499999046325684,
+          "distance": null,
+          "refDistance": 4,
+          "reason": "EarthLife simulated rain 0.20",
+          "transition": "playing"
+        }
+      ],
+      "recentEvents": [],
+      "nodes": 14,
+      "voices": 2,
+      "peakVoices": 3,
+      "hrtf": 0,
+      "beds": 2,
+      "budget": {
+        "voices": 12,
+        "hrtf": 3,
+        "beds": 3,
+        "hz": 4
+      },
+      "dropped": 0,
+      "steps": 0,
+      "heardBirds": 0,
+      "roadEvents": 0,
+      "profile": "quality",
+      "cacheBytes": 17690140,
+      "peakBytes": 17690140,
+      "cached": 6,
+      "pending": 0,
+      "activeLoads": 0,
+      "loads": 6,
+      "decodes": 6,
+      "deferred": 0,
+      "deniedDecodes": 0,
+      "failures": {},
+      "contextUpdates": 41,
+      "cpuMs": 0,
+      "maxCpuMs": 15.400000002235174,
+      "nearbyChecks": 118,
+      "memoryCells": 1,
+      "perches": 12,
+      "contact": {
+        "surface": null,
+        "material": "unknown",
+        "basis": "no reliable ground material",
+        "confidence": "unknown"
+      },
+      "context": {
+        "version": 1,
+        "geo": {
+          "lat": 46.6955912,
+          "lon": 0.8842392
+        },
+        "key": "wgs84-v1:69988:92612",
+        "worldTimeMs": 1778453843400,
+        "localHour": 0.9563888888888888,
+        "season": "spring",
+        "timeBasis": "civil",
+        "altitudeM": 99.71842051366188,
+        "habitat": "built",
+        "solarAltitude": -0.42914186027285706,
+        "weather": {
+          "cloud": 0.9979697124759848,
+          "mist": 0.5585733788028284,
+          "wind": 1.0401397094759328,
+          "rain": 0.9945147493516309,
+          "gust": 0.41312611093260143
+        },
+        "position": {
+          "x": -12.277392682727118,
+          "y": -1.48157948633812,
+          "z": -32.416383999943434
+        },
+        "water": null,
+        "emitters": [
+          {
+            "id": "perch-v1:95630:1809",
+            "geo": {
+              "lat": 46.69468115234375,
+              "lon": 0.883685546875
+            },
+            "position": {
+              "x": -54.54965742776703,
+              "y": -5.875897834009535,
+              "z": 68.89012109437772
+            },
+            "habitat": "wood",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95630:1810",
+            "geo": {
+              "lat": 46.69469970703125,
+              "lon": 0.8841552734375
+            },
+            "position": {
+              "x": -18.68531437402305,
+              "y": 4.96373978567938,
+              "z": 66.82461328185241
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95630:1811",
+            "geo": {
+              "lat": 46.69457177734375,
+              "lon": 0.88465283203125
+            },
+            "position": {
+              "x": 19.304046927188715,
+              "y": 12.46828364810213,
+              "z": 81.06574609448529
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95631:1808",
+            "geo": {
+              "lat": 46.69494189453125,
+              "lon": 0.8829853515625
+            },
+            "position": {
+              "x": -108.01064281141393,
+              "y": -15.589566085629656,
+              "z": 39.8643007818967
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95631:1809",
+            "geo": {
+              "lat": 46.6951552734375,
+              "lon": 0.88348291015625
+            },
+            "position": {
+              "x": -70.02128151020219,
+              "y": -4.766867232795889,
+              "z": 16.110960937855623
+            },
+            "habitat": "scrub",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95631:1811",
+            "geo": {
+              "lat": 46.694922851562495,
+              "lon": 0.88446875
+            },
+            "position": {
+              "x": 5.249101676398762,
+              "y": 7.575597595010819,
+              "z": 41.98416406338083
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95632:1810",
+            "geo": {
+              "lat": 46.69558544921875,
+              "lon": 0.88406640625
+            },
+            "position": {
+              "x": -25.47046035716449,
+              "y": 3.710657743797128,
+              "z": -31.77620703056533
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95632:1811",
+            "geo": {
+              "lat": 46.695457031249994,
+              "lon": 0.88456396484375
+            },
+            "position": {
+              "x": 12.518900944047278,
+              "y": 5.281366192269104,
+              "z": -17.48071874897363
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95632:1812",
+            "geo": {
+              "lat": 46.695499511718744,
+              "lon": 0.8850244140625001
+            },
+            "position": {
+              "x": 47.67490458197713,
+              "y": 5.536749203841893,
+              "z": -22.209644530198318
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95633:1808",
+            "geo": {
+              "lat": 46.695969726562495,
+              "lon": 0.883177734375
+            },
+            "position": {
+              "x": -93.3219201885704,
+              "y": 5.806409106936428,
+              "z": -74.55396093663182
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95633:1809",
+            "geo": {
+              "lat": 46.69618359375,
+              "lon": 0.88367529296875
+            },
+            "position": {
+              "x": -55.332558887358644,
+              "y": 6.135905904970016,
+              "z": -98.36165624963172
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95633:1810",
+            "geo": {
+              "lat": 46.69616455078125,
+              "lon": 0.88418212890625
+            },
+            "position": {
+              "x": -16.634858170324275,
+              "y": 4.702471350363481,
+              "z": -96.24179296814759
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95633:1811",
+            "geo": {
+              "lat": 46.695951171874995,
+              "lon": 0.8846611328125
+            },
+            "position": {
+              "x": 19.9378242992423,
+              "y": 6.680732249294067,
+              "z": -72.48845312410651
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95634:1809",
+            "geo": {
+              "lat": 46.69663623046875,
+              "lon": 0.88347265625
+            },
+            "position": {
+              "x": -70.8041829697938,
+              "y": 5.285790861528454,
+              "z": -148.74917578066658
+            },
+            "habitat": "wood",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95634:1810",
+            "geo": {
+              "lat": 46.69665478515625,
+              "lon": 0.8839423828125
+            },
+            "position": {
+              "x": -34.93983991604981,
+              "y": 8.035128741894937,
+              "z": -150.8146835931919
+            },
+            "habitat": "wood",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95634:1811",
+            "geo": {
+              "lat": 46.69652685546875,
+              "lon": 0.88443994140625
+            },
+            "position": {
+              "x": 3.0495213851619525,
+              "y": 8.939398529059702,
+              "z": -136.573550780559
+            },
+            "habitat": "built",
+            "interpreted": true
+          },
+          {
+            "id": "perch-v1:95634:1812",
+            "geo": {
+              "lat": 46.696398437499994,
+              "lon": 0.8849375
+            },
+            "position": {
+              "x": 41.03888268637372,
+              "y": 9.48711291808398,
+              "z": -122.2780624989673
+            },
+            "habitat": "built",
+            "interpreted": true
+          }
+        ],
+        "ground": null,
+        "influences": {
+          "settlement": 0.5999999999999999
+        },
+        "sources": [],
+        "provenance": {
+          "geography": "IGN/ASP/OSM classifications; mix inferred",
+          "weather": "EarthLife simulated",
+          "region": "temperate-europe"
+        },
+        "fixture": false,
+        "environment": {
+          "revision": 59,
+          "commandRevision": 62,
+          "manual": true
+        },
+        "mixRevision": 58,
+        "listener": {
+          "position": {
+            "x": -9.311777834598312,
+            "y": 1.6617671676371861,
+            "z": -28.515308379349285
+          },
+          "forward": {
+            "x": -0.5789021184718834,
+            "y": -0.29150836702367866,
+            "z": -0.7615085089373288
+          }
+        },
+        "traffic": [
+          {
+            "id": "road:864756399:4:-1",
+            "position": {
+              "x": 98.0037013610863,
+              "z": -13.363895732148471,
+              "y": 6.195617595985669
+            },
+            "distance": 108.37978307878814,
+            "tags": {
+              "osm_id": 864756399,
+              "source": "OpenStreetMap",
+              "highway": "secondary",
+              "lane_markings": "no",
+              "maxaxleload": "3.5",
+              "maxspeed": "30",
+              "name": "Rue de Tournon",
+              "ref": "D 2",
+              "surface": "asphalt"
+            },
+            "interpreted": true
+          },
+          {
+            "id": "road:58717985:-1:3",
+            "position": {
+              "x": -13.688154289365084,
+              "z": 81.65286615059233,
+              "y": 2.7259383311056835
+            },
+            "distance": 110.25506496362655,
+            "tags": {
+              "osm_id": 58717985,
+              "source": "OpenStreetMap",
+              "highway": "secondary",
+              "lane_markings": "no",
+              "maxaxleload": "3.5",
+              "maxspeed": "30",
+              "name": "Rue du Four Banal",
+              "ref": "D 2",
+              "sidewalk": "no",
+              "surface": "asphalt"
+            },
+            "interpreted": true
+          },
+          {
+            "id": "road:239209740:4:2",
+            "position": {
+              "x": 88.14959489605765,
+              "z": 56.02593334176323,
+              "y": 8.261759800588667
+            },
+            "distance": 129.01914868069557,
+            "tags": {
+              "osm_id": 239209740,
+              "source": "OpenStreetMap",
+              "highway": "residential",
+              "lanes": "1",
+              "maxspeed": "30",
+              "name": "Rue de la Queue du Renard",
+              "oneway": "yes"
+            },
+            "interpreted": true
+          }
+        ]
+      }
+    },
+    "render": {
+      "calls": 125,
+      "triangles": 237895,
+      "geometries": 225
+    }
+  },
+  "cycles": [
+    {
+      "i": 0,
+      "profile": "eco",
+      "render": {
+        "frame": 61,
+        "calls": 176,
+        "triangles": 278328,
+        "points": 0,
+        "lines": 0,
+        "geometries": 332,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 35215473,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 744
+      },
+      "heap": 169733385,
+      "controls": 1
+    },
+    {
+      "i": 1,
+      "profile": "balanced",
+      "render": {
+        "frame": 62,
+        "calls": 176,
+        "triangles": 279244,
+        "points": 0,
+        "lines": 0,
+        "geometries": 333,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 35215473,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 744
+      },
+      "heap": 163145743,
+      "controls": 1
+    },
+    {
+      "i": 2,
+      "profile": "quality",
+      "render": {
+        "frame": 63,
+        "calls": 178,
+        "triangles": 291064,
+        "points": 0,
+        "lines": 0,
+        "geometries": 335,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36633873,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 746
+      },
+      "heap": 189567552,
+      "controls": 1
+    },
+    {
+      "i": 3,
+      "profile": "eco",
+      "render": {
+        "frame": 64,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36526593,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 183484832,
+      "controls": 1
+    },
+    {
+      "i": 4,
+      "profile": "balanced",
+      "render": {
+        "frame": 65,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 335,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36549681,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 746
+      },
+      "heap": 174640720,
+      "controls": 1
+    },
+    {
+      "i": 5,
+      "profile": "quality",
+      "render": {
+        "frame": 66,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 335,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36549681,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 746
+      },
+      "heap": 167809694,
+      "controls": 1
+    },
+    {
+      "i": 6,
+      "profile": "eco",
+      "render": {
+        "frame": 67,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 35686173,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 192614962,
+      "controls": 1
+    },
+    {
+      "i": 7,
+      "profile": "balanced",
+      "render": {
+        "frame": 68,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 35686173,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 183030874,
+      "controls": 1
+    },
+    {
+      "i": 8,
+      "profile": "quality",
+      "render": {
+        "frame": 69,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 35686173,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 175267154,
+      "controls": 1
+    },
+    {
+      "i": 9,
+      "profile": "eco",
+      "render": {
+        "frame": 70,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36202533,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 198089770,
+      "controls": 1
+    },
+    {
+      "i": 10,
+      "profile": "balanced",
+      "render": {
+        "frame": 71,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36202533,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 188153118,
+      "controls": 1
+    },
+    {
+      "i": 11,
+      "profile": "quality",
+      "render": {
+        "frame": 72,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36202533,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 179826088,
+      "controls": 1
+    },
+    {
+      "i": 12,
+      "profile": "eco",
+      "render": {
+        "frame": 73,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36265713,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 201908106,
+      "controls": 1
+    },
+    {
+      "i": 13,
+      "profile": "balanced",
+      "render": {
+        "frame": 74,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36265713,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 198044734,
+      "controls": 1
+    },
+    {
+      "i": 14,
+      "profile": "quality",
+      "render": {
+        "frame": 75,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36265713,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 190276262,
+      "controls": 1
+    },
+    {
+      "i": 15,
+      "profile": "eco",
+      "render": {
+        "frame": 76,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36265713,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 178944815,
+      "controls": 1
+    },
+    {
+      "i": 16,
+      "profile": "balanced",
+      "render": {
+        "frame": 77,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36265713,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 201837947,
+      "controls": 1
+    },
+    {
+      "i": 17,
+      "profile": "quality",
+      "render": {
+        "frame": 78,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36827553,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 746
+      },
+      "heap": 194100114,
+      "controls": 1
+    },
+    {
+      "i": 18,
+      "profile": "eco",
+      "render": {
+        "frame": 79,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 182744498,
+      "controls": 1
+    },
+    {
+      "i": 19,
+      "profile": "balanced",
+      "render": {
+        "frame": 80,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 205600658,
+      "controls": 1
+    },
+    {
+      "i": 20,
+      "profile": "quality",
+      "render": {
+        "frame": 81,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 195051618,
+      "controls": 1
+    },
+    {
+      "i": 21,
+      "profile": "eco",
+      "render": {
+        "frame": 82,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 184718532,
+      "controls": 1
+    },
+    {
+      "i": 22,
+      "profile": "balanced",
+      "render": {
+        "frame": 83,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 207857264,
+      "controls": 1
+    },
+    {
+      "i": 23,
+      "profile": "quality",
+      "render": {
+        "frame": 84,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 198164620,
+      "controls": 1
+    },
+    {
+      "i": 24,
+      "profile": "eco",
+      "render": {
+        "frame": 85,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 187281466,
+      "controls": 1
+    },
+    {
+      "i": 25,
+      "profile": "balanced",
+      "render": {
+        "frame": 86,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 210159938,
+      "controls": 1
+    },
+    {
+      "i": 26,
+      "profile": "quality",
+      "render": {
+        "frame": 87,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 200174661,
+      "controls": 1
+    },
+    {
+      "i": 27,
+      "profile": "eco",
+      "render": {
+        "frame": 88,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 189507380,
+      "controls": 1
+    },
+    {
+      "i": 28,
+      "profile": "balanced",
+      "render": {
+        "frame": 89,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 212338752,
+      "controls": 1
+    },
+    {
+      "i": 29,
+      "profile": "quality",
+      "render": {
+        "frame": 90,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 37184673,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 746
+      },
+      "heap": 203833522,
+      "controls": 1
+    },
+    {
+      "i": 30,
+      "profile": "eco",
+      "render": {
+        "frame": 91,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 192057936,
+      "controls": 1
+    },
+    {
+      "i": 31,
+      "profile": "balanced",
+      "render": {
+        "frame": 92,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 214894536,
+      "controls": 1
+    },
+    {
+      "i": 32,
+      "profile": "quality",
+      "render": {
+        "frame": 93,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 205179308,
+      "controls": 1
+    },
+    {
+      "i": 33,
+      "profile": "eco",
+      "render": {
+        "frame": 94,
+        "calls": 177,
+        "triangles": 284102,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 194245002,
+      "controls": 1
+    },
+    {
+      "i": 34,
+      "profile": "balanced",
+      "render": {
+        "frame": 95,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 217099594,
+      "controls": 1
+    },
+    {
+      "i": 35,
+      "profile": "quality",
+      "render": {
+        "frame": 96,
+        "calls": 178,
+        "triangles": 291280,
+        "points": 0,
+        "lines": 0,
+        "geometries": 334,
+        "textures": 7,
+        "programs": 18
+      },
+      "memory": {
+        "geometryBytes": 36696753,
+        "terrainTextureBytesWithMipmaps": 11810474.666666666,
+        "roadTextureBytesWithMipmaps": 6477141.333333333,
+        "geometries": 745
+      },
+      "heap": 207325660,
+      "controls": 1
+    }
+  ],
+  "disposal": [
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    },
+    {
+      "state": "closed",
+      "nodes": 0,
+      "cache": 0
+    }
+  ],
+  "errors": []
+}

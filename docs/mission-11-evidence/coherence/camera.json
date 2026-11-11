@@ -1,0 +1,2339 @@
+{
+  "method": "Actual native keyboard movement in each camera view under visible/audible rain, with the running game loop and collision code. Same-frame camera/rain/listener equality; no movement rules overridden.",
+  "rows": [
+    {
+      "view": "first",
+      "position": [
+        -12.17967295477849,
+        -1.4784130675451763,
+        -32.49067096701212
+      ],
+      "wallMs": 1794349348615,
+      "audioTime": 1.6,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5310785480691417,
+          "rain": 0.6,
+          "gust": 0.008696238439903971
+        },
+        "wind": {
+          "x": 0.4806266448142138,
+          "z": -0.2276639528343901,
+          "speed": 0.5310785480691417,
+          "gust": 0.008696238439903971
+        },
+        "transition": {
+          "revision": 16,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 520
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5310785480691417,
+          "rain": 0.6,
+          "gust": 0.008696238439903971
+        },
+        "environment": {
+          "revision": 16,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 16,
+        "contextUpdates": 3,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.16375133395195007,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 19.358523543596267
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.06022489815950394,
+            "targetGain": 0.06347875627225497,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 23.087248084641992
+          }
+        ],
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "cacheBytes": 16026140,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.3405623137950897,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.31728458404541016,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        -12.17967295477849,
+        0.1715869324548236,
+        -32.49067096701212
+      ],
+      "listener": {
+        "x": -12.17967295477849,
+        "y": 0.1715869324548236,
+        "z": -32.49067096701212
+      },
+      "rainCamera": [
+        -12.17967295477849,
+        0.1715869324548236,
+        -32.49067096701212
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.4806266448142138,
+          -0.2276639528343901
+        ],
+        "drift": [
+          3.206344276086709,
+          -18.79494000001624,
+          -1.534287721667382
+        ],
+        "count": 520
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.4806266448142138,
+          -0.2276639528343901
+        ],
+        "cloudDrift": [
+          7.313611126811838,
+          -3.620338702779324
+        ],
+        "time": 2.238300000000745,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "first",
+      "position": [
+        -11.743829858969628,
+        -1.464290414951705,
+        -32.822000805778046
+      ],
+      "wallMs": 1794349348942,
+      "audioTime": 1.952,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5340653468702122,
+          "rain": 0.6,
+          "gust": 0.01575996039008273
+        },
+        "wind": {
+          "x": 0.4837709336826819,
+          "z": -0.22812689865920824,
+          "speed": 0.5340653468702122,
+          "gust": 0.01575996039008273
+        },
+        "transition": {
+          "revision": 19,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5340653468702122,
+          "rain": 0.6,
+          "gust": 0.01575996039008273
+        },
+        "environment": {
+          "revision": 19,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 18,
+        "contextUpdates": 4,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.1831357628107071,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 19.006523543596266
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.062036365270614624,
+            "targetGain": 0.06414768175704708,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 22.735248084641995
+          }
+        ],
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16026140,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.421595960855484,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.4002143144607544,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        -11.731331965183358,
+        0.18555366662168107,
+        -32.83150175961428
+      ],
+      "listener": {
+        "x": -11.731331965183358,
+        "y": 0.18555366662168107,
+        "z": -32.83150175961428
+      },
+      "rainCamera": [
+        -11.731331965183358,
+        0.18555366662168107,
+        -32.83150175961428
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.4837709336826819,
+          -0.22812689865920824
+        ],
+        "drift": [
+          3.9054435506272154,
+          -29.31562000004872,
+          -1.8643356707886347
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.4837709336826819,
+          -0.22812689865920824
+        ],
+        "cloudDrift": [
+          8.903464584380659,
+          -4.3996536179821195
+        ],
+        "time": 2.720900000002235,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "first",
+      "position": [
+        -11.456696504302528,
+        -1.4549864139133462,
+        -33.040280845134
+      ],
+      "wallMs": 1794349349253,
+      "audioTime": 2.24,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5362491644047797,
+          "rain": 0.6,
+          "gust": 0.020924679424951336
+        },
+        "wind": {
+          "x": 0.485965902693252,
+          "z": -0.22865805529226954,
+          "speed": 0.5362491644047797,
+          "gust": 0.020924679424951336
+        },
+        "transition": {
+          "revision": 20,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5362491644047797,
+          "rain": 0.6,
+          "gust": 0.020924679424951336
+        },
+        "environment": {
+          "revision": 20,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 18,
+        "contextUpdates": 4,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.1952689290046692,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 18.71852354359627
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.06303442269563675,
+            "targetGain": 0.06414768175704708,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 22.44724808464199
+          }
+        ],
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16098456,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.4819376468658447,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.46249228715896606,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        -11.456696504302528,
+        0.19472792127142574,
+        -33.040280845134
+      ],
+      "listener": {
+        "x": -11.456696504302528,
+        "y": 0.19472792127142574,
+        "z": -33.040280845134
+      },
+      "rainCamera": [
+        -11.456696504302528,
+        0.19472792127142574,
+        -33.040280845134
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.485965902693252,
+          -0.22865805529226954
+        ],
+        "drift": [
+          4.269917977647155,
+          -4.76562000004872,
+          -2.0358292122578368
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.485965902693252,
+          -0.22865805529226954
+        ],
+        "cloudDrift": [
+          9.730921962747225,
+          -4.8042261870974565
+        ],
+        "time": 2.970900000002235,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "first",
+      "position": [
+        -11.238501292055632,
+        -1.4479162200528606,
+        -33.20615380535399
+      ],
+      "wallMs": 1794349349562,
+      "audioTime": 2.56,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5382987870873404,
+          "rain": 0.6,
+          "gust": 0.025774918621100342
+        },
+        "wind": {
+          "x": 0.48798362891289226,
+          "z": -0.22923505497615224,
+          "speed": 0.5382987870873404,
+          "gust": 0.025774918621100342
+        },
+        "transition": {
+          "revision": 21,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5382987870873404,
+          "rain": 0.6,
+          "gust": 0.025774918621100342
+        },
+        "environment": {
+          "revision": 21,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 18,
+        "contextUpdates": 4,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.20573927462100983,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 18.39852354359627
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.06360091269016266,
+            "targetGain": 0.06414768175704708,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 22.127248084641995
+          }
+        ],
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16098456,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.5417566299438477,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.5247064232826233,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        -11.238501292055632,
+        0.20159179290775067,
+        -33.20615380535399
+      ],
+      "listener": {
+        "x": -11.238501292055632,
+        "y": 0.20159179290775067,
+        "z": -33.20615380535399
+      },
+      "rainCamera": [
+        -11.238501292055632,
+        0.20159179290775067,
+        -33.20615380535399
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.48798362891289226,
+          -0.22923505497615224
+        ],
+        "drift": [
+          4.552753288963976,
+          -8.977380000032475,
+          -2.1686938501215023
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.48798362891289226,
+          -0.22923505497615224
+        ],
+        "cloudDrift": [
+          10.372330148274605,
+          -5.117437250203212
+        ],
+        "time": 3.16410000000149,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "aerial",
+      "position": [
+        -11.318277895326457,
+        -1.4505012265928627,
+        -33.14550728059956
+      ],
+      "wallMs": 1794349351101,
+      "audioTime": 4.096,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5621192874714054,
+          "rain": 0.6,
+          "gust": 0.08232041121971549
+        },
+        "wind": {
+          "x": 0.5103544619082947,
+          "z": -0.23793981889324803,
+          "speed": 0.5621192874714054,
+          "gust": 0.08232041121971549
+        },
+        "transition": {
+          "revision": 28,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5621192874714054,
+          "rain": 0.6,
+          "gust": 0.08232041121971549
+        },
+        "environment": {
+          "revision": 28,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 27,
+        "contextUpdates": 7,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.2304742932319641,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 16.862523543596268
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.06771694868803024,
+            "targetGain": 0.07022016831719452,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.56; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 20.591248084641993
+          }
+        ],
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16136216,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.6975741386413574,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.6949191689491272,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        63.94777240239176,
+        97.12910667640874,
+        65.73333489622547
+      ],
+      "listener": {
+        "x": 63.94777240239176,
+        "y": 97.12910667640874,
+        "z": 65.73333489622547
+      },
+      "rainCamera": [
+        63.94777240239176,
+        97.12910667640874,
+        65.73333489622547
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.5103544619082947,
+          -0.23793981889324803
+        ],
+        "drift": [
+          6.423652348656895,
+          -6.183780000113683,
+          -3.043302615057667
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.5103544619082947,
+          -0.23793981889324803
+        ],
+        "cloudDrift": [
+          14.588735247766081,
+          -7.16791852509859
+        ],
+        "time": 4.412100000005215,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "aerial",
+      "position": [
+        -11.318277895326457,
+        -1.4505012265928627,
+        -33.14550728059956
+      ],
+      "wallMs": 1794349351411,
+      "audioTime": 4.416,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5621192874714054,
+          "rain": 0.6,
+          "gust": 0.08232041121971549
+        },
+        "wind": {
+          "x": 0.5103544619082947,
+          "z": -0.23793981889324803,
+          "speed": 0.5621192874714054,
+          "gust": 0.08232041121971549
+        },
+        "transition": {
+          "revision": 28,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5621192874714054,
+          "rain": 0.6,
+          "gust": 0.08232041121971549
+        },
+        "environment": {
+          "revision": 28,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 27,
+        "contextUpdates": 7,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.23270374536514282,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 16.542523543596268
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.06899084150791168,
+            "targetGain": 0.07022016831719452,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.56; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 20.271248084641993
+          }
+        ],
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16136216,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        63.94777240239176,
+        97.12910667640874,
+        65.73333489622547
+      ],
+      "listener": {
+        "x": 63.94777240239176,
+        "y": 97.12910667640874,
+        "z": 65.73333489622547
+      },
+      "rainCamera": [
+        63.94777240239176,
+        97.12910667640874,
+        65.73333489622547
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.5103544619082947,
+          -0.23793981889324803
+        ],
+        "drift": [
+          6.423652348656895,
+          -6.183780000113683,
+          -3.043302615057667
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.5103544619082947,
+          -0.23793981889324803
+        ],
+        "cloudDrift": [
+          14.588735247766081,
+          -7.16791852509859
+        ],
+        "time": 4.412100000005215,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "aerial",
+      "position": [
+        -11.794639558609719,
+        -1.4659368050019026,
+        -32.783375048592994
+      ],
+      "wallMs": 1794349351726,
+      "audioTime": 4.736,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5764355306573465,
+          "rain": 0.6,
+          "gust": 0.11638710782458427
+        },
+        "wind": {
+          "x": 0.523525960337842,
+          "z": -0.24367809778592003,
+          "speed": 0.5764355306573465,
+          "gust": 0.11638710782458427
+        },
+        "transition": {
+          "revision": 30,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5764355306573465,
+          "rain": 0.6,
+          "gust": 0.11638710782458427
+        },
+        "environment": {
+          "revision": 30,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 30,
+        "contextUpdates": 8,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.23441147804260254,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 16.222523543596267
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.07018446177244186,
+            "targetGain": 0.0731779947783772,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.58; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 19.951248084641993
+          }
+        ],
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16173976,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-stone-fs-521590-1",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.07396098971366882,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual hard contact, speed 0.77 m/s",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        63.91070541519598,
+        97.64972972865328,
+        66.62333472355206
+      ],
+      "listener": {
+        "x": 63.91070541519598,
+        "y": 97.64972972865328,
+        "z": 66.62333472355206
+      },
+      "rainCamera": [
+        63.91070541519598,
+        97.64972972865328,
+        66.62333472355206
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.523525960337842,
+          -0.24367809778592003
+        ],
+        "drift": [
+          7.132451599827323,
+          -16.08752000004872,
+          -3.3733406645486905
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.523525960337842,
+          -0.24367809778592003
+        ],
+        "cloudDrift": [
+          16.169851333047504,
+          -7.933774440915546
+        ],
+        "time": 4.866400000002235,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "aerial",
+      "position": [
+        -12.09523854625482,
+        -1.4756771338341963,
+        -32.55485837581006
+      ],
+      "wallMs": 1794349352039,
+      "audioTime": 5.056,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5863552946420945,
+          "rain": 0.6,
+          "gust": 0.14000914526245378
+        },
+        "wind": {
+          "x": 0.5326156340152914,
+          "z": -0.24772251703369286,
+          "speed": 0.5863552946420945,
+          "gust": 0.14000914526245378
+        },
+        "transition": {
+          "revision": 32,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.5863552946420945,
+          "rain": 0.6,
+          "gust": 0.14000914526245378
+        },
+        "environment": {
+          "revision": 32,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 30,
+        "contextUpdates": 8,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.2356908917427063,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 15.914523543596268
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.07168148458003998,
+            "targetGain": 0.0731779947783772,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.58; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 19.643248084641993
+          }
+        ],
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16211736,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-stone-fs-813622-2",
+            "recording": "fs-813622",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.10398494452238083,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual hard contact, speed 1.41 m/s",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        63.66073860143722,
+        97.67110716238027,
+        66.86156828566685
+      ],
+      "listener": {
+        "x": 63.66073860143722,
+        "y": 97.67110716238027,
+        "z": 66.86156828566685
+      },
+      "rainCamera": [
+        63.66073860143722,
+        97.67110716238027,
+        66.86156828566685
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.5326156340152914,
+          -0.24772251703369286
+        ],
+        "drift": [
+          7.557177927348752,
+          -21.901580000113682,
+          -3.570908907488679
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.5326156340152914,
+          -0.24772251703369286
+        ],
+        "cloudDrift": [
+          17.112424545585842,
+          -8.389737345816943
+        ],
+        "time": 5.133100000005215,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "third",
+      "position": [
+        -12.227569706617922,
+        -1.4799650691555826,
+        -32.454259645559574
+      ],
+      "wallMs": 1794349353597,
+      "audioTime": 6.592,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.6659899831760392,
+          "rain": 0.6,
+          "gust": 0.3297580544617815
+        },
+        "wind": {
+          "x": 0.6051357460520297,
+          "z": -0.2810256345259631,
+          "speed": 0.6659899831760392,
+          "gust": 0.3297580544617815
+        },
+        "transition": {
+          "revision": 40,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.6659899831760392,
+          "rain": 0.6,
+          "gust": 0.3297580544617815
+        },
+        "environment": {
+          "revision": 40,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 40,
+        "contextUpdates": 11,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.238809272646904,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 14.36652354359627
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.0810513123869896,
+            "targetGain": 0.08525513477187939,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.67; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 18.095248084641995
+          }
+        ],
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16249496,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-stone-fs-521590-2",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.08883120864629745,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual hard contact, speed 0.43 m/s",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        -9.10642406061677,
+        1.668116492227888,
+        -28.671430276506523
+      ],
+      "listener": {
+        "x": -9.10642406061677,
+        "y": 1.668116492227888,
+        "z": -28.671430276506523
+      },
+      "rainCamera": [
+        -9.10642406061677,
+        1.668116492227888,
+        -28.671430276506523
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.6051357460520297,
+          -0.2810256345259631
+        ],
+        "drift": [
+          10.411042629282537,
+          -28.170240000097444,
+          -4.896374709509404
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.6051357460520297,
+          -0.2810256345259631
+        ],
+        "cloudDrift": [
+          23.33292171547483,
+          -11.389104515851134
+        ],
+        "time": 6.79680000000447,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "third",
+      "position": [
+        -11.838953428483721,
+        -1.4673727102515812,
+        -32.74968744977214
+      ],
+      "wallMs": 1794349353913,
+      "audioTime": 6.912,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.6782504357445319,
+          "rain": 0.6,
+          "gust": 0.35895434612502825
+        },
+        "wind": {
+          "x": 0.6162302921171614,
+          "z": -0.28628365251015475,
+          "speed": 0.6782504357445319,
+          "gust": 0.35895434612502825
+        },
+        "transition": {
+          "revision": 41,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.6782504357445319,
+          "rain": 0.6,
+          "gust": 0.35895434612502825
+        },
+        "environment": {
+          "revision": 41,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 40,
+        "contextUpdates": 11,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.2390882521867752,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 14.046523543596269
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.08319061249494553,
+            "targetGain": 0.08525513477187939,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.67; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 17.775248084641994
+          }
+        ],
+        "voices": 2,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16249496,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        -8.873340195774839,
+        1.6756948924526196,
+        -28.848613954159017
+      ],
+      "listener": {
+        "x": -8.873340195774839,
+        "y": 1.6756948924526196,
+        "z": -28.848613954159017
+      },
+      "rainCamera": [
+        -8.873340195774839,
+        1.6756948924526196,
+        -28.848613954159017
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.6162302921171614,
+          -0.28628365251015475
+        ],
+        "drift": [
+          10.85214027237587,
+          -3.3717200000487253,
+          -5.101296547974253
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.6162302921171614,
+          -0.28628365251015475
+        ],
+        "cloudDrift": [
+          24.27805245396175,
+          -11.843975913291489
+        ],
+        "time": 7.035400000002236,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "third",
+      "position": [
+        -11.594081500865103,
+        -1.4594381090225852,
+        -32.93584016637216
+      ],
+      "wallMs": 1794349354233,
+      "audioTime": 7.232,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.6896253050565422,
+          "rain": 0.6,
+          "gust": 0.3860280414850224
+        },
+        "wind": {
+          "x": 0.6264996218241518,
+          "z": -0.291206059966137,
+          "speed": 0.6896253050565422,
+          "gust": 0.3860280414850224
+        },
+        "transition": {
+          "revision": 42,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.6896253050565422,
+          "rain": 0.6,
+          "gust": 0.3860280414850224
+        },
+        "environment": {
+          "revision": 42,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 40,
+        "contextUpdates": 11,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.2392997443675995,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 13.726523543596269
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.08424121141433716,
+            "targetGain": 0.08525513477187939,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.67; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 17.455248084641994
+          }
+        ],
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16287256,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-stone-fs-813622-3",
+            "recording": "fs-813622",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.0912371575832367,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual hard contact, speed 1.35 m/s",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        -8.628467171189731,
+        1.6835674981451856,
+        -29.034765227770166
+      ],
+      "listener": {
+        "x": -8.628467171189731,
+        "y": 1.6835674981451856,
+        "z": -29.034765227770166
+      },
+      "rainCamera": [
+        -8.628467171189731,
+        1.6835674981451856,
+        -29.034765227770166
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.6264996218241518,
+          -0.291206059966137
+        ],
+        "drift": [
+          11.279350364499159,
+          -8.326860000064961,
+          -5.299869960265813
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.6264996218241518,
+          -0.291206059966137
+        ],
+        "cloudDrift": [
+          25.190093274167886,
+          -12.282899100444443
+        ],
+        "time": 7.26270000000298,
+        "mean": 0.64
+      }
+    },
+    {
+      "view": "third",
+      "position": [
+        -11.127673342492463,
+        -1.4443250546899549,
+        -33.29040570015888
+      ],
+      "wallMs": 1794349354543,
+      "audioTime": 7.552,
+      "frames": 0,
+      "label": "",
+      "environment": {
+        "worldTimeMs": 1794316043826,
+        "solar": {
+          "altitude": 0.4071756730989883,
+          "azimuth": 3.5368268496823094,
+          "month": 11
+        },
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.64,
+          "rain": 0.6
+        },
+        "acousticWeather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.708958107061314,
+          "rain": 0.6,
+          "gust": 0.4319947346282949
+        },
+        "wind": {
+          "x": 0.6438836550510624,
+          "z": -0.2997015043559066,
+          "speed": 0.708958107061314,
+          "gust": 0.4319947346282949
+        },
+        "transition": {
+          "revision": 44,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "simulation": true,
+        "moment": "afternoon",
+        "mode": "afternoon",
+        "date": "2026-11-10T13:07:23.826Z",
+        "localTime": "10 nov., 14:07",
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "timeZone": "Europe/Paris",
+        "polar": null,
+        "targetWeather": "rain",
+        "weatherTau": 45,
+        "effectiveMeanWind": 0.64,
+        "starVisibility": 0,
+        "rainDrops": 260
+      },
+      "audio": {
+        "worldTimeMs": 1794316043826,
+        "localHour": 14.123055555555556,
+        "season": "autumn",
+        "solarAltitude": 0.4071756730989883,
+        "weather": {
+          "cloud": 0.96,
+          "mist": 0.44,
+          "wind": 0.708958107061314,
+          "rain": 0.6,
+          "gust": 0.4319947346282949
+        },
+        "environment": {
+          "revision": 44,
+          "commandRevision": 0,
+          "manual": false
+        },
+        "mixRevision": 43,
+        "contextUpdates": 12,
+        "habitat": "built",
+        "layers": [
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.23946350812911987,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 13.406523543596268
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.08533971756696701,
+            "targetGain": 0.0863998229763638,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.24 × shared wind 0.70; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 17.135248084641994
+          }
+        ],
+        "voices": 3,
+        "hrtf": 0,
+        "budget": {
+          "voices": 8,
+          "hrtf": 1,
+          "beds": 2,
+          "hz": 2
+        },
+        "cacheBytes": 16287256,
+        "heardBirds": 0,
+        "events": [],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.24 × shared wind 0.53; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.60",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-stone-fs-521590-1",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.08291389048099518,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual hard contact, speed 1.43 m/s",
+            "transition": "playing"
+          }
+        ]
+      },
+      "sharedObject": true,
+      "weatherReference": true,
+      "camera": [
+        -8.162058559981666,
+        1.6985733609982456,
+        -29.389330165881002
+      ],
+      "listener": {
+        "x": -8.162058559981666,
+        "y": 1.6985733609982456,
+        "z": -29.389330165881002
+      },
+      "rainCamera": [
+        -8.162058559981666,
+        1.6985733609982456,
+        -29.389330165881002
+      ],
+      "rain": {
+        "visible": true,
+        "wind": [
+          0.6438836550510624,
+          -0.2997015043559066
+        ],
+        "drift": [
+          12.072662224794742,
+          -17.3389800001137,
+          -5.668983963505237
+        ],
+        "count": 260
+      },
+      "sun": 0.16255092408250976,
+      "ambient": 0.92175424,
+      "starUniform": 0,
+      "uniforms": {
+        "wind": [
+          0.6438836550510624,
+          -0.2997015043559066
+        ],
+        "cloudDrift": [
+          26.876071707995823,
+          -13.094454105844546
+        ],
+        "time": 7.676100000005216,
+        "mean": 0.64
+      }
+    }
+  ],
+  "errors": []
+}

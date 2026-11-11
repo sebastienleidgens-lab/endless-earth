@@ -20,7 +20,7 @@ export function animateFoliage(material:THREE.MeshLambertMaterial,season=false,g
     #endif
     vec2 worldAnchor=(modelMatrix*anchor).xz;
     ${baked?'#ifdef USE_INSTANCING\nworldAnchor=lifeAnchor;\n#endif':''}
-    vec2 wind=vec2(.88,-.475)*lifeMeanWind;
+    vec2 wind=lifeLocalWind;
     float phase=worldAnchor.x*.17+worldAnchor.y*.13;
     float inertia=${grounded?'(1.7-step(.04,color.g-color.r))':trunk?'.43':stationary?'.45':'.72'};
     float sway=sin(lifeTime*inertia+phase);
@@ -40,6 +40,6 @@ export function animateFoliage(material:THREE.MeshLambertMaterial,season=false,g
   if(season){shader.fragmentShader='uniform float natureSeason;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(1.32,.86,.48),natureSeason);`)}
  };
- material.customProgramCacheKey=()=> 'living-foliage-v5-'+season+'-'+grounded+'-'+stationary+'-'+trunk+'-'+baked;
+ material.customProgramCacheKey=()=> 'living-foliage-v6-'+season+'-'+grounded+'-'+stationary+'-'+trunk+'-'+baked;
  cloudReceiver(material);registerLifeMaterial(material,{foliage:true,stationary,trunk});
 }
