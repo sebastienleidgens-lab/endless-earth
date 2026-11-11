@@ -1,6 +1,96 @@
 # Mission 13 — Les matières authentiques de France
 
-**13A livré pour validation. Arrêt avant 13B.** Recherche et audit uniquement : aucun changement du moteur, des matériaux du jeu ou de la géographie. Budget : **0 €**.
+**13A et 13B livrés. Arrêt avant 13C, pour validation artistique.** Budget : **0 €**. La PR #22 reste en brouillon, sans fusion ni déploiement.
+
+## Jalon 13B — Une bibliothèque partagée à éprouver dans le paysage
+
+L’accord **« Go »** après la livraison 13A ouvre uniquement B depuis `b59348d`. **Dix matériaux CC0** sont préparés hors ligne. Le village, ses matériaux Mission 12, la géographie, les dimensions, les collisions, le streaming, les arbres, le ciel, la météo et l’audio restent inchangés. Le nouveau module est utilisé seulement dans une scène de matériaux de développement ; il n’est pas importé par le jeu de promenade.
+
+Ouvrir la **[galerie 13B : PBR / Mission 12 / hybride](mission-13-evidence/materials/index.html)** et l’atelier interactif local, décrit plus bas. Les comparatifs viennent du vrai navigateur WebGL, avec la même géométrie, la même caméra, les mêmes dimensions et la même lumière. La scène est synthétique : elle ne prétend pas montrer Angles déjà transformé.
+
+### Les choix proposés à votre appréciation
+
+- **Pierre irrégulière : piste prioritaire.** La source apporte des joints moins réguliers ; l’hybride tempère leur contraste et retrouve la palette du jeu.
+- **Enduits : conserver la retenue.** Le témoin fin est déjà satisfaisant. L’enduit usé est une réserve ; ses lacunes deviennent très discrètes en hybride. Aucun remplacement systématique n’est proposé.
+- **Tuile : dessin plus petit, encore à juger.** Les petits éléments rectangulaires sont moins bombés que le témoin ; la lecture des rangs en hybride est très fine. La scène de rue devra décider si ce détail vaut son coût et reste stable en mouvement.
+- **Gravier et sols : choix conditionnels.** Ne pas changer une classe géographique pour utiliser un asset. Le gravier hybride n’est pas moins coûteux que le témoin dans l’essai ; une conservation du procédural reste possible.
+- **Roches : distinguer texture et calibrage.** La roche actuelle reste le témoin. Rock023 est une alternative structurée, sans géologie locale déduite.
+
+![Pierre : PBR à gauche, Mission 12 au centre, hybride à droite](mission-13-evidence/materials/stone-rubble-close-afternoon-clear.jpg)
+
+*Pierre irrégulière, même surface métrique et même caméra. Source Old Stone Wall, Charlotte Baglioni, Poly Haven, CC0. Capsule de 1,65 m. Les autres matériaux, les grandes surfaces et les éclairages moins flatteurs sont conservés dans la galerie.*
+
+### Bibliothèque, échelles et cartes utiles
+
+[Catalogue livrable](../public/materials/authentic/catalog.json) · [sources et empreintes des cartes originales](../public/materials/authentic/sources.json) · [paramètres de préparation](../scripts/mission-13-materials.json) · [décisions par matière](mission-13-evidence/materials/decisions.json).
+
+| Matière | Référence CC0 | Mètres par tuile | Statut |
+| --- | --- | --- | --- |
+| Pierre irrégulière | Old Stone Wall | 2 × 2 | Piste prioritaire ; largeur fournisseur. |
+| Pierre appareillée | Bricks099 | 2 × 2 | Réserve, échelle artistique ; lithologie locale inconnue. |
+| Enduit fin | White Plaster 02 | 1 × 1 | Gain discret face au témoin ; largeur fournisseur. |
+| Enduit discontinu | Plaster Stone Wall 01 | 2,3 × 2,3 | Réserve ; largeur fournisseur arrondie. |
+| Petite tuile | Roof Tiles 14 | 1,5 × 1,5 | À juger en rue ; pas de profil local certifié. |
+| Gravier | Gravel Floor | 2,25 × 2,25 | Classe compatible documentée uniquement. |
+| Terre sèche | Brown Mud Dry | 1,3 × 1,3 | Générique, largeur fournisseur arrondie. |
+| Terre humide | Brown Mud | 1,3 × 1,3 | Réserve de contact ; aucune vase généralisée. |
+| Roche structurée | Rock023 | 2,5 × 2,5 | Échelle artistique faute de donnée fournisseur. |
+| Roche existante recalibrée | Rock Face 03 | 2,7 × 2,7 | Largeur fournisseur ; témoin M12 conservé à 27 m. |
+
+**Correction étayée :** la [fiche officielle Rock Face 03](https://polyhaven.com/a/rock_face_03) et son API indiquent **2,7 m**, et non 27 m comme l’affirmait le rapport Mission 12. Les 27 m restent son ancien réglage artistique dans le témoin, sans correction du moteur en B. Cette différence est explicitement conservée dans les comparatifs ; son gain ne doit pas être attribué entièrement à un nouveau shader.
+
+Le PBR emploie **couleur, hauteur normalisée du fournisseur et rugosité**. Le relief reste une amplitude de shading artistique, sans déplacement géométrique ni carte de relief prétendument exacte tirée d’une seule photo. Les normales originales sont épinglées dans la provenance mais non livrées : le canal de hauteur suffit au relief retenu. AO non ajouté. L’hybride Lambert utilise un seul atlas ton/hauteur/chaleur relative/rugosité ; sa réponse diffuse n’utilise pas la rugosité pour un reflet spéculaire. Le témoin utilise les vrais shaders et atlas Mission 12.
+
+La préparation réduit les sources 1K à **256² par matériau**, rapproche les bords sur une bande de 8 pixels et ajoute des gutters périodiques de 16 pixels. Elle réduit une partie de l’éclairage large et des dominantes photographiques, sans prétendre restituer un albédo exact. Palette, bornes de ton et distances d’atténuation reprennent l’ADN existant. Décalages par identité géographique stable, faible teinte à grande échelle et filtrage limitent la répétition ; **les motifs d’une source unique restent reconnaissables sur 24 m**. Aucun joint ou rang de tuile n’est tourné aléatoirement.
+
+### Formats et coût
+
+Trois atlas partagés **1152 × 864**, douze cases dont dix utiles. Les tailles sont celles des fichiers effectivement livrés ; tous les matériaux réutilisent ces atlas, sans fichier 2K/4K par maison.
+
+| Fichier | Octets compressés | GPU estimé, mipmaps inclus |
+| --- | ---: | ---: |
+| Couleur PBR JPEG | 327 866 | 5,06 Mio |
+| Hauteur/rugosité PNG, décodé RG8 | 938 777 | 2,53 Mio |
+| Hybride PNG RGBA8 | 1 578 189 | 5,06 Mio |
+
+Total des trois fichiers : **2 844 832 octets**. Un choix PBR emploie environ **7,59 Mio**, un choix hybride **5,06 Mio**, estimés par le compte des texels et niveaux de mip ; aucune allocation GPU physique mesurée. Les empreintes, canaux, dimensions et amplitudes sont dans le catalogue. Sources et archives d’environ 28,4 Mo restent dans `work/`, hors Git. Les petits aperçus sont documentaires.
+
+Mipmap, gradients non repliés, anisotropie bornée à 4 (1 en Éco) et relief fin désactivé en Éco. JPEG/PNG restent compatibles avec le WebGL2 existant. KTX2/Basis est différé : aucun gain de transcodage mesuré ne justifie ici une nouvelle chaîne de dépendances. Les ressources sont prêtes avant chargement ; **aucun appel à Poly Haven ou ambientCG pendant les inspections**.
+
+### Comparaison technique réelle
+
+**405 rendus synchronisés avec lecture complète des pixels**, Chromium 156 / SwiftShader, 800 × 600, trois passages alternés et 15 échantillons par combinaison. Extrait Équilibré, médianes :
+
+| Échantillon | PBR | Mission 12 | Hybride |
+| --- | ---: | ---: | ---: |
+| Pierre irrégulière | 69,8 ms | 62,3 ms | 60,6 ms |
+| Tuile | 68,1 ms | 64,7 ms | 49,0 ms |
+| Gravier | 83,5 ms | 58,6 ms | 70,4 ms |
+
+Les trois profils, P95, maxima, appels et triangles sont dans la [synthèse](mission-13-evidence/materials/summary.json), avec [trace compressée](mission-13-evidence/materials/measurements.json.gz). Les trois approches ont **4 appels et 686 triangles** dans ces échantillons. Elles n’emploient pas le même modèle de shading : PBR Standard, témoin et hybride Lambert. Ce compromis est mesuré dans un atelier simple ; **aucun pourcentage n’est extrapolé à la promenade, aucun FPS GPU physique ou Android revendiqué**.
+
+Les dix matériaux sont contrôlés dans **sept situations** : matin, après-midi, soir, nuit, couvert, pluie, soir pluvieux. Les grandes surfaces et une vue à 80 m sont conservées. Trois remplacements de bibliothèque retrouvent **7 géométries, 10 textures et 7 programmes** après le premier rechargement chaud. Heap après GC : environ **6,00 → 5,79 → 5,83 → 5,84 Mo** ; test fini, sans garantie d’absence de fuite infinie. Un nouveau fichier corrompu conserve la dernière bibliothèque valide ; les identités restent identiques au rechargement et entre profils.
+
+**183 tests Node**, TypeScript/Vite et contrôles du vrai navigateur passent. Deux préparations donnent les mêmes atlas et catalogue octet pour octet. Le jeu compilé est vérifié séparément : chargement, déplacement, trois vues, hauteur des yeux, son et mobile ; **zéro requête vers la nouvelle bibliothèque**. Le bundle garde sa taille d’environ 734,12 ko (avertissement >500 ko préexistant). Les nouveaux fichiers `public/` augmentent le contenu distribué de `dist/`, mais ne sont pas téléchargés par la promenade. [Préservation](mission-13-evidence/materials/preservation.json) · [validation](mission-13-evidence/materials/validation.txt).
+
+### Reproduire et décider
+
+```sh
+npm ci
+npm run dev -- --port 5173
+```
+
+Atelier : `http://localhost:5173/endless-earth/fixtures/materials.html?perf=1&moment=afternoon&weather=clear&date=2026-06-21T12:00:00Z`. Galerie : `http://localhost:5173/endless-earth/docs/mission-13-evidence/materials/index.html`. [Préparation et protocole complet](mission-13-evidence/materials/README.md). Aucune URL publique autonome ni aucun déploiement revendiqué.
+
+**Validez-vous cette bibliothèque et les réserves proposées pour passer à 13C ?** L’intégration dans les bâtiments, sols et falaises réels, les nouvelles promenades et la comparaison perceptive à l’échelle du village restent **non commencées**. **Arrêt après 13B ; attendre l’accord explicite du propriétaire avant 13C.**
+
+---
+
+## Référence du jalon 13A — recherche validée par l’accord « Go »
+
+La section suivante conserve l’analyse de départ. Les propositions et arrêts 13A y décrivent l’état historique ; le statut courant est celui de 13B ci-dessus.
+
+**Référence livrée en 13A**, avant la préparation de bibliothèque. Recherche et audit uniquement ; moteur et géographie conservés. Budget : **0 €**.
 
 Ouvrir la **[galerie illustrée : photos / jeu actuel / candidates](mission-13-evidence/index.html)**. Elle présente huit familles, les huit vues de référence du moteur et le catalogue avec crédits, droits, dimensions et empreintes. Les candidates sont des diffuses brutes consultées, pas des captures d’un rendu Mission 13.
 

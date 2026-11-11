@@ -1,0 +1,61 @@
+{
+  "base": "b59348db37b8000ba2f06605ed42627ffa5342e9",
+  "ownerApproval": "Go after 13A report/PR #22; 13B only",
+  "protectedChanges": [],
+  "protectedScopes": [
+    "src/main.ts",
+    "src/art",
+    "src/world",
+    "src/architecture",
+    "src/nature",
+    "src/earthlife",
+    "src/audio",
+    "src/living",
+    "src/controls",
+    "public/data",
+    "public/tiles",
+    "public/materials/earth",
+    "public/materials/architecture",
+    "public/art",
+    "fixtures/regions.html",
+    "src/fixtures/regional.ts",
+    ".github",
+    "package.json",
+    "package-lock.json",
+    "vite.config.ts"
+  ],
+  "geographicGameIntegration": false,
+  "existingMaterialChanges": false,
+  "syntheticLabPositionArraysIdenticalAcrossApproaches": true,
+  "runtimeImports": "No import from main.ts or existing walking-game modules; new src/materials/ is only imported by development fixture.",
+  "textureDownloadObservation": "Compiled pilot checked separately: no request to materials/authentic/",
+  "reproducible": [
+    {
+      "file": "photographic-color.jpg",
+      "sha256": "fc2e7340bf82de07bc8d008191c36954f130e2d7f510fce6db4151393305d9e5",
+      "rebuildIdentical": true
+    },
+    {
+      "file": "photographic-data.png",
+      "sha256": "e4c82d844309e586d2f9c5bab584fdda603c6228cd032477b0e2c0964f69dd45",
+      "rebuildIdentical": true
+    },
+    {
+      "file": "hybrid.png",
+      "sha256": "c162244ad6d8dfe2a5150dac421f111af71b1fb114eeab9813999082ce28d25b",
+      "rebuildIdentical": true
+    }
+  ],
+  "cost": {
+    "atlasDownloadBytes": 2844832,
+    "photographicAtlasGpuBytesEstimate": 7962498,
+    "hybridAtlasGpuBytesEstimate": 5308332,
+    "units": "GPU values are exact mip texel/channel arithmetic estimates, not measured allocator bytes"
+  },
+  "noMergeOrDeployment": true,
+  "next": "Stop before 13C; owner artistic approval required",
+  "runtimeNetwork": {
+    "compiledPilot": "http://localhost:5180/endless-earth/?perf=1&moment=afternoon&weather=clear",
+    "authenticRequests": []
+  }
+}

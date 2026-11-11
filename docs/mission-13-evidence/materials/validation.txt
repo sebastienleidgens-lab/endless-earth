@@ -1,0 +1,45 @@
+Node:
+ℹ tests 183
+ℹ suites 0
+ℹ pass 183
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17710.854765
+
+Build:
+
+> endless-earth@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 79 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.56 kB │ gzip:   0.37 kB
+dist/assets/index-Cb07mrj-.css    5.92 kB │ gzip:   1.81 kB
+dist/assets/index-qPbdjo0r.js   734.12 kB │ gzip: 209.10 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.54s
+
+Browser material lab:
+Captured stone-rubble
+Captured stone-coursed
+Captured plaster-fine
+Captured plaster-worn
+Captured roof-flat
+Captured gravel
+Captured earth-dry
+Captured bank-soil
+Captured rock-layered
+Captured rock-existing
+PASS 10 materials, 70 light/weather checks, 405 timed renders, reloads, corrupt reload, mobile, no third-party requests
+
+Compiled walking game:
+PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors.
