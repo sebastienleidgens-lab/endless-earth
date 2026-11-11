@@ -1,0 +1,111 @@
+# Mission 12 — La poésie des lieux
+
+## État : Jalon A livré pour validation artistique
+
+Seul le **Jalon A — Terre, sols et eau** est ouvert. Les Jalons B, C et D ne sont pas commencés et nécessitent chacun l'accord explicite du propriétaire. Aucun merge ni déploiement public.
+
+Branche indépendante `mission/12-poesie-des-lieux`, créée depuis le main GitHub vérifié **83d9258587177593bc3debd681544d7704a68882**, fusion de la Mission 11 par la PR #20. Le checkout fourni était encore à `0f699fa` : il a été actualisé avant de capturer la référence. Living Paintings / LP-01 et les workflows de production sont hors périmètre.
+
+Ouvrir [la galerie avant/après du Jalon A](mission-12-evidence/index.html). Les captures viennent du vrai moteur Three.js, sans illustration générée, et la vidéo d'une promenade réellement rendue dans Chromium.
+
+## Audit avant modification
+
+Lecture de `world/terrain.ts`, `landcover.mjs`, `environment.mjs`, `surface-mesh.mjs`, `road-material.ts`, `road-texture.mjs`, `geodata.ts`, `decoration-stream.mjs`, `ruins.mjs`, `nature/surfaces.ts`, `render.ts`, `ecology.mjs`, `architecture/style.mjs`, `plan.mjs`, `render.ts`, `living/atmosphere.ts`, modules EarthLife, atmosphère Mission 11, profils et générateurs hors ligne.
+
+Huit stations enregistrées **avant toute modification du rendu**, avec matrices de caméra, position, date effective, météo, profil et résolution. Référence initiale : **163 tests réussis**, build TypeScript/Vite réussi. Les données actuelles sont déjà issues du LiDAR HD, mais échantillonnées à **10 m** dans le navigateur ; aucune acquisition ni amélioration altimétrique n'est revendiquée.
+
+Trois défauts prioritaires visibles dans cette référence :
+
+1. Sols naturels presque uniformes, même au premier plan ; même grain générique pour plusieurs habitats.
+2. Pentes minérales peu lisibles, aplats verts ou beiges, projection horizontale inadaptée aux faces raides.
+3. Rivière peu sensible au ciel, ondulations peu lisibles, contact terre/eau très net et uniforme.
+
+La station roche révèle aussi les limites antérieures du DEM à 10 m et des bâtiments posés sur ces pentes. Cette mission ne corrige pas ces géométries en secret.
+
+## Changements du Jalon A
+
+- Atlas local partagé : terre générique, herbe dans les habitats documentés, litière interprétée dans les bois, roche. Échelles métriques, gutters périodiques, mipmaps, filtrage anisotrope borné et atténuation progressive avec la distance.
+- Champ préparé hors ligne : poids des classes IGN/ASP/OSM et distance à **l'union des polygones d'eau existants**, y compris les îles. Pas de ligne de berge au raccord de deux polygones superposés. Source inconnue : matière générique, sans nouvelle attribution de prairie.
+- Roche : mélange sur les normales du relief existant, projection sur les plans mondiaux dominants (raccord latéral adouci à proximité en Qualité) et relief de normales uniquement. Les couleurs minérales sont une interprétation artistique ; aucun relevé géologique local ajouté.
+- Routes : mêmes classes, atlas, largeurs et indices ; joints/grains un peu plus lisibles et accotement moins uniforme. Aucun pavage, trottoir ou escalier supplémentaire.
+- Eau : normales de surface oscillantes sans déplacement des sommets, Fresnel, réflexion analytique des couleurs du ciel Mission 11 et éclat solaire. Pluie et vent modulent le détail. Aucun débit ou sens de courant vérifié n'est déduit.
+- Berges : teinte humide/minérale discrète dans le matériau existant et transition de couleur côté eau. Aucun ruban géométrique ni nouvelle végétation ajoutée.
+
+Les nouveaux matériaux d'eau réutilisent l'heure, le soleil, les palettes et la pluie de Mission 11. Les reflets représentent le **ciel analytique**, sans reflet exact des maisons, des arbres ou des nuages individuels. Pas de profondeur mesurée ni de transparence bathymétrique.
+
+## Ressources gratuites et licences
+
+[Catalogue versionné](../public/materials/earth/catalog.json), [CC0 légal](../public/materials/earth/LICENSE-CC0.txt), [attribution géographique](../public/data/LICENSE.md). Budget : **0 €**.
+
+**Poly Haven — Rock Face 03**, Dario Barresi (photographie), Rico Cilliers (traitement), [fiche](https://polyhaven.com/a/rock_face_03), [licence CC0](https://polyhaven.com/license), vérifiée le 11 novembre 2026. Réemploi commercial et redistribution autorisés. Diffuse et déplacement JPEG 1k téléchargés hors ligne, empreintes conservées, préparés en 256² et intégrés à un atlas de 576². Teinte désaturée et harmonisée ; déplacement employé pour l'éclairage uniquement. Échelle annoncée par la bibliothèque : **27 m**, aucune affirmation d'une photographie prise à Angles.
+
+Terre, herbe et litière : matières procédurales originales, code versionné. Atlas minéral routier antérieur conservé. Aucun coût ou appel à un fournisseur de textures pendant la promenade.
+
+Étude de sélection : Poly Haven fournit ici la roche photographique et son relief, [comparés dans le moteur](mission-12-evidence/asset-comparison.json) à une variante procédurale. La matière photographique est retenue pour ses ruptures moins régulières, après harmonisation de sa teinte. Les pages officielles d'ambientCG, Kenney et Quaternius ont été effectivement consultées, avec réponse HTTP 200 et indication CC0 : [journal de sélection](mission-12-evidence/resources.json). ambientCG reste une option de textures PBR sans import supplémentaire ; Kenney et Quaternius sont surtout pertinents pour des modèles stylisés, hors priorité A. Aucun droit individuel n'est supposé pour un asset non retenu, aucune collection n'est importée en bloc.
+
+## Protocole de comparaison et mesures
+
+Stations : rue minérale, prairie, pente, berge, eau proche, rivière éloignée, eau du matin, eau sous pluie du soir. Chromium/SwiftShader **960 × 640**, profil Équilibré, référence civile 21 juin 2026. Les instants effectifs sont calculés par le même moteur Mission 11 dans les deux versions. Simulation arrêtée pour les captures fixes ; mêmes pas de stabilisation et de chargement, caméra et LOD.
+
+Les mesures complémentaires comparent trois profils, plusieurs stations et plusieurs passages sur la même machine. Les temps avec synchronisation/readback de SwiftShader mesurent un rendu logiciel ; **ce ne sont pas des FPS sur GPU physique**. Les nombres de textures et leur estimation de stockage sont distingués d'une mesure de mémoire GPU matérielle.
+
+**288 rendus mesurés, soit 144 paires**, quatre stations, trois profils et trois passages, douze échantillons par version et station. Les caméras, appels de rendu et triangles sont identiques dans chaque paire. [Synthèse lisible](mission-12-evidence/summary.json), [trace complète compressée](mission-12-evidence/performance.json.gz).
+
+| Profil | Rue : avant → après | Prairie : avant → après | Roche : avant → après | Eau : avant → après |
+| --- | --- | --- | --- | --- |
+| Éco | 205,6 → 219,3 ms (+6,7 %) | 111,6 → 135,0 ms (+20,9 %) | 193,2 → 208,9 ms (+8,2 %) | 106,4 → 125,8 ms (+18,2 %) |
+| Équilibré | 250,4 → 261,2 ms (+4,3 %) | 104,8 → 131,6 ms (+25,6 %) | 227,3 → 262,0 ms (+15,2 %) | 112,4 → 139,3 ms (+24,0 %) |
+| Qualité | 238,5 → 257,5 ms (+8,0 %) | 111,2 → 151,7 ms (+36,4 %) | 200,0 → 255,5 ms (+27,7 %) | 117,3 → 144,9 ms (+23,5 %) |
+
+Le surcoût reste mesurable : **aucune amélioration uniforme des FPS, fluidité matérielle garantie ou réussite Android n'est revendiquée**. Éco retire le relief des normales naturelles et simplifie la réflexion de l'eau ; Équilibré utilise une projection rocheuse dominante et un échantillon de sol ; Qualité adoucit les raccords proches et perturbe légèrement les UV avec le bruit déjà disponible. Les détails ne déplacent jamais les sommets. Les derniers changements propres à Qualité ont fait l'objet d'une nouvelle mesure ciblée ; les branches GLSL Éco/Équilibré sont inchangées.
+
+Deux textures partagées en plus : **7 → 9** textures dans ces scènes. PNG livrés : **744 527 octets**, hors petits manifestes ; stockage RGBA8 avec mipmaps estimé : **7,02 Mio** supplémentaires, distinct d'une mesure d'allocation GPU réelle. Deux reconstructions hors ligne : **4,10 s et 4,01 s**, empreintes identiques. Le navigateur charge les dérivés prêts à l'emploi, sans exécuter cette préparation.
+
+## Promenades et non-régressions
+
+- Promenade automatique réellement enregistrée, mêmes contrôles et mêmes voies existantes : **40,713 m en 32,368 s** avant, **40,167 m en 32,402 s** après, mesurés entre les images ; 131 et 127 images rendues. Vidéos natives avec leur durée réelle, son post-limiteur du jeu, sans normalisation. Le timestep plafonné et la charge logicielle expliquent que la distance ne soit pas parfaitement identique. Ces clips ne sont pas des comparaisons synchronisées image par image.
+- Séquence distincte près de l'eau : **17,729 s** entre images, matin clair puis soir pluvieux par les commandes ordinaires. Aucun déplacement ; cette station d'inspection n'est pas présentée comme une liaison piétonne au parcours précédent.
+- Toutes les positions enregistrées passent le prédicat terrain/collisions existant. Les fichiers du contrôleur et de la navigation sont inchangés. Les règles de largeur, la partition routière, les indices proche/lointain et les coordonnées sont conservés.
+- Audio Mission 11 inchangé ; quatre voix au pic sur ces extraits et cache maximal observé **24 730 140 octets**, sous 24 Mio. Aucune erreur de ressource audio dans ces clips. Cette vérification courte ne remplace pas l'audit sonore de Mission 11.
+- **167 tests Node réussis**, également rejoués sans cache dans un checkout propre, TypeScript/Vite réussi. Les chargeurs de tests suivent toutes les dépendances sans importer de fichier temporaire préexistant. Le build compilé est testé avec chargement, déplacement, hauteur des yeux, trois caméras, audio et viewport mobile 390 × 844 ; aucune erreur JavaScript. Avertissement Vite préexistant >500 ko : bundle désormais **714,71 ko**, **202,19 ko gzip**. Les valeurs de rendu logiciel ne sont pas des FPS mobiles réels.
+- Dix-huit cycles profil/météo dans WebGL, dérivés périmés et corrompus : source géographique toujours disponible et ancien rendu en secours. Huit comparaisons fixes sans dynamiques : différence maximale **1/255**, au plus 16 canaux modifiés sur 1 228 800 (arrondi logiciel visible dans les mesures, pas une identité pixel stricte).
+- Six chargements/libérations indépendants des textures : **9 → 11 → 9** à chaque cycle. Les bitmaps sont fermés avec leur propriétaire ; pas d'accumulation de textures constatée dans ce test.
+- IGN/ASP/OSM, relief, polygones d'eau, atlas routier, navigation, architecture, audio, Living Paintings et workflows protégés vérifiés. La régénération du manifeste des décorations ne change **que l'empreinte de la fonction de libération** ; arbres, ancrages et tous les chunks sont identiques. [Preuve de préservation](mission-12-evidence/preservation.json).
+
+Les trois clips et des planches extraites du mouvement ont été examinés. Les grains restent ancrés dans le monde ; aucun déplacement de matière ou apparition de géométrie nouvelle n'est introduit par ce jalon. Cette inspection courte ne garantit pas tous les parcours ou tous les GPU.
+
+## Implémenté, fonctionnel, perceptible, convaincant
+
+Les matières, le mélange sur pente, les transitions de berge et la réflexion du ciel sont **implémentés** et **fonctionnels** dans les tests du vrai moteur. Les comparaisons montrent une différence **perceptible**, surtout sur les premiers plans naturels, les pentes et l'eau du matin. Le gain routier reste plus discret, le rendu minéral de Mission 11 étant déjà travaillé.
+
+Le caractère **artistiquement convaincant** reste à votre appréciation. Les limites du MNT échantillonné à 10 m, les facettes, certaines maisons sur pente, les ruines illustratives et les silhouettes végétales antérieures restent visibles. Pas de bathymétrie, de vrais reflets des bâtiments, de nouveau niveau d'eau ou de courant hydrologique. Pas de longue marche ni de validation GPU physique/Android supplémentaire dans ce Jalon A. Les fixtures régionales et la validation d'une bibliothèque française complète appartiennent au Jalon D, non commencé.
+
+Comparaisons directement consultables sur GitHub : [rue](mission-12-evidence/compare-mineral.jpg), [prairie](mission-12-evidence/compare-nature.jpg), [pente](mission-12-evidence/compare-roche.jpg), [berge](mission-12-evidence/compare-berge.jpg), [eau proche](mission-12-evidence/compare-eau.jpg), [rivière éloignée](mission-12-evidence/compare-riviere.jpg).
+
+## Reproduction et prévisualisation isolée
+
+```sh
+git checkout mission/12-poesie-des-lieux
+npm ci
+npm test
+npm run build
+npm run dev -- --port 5173
+```
+
+Jeu : `http://localhost:5173/endless-earth/?moment=afternoon&weather=clear`. Galerie : `http://localhost:5173/endless-earth/docs/mission-12-evidence/index.html`. Les contrôles ordinaires restent disponibles : marche automatique, ZQSD/WASD/flèches, trois vues avec V, réglages graphiques et heure/météo.
+
+Pour le build compilé : `npm run preview -- --port 5180`, puis `http://localhost:5180/endless-earth/`. Le serveur de développement sert aussi la documentation ; le build de jeu ne prétend pas publier la galerie.
+
+Préparation des matières : `python scripts/prepare-surface-rock.py` (Pillow nécessaire ; sources CC0 téléchargées une fois dans `work/`), puis `node scripts/prepare-surface-art.mjs`. Les dérivés livrés sont déjà versionnés. Capture reproductible : `node scripts/browser-surface-art.mjs after`. La référence exige un checkout distinct du commit `83d9258` servi sur un autre port, puis `TEST_PORT=5176 node scripts/browser-surface-art.mjs before` ; ne pas capturer la branche actuelle sous l'étiquette « avant ».
+
+Le script de préparation vérifie les empreintes des deux JPEG sources. Versions de génération utilisées : Node 24, Pillow 13 (déjà référencé dans `scripts/geography-requirements.txt`). Autres contrôles : `node scripts/browser-surface-art-runtime.mjs`, `node scripts/benchmark-surface-art.mjs` (référence sur 5176), `node scripts/browser-surface-art-walk.mjs before`, puis `after`, `node scripts/browser-surface-art-assets.mjs`, `node scripts/verify-surface-art.mjs`, `python scripts/report-surface-art.py`, `node scripts/browser-surface-art-gallery.mjs`.
+
+Les captures précèdent le commit de livraison : leur badge indique la base `83d9258` et « modifié ». Le build compilé de prévisualisation est ensuite reconstruit depuis le commit livré. La galerie locale est indépendante de l'hébergement public ; aucune URL publique de prévisualisation n'est inventée.
+
+## Jalons suivants
+
+- B — Architecture régionale : **non commencé**.
+- C — Nature vivante : **non commencé**.
+- D — Art DNA et optimisation générale : **non commencé**.
+
+L'évaluation du Jalon A doit porter sur la richesse perceptible en marchant, l'harmonie, la répétition, la rivière et les berges. **Arrêt obligatoire après livraison du commit A ; attendre l'accord explicite du propriétaire avant B.**

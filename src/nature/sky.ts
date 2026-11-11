@@ -46,7 +46,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  const previousAcousticClimate=scene.userData.acousticClimate,environment:any={worldTimeMs:0,solar:{altitude:0},weather:state,acousticWeather:{...state,gust:0},wind:localWind,transition:{revision:0,commandRevision:0,manual:false},simulation:true};
  scene.userData.acousticClimate=environment;
  const conditions={habitat:'unknown',day:0,rain:0,wind:.35,meanWind:.35,month:1,latitude:site.lat,longitude:site.lon,altitude:0};
- const provenance={habitat:'mapped classification, unknown preserved',wind:'simulated',weather:'simulated, not forecast',sky:'Three.js Preetham with artistic night and two cloud altitudes',birds:'generic artistic silhouettes',current:'unverified artistic direction'},resources={cpuObjects:11,extraDrawCallsMax:12,extraTextures:0,cloudMaterials:1,birdMaterials:1,particleMaterials:1,rainMaterials:1};
+ const provenance={habitat:'mapped classification, unknown preserved',wind:'simulated',weather:'simulated, not forecast',sky:'Three.js Preetham with artistic night and two cloud altitudes',birds:'generic artistic silhouettes',current:'illustrative surface ripples; hydrological flow unknown'},resources={cpuObjects:11,extraDrawCallsMax:12,extraTextures:0,cloudMaterials:1,birdMaterials:1,particleMaterials:1,rainMaterials:1};
  let habitatX=NaN,habitatZ=NaN,habitatSource:any=null,cachedHabitat='unknown';
  const previousClimate=scene.userData.climate;scene.userData.climate=environment;
  const update=(dt:number,_eco:boolean,wallDt=dt)=>{
@@ -71,6 +71,10 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   const profile=lifeSettings.profile;
   lifeUniforms.lifeVegetation.value=profile.vegetation;lifeUniforms.lifeFine.value=profile.fine;lifeUniforms.lifeWater.value=profile.water;lifeUniforms.lifeCloudCover.value=state.cloud;lifeUniforms.lifeShadow.value=profile.shadows*profile.clouds;
   lifeUniforms.lifeSun.value.copy(sunDirection);
+  // The river receives the same simulated sky/weather/light as the scene.
+  lifeUniforms.lifeRain.value=state.rain;lifeUniforms.lifeDay.value=day;
+  lifeUniforms.lifeHorizon.value.copy(horizon);lifeUniforms.lifeZenith.value.copy(zenith);
+  lifeUniforms.lifeSunColor.value.copy(sun.color);lifeUniforms.lifeSunIntensity.value=sun.intensity;
   cloudLayer.update(camera.position,day,profile.clouds,lifeSettings.name==='eco',warm,state.rain);
   rainWind.set(localWind.x,localWind.z);
   rain.update(camera.position,height(player.position.x,player.position.z)??player.position.y,elapsed,state.rain,rainWind,day,lifeSettings.name);

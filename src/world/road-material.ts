@@ -45,7 +45,7 @@ if(earthRoadType>.5){
  float unknown=step(4.5,earthRoadType)*(1.-step(5.5,earthRoadType));
  vec2 quadrant=sett>0.?vec2(1.,0.):gravel>0.?vec2(0.,1.):rural>0.?vec2(1.,1.):vec2(0.);
  float metres=earthRoadType<1.5||unknown>0.?2.:4.;
- float detailFade=1.-smoothstep(12.,75.,length(vViewPosition));
+ float detailFade=1.-smoothstep(15.,90.,length(vViewPosition));
  mineralDetail=detailFade;
  float mineralTone=0.;
  if(detailFade>.001){
@@ -53,15 +53,15 @@ if(earthRoadType>.5){
   // Reuse the independent R channels of the two existing world-noise reads.
   // They vary in world space, independently of the repeated mineral tile.
   // Courses remain coherent; a second scale only varies their tone, not joints.
-  mineralTone=(grain.r-.5)*(sett>.5?.52:gravel>.5?.52:.36)+groundMineral*.04;
-  float relief=sett>.5?.006:gravel>.5?.006:rural>.5?.003:.0018;
+  mineralTone=(grain.r-.5)*(sett>.5?.66:gravel>.5?.60:.40)+groundMineral*.05;
+  float relief=sett>.5?.010:gravel>.5?.008:rural>.5?.004:.0018;
   mineralHeight=(grain.g-.5)*relief*detailFade;
   if(unknown>.5){mineralTone*=.55;mineralHeight*=.5;}
  }
  // Existing low-frequency world noise is shared with surrounding ground.
  // No high-contrast aerial blotches and no tiled cracks or invented markings.
  base*=1.+groundPatch*.20+mineralTone*detailFade;
- float edgeDust=1.-smoothstep(.12,rural>.5?1.10:.65,roadBoundaryDistance);
+ float edgeDust=1.-smoothstep(.12,(rural>.5?1.10:.65)*(1.+groundPatch*.35),roadBoundaryDistance);
  // A restrained mineral shoulder, not grass painted onto sealed roads.
  base=mix(base,roadDust,edgeDust*(rural>.5?.55:.30));
  mineralHeight*=1.-edgeDust*.55;

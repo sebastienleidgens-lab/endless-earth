@@ -1,0 +1,41 @@
+{
+  "schema": "endless-earth-surface-art-v1",
+  "sources": {
+    "terrain": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1",
+    "osm": "06b79e259d8cca94ed6619d90a058e650d1a9bb5e245802f0dd141b679587aac",
+    "environment": "dfcc8100915c0d65f95c57eb063885d35067326e9f51887a9d9c74415f544fba"
+  },
+  "origin": [
+    -1000,
+    -1000
+  ],
+  "extent": [
+    2000,
+    2000
+  ],
+  "size": 1024,
+  "range": 16,
+  "atlasSize": 576,
+  "hashes": {
+    "field": "eac0afe657bc7aaf036255a13f04cb7e70bbff864146ecba258ae86927201ea9",
+    "atlas": "727dd54214ba2932160ad5acf7b7eefd271aa72558f4706b884adeb81a26d463"
+  },
+  "counts": {
+    "meadow": 160155,
+    "scrub": 101611,
+    "unknown": 21408,
+    "wood": 284445,
+    "built": 53736,
+    "open": 141780,
+    "farmland": 285441
+  },
+  "bytes": {
+    "field": 140677,
+    "atlas": 603850
+  },
+  "interpretation": {
+    "weights": "Mapped habitat classes only; unknown remains generic. RGB = meadow/open/garden/scrub, wood, explicit rock. Bilinear transitions affect appearance only.",
+    "shore": "Distance to the union of existing OSM water outlines, including islands. Unsigned, capped at 16 m. No water depth or flow measurement.",
+    "slope": "Existing IGN normals only; exposed mineral colouring is an artistic interpretation, not a geological survey."
+  }
+}

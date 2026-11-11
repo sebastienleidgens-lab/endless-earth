@@ -1,0 +1,82 @@
+{
+  "schema": "endless-earth-material-catalog-v1",
+  "checked": "2026-11-11",
+  "budgetEUR": 0,
+  "atlas": {
+    "file": "surface-atlas.png",
+    "sha256": "727dd54214ba2932160ad5acf7b7eefd271aa72558f4706b884adeb81a26d463",
+    "dimensions": [
+      576,
+      576
+    ],
+    "format": "PNG RGBA8, data texture, mipmapped",
+    "gpuBytesWithMipmaps": 1769472
+  },
+  "families": [
+    {
+      "name": "terre générique",
+      "author": "Endless Earth",
+      "source": "scripts/prepare-surface-art.mjs + src/world/surface-art.mjs",
+      "license": "Original project code",
+      "metres": 2
+    },
+    {
+      "name": "herbe / prairie documentée",
+      "author": "Endless Earth",
+      "source": "src/world/surface-art.mjs",
+      "license": "Original project code",
+      "metres": 4
+    },
+    {
+      "name": "sol forestier interprété",
+      "author": "Endless Earth",
+      "source": "src/world/surface-art.mjs",
+      "license": "Original project code",
+      "metres": 3
+    },
+    {
+      "name": "Rock Face 03",
+      "authors": [
+        "Dario Barresi — photography",
+        "Rico Cilliers — processing"
+      ],
+      "source": "https://polyhaven.com/a/rock_face_03",
+      "license": "CC0-1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "checked": "2026-11-11",
+      "sourceTileMetres": [
+        27,
+        27
+      ],
+      "files": [
+        {
+          "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_diff_1k.jpg",
+          "sha256": "ea48e0e47ad42c8bd312476178b1248ec66f0eb19156a26a1c222f2a40caaf2d",
+          "bytes": 927082,
+          "dimensions": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_disp_1k.jpg",
+          "sha256": "fb053bfd46cef976da9cfee67f045367469cddd69469dcacd67d3fca4bd41545",
+          "bytes": 264231,
+          "dimensions": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "transformations": [
+        "1024² JPEG to 256² tone/displacement",
+        "diffuse greyscale, contrast ×0.75; regional tint in shader",
+        "packed RG; wrapped gutters added by prepare-surface-art.mjs",
+        "no vertex displacement; small shading relief only"
+      ],
+      "metres": 27
+    }
+  ],
+  "existing": "Road mineral RG atlas and OSM material classes retained, with more legible shading. No new paving assignment.",
+  "usage": "Shared ground and river-bank material; no runtime third-party request, no geometry displacement."
+}
