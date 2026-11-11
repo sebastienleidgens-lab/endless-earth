@@ -1,0 +1,75 @@
+{
+  "stage": "13A only — visual opportunities, not integrated improvements",
+  "families": [
+    {
+      "id": "pierre", "label": "Façades de pierre", "photo": "C18", "baseline": "facade", "candidate": "P-old_stone_wall",
+      "alreadyWorks": "Palette chaude et sourde, échelle métrique, encadrements séparés et identité déterministe.",
+      "visibleLimit": "Assises encore trop régulières ; joints semblables entre maisons et manque de variations de matière à quelques mètres.",
+      "opportunity": "Moellons irréguliers et grain photographique atténué ; comparer avec une variante hybride à palette Mission 12.",
+      "costRisk": "Réutiliser l’atlas ; ombres/joints photographiques trop forts et blocs trop grands à contrôler. Ne pas colorer chaque maison d’après une photo non recalée.",
+      "priority": 1, "expectedGain": "élevé pendant la marche proche"
+    },
+    {
+      "id": "enduit", "label": "Enduits minéraux et enduits usés", "photo": "C10", "baseline": "facade", "candidate": "P-plaster_stone_wall_01",
+      "alreadyWorks": "Enduit calme et fin, couleurs compatibles avec la végétation ; normales limitées à 0,0016 m dans l’ADN.",
+      "visibleLimit": "Grande façade assez uniforme ; transition pierre/enduit absente de la matière de base.",
+      "opportunity": "Deux familles partagées : enduit couvrant fin (White Plaster 02) et enduit discontinu sans déplacer les ouvertures.",
+      "costRisk": "Une grosse lacune récurrente se reconnaîtrait vite. Réduire la patine photographique ; ne pas systématiser l’enduit abîmé.",
+      "priority": 1, "expectedGain": "élevé à moyen, selon la distance"
+    },
+    {
+      "id": "tuile", "label": "Toitures", "photo": "C09", "baseline": "toitures", "candidate": "P-roof_tiles_14",
+      "alreadyWorks": "Palettes terre cuite stables, matériaux documentés prioritaires et détails filtrés à distance.",
+      "visibleLimit": "Les pans forment de grands aplats orange ; la courbure des tuiles procédurales est uniforme.",
+      "opportunity": "Étudier les petits éléments rectangulaires et la variation brun-roux visible en C09/C22 ; Roof Tiles 14 est une piste, pas un relevé de couverture.",
+      "costRisk": "Lichens trop sombres, répétition de taches et mauvais profil de tuile. Les variantes très ondulées ont été rejetées pour ce pilote.",
+      "priority": 2, "expectedGain": "moyen à élevé si visible depuis la rue ; à démontrer"
+    },
+    {
+      "id": "chemin", "label": "Chemins et gravier", "photo": "C16", "baseline": "chemin", "candidate": "P-gravel_floor",
+      "alreadyWorks": "Routes/sols partitionnés sans superposition, mètres et classes connues préservés, accotements discrets.",
+      "visibleLimit": "Le chemin de référence paraît lisse ; son grain se lit peu en promenade.",
+      "opportunity": "Tester un gravier fin à faible contraste uniquement sur la classe gravier documentée.",
+      "costRisk": "C16 montre un pavage : c’est un contre-exemple, pas la preuve que le chemin capturé est pavé ou en gravier. Le pavage CC0 correspondant n’est pas retenu faute de gain établi ; garder le procédural. Risque de scintillement.",
+      "priority": 3, "expectedGain": "moyen et conditionnel ; correspondance locale inconnue"
+    },
+    {
+      "id": "terre", "label": "Sol naturel", "photo": "C15", "baseline": "sol", "candidate": "P-brown_mud_dry",
+      "alreadyWorks": "Classes IGN/ASP/OSM, petites variations et atténuation entre 18 et 100 m ; herbe conservée dans ses habitats.",
+      "visibleLimit": "Les grandes zones naturelles restent assez homogènes à hauteur de joueur.",
+      "opportunity": "Une terre générique photographique adoucie peut enrichir les secteurs déjà compatibles ; conserver l’herbe procédurale.",
+      "costRisk": "C15 n’est pas une photo rapprochée de terre. Granulométrie locale non établie ; aucun remplacement d’une prairie par terre parce que l’asset existe.",
+      "priority": 4, "expectedGain": "incertain avant essai dans le moteur"
+    },
+    {
+      "id": "litiere", "label": "Litière et sous-bois", "photo": "C07", "baseline": "sol", "candidate": "P-forest_floor",
+      "alreadyWorks": "Palette commune avec les arbres, calendrier, habitats et matière procédurale sobres.",
+      "visibleLimit": "Le grain reste générique ; les photos retenues ne documentent pas un sous-bois fin.",
+      "opportunity": "Conserver Mission 12 initialement. Forest Floor sert de contre-exemple saisonnier à feuilles jaunes très visibles.",
+      "costRisk": "C07 n’apporte que le contexte boisé lointain ; la capture de sol est une prairie, pas une preuve de sous-bois. Ne pas importer des feuilles d’automne permanentes.",
+      "priority": 5, "expectedGain": "faible priorité ; conservation proposée"
+    },
+    {
+      "id": "roche", "label": "Roches et falaises", "photo": "C07", "baseline": "falaise", "candidate": "A-Rock023",
+      "alreadyWorks": "Rock Face 03 CC0 déjà intégré et harmonisé, projection adaptée aux pentes ; aucun déplacement de sommets.",
+      "visibleLimit": "La pente reste facettée et un bâtiment masque une partie de la station falaise ; la texture ne corrige pas le MNT à 10 m.",
+      "opportunity": "Comparer Rock023 plus stratifié à la référence Rock Face 03 existante. Examiner les fissures sans prétendre identifier la roche exacte.",
+      "costRisk": "Échelle physique Rock023 absente ; risque de strates gigantesques et de discordance avec les arbres. Géométrie de falaise hors périmètre.",
+      "priority": 3, "expectedGain": "limité par la géométrie ; remplacement non acquis"
+    },
+    {
+      "id": "berge", "label": "Berges", "photo": "C20", "baseline": "berge", "candidate": "P-brown_mud",
+      "alreadyWorks": "Humidité discrète, union des polygones d’eau et reflet analytique du ciel ; rive sans ruban superposé.",
+      "visibleLimit": "Contact terre/eau encore uniforme sur la vue actuelle.",
+      "opportunity": "Tester seulement le grain minéral/humide des contacts compatibles ; conserver les rives herbeuses et l’eau Mission 12.",
+      "costRisk": "C20 montre surtout de l’herbe ; C08 révèle une autre rive bâtie et rocheuse. Aucune preuve de vase généralisée, de bathymétrie ou de courant mesuré.",
+      "priority": 4, "expectedGain": "modéré, après façades et toitures"
+    }
+  ],
+  "proposedLibrary": [
+    "P-old_stone_wall", "A-Bricks099", "P-white_plaster_02", "P-plaster_stone_wall_01",
+    "P-roof_tiles_14", "P-gravel_floor", "P-brown_mud_dry", "P-brown_mud", "A-Rock023", "P-rock_face_03"
+  ],
+  "keepProcedural": ["herbe", "litière initiale", "pavage tant qu’un remplacement ne prouve pas son gain", "ardoise sans nouvelle preuve locale", "bois et détails de façade", "eau"],
+  "nextStageRequiresExplicitOwnerApproval": true
+}

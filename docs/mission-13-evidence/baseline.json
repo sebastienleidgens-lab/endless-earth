@@ -1,0 +1,2632 @@
+{
+  "commit": "a8ce9c950c4aa3ac1630add0f3d971d9068108c9",
+  "rendererChanges": false,
+  "method": "Browser response instrumentation pauses simulation and exposes existing camera/LOD/render functions; source files unchanged. Six synchronized render/readback samples per station; no FPS or hardware-GPU claim.",
+  "date": "2026-06-21T12:00:00Z",
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "viewport": [
+      960,
+      640
+    ],
+    "devicePixelRatio": 1,
+    "buffer": [
+      960,
+      640
+    ]
+  },
+  "results": [
+    {
+      "id": "rue",
+      "profile": "balanced",
+      "file": "baseline/rue-balanced.jpg",
+      "station": [
+        "rue",
+        -12.277392682727118,
+        -32.416383999943434,
+        0.65,
+        0.12,
+        5,
+        "third"
+      ],
+      "geo": {
+        "lat": 46.6955912,
+        "lon": 0.8842392,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -12.277392682727118,
+          -1.48157948633812,
+          -32.416383999943434
+        ],
+        "camera": [
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172
+        ],
+        "matrix": [
+          0.7960837985490561,
+          0,
+          -0.6051864057360393,
+          0,
+          -0.13076609949033435,
+          0.9763766052471671,
+          -0.1720143946014448,
+          0,
+          0.5908898483742887,
+          0.2160757384021112,
+          0.7772775967195971,
+          0,
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.2593762148826046,
+            "rain": 0,
+            "gust": 0.6111818026435492
+          },
+          "wind": {
+            "x": 0.23688136489226164,
+            "z": -0.10721494354270823,
+            "speed": 0.2593762148826046,
+            "gust": 0.6111818026435492
+          },
+          "transition": {
+            "revision": 291,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 240,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.23688136489226164,
+            "z": -0.10721494354270823,
+            "speed": 0.2593762148826046,
+            "gust": 0.6111818026435492
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 7,
+          "builds": 7,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 132,
+        "textures": 8,
+        "programs": 10,
+        "materials": 52,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 188825979
+      },
+      "samples": [
+        {
+          "synchronizedMs": 510,
+          "frame": 3,
+          "calls": 131,
+          "triangles": 238565,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 4.800000000017462,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 578.3999999999942,
+          "frame": 4,
+          "calls": 131,
+          "triangles": 238565,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2.099999999976717,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 544.7999999999884,
+          "frame": 5,
+          "calls": 131,
+          "triangles": 238565,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 3.099999999976717,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 470.80000000001746,
+          "frame": 6,
+          "calls": 131,
+          "triangles": 238565,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2.3000000000174623,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 525.2000000000116,
+          "frame": 7,
+          "calls": 131,
+          "triangles": 238565,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 479.3999999999942,
+          "frame": 8,
+          "calls": 131,
+          "triangles": 238565,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "facade",
+      "profile": "balanced",
+      "file": "baseline/facade-balanced.jpg",
+      "station": [
+        "facade",
+        -7.6,
+        -27.66,
+        1.5,
+        -0.08,
+        0,
+        "first"
+      ],
+      "geo": {
+        "lat": 46.695548472871,
+        "lon": 0.8843004609503352,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -7.6,
+          -1.346100000000007,
+          -27.66
+        ],
+        "camera": [
+          -7.6,
+          0.30389999999999295,
+          -27.66
+        ],
+        "matrix": [
+          0.07073720166770314,
+          6.938893903907228e-18,
+          -0.9974949866040544,
+          0,
+          0.07971450659024706,
+          0.9968017063026193,
+          0.0056529418235101575,
+          0,
+          0.9943047046752299,
+          -0.07991469396917272,
+          0.07051096332143902,
+          0,
+          -7.6,
+          0.30389999999999295,
+          -27.66,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1550467513378431,
+            "rain": 0,
+            "gust": 3.890218635502016e-13
+          },
+          "wind": {
+            "x": 0.14071261819114445,
+            "z": -0.06573373368088302,
+            "speed": 0.1550467513378431,
+            "gust": 3.890218635502016e-13
+          },
+          "transition": {
+            "revision": 582,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 480,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.14071261819114445,
+            "z": -0.06573373368088302,
+            "speed": 0.1550467513378431,
+            "gust": 3.890218635502016e-13
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 7,
+          "builds": 7,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 168,
+        "textures": 8,
+        "programs": 10,
+        "materials": 52,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 197177723
+      },
+      "samples": [
+        {
+          "synchronizedMs": 586.8000000000175,
+          "frame": 10,
+          "calls": 90,
+          "triangles": 240102,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.8000000000174623,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 527.7999999999884,
+          "frame": 11,
+          "calls": 90,
+          "triangles": 240102,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.599999999976717,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 581.6000000000058,
+          "frame": 12,
+          "calls": 90,
+          "triangles": 240102,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 580,
+          "frame": 13,
+          "calls": 90,
+          "triangles": 240102,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999999941792,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 560.1000000000058,
+          "frame": 14,
+          "calls": 90,
+          "triangles": 240102,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.6000000000058208,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 595.7000000000116,
+          "frame": 15,
+          "calls": 90,
+          "triangles": 240102,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3000000000174623,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "toitures",
+      "profile": "balanced",
+      "file": "baseline/toitures-balanced.jpg",
+      "station": [
+        "toitures",
+        -12,
+        -30,
+        0.8,
+        0.5,
+        65,
+        "aerial"
+      ],
+      "geo": {
+        "lat": 46.6955694933525,
+        "lon": 0.8842428330794767,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -12,
+          -1.5120000000000005,
+          -30
+        ],
+        "camera": [
+          34.62814590846898,
+          50.838,
+          15.285936107565753
+        ],
+        "matrix": [
+          0.6967067093471655,
+          5.551115123125783e-17,
+          -0.7173560908995228,
+          0,
+          -0.4411968068899419,
+          0.7885023060177911,
+          -0.42849678061187935,
+          0,
+          0.5656369319101818,
+          0.6150317986938771,
+          0.5493548469383069,
+          0,
+          34.62814590846898,
+          50.838,
+          15.285936107565753,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18070881996665303,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.16030249307411398,
+            "z": -0.08346767111985665,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 873,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 720,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.16030249307411398,
+            "z": -0.08346767111985665,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 8,
+          "builds": 11,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 180,
+        "textures": 8,
+        "programs": 10,
+        "materials": 53,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 179394119
+      },
+      "samples": [
+        {
+          "synchronizedMs": 452.30000000001746,
+          "frame": 17,
+          "calls": 105,
+          "triangles": 256007,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.400000000023283,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 446.20000000001164,
+          "frame": 18,
+          "calls": 105,
+          "triangles": 256007,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.8999999999941792,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 437.5,
+          "frame": 19,
+          "calls": 105,
+          "triangles": 256007,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.599999999976717,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 414.8999999999942,
+          "frame": 20,
+          "calls": 105,
+          "triangles": 256007,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999999941792,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 435.3999999999942,
+          "frame": 21,
+          "calls": 105,
+          "triangles": 256007,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.1999999999825377,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 429.79999999998836,
+          "frame": 22,
+          "calls": 105,
+          "triangles": 256007,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "chemin",
+      "profile": "balanced",
+      "file": "baseline/chemin-balanced.jpg",
+      "station": [
+        "chemin",
+        -211.3,
+        -184.27,
+        -0.27792784240234414,
+        0.12,
+        0,
+        "first"
+      ],
+      "geo": {
+        "lat": 46.69695531800216,
+        "lon": 0.8816325524744522,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -211.3,
+          -4.926270000000002,
+          -184.27
+        ],
+        "camera": [
+          -211.3,
+          -3.2762700000000025,
+          -184.27
+        ],
+        "matrix": [
+          0.9616260270507718,
+          3.469446951953614e-18,
+          0.2743635983481558,
+          0,
+          0.03284467195798864,
+          0.992808635853866,
+          -0.11511837428472335,
+          0,
+          -0.2723905498039906,
+          0.11971220728892079,
+          0.9547106241178497,
+          0,
+          -211.3,
+          -3.2762700000000025,
+          -184.27,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.2114688542137815,
+            "rain": 0,
+            "gust": 2.544625613537311e-7
+          },
+          "wind": {
+            "x": 0.18460501946888486,
+            "z": -0.10320362905793298,
+            "speed": 0.2114688542137815,
+            "gust": 2.544625613537311e-7
+          },
+          "transition": {
+            "revision": 1164,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 960,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.18460501946888486,
+            "z": -0.10320362905793298,
+            "speed": 0.2114688542137815,
+            "gust": 2.544625613537311e-7
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 19,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 6,
+          "builds": 17,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 211,
+        "textures": 8,
+        "programs": 10,
+        "materials": 51,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 197904969
+      },
+      "samples": [
+        {
+          "synchronizedMs": 277,
+          "frame": 24,
+          "calls": 98,
+          "triangles": 115588,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 308.3999999999942,
+          "frame": 25,
+          "calls": 98,
+          "triangles": 115588,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999999941792,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 288.3999999999942,
+          "frame": 26,
+          "calls": 98,
+          "triangles": 115588,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.1999999999825377,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 254.60000000000582,
+          "frame": 27,
+          "calls": 98,
+          "triangles": 115588,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 283.1000000000058,
+          "frame": 28,
+          "calls": 98,
+          "triangles": 115588,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.2999999999883585,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 294.69999999998254,
+          "frame": 29,
+          "calls": 98,
+          "triangles": 115588,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "sol",
+      "profile": "balanced",
+      "file": "baseline/sol-balanced.jpg",
+      "station": [
+        "sol",
+        -420,
+        -320,
+        1,
+        0.3,
+        0,
+        "first"
+      ],
+      "geo": {
+        "lat": 46.69817459575997,
+        "lon": 0.8788991577816844,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -420,
+          -17.49000000000001,
+          -320
+        ],
+        "camera": [
+          -420,
+          -15.840000000000009,
+          -320
+        ],
+        "matrix": [
+          0.5403023058681424,
+          -1.3877787807814457e-17,
+          -0.8414709848078947,
+          0,
+          -0.24867167932994877,
+          0.9553364891256064,
+          -0.15967024908975092,
+          0,
+          0.8038879363274407,
+          0.2955202066613381,
+          0.5161705079545407,
+          0,
+          -420,
+          -15.840000000000009,
+          -320,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.21373695721769584,
+            "rain": 0,
+            "gust": 0.0009286694053080696
+          },
+          "wind": {
+            "x": 0.1820940395180613,
+            "z": -0.11263062287522593,
+            "speed": 0.21373695721769584,
+            "gust": 0.0009286694053080696
+          },
+          "transition": {
+            "revision": 1455,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 1200,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "scrub",
+          "wind": {
+            "x": 0.1820940395180613,
+            "z": -0.11263062287522593,
+            "speed": 0.21373695721769584,
+            "gust": 0.0009286694053080696
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 17,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 6,
+          "builds": 22,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 229,
+        "textures": 8,
+        "programs": 10,
+        "materials": 51,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 210038328
+      },
+      "samples": [
+        {
+          "synchronizedMs": 256.70000000001164,
+          "frame": 31,
+          "calls": 42,
+          "triangles": 58151,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 234.29999999998836,
+          "frame": 32,
+          "calls": 42,
+          "triangles": 58151,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.2000000000116415,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 225,
+          "frame": 33,
+          "calls": 42,
+          "triangles": 58151,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.2000000000116415,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 269.1000000000058,
+          "frame": 34,
+          "calls": 42,
+          "triangles": 58151,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.2000000000116415,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 277.6000000000058,
+          "frame": 35,
+          "calls": 42,
+          "triangles": 58151,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.900000000023283,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 251.10000000000582,
+          "frame": 36,
+          "calls": 42,
+          "triangles": 58151,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "falaise",
+      "profile": "balanced",
+      "file": "baseline/falaise-balanced.jpg",
+      "station": [
+        "falaise",
+        -80,
+        210,
+        -0.75,
+        -0.28,
+        0,
+        "first"
+      ],
+      "geo": {
+        "lat": 46.693413546532526,
+        "lon": 0.8833522205298446,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -80,
+          -33.46000000000001,
+          210
+        ],
+        "camera": [
+          -80,
+          -31.81000000000001,
+          210
+        ],
+        "matrix": [
+          0.7316888688738307,
+          -2.7755575615628914e-17,
+          0.6816387600233237,
+          0,
+          -0.1883747216126827,
+          0.9610554383107714,
+          0.202206351904769,
+          0,
+          -0.655092637283826,
+          -0.27635564856411204,
+          0.7031935665826519,
+          0,
+          -80,
+          -31.81000000000001,
+          210,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.3376474367465804,
+            "rain": 0,
+            "gust": 0.9523710058918238
+          },
+          "wind": {
+            "x": 0.28165247260785004,
+            "z": -0.18905621481598106,
+            "speed": 0.3376474367465804,
+            "gust": 0.9523710058918238
+          },
+          "transition": {
+            "revision": 1746,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 1440,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "scrub",
+          "wind": {
+            "x": 0.28165247260785004,
+            "z": -0.18905621481598106,
+            "speed": 0.3376474367465804,
+            "gust": 0.9523710058918238
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 19,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 123,
+          "cells": 250,
+          "resident": 5,
+          "builds": 27,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 329,
+        "textures": 8,
+        "programs": 11,
+        "materials": 50,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 211632250
+      },
+      "samples": [
+        {
+          "synchronizedMs": 457.5,
+          "frame": 38,
+          "calls": 164,
+          "triangles": 239605,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999999941792,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 442.79999999998836,
+          "frame": 39,
+          "calls": 164,
+          "triangles": 239605,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2.2000000000116415,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 444.19999999998254,
+          "frame": 40,
+          "calls": 164,
+          "triangles": 239605,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.6999999999825377,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 439.20000000001164,
+          "frame": 41,
+          "calls": 164,
+          "triangles": 239605,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2.2000000000116415,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 407.3999999999942,
+          "frame": 42,
+          "calls": 164,
+          "triangles": 239605,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 412.8999999999942,
+          "frame": 43,
+          "calls": 164,
+          "triangles": 239605,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.8999999999941792,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "berge",
+      "profile": "balanced",
+      "file": "baseline/berge-balanced.jpg",
+      "station": [
+        "berge",
+        -150,
+        245,
+        -1.1,
+        0.12,
+        0,
+        "first"
+      ],
+      "geo": {
+        "lat": 46.693099137621275,
+        "lon": 0.8824354134934587,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -150,
+          -33.510000000000005,
+          245
+        ],
+        "camera": [
+          -150,
+          -31.860000000000007,
+          245
+        ],
+        "matrix": [
+          0.45359612142558636,
+          1.3877787807814457e-17,
+          0.8912073600614308,
+          0,
+          0.10668840022508592,
+          0.992808635853866,
+          -0.054300992913550325,
+          0,
+          -0.8847983634055143,
+          0.11971220728892086,
+          0.450334146541141,
+          0,
+          -150,
+          -31.860000000000007,
+          245,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17265541959206077,
+            "rain": 0,
+            "gust": 8.803886539273324e-9
+          },
+          "wind": {
+            "x": 0.14503429148833497,
+            "z": -0.09479907256382274,
+            "speed": 0.17265541959206077,
+            "gust": 8.803886539273324e-9
+          },
+          "transition": {
+            "revision": 2037,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 1680,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "scrub",
+          "wind": {
+            "x": 0.14503429148833497,
+            "z": -0.09479907256382274,
+            "speed": 0.17265541959206077,
+            "gust": 8.803886539273324e-9
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 19,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 7,
+          "builds": 31,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 356,
+        "textures": 8,
+        "programs": 11,
+        "materials": 52,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 133849737
+      },
+      "samples": [
+        {
+          "synchronizedMs": 330.79999999998836,
+          "frame": 45,
+          "calls": 169,
+          "triangles": 242129,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.6999999999825377,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 331.6000000000058,
+          "frame": 46,
+          "calls": 169,
+          "triangles": 242129,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.900000000023283,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 377.6000000000058,
+          "frame": 47,
+          "calls": 169,
+          "triangles": 242129,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999999941792,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 337.69999999998254,
+          "frame": 48,
+          "calls": 169,
+          "triangles": 242129,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 372.3999999999942,
+          "frame": 49,
+          "calls": 169,
+          "triangles": 242129,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 358.1000000000058,
+          "frame": 50,
+          "calls": 169,
+          "triangles": 242129,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "village",
+      "profile": "balanced",
+      "file": "baseline/village-balanced.jpg",
+      "station": [
+        "village",
+        -100,
+        155,
+        0.5,
+        0.5,
+        210,
+        "aerial"
+      ],
+      "geo": {
+        "lat": 46.69390761767877,
+        "lon": 0.8830902756623058,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -100,
+          -19.650000000000006,
+          155
+        ],
+        "camera": [
+          0.6793631068826329,
+          145.8,
+          339.2923379969783
+        ],
+        "matrix": [
+          0.8775825618903728,
+          -2.7755575615628914e-17,
+          -0.47942553860420295,
+          0,
+          -0.2948619513475238,
+          0.788502306017791,
+          -0.5397411815418167,
+          0,
+          0.37802814275323554,
+          0.6150317986938771,
+          0.6919758737715597,
+          0,
+          0.6793631068826329,
+          145.8,
+          339.2923379969783,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18953540409641897,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.16586485575619886,
+            "z": -0.0917454092969819,
+            "speed": 0.18953540409641897,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 2328,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 1920,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "open",
+          "wind": {
+            "x": 0.16586485575619886,
+            "z": -0.0917454092969819,
+            "speed": 0.18953540409641897,
+            "gust": 0
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 123,
+          "cells": 250,
+          "resident": 6,
+          "builds": 35,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 371,
+        "textures": 8,
+        "programs": 11,
+        "materials": 51,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 138775233
+      },
+      "samples": [
+        {
+          "synchronizedMs": 407.6000000000058,
+          "frame": 52,
+          "calls": 167,
+          "triangles": 263949,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2.6000000000058208,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 426.70000000001164,
+          "frame": 53,
+          "calls": 167,
+          "triangles": 263949,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.6000000000058208,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 454.5,
+          "frame": 54,
+          "calls": 167,
+          "triangles": 263949,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 438.8999999999942,
+          "frame": 55,
+          "calls": 167,
+          "triangles": 263949,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 478.5,
+          "frame": 56,
+          "calls": 167,
+          "triangles": 263949,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 463,
+          "frame": 57,
+          "calls": 167,
+          "triangles": 263949,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.8999999999941792,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "rue",
+      "profile": "eco",
+      "file": "baseline/rue-eco.jpg",
+      "station": [
+        "rue",
+        -12.277392682727118,
+        -32.416383999943434,
+        0.65,
+        0.12,
+        5,
+        "third"
+      ],
+      "geo": {
+        "lat": 46.6955912,
+        "lon": 0.8842392,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -12.277392682727118,
+          -1.48157948633812,
+          -32.416383999943434
+        ],
+        "camera": [
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172
+        ],
+        "matrix": [
+          0.7960837985490561,
+          0,
+          -0.6051864057360393,
+          0,
+          -0.13076609949033435,
+          0.9763766052471671,
+          -0.1720143946014448,
+          0,
+          0.5908898483742887,
+          0.2160757384021112,
+          0.7772775967195971,
+          0,
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.22451589600836608,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.20425557677058787,
+            "z": -0.09426652915294519,
+            "speed": 0.22451589600836608,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 2619,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 2160,
+          "profile": "eco",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 0.55,
+            "fine": 0,
+            "water": 0.5,
+            "clouds": 0.7,
+            "shadows": 0,
+            "birds": 2,
+            "particles": 0,
+            "events": 1,
+            "cpuHz": 5
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.20425557677058787,
+            "z": -0.09426652915294519,
+            "speed": 0.22451589600836608,
+            "gust": 0
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 10,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 7,
+          "builds": 42,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 373,
+        "textures": 8,
+        "programs": 16,
+        "materials": 52,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 150977657
+      },
+      "samples": [
+        {
+          "synchronizedMs": 416,
+          "frame": 59,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999999941792,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 489.19999999998254,
+          "frame": 60,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.6000000000058208,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 484.19999999998254,
+          "frame": 61,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.8999999999941792,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 478.70000000001164,
+          "frame": 62,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 418.79999999998836,
+          "frame": 63,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 445,
+          "frame": 64,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.599999999976717,
+          "textures": 8
+        }
+      ]
+    },
+    {
+      "id": "rue",
+      "profile": "quality",
+      "file": "baseline/rue-quality.jpg",
+      "station": [
+        "rue",
+        -12.277392682727118,
+        -32.416383999943434,
+        0.65,
+        0.12,
+        5,
+        "third"
+      ],
+      "geo": {
+        "lat": 46.6955912,
+        "lon": 0.8842392,
+        "frame": "inverse existing local tangent plane, approximate WGS84"
+      },
+      "state": {
+        "position": [
+          -12.277392682727118,
+          -1.48157948633812,
+          -32.416383999943434
+        ],
+        "camera": [
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172
+        ],
+        "matrix": [
+          0.7960837985490561,
+          0,
+          -0.6051864057360393,
+          0,
+          -0.13076609949033435,
+          0.9763766052471671,
+          -0.1720143946014448,
+          0,
+          0.5908898483742887,
+          0.2160757384021112,
+          0.7772775967195971,
+          0,
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172,
+          1
+        ],
+        "projection": [
+          1.2806547513141107,
+          0,
+          0,
+          0,
+          0,
+          1.9209821269711662,
+          0,
+          0,
+          0,
+          0,
+          -1.0001333422228147,
+          -1,
+          0,
+          0,
+          -0.20001333422228149,
+          0
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.23980207034382955,
+            "rain": 0,
+            "gust": 0.0020322553034637734
+          },
+          "wind": {
+            "x": 0.2182194867467441,
+            "z": -0.1005787727546386,
+            "speed": 0.23980207034382955,
+            "gust": 0.0020322553034637734
+          },
+          "transition": {
+            "revision": 2910,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 2400,
+          "profile": "quality",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 1,
+            "water": 1,
+            "clouds": 1,
+            "shadows": 0.15,
+            "birds": 9,
+            "particles": 16,
+            "events": 3,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.2182194867467441,
+            "z": -0.1005787727546386,
+            "speed": 0.23980207034382955,
+            "gust": 0.0020322553034637734
+          },
+          "cpuMs": 0.10000000000582077,
+          "maxCpuMs": 1.8000000000174623,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 4.5,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 7,
+          "builds": 42,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "geometries": 373,
+        "textures": 8,
+        "programs": 18,
+        "materials": 52,
+        "mappedTextures": [
+          {
+            "name": "Original procedural leaf sprays",
+            "width": 256,
+            "height": 256
+          },
+          {
+            "name": "Original regional architecture atlas",
+            "width": 864,
+            "height": 576
+          }
+        ],
+        "heap": 152037160
+      },
+      "samples": [
+        {
+          "synchronizedMs": 520.4000000000233,
+          "frame": 66,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.900000000023283,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 527.8999999999942,
+          "frame": 67,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.8000000000174623,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 561,
+          "frame": 68,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.2999999999883585,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 533.8000000000175,
+          "frame": 69,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 473.5,
+          "frame": 70,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3000000000174623,
+          "textures": 8
+        },
+        {
+          "synchronizedMs": 512.9000000000233,
+          "frame": 71,
+          "calls": 130,
+          "triangles": 236925,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.6000000000058208,
+          "textures": 8
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
