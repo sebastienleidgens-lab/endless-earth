@@ -1,3 +1,4 @@
+import {worldMaterialPrelude} from '../materials/world';
 import * as THREE from 'three';
 // @ts-ignore Deterministic CPU atlas, shared with Node tests.
 import {createRoadAtlas} from './road-texture.mjs';
@@ -11,7 +12,7 @@ roadTexture.generateMipmaps=true;roadTexture.needsUpdate=true;
 // never source evidence. Lambert needs no invented wet/specular response.
 const palette=[0x898986,0xb2aa97,0xa89a7b,0xb8b09a,0xa5a293,0xa69c80].map(c=>new THREE.Color(c));
 export const roadUniforms={roadAtlas:{value:roadTexture},roadColors:{value:palette}};
-export const roadShaderPrelude=`
+export const roadShaderPrelude=worldMaterialPrelude+`
 uniform sampler2D roadAtlas;
 uniform vec3 roadColors[6];
 // Gradient uses unwrapped metre UVs: fract must not inflate derivatives at seams.
@@ -50,6 +51,7 @@ if(earthRoadType>.5){
  float mineralTone=0.;
  if(detailFade>.001){
   vec4 grain=mineralSample(p/metres,quadrant);
+  if(m13Mode>.5&&rural>.5&&gravel<.5){vec2 g=m13Grain(p/1.3,6.);grain=vec4(g,0.,1.);}
   // Reuse the independent R channels of the two existing world-noise reads.
   // They vary in world space, independently of the repeated mineral tile.
   // Courses remain coherent; a second scale only varies their tone, not joints.

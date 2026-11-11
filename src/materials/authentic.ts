@@ -11,14 +11,14 @@ export type AuthenticEntry={id:string;label:string;family:string;slot:number;met
 type TextureFile={file:string;sha256:string;bytes:number;gpuChannels:number};
 export type AuthenticCatalogue={entries:AuthenticEntry[];files:TextureFile[];dimensions:[number,number]};
 const sha=async(b:ArrayBuffer)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b))).map(v=>v.toString(16).padStart(2,'0')).join('');
-export async function loadAuthenticLibrary(approach:AuthenticApproach){
+export async function loadAuthenticLibrary(approach:AuthenticApproach,options:{signal?:AbortSignal}={}){
  const base=import.meta.env.BASE_URL+'materials/authentic/';
- const response=await fetch(base+'catalog.json');if(!response.ok)throw Error('Authentic catalogue unavailable');
+ const response=await fetch(base+'catalog.json',options);if(!response.ok)throw Error('Authentic catalogue unavailable');
  const catalog:AuthenticCatalogue=validateAuthenticCatalogue(await response.json()),textures=new Map<string,THREE.Texture>(),materials=new Set<THREE.Material>();
  const dispose=()=>{materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());materials.clear();textures.clear()};
  try{
   for(const name of approach==='hybrid'?['hybrid.png']:['photographic-color.jpg','photographic-data.png']){
-   const f=catalog.files.find(f=>f.file===name)!,r=await fetch(base+name);if(!r.ok)throw Error('Authentic texture unavailable: '+name);
+   const f=catalog.files.find(f=>f.file===name)!,r=await fetch(base+name,options);if(!r.ok)throw Error('Authentic texture unavailable: '+name);
    const bytes=await r.arrayBuffer();if(bytes.byteLength!==f.bytes||await sha(bytes)!==f.sha256)throw Error('Authentic texture checksum: '+name);
    const bitmap=await createImageBitmap(new Blob([bytes]),{premultiplyAlpha:'none',colorSpaceConversion:'none'});
    try{

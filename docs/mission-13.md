@@ -1,6 +1,92 @@
 # Mission 13 — Les matières authentiques de France
 
-**13A et 13B livrés. Arrêt avant 13C, pour validation artistique.** Budget : **0 €**. La PR #22 reste en brouillon, sans fusion ni déploiement.
+**13A, 13B et 13C livrés. Arrêt après 13C : validation artistique attendue avant 13D.** Budget : **0 €**. La [PR #22](https://github.com/sebastienleidgens-lab/endless-earth/pull/22) reste en brouillon, sans fusion ni déploiement.
+
+## Jalon 13C — Les matières dans le véritable village
+
+L’accord **« Go »** après 13B autorise l’intégration depuis `7b2d711`. L’hybride devient le rendu par défaut dans le jeu de promenade. Les générateurs et lots Mission 12 sont réutilisés ; aucun renderer particulier par maison. **Le gain le plus lisible concerne la pierre proche**, dont les assises régulières cèdent la place à des joints plus irréguliers. L’enduit reste calme, les rangs de tuiles deviennent plus fins. Les gains sur les chemins et grandes vues restent modestes : leur présence dans le code ne vaut pas une réussite perceptive établie.
+
+Ouvrir la **[galerie 13C : Mission 12 / photographique / hybride](mission-13-evidence/integration/index.html)** via la [procédure locale](mission-13-evidence/integration/README.md). Elle conserve douze triplets du vrai navigateur, dont les huit familles de 13A, puis matin, soir, pluie et nuit. Les originaux sont liés individuellement ; les deux promenades natives ont leurs propres lecteurs.
+
+![Mission 12, photographique Lambert et hybride : rue, façade, chemin et village](mission-13-evidence/integration/comparison.jpg)
+
+*Captures du moteur, mêmes caméras, conditions et géométrie. Vue photographique au centre : couleurs brutes des sources, plus brunes et contrastées. L’hybride à droite conserve la palette Mission 12. La pierre source n’est pas un relevé de chaque maison. Textures : Old Stone Wall et Plaster Stone Wall 01, Charlotte Baglioni ; Roof Tiles 14, Rob Tuytel ; autres auteurs dans les [crédits CC0](../public/materials/authentic/credits.html). Sources géographiques IGN/ASP/OSM conservées.*
+
+### Ce qui est intégré et ce qui est conservé
+
+| Famille | Intégration 13C | Limite et décision |
+| --- | --- | --- |
+| Pierre des façades et murs | Old Stone Wall, 2 m par tuile ; hauteur de shading 9 mm, sans déplacement. | Interprétation régionale. Les encadrements, vitrages et éléments non compatibles gardent leur rendu. |
+| Enduit | Plaster Stone Wall 01, 2,3 m ; usure très adoucie, relief 3 mm. | Gain discret. L’état exact de chaque enduit reste inconnu ; aucune maison n’est prétendue photographiée. |
+| Terre cuite | Roof Tiles 14, 1,5 m ; relief de shading 14 mm. | Dessin fin, sans certification du modèle de tuile local. Ardoise et autres matériaux documentés restent prioritaires. |
+| Sols nus et chemins compatibles | Grain Brown Mud Dry, 1,3 m, sur la palette existante. | Les classes restent identiques. Un chemin inconnu garde un grain neutre et son statut inconnu ; pas de promotion en terre documentée. |
+| Roche et falaise | Source existante Rock Face 03 recalibrée à 2,7 m, relief réduit à 25 mm. | Le témoin Mission 12 reste à 27 m. Le gain associe donc calibration et traitement ; pas de nouvelle géologie déduite. |
+| Berge | Grain Brown Mud très discret, seulement sur les parties nues compatibles. | Herbe, litière, couverture boisée et eau restent dans leurs branches existantes. Aucune bande de vase ajoutée. |
+| Gravier, pavage, asphalte, bois, herbe et litière | Rendu Mission 12 conservé. | La bibliothèque n’impose pas de remplacer tous les procéduraux. Bricks099, Rock023, enduit fin et gravier photographique restent des réserves. |
+
+Les façades utilisent une projection métrique tangentielle calculée dans le shader, y compris sur les murs obliques et pignons. Les toits réutilisent leurs UV métriques existants. **Aucun buffer de position, normale, UV ou indice n’est modifié.** Coordonnées et orientation stables déterminent le motif et sa variation lente ; aucun tirage aléatoire au chargement. Les transitions Mission 12 sont conservées, le relief s’éteint à distance et en Éco. Mipmaps, gradients non repliés et anisotropie bornée à 4, ou 1 en Éco, limitent les coutures et le scintillement. Une source unique peut encore laisser reconnaître son motif sur une longue façade.
+
+Les trois modes partagent le même éclairage Lambert du jeu. **Le diagnostic `photographic` n’est pas un PBR Standard complet** : il utilise couleur brute et hauteur fournisseur pour juger la discordance photographique dans le renderer existant. Le vrai comparatif PBR Standard / procédural / hybride reste celui de l’atelier 13B, documenté plus bas. Aucune nouvelle passe spéculaire n’est ajoutée au village.
+
+### Promenades et comparaison avec le village réel
+
+[Avant : Mission 12, 450 m](mission-13-evidence/integration/before-promenade.webm) · [Après : hybride, 450 m](mission-13-evidence/integration/after-promenade.webm). Même parcours OSM, vue subjective, Éco 640 × 360, juin, après-midi clair, puis douze secondes à l’arrêt. Déplacement natif, sans téléportation, accélération, rejeu ni montage. Son réel capturé après le limiteur ; vidéos VP8/Opus simplement remuxées.
+
+| Parcours | Distance | Durée vidéo | Images observées | Intervalle médian / P95 |
+| --- | ---: | ---: | ---: | ---: |
+| Mission 12 | 450 m | 372.1 s | 2208 | 146.7 / 302.4 ms |
+| Hybride | 450 m | 357.5 s | 2164 | 150.4 / 263.6 ms |
+
+Toutes les positions enregistrées respectent les collisions et les pas restent sous 0,4 m ; même route de 450 m avant et après. Les intervalles incluent calcul logiciel, capture vidéo et audio. Le témoin a partagé quelques instants avec de brefs contrôles de préparation ; **ces clips ne permettent pas d’isoler exactement le coût des matières et ne sont pas synchronisés image par image**. Ils montrent les matériaux en mouvement, avec les ralentissements réels du navigateur logiciel ; aucune fluidité sur Android ou GPU physique n’est validée.
+
+Les [photos locales de 13A](mission-13-evidence/index.html) restent des références documentaires avec leurs [crédits](mission-13-evidence/credits.md). C18 montre des moellons moins réguliers que les anciennes assises ; C10 des degrés d’enduit et de patine ; C09 de petits éléments de toiture. Ces observations justifient la direction proposée, sans mesurer exactement les joints ou attribuer la même matière à toutes les maisons. **Aucun recalage géométrique ou photométrique** : saisons, éclairages et points de vue diffèrent. Aucun pixel de ces photos n’entre dans le jeu.
+
+La falaise reste partiellement masquée à la station imposée, avec le **MNT à 10 m** et ses facettes ; les textures ne réparent pas sa géométrie. Empreintes et hauteurs des bâtiments conservent leur provenance, y compris leurs estimations. La grande vue, les sols discrets et la nuit restent visibles dans les preuves, sans sélection limitée aux gros plans favorables.
+
+### Coût mesuré et non-régressions
+
+**324 rendus synchronisés avec lecture complète des pixels**, Chromium 156 / SwiftShader, 800 × 600 : trois passages alternés, trois profils, trois stations, douze valeurs par combinaison. Médianes en ms ; P95, maxima et traces dans la [synthèse](mission-13-evidence/integration/performance-summary.json) et la [trace compressée](mission-13-evidence/integration/performance.json.gz).
+
+| Profil / vue | Mission 12 | Photograph. Lambert | Hybride | Écart hybride |
+| --- | ---: | ---: | ---: | ---: |
+| eco / rue | 350.3 | 462.5 | 394.4 | +12.6 % |
+| eco / falaise | 290.7 | 370.4 | 310.0 | +6.7 % |
+| eco / village | 267.6 | 327.4 | 316.5 | +18.3 % |
+| balanced / rue | 446.2 | 730.4 | 517.3 | +15.9 % |
+| balanced / falaise | 344.9 | 585.2 | 408.4 | +18.4 % |
+| balanced / village | 351.1 | 377.0 | 400.7 | +14.1 % |
+| quality / rue | 460.5 | 798.9 | 553.7 | +20.3 % |
+| quality / falaise | 414.0 | 634.8 | 421.4 | +1.8 % |
+| quality / village | 416.9 | 428.9 | 415.8 | -0.2 % |
+
+L’hybride ajoute **une texture partagée**, contre deux pour le diagnostic photographique : 8 au lieu de 7 en Éco, 9 au lieu de 8 en Équilibré/Qualité dans ces échantillons. **Appels, triangles et nombres de programmes sont identiques dans chaque triplet.** L’atlas hybride ajoute **1 578 189 octets**, environ **5,06 Mio** de texels avec mipmaps ; estimation théorique, pas allocation GPU physique mesurée. Pas de texture par bâtiment. Les anciens atlas restent nécessaires aux matières conservées. Bundle : environ **744,40 ko** contre 734,12 ko en 13B ; avertissement Vite >500 ko préexistant.
+
+**Le surcoût logiciel est réel**, jusqu’à environ 20 % de médiane dans les cas mesurés. Le gain proche doit être jugé face à ce coût ; aucune conclusion de fluidité matérielle ou de budget Android tenu n’est tirée. La généralisation et la comparaison avant/après optimisation de 13D restent à autoriser. Le témoin Mission 12 reste accessible immédiatement par l’URL.
+
+**185 tests Node**, TypeScript/Vite et vrais contrôles navigateur passent : navigation, collisions, trois vues, dimensions, géographie, 18 changements de station/profil pour l’architecture et 18 pour la nature, trois rechargements de zone, lots corrompus/périmés, 30 changements de profil/météo, 36 cycles du ciel, 24 contextes audio, clavier et mobile. Les ressources retrouvent leur plateau dans ces essais finis ; cela ne prouve pas l’absence de fuite sur une durée infinie. Les deux parcours contrôlent chaque position, les budgets audio et les ressources résidentes.
+
+Le catalogue ou l’atlas nouveau peut être corrompu : le village reste navigable avec les matières Mission 12, zéro texture de bibliothèque chargée et les **2 500 arbres** conservés. Le chargement est borné à 15 s puis repli, avec libération des ressources et protection contre les réponses tardives. Tous les nouveaux fichiers de jeu sont locaux et préparés hors ligne ; aucun appel fournisseur pendant la promenade. [Cas de repli](mission-13-evidence/integration/checks/fallback.json) · [préservation et empreintes](mission-13-evidence/integration/preservation.json) · [validation](mission-13-evidence/integration/validation.txt).
+
+Les données, packs de décoration, arbres, collisions, navigation, eau, audio, ciel, météo, animations, streaming et profils restent inchangés par rapport à 13B. Dans le manifeste de décoration, seule l’empreinte du shader d’architecture est actualisée ; **aucun pack ni ancrage n’est régénéré**. Living Paintings / LP-01, workflows et GitHub Pages sont préservés. Les nouvelles captures affichent honnêtement la base `7b2d711` et l’état modifié ; leurs fichiers renderer sont épinglés dans la preuve de préservation.
+
+### Essayer et donner votre avis
+
+```sh
+npm ci
+npm run dev -- --port 5173
+```
+
+Jeu : `http://localhost:5173/endless-earth/?materials=hybrid`. Remplacer par `mission12` ou `photographic` pour comparer. Galerie : `http://localhost:5173/endless-earth/docs/mission-13-evidence/integration/index.html`. [Protocole reproductible](mission-13-evidence/integration/README.md). Aucune prévisualisation publique autonome ni publication n’est revendiquée.
+
+**À juger :** la pierre proche est-elle plus convaincante sans devenir trop uniforme ? Les rangs de tuiles et le grain des sols apportent-ils assez en promenade ? La palette reste-t-elle en harmonie avec les arbres ? Le gain discret justifie-t-il le coût mesuré ?
+
+**Validez-vous le résultat artistique de 13C avant de commencer 13D ? Arrêt ici, sans généralisation régionale, fusion ni déploiement.**
+
+---
+
+## Référence du jalon 13B — bibliothèque validée par l’accord « Go »
+
+La section suivante conserve le rapport historique de 13B. Ses propositions et demandes d’arrêt décrivent cet ancien jalon ; le statut courant est celui de 13C ci-dessus.
 
 ## Jalon 13B — Une bibliothèque partagée à éprouver dans le paysage
 
