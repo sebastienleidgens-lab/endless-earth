@@ -1,0 +1,294 @@
+{
+  "schema": "temperate-nature-v1",
+  "author": "Endless Earth",
+  "source": "src/nature/leaf-texture.mjs",
+  "license": "Original procedural project artwork; no third-party asset",
+  "checked": "2026-11-11",
+  "budgetEUR": 0,
+  "file": "leaf-spray.png",
+  "width": 256,
+  "height": 256,
+  "bytes": 15907,
+  "sha256": "adf7c6e8ed7fa9c89bc5f6598f9b42ee9b0968ecc0bc6c426273caf685a0f719",
+  "rawSha256": "48c1a3b7df9995741c55ac2ac7e93e85135f0203b3c35334c51a294b93cf3333",
+  "runtime": "The identical pure generator builds one zone-owned RGBA8 DataTexture on load. This PNG is the reviewable offline reference, not a runtime network dependency.",
+  "transformations": [
+    "110 seeded elliptical leaves composed into an alpha-tested spray",
+    "linear tone and opaque/transparent coverage",
+    "mipmaps on GPU; no blending or screen-facing billboard",
+    "instanced cards nearby, opaque low-poly volumes far away"
+  ],
+  "lod": {
+    "eco": 0,
+    "balanced": 75,
+    "quality": 110,
+    "hysteresis": 18
+  },
+  "families": [
+    {
+      "id": "broadleaf",
+      "type": "tree",
+      "form": "irregular spreading crown",
+      "heightM": [
+        6,
+        18
+      ],
+      "habitat": [
+        "wood",
+        "orchard"
+      ],
+      "climate": [
+        "temperate"
+      ],
+      "leaf": "deciduous",
+      "seasonal": "staggered flush, autumn and winter leaf loss",
+      "maxSlope": 0.58,
+      "exposure": [
+        "sun",
+        "partial shade"
+      ],
+      "moisture": "mesic",
+      "visualVariants": [
+        "rounded",
+        "spreading",
+        "asymmetric"
+      ],
+      "lod": {
+        "near": "shared geometry and stable instance traits",
+        "far": "shared coarse silhouette; no leaf sampling"
+      },
+      "confidence": "regional interpretation, not botanical inventory"
+    },
+    {
+      "id": "riparian",
+      "type": "tree",
+      "form": "slender irregular crown",
+      "heightM": [
+        6,
+        20
+      ],
+      "habitat": [
+        "wood near mapped water"
+      ],
+      "climate": [
+        "temperate"
+      ],
+      "leaf": "deciduous",
+      "seasonal": "staggered flush, autumn and winter leaf loss",
+      "maxSlope": 0.58,
+      "exposure": [
+        "sun",
+        "partial shade"
+      ],
+      "moisture": "moist",
+      "visualVariants": [
+        "slender",
+        "open"
+      ],
+      "lod": {
+        "near": "shared geometry and stable instance traits",
+        "far": "shared coarse silhouette; no leaf sampling"
+      },
+      "confidence": "regional interpretation, not botanical inventory"
+    },
+    {
+      "id": "young",
+      "type": "tree",
+      "form": "small open crown",
+      "heightM": [
+        2,
+        7
+      ],
+      "habitat": [
+        "wood",
+        "scrub",
+        "orchard"
+      ],
+      "climate": [
+        "temperate"
+      ],
+      "leaf": "deciduous",
+      "seasonal": "staggered flush, autumn and winter leaf loss",
+      "maxSlope": 0.58,
+      "exposure": [
+        "sun",
+        "partial shade"
+      ],
+      "moisture": "mesic",
+      "visualVariants": [
+        "young rounded",
+        "young slender"
+      ],
+      "lod": {
+        "near": "shared geometry and stable instance traits",
+        "far": "shared coarse silhouette; no leaf sampling"
+      },
+      "confidence": "regional interpretation, not botanical inventory"
+    },
+    {
+      "id": "needle",
+      "type": "tree",
+      "form": "layered conical crown",
+      "heightM": [
+        4,
+        22
+      ],
+      "habitat": [
+        "mapped needle-leaved or mixed wood"
+      ],
+      "climate": [
+        "temperate"
+      ],
+      "leaf": "evergreen",
+      "seasonal": "retained foliage",
+      "maxSlope": 0.58,
+      "exposure": [
+        "sun",
+        "partial shade"
+      ],
+      "moisture": "mesic",
+      "visualVariants": [
+        "uneven tiers",
+        "slender tiers"
+      ],
+      "lod": {
+        "near": "shared geometry and stable instance traits",
+        "far": "shared coarse silhouette; no leaf sampling"
+      },
+      "confidence": "regional interpretation, not botanical inventory"
+    },
+    {
+      "id": "grass",
+      "type": "herb",
+      "form": "uneven tuft",
+      "heightM": [
+        0.15,
+        0.7
+      ],
+      "habitat": [
+        "meadow",
+        "scrub",
+        "orchard"
+      ],
+      "climate": [
+        "temperate"
+      ],
+      "leaf": "herbaceous",
+      "seasonal": "seasonal growth and drying",
+      "maxSlope": 0.58,
+      "exposure": [
+        "sun"
+      ],
+      "moisture": "mesic",
+      "visualVariants": [
+        "short",
+        "dry",
+        "tall"
+      ],
+      "lod": {
+        "near": "shared geometry and stable instance traits",
+        "far": "shared coarse silhouette; no leaf sampling"
+      },
+      "confidence": "regional interpretation, not botanical inventory"
+    },
+    {
+      "id": "fern",
+      "type": "herb",
+      "form": "two crossing arching fronds",
+      "heightM": [
+        0.2,
+        0.65
+      ],
+      "habitat": [
+        "wood"
+      ],
+      "climate": [
+        "temperate"
+      ],
+      "leaf": "herbaceous",
+      "seasonal": "seasonal growth and drying",
+      "maxSlope": 0.58,
+      "exposure": [
+        "shade",
+        "partial shade"
+      ],
+      "moisture": "mesic to moist",
+      "visualVariants": [
+        "open",
+        "folded"
+      ],
+      "lod": {
+        "near": "shared geometry and stable instance traits",
+        "far": "shared coarse silhouette; no leaf sampling"
+      },
+      "confidence": "regional interpretation, not botanical inventory"
+    },
+    {
+      "id": "shrub",
+      "type": "shrub",
+      "form": "low open branching clump",
+      "heightM": [
+        0.3,
+        0.85
+      ],
+      "habitat": [
+        "wood",
+        "scrub",
+        "orchard"
+      ],
+      "climate": [
+        "temperate"
+      ],
+      "leaf": "deciduous",
+      "seasonal": "staggered flush, autumn and winter leaf loss",
+      "maxSlope": 0.58,
+      "exposure": [
+        "partial shade",
+        "sun"
+      ],
+      "moisture": "mesic",
+      "visualVariants": [
+        "sparse",
+        "bushy"
+      ],
+      "lod": {
+        "near": "shared geometry and stable instance traits",
+        "far": "shared coarse silhouette; no leaf sampling"
+      },
+      "confidence": "regional interpretation, not botanical inventory"
+    },
+    {
+      "id": "reed",
+      "type": "herb",
+      "form": "sparse upright leaves",
+      "heightM": [
+        0.45,
+        1
+      ],
+      "habitat": [
+        "mapped vegetated habitat near mapped water"
+      ],
+      "climate": [
+        "temperate"
+      ],
+      "leaf": "herbaceous",
+      "seasonal": "seasonal growth and drying",
+      "maxSlope": 0.58,
+      "exposure": [
+        "sun",
+        "partial shade"
+      ],
+      "moisture": "moist",
+      "visualVariants": [
+        "upright",
+        "bent"
+      ],
+      "lod": {
+        "near": "shared geometry and stable instance traits",
+        "far": "shared coarse silhouette; no leaf sampling"
+      },
+      "confidence": "regional interpretation, not botanical inventory"
+    }
+  ],
+  "interpretation": "Generic temperate families. Individual trees, crowns, branch forms, leaf behavior and phenology are interpreted, not surveyed species or individuals."
+}

@@ -46,7 +46,9 @@
     "geo:surface-art": "python scripts/prepare-surface-rock.py && node scripts/prepare-surface-art.mjs",
     "test:surface-art": "node scripts/browser-surface-art.mjs after",
     "geo:architecture-art": "node scripts/prepare-architecture-atlas.mjs && DECORATION_EVIDENCE_DIR=work/mission-12B/preparation node scripts/prepare-decorations.mjs",
-    "test:architecture-art": "node scripts/browser-regional-architecture.mjs after"
+    "test:architecture-art": "node scripts/browser-regional-architecture.mjs after",
+    "geo:nature-art": "node scripts/prepare-nature-art.mjs && DECORATION_EVIDENCE_DIR=work/mission-12C/preparation node scripts/prepare-decorations.mjs",
+    "test:nature-art": "node scripts/browser-regional-nature.mjs after"
   },
   "dependencies": {
     "three": "^0.180.0"

@@ -44,4 +44,16 @@ export function createEcology(features,height=()=>0,profile=POITOU){
  if(trees.length>2500){const selected=new Set([...trees].sort((a,b)=>Number(b.mapped)-Number(a.mapped)||noise(a.x,a.z,91)-noise(b.x,b.z,91)||a.x-b.x||a.z-b.z).slice(0,2500));const kept=trees.filter(p=>selected.has(p));trees.splice(0,trees.length,...kept);}
  return {trees,valid,biome,waterDistance,profile};
 }
-export function detailRecipe(cx,cz,ecology,start=0,end=3200){const points=[],size=ecology.profile.cellSize;for(let i=start;i<Math.min(3200,end);i++){const x=(cx+noise(cx,cz,i+10))*size,z=(cz+noise(cx,cz,i+400))*size,p={x,z},biome=ecology.biome(p);if(!biome||!ecology.valid(p,.65))continue;const n=noise(x,z,9);if(n>.48)continue;const kind=biome==='wood'?(n<.1?'branch':n<.22?'fern':'leaf'):n<.025?'flower':n<.10?'stone':'grass';points.push({...p,y:0,kind,scale:.35+noise(x,z,13)*.65,angle:noise(x,z,21)*Math.PI*2})}return points}
+export function detailRecipe(cx,cz,ecology,start=0,end=3200){
+ const points=[],size=ecology.profile.cellSize;
+ for(let i=start;i<Math.min(3200,end);i++){
+  const x=(cx+noise(cx,cz,i+10))*size,z=(cz+noise(cx,cz,i+400))*size,p={x,z},biome=ecology.biome(p);
+  if(!biome||!ecology.valid(p,.65))continue;
+  const n=noise(x,z,9),patch=.55+.45*noise(Math.floor(x/7),Math.floor(z/7),44);
+  if(n>.48*patch)continue;
+  const wet=ecology.waterDistance(p)<18;
+  const kind=biome==='wood'?(n<.10?'branch':n<.22?'fern':n<.245?'shrub':'leaf'):biome==='scrub'||biome==='orchard'?(n<.035?'shrub':wet&&n<.18?'reed':'grass'):wet&&n<.12?'reed':n<.009?'flower':n<.045?'stone':'grass';
+  points.push({...p,y:0,kind,habitat:biome,wet,scale:.35+noise(x,z,13)*.65,angle:noise(x,z,21)*Math.PI*2});
+ }
+ return points;
+}

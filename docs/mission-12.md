@@ -1,14 +1,74 @@
 # Mission 12 — La poésie des lieux
 
-## État : Jalon B livré pour validation artistique
+## État : Jalon C livré pour validation artistique
 
-Les Jalons A et B sont livrés. La demande **« Continue »** du propriétaire ouvre B après le commit A `bb58c30`. **C et D ne sont pas commencés** et nécessitent chacun un accord explicite. Aucun merge ni déploiement public.
+Les Jalons **A, B et C** sont livrés. Les demandes successives **« Continue »** ont ouvert B après A, puis C après B. **D n'est pas commencé** et exige un nouvel accord explicite. Aucun merge ni déploiement public.
 
 Branche indépendante `mission/12-poesie-des-lieux`, créée depuis le main GitHub vérifié **83d9258587177593bc3debd681544d7704a68882**, fusion de la Mission 11 par la PR #20. Le checkout fourni était encore à `0f699fa` : il a été actualisé avant de capturer la référence. Living Paintings / LP-01 et les workflows de production sont hors périmètre.
 
-Ouvrir [la galerie avant/après du Jalon A](mission-12-evidence/index.html). Les captures viennent du vrai moteur Three.js, sans illustration générée, et la vidéo d'une promenade réellement rendue dans Chromium.
+Ouvrir [la galerie avant/après du Jalon C](mission-12-evidence/nature/index.html). Les galeries A et B restent conservées. Les captures et vidéos viennent du vrai moteur Three.js, sans illustration générée.
 
-## Jalon B — Architecture régionale
+## Jalon C — Nature généreuse et vivante
+
+Ouvrir **[la galerie du Jalon C](mission-12-evidence/nature/index.html)** : douze paires de vues, saisons, sélection de géométries, deux films de vent et une nouvelle promenade. Référence : B `96c824a2a2d5220d69d31c503dde82ed154e3db6`, servi dans un checkout distinct. Les preuves A et B restent conservées.
+
+### Audit et choix des formes
+
+La référence montre des couronnes faites de six volumes similaires, des fourches très simples, des détails bas peu lisibles et une coloration saisonnière commune aux feuillus et conifères. Les douze poses couvrent forêt proche/aérienne, lisière, sous-bois, végétation près de l'eau, **prairie réellement classée comme telle**, vent modéré, régime orageux, printemps, automne, hiver et conifères en hiver. Le premier emplacement envisagé pour la prairie était classé en broussailles : il a été remplacé après consultation des données, dans les deux versions.
+
+Deux approches sont [comparées dans le moteur](mission-12-evidence/nature/approaches.json) : volumes procéduraux de 120 triangles proches, et bouquets ajourés de **84 triangles**. Le choix retenu est hybride : bouquets originaux proches, volumes partagés de **60 triangles** au loin et dans Éco. Les conifères gardent leurs étages coniques, **21 / 12 triangles**. Des branches principales et secondaires partagent un tronc de **40 triangles**, contre 32 avant. Aucune scène n'est remplacée par une illustration.
+
+Les cartes restent orientées dans le monde, avec parallaxe ; elles ne tournent pas face à la caméra. Les imposteurs sont différés pour conserver une forme stable en marche et en vue aérienne. Instanciation et deux lots par cellule d'arbres sont conservés, sans objet ou animation CPU par arbre. Des traits déterministes varient largeur, ouverture et décalage saisonnier. Les ancrages, rotations et échelles précédents restent conservés ; aucun nouvel arbre n'est ajouté.
+
+Les pages officielles [Kenney Nature Kit](https://kenney.nl/assets/nature-kit) et [Quaternius Ultimate Nature Pack](https://quaternius.com/packs/ultimatenature.html) ont été consultées : HTTP 200 et CC0 affiché, respectivement 330 fichiers et 150 modèles. Elles sont étudiées comme solutions de modèles réutilisables ; aucun modèle individuel n'est importé et aucun coût ou LOD individuel n'est supposé. Les formes originales permettent de conserver les lots et enveloppes métriques précédents. [Journal de sélection](mission-12-evidence/nature/resources.json).
+
+### Bibliothèque, habitats et saisons
+
+Huit familles génériques dans `src/nature/library.mjs` : feuillu étalé, forme de milieu humide, jeune arbre, conifère, herbe, fougère, petit buisson et herbe dressée de milieu humide. Métadonnées : forme, dimensions plausibles, habitat, climat, persistance, saisonnalité, pente, exposition, humidité, variantes, LOD et confiance. Ces métadonnées décrivent des **interprétations**, pas une observation botanique locale. Les 2 500 individus sont déjà inférés dans les habitats cartographiés ; ils gardent exactement leurs coordonnées, tailles, classes et identité. Douze sont issus de la classe en aiguilles/mixte, sans identification d'espèce. Le comportement persistant des conifères est une hypothèse tempérée par défaut.
+
+Les recettes de détail introduisent des plages irrégulières déterministes, des fougères à frondes croisées, de petits buissons, des herbes de hauteurs variées et des formes dressées près de l'eau lorsque l'habitat végétalisé et la distance le permettent. Les positions restent soumises aux exclusions existantes : eau, bâtiments, marges routières, terrain absent et pentes trop fortes. Pas de forêt ajoutée dans les classes inconnues ou sur toute roche. Les fleurs pâles restent rares et moins nombreuses dans la sélection ; aucune décoration florale uniforme.
+
+Le calendrier est lu depuis **l'environnement Mission 11** : pousse printanière, nuances et pertes automnales échelonnées, feuillus dégarnis au cœur de l'hiver, conifères conservés, végétation basse réduite/séchée. La variation entre individus évite un automne uniformément orange. La fonction accepte l'hémisphère, mais ne prétend pas prédire une phénologie locale précise. Aucune neige automatique liée à une température ou une date. Les saisons n'altèrent ni relief ni collisions.
+
+### Mouvement et promenades réelles
+
+Le mouvement réutilise `lifeWind`, les ancrages et bases d'instance de Mission 11. L'amplitude est graduée entre couvert proche, volumes lointains et plantes basses ; phases et flutter diffèrent entre bouquets. Le tronc conserve son ancrage et le faible mouvement antérieur. Les profils et commandes de désactivation gardent leur budget existant. Aucun second vent, nouvelle faune, événement périodique ou source sonore n'est ajouté ; les événements existants sont conservés.
+
+Deux films natifs à **800 × 600, Équilibré**, station forestière compatible avec le prédicat de collision : Ensoleillé → Nuageux → Orageux, onze secondes par régime via les commandes ordinaires. **32,854 s / 214 images avant ; 32,926 s / 181 images après** entre les premières/dernières frames, sans accélération. Les vitesses simulées enregistrées vont d'environ 0,20 à 0,77, avec une composante de rafale ; ces valeurs normalisées ne sont pas des mesures en m/s. Son réel post-limiteur, sans modification de gain ou normalisation.
+
+Une promenade automatique distincte parcourt **24,910 m en 32,916 s**, **80 images** réellement rendues. Toutes les positions enregistrées passent les collisions existantes ; audio et cache restent dans leurs budgets. La référence de promenade est celle de B. Films non synchronisés image par image ; aucun trajet continu entre le village et la pose forestière n'est revendiqué. Le timestep plafonné et SwiftShader affectent la distance et la cadence : ce n'est pas une validation de fluidité matérielle. [Traces et médias](mission-12-evidence/nature/README.md).
+
+### Performance et budgets C
+
+**174 tests Node**, TypeScript/Vite, vrai navigateur, galerie mobile et build compilé. Sources IGN/ASP/OSM, terrain/sols/eau A, architecture B, navigation, collisions, audio, météo, budgets EarthLife, Living Paintings / LP-01 et workflows de production vérifiés inchangés. Les **67 packs de détails architecturaux**, leur pack statique, ancrages et dimensions sont identiques à B. Les 250 packs naturels changent volontairement. [Preuve de préservation](mission-12-evidence/nature/preservation.json).
+
+**288 rendus / 144 paires**, mêmes caméras, vent et profils, quatre stations, trois profils, trois passages alternés et quatre échantillons par version/station/passage, **800 × 600**. Les temps synchronisés/readback sont ceux de **SwiftShader**, sans extrapolation à un GPU physique ou Android. Les intervalles interquartiles et inventaires complets restent dans [la synthèse](mission-12-evidence/nature/summary.json) et [la trace](mission-12-evidence/nature/performance.json.gz).
+
+| Profil | Forêt proche | Forêt aérienne | Sous-bois | Prairie documentée |
+| --- | --- | --- | --- | --- |
+| Éco | 125.2 → 129.8 ms (+3.6 %) | 164.3 → 169.4 ms (+3.0 %) | 156.2 → 151.0 ms (-3.3 %) | 117.4 → 125.5 ms (+6.9 %) |
+| Équilibré | 156.6 → 156.2 ms (-0.3 %) | 181.3 → 203.3 ms (+12.1 %) | 173.8 → 194.3 ms (+11.8 %) | 133.7 → 149.4 ms (+11.8 %) |
+| Qualité | 120.5 → 122.0 ms (+1.2 %) | 174.4 → 179.7 ms (+3.0 %) | 154.2 → 158.3 ms (+2.7 %) | 137.6 → 133.6 ms (-2.9 %) |
+
+Écarts médians selon la vue : **Éco -3,3 % à +6,9 % ; Équilibré -0,3 % à +12,1 % ; Qualité -2,9 % à +3,0 %**. Pas de gain uniforme de FPS revendiqué. Les triangles soumis diminuent dans ces stations. Les appels restent identiques pour trois vues ; la prairie passe de **45 à 46** avec la marge de culling couvrant le nouveau mouvement. GPU physique et Android restent à valider.
+
+Éco n'échantillonne pas les bouquets texturés. Équilibré et Qualité sélectionnent le détail à **75 / 110 m de la sphère de lot**, avec hystérésis de 18 m : il ne s'agit pas d'un seuil exact par arbre. Les distances de détails bas et leur cache de **quatre cellules invisibles** restent conservés. Dix-huit changements de station/profil/saison passent. Des chunks corrompus laissent les arbres et la géographie disponibles ; un manifeste périmé déclenche les constructeurs source déterministes. Trois cycles GPU de texture de zone donnent **8 → 9 → 8**, libération incluse, sans accumulation constatée dans cet essai court.
+
+Une texture originale partagée **256² RGBA8**, PNG de **15 907 octets**, au maximum **0,33 Mio** supplémentaires estimés avec mipmaps ; les scènes proches passent de 7 à 8 textures. Les traits des 2 500 instances ajoutent **40 000 octets**. Les couleurs des détails utilisent des octets normalisés, avec arrondi de canal borné à 0,5/255 en espace linéaire. Somme de tous les buffers de nature possibles : **74 727 360 → 58 112 736 octets** ; tous les détails ne sont pas résidents ensemble. Packs naturels compressés : **23 773 488 → 26 316 177 octets** ; ensemble des décorations : **32 737 387 → 35 280 076 octets**. Ces comptes CPU et estimations de textures ne sont pas des allocations GPU matérielles mesurées. [Inventaire](mission-12-evidence/nature/buffers.json).
+
+Dernière préparation complète : **12,59 s**, dont **1,23 s** pour la génération initiale ; elle reste hors promenade. Les chunks livrés sont contrôlés par empreinte avant décodage. Budget financier **0 €** : texture et formes originales, catalogue auteur/source/transformation/empreintes, aucune ressource externe ou service payant supplémentaire. [Catalogue et familles](../public/materials/nature/catalog.json).
+
+### Reproduction et appréciation
+
+Préparer : `npm run geo:nature-art`. Vérifier : `npm test`, `npm run build`, puis `npm run preview -- --port 5180`. Jeu compilé isolé : `http://localhost:5180/endless-earth/?moment=afternoon&weather=clear`. Galerie C sur Vite : `http://localhost:5173/endless-earth/docs/mission-12-evidence/nature/index.html`. Aucun hébergement public de prévisualisation n'est revendiqué.
+
+Référence B dans un checkout distinct servi sur 5178 : `TEST_PORT=5178 node scripts/browser-regional-nature.mjs before`. C : `node scripts/browser-regional-nature.mjs after`. Puis `node scripts/benchmark-regional-nature.mjs`, `node scripts/browser-regional-nature-motion.mjs before` et `after`, `node scripts/browser-regional-nature-runtime.mjs`, `node scripts/report-nature-buffers.mjs`, `node scripts/verify-regional-nature.mjs`. Variante de sélection : `ART_APPROACH=volume TEST_VIEWS=bois EVIDENCE_DIR=work/mission-12C/approaches node scripts/browser-regional-nature.mjs volume`, puis `python scripts/report-regional-nature.py` et `node scripts/browser-regional-nature-gallery.mjs`. Ne pas réécrire les preuves A/B depuis C.
+
+Les familles, nouvelles géométries, shaders, saisons et recettes sont **implémentés** et **fonctionnels** dans les essais. Les couronnes ajourées et la perte du feuillage hivernal sont **perceptibles** dans les comparatifs et le mouvement. Le caractère **artistiquement convaincant** reste à votre appréciation. La ramification reste stylisée, les densités d'arbres antérieures restent conservées, les détails de sous-bois restent sobres, et le MNT à 10 m reste visible. Aucun inventaire botanique, modèle exact de forêt, longue marche ou validation matérielle Android n'est revendiqué.
+
+**Arrêt après C. Attendre l'accord explicite du propriétaire avant D, qui n'est pas commencé.**
+
+## Référence et livraison du Jalon B — Architecture régionale
 
 Ouvrir **[la galerie du Jalon B](mission-12-evidence/architecture/index.html)**. La [galerie A](mission-12-evidence/index.html) reste conservée. La même branche et la PR #21 restent en brouillon, avec un commit identifiable par jalon.
 
@@ -44,7 +104,7 @@ Budget **0 €**. Les six matières de l'atlas sont des créations procédurales
 
 Préparer : `npm run geo:architecture-art`. Tester : `npm test`, `npm run build`, puis `npm run preview -- --port 5180`. Jeu compilé : `http://localhost:5180/endless-earth/?moment=afternoon&weather=clear`. Galerie sur Vite : `http://localhost:5173/endless-earth/docs/mission-12-evidence/architecture/index.html`. Les serveurs sont locaux et indépendants de la production.
 
-Reproduire les preuves B : `node scripts/browser-regional-architecture.mjs after`, `node scripts/benchmark-regional-architecture.mjs` (checkout A sur 5177), `node scripts/browser-regional-architecture-runtime.mjs`, `node scripts/browser-regional-architecture-walk.mjs after`, `node scripts/verify-regional-architecture.mjs`, `python scripts/report-regional-architecture.py`. Les scripts et preuves **A** se rejouent depuis le commit A `bb58c30`, sans réécrire leurs images depuis B.
+Les preuves B se rejouent depuis le commit B `96c824a`, dans un checkout distinct. Reproduire les preuves B : `node scripts/browser-regional-architecture.mjs after`, `node scripts/benchmark-regional-architecture.mjs` (checkout A sur 5177), `node scripts/browser-regional-architecture-runtime.mjs`, `node scripts/browser-regional-architecture-walk.mjs after`, `node scripts/verify-regional-architecture.mjs`, `python scripts/report-regional-architecture.py`. Les scripts et preuves **A** se rejouent depuis le commit A `bb58c30`, sans réécrire leurs images depuis B.
 
 ### Évaluation artistique attendue
 
@@ -150,8 +210,8 @@ Les captures précèdent le commit de livraison : leur badge indique la base `83
 
 ## Jalons suivants
 
-- B — Architecture régionale : **livré, validation artistique attendue**.
-- C — Nature vivante : **non commencé**.
+- B — Architecture régionale : **livré, poursuite acceptée**.
+- C — Nature vivante : **livré, validation artistique attendue**.
 - D — Art DNA et optimisation générale : **non commencé**.
 
-L'évaluation du Jalon A doit porter sur la richesse perceptible en marchant, l'harmonie, la répétition, la rivière et les berges. Le propriétaire a demandé de poursuivre après A par **« Continue »**. **Arrêt courant après B ; attendre son accord explicite avant C.**
+L'évaluation courante porte sur les silhouettes, le feuillage, les détails bas, les saisons et la qualité du mouvement. Les poursuites après A puis B ont été demandées par **« Continue »**. **Arrêt courant après C ; attendre l'accord explicite du propriétaire avant D.**

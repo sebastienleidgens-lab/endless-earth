@@ -1,5 +1,6 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import {readFile,writeFile,mkdir} from 'node:fs/promises';import {transpileModule} from 'typescript';import * as THREE from 'three';
 import {cpuModules} from '../scripts/lib/cpu-modules.mjs';
+import {NATURE_LOD} from '../src/nature/library.mjs';
 const load=await cpuModules(process.cwd(),'work/cpu-nature-tests');
 const {addNature,updateNatureLOD,disposeNatureZone}=await load('src/nature/render.ts');
 const features=[{tags:{natural:'wood'},rings:[[{x:-500,z:-500},{x:500,z:-500},{x:500,z:500},{x:-500,z:500}]]}];
@@ -13,10 +14,10 @@ test('tree culling bounds contain all instanced vertices; far LOD is shared and 
  const matrix=new THREE.Matrix4(),v=new THREE.Vector3(),a=tree.nearGeometry.attributes.position;
  for(let i=0;i<crowns.count;i++){crowns.getMatrixAt(i,matrix);for(let j=0;j<a.count;j++){v.fromBufferAttribute(a,j).applyMatrix4(matrix);assert.ok(crowns.boundingSphere.containsPoint(v),'wind-padded bound includes each crown')}}
  const center=crowns.boundingSphere.center,edge=crowns.boundingSphere.radius;
- camera.position.copy(center).add(new THREE.Vector3(edge+360,0,0));updateNatureLOD(g,camera);assert.equal(tree.lod,'near');
- camera.position.copy(center).add(new THREE.Vector3(edge+395,0,0));updateNatureLOD(g,camera);assert.equal(tree.lod,'far');assert.ok(crowns.geometry.attributes.position.count<tree.nearGeometry.attributes.position.count);
- camera.position.copy(center).add(new THREE.Vector3(edge+365,0,0));updateNatureLOD(g,camera);assert.equal(tree.lod,'far');
- camera.position.copy(center).add(new THREE.Vector3(edge+340,0,0));updateNatureLOD(g,camera);assert.equal(tree.lod,'near');disposeNatureZone(g);
+ camera.position.copy(center).add(new THREE.Vector3(edge+NATURE_LOD.balanced+10,0,0));updateNatureLOD(g,camera);assert.equal(tree.lod,'near');
+ camera.position.copy(center).add(new THREE.Vector3(edge+NATURE_LOD.balanced+25,0,0));updateNatureLOD(g,camera);assert.equal(tree.lod,'far');assert.ok(crowns.geometry.attributes.position.count<tree.nearGeometry.attributes.position.count);
+ camera.position.copy(center).add(new THREE.Vector3(edge+NATURE_LOD.balanced+10,0,0));updateNatureLOD(g,camera);assert.equal(tree.lod,'far');
+ camera.position.copy(center).add(new THREE.Vector3(edge+NATURE_LOD.balanced-5,0,0));updateNatureLOD(g,camera);assert.equal(tree.lod,'near');disposeNatureZone(g);
 });
 test('detail recipes progress in bounded slices and cancel when a cell leaves range',()=>{
  const g=new THREE.Group(),camera=new THREE.PerspectiveCamera();addNature(g,features,()=>0);camera.position.set(64,2,64);updateNatureLOD(g,camera);
