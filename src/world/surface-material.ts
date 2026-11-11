@@ -42,7 +42,7 @@ if(earthRoadType<.5){
  float forest=surfaceClass.g*(1.-rock),grass=surfaceClass.r*(1.-rock);
  float detail=1.-smoothstep(${glsl(art.detailM[0])},${glsl(art.detailM[1])},length(vViewPosition));
  vec2 grain=vec2(.5);
- if(detail>.001){
+ if(detail>.001&&(m13Mode<.5||rock<.995)){
   vec2 quadrant=forest>.5?vec2(0.,1.):grass>.5?vec2(1.,0.):vec2(0.);
   float metres=forest>.5?3.:grass>.5?4.:2.;
   vec2 materialUV=p/metres;
@@ -50,8 +50,7 @@ if(earthRoadType<.5){
   // Continuous world noise perturbs the repeat without a second texture read.
   materialUV+=vec2(groundPatch*.11,groundMineral*.012)*grass;
   #endif
-  grain=surfaceSample(materialUV,quadrant);
-  if(m13Mode>.5&&forest+grass<.01)grain=m13Grain(p/1.3,6.);
+  if(m13Mode>.5&&forest+grass<.01)grain=m13Grain(p/1.3,6.);else grain=surfaceSample(materialUV,quadrant);
  }
  float rockFade=1.-smoothstep(55.,260.,length(vViewPosition));
  vec2 stone=vec2(.5);vec2 m13RockUV=vec2(0.);
@@ -59,11 +58,11 @@ if(earthRoadType<.5){
   // Dominant world plane, with a narrow blended lateral seam in Quality.
   vec2 rockUV=abs(n.y)>.7?p:abs(n.x)>abs(n.z)?naturePosition.zy:naturePosition.xy;
   m13RockUV=rockUV;
-  stone=m13Mode>.5?m13Grain(rockUV/2.7,9.):surfaceSample(rockUV/27.,vec2(1.));
+  stone=m13Mode>.5?m13Grain(rockUV/m13RockScale,9.):surfaceSample(rockUV/27.,vec2(1.));
   #if LIFE_SURFACE_MODE == 2
   float seam=abs(abs(n.x)-abs(n.z));
   float blend=(1.-smoothstep(.0,.25,seam))*(1.-smoothstep(30.,65.,length(vViewPosition)))*.5;
-  if(abs(n.y)<.7&&blend>.01){vec2 otherUV=abs(n.x)>abs(n.z)?naturePosition.xy:naturePosition.zy;stone=mix(stone,m13Mode>.5?m13Grain(otherUV/2.7,9.):surfaceSample(otherUV/27.,vec2(1.)),blend);}
+  if(abs(n.y)<.7&&blend>.01){vec2 otherUV=abs(n.x)>abs(n.z)?naturePosition.xy:naturePosition.zy;stone=mix(stone,m13Mode>.5?m13Grain(otherUV/m13RockScale,9.):surfaceSample(otherUV/27.,vec2(1.)),blend);}
   #endif
  }
  vec3 mineral=${glslVec(art.rockTone)}*(1.+groundPatch*.22+(stone.r-.5)*${glsl(art.rockContrast)}*rockFade);

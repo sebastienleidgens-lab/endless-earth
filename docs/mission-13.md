@@ -1,6 +1,108 @@
 # Mission 13 — Les matières authentiques de France
 
-**13A, 13B et 13C livrés. Arrêt après 13C : validation artistique attendue avant 13D.** Budget : **0 €**. La [PR #22](https://github.com/sebastienleidgens-lab/endless-earth/pull/22) reste en brouillon, sans fusion ni déploiement.
+**13A à 13D livrés. Arrêt pour validation artistique finale.** Budget : **0 €**. [PR #22 en brouillon](https://github.com/sebastienleidgens-lab/endless-earth/pull/22), sans fusion ni déploiement. Living Paintings / LP-01 et GitHub Pages sont préservés.
+
+## Jalon 13D — Des matières françaises, chargées selon le contexte
+
+L’accord **« Go »** après 13C ouvre D depuis `56a8ed2`. Le jeu conserve la pierre hybride de 13C dans un atlas beaucoup plus petit. **Le gain le plus sûr de ce jalon est le coût de ressources : environ 89 % d’octets d’atlas et 94 % de stockage de texels en moins**, pour un rendu proche de 13C. Les joints irréguliers restent plus lisibles près des façades ; les toitures et sols restent discrets en promenade. Le rendu n’est pas devenu uniformément plus rapide : toutes les mesures et leurs limites sont conservées ci-dessous.
+
+Ouvrir la **[galerie finale 13D](mission-13-evidence/optimization/index.html)** via la [procédure locale](mission-13-evidence/optimization/README.md). Elle contient douze triplets du véritable jeu **Mission 12 / 13C avant optimisation / 13D**, deux scènes régionales synthétiques, les références locales, le diagnostic photographique écarté, les autres lumières et deux promenades natives. Les anciens essais PBR Standard, procéduraux et hybrides restent accessibles dans le dossier 13B.
+
+![Mission 12, 13C et 13D : rue, façade, chemin et village](mission-13-evidence/optimization/comparison.jpg)
+
+*Captures réelles du moteur, mêmes caméras et conditions. La petite tuile de 128 pixels conserve la lecture générale, avec un grain plus doux de très près. Aucun buffer physique, altitude ou classe géographique n’est changé. Crédits IGN/ASP/OSM conservés ; textures CC0, auteurs dans les [crédits](../public/materials/authentic/credits.html).*
+
+### Universel, régional et local : une priorité explicite
+
+| Niveau | Rôle | Priorité et limites |
+| --- | --- | --- |
+| Universel | Familles pierre, enduit, tuile, ardoise, bois, terre, gravier, roche ; échelles et relief de shading bornés. | Les dix ressources CC0 de 13B restent la bibliothèque source. Plusieurs procéduraux Mission 12 restent meilleurs ou suffisants. |
+| Régional | Palette et familles par défaut ; atlas demandé pour Poitou, Atlantique ou Méridional. | Interprétations de démonstration, sans relevé de chaque objet ni inventaire de toute la France. |
+| Local | Tags de matériaux, géographie, relief, emprises, classes connues et identités existantes. | Une information locale gagne sur le défaut régional. La toiture explicitement en ardoise reste en ardoise, même en contexte méridional. Un tag non reconnu reste inconnu et conserve un repli générique. |
+
+La [politique versionnée](../src/materials/france-model.mjs) conserve les inconnues. Le [style de démonstration](../src/materials/france-style.mjs) change les couleurs et familles, en gelant les règles de forme, hauteur d’étage, pente des toits, implantation et écologie. Le jeu d’Angles reste en Poitou ; les autres régions sont chargées uniquement dans les scènes synthétiques. Les murs documentés ne reçoivent pas le granite régional par défaut. Les familles sans nouvelle texture compatible, notamment bois, métal, ardoise, pavage, asphalte, herbe et litière, gardent leur branche existante.
+
+### Deux paysages de capacité, sans changer leur géométrie
+
+![Deux scènes synthétiques et trois contextes de matières, géométrie inchangée](mission-13-evidence/optimization/regional-comparison.jpg)
+
+**Atlantique : granite et ardoise.** Nouvelle source [Granite Wall](https://polyhaven.com/a/granite_wall), **Dimitrios Savva, Poly Haven, CC0**, réellement téléchargée et examinée. Largeur fournisseur **1,9 m**, cartes diffuses et hauteur normalisée épinglées. Les blocs en granite fournissent un grain harmonisé ; aucune ville atlantique ou géologie locale n’est prétendue relevée. L’ardoise reste procédurale. [Droits, dimensions originales, transformations et SHA-256](mission-13-evidence/optimization/granite-reference.json).
+
+**Méridional : enduit, pierre claire et tuile.** Palette chaude retenue, enduit fin de la bibliothèque, tuile partagée et roche structurée à l’échelle artistique documentée en 13B. Les pentes de toit sont volontairement identiques aux autres contextes pour isoler l’apparence ; il ne s’agit pas d’une restitution architecturale d’un village du Sud.
+
+Les deux terrains synthétiques utilisent les mêmes modules d’architecture, nature, sols, eau et ciel que le jeu. Pour chaque terrain, les **positions, normales, UV et indices de tous les maillages sont identiques entre les trois contextes**, ainsi que tous les ancrages, classes et échelles d’arbres. Routes de **5,5 m**, repère humain de **1,65 m**, emprises, relief et ouvertures restent fixes. Les gros plans, ensembles, matin, soir pluvieux et nuit sont conservés. [Preuves régionales compressées](mission-13-evidence/optimization/regional-fixtures.json.gz).
+
+### Préparation et chargement borné
+
+Le [pipeline hors ligne](../scripts/prepare-france-materials.py) produit des tuiles **128²**, deux canaux utiles au Lambert : **ton harmonisé et hauteur fournisseur**. Chaleur relative et rugosité inutilisée sont retirées ; aucune nouvelle passe PBR ni déplacement géométrique. Le canal de hauteur reste une amplitude artistique, pas un relief mesuré depuis une photo. Une bande périodique de 4 pixels et des gutters de 8 pixels maintiennent les raccords. Les UV restent métriques ; les détails s’atténuent à distance, les normales fines en Éco restent désactivées. Anisotropie plafonnée à **2**, ou **1 en Éco**. Les lectures de grain immédiatement remplacées sont évitées ; les inverses des dimensions d’atlas sont préparés au chargement pour remplacer les divisions dans les fragments.
+
+| Contexte | Atlas | Tuiles utiles | Octets PNG | GPU estimé avec mipmaps |
+| --- | ---: | ---: | ---: | ---: |
+| poitou | 432 × 288 | 6 | 173 289 | 0.316 Mio |
+| atlantic | 432 × 432 | 7 | 201 949 | 0.475 Mio |
+| mediterranean | 432 × 288 | 6 | 173 841 | 0.316 Mio |
+
+Poitou : **173 289 octets et 331 748 octets de texels**, contre **1 578 189 et 5 308 332** pour l’hybride 13C. Stockage GPU estimé par le compte des texels RG8 et des mipmaps ; aucune allocation GPU physique mesurée. Le compte de textures reste généralement **9 contre 9** en Équilibré/Qualité, mais leur taille baisse. Le PNG est encodé RGB avec B nul puis décodé RG8. Les atlas et sources de 13B restent inchangés ; ces fichiers demeurent distribués pour les diagnostics, sans être téléchargés par défaut en hybride. Le contenu total de `public/` augmente donc des nouveaux contextes ; le gain annoncé concerne la promenade, pas la taille de toute l’archive du projet.
+
+Le petit catalogue commun décrit les trois contextes, puis **seul le PNG demandé est téléchargé**. Un cache LRU garde **deux packs au plus**, environ **0,79 Mio** de texels au maximum dans cet ensemble ; un décodage entrant peut s’ajouter brièvement côté CPU avant éviction. Les maisons partagent les textures. Les profils changent le filtrage et le détail sans modifier l’identité ni les UV. Revenir au même lieu, recharger ou changer l’ordre des contextes retrouve la même matière. Les réponses tardives sont écartées, les requêtes remplacées sont annulées et la fermeture libère le pool. Catalogue ou PNG invalide : repli navigable Mission 12. Délai global de sélection borné à 15 s, sans blocage du premier décor synchrone.
+
+Deux préparations produisent les mêmes PNG et catalogue octet pour octet. Aucun appel Poly Haven/ambientCG pendant une promenade ; aucune génération IA, API payante ou source photo locale convertie en texture. KTX2/Basis reste différé : le petit RG8 préparé apporte déjà le gain chiffré sans nouvelle dépendance de transcodage. Le nombre de régions présentes dans le catalogue ne décide pas du nombre de packs résidents ; cette démonstration porte sur trois contextes soigneusement sélectionnés, sans plateforme nationale de collecte.
+
+### Mesures comparables, y compris les régressions
+
+**324 rendus synchronisés avec lecture complète des pixels**, Chromium 156 / SwiftShader, **800 × 600**, trois passages alternés, trois profils, trois vues, **12 valeurs par combinaison**. Médianes en ms ; P95, pics, soumissions CPU, programmes, textures, démarrage et heaps dans la [synthèse](mission-13-evidence/optimization/performance-summary.json) et la [trace compressée](mission-13-evidence/optimization/performance.json.gz).
+
+| Profil / vue | Mission 12 | 13C | 13D | D / M12 | D / 13C |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| eco / rue | 360.5 | 401.5 | 385.5 | +6.9 % | -4.0 % |
+| eco / falaise | 290.3 | 317.0 | 282.4 | -2.7 % | -10.9 % |
+| eco / village | 271.7 | 297.8 | 328.5 | +20.9 % | +10.3 % |
+| balanced / rue | 427.2 | 516.1 | 437.3 | +2.4 % | -15.3 % |
+| balanced / falaise | 365.1 | 420.9 | 368.9 | +1.0 % | -12.4 % |
+| balanced / village | 373.7 | 398.9 | 416.9 | +11.6 % | +4.5 % |
+| quality / rue | 475.2 | 512.9 | 471.3 | -0.8 % | -8.1 % |
+| quality / falaise | 349.9 | 399.6 | 370.4 | +5.8 % | -7.3 % |
+| quality / village | 361.2 | 341.8 | 388.2 | +7.5 % | +13.6 % |
+
+Sur cette mesure, l’écart de médiane va de **-15.3 % à +13.6 % face à 13C**, et de **-2.7 % à +20.9 % face à Mission 12**. **Le bénéfice de rendu dépend de la vue et du profil.** La réduction de bande passante et de texels est démontrée ; elle ne garantit pas une accélération uniforme du calcul logiciel. Le grain plus doux et la palette neutre sont les compromis visibles. Le témoin léger `?materials=mission12` reste disponible, avec une texture en moins. Une alternative RGBA8 a aussi été testée sur **72 rendus**, à pixels strictement identiques dans neuf paires : elle ne gagne pas de façon régulière et double le stockage de texels. RG8 est conservé. [Essai de format et variante rejetée](mission-13-evidence/optimization/format-experiment.json). La réussite artistique et la fluidité sur GPU physique/Android restent à apprécier : aucune extrapolation matérielle ni FPS inventé.
+
+Appels, triangles et programmes sont identiques dans chaque triplet. Les observations de démarrage proviennent d’un serveur local de développement, une seule ouverture par version ; elles ne constituent pas un benchmark Internet ou réseau mobile. Les heaps JS après GC restent dans le même ordre de grandeur ; le gain de texels n’est pas présenté comme une baisse équivalente du heap JavaScript. Le bundle conserve son avertissement >500 ko préexistant ; la valeur exacte est dans la [validation](mission-13-evidence/optimization/validation.txt).
+
+Le pool régional passe douze changements et une sélection concurrente sans dépasser deux contextes, puis retrouve **21 géométries, 7 textures et 10 programmes** à état comparable. Heap JS après GC : **7.16 → 7.40 Mio** dans cet essai fini. Les empreintes physiques et d’arbres sont stables ; cela ne prouve pas une absence de fuite sur une durée infinie.
+
+### Promenade finale et non-régressions
+
+[Mission 12 : témoin enregistré en 13C](mission-13-evidence/integration/before-promenade.webm) · [13C avant optimisation](mission-13-evidence/integration/after-promenade.webm) · [13D : promenade native finale](mission-13-evidence/optimization/after-promenade.webm). Même route OSM de **450 m**, vue subjective Éco **640 × 360**, juin, après-midi clair, puis douze secondes à l’arrêt. Déplacement natif, sans téléportation, accélération, rejeu ni montage. Audio du jeu capturé après le limiteur ; remux VP8/Opus seulement.
+
+| Promenade | Distance | Durée vidéo | Images | Intervalle médian / P95 / pic |
+| --- | ---: | ---: | ---: | ---: |
+| Mission 12, témoin 13C | 450 m | 372.1 s | 2208 | 146.7 / 302.4 / 864.2 ms |
+| 13D final | 450 m | 352.6 s | 2153 | 150.8 / 247.2 / 355.9 ms |
+
+Toutes les positions enregistrées sont valides et les pas restent sous **0,4 m** ; même itinéraire, collisions et vitesse du contrôleur. Les vidéos ont leurs temps propres et ne sont pas synchronisées image par image. Les intervalles incluent capture audio/vidéo et calcul logiciel ; le témoin M12 avait partagé quelques instants avec la préparation 13C. Ils ne permettent pas d’isoler exactement le coût des matières. La comparaison de rendu isolée est celle du benchmark alterné.
+
+**189 tests Node**, TypeScript/Vite, jeu compilé et contrôles navigateur passent : navigation/collisions, trois vues, dimensions, géographie, 18 changements station/profil pour l’architecture, 18 pour la nature, rechargements de zones, lots corrompus/périmés, 30 changements profil/météo, 36 cycles de ciel, 24 contextes audio, clavier et mobile. Les nouveaux packs corrompus et catalogues invalides conservent le village navigable, zéro texture de contexte active et les **2 500 arbres**. Galerie : images, vidéos, liens locaux et quatre tailles vérifiés. [Validation](mission-13-evidence/optimization/validation.txt) · [replis](mission-13-evidence/optimization/checks/fallback.json) · [préservation](mission-13-evidence/optimization/preservation.json).
+
+Les données physiques, tous les packs de décoration, arbres, coordonnées, altitudes, emprises, hauteurs et leur provenance, tracés, largeurs, collisions et navigation restent inchangés par rapport à 13C. Eau, ciel, météo, audio, animations, streaming et profils ne sont pas réécrits. Le manifeste n’actualise que les empreintes des deux modules d’apparence, sans régénérer aucun pack. Les captures finales affichent honnêtement la base `56a8ed2` et l’état modifié ; les modules renderer sont épinglés par SHA-256 dans la preuve.
+
+### Ce qui reste à juger
+
+La falaise reste partiellement masquée, avec le **MNT à 10 m** et ses facettes ; les bâtiments gardent leurs hauteurs estimées quand la source manque. Le prototype affiche un contexte régional à la fois ; une frontière entre deux contextes simultanément visibles n’est pas démontrée. Les motifs d’une source unique peuvent se reconnaître sur une longue surface. Les photos locales C18/C10/C09 guident les familles de joints, enduits, patine et tuiles, sans recalage géométrique ou photométrique. Leurs pixels restent documentaires, avec leurs [licences et crédits](mission-13-evidence/credits.md). Le PBR Standard 13B et le diagnostic photographique plus brun 13C restent visibles parmi les variantes non retenues.
+
+```sh
+npm ci
+npm run dev -- --port 5173 --strictPort
+```
+
+Jeu : `http://localhost:5173/endless-earth/?materials=hybrid`. Galerie : `http://localhost:5173/endless-earth/docs/mission-13-evidence/optimization/index.html`. [Procédure complète et fixtures](mission-13-evidence/optimization/README.md). Aucune prévisualisation publique autonome ni publication revendiquée.
+
+**Validez-vous artistiquement la Mission 13, en particulier la pierre proche, les variantes régionales et le compromis grain/coût ? Arrêt après 13D, sans fusion ni déploiement automatique.**
+
+---
+
+## Référence du jalon 13C — intégration validée par l’accord « Go »
+
+Les sections suivantes conservent les rapports historiques 13C, 13B et 13A. Leurs demandes d’arrêt décrivent ces anciens jalons ; le statut courant est celui de 13D ci-dessus.
 
 ## Jalon 13C — Les matières dans le véritable village
 

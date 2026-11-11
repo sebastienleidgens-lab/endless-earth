@@ -50,8 +50,8 @@ if(earthRoadType>.5){
  mineralDetail=detailFade;
  float mineralTone=0.;
  if(detailFade>.001){
-  vec4 grain=mineralSample(p/metres,quadrant);
-  if(m13Mode>.5&&rural>.5&&gravel<.5){vec2 g=m13Grain(p/1.3,6.);grain=vec4(g,0.,1.);}
+  vec4 grain;
+  if(m13Mode>.5&&rural>.5&&gravel<.5){vec2 g=m13Grain(p/1.3,6.);grain=vec4(g,0.,1.);}else grain=mineralSample(p/metres,quadrant);
   // Reuse the independent R channels of the two existing world-noise reads.
   // They vary in world space, independently of the repeated mineral tile.
   // Courses remain coherent; a second scale only varies their tone, not joints.

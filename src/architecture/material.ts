@@ -40,7 +40,7 @@ export function architectureMaterial(heritage=false){
   // map is declared by Three's map_pars_fragment, before our sampling functions.
   s.fragmentShader=s.fragmentShader.replace('#include <map_pars_fragment>','#include <map_pars_fragment>\n'+prelude+worldMaterialPrelude+(heritage?'varying vec2 vHeritageUV;':''));
   s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`
-   float architectureHeight=0.;float architectureKind=floor(vArchitectureMaterial+.5);
+   float architectureHeight=0.;float architectureSource=floor(vArchitectureMaterial+.5);float architectureKind=architectureSource>7.5?0.:architectureSource;
    float architectureFade=1.-smoothstep(${glsl(art.detailM[0])},${glsl(art.detailM[1])},length(vViewPosition));
    vec2 m13ArchitectureUV=${heritage?'vHeritageUV':'vMapUv'};
    ${worldArchitectureColor}
