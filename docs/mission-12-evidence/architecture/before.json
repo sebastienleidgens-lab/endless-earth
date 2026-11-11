@@ -1,0 +1,1623 @@
+{
+  "phase": "before",
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "cores": 5,
+    "resolution": [
+      960,
+      640
+    ]
+  },
+  "results": [
+    {
+      "id": "rue",
+      "station": [
+        "rue",
+        -12.277392682727118,
+        -32.416383999943434,
+        0.65,
+        0.12,
+        5,
+        "third"
+      ],
+      "state": {
+        "atlas": [
+          128,
+          128
+        ],
+        "camera": [
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172
+        ],
+        "matrix": [
+          0.7960837985490561,
+          0,
+          -0.6051864057360393,
+          0,
+          -0.13076609949033435,
+          0.9763766052471671,
+          -0.1720143946014448,
+          0,
+          0.5908898483742887,
+          0.2160757384021112,
+          0.7772775967195971,
+          0,
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172,
+          1
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.2593762148826046,
+            "rain": 0,
+            "gust": 0.6111818026435492
+          },
+          "wind": {
+            "x": 0.23688136489226164,
+            "z": -0.10721494354270823,
+            "speed": 0.2593762148826046,
+            "gust": 0.6111818026435492
+          },
+          "transition": {
+            "revision": 291,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 240,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.23688136489226164,
+            "z": -0.10721494354270823,
+            "speed": 0.2593762148826046,
+            "gust": 0.6111818026435492
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.5,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 5.2000000001862645,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "geometry": 132,
+        "textures": 9,
+        "programs": 11,
+        "heap": 181848054
+      },
+      "samples": [
+        {
+          "ms": 338.70000000018626,
+          "frame": 3,
+          "calls": 131,
+          "triangles": 247857,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 4.7999999998137355,
+          "textures": 9
+        },
+        {
+          "ms": 340.5,
+          "frame": 4,
+          "calls": 131,
+          "triangles": 247857,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2.7000000001862645,
+          "textures": 9
+        },
+        {
+          "ms": 335.70000000018626,
+          "frame": 5,
+          "calls": 131,
+          "triangles": 247857,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 3.7000000001862645,
+          "textures": 9
+        },
+        {
+          "ms": 344.69999999925494,
+          "frame": 6,
+          "calls": 131,
+          "triangles": 247857,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 3.5,
+          "textures": 9
+        },
+        {
+          "ms": 352.29999999981374,
+          "frame": 7,
+          "calls": 131,
+          "triangles": 247857,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 3.8999999994412065,
+          "textures": 9
+        }
+      ]
+    },
+    {
+      "id": "facade",
+      "station": [
+        "facade",
+        -7.6,
+        -27.66,
+        1.5,
+        -0.08,
+        0,
+        "first"
+      ],
+      "state": {
+        "atlas": [
+          128,
+          128
+        ],
+        "camera": [
+          -7.6,
+          0.30389999999999295,
+          -27.66
+        ],
+        "matrix": [
+          0.07073720166770314,
+          6.938893903907228e-18,
+          -0.9974949866040544,
+          0,
+          0.07971450659024706,
+          0.9968017063026193,
+          0.0056529418235101575,
+          0,
+          0.9943047046752299,
+          -0.07991469396917272,
+          0.07051096332143902,
+          0,
+          -7.6,
+          0.30389999999999295,
+          -27.66,
+          1
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1550467513378431,
+            "rain": 0,
+            "gust": 3.890218635502016e-13
+          },
+          "wind": {
+            "x": 0.14071261819114445,
+            "z": -0.06573373368088302,
+            "speed": 0.1550467513378431,
+            "gust": 3.890218635502016e-13
+          },
+          "transition": {
+            "revision": 582,
+            "commandRevision": 4,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 480,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.14071261819114445,
+            "z": -0.06573373368088302,
+            "speed": 0.1550467513378431,
+            "gust": 3.890218635502016e-13
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.5,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 5.2000000001862645,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "geometry": 168,
+        "textures": 9,
+        "programs": 11,
+        "heap": 163099174
+      },
+      "samples": [
+        {
+          "ms": 347,
+          "frame": 9,
+          "calls": 90,
+          "triangles": 251415,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 3.6000000005587935,
+          "textures": 9
+        },
+        {
+          "ms": 347.29999999981374,
+          "frame": 10,
+          "calls": 90,
+          "triangles": 251415,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.7000000001862645,
+          "textures": 9
+        },
+        {
+          "ms": 362.70000000018626,
+          "frame": 11,
+          "calls": 90,
+          "triangles": 251415,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 3.2000000001862645,
+          "textures": 9
+        },
+        {
+          "ms": 328.90000000037253,
+          "frame": 12,
+          "calls": 90,
+          "triangles": 251415,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.2000000001862645,
+          "textures": 9
+        },
+        {
+          "ms": 342.20000000018626,
+          "frame": 13,
+          "calls": 90,
+          "triangles": 251415,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9
+        }
+      ]
+    },
+    {
+      "id": "toitures",
+      "station": [
+        "toitures",
+        -12,
+        -30,
+        0.8,
+        0.5,
+        65,
+        "aerial"
+      ],
+      "state": {
+        "atlas": [
+          128,
+          128
+        ],
+        "camera": [
+          34.62814590846898,
+          50.838,
+          15.285936107565753
+        ],
+        "matrix": [
+          0.6967067093471655,
+          5.551115123125783e-17,
+          -0.7173560908995228,
+          0,
+          -0.4411968068899419,
+          0.7885023060177911,
+          -0.42849678061187935,
+          0,
+          0.5656369319101818,
+          0.6150317986938771,
+          0.5493548469383069,
+          0,
+          34.62814590846898,
+          50.838,
+          15.285936107565753,
+          1
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18070881996665303,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.16030249307411398,
+            "z": -0.08346767111985665,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 873,
+            "commandRevision": 6,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 720,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.16030249307411398,
+            "z": -0.08346767111985665,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.5,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 5.2000000001862645,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "geometry": 181,
+        "textures": 9,
+        "programs": 11,
+        "heap": 172228242
+      },
+      "samples": [
+        {
+          "ms": 296.29999999981374,
+          "frame": 15,
+          "calls": 105,
+          "triangles": 264398,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 9
+        },
+        {
+          "ms": 306.70000000018626,
+          "frame": 16,
+          "calls": 105,
+          "triangles": 264398,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.400000000372529,
+          "textures": 9
+        },
+        {
+          "ms": 310.20000000018626,
+          "frame": 17,
+          "calls": 105,
+          "triangles": 264398,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999994412065,
+          "textures": 9
+        },
+        {
+          "ms": 319,
+          "frame": 18,
+          "calls": 105,
+          "triangles": 264398,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.7000000001862645,
+          "textures": 9
+        },
+        {
+          "ms": 344.79999999981374,
+          "frame": 19,
+          "calls": 105,
+          "triangles": 264398,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.400000000372529,
+          "textures": 9
+        }
+      ]
+    },
+    {
+      "id": "village",
+      "station": [
+        "village",
+        -150,
+        245,
+        -1.1,
+        0.12,
+        0,
+        "first"
+      ],
+      "state": {
+        "atlas": [
+          128,
+          128
+        ],
+        "camera": [
+          -150,
+          -31.860000000000007,
+          245
+        ],
+        "matrix": [
+          0.45359612142558636,
+          1.3877787807814457e-17,
+          0.8912073600614308,
+          0,
+          0.10668840022508592,
+          0.992808635853866,
+          -0.054300992913550325,
+          0,
+          -0.8847983634055143,
+          0.11971220728892086,
+          0.450334146541141,
+          0,
+          -150,
+          -31.860000000000007,
+          245,
+          1
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.21146881451762195,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.18548877251743534,
+            "z": -0.10156627667924585,
+            "speed": 0.21146881451762195,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 1164,
+            "commandRevision": 8,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 960,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "scrub",
+          "wind": {
+            "x": 0.18548877251743534,
+            "z": -0.10156627667924585,
+            "speed": 0.21146881451762195,
+            "gust": 0
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.5,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 5.2000000001862645,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 19,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "geometry": 315,
+        "textures": 9,
+        "programs": 12,
+        "heap": 190932721
+      },
+      "samples": [
+        {
+          "ms": 253.5,
+          "frame": 21,
+          "calls": 168,
+          "triangles": 249333,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.7999999998137355,
+          "textures": 9
+        },
+        {
+          "ms": 277.1000000005588,
+          "frame": 22,
+          "calls": 168,
+          "triangles": 249333,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.599999999627471,
+          "textures": 9
+        },
+        {
+          "ms": 263.29999999981374,
+          "frame": 23,
+          "calls": 168,
+          "triangles": 249333,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 6.099999999627471,
+          "textures": 9
+        },
+        {
+          "ms": 252,
+          "frame": 24,
+          "calls": 168,
+          "triangles": 249333,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9
+        },
+        {
+          "ms": 241.70000000018626,
+          "frame": 25,
+          "calls": 168,
+          "triangles": 249333,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.400000000372529,
+          "textures": 9
+        }
+      ]
+    },
+    {
+      "id": "chateau",
+      "station": [
+        "chateau",
+        -100,
+        155,
+        0.5,
+        0.5,
+        110,
+        "aerial"
+      ],
+      "state": {
+        "atlas": [
+          128,
+          128
+        ],
+        "camera": [
+          -47.26319075353767,
+          67.79999999999998,
+          251.534081807941
+        ],
+        "matrix": [
+          0.8775825618903728,
+          0,
+          -0.47942553860420295,
+          0,
+          -0.2948619513475237,
+          0.7885023060177911,
+          -0.5397411815418165,
+          0,
+          0.37802814275323554,
+          0.6150317986938769,
+          0.6919758737715598,
+          0,
+          -47.26319075353767,
+          67.79999999999998,
+          251.534081807941,
+          1
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.21359462515756994,
+            "rain": 0,
+            "gust": 0.00001628440450103109
+          },
+          "wind": {
+            "x": 0.1816997005619715,
+            "z": -0.11306153374455573,
+            "speed": 0.21359462515756994,
+            "gust": 0.00001628440450103109
+          },
+          "transition": {
+            "revision": 1455,
+            "commandRevision": 10,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 1200,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "open",
+          "wind": {
+            "x": 0.1816997005619715,
+            "z": -0.11306153374455573,
+            "speed": 0.21359462515756994,
+            "gust": 0.00001628440450103109
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.5,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 5.2000000001862645,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 19,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "geometry": 323,
+        "textures": 9,
+        "programs": 12,
+        "heap": 168346091
+      },
+      "samples": [
+        {
+          "ms": 259.40000000037253,
+          "frame": 27,
+          "calls": 126,
+          "triangles": 257173,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.7000000001862645,
+          "textures": 9
+        },
+        {
+          "ms": 242.29999999981374,
+          "frame": 28,
+          "calls": 126,
+          "triangles": 257173,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999994412065,
+          "textures": 9
+        },
+        {
+          "ms": 300.19999999925494,
+          "frame": 29,
+          "calls": 126,
+          "triangles": 257173,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999994412065,
+          "textures": 9
+        },
+        {
+          "ms": 287.1000000005588,
+          "frame": 30,
+          "calls": 126,
+          "triangles": 257173,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 9
+        },
+        {
+          "ms": 277.29999999981374,
+          "frame": 31,
+          "calls": 126,
+          "triangles": 257173,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.7999999998137355,
+          "textures": 9
+        }
+      ]
+    },
+    {
+      "id": "aerienne",
+      "station": [
+        "aerienne",
+        -100,
+        155,
+        0.5,
+        0.5,
+        210,
+        "aerial"
+      ],
+      "state": {
+        "atlas": [
+          128,
+          128
+        ],
+        "camera": [
+          0.6793631068826329,
+          145.8,
+          339.2923379969783
+        ],
+        "matrix": [
+          0.8775825618903728,
+          -2.7755575615628914e-17,
+          -0.47942553860420295,
+          0,
+          -0.2948619513475238,
+          0.788502306017791,
+          -0.5397411815418167,
+          0,
+          0.37802814275323554,
+          0.6150317986938771,
+          0.6919758737715597,
+          0,
+          0.6793631068826329,
+          145.8,
+          339.2923379969783,
+          1
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.3267393344460752,
+            "rain": 0,
+            "gust": 0.8824472731962781
+          },
+          "wind": {
+            "x": 0.2732853172808255,
+            "z": -0.1815924709943367,
+            "speed": 0.3267393344460752,
+            "gust": 0.8824472731962781
+          },
+          "transition": {
+            "revision": 1746,
+            "commandRevision": 12,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 1440,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "open",
+          "wind": {
+            "x": 0.2732853172808255,
+            "z": -0.1815924709943367,
+            "speed": 0.3267393344460752,
+            "gust": 0.8824472731962781
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.5,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 5.2000000001862645,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "geometry": 339,
+        "textures": 9,
+        "programs": 12,
+        "heap": 138960943
+      },
+      "samples": [
+        {
+          "ms": 310,
+          "frame": 33,
+          "calls": 167,
+          "triangles": 271053,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.7999999998137355,
+          "textures": 9
+        },
+        {
+          "ms": 385.80000000074506,
+          "frame": 34,
+          "calls": 167,
+          "triangles": 271053,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.300000000745058,
+          "textures": 9
+        },
+        {
+          "ms": 362.29999999981374,
+          "frame": 35,
+          "calls": 167,
+          "triangles": 271053,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9
+        },
+        {
+          "ms": 334,
+          "frame": 36,
+          "calls": 167,
+          "triangles": 271053,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 4.900000000372529,
+          "textures": 9
+        },
+        {
+          "ms": 340.09999999962747,
+          "frame": 37,
+          "calls": 167,
+          "triangles": 271053,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 9
+        }
+      ]
+    },
+    {
+      "id": "matin",
+      "station": [
+        "matin",
+        -12.277392682727118,
+        -32.416383999943434,
+        0.65,
+        0.12,
+        5,
+        "third"
+      ],
+      "state": {
+        "atlas": [
+          128,
+          128
+        ],
+        "camera": [
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172
+        ],
+        "matrix": [
+          0.7960837985490561,
+          0,
+          -0.6051864057360393,
+          0,
+          -0.13076609949033435,
+          0.9763766052471671,
+          -0.1720143946014448,
+          0,
+          0.5908898483742887,
+          0.2160757384021112,
+          0.7772775967195971,
+          0,
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172,
+          1
+        ],
+        "climate": {
+          "worldTimeMs": 1782019991000,
+          "solar": {
+            "altitude": 0.22186825606893526,
+            "azimuth": 1.2118521521551222,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1726554182186545,
+            "rain": 0,
+            "gust": 2.155920651413111e-22
+          },
+          "wind": {
+            "x": 0.15010775300373957,
+            "z": -0.0853998146543561,
+            "speed": 0.1726554182186545,
+            "gust": 2.155920651413111e-22
+          },
+          "transition": {
+            "revision": 2037,
+            "commandRevision": 14,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "morning",
+          "mode": "morning",
+          "date": "2026-06-21T05:33:11.000Z",
+          "localTime": "21 juin, 07:33",
+          "localHour": 7.553055555555555,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "life": {
+          "time": 1680,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.15010775300373957,
+            "z": -0.0853998146543561,
+            "speed": 0.1726554182186545,
+            "gust": 2.155920651413111e-22
+          },
+          "cpuMs": 0.10000000055879354,
+          "maxCpuMs": 1.5,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 5.2000000001862645,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "geometry": 342,
+        "textures": 9,
+        "programs": 12,
+        "heap": 131760064
+      },
+      "samples": [
+        {
+          "ms": 354.29999999981374,
+          "frame": 39,
+          "calls": 130,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.7999999998137355,
+          "textures": 9
+        },
+        {
+          "ms": 357.70000000018626,
+          "frame": 40,
+          "calls": 130,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.7000000001862645,
+          "textures": 9
+        },
+        {
+          "ms": 314,
+          "frame": 41,
+          "calls": 130,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9
+        },
+        {
+          "ms": 356.70000000018626,
+          "frame": 42,
+          "calls": 130,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 4.599999999627471,
+          "textures": 9
+        },
+        {
+          "ms": 315.5,
+          "frame": 43,
+          "calls": 130,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.2999999998137355,
+          "textures": 9
+        }
+      ]
+    },
+    {
+      "id": "pluie",
+      "station": [
+        "pluie",
+        -12.277392682727118,
+        -32.416383999943434,
+        0.65,
+        0.12,
+        5,
+        "third"
+      ],
+      "state": {
+        "atlas": [
+          128,
+          128
+        ],
+        "camera": [
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172
+        ],
+        "matrix": [
+          0.7960837985490561,
+          0,
+          -0.6051864057360393,
+          0,
+          -0.13076609949033435,
+          0.9763766052471671,
+          -0.1720143946014448,
+          0,
+          0.5908898483742887,
+          0.2160757384021112,
+          0.7772775967195971,
+          0,
+          -9.273221233146609,
+          1.2669815501064767,
+          -28.464589649629172,
+          1
+        ],
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.96,
+            "mist": 0.44,
+            "wind": 0.64,
+            "rain": 0.6
+          },
+          "acousticWeather": {
+            "cloud": 0.96,
+            "mist": 0.44,
+            "wind": 0.5054277442571172,
+            "rain": 0.6,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.45149478339970545,
+            "z": -0.22763151696627965,
+            "speed": 0.5054277442571172,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 2328,
+            "commandRevision": 16,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "rain",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.64,
+          "starVisibility": 0,
+          "rainDrops": 520
+        },
+        "life": {
+          "time": 1920,
+          "profile": "balanced",
+          "budget": {
+            "birds": 0,
+            "particles": 0,
+            "events": 0
+          },
+          "limits": {
+            "vegetation": 1,
+            "fine": 0.45,
+            "water": 0.8,
+            "clouds": 1,
+            "shadows": 0.1,
+            "birds": 6,
+            "particles": 8,
+            "events": 2,
+            "cpuHz": 10
+          },
+          "activeBirds": 0,
+          "activeEvents": 0,
+          "habitat": "built",
+          "wind": {
+            "x": 0.45149478339970545,
+            "z": -0.22763151696627965,
+            "speed": 0.5054277442571172,
+            "gust": 0
+          },
+          "cpuMs": 0,
+          "maxCpuMs": 1.5,
+          "provenance": {
+            "habitat": "mapped classification, unknown preserved",
+            "wind": "simulated",
+            "weather": "simulated, not forecast",
+            "sky": "Three.js Preetham with artistic night and two cloud altitudes",
+            "birds": "generic artistic silhouettes",
+            "current": "illustrative surface ripples; hydrological flow unknown"
+          },
+          "resources": {
+            "cpuObjects": 11,
+            "extraDrawCallsMax": 12,
+            "extraTextures": 0,
+            "cloudMaterials": 1,
+            "birdMaterials": 1,
+            "particleMaterials": 1,
+            "rainMaterials": 1
+          }
+        },
+        "terrain": {
+          "preparationMs": 5.2000000001862645,
+          "tiles": 25,
+          "fineTriangles": 120128,
+          "farTriangles": 111104,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1"
+        },
+        "geometry": 342,
+        "textures": 9,
+        "programs": 12,
+        "heap": 133487557
+      },
+      "samples": [
+        {
+          "ms": 334.90000000037253,
+          "frame": 45,
+          "calls": 131,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 520,
+          "cpuSubmitMs": 1.5,
+          "textures": 9
+        },
+        {
+          "ms": 300.59999999962747,
+          "frame": 46,
+          "calls": 131,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 520,
+          "cpuSubmitMs": 1.8999999994412065,
+          "textures": 9
+        },
+        {
+          "ms": 332.5,
+          "frame": 47,
+          "calls": 131,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 520,
+          "cpuSubmitMs": 1.8999999994412065,
+          "textures": 9
+        },
+        {
+          "ms": 331.20000000018626,
+          "frame": 48,
+          "calls": 131,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 520,
+          "cpuSubmitMs": 2.2999999998137355,
+          "textures": 9
+        },
+        {
+          "ms": 329.6000000005588,
+          "frame": 49,
+          "calls": 131,
+          "triangles": 243065,
+          "points": 0,
+          "lines": 520,
+          "cpuSubmitMs": 1.400000000372529,
+          "textures": 9
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

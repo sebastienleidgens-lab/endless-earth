@@ -1,12 +1,58 @@
 # Mission 12 — La poésie des lieux
 
-## État : Jalon A livré pour validation artistique
+## État : Jalon B livré pour validation artistique
 
-Seul le **Jalon A — Terre, sols et eau** est ouvert. Les Jalons B, C et D ne sont pas commencés et nécessitent chacun l'accord explicite du propriétaire. Aucun merge ni déploiement public.
+Les Jalons A et B sont livrés. La demande **« Continue »** du propriétaire ouvre B après le commit A `bb58c30`. **C et D ne sont pas commencés** et nécessitent chacun un accord explicite. Aucun merge ni déploiement public.
 
 Branche indépendante `mission/12-poesie-des-lieux`, créée depuis le main GitHub vérifié **83d9258587177593bc3debd681544d7704a68882**, fusion de la Mission 11 par la PR #20. Le checkout fourni était encore à `0f699fa` : il a été actualisé avant de capturer la référence. Living Paintings / LP-01 et les workflows de production sont hors périmètre.
 
 Ouvrir [la galerie avant/après du Jalon A](mission-12-evidence/index.html). Les captures viennent du vrai moteur Three.js, sans illustration générée, et la vidéo d'une promenade réellement rendue dans Chromium.
+
+## Jalon B — Architecture régionale
+
+Ouvrir **[la galerie du Jalon B](mission-12-evidence/architecture/index.html)**. La [galerie A](mission-12-evidence/index.html) reste conservée. La même branche et la PR #21 restent en brouillon, avec un commit identifiable par jalon.
+
+Huit vues ont été enregistrées avant les changements : rue, façade proche, série de toitures, village, château, ensemble aérien, matin et pluie. Référence : A `bb58c30601e98ca29f3ffaa020554951bfd37ed6`, dans un checkout séparé. **Les 921 façades et toitures sont inconnues dans l'extrait OSM ; 920 hauteurs sur 921 sont estimées.** Les variations proposées sont des interprétations régionales et les estimations géométriques précédentes sont conservées.
+
+### Changements visibles et réutilisables
+
+La configuration `POITOU` devient `poitou-v2` : palettes coordonnées, échelles physiques des matières, proportions des encadrements, largeur des volets, couleurs des portes et vitrages, patine, variation et distances de détail. La **graine géométrique `poitou-v1` est conservée séparément** : changer l'apparence ne change pas les volumes, hauteurs ni positions des ouvertures principales. La sélection décorative reste déterministe à partir de l'identifiant géographique stable.
+
+Un atlas procédural original partagé remplace les trois petites textures antérieures. Pierre aux joints et blocs irréguliers, enduit fin, tuiles variées, ardoise lorsqu'elle est renseignée, bois peint et matériau secondaire générique. Les tags documentés restent prioritaires ; les matériaux inconnus restent marqués comme interprétés. Dans cet extrait, la tuile est une hypothèse régionale, jamais une observation de chaque toit. Les UV et teintes varient entre bâtiments sans varier au rechargement.
+
+Les portes, volets, encadrements et vitrages possèdent des nuances stables. Les volets et cadres restent dans les ouvertures et **dans les emprises existantes** ; aucune porte ne devient praticable. Une légère réponse des vitrages au ciel ne représente pas un intérieur documenté. La patine de pied de mur reste discrète, sans nouveau dénivelé ou obstacle. Aucun objet personnel, commerce, mobilier ou végétation de rue supplémentaire n'est inventé.
+
+Les ruines reçoivent une matière de pierre continue en coordonnées mondiales et suivent la lumière existante. **Leur emprise, leur silhouette et leurs hauteurs illustratives sont inchangées** : aucun relevé historique ou reconstruction exacte n'est revendiqué. Aucun asset patrimonial externe non vérifié n'est importé.
+
+### Données et non-régressions
+
+Les **258 maillages principaux** conservent exactement les octets de positions, normales et indices du Jalon A. Les 921 bâtiments passent les tests d'emprise, de dégénérescence et d'occlusion des cours. Les détails fins changent de largeur à l'intérieur des limites antérieures. Les ancrages de bâtiments/portes, les 2 500 arbres et les **250 chunks naturels** sont identiques. IGN/ASP/OSM, terrain/sols/eau de A, navigation, collisions, audio et météo de Mission 11, Living Paintings et workflows de production sont inchangés. [Preuves](mission-12-evidence/architecture/preservation.json).
+
+Le rendu utilise toujours les lots et caches précédents : mêmes appels et triangles dans les **144 paires** mesurées. Un attribut compact indique la famille de matériau sans créer d'objet par maison ; les UV des ouvertures permettent de partager le même atlas. Les nouvelles données sont préparées hors ligne, puis hydratées par le streaming existant. Dix-huit changements de station/profil gardent au maximum douze cellules architecturales invisibles en cache. Atlas corrompu : matière procédurale compacte de secours ; chunks périmés : génération source déterministe, sans perte de géographie. Aucune erreur JavaScript/WebGL dans ces essais.
+
+### Coût et validations
+
+**170 tests Node**, TypeScript/Vite, comparaisons de données et tests du vrai navigateur réussis. Les huit paires utilisent la même caméra, heure, météo, résolution **960 × 640** et profil Équilibré. Une promenade native supplémentaire conserve les contrôles ordinaires, collisions et son : **31,323 m en 32,881 s**, 99 images réellement rendues. La vidéo avant réutilise l'extrait livré au Jalon A ; les films ne sont pas synchronisés image par image. Le plafonnement du timestep et le rendu logiciel affectent la distance parcourue : cette capture n'est pas une validation de fluidité matérielle.
+
+Mesures indépendantes : 288 rendus synchronisés/readback, quatre stations, trois profils, trois passages alternés, **800 × 600**. Surcoût médian de rendu logiciel selon la vue : **Éco +8,4 à +24,0 % ; Équilibré +13,9 à +24,4 % ; Qualité +15,7 à +30,3 %**. Ce ne sont pas des FPS sur GPU physique. Les normales de détail sont retirées en Éco ; GPU physique et Android restent à valider. [Table complète](mission-12-evidence/architecture/summary.json), [trace compressée](mission-12-evidence/architecture/performance.json.gz).
+
+Les textures passent de **9 à 7** dans ces scènes. Atlas **864 × 576 RGBA8**, **1 194 098 octets** de PNG ; stockage supplémentaire estimé avec mipmaps **2,28 Mio**, distinct d'une allocation GPU mesurée. Buffers statiques : **16 755 350 → 18 863 289 octets**. Somme de tous les détails possibles : **29 243 916 → 35 992 512 octets** ; ils ne sont pas tous chargés simultanément. Les packs compressés n'augmentent que de **144 901 octets**, nature inchangée. La dernière préparation complète prend **8,46 s**, dont **1,24 s** de génération ; elle ne s'exécute pas pendant une promenade. [Inventaire de buffers](mission-12-evidence/architecture/buffers.json).
+
+### Ressources et reproduction B
+
+Budget **0 €**. Les six matières de l'atlas sont des créations procédurales originales pour Endless Earth ; aucune ressource externe, licence tierce ou API payante ajoutée. [Catalogue : auteur, dimensions, transformations et empreintes](../public/materials/architecture/catalog.json). Les licences IGN/ASP/OSM des géométries dérivées et tous les crédits antérieurs restent conservés. Les matières originales restent distinctes des observations cartographiques.
+
+Préparer : `npm run geo:architecture-art`. Tester : `npm test`, `npm run build`, puis `npm run preview -- --port 5180`. Jeu compilé : `http://localhost:5180/endless-earth/?moment=afternoon&weather=clear`. Galerie sur Vite : `http://localhost:5173/endless-earth/docs/mission-12-evidence/architecture/index.html`. Les serveurs sont locaux et indépendants de la production.
+
+Reproduire les preuves B : `node scripts/browser-regional-architecture.mjs after`, `node scripts/benchmark-regional-architecture.mjs` (checkout A sur 5177), `node scripts/browser-regional-architecture-runtime.mjs`, `node scripts/browser-regional-architecture-walk.mjs after`, `node scripts/verify-regional-architecture.mjs`, `python scripts/report-regional-architecture.py`. Les scripts et preuves **A** se rejouent depuis le commit A `bb58c30`, sans réécrire leurs images depuis B.
+
+### Évaluation artistique attendue
+
+Les matières, variations, cadres et vitrages sont implémentés et fonctionnels ; leur différence est perceptible dans les comparatifs et le mouvement. L'harmonie, le caractère du village et la discrétion des joints/patines restent à votre appréciation. Les silhouettes et hauteurs estimées antérieures, certaines maisons sur pente et le MNT à 10 m restent des limites visibles. Une configuration alternative simple est testée sans conditions géographiques ; les deux fixtures régionales complètes du Jalon D ne sont pas commencées.
+
+**Arrêt après le commit B. Attendre l'accord explicite du propriétaire avant le Jalon C.**
+
+## Référence et livraison du Jalon A
 
 ## Audit avant modification
 
@@ -104,8 +150,8 @@ Les captures précèdent le commit de livraison : leur badge indique la base `83
 
 ## Jalons suivants
 
-- B — Architecture régionale : **non commencé**.
+- B — Architecture régionale : **livré, validation artistique attendue**.
 - C — Nature vivante : **non commencé**.
 - D — Art DNA et optimisation générale : **non commencé**.
 
-L'évaluation du Jalon A doit porter sur la richesse perceptible en marchant, l'harmonie, la répétition, la rivière et les berges. **Arrêt obligatoire après livraison du commit A ; attendre l'accord explicite du propriétaire avant B.**
+L'évaluation du Jalon A doit porter sur la richesse perceptible en marchant, l'harmonie, la répétition, la rivière et les berges. Le propriétaire a demandé de poursuivre après A par **« Continue »**. **Arrêt courant après B ; attendre son accord explicite avant C.**
