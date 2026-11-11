@@ -1,11 +1,9 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';import {transpileModule} from 'typescript';import * as THREE from 'three';
 import {buildingPlan} from '../src/architecture/plan.mjs';
-await mkdir('work',{recursive:true});
-const source=await readFile(new URL('../src/architecture/render.ts',import.meta.url),'utf8');
-const compiled=transpileModule(source,{compilerOptions:{target:9,module:99}}).outputText.replaceAll("'../earthlife/","'../src/earthlife/").replaceAll("'./plan.mjs'","'../src/architecture/plan.mjs'").replaceAll("'./style.mjs'","'../src/architecture/style.mjs'");
-await writeFile('work/architecture-render.mjs',compiled);
-const {ArchitectureBatch,updateArchitectureLOD,architectureMemory}=await import('../work/architecture-render.mjs');
+import {cpuModules} from '../scripts/lib/cpu-modules.mjs';
+const load=await cpuModules(process.cwd(),'work/cpu-architecture-tests');
+const {ArchitectureBatch,updateArchitectureLOD,architectureMemory}=await load('src/architecture/render.ts');
 const outer=[{x:0,z:0},{x:12,z:0},{x:12,z:9},{x:5,z:9},{x:5,z:14},{x:0,z:14}];
 function inside(x,z,ring){let yes=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a.z>z)!==(b.z>z)&&x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)yes=!yes}return yes}
 function distance(x,z,ring){return Math.min(...ring.map((a,i)=>{const b=ring[(i+1)%ring.length],dx=b.x-a.x,dz=b.z-a.z,t=Math.max(0,Math.min(1,((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz)));return Math.hypot(x-a.x-t*dx,z-a.z-t*dz)}))}

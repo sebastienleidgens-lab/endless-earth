@@ -5,7 +5,8 @@ import {windGLSL,windTemporal,windAtWorld} from './wind.mjs';
 // @ts-ignore One cloud field for sky and shadows.
 import {cloudGLSL} from './clouds.mjs';
 export const lifeUniforms={lifeTime:{value:0},lifeCloudDrift:{value:new THREE.Vector2()},lifeLocalWind:{value:new THREE.Vector2()},lifeTemporal:{value:new THREE.Vector4()},lifeMeanWind:{value:.35},lifeVegetation:{value:1},lifeFine:{value:.45},lifeWater:{value:.8},lifeCloudCover:{value:.16},lifeShadow:{value:.10},lifeSun:{value:new THREE.Vector3(0,1,0)}};
-export const lifePrelude='uniform float lifeTime,lifeMeanWind,lifeVegetation,lifeFine,lifeWater,lifeCloudCover,lifeShadow; uniform vec3 lifeSun;\n'+windGLSL+cloudGLSL;
+Object.assign(lifeUniforms,{lifeRain:{value:0},lifeDay:{value:1},lifeHorizon:{value:new THREE.Color()},lifeZenith:{value:new THREE.Color()},lifeSunColor:{value:new THREE.Color()},lifeSunIntensity:{value:0}});
+export const lifePrelude='uniform float lifeTime,lifeMeanWind,lifeVegetation,lifeFine,lifeWater,lifeCloudCover,lifeShadow,lifeRain,lifeDay,lifeSunIntensity; uniform vec3 lifeSun,lifeHorizon,lifeZenith,lifeSunColor;\n'+windGLSL+cloudGLSL;
 // Compose with each owner's existing shader customization; no extra material or draw.
 const receivers=new WeakSet(),temporal={},localWind={};
 export function updateLifeTime(time,wind,x=0,z=0,out=localWind){

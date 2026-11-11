@@ -1,4 +1,5 @@
 import {POITOU} from './style.mjs';
+import {buildingAppearance} from './appearance.mjs';
 export function hash(text){let h=2166136261;for(const c of String(text)){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
 export function metres(v){const s=String(v??'').trim().replace(',','.');return /^\d+(\.\d+)?\s*m?$/.test(s)?Number.parseFloat(s):null}
 export function edgeKey(a,b){const p=[a,b].map(p=>`${Math.round(p.x*100)},${Math.round(p.z*100)}`).sort();return p.join('|')}
@@ -13,7 +14,7 @@ export function cleanRing(ring){
 // Canonical footprint seed survives starting-vertex changes, winding and loading order.
 export function buildingPlan(input,tags={},style=POITOU,shared=new Set(),ground=()=>0){
  const ring=cleanRing(input);if(ring.length<3||ring.some(p=>!Number.isFinite(p.x+p.z)))return null;
- const seed=hash(`${style.id}:${tags.osm_id??tags['@id']??tags.id??ring.map(p=>`${p.x.toFixed(2)},${p.z.toFixed(2)}`).sort().join(';')}`);
+ const seed=hash(`${style.geometrySeed??style.id}:${tags.osm_id??tags['@id']??tags.id??ring.map(p=>`${p.x.toFixed(2)},${p.z.toFixed(2)}`).sort().join(';')}`);
  const area=ring.reduce((s,a,i)=>{const b=ring[(i+1)%ring.length];return s+a.x*b.z-b.x*a.z},0)/2;if(Math.abs(area)<1e-4)return null;
  const edges=ring.map((a,i)=>{const b=ring[(i+1)%ring.length],dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);return {a,b,dx,dz,length,key:edgeKey(a,b),index:i}});
  const longest=[...edges].sort((a,b)=>b.length-a.length||a.key.localeCompare(b.key))[0],ux=longest.dx/longest.length,uz=longest.dz/longest.length;
@@ -54,7 +55,7 @@ export function buildingPlan(input,tags={},style=POITOU,shared=new Set(),ground=
    openings.push({edge:edge.index,s,x,z,nx,nz,ux:dx/length,uz:dz/length,width:entrance?1.02:w,height,bottom,kind:entrance?'door':'window',shutters:!entrance&&(eh+col)%4!==0,planter:!entrance&&floor===0&&(eh+col)%5===0});if(entrance)door=true;
   }
  }
- return {version:1,seed,ring,edges,base,eaves,top,total,rise,roofY,roofPlanes,ux,uz,mid,width,uMin,uMax,along,across,openings,floors,shape,
+ return {version:1,seed,ring,edges,base,eaves,top,total,rise,roofY,roofPlanes,ux,uz,mid,width,uMin,uMax,along,across,openings,floors,shape,appearance:buildingAppearance(seed,tags,style),
   wall:seed%style.walls.length,roof:(seed>>>5)%style.roofs.length,shutter:(seed>>>9)%style.shutters.length,
   inferred:{height:!((explicit!==null&&explicit>=2&&explicit<=80)||(Number.isFinite(levels)&&levels>=1&&levels<=20)),roof:!tags['roof:shape']||shape!==requestedShape,openings:true},
   // Future interaction anchors describe closed, decorative doors, never access.

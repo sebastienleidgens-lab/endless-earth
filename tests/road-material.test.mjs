@@ -10,12 +10,9 @@ import {boundaryDistanceField,signedBoundaryField} from '../scripts/prepare-road
 import {pc} from '../scripts/lib/road-topology.mjs';
 import {roadStyle} from '../src/world/road-style.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
-mkdirSync('work/road-tests',{recursive:true});
-for(const [input,output] of [['src/world/road-material.ts','material'],['src/nature/surfaces.ts','surface']]){
- let code=transpileModule(readFileSync(input,'utf8'),{compilerOptions:{target:9,module:99}}).outputText.replaceAll("'../earthlife/","'../../src/earthlife/");
- code=code.replace("'./road-texture.mjs'","'../../src/world/road-texture.mjs'").replace("'../world/road-material'","'./material.mjs'");writeFileSync(`work/road-tests/${output}.mjs`,code);
-}
-const {groundDetail}=await import('../work/road-tests/surface.mjs');
+import {cpuModules} from '../scripts/lib/cpu-modules.mjs';
+const load=await cpuModules(process.cwd(),'work/cpu-road-tests');
+const {groundDetail}=await load('src/nature/surfaces.ts');
 test('original mineral atlas is deterministic, bounded and materials have distinct spatial statistics',()=>{
  const a=createRoadAtlas(),b=createRoadAtlas();assert.deepEqual(a,b);assert.equal(a.width,576);assert.equal(a.data.length,576*576*4);
  const hist=[];
@@ -67,7 +64,7 @@ test('RG atlas preserves every original tone and height byte without unused chan
 });
 
 test('material filtering cap preserves the shoulder filter and respects the device capability',async()=>{
- const {roadTexture,configureRoadFiltering}=await import('../work/road-tests/material.mjs'),edge=new THREE.DataTexture();
+ const {roadTexture,configureRoadFiltering}=await load('src/world/road-material.ts'),edge=new THREE.DataTexture();
  configureRoadFiltering({capabilities:{getMaxAnisotropy:()=>16}},{texture:edge});assert.equal(roadTexture.anisotropy,4);assert.equal(edge.anisotropy,8);
  configureRoadFiltering({capabilities:{getMaxAnisotropy:()=>2}},{texture:edge});assert.equal(roadTexture.anisotropy,2);assert.equal(edge.anisotropy,2);
 });

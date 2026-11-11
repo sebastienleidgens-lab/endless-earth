@@ -1,0 +1,555 @@
+{
+  "author": "Endless Earth",
+  "budgetEUR": 0,
+  "source": "src/art/dna.mjs",
+  "contract": {
+    "version": "endless-earth-art-dna-v1",
+    "intent": "Quiet, tactile, moderately stylized landscapes; silhouettes first, detail only nearby.",
+    "metrics": {
+      "unit": "metre",
+      "sourceGeometry": "authoritative",
+      "regionalAppearance": "interpreted",
+      "stableIdentity": "source id or metric anchor"
+    },
+    "lighting": {
+      "owner": "Mission 11 solar/weather environment",
+      "night": "no invented emissive interiors",
+      "leafTransmission": 0.025
+    },
+    "architecture": {
+      "toneFloor": 0.7,
+      "toneRange": 0.36,
+      "meanTone": 0.88,
+      "detailM": [
+        24,
+        110
+      ],
+      "stoneRelief": 0.009,
+      "plasterRelief": 0.0016,
+      "tileRelief": 0.014,
+      "slateRelief": 0.006,
+      "woodRelief": 0.0015
+    },
+    "surfaces": {
+      "id": "quiet-mineral-v1",
+      "grainContrast": 0.5,
+      "rockContrast": 0.78,
+      "rockMix": 0.76,
+      "patchContrast": 0.12,
+      "normalGain": 0.75,
+      "rockTone": [
+        0.42,
+        0.395,
+        0.335
+      ],
+      "detailM": [
+        18,
+        100
+      ]
+    },
+    "vegetation": {
+      "palette": [
+        6058062,
+        6715727,
+        7174997,
+        5795415,
+        7635034
+      ],
+      "needle": 5663832,
+      "bark": 7498069,
+      "ground": {
+        "grass": 8358239,
+        "fern": 6650711,
+        "leaf": 9929053,
+        "flower": 13023889,
+        "stone": 10525573,
+        "branch": 7694671,
+        "shrub": 6715471,
+        "reed": 7898717
+      },
+      "lod": {
+        "eco": 0,
+        "balanced": 75,
+        "quality": 110,
+        "hysteresis": 18
+      }
+    },
+    "animation": {
+      "owner": "Mission 11 continuous wind",
+      "roots": "fixed",
+      "near": "independent canopy phases and leaf flutter",
+      "far": "coarse shared carrier",
+      "calm": "immobility is allowed",
+      "newClimate": false
+    },
+    "water": {
+      "sunGlint": 0.28,
+      "interpretation": "analytic sky reflection; no measured flow or bathymetry"
+    },
+    "budgets": {
+      "trees": 2500,
+      "detailCandidates": 3200,
+      "hiddenNatureCells": 4,
+      "hiddenArchitectureCells": 12,
+      "extraPasses": 0,
+      "postprocessing": false
+    },
+    "regional": [
+      "architecture palette/material defaults/roof pitch",
+      "vegetation families and habitat-constrained density",
+      "interpreted mineral tones",
+      "calendar response; existing environment remains the clock"
+    ],
+    "local": [
+      "building footprints",
+      "roads and access",
+      "water outlines",
+      "DEM",
+      "land cover",
+      "documented monuments"
+    ],
+    "unknown": "Keep unknown observations unknown. Two synthetic fixtures do not validate all French regions."
+  },
+  "validationRegions": [
+    {
+      "id": "poitou",
+      "label": "Poitou · référence",
+      "interpretation": "Generic regional art; synthetic fixture, not a real village",
+      "architecture": {
+        "id": "poitou-v2",
+        "geometrySeed": "poitou-v1",
+        "walls": [
+          14077366,
+          14866884,
+          12959144,
+          14537918,
+          12432540,
+          15261641,
+          13747369,
+          13222059
+        ],
+        "roofs": [
+          10710871,
+          11762524,
+          10054744,
+          9399131
+        ],
+        "shutters": [
+          6649448,
+          6717051,
+          8482908,
+          5400415,
+          7430492,
+          6844795
+        ],
+        "wallMaterials": {
+          "wood": 9008219,
+          "timber": 9008219,
+          "brick": 11105629,
+          "metal": 8291713,
+          "concrete": 12368301
+        },
+        "roofMaterials": {
+          "slate": 6517108,
+          "metal": 8291713,
+          "zinc": 9147280,
+          "copper": 7835779,
+          "wood": 9008219,
+          "timber": 9008219,
+          "concrete": 11184543,
+          "thatch": 9864029
+        },
+        "floorHeight": 2.9,
+        "pitches": [
+          28,
+          32,
+          36
+        ],
+        "detailDistance": {
+          "low": 65,
+          "high": 125
+        },
+        "cellSize": 128,
+        "facade": {
+          "plasterEvery": 3,
+          "metres": [
+            4,
+            2.4
+          ],
+          "variation": 0.09,
+          "basePatina": 0.11
+        },
+        "roof": {
+          "defaultMaterial": "clay",
+          "metres": [
+            4,
+            4
+          ],
+          "variation": 0.1
+        },
+        "details": {
+          "frameWidth": 0.075,
+          "shutterWidth": 0.19,
+          "frames": [
+            15064521,
+            14208953,
+            15656401
+          ],
+          "doors": [
+            5989201,
+            5860715,
+            7692362,
+            5985616,
+            7494226
+          ],
+          "glass": [
+            3821131,
+            4544853,
+            3755346
+          ]
+        },
+        "artDNA": "endless-earth-art-dna-v1",
+        "interpretation": "Poitou material palette and inferred facade details; no individual house survey"
+      },
+      "nature": {
+        "id": "poitou-v2",
+        "spacing": 14,
+        "maxSlope": 0.58,
+        "cellSize": 128,
+        "detailRange": 110,
+        "ecoRange": 55,
+        "defaultLeaf": "broad",
+        "needleFraction": 0.35,
+        "latitude": 46,
+        "palette": [
+          6058062,
+          6715727,
+          7174997,
+          5795415,
+          7635034
+        ],
+        "needleColor": 5663832,
+        "bark": 7498069,
+        "groundColors": {
+          "grass": 8358239,
+          "fern": 6650711,
+          "leaf": 9929053,
+          "flower": 13023889,
+          "stone": 10525573,
+          "branch": 7694671,
+          "shrub": 6715471,
+          "reed": 7898717
+        }
+      },
+      "ground": {
+        "id": "quiet-mineral-v1",
+        "grainContrast": 0.5,
+        "rockContrast": 0.78,
+        "rockMix": 0.76,
+        "patchContrast": 0.12,
+        "normalGain": 0.75,
+        "rockTone": [
+          0.42,
+          0.395,
+          0.335
+        ],
+        "detailM": [
+          18,
+          100
+        ],
+        "colors": {
+          "meadow": 9608048,
+          "wood": 7764829,
+          "rock": 11775386
+        }
+      }
+    },
+    {
+      "id": "atlantic",
+      "label": "Atlantique · pierre et ardoise",
+      "interpretation": "Generic regional art; synthetic fixture, not a real village",
+      "architecture": {
+        "id": "atlantic-fixture-v1",
+        "geometrySeed": "poitou-v1",
+        "walls": [
+          12698293,
+          13684671,
+          11252908,
+          12829878
+        ],
+        "roofs": [
+          6517108,
+          7108729,
+          6056816
+        ],
+        "shutters": [
+          5534839,
+          5795192,
+          6978418
+        ],
+        "wallMaterials": {
+          "wood": 9008219,
+          "timber": 9008219,
+          "brick": 11105629,
+          "metal": 8291713,
+          "concrete": 12368301
+        },
+        "roofMaterials": {
+          "slate": 6517108,
+          "metal": 8291713,
+          "zinc": 9147280,
+          "copper": 7835779,
+          "wood": 9008219,
+          "timber": 9008219,
+          "concrete": 11184543,
+          "thatch": 9864029
+        },
+        "floorHeight": 2.9,
+        "pitches": [
+          38,
+          42,
+          46
+        ],
+        "detailDistance": {
+          "low": 65,
+          "high": 125
+        },
+        "cellSize": 128,
+        "facade": {
+          "plasterEvery": 3,
+          "metres": [
+            4,
+            2.4
+          ],
+          "variation": 0.09,
+          "basePatina": 0.11
+        },
+        "roof": {
+          "defaultMaterial": "slate",
+          "metres": [
+            4,
+            4
+          ],
+          "variation": 0.1
+        },
+        "details": {
+          "frameWidth": 0.075,
+          "shutterWidth": 0.19,
+          "frames": [
+            15064521,
+            14208953,
+            15656401
+          ],
+          "doors": [
+            5989201,
+            5860715,
+            7692362,
+            5985616,
+            7494226
+          ],
+          "glass": [
+            3821131,
+            4544853,
+            3755346
+          ]
+        },
+        "artDNA": "endless-earth-art-dna-v1",
+        "interpretation": "Poitou material palette and inferred facade details; no individual house survey"
+      },
+      "nature": {
+        "id": "atlantic-fixture-v1",
+        "spacing": 13,
+        "maxSlope": 0.58,
+        "cellSize": 128,
+        "detailRange": 110,
+        "ecoRange": 55,
+        "defaultLeaf": "mixed",
+        "needleFraction": 0.2,
+        "latitude": 46,
+        "palette": [
+          5402456,
+          5994589,
+          6783332
+        ],
+        "needleColor": 4744285,
+        "bark": 7498069,
+        "groundColors": {
+          "grass": 8358239,
+          "fern": 6650711,
+          "leaf": 9929053,
+          "flower": 13023889,
+          "stone": 10525573,
+          "branch": 7694671,
+          "shrub": 6715471,
+          "reed": 7898717
+        }
+      },
+      "ground": {
+        "id": "atlantic-mineral-v1",
+        "grainContrast": 0.5,
+        "rockContrast": 0.78,
+        "rockMix": 0.76,
+        "patchContrast": 0.12,
+        "normalGain": 0.75,
+        "rockTone": [
+          0.32,
+          0.34,
+          0.33
+        ],
+        "detailM": [
+          18,
+          100
+        ],
+        "colors": {
+          "meadow": 8691321,
+          "wood": 6847843,
+          "rock": 10202277
+        }
+      }
+    },
+    {
+      "id": "mediterranean",
+      "label": "Méditerranéen · calcaire et couvert ouvert",
+      "interpretation": "Generic regional art; synthetic fixture, not a real village",
+      "architecture": {
+        "id": "mediterranean-fixture-v1",
+        "geometrySeed": "poitou-v1",
+        "walls": [
+          14734007,
+          15260094,
+          13220250,
+          14534564
+        ],
+        "roofs": [
+          11302486,
+          12354910,
+          10449238
+        ],
+        "shutters": [
+          7438448,
+          8360836,
+          10127985
+        ],
+        "wallMaterials": {
+          "wood": 9008219,
+          "timber": 9008219,
+          "brick": 11105629,
+          "metal": 8291713,
+          "concrete": 12368301
+        },
+        "roofMaterials": {
+          "slate": 6517108,
+          "metal": 8291713,
+          "zinc": 9147280,
+          "copper": 7835779,
+          "wood": 9008219,
+          "timber": 9008219,
+          "concrete": 11184543,
+          "thatch": 9864029
+        },
+        "floorHeight": 2.9,
+        "pitches": [
+          14,
+          18,
+          20
+        ],
+        "detailDistance": {
+          "low": 65,
+          "high": 125
+        },
+        "cellSize": 128,
+        "facade": {
+          "plasterEvery": 2,
+          "metres": [
+            4,
+            2.4
+          ],
+          "variation": 0.09,
+          "basePatina": 0.11
+        },
+        "roof": {
+          "defaultMaterial": "clay",
+          "metres": [
+            4,
+            4
+          ],
+          "variation": 0.1
+        },
+        "details": {
+          "frameWidth": 0.075,
+          "shutterWidth": 0.19,
+          "frames": [
+            15064521,
+            14208953,
+            15656401
+          ],
+          "doors": [
+            5989201,
+            5860715,
+            7692362,
+            5985616,
+            7494226
+          ],
+          "glass": [
+            3821131,
+            4544853,
+            3755346
+          ]
+        },
+        "artDNA": "endless-earth-art-dna-v1",
+        "interpretation": "Poitou material palette and inferred facade details; no individual house survey"
+      },
+      "nature": {
+        "id": "mediterranean-fixture-v1",
+        "spacing": 18,
+        "maxSlope": 0.58,
+        "cellSize": 128,
+        "detailRange": 110,
+        "ecoRange": 55,
+        "defaultLeaf": "mixed",
+        "needleFraction": 0.65,
+        "latitude": 43,
+        "palette": [
+          7174228,
+          7635034,
+          6582857
+        ],
+        "needleColor": 5400133,
+        "bark": 7498069,
+        "groundColors": {
+          "grass": 10197359,
+          "fern": 6650711,
+          "leaf": 9929053,
+          "flower": 13023889,
+          "stone": 10525573,
+          "branch": 7694671,
+          "shrub": 8094296,
+          "reed": 7898717
+        }
+      },
+      "ground": {
+        "id": "mediterranean-mineral-v1",
+        "grainContrast": 0.5,
+        "rockContrast": 0.78,
+        "rockMix": 0.76,
+        "patchContrast": 0.12,
+        "normalGain": 0.75,
+        "rockTone": [
+          0.48,
+          0.43,
+          0.33
+        ],
+        "detailM": [
+          18,
+          100
+        ],
+        "colors": {
+          "meadow": 10788984,
+          "wood": 8290655,
+          "rock": 12957077
+        }
+      }
+    }
+  ],
+  "interpretation": "Original artistic configuration. Regional validation scenes are synthetic; no place, botanical inventory or measured geology is claimed."
+}

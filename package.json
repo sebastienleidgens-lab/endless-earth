@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-11.md"
+    "missionReport": "docs/mission-12.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -42,7 +42,15 @@
     "test:immersive:visibility": "node scripts/browser-immersive-visibility.mjs",
     "test:immersive:soak": "node scripts/browser-immersive-soak.mjs",
     "bench:immersive": "node scripts/benchmark-immersive.mjs && node scripts/browser-immersive-timers.mjs",
-    "report:immersive": "python scripts/report-immersive.py && python scripts/report-immersive-audio.py"
+    "report:immersive": "python scripts/report-immersive.py && python scripts/report-immersive-audio.py",
+    "geo:surface-art": "python scripts/prepare-surface-rock.py && node scripts/prepare-surface-art.mjs",
+    "test:surface-art": "node scripts/browser-surface-art.mjs after",
+    "geo:architecture-art": "node scripts/prepare-architecture-atlas.mjs && DECORATION_EVIDENCE_DIR=work/mission-12B/preparation node scripts/prepare-decorations.mjs",
+    "test:architecture-art": "node scripts/browser-regional-architecture.mjs after",
+    "geo:nature-art": "node scripts/prepare-nature-art.mjs && DECORATION_EVIDENCE_DIR=work/mission-12C/preparation node scripts/prepare-decorations.mjs",
+    "test:nature-art": "node scripts/browser-regional-nature.mjs after",
+    "geo:art-dna": "node scripts/prepare-art-dna.mjs && DECORATION_EVIDENCE_DIR=work/mission-12D/preparation node scripts/prepare-decorations.mjs",
+    "test:art-dna": "node scripts/verify-art-dna.mjs && node scripts/browser-art-dna-gallery.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

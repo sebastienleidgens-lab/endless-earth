@@ -2,6 +2,7 @@
 import {validateEnvironment} from './environment.mjs';
 import {configureRoadFiltering,type RoadEdges,roadTexture} from './road-material';
 import {groundDetail} from '../nature/surfaces';
+import {fetchSurfaceAppearance,configureSurfaceFiltering,type SurfaceAppearance} from './surface-material';
 import * as THREE from 'three';
 // @ts-ignore Shared, tested source surface.
 import {sampleGrid,cellIndices} from './terrain-grid.mjs';
@@ -23,6 +24,7 @@ export type TerrainGrid = {
 export class Terrain {
   landcover:THREE.Texture|null=null;
   roadEdges:RoadEdges|null=null;
+  surfaceAppearance:SurfaceAppearance|null=null;
   singleSurface:any=null;
   get roadsAvailable(){return this.singleSurface!==null;}
   get waterIntegrated(){return this.singleSurface?.manifest.water?.mode==='mapped-outline-dem-drape-v1';}
@@ -51,8 +53,8 @@ export class Terrain {
     const started=performance.now();
     const g=this.grid,geometry=this.singleSurface?null:sourceGeometry(g);
     const material=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.FrontSide});
-    groundDetail(material,!!this.singleSurface,this.roadEdges,this.waterIntegrated);
-    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial,!!this.singleSurface,this.roadEdges,this.waterIntegrated);
+    groundDetail(material,!!this.singleSurface,this.roadEdges,this.waterIntegrated,this.surfaceAppearance);
+    const bareMaterial=this.landcover?material.clone():material;groundDetail(bareMaterial,!!this.singleSurface,this.roadEdges,this.waterIntegrated,this.surfaceAppearance);
     if(this.landcover){
       const detail=material.onBeforeCompile;
       material.onBeforeCompile=(shader,renderer)=>{
@@ -70,10 +72,12 @@ export class Terrain {
           diffuseColor.rgb=diffuseColor.rgb*(1.-cover.a*inCover)+cover.rgb*inCover;
           ${this.singleSurface?'}':''}`);
       };
-      material.customProgramCacheKey=()=> this.singleSurface?'earth-cover-landscape-v2-'+!!this.roadEdges+'-'+this.waterIntegrated:'earth-cover-v1';
+      const appearanceKey=material.customProgramCacheKey();
+      material.customProgramCacheKey=()=> appearanceKey+'-earth-cover-v3';
     }
     const group=new THREE.Group();group.name='IGN source terrain';group.userData.terrainTexture=this.landcover;
     group.userData.roadEdgeTexture=this.roadEdges?.texture;
+    group.userData.surfaceTextures=this.surfaceAppearance?[this.surfaceAppearance.field,this.surfaceAppearance.atlas]:[];
     group.userData.roadTextures=this.singleSurface?[roadTexture,...(this.roadEdges?[this.roadEdges.texture]:[])]:[];
     const owned:THREE.BufferGeometry[]=[];group.userData.terrainResources={geometries:owned,materials:[material,bareMaterial]};
     if(this.singleSurface){
@@ -85,7 +89,7 @@ export class Terrain {
         const farGeometry=new THREE.BufferGeometry();for(const [name,attribute] of Object.entries(geom.attributes))farGeometry.setAttribute(name,attribute);
         farGeometry.setIndex(tile.far);farGeometry.boundingSphere=geom.boundingSphere;owned.push(geom,farGeometry);
         const mesh=new THREE.Mesh(geom,t.cover===false?bareMaterial:material);mesh.receiveShadow=true;mesh.name='IGN ground and OSM roads';
-        mesh.onBeforeRender=renderer=>configureRoadFiltering(renderer,this.roadEdges);
+        mesh.onBeforeRender=renderer=>{configureRoadFiltering(renderer,this.roadEdges);configureSurfaceFiltering(renderer,this.surfaceAppearance,(mesh.material as any).defines?.LIFE_SURFACE_MODE??1)};
         mesh.userData.earthTile={fineIndex:tile.fine,farIndex:tile.far,fineGeometry:geom,farGeometry,far:false,x:g.origin_x_m+t.x*g.step_m,z:g.origin_z_m+t.z*g.step_m,size:t.size*g.step_m};group.add(mesh);
       }
       this.metrics.tiles=tiles.length;this.metrics.fineTriangles=manifest.stats.fineTriangles;this.metrics.farTriangles=manifest.stats.farTriangles;this.metrics.maxFarErrorM=manifest.maxFarErrorM;this.metrics.surface='integrated';this.metrics.water=this.waterIntegrated?'mapped-outline-dem-drape-v1':'legacy';
@@ -210,5 +214,9 @@ export async function fetchTerrain():Promise<Terrain|null>{
     texture.name='OSM union boundary distance';texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;
     texture.generateMipmaps=true;texture.needsUpdate=true;terrain.roadEdges={texture,manifest:m};
   }catch(error){console.warn('Road shoulders unavailable; unified road geometry and mineral materials retained',error);}
+  if(terrain.singleSurface){
+    const g=terrain.grid;
+    terrain.surfaceAppearance=await fetchSurfaceAppearance({terrain:terrain.sourceSha256,osm:terrain.singleSurface.manifest.osmSha256,environment:terrain.environmentSha256},[g.origin_x_m,g.origin_z_m],[(g.width-1)*g.step_m,(g.height-1)*g.step_m]);
+  }
   return terrain;
 }

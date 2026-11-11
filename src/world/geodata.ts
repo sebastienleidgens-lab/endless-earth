@@ -12,6 +12,7 @@ import * as THREE from 'three';
 // @ts-ignore Validated, source-bound offline geometry and progressive detail stream.
 import {loadDecorations} from './decoration-stream.mjs';
 import { ArchitectureBatch,installPreparedArchitecture } from '../architecture/render';
+import {heritageMaterial,loadArchitectureAtlas} from '../architecture/material';
 // @ts-ignore Pure shared footprint helper.
 import { edgeKey } from '../architecture/plan.mjs';
 import { nature } from '../living/geography';
@@ -87,7 +88,7 @@ function addLine(scene:THREE.Object3D,points:THREE.Vector3[],width:number,terrai
 }
 // Historic OSM outlines are mapped linework; wall heights are deliberately
 // illustrative until a verified height or architectural model is available.
-const HISTORIC_WALL_MATERIAL=new THREE.MeshLambertMaterial({color:0xb8ad96});
+const HISTORIC_WALL_MATERIAL=heritageMaterial;
 HISTORIC_WALL_MATERIAL.userData.natureShared=true;
 function addHistoricWall(scene:THREE.Object3D,points:THREE.Vector3[],terrain?:Terrain,castle=false):void{
   // Only OSM-mapped linework determines the wall plan. The fragmented
@@ -126,10 +127,13 @@ function makeFootprint(ring:THREE.Vector3[]):THREE.Shape{
 }
 // Mapped habitat boundaries constrain deterministic, inferred individual trees.
 function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain,prepared?:any):number{
+ scene.userData.releaseNatureAnchors?.();
  const local=features.map(f=>{const g=f.geometry,tags=f.properties??{},c=g?.coordinates;if(!g||!Array.isArray(c))return {tags};if(g.type==='Polygon')return {tags,rings:c.map(r=>coordsToPoints(r))};if(g.type==='LineString')return {tags,line:coordsToPoints(c)};if(g.type==='Point'&&typeof c[0]==='number'&&typeof c[1]==='number')return {tags,point:toLocal({lon:c[0],lat:c[1]})};return {tags};});
  scene.userData.lifeHabitat=habitatIndex(local);
  const trees=addNature(scene,local,(x,z)=>terrain?terrain.relativeHeight(x,z):0,prepared);
  const anchors=trees.map((p:{x:number;y:number;z:number;scale:number;kind:string})=>({x:p.x,z:p.z,perchY:p.y+8.5*p.scale*(p.kind==='riparian'?1.35:1)}));nature.push(...anchors);scene.userData.natureAnchors=anchors;
+ const owned=new Set<object>(anchors);
+ scene.userData.releaseNatureAnchors=()=>{let write=0;for(const p of nature)if(!owned.has(p))nature[write++]=p;nature.length=write;owned.clear();};
  return trees.length;
 }
 export function updateVegetationLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=false){updateNatureLOD(scene,camera,eco)}
@@ -198,6 +202,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
   return count;
 }
 export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain):Promise<number>{
+  await loadArchitectureAtlas();
   const response=await fetch(`${import.meta.env.BASE_URL}data/angles-osm.geojson`);
   if(!response.ok)return 0;
   const text=await response.text(),data=JSON.parse(text) as Collection;
