@@ -34,7 +34,7 @@ export class Soundscape {
  return this.enabled;
  }
  setHidden(hidden:boolean){this.hidden=hidden;const p=this.transition.then(async()=>{if(this.disposed||!this.context)return this.enabled;this.renderer?.setVolume(this.volume,this.enabled&&!this.hidden);if(this.hidden){await this.context.suspend();this.distance=0;this.director.resetClock()}else if(this.enabled){await this.context.resume();this.nextContext=0;this.director.resetClock()}return this.enabled});this.transition=p;return p}
- update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[]){
+ update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number}){
  if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer){this.cpuMs=0;return;}
  const start=performance.now(),now=start/1000;
  if(profile!==this.renderer.profile)this.renderer.setProfile(profile);
@@ -57,7 +57,10 @@ export class Soundscape {
  this.frameContext!.traffic=this.trafficIndex?trafficCandidates(this.trafficIndex,listener,renderHeight):[];
  this.frameContext!.emitters=emitterCandidates(this.frameContext,habitatAt,typeof altitudeM==='function'?altitudeM:null,this.emitterCache);this.renderer.updateContext(this.frameContext);for(const id of this.director.preload(this.frameContext,now))void this.renderer.resources.request(id);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.contextUpdates++;
  }
- if(travel>0&&travel<3){const dt=this.lastMove?Math.max(.01,Math.min(.5,now-this.lastMove)):.1,speed=Math.min(6,travel/dt);this.lastMove=now;this.distance+=travel;const stride=stepStride(speed);if(this.distance>=stride&&now-this.lastStep>=.17){this.distance%=stride;this.lastStep=now;const road=this.roadsIndex?.query(p,8),onRoad=!!road?.point&&road.distance<=(road.width??5.5)/2;this.contact=footContact({surface:onRoad?road.surface:null,onRoad,habitat:habitatAt?.(p.x,p.z)??'unknown',season:this.frameContext?.season,rain:climate?.weather?.rain??null});if(this.frameContext)this.frameContext.ground=this.contact;this.renderer.footstep(this.contact.material,speed);this.renderer.preloadSteps(this.contact.material)}}
+ if(travel>0&&travel<3){const first=this.lastMove===0,dt=this.lastMove?Math.max(.01,Math.min(.5,now-this.lastMove)):.1,speed=locomotion?.speed??Math.min(6,travel/dt);this.lastMove=now;this.distance+=travel;const stride=stepStride(speed),due=locomotion?locomotion.contacts>0:this.distance>=stride;
+  if(first||due){const road=this.roadsIndex?.query(p,8),onRoad=!!road?.point&&road.distance<=(road.width??5.5)/2;this.contact=footContact({surface:onRoad?road.surface:null,onRoad,habitat:habitatAt?.(p.x,p.z)??'unknown',season:this.frameContext?.season,rain:climate?.weather?.rain??null});if(this.frameContext)this.frameContext.ground=this.contact;this.renderer.preloadSteps(this.contact.material)}
+  if(due&&now-this.lastStep>=.17){this.distance=locomotion?0:this.distance%stride;this.lastStep=now;this.renderer.footstep(this.contact.material,speed)}
+ }
  else if(travel===0){this.distance=0;this.lastMove=0}
  this.cpuMs=performance.now()-start;this.maxCpuMs=Math.max(this.maxCpuMs,this.cpuMs);
  }

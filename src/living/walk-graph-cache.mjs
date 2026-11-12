@@ -1,0 +1,11 @@
+export const WALK_GRAPH_SCHEMA='source-bound-walk-graph-v1';
+export const digest=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b))).map(v=>v.toString(16).padStart(2,'0')).join('');
+export function validateWalkGraph(m,g,bindings){
+ if(m?.schema!==WALK_GRAPH_SCHEMA||Object.entries(bindings).some(([k,v])=>!v||m.bindings?.[k]!==v)||!Array.isArray(g?.nodes)||!Array.isArray(g?.edges)||g.nodes.length>10000||g.edges.length>20000)throw Error('Stale or invalid walking graph');
+ for(const [i,n]of g.nodes.entries()){if(!Number.isFinite(n.point?.x)||!Number.isFinite(n.point?.z)||Math.abs(n.point.x)>1001||Math.abs(n.point.z)>1001||!Array.isArray(n.edges)||n.edges.some(id=>!Number.isInteger(id)||id<0||id>=g.edges.length||g.edges[id].from!==i&&g.edges[id].to!==i))throw Error('Invalid walking node')}
+ for(const e of g.edges){if(!Number.isInteger(e.from)||!Number.isInteger(e.to)||!g.nodes[e.from]||!g.nodes[e.to]||typeof e.forward!=='boolean'||typeof e.backward!=='boolean'||!Number.isFinite(e.length)||e.length<=0||typeof e.name!=='string'||typeof e.surface!=='string')throw Error('Invalid walking edge');const a=g.nodes[e.from].point,b=g.nodes[e.to].point;if(Math.abs(Math.hypot(b.x-a.x,b.z-a.z)-e.length)>.001)throw Error('Invalid walking length')}
+ return g;
+}
+export async function readWalkGraph(base,bindings){
+ const r=await fetch(base+'angles-walk-graph.json');if(!r.ok)throw Error('Walking graph unavailable');const m=await r.json();if(!Number.isInteger(m.rawBytes)||m.rawBytes<1||m.rawBytes>2000000)throw Error('Walking graph allocation limit');const response=await fetch(base+'angles-walk-graph.pack');if(!response.ok)throw Error('Walking graph pack unavailable');const packed=await response.arrayBuffer();if(packed.byteLength>1000000||await digest(packed)!==m.packedSha256)throw Error('Walking graph checksum');let count=0;const bounded=new TransformStream({transform(chunk,c){count+=chunk.byteLength;if(count>m.rawBytes)throw Error('Walking graph decompression limit');c.enqueue(chunk)}});const raw=await new Response(new Blob([packed]).stream().pipeThrough(new DecompressionStream('gzip')).pipeThrough(bounded)).arrayBuffer();if(raw.byteLength!==m.rawBytes||await digest(raw)!==m.sha256)throw Error('Walking graph decoded checksum');return validateWalkGraph(m,JSON.parse(new TextDecoder().decode(raw)),bindings);
+}
