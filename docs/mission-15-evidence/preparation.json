@@ -1,0 +1,25 @@
+{
+  "canopy": "generous-canopy-v2",
+  "stats": {
+    "staticMeshes": 287,
+    "aoVertices": 529724,
+    "uniqueContactSamples": 427072,
+    "staticTriangles": 331646,
+    "shadowVertices": 203455,
+    "shadowCells": 1024,
+    "bytes": 5295244,
+    "compressedBytes": 2067850,
+    "provenance": {
+      "geometry": "Exact Mission 14 merged static geometry, unchanged in 15A; new generous crown bounds with masonry clearance. Water excluded.",
+      "ambient": "8 cosine hemisphere rays, 4 m range, 0.055 m normal offset; visibility bounded to avoid black creases. Spatial interpolation on unchanged source vertices.",
+      "canopy": "Analytic attenuation tied to existing crown instance bounds and tree anchors; separate deciduous/evergreen density, not measured forest irradiance.",
+      "shadow": "Exact static triangles spatially grouped in 64 m cells; runtime local sun map, no raw LiDAR."
+    }
+  },
+  "seconds": 49.995990608,
+  "binarySha256": "e336e05f777c7c16b60439a38794d5ea72ca2855186c8198fab64f180a30cb5c",
+  "packSha256": "93466b084c219929a251e666e7ef94eb2ad9143cd518af0e53c783fa2ebae546",
+  "sourceSha256": "4a9d25c4ee916f0818b6438633543f1f0b41b542b6e838e7e0ddfbfc292d2abe",
+  "treeAnchors": 2500,
+  "budgetEUR": 0
+}

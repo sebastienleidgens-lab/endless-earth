@@ -11,6 +11,11 @@ import * as THREE from 'three';
 // @ts-ignore Shared ecological rules exercised by Node.
 import {createEcology,detailRecipe,noise,POITOU,habitat} from './ecology.mjs';
 import {animateFoliage} from '../living/atmosphere';
+// @ts-ignore Appearance envelopes; persistent geography is untouched.
+import {canopyLayout,CANOPY_VERSION} from './canopy.mjs';
+// @ts-ignore Once-per-zone masonry index.
+import {masonryClearance} from './clearance.mjs';
+import {addVillageFlowers,updateVillageFlowers} from './flower-render';
 type Tree={x:number;y:number;z:number;kind:string;leaf?:string;scale:number};
 const dummy=new THREE.Object3D();
 export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z:number)=>number|null,prepared?:any,style=POITOU,fixedAnchors?:Tree[]){
@@ -18,22 +23,25 @@ export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z
  const ecology=prepared?{trees:prepared.manifest.trees,profile:style}:createEcology(features,height,style),cells=new Map<string,Tree[]>();
  if(!prepared&&fixedAnchors)ecology.trees=fixedAnchors;
  for(const p of ecology.trees){const key=`${Math.floor(p.x/180)}:${Math.floor(p.z/180)}:${p.leaf==='needle'&&p.kind!=='riparian'?'needle':'broad'}`;if(!cells.has(key))cells.set(key,[]);cells.get(key)!.push(p)}
- const art=createTreeArt(),crown=art.crown,distantCrown=art.farCrown,needleCrown=art.needle,farNeedleCrown=art.farNeedle,trunk=art.trunk;
+ const params=typeof location==='undefined'?null:new URLSearchParams(location.search);
+ const art=createTreeArt(params?.has('perf')&&['perforated','volume'].includes(params.get('canopy')??'')?params.get('canopy'):'hybrid'),clearance=masonryClearance(features),crown=art.crown,distantCrown=art.farCrown,needleCrown=art.needle,farNeedleCrown=art.farNeedle,trunk=art.trunk;
  const pixels=leafSprayPixels(),texture=new THREE.DataTexture(pixels.data,pixels.width,pixels.height);texture.name='Original procedural leaf sprays';texture.generateMipmaps=true;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.needsUpdate=true;
  const calendar={value:new THREE.Vector4(1,0,0,.1)};
  const bark=new THREE.MeshLambertMaterial({color:style.bark});animateFoliage(bark,false,false,false,true,true);
- const leaves=natureArtMaterial(calendar,art.approach==='sprays'?texture:null),distantLeaves=natureArtMaterial(calendar,null,false,true);
- scene.userData.natureArt={version:NATURE_ART_VERSION,approach:art.approach,texture:[pixels.width,pixels.height],inferredIndividuals:ecology.trees.filter((p:any)=>!p.mapped).length};
+ const leaves=natureArtMaterial(calendar,art.approach==='volume'?null:texture,false,false,art.approach==='perforated'),distantLeaves=natureArtMaterial(calendar,null,false,true);
+ scene.userData.natureArt={version:NATURE_ART_VERSION,canopy:CANOPY_VERSION,approach:art.approach,texture:[pixels.width,pixels.height],trimmedCrowns:0,inferredIndividuals:ecology.trees.filter((p:any)=>!p.mapped).length};
  scene.userData.natureCalendar=calendar;scene.userData.natureLatitude=style.latitude;scene.userData.natureLeafTexture=texture;
  scene.userData.natureResources={geometries:[trunk,crown,distantCrown,needleCrown,farNeedleCrown],materials:[bark,leaves,distantLeaves]};
+ addVillageFlowers(scene,features,height);
  // Geometry/materials belong to this geographic zone, shared only within it.
  const palette=style.palette;
  scene.updateWorldMatrix(true,false);
  for(const [key,points] of cells){const [cx,cz]=key.split(':').map(Number),needle=key.endsWith(':needle'),nearGeometry=needle?needleCrown:crown,farGeometry=needle?farNeedleCrown:distantCrown,group=new THREE.Group();group.userData.natureTreeCell={x:(cx+.5)*180,z:(cz+.5)*180,nearGeometry,farGeometry,nearMaterial:leaves,farMaterial:distantLeaves,lod:'near'};
   const trunks=new THREE.InstancedMesh(trunk,bark,points.length),crowns=new THREE.InstancedMesh(nearGeometry,leaves,points.length);
-  points.forEach((p,i)=>{const f=noise(p.x,p.z,2),wet=p.kind==='riparian',s=p.scale,w=wet?.7:.85+f*.35,h=wet?1.35:1;
-   dummy.rotation.set(0,f*6.28,0);dummy.position.set(p.x,p.y+2.25*s*h,p.z);dummy.scale.set(s,s*h,s);dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
-   dummy.position.y=p.y+5.6*s*h;dummy.scale.set(s*w,s*h,s*(.85+noise(p.x,p.z,4)*.3));dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);crowns.setColorAt(i,new THREE.Color(needle?style.needleColor:palette[Math.floor(f*palette.length)]));
+  points.forEach((p,i)=>{const f=noise(p.x,p.z,2),layout=canopyLayout(p,clearance(p));
+   if(layout.limit<1)scene.userData.natureArt.trimmedCrowns++;
+   dummy.rotation.set(0,layout.yaw,0);dummy.position.set(p.x,layout.trunkY,p.z);dummy.scale.fromArray(layout.trunkScale);dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);
+   dummy.position.y=layout.crownY;dummy.scale.fromArray(layout.crownScale);dummy.updateMatrix();crowns.setMatrixAt(i,dummy.matrix);crowns.setColorAt(i,new THREE.Color(needle?style.needleColor:palette[Math.floor(f*palette.length)]));
   });
   const traits=new Float32Array(points.length*4);points.forEach((p,i)=>{const t=treeIdentity(p);traits.set([t.variant/3,t.phase,Number(t.evergreen),t.openness],i*4)});
   const trunkWrap=instanceWindGeometry(trunks,scene.matrixWorld),crownWrap=instanceWindGeometry(crowns,scene.matrixWorld),nearWind=crownWrap(nearGeometry),farWind=crownWrap(farGeometry),trunkWind=trunkWrap(trunk);
@@ -76,6 +84,7 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
  const hidden:any[]=[],near:any[]=[],requests:any[]=[];const stream=scene.userData.decorationStream;
  const climate=scene.userData.climate;
  scene.traverse(o=>{
+  if(o.userData.villageFlowers)updateVillageFlowers(o,camera,climate?.date,eco);
   if(o.userData.natureCalendar)o.userData.natureCalendar.value.fromArray(foliageSeason(climate?.date,o.userData.natureLatitude??46));
   const tree=o.userData.natureTreeCell;
   if(tree){const d=Math.hypot(camera.position.x-tree.x,camera.position.z-tree.z),crowns=o.children[1] as THREE.InstancedMesh;

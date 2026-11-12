@@ -1,0 +1,78 @@
+{
+  "budgetEUR": 0,
+  "models": [
+    {
+      "id": "generous-canopy-v2",
+      "author": "Endless Earth",
+      "origin": "original procedural project artwork",
+      "license": "Original project artwork; no third-party model or added licence dependency",
+      "sources": [
+        "src/nature/canopy.mjs",
+        "src/nature/tree-geometry.mjs"
+      ],
+      "forms": "generic spreading, riparian/slender, young and needle-leaved interpretations; no local species inventory",
+      "triangles": {
+        "nearBroadleaf": 331,
+        "farBroadleaf": 58,
+        "nearNeedle": 27,
+        "farNeedle": 18,
+        "trunk": 40
+      },
+      "alternatives": {
+        "perforated": [
+          632,
+          140
+        ],
+        "volume": [
+          560,
+          140
+        ]
+      }
+    },
+    {
+      "id": "village-window-gardens-v1",
+      "author": "Endless Earth",
+      "origin": "original procedural geometry, not photograph-derived",
+      "license": "Original project artwork; no third-party model or added licence dependency",
+      "sources": [
+        "src/nature/flowers.mjs",
+        "src/nature/flower-render.ts"
+      ],
+      "forms": "small five-petal flowers, leaves, stems and potted climbers in existing procedural window recesses",
+      "placements": "180 deterministic interpreted placements, no measured local correspondence; see flowers.json"
+    },
+    {
+      "id": "leaf-spray-v1",
+      "origin": "unchanged Mission 12 original procedural texture",
+      "catalog": "../../public/materials/nature/catalog.json",
+      "runtime": "one 256x256 RGBA8 zone-owned generated texture, no new download"
+    }
+  ],
+  "photographReferences": [
+    {
+      "id": "C16",
+      "author": "Bachelier Jacky",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Angles_-_J16_0150_-_La_cueille.jpg",
+      "licenseURL": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "observation": "pots/jardinières and trailing plant in a lane; not an identified species or placement inventory",
+      "pixelsInGame": false
+    },
+    {
+      "id": "C24",
+      "author": "Jochen Jahnke",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:F06.Angles.1364.JPG",
+      "licenseURL": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "observation": "flower pots on windows and plants trained along facade; not an identified species or placement inventory",
+      "pixelsInGame": false
+    }
+  ],
+  "geographicRights": [
+    "IGN / ASP Licence Ouverte 2.0",
+    "© OpenStreetMap contributors, ODbL 1.0"
+  ],
+  "newExternalModels": 0,
+  "newTexturesDownloadedByGame": 0,
+  "notes": "Existing architecture and mineral texture licences remain unchanged. No new paid or uncertain-provenance assets. Original geometry is not represented as newly licensed CC0."
+}

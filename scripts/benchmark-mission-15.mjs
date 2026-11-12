@@ -1,0 +1,24 @@
+import {mkdir,writeFile} from 'node:fs/promises';import {gzipSync} from 'node:zlib';import assert from 'node:assert/strict';
+import {launch,openGame,settle,views} from './lib/mission-15-browser.mjs';import {installGPUAllocationProbe} from './lib/webgl-allocation-probe.mjs';
+const out='docs/mission-15-evidence',b=await launch(),rows=[],startup={},q=(a,p)=>{const s=[...a].sort((a,b)=>a-b),x=(s.length-1)*p,i=Math.floor(x);return s[i]+(s[Math.ceil(x)]-s[i])*(x-i)};await mkdir(out,{recursive:true});
+try{
+ const games={};for(const [id,port]of [['m14',5179],['15a',5173]]){const g=games[id]=await openGame(b,port,{init:installGPUAllocationProbe});startup[id]={ms:g.startupMs,environment:g.environment,requests:await g.page.evaluate(()=>performance.getEntriesByType('resource').filter(r=>r.name.includes('/data/')||r.name.includes('/materials/')).map(r=>({path:new URL(r.name).pathname,transferSize:r.transferSize,encodedBodySize:r.encodedBodySize,duration:r.duration})))};assert.equal((await g.page.evaluate(()=>window.m15.state())).lighting.state,'ready')}
+ const cases=views.filter(v=>(process.env.QUICK?['bois','aerienne']:['bois','aerienne','vallee','rue']).includes(v[0]));
+ const poses={};for(const v of cases){for(const g of Object.values(games))await g.page.evaluate(v=>window.m15.setup(v),v);poses[v[0]]=(await games.m14.page.evaluate(()=>window.m15.state())).camera}
+ for(const profile of (process.env.QUICK?['balanced']:['eco','balanced','quality']))for(const v of cases)for(let round=0;round<3;round++)for(const variant of round%2?['15a','m14']:['m14','15a']){
+  const g=games[variant],p=g.page;await p.evaluate(({v,profile,pose})=>window.m15.setup(v,profile,'2026-06-21','clear',pose),{v,profile,pose:poses[v[0]]});if(!round)await settle(p);else for(let i=0;i<6;i++)await p.evaluate(()=>window.m15.tick());
+  await p.evaluate(()=>window.m15.render());const samples=[];for(let i=0;i<5;i++)samples.push(await p.evaluate(()=>{const t=performance.now(),render=window.m15.render();return {ms:performance.now()-t,...render}}));
+  await p.evaluate(()=>globalThis.gc?.());const state=await p.evaluate(()=>window.m15.state());delete state.flowers?.recipes;const prior=rows.find(r=>r.id===v[0]&&r.profile===profile&&r.round===round);if(prior){assert.deepEqual(state.camera,prior.state.camera);assert.deepEqual(state.climate,prior.state.climate)}
+  rows.push({variant,profile,id:v[0],round,samples,state});console.log(profile,v[0],round,variant)
+ }
+ const summary=[];for(const profile of (process.env.QUICK?['balanced']:['eco','balanced','quality']))for(const v of cases)for(const variant of ['m14','15a']){
+  const r=rows.filter(r=>r.id===v[0]&&r.profile===profile&&r.variant===variant),samples=r.flatMap(r=>r.samples),s=r.at(-1).state;
+  summary.push({profile,id:v[0],variant,n:samples.length,medianMs:q(samples.map(s=>s.ms),.5),p95Ms:q(samples.map(s=>s.ms),.95),peakMs:Math.max(...samples.map(s=>s.ms)),medianSubmitMs:q(samples.map(s=>s.cpuSubmitMs),.5),calls:samples.at(-1).calls,triangles:samples.at(-1).triangles,...s.gpu,geometryBytes:s.memory.geometryBytes,logicalGPU:s.alloc,heap:s.heap,stream:s.stream,shadow:s.lighting});
+ }
+ for(const row of summary)if(row.variant==='15a'){const prior=summary.find(r=>r.variant==='m14'&&r.profile===row.profile&&r.id===row.id);row.deltaPercent=(row.medianMs/prior.medianMs-1)*100}
+ // Refresh is measured separately, with camera, climate and selection held.
+ const shadow=[];for(const variant of ['m14','15a']){const p=games[variant].page;await p.evaluate(v=>window.m15.setup(v),views[2]);await settle(p);await p.evaluate(()=>window.m15.render());const samples=[];for(let i=0;i<12;i++)samples.push(await p.evaluate(()=>{window.m15.refresh();const t=performance.now(),render=window.m15.render();return {ms:performance.now()-t,...render,lighting:window.m15.state().lighting}}));shadow.push({variant,samples})}
+ for(const g of Object.values(games)){assert.deepEqual(g.errors,[]);assert.deepEqual(g.warnings,[])}
+ const method=String(rows.length*5)+' full finish/readback software renders, 960x640 DPR1, 3 profiles × 4 scenes × 3 alternating rounds × 5 samples × 2 versions; exact absolute cameras and full climate including wind phase asserted per pair. 24 additional forced-shadow refresh renders. No concurrent browser/GPU work. Local startup observations n=1; logical WebGL allocation probe plus post-GC JS heap, not physical VRAM. Color-only calls/triangles and separate shadow pass metrics retained.';
+ await writeFile(out+(process.env.QUICK?'/performance-quick.json':'/performance-summary.json'),JSON.stringify({method,environment:games['15a'].environment,summary,startup,shadow},null,2)+'\n');await writeFile(out+(process.env.QUICK?'/performance-quick.json.gz':'/performance.json.gz'),gzipSync(JSON.stringify({method,rows}),{level:9}));console.log('PASS',summary.filter(r=>r.variant==='15a').map(r=>[r.profile,r.id,r.deltaPercent.toFixed(1)]));
+}finally{await b.close()}
