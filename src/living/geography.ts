@@ -1,5 +1,5 @@
 import { toLocal } from '../world/geo';
-import { canWalk } from '../world/collisions';
+import { canWalk,walkingHeight } from '../world/collisions';
 import type { Terrain } from '../world/terrain';
 // @ts-ignore Pure module also exercised directly by Node tests.
 import { allowed } from './walk.mjs';
@@ -37,9 +37,10 @@ export async function loadNavigation(){
 export function validPoint(p:Point,terrain:Terrain|null){
  if(!canWalk(p.x,p.z))return false;
  if(!terrain)return true;
- const h=terrain.relativeHeight(p.x,p.z);
+ const support=walkingHeight((x:number,z:number)=>terrain.relativeHeight(x,z));
+ const h=support(p.x,p.z);
  if(h===null)return false;
- return [[.5,0],[-.5,0],[0,.5],[0,-.5]].every(([x,z])=>{const v=terrain.relativeHeight(p.x+x,p.z+z);return v!==null&&Math.abs(v-h)<.3;});
+ return [[.5,0],[-.5,0],[0,.5],[0,-.5]].every(([x,z])=>{const v=support(p.x+x,p.z+z);return v!==null&&Math.abs(v-h)<.3;});
 }
 let graph:ReturnType<typeof buildGraph>|null=null;
 export function routeAt(p:Point,terrain:Terrain|null){const valid=(q:Point)=>validPoint(q,terrain);graph??=buildGraph(paths,valid);return graphRoute(graph,p,valid);}

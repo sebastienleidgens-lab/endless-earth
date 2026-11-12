@@ -1,7 +1,9 @@
+import {sampleRefinement} from './terrain-refinement.mjs';
 // Metric source surface shared by offline preparation, rendering and collisions.
 export function sampleGrid(g,x,z){
  const fx=(x-g.origin_x_m)/g.step_m,fz=(z-g.origin_z_m)/g.step_m;
  if(fx<0||fz<0||fx>g.width-1||fz>g.height-1)return null;
+ const refined=sampleRefinement(g,x,z);if(refined!==undefined)return refined;
  const col=Math.min(Math.floor(fx),g.width-2),row=Math.min(Math.floor(fz),g.height-2),tx=fx-col,tz=fz-row;
  const i=row*g.width+col,h=g.elevations_m,a=h[i],b=h[i+1],c=h[i+g.width],d=h[i+g.width+1];
  if(Math.abs(a-d)<Math.abs(b-c))return tx>=tz?a+(b-a)*tx+(d-b)*tz:a+(c-a)*tz+(d-c)*tx;
@@ -26,6 +28,7 @@ export function clipConvex(subject,clip){
  return out;
 }
 export function sourceTriangles(g,x,z){
+ const refined=g.refinement?.cells.get(z*g.width+x);if(refined)return refined.triangles;
  const px=g.origin_x_m+x*g.step_m,pz=g.origin_z_m+z*g.step_m,s=g.step_m;
  const p=[{x:px,z:pz},{x:px+s,z:pz},{x:px,z:pz+s},{x:px+s,z:pz+s}];
  // Clip polygons must be counterclockwise in X/Z (rendering reverses winding).

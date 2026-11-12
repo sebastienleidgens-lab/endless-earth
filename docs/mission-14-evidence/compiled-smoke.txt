@@ -1,0 +1,449 @@
+AERIAL {
+  authentic: {
+    requested: 'hybrid',
+    active: 'hybrid',
+    state: 'ready',
+    bytes: 173289,
+    textureCount: 1,
+    region: 'poitou',
+    cache: {
+      resident: 1,
+      regions: [Array],
+      gpuBytesEstimate: 331748,
+      downloads: 1,
+      downloadBytes: 173289
+    }
+  },
+  decorations: {
+    requests: 8,
+    completed: 8,
+    cancelled: 15,
+    stale: 0,
+    failed: 0,
+    installed: 8,
+    cacheHits: 0,
+    bytes: 1858843,
+    maxDecodeCpuMs: 0.6000000000931323,
+    maxFetchDecodeWallMs: 2458,
+    maxInstallMs: 0.19999999972060323,
+    maxDisposeMs: 0,
+    maxTickMs: 0.6999999997206032,
+    active: 0,
+    ready: 0
+  },
+  terrain: {
+    preparationMs: 19.700000000186265,
+    tiles: 25,
+    fineTriangles: 130196,
+    farTriangles: 121172,
+    farTiles: 17,
+    maxFarErrorM: 0.25,
+    surface: 'integrated',
+    water: 'mapped-outline-dem-drape-v1',
+    reliefCells: 330
+  },
+  nature: {
+    treeCells: 125,
+    farCells: 125,
+    cells: 250,
+    resident: 2,
+    builds: 2,
+    pending: 0,
+    work: 0,
+    needed: 0,
+    preparation: null
+  },
+  climate: {
+    worldTimeMs: 1794471187168,
+    solar: {
+      altitude: 0.18433509472191223,
+      azimuth: 2.2730524438466766,
+      month: 11
+    },
+    weather: { cloud: 0.16, mist: 0, wind: 0.24, rain: 0 },
+    acousticWeather: {
+      cloud: 0.16,
+      mist: 0,
+      wind: 0.20667487333884757,
+      rain: 0,
+      gust: 0.05621970017782663
+    },
+    wind: {
+      x: 0.18752487252933708,
+      z: -0.08770137344181979,
+      speed: 0.20667487333884757,
+      gust: 0.05621970017782663
+    },
+    transition: { revision: 33, commandRevision: 0, manual: false },
+    simulation: true,
+    moment: 'real',
+    mode: 'real',
+    date: '2026-11-12T08:13:07.168Z',
+    localTime: '12 nov., 09:13',
+    localHour: 9.21861111111111,
+    season: 'autumn',
+    timeZone: 'Europe/Paris',
+    polar: null,
+    targetWeather: 'clear',
+    weatherTau: 45,
+    effectiveMeanWind: 0.24,
+    starVisibility: 0,
+    rainDrops: 0
+  },
+  earthLife: {
+    time: 3.9479999999995345,
+    profile: 'eco',
+    budget: { birds: 0, particles: 0, events: 0 },
+    limits: {
+      vegetation: 0.55,
+      fine: 0,
+      water: 0.5,
+      clouds: 0.7,
+      shadows: 0,
+      birds: 2,
+      particles: 0,
+      events: 1,
+      cpuHz: 5
+    },
+    activeBirds: 0,
+    activeEvents: 0,
+    habitat: 'built',
+    wind: {
+      x: 0.18752487252933708,
+      z: -0.08770137344181979,
+      speed: 0.20667487333884757,
+      gust: 0.05621970017782663
+    },
+    cpuMs: 0,
+    maxCpuMs: 0.8999999999068677,
+    provenance: {
+      habitat: 'mapped classification, unknown preserved',
+      wind: 'simulated',
+      weather: 'simulated, not forecast',
+      sky: 'Three.js Preetham with artistic night and two cloud altitudes',
+      birds: 'generic artistic silhouettes',
+      current: 'illustrative surface ripples; hydrological flow unknown'
+    },
+    resources: {
+      cpuObjects: 10,
+      extraDrawCallsMax: 12,
+      extraTextures: 0,
+      cloudMaterials: 1,
+      birdMaterials: 1,
+      particleMaterials: 1,
+      rainMaterials: 1
+    }
+  },
+  render: { calls: 134, triangles: 225116, geometries: 138 },
+  architecture: [
+    {
+      version: 'poitou-v2',
+      buildings: 921,
+      inferredHeights: 920,
+      pitchedRoofs: 921,
+      openings: 10713,
+      cells: 69,
+      meshes: 258,
+      triangles: 189933,
+      builds: 1,
+      generationMs: 1.2999999998137355
+    }
+  ],
+  architectureMemory: {
+    triangles: 308557,
+    bytes: 30250617,
+    meshes: 264,
+    detailCells: 6,
+    detailBuilds: 6,
+    detailMs: 0.19999999972060323,
+    evictions: 0
+  },
+  mode: 'aerial',
+  ready: true,
+  position: [ -12.277392682727118, -1.48157948633812, -32.416383999943434 ],
+  camera: [ -9.31177784252591, 1.6617671636452134, -28.515308389777534 ],
+  zoom: 125,
+  smoothZoom: 125,
+  yaw: 0.65,
+  routeLength: undefined,
+  routePoints: undefined,
+  routeIndex: 1,
+  quality: 'low',
+  natureAnchors: 2500,
+  autoWalk: false,
+  walkMessage: 'Prêt · rejoindre une voie OSM',
+  sound: false,
+  soundState: 'uninitialized',
+  audio: {
+    contextUpdates: 0,
+    cpuMs: 0,
+    maxCpuMs: 0,
+    nearbyChecks: 0,
+    memoryCells: 0,
+    perches: 0,
+    contact: {
+      surface: null,
+      material: 'unknown',
+      basis: 'no reliable ground material',
+      confidence: 'unknown'
+    },
+    context: null
+  },
+  avatarVisible: true
+} FPS ≈ 2
+Draw calls : 134
+Triangles : 225 116
+Géométries : 138
+Textures : 9
+Ratio pixels : 1.0
+Vue : third · terrain prêt : true
+Position : -12.28, -1.48, -32.42
+FINAL {
+  authentic: {
+    requested: 'hybrid',
+    active: 'hybrid',
+    state: 'ready',
+    bytes: 173289,
+    textureCount: 1,
+    region: 'poitou',
+    cache: {
+      resident: 1,
+      regions: [Array],
+      gpuBytesEstimate: 331748,
+      downloads: 1,
+      downloadBytes: 173289
+    }
+  },
+  decorations: {
+    requests: 17,
+    completed: 17,
+    cancelled: 20,
+    stale: 0,
+    failed: 0,
+    installed: 12,
+    cacheHits: 0,
+    bytes: 3075613,
+    maxDecodeCpuMs: 0.6000000000931323,
+    maxFetchDecodeWallMs: 2458,
+    maxInstallMs: 0.20000000018626451,
+    maxDisposeMs: 0,
+    maxTickMs: 0.6999999997206032,
+    active: 2,
+    ready: 0
+  },
+  terrain: {
+    preparationMs: 19.700000000186265,
+    tiles: 25,
+    fineTriangles: 130196,
+    farTriangles: 121172,
+    farTiles: 17,
+    maxFarErrorM: 0.25,
+    surface: 'integrated',
+    water: 'mapped-outline-dem-drape-v1',
+    reliefCells: 330
+  },
+  nature: {
+    treeCells: 125,
+    farCells: 125,
+    cells: 250,
+    resident: 4,
+    builds: 4,
+    pending: 0,
+    work: 0,
+    needed: 0,
+    preparation: null
+  },
+  climate: {
+    worldTimeMs: 1794471208027,
+    solar: {
+      altitude: 0.1851342835148783,
+      azimuth: 2.274290309354321,
+      month: 11
+    },
+    weather: { cloud: 0.16, mist: 0, wind: 0.24, rain: 0 },
+    acousticWeather: {
+      cloud: 0.16,
+      mist: 0,
+      wind: 0.20223195071534464,
+      rain: 0,
+      gust: 0.01340819503179047
+    },
+    wind: {
+      x: 0.1789450919486178,
+      z: -0.09424279073542915,
+      speed: 0.20223195071534464,
+      gust: 0.01340819503179047
+    },
+    transition: { revision: 102, commandRevision: 0, manual: false },
+    simulation: true,
+    moment: 'real',
+    mode: 'real',
+    date: '2026-11-12T08:13:28.027Z',
+    localTime: '12 nov., 09:13',
+    localHour: 9.224444444444444,
+    season: 'autumn',
+    timeZone: 'Europe/Paris',
+    polar: null,
+    targetWeather: 'clear',
+    weatherTau: 45,
+    effectiveMeanWind: 0.24,
+    starVisibility: 0,
+    rainDrops: 0
+  },
+  earthLife: {
+    time: 16.115899999998977,
+    profile: 'eco',
+    budget: { birds: 0, particles: 0, events: 0 },
+    limits: {
+      vegetation: 0.55,
+      fine: 0,
+      water: 0.5,
+      clouds: 0.7,
+      shadows: 0,
+      birds: 2,
+      particles: 0,
+      events: 1,
+      cpuHz: 5
+    },
+    activeBirds: 0,
+    activeEvents: 0,
+    habitat: 'built',
+    wind: {
+      x: 0.1789450919486178,
+      z: -0.09424279073542915,
+      speed: 0.20223195071534464,
+      gust: 0.01340819503179047
+    },
+    cpuMs: 0,
+    maxCpuMs: 0.8999999999068677,
+    provenance: {
+      habitat: 'mapped classification, unknown preserved',
+      wind: 'simulated',
+      weather: 'simulated, not forecast',
+      sky: 'Three.js Preetham with artistic night and two cloud altitudes',
+      birds: 'generic artistic silhouettes',
+      current: 'illustrative surface ripples; hydrological flow unknown'
+    },
+    resources: {
+      cpuObjects: 10,
+      extraDrawCallsMax: 12,
+      extraTextures: 0,
+      cloudMaterials: 1,
+      birdMaterials: 1,
+      particleMaterials: 1,
+      rainMaterials: 1
+    }
+  },
+  render: { calls: 61, triangles: 179040, geometries: 233 },
+  architecture: [
+    {
+      version: 'poitou-v2',
+      buildings: 921,
+      inferredHeights: 920,
+      pitchedRoofs: 921,
+      openings: 10713,
+      cells: 69,
+      meshes: 258,
+      triangles: 189933,
+      builds: 1,
+      generationMs: 1.2999999998137355
+    }
+  ],
+  architectureMemory: {
+    triangles: 328875,
+    bytes: 32201145,
+    meshes: 266,
+    detailCells: 8,
+    detailBuilds: 8,
+    detailMs: 0.19999999972060323,
+    evictions: 0
+  },
+  mode: 'aerial',
+  ready: true,
+  position: [ -10.342470772988337, -1.4008407273094576, -35.09007726155353 ],
+  camera: [ -67.30764701879139, 78.9410585382571, 48.175689981526574 ],
+  zoom: 125,
+  smoothZoom: 125,
+  yaw: -0.6,
+  routeLength: undefined,
+  routePoints: undefined,
+  routeIndex: 1,
+  quality: 'low',
+  natureAnchors: 2500,
+  autoWalk: false,
+  walkMessage: 'Prêt · rejoindre une voie OSM',
+  sound: true,
+  soundState: 'running',
+  audio: {
+    layers: [],
+    activeSources: [],
+    recentEvents: [],
+    nodes: 2,
+    voices: 0,
+    peakVoices: 0,
+    hrtf: 0,
+    beds: 0,
+    budget: { voices: 8, hrtf: 1, beds: 2, hz: 2 },
+    dropped: 0,
+    steps: 0,
+    heardBirds: 0,
+    roadEvents: 0,
+    profile: 'eco',
+    cacheBytes: 5273600,
+    peakBytes: 5273600,
+    cached: 3,
+    pending: 0,
+    activeLoads: 0,
+    loads: 3,
+    decodes: 3,
+    deferred: 0,
+    deniedDecodes: 0,
+    failures: {},
+    contextUpdates: 3,
+    cpuMs: 0,
+    maxCpuMs: 11.200000000186265,
+    nearbyChecks: 118,
+    memoryCells: 1,
+    perches: 12,
+    contact: {
+      surface: null,
+      material: 'unknown',
+      basis: 'no reliable ground material',
+      confidence: 'unknown'
+    },
+    context: {
+      version: 1,
+      geo: [Object],
+      key: 'wgs84-v1:69988:92612',
+      worldTimeMs: 1794471208027,
+      localHour: 9.224444444444444,
+      season: 'autumn',
+      timeBasis: 'civil',
+      altitudeM: 99.79915912477182,
+      habitat: 'built',
+      solarAltitude: 0.1851342835148783,
+      weather: [Object],
+      position: [Object],
+      water: null,
+      emitters: [Array],
+      ground: null,
+      influences: [Object],
+      sources: [],
+      provenance: [Object],
+      fixture: false,
+      environment: [Object],
+      mixRevision: 97,
+      listener: [Object],
+      traffic: [Array]
+    }
+  },
+  avatarVisible: true
+} FPS ≈ 6
+Draw calls : 61
+Triangles : 179 040
+Géométries : 233
+Textures : 9
+Ratio pixels : 1.0
+Vue : aerial · terrain prêt : true
+Position : -10.34, -1.40, -35.09
+PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors.

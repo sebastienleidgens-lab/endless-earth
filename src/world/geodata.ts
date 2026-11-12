@@ -21,6 +21,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { toLocal } from './geo';
 import { setBuildingFootprints } from './collisions';
 import type { Terrain } from './terrain';
+import {addLandmarks} from './landmarks';
 type Feature = { geometry?: { type: string; coordinates: unknown }; properties?: Record<string,unknown> };
 type Collection = { type: string; features: Feature[] };
 function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
@@ -130,7 +131,7 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
  scene.userData.releaseNatureAnchors?.();
  const local=features.map(f=>{const g=f.geometry,tags=f.properties??{},c=g?.coordinates;if(!g||!Array.isArray(c))return {tags};if(g.type==='Polygon')return {tags,rings:c.map(r=>coordsToPoints(r))};if(g.type==='LineString')return {tags,line:coordsToPoints(c)};if(g.type==='Point'&&typeof c[0]==='number'&&typeof c[1]==='number')return {tags,point:toLocal({lon:c[0],lat:c[1]})};return {tags};});
  scene.userData.lifeHabitat=habitatIndex(local);
- const trees=addNature(scene,local,(x,z)=>terrain?terrain.relativeHeight(x,z):0,prepared);
+ const trees=addNature(scene,local,(x,z)=>terrain?terrain.relativeHeight(x,z):0,prepared,undefined,terrain?.treeAnchors);
  const anchors=trees.map((p:{x:number;y:number;z:number;scale:number;kind:string})=>({x:p.x,z:p.z,perchY:p.y+8.5*p.scale*(p.kind==='riparian'?1.35:1)}));nature.push(...anchors);scene.userData.natureAnchors=anchors;
  const owned=new Set<object>(anchors);
  scene.userData.releaseNatureAnchors=()=>{let write=0;for(const p of nature)if(!owned.has(p))nature[write++]=p;nature.length=write;owned.clear();};
@@ -160,6 +161,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
   const architecture=prepared?null:new ArchitectureBatch(scene);
   for(const f of features){
     const tags=f.properties??{};
+    if(terrain?.landmarks?.objects.some((o:any)=>o.featureId===`osm-way-${tags.osm_id}`))continue;
     if(f.geometry?.type==='LineString'){
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
       if(tags.historic==='citywalls'||tags.historic==='castle'||tags.historic==='ruins'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain,tags.historic==='castle'||tags.historic==='ruins');count++;}
@@ -199,6 +201,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
   }
   batchLinearFeatures(scene);
   if(prepared)installPreparedArchitecture(scene,prepared);else architecture!.finish();
+  addLandmarks(scene,terrain?.landmarks);
   return count;
 }
 export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain):Promise<number>{
@@ -207,9 +210,10 @@ export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain
   if(!response.ok)return 0;
   const text=await response.text(),data=JSON.parse(text) as Collection;
   const prepared=await loadDecorations(terrain,text);
+  scene.userData.decorationManifest=prepared?.manifest??null;
   if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
   const count=renderGeoFeatures(scene,mergeEnvironment(data.features,terrain?.environment),terrain,prepared);
-  if(count>0)setBuildingFootprints(data.features);
+  if(count>0)setBuildingFootprints([...data.features,...(terrain?.landmarks?.collisionFeatures??[])],undefined,terrain?.landmarks?(feature:any,x:number,z:number)=>terrain.landmarks.support(`osm-way-${feature.properties?.osm_id}`,x,z):undefined);
   return count;
 }
 

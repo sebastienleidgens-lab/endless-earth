@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-13.md"
+    "missionReport": "docs/mission-14.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -50,7 +50,24 @@
     "geo:nature-art": "node scripts/prepare-nature-art.mjs && DECORATION_EVIDENCE_DIR=work/mission-12C/preparation node scripts/prepare-decorations.mjs",
     "test:nature-art": "node scripts/browser-regional-nature.mjs after",
     "geo:art-dna": "node scripts/prepare-art-dna.mjs && DECORATION_EVIDENCE_DIR=work/mission-12D/preparation node scripts/prepare-decorations.mjs",
-    "test:art-dna": "node scripts/verify-art-dna.mjs && node scripts/browser-art-dna-gallery.mjs"
+    "test:art-dna": "node scripts/verify-art-dna.mjs && node scripts/browser-art-dna-gallery.mjs",
+    "geo:relief": "node scripts/prepare-relief-protection.mjs && python scripts/prepare-terrain-refinement.py && node scripts/prepare-relief-surface.mjs",
+    "test:relief": "node --test tests/terrain-refinement.test.mjs",
+    "geo:landmarks": "python scripts/prepare-landmark-observations.py && node scripts/prepare-landmarks.mjs && python scripts/prepare-landmark-underlay.py",
+    "test:landmarks": "node --test tests/landmarks.test.mjs",
+    "test:landmarks:browser": "node scripts/browser-landmarks-checks.mjs",
+    "bench:landmarks": "node scripts/benchmark-landmarks.mjs",
+    "report:landmarks": "python scripts/report-landmarks.py",
+    "geo:lighting": "node scripts/export-light-source.mjs && node scripts/prepare-light.mjs",
+    "test:lighting": "node --test tests/lighting.test.mjs",
+    "test:lighting:browser": "node scripts/browser-light-checks.mjs",
+    "bench:lighting": "node scripts/benchmark-light.mjs",
+    "report:lighting": "python scripts/report-light.py",
+    "geo:remarkable-fixtures": "node scripts/prepare-remarkable-fixtures.mjs",
+    "test:remarkable-fixtures": "node scripts/audit-remarkable-fixtures.mjs && node scripts/browser-remarkable-fixtures.mjs",
+    "test:mission-14:soak": "node scripts/browser-mission-14-soak.mjs",
+    "bench:mission-14": "node scripts/benchmark-mission-14-final.mjs",
+    "report:mission-14": "python scripts/report-mission-14-final.py"
   },
   "dependencies": {
     "three": "^0.180.0"

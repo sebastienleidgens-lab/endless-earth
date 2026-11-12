@@ -1,0 +1,47 @@
+Mission 14C — local validation, 12 November 2026
+Node 24 / Python 3.12 / Chromium 156 / SwiftShader software.
+Final source-bound assets match determinism.json; manifest formatting retains original compact form.
+
+tests:
+✔ road policy retains paved/unknown/gravel classes and never promotes an unknown to documented soil (0.223213ms)
+ℹ tests 204
+ℹ suites 0
+ℹ pass 204
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8053.068092
+
+build:
+✓ built in 1.58s
+
+runtime-final:
+PASS normal
+PASS off
+PASS ao-only
+PASS absent
+PASS corrupt
+PASS stale
+PASS no-compatible-mesh
+
+production:
+PASS compiled lighting source loading, four native profile choices and mobile
+
+smoke:
+PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors.
+
+gallery:
+PASS 18 pairs, three AO variants, both AV players, local links and mobile gallery
+
+audit:
+PASS 608 protected files; scene data unchanged
+
+walk:
+PASS after 83.71408054110402 63.64070000000112 348
+Publication video bytes 1404525 → 1159745
+
+forest:
+PASS forest 0 22.015800000000745 187
+
+Controlled benchmark correction: four separate held pages; 432 readback renders; all 108 row climate snapshots match the paired baseline, including wind. The initial wider candidate is explicitly exploratory.

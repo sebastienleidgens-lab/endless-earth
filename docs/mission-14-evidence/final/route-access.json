@@ -1,0 +1,170 @@
+{
+  "method": "Independent manual-access graph on existing mapped highway segments, both native motor directions in <=0.12 m steps, with exact source collisions/terrain/deck. Nodes connect only at coincident original OSM vertices (1 mm key), pedestrian restrictions honoured. No proximity connector or navigation-policy change. This is more permissive than default AutoWalk, which still excludes secondary roads and bridges.",
+  "nodes": 1147,
+  "edges": 1158,
+  "reachable": 744,
+  "start": {
+    "x": -12.277392682727118,
+    "z": -32.416383999943434
+  },
+  "bridgeFarEnd": {
+    "x": -205.9364648249942,
+    "z": 193.7747240006965
+  },
+  "bridgeConnected": false,
+  "blockedNearBridge": [
+    {
+      "id": "osm-way-203459883",
+      "name": "Les Bottes",
+      "points": [
+        {
+          "x": -187.08516971700098,
+          "z": 83.69037600036734
+        },
+        {
+          "x": -183.74858974040632,
+          "z": 85.10414000027822
+        }
+      ]
+    },
+    {
+      "id": "osm-way-203459883",
+      "name": "Les Bottes",
+      "points": [
+        {
+          "x": -183.74858974040632,
+          "z": 85.10414000027822
+        },
+        {
+          "x": -180.69451195863806,
+          "z": 85.97243600014252
+        }
+      ]
+    },
+    {
+      "id": "osm-way-203459883",
+      "name": "Les Bottes",
+      "points": [
+        {
+          "x": -176.45697903642818,
+          "z": 86.22847199997068
+        },
+        {
+          "x": -171.8224160025848,
+          "z": 82.56604400067488
+        }
+      ]
+    },
+    {
+      "id": "osm-way-203459883",
+      "name": "Les Bottes",
+      "points": [
+        {
+          "x": -160.73611365474127,
+          "z": 81.61982400069093
+        },
+        {
+          "x": -149.07717172281988,
+          "z": 89.02260400019316
+        }
+      ]
+    },
+    {
+      "id": "osm-way-900319308",
+      "name": "Rue du Pont",
+      "points": [
+        {
+          "x": -154.7730267858305,
+          "z": 100.80026000019814
+        },
+        {
+          "x": -163.33971496370611,
+          "z": 122.1069080000322
+        }
+      ]
+    },
+    {
+      "id": "osm-way-900319309",
+      "name": "Quai du Premier Président Pérevier",
+      "points": [
+        {
+          "x": -179.27436579011484,
+          "z": 135.98851200010387
+        },
+        {
+          "x": -169.43260013834174,
+          "z": 143.64732800022523
+        }
+      ]
+    },
+    {
+      "id": "osm-way-1204437465",
+      "name": null,
+      "points": [
+        {
+          "x": -187.94794669034718,
+          "z": 82.64396800000355
+        },
+        {
+          "x": -195.75111542278285,
+          "z": 86.84073200000682
+        }
+      ]
+    },
+    {
+      "id": "osm-way-1204437465",
+      "name": null,
+      "points": [
+        {
+          "x": -195.75111542278285,
+          "z": 86.84073200000682
+        },
+        {
+          "x": -211.41853444327447,
+          "z": 82.33227200031592
+        }
+      ]
+    }
+  ],
+  "approaches": [
+    {
+      "osmWay": 900319308,
+      "name": "Rue du Pont",
+      "from": [
+        -158.46042734935205,
+        -29.2698927440139,
+        109.97138240012671
+      ],
+      "attempt": {
+        "x": -158.49767381969065,
+        "z": 110.06402000012599
+      },
+      "canWalk": true,
+      "oldAbsoluteHeight": 71.9301072559861,
+      "newAbsoluteHeight": 71.78160974310094,
+      "attemptedRiseM": -0.14849751288515733,
+      "horizontalStepM": 0.09984500231012955,
+      "bridgeSupportAbsoluteM": null
+    },
+    {
+      "osmWay": 900319309,
+      "name": "Quai du Premier Président Pérevier",
+      "from": [
+        -177.30601265975992,
+        -32.71473484677779,
+        137.52027520012788
+      ],
+      "attempt": {
+        "x": -177.22727853454572,
+        "z": 137.58154572812884
+      },
+      "canWalk": false,
+      "oldAbsoluteHeight": 68.48526515322222,
+      "newAbsoluteHeight": 68.5119205027244,
+      "attemptedRiseM": 0.026655349502178183,
+      "horizontalStepM": 0.09976542524723027,
+      "bridgeSupportAbsoluteM": null
+    }
+  ],
+  "limitation": "This establishes no supported continuous walk from the reference start to the bridge in the current imported axis network. It does not prove that all real-world pedestrian alternatives are impossible. Bridge and forest inspections remain explicitly separate."
+}

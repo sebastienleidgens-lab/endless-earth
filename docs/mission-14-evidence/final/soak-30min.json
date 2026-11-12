@@ -1,0 +1,293 @@
+{
+  "method": "At least 1800 real wall-clock seconds, native game loop, no time/speed acceleration. Immutable source snapshot. Continuous native 450 m AutoWalk followed by reversed identical source route; profile/weather/time changes and pauses. Separate initial placements only at explicitly labelled bridge, forest and streaming chapters. Native W on full mapped bridge. Two short engine/audio recordings; no full-session video. Per-frame contact/error trace drained every five seconds. Chromium SwiftShader 640x360; interval timings include instrumentation/video and are not physical GPU FPS.",
+  "sourceSha256": {
+    "src/main.ts": "0d4327bc035f2346c26431e7ff3586dccc45da90f728b7c8005069b8e01a9da4",
+    "src/lighting/runtime.ts": "4d49a38c9f8fa910a50ea2a028ef73cd077eca42d0546f09f3c2de80eedd01d5",
+    "src/lighting/model.mjs": "ac3b7e2306349b65a385cfabe66f7b0c673bceb29824e417897538494ff78db0",
+    "src/lighting/state.mjs": "ac00b0fca12b098c08f7e4b2d5d6454d3fd9dd0778ea8e6bc4d94b0eef74ec8b",
+    "public/data/angles-relief.json": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+    "public/data/angles-landmarks.json": "0b03bca4ac4c30db6691726c47f2fffe0154f900e1801e73fbcfb839a460121a",
+    "public/data/angles-lighting.json": "0ba12d63cd1811c3d579dd95b591c9a722495d1da6590531f2779fcbfdfc9422"
+  },
+  "wallSeconds": 1802.371,
+  "route": {
+    "points": [
+      {
+        "x": -12.277392682727118,
+        "y": -1.48157948633812,
+        "z": -32.416383999943434
+      },
+      {
+        "x": -18.43135941299998,
+        "z": -38.63917199989373
+      },
+      {
+        "x": -31.594434652441496,
+        "z": -44.65045199974526
+      },
+      {
+        "x": -48.010102729480714,
+        "z": -52.76567999966346
+      },
+      {
+        "x": -67.05991289329494,
+        "z": -62.43938799960176
+      },
+      {
+        "x": -88.2933886710723,
+        "z": -77.79041599944378
+      },
+      {
+        "x": -122.97244188311758,
+        "z": -90.79259199952105
+      },
+      {
+        "x": -131.01230164363483,
+        "z": -99.24177999938706
+      },
+      {
+        "x": -149.58872975126897,
+        "z": -130.90118799997612
+      },
+      {
+        "x": -163.07248315779748,
+        "z": -151.48425599926412
+      },
+      {
+        "x": -182.03830618261475,
+        "z": -168.54961199936554
+      },
+      {
+        "x": -211.30400652645892,
+        "z": -184.26799599954563
+      },
+      {
+        "x": -253.0532498033101,
+        "z": -202.93635999939653
+      },
+      {
+        "x": -269.4307419080718,
+        "z": -214.97005200002064
+      },
+      {
+        "x": -297.6275150282983,
+        "z": -258.1176839996053
+      },
+      {
+        "x": -313.78358649387934,
+        "z": -276.6858599998673
+      },
+      {
+        "x": -328.9394474859304,
+        "z": -293.6844239999792
+      },
+      {
+        "x": -338.9415522212385,
+        "z": -299.8738159995392
+      },
+      {
+        "x": -337.15140628868664,
+        "z": -315.1730579613076
+      }
+    ],
+    "length": 450,
+    "name": "Rue Saint-Jean",
+    "surface": "asphalt"
+  },
+  "metres": 1477.992744938415,
+  "reversals": 2,
+  "chapters": [
+    {
+      "seconds": 0,
+      "phase": 0,
+      "label": "Parcours OSM continu · 450 m · Équilibré"
+    },
+    {
+      "seconds": 359.17,
+      "phase": 0,
+      "label": "Fin des 450 m continus · pause de contemplation"
+    },
+    {
+      "seconds": 421.987,
+      "phase": 1,
+      "label": "Même parcours en sens inverse · couvert · Équilibré"
+    },
+    {
+      "seconds": 721.685,
+      "phase": 2,
+      "label": "Allers-retours · pluie du soir · Qualité"
+    },
+    {
+      "seconds": 1082.207,
+      "phase": 3,
+      "label": "COUPURE · pont distinct · entrée W native"
+    },
+    {
+      "seconds": 1206.443,
+      "phase": 3,
+      "label": "Traversée native terminée · pause du pont",
+      "bridgeWallSeconds": 129.123
+    },
+    {
+      "seconds": 1261.847,
+      "phase": 4,
+      "label": "COUPURE · sous-bois contemplatif · vent · Équilibré"
+    },
+    {
+      "seconds": 1443.017,
+      "phase": 5,
+      "label": "COUPURES de streaming entre stations existantes · Éco / Qualité"
+    },
+    {
+      "seconds": 1443.017,
+      "phase": 5,
+      "label": "COUPURE streaming explicite vers station 0"
+    },
+    {
+      "seconds": 1501.802,
+      "phase": 5,
+      "label": "COUPURE streaming explicite vers station 1"
+    },
+    {
+      "seconds": 1560.492,
+      "phase": 5,
+      "label": "COUPURE streaming explicite vers station 2"
+    },
+    {
+      "seconds": 1623.995,
+      "phase": 5,
+      "label": "COUPURE streaming explicite vers station 3"
+    },
+    {
+      "seconds": 1682.622,
+      "phase": 6,
+      "label": "Retour à la station de départ · matin clair · Équilibré"
+    }
+  ],
+  "files": [
+    "docs/mission-14-evidence/final/promenade-continue.webm",
+    "docs/mission-14-evidence/final/pont-distinct.webm"
+  ],
+  "frameCount": 11474,
+  "maxGroundErrorM": 0,
+  "maxStepM": 0.36250000000005855,
+  "maxVerticalStepM": 0.09344868309857901,
+  "frameIntervalMs": {
+    "median": 115.69999999925494,
+    "p95": 376.79999999701977,
+    "peak": 1537.5
+  },
+  "maxAudioCacheBytes": 25133436,
+  "maxAudioVoices": 6,
+  "maxGeometries": 527,
+  "maxTextures": 12,
+  "maxPrograms": 32,
+  "heaps": [
+    {
+      "seconds": 0,
+      "usedSize": 93179224,
+      "totalSize": 94224384,
+      "embedderHeapUsedSize": 1665312,
+      "backingStorageSize": 61461940
+    },
+    {
+      "seconds": 0,
+      "usedSize": 92642864,
+      "totalSize": 93700096,
+      "embedderHeapUsedSize": 1162704,
+      "backingStorageSize": 62108903
+    },
+    {
+      "seconds": 303.323,
+      "usedSize": 93935776,
+      "totalSize": 96059392,
+      "embedderHeapUsedSize": 1849232,
+      "backingStorageSize": 59274320
+    },
+    {
+      "seconds": 601.983,
+      "usedSize": 93909992,
+      "totalSize": 95272960,
+      "embedderHeapUsedSize": 1566336,
+      "backingStorageSize": 61091216
+    },
+    {
+      "seconds": 904.886,
+      "usedSize": 94478632,
+      "totalSize": 96321536,
+      "embedderHeapUsedSize": 1701200,
+      "backingStorageSize": 64114660
+    },
+    {
+      "seconds": 1200.07,
+      "usedSize": 94652652,
+      "totalSize": 95797248,
+      "embedderHeapUsedSize": 1775976,
+      "backingStorageSize": 60495531
+    },
+    {
+      "seconds": 1501.802,
+      "usedSize": 94719652,
+      "totalSize": 95797248,
+      "embedderHeapUsedSize": 1823768,
+      "backingStorageSize": 53877286
+    },
+    {
+      "seconds": 1802.371,
+      "usedSize": 94946028,
+      "totalSize": 96321536,
+      "embedderHeapUsedSize": 2033928,
+      "backingStorageSize": 64115724
+    }
+  ],
+  "audioDisposed": {
+    "stats": {
+      "layers": [],
+      "activeSources": [],
+      "recentEvents": [],
+      "nodes": 0,
+      "voices": 0,
+      "peakVoices": 7,
+      "hrtf": 0,
+      "beds": 0,
+      "budget": {
+        "voices": 12,
+        "hrtf": 2,
+        "beds": 3,
+        "hz": 2
+      },
+      "dropped": 0,
+      "steps": 1206,
+      "heardBirds": 11,
+      "roadEvents": 2,
+      "profile": "balanced",
+      "cacheBytes": 0,
+      "peakBytes": 25133436,
+      "cached": 0,
+      "pending": 0,
+      "activeLoads": 0,
+      "loads": 98,
+      "decodes": 98,
+      "deferred": 0,
+      "deniedDecodes": 0,
+      "failures": {},
+      "contextUpdates": 3599,
+      "cpuMs": 0.30000000074505806,
+      "maxCpuMs": 25.399999998509884,
+      "nearbyChecks": 64,
+      "memoryCells": 0,
+      "perches": 0,
+      "contact": {
+        "surface": "asphalt",
+        "material": "hard",
+        "basis": "explicit OSM hard surface; generic hard-contact recording",
+        "confidence": "mapped"
+      },
+      "context": null
+    },
+    "state": "closed"
+  },
+  "errors": [],
+  "warnings": [],
+  "publication": "Video publication copies may use VP9 when smaller, otherwise native VP8. See video-publication.json for exact sizes, codecs, durations, source SHA and unchanged encoded Opus hashes. Native recordings remain in ignored work/."
+}

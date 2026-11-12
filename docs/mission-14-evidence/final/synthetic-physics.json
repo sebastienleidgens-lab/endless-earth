@@ -1,0 +1,43 @@
+{
+  "method": "Same provider-neutral TIN validation, source mesh triangulation, local mesh decoder, exact bridge support, navigation and native moveGrounded kernel as the game. Synthetic local metres, no real place.",
+  "rows": [
+    {
+      "fixture": "relief",
+      "synthetic": true,
+      "refinedCells": 16,
+      "coarseMaeM": 1.9648722541813437,
+      "adaptiveMaeM": 0.03924479314332675,
+      "maxRenderPhysicsErrorM": 4.6875000059287686e-7,
+      "maxSeamProbeM": 1.586740321357638e-7,
+      "roadOutAndBackM": 200,
+      "cliffStoppedAtX": -6.000000000000007
+    },
+    {
+      "fixture": "bridge",
+      "synthetic": true,
+      "model": "48 m beam span, 4 m deck, two piers; no Angles arch geometry",
+      "nativeOutAndBackM": 96,
+      "maxRenderPhysicsErrorM": 1.7763568394002505e-15,
+      "guardrailBlocked": true,
+      "waterOutsideDeckBlocked": true,
+      "unknownDeckBlocked": true,
+      "deckRelativeRangeM": [
+        13.520000457763672,
+        14.479999542236328
+      ]
+    },
+    {
+      "fixture": "atlantic-site",
+      "synthetic": true,
+      "region": "atlantic",
+      "datum": "SYNTHETIC-METRES",
+      "objects": [
+        "synthetic-granite-lookout"
+      ],
+      "fallbackObjects": 0,
+      "fallbackWalkM": 80,
+      "wrongIgnDatumRejected": true,
+      "source": "Original synthetic low granite wall fragments and ordinary regional house; no real site and no castle reconstruction"
+    }
+  ]
+}

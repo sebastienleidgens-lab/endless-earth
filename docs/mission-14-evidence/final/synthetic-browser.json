@@ -1,0 +1,496 @@
+{
+  "method": "Actual common renderer, offline light pack/decoder, terrain, regional materials, local mesh loading and native navigation kernel. Three cycles through all synthetic scenes, exact same-scene geometry/texture counts on last two cycles. Missing local detail fallback and mobile layout.",
+  "rows": [
+    {
+      "cycle": 0,
+      "id": "relief",
+      "state": {
+        "fixture": "relief",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "mediterranean",
+        "refinedCells": 16,
+        "objects": [],
+        "triangles": 3802,
+        "calls": 4,
+        "memory": {
+          "geometries": 5,
+          "textures": 3
+        },
+        "programs": 5,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 1,
+          "ambientVertices": 1636,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3222,
+          "treeInstances": 0,
+          "updates": 1,
+          "lastUpdateCpuMs": 15.699999999254942,
+          "maxUpdateCpuMs": 15.699999999254942,
+          "lastShadowCalls": 1,
+          "lastShadowTriangles": 3222,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 38664,
+          "sourceBytes": 35388,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          -39,
+          21.000000000000004,
+          54
+        ],
+        "support": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "cycle": 0,
+      "id": "bridge",
+      "state": {
+        "fixture": "bridge",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "mediterranean",
+        "refinedCells": 0,
+        "objects": [
+          "synthetic-beam-span"
+        ],
+        "triangles": 1248,
+        "calls": 9,
+        "memory": {
+          "geometries": 10,
+          "textures": 5
+        },
+        "programs": 7,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 4,
+          "ambientVertices": 1291,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 662,
+          "treeInstances": 0,
+          "updates": 1,
+          "lastUpdateCpuMs": 5.600000001490116,
+          "maxUpdateCpuMs": 5.600000001490116,
+          "lastShadowCalls": 1,
+          "lastShadowTriangles": 662,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 7944,
+          "sourceBytes": 10926,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          8,
+          11.499999999999996,
+          42.00000000000001
+        ],
+        "support": [
+          13.520000457763672,
+          14,
+          14.479999542236328
+        ]
+      }
+    },
+    {
+      "cycle": 0,
+      "id": "atlantic-site",
+      "state": {
+        "fixture": "atlantic-site",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "atlantic",
+        "refinedCells": 0,
+        "objects": [
+          "synthetic-granite-lookout"
+        ],
+        "triangles": 2508,
+        "calls": 11,
+        "memory": {
+          "geometries": 13,
+          "textures": 7
+        },
+        "programs": 11,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 2,
+          "ambientVertices": 709,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 468,
+          "treeInstances": 4,
+          "updates": 1,
+          "lastUpdateCpuMs": 9.300000000745058,
+          "maxUpdateCpuMs": 9.300000000745058,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 708,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 5616,
+          "sourceBytes": 7007,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          36.99999999999999,
+          21,
+          42
+        ],
+        "support": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "cycle": 1,
+      "id": "relief",
+      "state": {
+        "fixture": "relief",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "mediterranean",
+        "refinedCells": 16,
+        "objects": [],
+        "triangles": 3802,
+        "calls": 4,
+        "memory": {
+          "geometries": 5,
+          "textures": 6
+        },
+        "programs": 6,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 1,
+          "ambientVertices": 1636,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3222,
+          "treeInstances": 0,
+          "updates": 1,
+          "lastUpdateCpuMs": 7.699999999254942,
+          "maxUpdateCpuMs": 7.699999999254942,
+          "lastShadowCalls": 1,
+          "lastShadowTriangles": 3222,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 38664,
+          "sourceBytes": 35388,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          -39,
+          21.000000000000004,
+          54
+        ],
+        "support": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "cycle": 1,
+      "id": "bridge",
+      "state": {
+        "fixture": "bridge",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "mediterranean",
+        "refinedCells": 0,
+        "objects": [
+          "synthetic-beam-span"
+        ],
+        "triangles": 1248,
+        "calls": 9,
+        "memory": {
+          "geometries": 10,
+          "textures": 6
+        },
+        "programs": 8,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 4,
+          "ambientVertices": 1291,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 662,
+          "treeInstances": 0,
+          "updates": 1,
+          "lastUpdateCpuMs": 1302.5,
+          "maxUpdateCpuMs": 1302.5,
+          "lastShadowCalls": 1,
+          "lastShadowTriangles": 662,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 7944,
+          "sourceBytes": 10926,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          8,
+          11.499999999999996,
+          42.00000000000001
+        ],
+        "support": [
+          13.520000457763672,
+          14,
+          14.479999542236328
+        ]
+      }
+    },
+    {
+      "cycle": 1,
+      "id": "atlantic-site",
+      "state": {
+        "fixture": "atlantic-site",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "atlantic",
+        "refinedCells": 0,
+        "objects": [
+          "synthetic-granite-lookout"
+        ],
+        "triangles": 2508,
+        "calls": 11,
+        "memory": {
+          "geometries": 13,
+          "textures": 7
+        },
+        "programs": 11,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 2,
+          "ambientVertices": 709,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 468,
+          "treeInstances": 4,
+          "updates": 1,
+          "lastUpdateCpuMs": 965,
+          "maxUpdateCpuMs": 965,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 708,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 5616,
+          "sourceBytes": 7007,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          36.99999999999999,
+          21,
+          42
+        ],
+        "support": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "cycle": 2,
+      "id": "relief",
+      "state": {
+        "fixture": "relief",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "mediterranean",
+        "refinedCells": 16,
+        "objects": [],
+        "triangles": 3802,
+        "calls": 4,
+        "memory": {
+          "geometries": 5,
+          "textures": 6
+        },
+        "programs": 6,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 1,
+          "ambientVertices": 1636,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3222,
+          "treeInstances": 0,
+          "updates": 1,
+          "lastUpdateCpuMs": 131.79999999701977,
+          "maxUpdateCpuMs": 131.79999999701977,
+          "lastShadowCalls": 1,
+          "lastShadowTriangles": 3222,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 38664,
+          "sourceBytes": 35388,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          -39,
+          21.000000000000004,
+          54
+        ],
+        "support": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "cycle": 2,
+      "id": "bridge",
+      "state": {
+        "fixture": "bridge",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "mediterranean",
+        "refinedCells": 0,
+        "objects": [
+          "synthetic-beam-span"
+        ],
+        "triangles": 1248,
+        "calls": 9,
+        "memory": {
+          "geometries": 10,
+          "textures": 6
+        },
+        "programs": 8,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 4,
+          "ambientVertices": 1291,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 662,
+          "treeInstances": 0,
+          "updates": 1,
+          "lastUpdateCpuMs": 746,
+          "maxUpdateCpuMs": 746,
+          "lastShadowCalls": 1,
+          "lastShadowTriangles": 662,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 7944,
+          "sourceBytes": 10926,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          8,
+          11.499999999999996,
+          42.00000000000001
+        ],
+        "support": [
+          13.520000457763672,
+          14,
+          14.479999542236328
+        ]
+      }
+    },
+    {
+      "cycle": 2,
+      "id": "atlantic-site",
+      "state": {
+        "fixture": "atlantic-site",
+        "synthetic": true,
+        "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+        "datum": "SYNTHETIC-METRES",
+        "region": "atlantic",
+        "refinedCells": 0,
+        "objects": [
+          "synthetic-granite-lookout"
+        ],
+        "triangles": 2508,
+        "calls": 11,
+        "memory": {
+          "geometries": 13,
+          "textures": 7
+        },
+        "programs": 11,
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 2,
+          "ambientVertices": 709,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 468,
+          "treeInstances": 4,
+          "updates": 1,
+          "lastUpdateCpuMs": 801,
+          "maxUpdateCpuMs": 801,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 708,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 5616,
+          "sourceBytes": 7007,
+          "filter": "receiver-plane-pcf"
+        },
+        "camera": [
+          36.99999999999999,
+          21,
+          42
+        ],
+        "support": [
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  ],
+  "fallback": {
+    "fixture": "atlantic-site",
+    "synthetic": true,
+    "provenance": "Original synthetic CC0-1.0 geometry. Local metres; no geographic position, real monument, measured survey or IGN69 claim.",
+    "datum": "SYNTHETIC-METRES",
+    "region": "atlantic",
+    "refinedCells": 0,
+    "objects": [],
+    "triangles": 1798,
+    "calls": 9,
+    "memory": {
+      "geometries": 9,
+      "textures": 5
+    },
+    "programs": 8,
+    "lighting": {},
+    "camera": [
+      36.99999999999999,
+      21,
+      42
+    ],
+    "support": [
+      null,
+      null,
+      null
+    ]
+  },
+  "errors": [],
+  "warnings": []
+}

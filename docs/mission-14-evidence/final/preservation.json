@@ -1,0 +1,2382 @@
+{
+  "referenceCommit": "d4766f8ed4c64765ad55c69be9baa809a2d0d194",
+  "protectedFiles": 587,
+  "allProtectedBytesUnchanged": true,
+  "soakGameMatchesFinal": true,
+  "frozen": [
+    {
+      "file": "src/main.ts",
+      "sha256": "0d4327bc035f2346c26431e7ff3586dccc45da90f728b7c8005069b8e01a9da4"
+    },
+    {
+      "file": "src/lighting/runtime.ts",
+      "sha256": "4d49a38c9f8fa910a50ea2a028ef73cd077eca42d0546f09f3c2de80eedd01d5"
+    },
+    {
+      "file": "src/lighting/model.mjs",
+      "sha256": "ac3b7e2306349b65a385cfabe66f7b0c673bceb29824e417897538494ff78db0"
+    },
+    {
+      "file": "src/lighting/state.mjs",
+      "sha256": "ac00b0fca12b098c08f7e4b2d5d6454d3fd9dd0778ea8e6bc4d94b0eef74ec8b"
+    },
+    {
+      "file": "src/world/landmark-model.mjs",
+      "sha256": "0a7d155b2554dd050711e0f11fb6472f3cda40260ff05154f0515625ae29dc56"
+    },
+    {
+      "file": "src/world/landmarks.ts",
+      "sha256": "fc2cf9a5397b9245a3b56e6cb5d85c3952411c8befb4d01bfb390dc430993920"
+    }
+  ],
+  "sha256": [
+    {
+      "file": ".github/workflows/geodata.yml",
+      "sha256": "89d9caa8d7e56b53f71a016f01f712d2fc67dad17bf52eb0bcdad780813f4882"
+    },
+    {
+      "file": ".github/workflows/pages.yml",
+      "sha256": "dedf6d60723333740cbe757252314777c89d8689bbff2b370887429f859cb6dd"
+    },
+    {
+      "file": ".github/workflows/terrain.yml",
+      "sha256": "0778782ec1727588b7f85f342528ca0b1b99172e27ca300f7bd3f7b2a6ed1511"
+    },
+    {
+      "file": ".github/workflows/tile-tests.yml",
+      "sha256": "56cc4d2ad723d38a23c991895f6eccd595ef88dda64a9d06be78847d33c316b1"
+    },
+    {
+      "file": "public/audio/bird-blackbird-fs-811988-1.flac",
+      "sha256": "3710eb16c2723be74f6a42a8a469702d5a2279388c54889883a9b9cc8cd5e54f"
+    },
+    {
+      "file": "public/audio/bird-blackbird-fs-811988-2.flac",
+      "sha256": "98532c5ab3117d7f5aaea48d8b81571a83cd81372423c4d5521e192c451954db"
+    },
+    {
+      "file": "public/audio/bird-blackbird-fs-811988-3.flac",
+      "sha256": "157714758ba3a50d2d53a274785de1b129396fb1b891cd359de81e47d290057e"
+    },
+    {
+      "file": "public/audio/bird-blackbird-fs-845518-1.flac",
+      "sha256": "ad9db046b579bf5315f11c61c7b029c5b0257717aee06f133c07ef01a3bc46c7"
+    },
+    {
+      "file": "public/audio/bird-chaffinch-fs-351666-1.flac",
+      "sha256": "944fcb91502fa9e8b2b285fab0ce894139fc985e52adecc8e4209118a1e86763"
+    },
+    {
+      "file": "public/audio/bird-chaffinch-fs-351666-2.flac",
+      "sha256": "1adf52e2d195f42af0dd9ee63e1ecb22c5df639b48027426779999adfc36bf25"
+    },
+    {
+      "file": "public/audio/bird-chaffinch-fs-725216-1.flac",
+      "sha256": "b6a5811ff52d857d1e95f8fee28c66307565b9109e2643efed8c17ea1f01d821"
+    },
+    {
+      "file": "public/audio/bird-chaffinch-fs-725216-2.flac",
+      "sha256": "731f624fcfec1457572b7604c4efb65479378a325ec4e4ea2510fe6a83cd24cc"
+    },
+    {
+      "file": "public/audio/bird-chaffinch-fs-725216-3.flac",
+      "sha256": "24cec6a252c2def1f94028d43b1e65df497f24c0585cd2fe19fa8990934a9ea6"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-671058-1.flac",
+      "sha256": "9d21023f294a5e3662f58126f52f2f06786b8f503491590a20ba2502e9479fd5"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-671058-2.flac",
+      "sha256": "3534899a44166e482a6788af742d016fe497b13a1660f2d4191e9b6328bf5c6e"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-671058-3.flac",
+      "sha256": "3f784948390d7ce8b0fdfff5a8a3aed057bbf2127287b4f6154d6e8a55a84338"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-725323-1.flac",
+      "sha256": "045800fad9923c9a54ed063e15675f2dcd58fc9796b678a49b31023f4d347100"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-725323-2.flac",
+      "sha256": "c6cf6d353f554cd47805aad6cdc6e1f51e447ca48abb4e52a63914b47355c8dd"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-725323-3.flac",
+      "sha256": "b59d1e20b912b3659370af72f6232b3c6813561a2d1ee533620feeb4882e9b73"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-725331-1.flac",
+      "sha256": "675577e73f448409b2fba50feb0e2362a233ddfd68a8fc28e4708ae35bfe350b"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-725331-2.flac",
+      "sha256": "3fee0abcf9abc20c80d3155cdb0fcbaaaa60b6822ba1b9241bd6030c28de26c8"
+    },
+    {
+      "file": "public/audio/bird-robin-fs-725331-3.flac",
+      "sha256": "4124a4c3c0f168c5d7b0efc1be85e7d2445018dc85e18f8e44aa46daac0041e4"
+    },
+    {
+      "file": "public/audio/bird-tit-fs-418102-1.flac",
+      "sha256": "c68292b3b8322891bb56a54be40aa1b899072aa240d48c454471d801bda0ba79"
+    },
+    {
+      "file": "public/audio/bird-tit-fs-418102-2.flac",
+      "sha256": "746d3cd113bc106bd16b2837140406274a1a4c58702bcd3df597645afe43a5bd"
+    },
+    {
+      "file": "public/audio/bird-tit-fs-418102-3.flac",
+      "sha256": "ff44f0ef772fa34357f19ac5a921bcfb1355086989b96009c8a036cf18deb616"
+    },
+    {
+      "file": "public/audio/bird-tit-fs-429156-1.flac",
+      "sha256": "a3f46bd7d65cbe4b2d7ea26a37e3afdc20d6924b5bdf4b1d44d66a1ba03bc461"
+    },
+    {
+      "file": "public/audio/credits.html",
+      "sha256": "72eb4c7d3e058431cb723493c8e8eae09d15f0973d116eb71da010977eb5c131"
+    },
+    {
+      "file": "public/audio/foliage-commons-85708704-1.flac",
+      "sha256": "2882b6da7e774e5fd34bd5b4bc61ab62aef4549b827d3c6f4fd3afcecd545e6d"
+    },
+    {
+      "file": "public/audio/foliage-dry-fs-544844-1.flac",
+      "sha256": "efccf280db857c4b079c7543ac2d6d01e9e40471c3e5f4863455ad99a68093bb"
+    },
+    {
+      "file": "public/audio/foliage-fs-403051-m11-1.flac",
+      "sha256": "580aea29b83f99a8d9a7903082a00bf5920e103b838973f3feb457146718fcc5"
+    },
+    {
+      "file": "public/audio/foliage-fs-403051-m11-2.flac",
+      "sha256": "323d7775d4c7f3e3100c613e0a9d2b931f34a4d66e71e6fc778988561a3b7082"
+    },
+    {
+      "file": "public/audio/legacy/air.ogg",
+      "sha256": "4d11db88c92eedec62b736d27dcc9258053178e1005e53d5b8a43ecb065e4625"
+    },
+    {
+      "file": "public/audio/legacy/bird-a.ogg",
+      "sha256": "b9ab806281660e63853a1ec27b06e8c6278638138a57733a320662b2d6a09677"
+    },
+    {
+      "file": "public/audio/legacy/bird-b.ogg",
+      "sha256": "e41f91cd7e52353b186e2eabe199827d7caa6a3cf730493d9862477b88224ba7"
+    },
+    {
+      "file": "public/audio/legacy/bird-c.ogg",
+      "sha256": "6514f820956ffbcc34aea6a9206b132ba865e665a0e952161f74e2de68eaa540"
+    },
+    {
+      "file": "public/audio/legacy/credits.html",
+      "sha256": "e9d8109c1717b90184c98a91ff75a232ab549f492e208c713d8b2cf1740a4e14"
+    },
+    {
+      "file": "public/audio/legacy/gust.ogg",
+      "sha256": "5aac48c320de7d37a292f2f3eb778429f67b9f5d816805e2c8ba73becff33129"
+    },
+    {
+      "file": "public/audio/legacy/human-event-placeholder.ogg",
+      "sha256": "27d488232e60b5f7c0321a62804cf67f88a3b759cf05273d951a9787ba3eb6d7"
+    },
+    {
+      "file": "public/audio/legacy/human-placeholder.ogg",
+      "sha256": "9bd267cb090129d138efe3aab77f36dedc88d6677c92a285d64b3c26dd2353c4"
+    },
+    {
+      "file": "public/audio/legacy/manifest.json",
+      "sha256": "b3c86e8967930b3dc022c80ed475e7f5c099a1342fba471a6e353c807969b7e2"
+    },
+    {
+      "file": "public/audio/legacy/rain.ogg",
+      "sha256": "3641cb4483474fd07f9f5b602a628fada9f0f08cc8b8f580d29f3aa970346629"
+    },
+    {
+      "file": "public/audio/legacy/rustle-a.ogg",
+      "sha256": "d5ed22eda1711063a528dc19c13a88f77d01524cfca512c24c6b280a40a0e191"
+    },
+    {
+      "file": "public/audio/legacy/rustle-b.ogg",
+      "sha256": "d5d3d4ce12c0f61e813a9f20798e629640f17e2a50c365df3946f27c27b37597"
+    },
+    {
+      "file": "public/audio/legacy/sources.json",
+      "sha256": "62cc8f70400114c8c83b4a06f2bcbe3f3ca816b14792d9efae6120d2e9bea770"
+    },
+    {
+      "file": "public/audio/legacy/step-gravel-a.ogg",
+      "sha256": "e7c2a36b3e102fb11904bd22e6cfc6181ee6ac3b5a983baa3ecf8dd323728cdc"
+    },
+    {
+      "file": "public/audio/legacy/step-gravel-b.ogg",
+      "sha256": "40b31fde5780337dc6068f16767c186daf48427f6990ef1e16823f9e3de6ce65"
+    },
+    {
+      "file": "public/audio/legacy/step-gravel-c.ogg",
+      "sha256": "f6dd48167c85c4c289bd54a334ded33479651e925f58572463de9e79e3f13b56"
+    },
+    {
+      "file": "public/audio/legacy/step-soft-a.ogg",
+      "sha256": "515fcd98ea019bfb6f008b19a7019e077b9ae1e63e62abfe7985141b584050a3"
+    },
+    {
+      "file": "public/audio/legacy/step-soft-b.ogg",
+      "sha256": "ab488e61f3049a60d54129eada13b40cdbbd964b2d7c6bd3a2a06fd4e80cc4c4"
+    },
+    {
+      "file": "public/audio/legacy/step-soft-c.ogg",
+      "sha256": "558eb74e46bdc35dfe6d2666cb10ff38e5871b79a7b61ca490bf2ba0ccbf1962"
+    },
+    {
+      "file": "public/audio/legacy/traffic-placeholder.ogg",
+      "sha256": "27ed2b42cbb70ff9fc0dcf9fb41cdb6f63710e4e28d49375cf985bc165ddc76c"
+    },
+    {
+      "file": "public/audio/legacy/water.ogg",
+      "sha256": "84dafe70cb7cdc965fda5ba168d157ce76e6a9005364e6606bea9f0a9a9d5159"
+    },
+    {
+      "file": "public/audio/legacy/woodland.ogg",
+      "sha256": "103c88df46fa5f8758a0531d1bea2ed0521af042d21d406a5f23b7cd60997b70"
+    },
+    {
+      "file": "public/audio/manifest.json",
+      "sha256": "1d468048379a049c2befe6b01da39fb4e8848892a353e235c7d73e9323484fd7"
+    },
+    {
+      "file": "public/audio/rain-fs-231687-1.flac",
+      "sha256": "3c5110b26d979b7cd97624f48db00291d621dbdd3e55f4b9ceccecec3f3bac7c"
+    },
+    {
+      "file": "public/audio/rain-fs-501243-1.flac",
+      "sha256": "250af47c6c421b6d4ae30740cc72c4251bd394d78750de69e4d90e74a6e21a8f"
+    },
+    {
+      "file": "public/audio/river-moderate-fs-553606-m11-1.flac",
+      "sha256": "04befaa4b25985608da5a5dee616ff564821d00034031160b35ef33b0e89a26c"
+    },
+    {
+      "file": "public/audio/river-moderate-fs-591733-m11-1.flac",
+      "sha256": "10c43ab0e27e7822e17b262e0605f3c385b7f5491a5a251ca29e1f64564b3c24"
+    },
+    {
+      "file": "public/audio/river-moderate-fs-591733-m11-2.flac",
+      "sha256": "8f75624ee7bd363649de3a445054233af31d59e1b7cdebfb60041262eb6d8ef4"
+    },
+    {
+      "file": "public/audio/sources.json",
+      "sha256": "8f8a5b6356f51f7c2377458d2ff9ab5566c429e0241c895b778628688090152a"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-353799-1.flac",
+      "sha256": "006667c1afccd37a23f6c6529ec2d34d9aa88f460c3620b6b7a4ec33b43ea8b7"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-353799-2.flac",
+      "sha256": "dfdc1d05a3f7685f06da197faba5e0d3f9ce46568c5ba793756fad04490dff8b"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-353799-3.flac",
+      "sha256": "849273ab95c7eb5106977f8b779fe417cbcfd702ff9c49efccbb54babff6b6aa"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-389454-1.flac",
+      "sha256": "6e34622552fbaaeccc2deeae605f3580c963cb4dc539e5fd46a8faea01536ecc"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-389454-2.flac",
+      "sha256": "41baf03a765207e83fcd51174ce7f2043030b7c5c49796d7d1849dcf6ffd66d2"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-389454-3.flac",
+      "sha256": "c7b23bd178b04e321e3543058d3c9f5d39d46b440d97a91c4884f9557cb16145"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-545511-1.flac",
+      "sha256": "fd4ee9bd2fe082c9b8abd8c069bbb21c2ddc3f0262be06bde6f42916051aea7b"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-545511-2.flac",
+      "sha256": "9c4b9e09c5dcc6d564b2cdbb8940fcd6e2f3256080c5654f833ce3c1224e27a2"
+    },
+    {
+      "file": "public/audio/step-dry-earth-fs-545511-3.flac",
+      "sha256": "cb65d01c09c03e50894ff9daf8fe596dfc4b9cd6faf02885c96c351b4da4f5c4"
+    },
+    {
+      "file": "public/audio/step-grass-fs-505833-1.flac",
+      "sha256": "ecf8b70d6300a0d71e49a4c60e7c1d5f2fb9407e70932141010858508dc04654"
+    },
+    {
+      "file": "public/audio/step-grass-fs-505833-2.flac",
+      "sha256": "58a0ee28d5dff2e7135b1a9e0c1bfc2be55238ae0ebc5faafd197438f301b2d2"
+    },
+    {
+      "file": "public/audio/step-grass-fs-505833-3.flac",
+      "sha256": "0ca4c6a289b0150f048c5b5ccf550599b58351137929559354f1785268a3cedd"
+    },
+    {
+      "file": "public/audio/step-grass-fs-521587-1.flac",
+      "sha256": "ba8662e3d442c7f02e8eb77d6da1bf173b987ce8f87915ae03e0706278a1afd9"
+    },
+    {
+      "file": "public/audio/step-grass-fs-521587-2.flac",
+      "sha256": "2cacc121b45413d6dc8b21c1cc0b39af1b544f6ba76b106192fb5220135a100e"
+    },
+    {
+      "file": "public/audio/step-grass-fs-521587-3.flac",
+      "sha256": "f00ed63420a2b0730da25f511ceeae900eb2bb66308d625eecb1df6926bc784b"
+    },
+    {
+      "file": "public/audio/step-grass-fs-685286-1.flac",
+      "sha256": "463e04f8db100c08549c43711852ea702e14b21bed2a368402321ab657817698"
+    },
+    {
+      "file": "public/audio/step-grass-fs-685286-2.flac",
+      "sha256": "7b0b592752cb47889cef5335c351b9a424af5e5aba72878335a38d0b3ff46bae"
+    },
+    {
+      "file": "public/audio/step-grass-fs-685286-3.flac",
+      "sha256": "1298c979bfa7f03a8e985dd8d6aaab81fc7e00c93b96be0d0db34dac738dea3c"
+    },
+    {
+      "file": "public/audio/step-gravel-commons-85708886-1.flac",
+      "sha256": "a1239db4b0fe51960b529117966b786e9155a683de872df5493031f73c5c58cc"
+    },
+    {
+      "file": "public/audio/step-gravel-commons-85708886-2.flac",
+      "sha256": "909ff9dd0fb35695dd35ccf3d96627e526675e9b1e054362609de22b8fff7a70"
+    },
+    {
+      "file": "public/audio/step-gravel-commons-85708886-3.flac",
+      "sha256": "5de431ca3cf8b968c4174b37d1acebdbad98e20dc1dadf7c0b9712c9abd5164e"
+    },
+    {
+      "file": "public/audio/step-gravel-fs-352870-1.flac",
+      "sha256": "52f60d802ab891f13ede3dcd283a39c72ecf04d561a7c7fd45865d8788ed9873"
+    },
+    {
+      "file": "public/audio/step-gravel-fs-352870-2.flac",
+      "sha256": "881dbd75c5d78c61c332acc29ecd0444c3114a00570b5b7fe8de09ebeb041a81"
+    },
+    {
+      "file": "public/audio/step-gravel-fs-352870-3.flac",
+      "sha256": "50ad27b27dc0be8274fef428417e46ce199e86e3ae87c673cbff282a96ec09dd"
+    },
+    {
+      "file": "public/audio/step-gravel-fs-521588-1.flac",
+      "sha256": "4b9ce71a61a30dc3e476a2dd4eaf9f096f884236e8ca2da123f74d200f9560aa"
+    },
+    {
+      "file": "public/audio/step-gravel-fs-521588-2.flac",
+      "sha256": "4710f6b0bafb1dade03c2a5cabc8df07d27f75947b517107a91d1230fb159d51"
+    },
+    {
+      "file": "public/audio/step-gravel-fs-521588-3.flac",
+      "sha256": "9a23ea5d6cebdd617960146dcce90ffde1e181cac89670a29ee3a785ba2e1cba"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-119765-1.flac",
+      "sha256": "87d660e41223274b13fd30d5de67d804318a03faec097a4ffd5ee0795b3cf2ca"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-119765-2.flac",
+      "sha256": "c09ffae39d2702e15f56de095334d702996b6817b13d3ff927d38dc5124be339"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-119765-3.flac",
+      "sha256": "f750f1db9ad52e8971facac32c4005335ceccfce8e3049d35e007ff095bd4b1e"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-466067-1.flac",
+      "sha256": "52b34481bac0cae5eab392afc465e03c55624439b8096eddd4960d65817d8963"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-466067-2.flac",
+      "sha256": "30604f8775f8c7dda37f72ed1fa89aa25b316e95c732282c7bba027453669208"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-466067-3.flac",
+      "sha256": "67c6cb1e4613f084947e914b78c5c1469e44ee1a1374700c0e1885745a7e6d9a"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-545510-1.flac",
+      "sha256": "31d1adf40492a0dbbaf558b0047cc7015752ac0d2adc5c1b158d13696d1e4b5f"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-545510-2.flac",
+      "sha256": "6bcbf94a36ddfc9313b79daa40637b6758bfe9a300e58a3de27f72c833051d1c"
+    },
+    {
+      "file": "public/audio/step-leaves-fs-545510-3.flac",
+      "sha256": "ccd1199bbf0a906d25d85baf1dfdd8999a47f39ed6a3e7eeaa56430e263ad8f3"
+    },
+    {
+      "file": "public/audio/step-stone-fs-517141-1.flac",
+      "sha256": "db4d6b675d646a88e812dd67be59aba14502e7ce1f1eaee73e500e2f11a7938c"
+    },
+    {
+      "file": "public/audio/step-stone-fs-517141-2.flac",
+      "sha256": "c1822872f364f19c5a53cb14efd76a082c2bf25976cce961772a5fa322c7c257"
+    },
+    {
+      "file": "public/audio/step-stone-fs-517141-3.flac",
+      "sha256": "bad7d177b787fba8382fd4fad769112790fcbfa008a5f16c0898a7ccdb7b3948"
+    },
+    {
+      "file": "public/audio/step-stone-fs-521590-1.flac",
+      "sha256": "fd89a33b35bbd79fb13f143b2db81ebf6b83a5c770b55086dc352dc6edfc1cdd"
+    },
+    {
+      "file": "public/audio/step-stone-fs-521590-2.flac",
+      "sha256": "932c01618d224baaae18a7d02fcf1904975a4eb2e62e53f125054e91533de505"
+    },
+    {
+      "file": "public/audio/step-stone-fs-521590-3.flac",
+      "sha256": "3284f5651f195f42c40a8f9798f6a0a96528493f8644443a1aa3f286e8390097"
+    },
+    {
+      "file": "public/audio/step-stone-fs-813622-1.flac",
+      "sha256": "88ccd500f6d64cba88633b57db65aa0b340661e638f1005e5e909ce2ff5d3f78"
+    },
+    {
+      "file": "public/audio/step-stone-fs-813622-2.flac",
+      "sha256": "5663d99fcbc69fba90b05698440770af79b4a5094348ef7d80407572fe63bff1"
+    },
+    {
+      "file": "public/audio/step-stone-fs-813622-3.flac",
+      "sha256": "ee6dcbb7e8248439554b5f2129bf9322422c0636457b48270f1115d338af0a41"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-231317-1.flac",
+      "sha256": "9992b9941bc306a3df9354c1951dbfc012bd5f8d06a3585e97042dd7cb085a5f"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-231317-2.flac",
+      "sha256": "41f93ca7bf383a271490d3956661a729519ac93e161f3d40ee3cf2b1c9ec90eb"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-231317-3.flac",
+      "sha256": "590a96817e88dc63a8222e6216a0f07d9a08f55b0276e9e417a84b56084353a6"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-676372-1.flac",
+      "sha256": "e010e11bbed993d9242afb8afa56048a8cdd18c205058e9a782ed1359a2c712c"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-676372-2.flac",
+      "sha256": "5f95d495d417eb6899e669d9981b1f5c28906bc4f63a4267d66d0afe9e581b34"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-676372-3.flac",
+      "sha256": "a711c21dbce2e880ccdb3713352882b132c52acf8a402ecd8fc15099c8450cb6"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-770097-1.flac",
+      "sha256": "3a3b342df8c3a93cdcb7d37876316f1a4000df0530b6fc05e4d7d33cdd77d411"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-770097-2.flac",
+      "sha256": "ed0c30657745e74ec384b873cd6f77e664b02c4918ac021cea100233126c06e0"
+    },
+    {
+      "file": "public/audio/step-wet-earth-fs-770097-3.flac",
+      "sha256": "21b91d45bcabba0669c52076d8f45cd18b18ab4d2f56081c88c8befbff17dbef"
+    },
+    {
+      "file": "public/audio/traffic-fs-873189-m11-1.flac",
+      "sha256": "535b9eb44d29a07476607a9a8b9133f9cbdd771466c4e69e428814381172e782"
+    },
+    {
+      "file": "public/audio/water-commons-117971417-1.flac",
+      "sha256": "349ae4b721efcaac3d76608f93fe5b2fdbd56cea3514f57de0843ece2c4dca0d"
+    },
+    {
+      "file": "public/audio/water-fs-580324-1.flac",
+      "sha256": "ab4116b97d9be7fca2be3c87d0fd77db9a19049106c1d7d0879ffa44fef76044"
+    },
+    {
+      "file": "public/audio/water-turbulence-fs-553607-m11-1.flac",
+      "sha256": "7cc426fcb5ddb8b1570a7ffbaeb98ead329d161db3c525eaa1bddd990d83de0f"
+    },
+    {
+      "file": "public/audio/wind-open-fs-553733-m11-1.flac",
+      "sha256": "583a95d2de89541e304786baa384988df0870678ad79cce881f8d63fc1fa6206"
+    },
+    {
+      "file": "public/audio/wind-open-fs-553733-m11-2.flac",
+      "sha256": "e443fcc96e93eee644d9640a0dcd7a8e10daf8a5906b4da204dfe5f920f2ff12"
+    },
+    {
+      "file": "public/audio/wind-open-fs-72563-m11-1.flac",
+      "sha256": "eeb0aac680b9d3c42c6ce045d61df04b20c33284a4316c518c334d1e5637a4ac"
+    },
+    {
+      "file": "public/audio/wind-open-fs-72563-m11-2.flac",
+      "sha256": "4aad7170382c84eb0f228a1fd2c2552105ad2610a4d68b0177cb5edb84dc93aa"
+    },
+    {
+      "file": "public/data/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "public/data/LICENSE.md",
+      "sha256": "9acd1ba33027ad67ea70a843b4b0d4a5170063838462e6470464c26342d062cf"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-1_-1.pack",
+      "sha256": "8b804725d6528a3a9851031e7adbae7c6df459bf528d350147145d8f2fc685c6"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-1_-2.pack",
+      "sha256": "6d29e7d968aee3d2c9dc99c8e71f5db2ddab8fa629bda1ffd5ded4a318eb50e4"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-1_-3.pack",
+      "sha256": "2b4d2e0795a5245890180bf3eb361dfdc5561768a9c4ef03df41c49a55535748"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-1_-4.pack",
+      "sha256": "38aa48305de3f85f70ed7edb72abae4e13be1a330add21065cff063a346d6f7e"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-1_-5.pack",
+      "sha256": "38c84e902be971151cf5a87647bdeb4d98ca3fd71c5e01d0dc746cea1171a1b9"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-1_0.pack",
+      "sha256": "dff01c464827247702cbb54a479ba5c7203ca0d6266af8e46c4d9d9d069e9418"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-1_1.pack",
+      "sha256": "a92b32beb728e6a17f4fe1494a8a4cc3589f5640242d505c2902437313e6eb42"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_-1.pack",
+      "sha256": "ba225f567ee4dbe6a02777546ab62b28d17e649f2140bf808840a4d04fad75b9"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_-2.pack",
+      "sha256": "60e4cf3280ba113d0ad094729478c2e8204109062d9c09ca1c4fe8d05d0ee2ea"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_-3.pack",
+      "sha256": "e035d65d1354879b5f7de204253bfbbd300356288b16b396e07149a2bdcde966"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_-4.pack",
+      "sha256": "3706541aeadb66ad6a3e3044bc9ce01bf2649952a38047f874282792d7a924a7"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_-5.pack",
+      "sha256": "2abaec0d9a3f9d84a33198809bb8706eb9282aa23f93fc5bc613586f0b9cc130"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_0.pack",
+      "sha256": "5b59287be489702a6ef5f814e1171f02601a7bb16dec31ef574abc1ca0d434ac"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_1.pack",
+      "sha256": "7df78cb8817cd5dcfb5d2b88b98b3e584238ed71d990f756afde203ef4185061"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_2.pack",
+      "sha256": "e274b00e993371ad7d48542f2c8b295d81cdb85008a1b0c110d2d7b843061ee5"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_3.pack",
+      "sha256": "356fc764b37d9f6e7b4c2e1e8aebdf38bb3c113274d4c0b8906b07b20f2770ef"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-2_4.pack",
+      "sha256": "09330222cb33b75d17c40705a29761c83c25952840bfd6b96489bcdcc1439027"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_-1.pack",
+      "sha256": "74f1ea7df938e3d0de08b1dd4209fe064d2350301cc5ef0eb2714dea82ab685a"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_-2.pack",
+      "sha256": "28fb1d4eb8bebf9944433acf7c8e048ae9a9e7452c15fc13baf87740483138e0"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_-3.pack",
+      "sha256": "0d32780f7783a2c015c24e0aebeee53ed6b2d2a925fa7f75ba869cd150b1692c"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_-4.pack",
+      "sha256": "2257af6a05a1d26acd12354c80aa5af51ed4f802dc82f09d9e9803cf4f2cf21d"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_-7.pack",
+      "sha256": "419ef43c82308031d2c1526d19b8ae1a5912c8f9aa6009ea632d452d4308577e"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_1.pack",
+      "sha256": "125912aa835c1f229f5863b8ca6bb91ecef478f25ebd07fc09f18341acbc6f6e"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_2.pack",
+      "sha256": "fcefa32008d55f13fa2ba6cde1022af89a2220db8a0dfe79225f1e387e7c97e4"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_3.pack",
+      "sha256": "8c2efbb564f0beb46d644932c9bf8114c210df013a3310dbcf3ea425386cdc12"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_4.pack",
+      "sha256": "303a4676147b01ff81cf01a3ad6c0f6f37da5a77287fca22c01dc3e7d3b7272b"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_5.pack",
+      "sha256": "f0f46e0c0ba846e124e8608ff86efaa18f2c8bf9be2e33bf86d0ca9c4bf96d43"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-3_6.pack",
+      "sha256": "e2472461e641120836e0ec4a668d0b13d2e0635b863636d4bd3f956994cd77b0"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-4_-6.pack",
+      "sha256": "8069b35f61cb2317afffeec95727c5a7ebf6c11d4ec2433a3c1f8f68dfbad208"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-4_5.pack",
+      "sha256": "cf51cd632563b5fe550242138ea3c1353197fd6af4e92dd85b1eaeb2ba82cbc6"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-4_6.pack",
+      "sha256": "d73dd39ce5a5777f96c239ef20c6ebb8b1603c005ad88486c694a535e1d477f5"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-5_-6.pack",
+      "sha256": "6aa67eb1774420cfe0dba5ab2b18390464826610cefb6415bce6c7252fc0c532"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-5_6.pack",
+      "sha256": "b041fe6e6073553f7aa128ef8e10b61c08b9303d851972086a534300b96e5427"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/-6_-7.pack",
+      "sha256": "fe9f01129560d6e9842f58c25ffd0884794fc18996c46d3d8c2812b4ee3a6678"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_-1.pack",
+      "sha256": "d62e8376cfb1bb4d2b3b43f696aec2edecb1c43c5fc4fc42a1ad0b3a46c62648"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_-2.pack",
+      "sha256": "b2dacc30cc6adfe904d378e99f482b12c8f57957c242fdbd10f392e757c6e229"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_-3.pack",
+      "sha256": "a06449a9d4fc2a4ed166d592c6770bb02c94129feddbe881ccf7539e9855cf6a"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_-4.pack",
+      "sha256": "2d8029c69a293e4ef1b475c2f2b1c77da1d099cb466bebc0466aeeff36978b63"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_-7.pack",
+      "sha256": "d0a535810aeeaaeca52ae3cffd94b134b53ae2eec61c97cf30b97fbb2c863b8c"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_0.pack",
+      "sha256": "502b53d641ec823c57df27200c8381a402c9b34d894b58f366ed40a181d14233"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_1.pack",
+      "sha256": "8d5afa646aea75ad61e2e5c2c3c19652f02838b8bbe596f4817315b42f067875"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_2.pack",
+      "sha256": "768d446eb93a552c1a21287ce876626aa935c12aecc7ac20fb3b20e59ff418b6"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/0_3.pack",
+      "sha256": "71d1ff64c9dd8d3678dcc1f0d6a3bfc3b83eaaa6b8c8a56622c469185567c93b"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/1_-1.pack",
+      "sha256": "9cc38b537c482bc12b32e8cc4379d9dd76c3a82838e81bdb344eda24d0285101"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/1_-2.pack",
+      "sha256": "c5ce1de8308758f21a67b80918d2639b5d9f717dff4e6461f1e0217080f1f976"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/1_-5.pack",
+      "sha256": "3b8caa73994151e3c4920d03c128301c66d36cf26cfcd3f718e9e044bc3964aa"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/1_0.pack",
+      "sha256": "8e047b099faa6445e984199469221accb057799e3a0ec58b24b80043f5914001"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/1_1.pack",
+      "sha256": "b4dbf6038f7d353c7a6eac9079f0e7b3e48a884eafe6ca3558ae4fb655f04aba"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/1_2.pack",
+      "sha256": "abddc065f08fbd76e2588d894ae6b6cac539f8e3a81be2ef2ed6d4341ad5eb86"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/1_6.pack",
+      "sha256": "95451fb2e29f9ea4bab103396873622b765ca9c4779498ff6a3af7533eb5d9dd"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/1_7.pack",
+      "sha256": "07407eec9724ff601f1c5dfaaf3801323f965b8347e3442c66da0ef736338641"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/2_-1.pack",
+      "sha256": "d7fd003e4faf647c2e3021166bbff999d2ced49242ba22650de7b0e747249e84"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/2_-2.pack",
+      "sha256": "07408114da0f025fe7f565fa4d932d4fc421e4bb2fb854404bff9c5fad1aff82"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/2_-4.pack",
+      "sha256": "760c45202912a53ce9c5fc53ae2f22cd55884b61e2bdb6eb42faffcfe349f2a0"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/2_-5.pack",
+      "sha256": "16108453962f1240eea035074d98a35f18a653d90dfcd5cce9692c1c0c05636f"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/2_0.pack",
+      "sha256": "a0624a4524edad5febacea58f7f4b42a68bca6d31c6e75257699f021897ab05a"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/3_-2.pack",
+      "sha256": "dc1f0b13314906b6ce7ddb420450c517ef76a19c338d59052a2bb198ff58a8e4"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/3_-5.pack",
+      "sha256": "cf76c6130d476e42aa3da24dc52c74e12dd26dc44021395afcc262817aea8f6c"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/3_-6.pack",
+      "sha256": "22c85fe45234e32b4d7028374c8cda21d9d8349b154ddde12f23c38bf3069540"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/3_3.pack",
+      "sha256": "ed2480a8e83156bae2335b14cb39009e8bce3924823d13b0a8a528d7c7885133"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/3_4.pack",
+      "sha256": "34057cdf29287c9f785f15d553510e49da021f1a0459833985ad392a0ce2e5de"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/4_-2.pack",
+      "sha256": "19495ddf543251ff2892d1b514b4aeb7b0776aa13f3dda84eab178f8dbc1622e"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/4_-3.pack",
+      "sha256": "d0262b2ffbe8447e029b076d3cb35eb9dd373325eb6c5695cfe89c91f6e96ba3"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/4_3.pack",
+      "sha256": "345207d851cf537d77872808c2b4dbe0a2bdfb7c1a127fdb8b62727bfadeff28"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/4_4.pack",
+      "sha256": "355328abde51d9615cdc6d1121c6a336b9ec14c20321feb4dc712ec61262df1f"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/4_5.pack",
+      "sha256": "5422a8d0d538840afc6d2c426bc1319fb64dbff72ee27f301ad12466b2af4ba9"
+    },
+    {
+      "file": "public/data/angles-decorations/architecture/5_-5.pack",
+      "sha256": "d9cd3bcac36ce81714e2d5817daca45e66f3ca47485aaf4aa847ed71610b31e0"
+    },
+    {
+      "file": "public/data/angles-decorations/manifest.json",
+      "sha256": "c8abc01c88b74eb8524ce98361224f7f42edc3344734f768c84f71d3928b0555"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_-1.pack",
+      "sha256": "d60efacebf3a568774e0d2f3caf490041fad8dbf840a9739e48d74aca80a9cc6"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_-2.pack",
+      "sha256": "3e07bbb3e9014171d54044820410191d206b10ab2916acfded7d81f2a7d24c1f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_-3.pack",
+      "sha256": "386bbd8c4b14c304488f34008263e4637256d5e5c78bf03ffca1ecc684f2ebbe"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_-4.pack",
+      "sha256": "42ccc52c13db59c6667f8d6b60cbf14e8cc7f71d74aaa21dcbe8b877178ea15d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_-5.pack",
+      "sha256": "7acbb450e16ce51a10b8f068bf480899ff4625c755b7a30e0b7d0ba829d36f50"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_-6.pack",
+      "sha256": "2f041c9e44e4bf9a08191d86886783d4b018be76c0c79154486252b7c10b2223"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_-7.pack",
+      "sha256": "8a1e972c1a8870963cf717409504aec31062ca39dc1b6e976f3b7d02a903c365"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_-8.pack",
+      "sha256": "a04696cd25a6b432df626fbcb1b357d3df0b74ed33fd3fa1438c6d3449419d4d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_0.pack",
+      "sha256": "25996762d7517d048fc8cc24ba49b0793182abf5d06b58b8562a8d865371d228"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_1.pack",
+      "sha256": "1c68ce39ef7054e6d589a8da2d188fc72ddcef77476589c4a00a0029141c8ae5"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_2.pack",
+      "sha256": "4382d0e55841bea0d117486c1a5fa760be84b7f7f18cc435b85605eefe5bf47f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_3.pack",
+      "sha256": "b6907b490f23e6a697f70db2bf78639e089372652ac4ce5e1b8e40f972084dbd"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_4.pack",
+      "sha256": "adf1ab6e9c34e34b829bbf359ff014046bc82afc28843fe50557e0f8f5f996d0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_5.pack",
+      "sha256": "75f0506c073cade04309e76d11310a8eb8d316780accafe757ce93fed6cfdb2a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_6.pack",
+      "sha256": "44d0107c6b5025b9753fe1af3078ca3798de63741c86db449380ad919bf19277"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-1_7.pack",
+      "sha256": "f73870c05ec0542a2c7e7f5471bf794df0506a3393bddd08e9db828eb0133e45"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_-1.pack",
+      "sha256": "471fe6d549bee75f705e7f720c71dc1c70b9446d55a2c0e4e97d3011bc568322"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_-2.pack",
+      "sha256": "391ce883382c2aaf22f7c7b6faf7a391ddc4867d7266a3c315ab84c3defba146"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_-3.pack",
+      "sha256": "b9bd241e13b7dbc24b8e6d5bc8b03fad30c9feb702324486ab8d8efedd0ad54f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_-4.pack",
+      "sha256": "5d962ae822084a7979368199832d926c0c566561951eb656f05c6fc4f5458f9b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_-5.pack",
+      "sha256": "c9ebdc7a4e0791d07ab82f971a670156c253bb53ce1ca774fb8c844da047adcc"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_-6.pack",
+      "sha256": "3efd9957857a13acf8b84791b9d2eb3f78cb5989580d68e65d3133fb43d250ec"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_-7.pack",
+      "sha256": "e4161a1c9193123361838faef8c05c64e4327d3c7dac54bfbe5bd560336a047f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_-8.pack",
+      "sha256": "4051c7b95e292fcfb090127ed1fffdcf2da55de22cd383a27f9845338e3003d7"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_0.pack",
+      "sha256": "3cfde442b7619104f67407f443f529d01b6f842b73afdf52c0ef457d31c338a8"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_1.pack",
+      "sha256": "e7a92f3ec0c1fb7296667b3ea5ac89239f58a0b873ee749f75e8efda09944cbe"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_2.pack",
+      "sha256": "719a93c0e15d74fcac292458477aa9970e54b3894e42fd798e405ebd525ddb71"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_3.pack",
+      "sha256": "7513b7d5672295728fb049b8873af76e4d58cd83db2d2aa0f8505fe14fa692f7"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_4.pack",
+      "sha256": "17b3f2b04285d266fa32247445d8436e5d4f7bafd2a896c5fe3fce8d2b38472d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_5.pack",
+      "sha256": "f0d734b80c892ebb1b94cefa5acb70c2953b4f33adbd5358d8a8830de97249b4"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_6.pack",
+      "sha256": "a8918eb1c7b698ec65208727552651f044dcf1e9c9b93b60581fb06088540eaa"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-2_7.pack",
+      "sha256": "e0bef785700b48cf781da56da38e7052f6c9dfcea1fd64218333a02190203039"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_-1.pack",
+      "sha256": "a8f05dcc920407cac9df87c215dab09dd07cc1ebc293d5ca2d0b4a0b47cf813c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_-2.pack",
+      "sha256": "5f540891319867380bfeccac41ebaf8aa9edf5fee57a0731a091416ce78f26e8"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_-3.pack",
+      "sha256": "ccb15d6d425db495a4b06c05fcd476bd9f5c71b2d4e23897169727c4feb1f572"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_-4.pack",
+      "sha256": "4db58fd333dc5fcc8f7334f38139f3d1dbc20697769eccb70d52e2de64b9d88e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_-5.pack",
+      "sha256": "90389ff5bb13cc7ae458d47f53c796b96582a3db282d8552a62798e5e872374f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_-6.pack",
+      "sha256": "929e78066c2392477e447b0a78e6f78e2e3528a7bdcca7642ad6d53f387b624b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_-7.pack",
+      "sha256": "f368ab9d16f118970748adf035532b79e0b93e68297148edf90eaab4ec33da6e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_-8.pack",
+      "sha256": "ef58ac1e110aa7c3642e75757138517133cfc63abec9432c05b21061a95e721d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_0.pack",
+      "sha256": "8a07eebd5de1bdeab2c326ad0440852a3fb7535299fbf58248103c15eaaf35b3"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_1.pack",
+      "sha256": "c35faffa4cb7e78dda0e3e5d9e3207a46944b8c1b185d512ac391ca987895c48"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_2.pack",
+      "sha256": "72ba3e8a63e2e1206b23743f4c87937fd96ed48dc5464a0b95a1ff8f6191f497"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_3.pack",
+      "sha256": "a922992818861627777a30e8f460a66b5ba74bb57ed17ae888c95b105e467868"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_4.pack",
+      "sha256": "2dda5e63c6003484c42cf212ab2eb2eb77afd70f24ae9d4b9743885ce601ce8c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_5.pack",
+      "sha256": "46b0fccae67109afafc647837b4a53eb56f48da8a0800470fd36b6473ce323b5"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_6.pack",
+      "sha256": "098b3a49b5bc2a7ba905029f3af925f8c8f9670884743a9a3559a6c922ceb7ba"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-3_7.pack",
+      "sha256": "fb0680e78eaa1569db7a94c2a53325ae078c18e15d2effcae1b9e1839298b2ad"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_-1.pack",
+      "sha256": "ae05ee45cdab59411d0e7928531f7967d185bac1633d9988cdd5082503323c2f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_-2.pack",
+      "sha256": "57afd987848c37dc8363f3ad898997d31e7c2da5e974e4b8455bab81076b0589"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_-3.pack",
+      "sha256": "09b4861c5798eaf5d673e74b19d9f4cd4c2566a6dd465ec93d386101a9d21e49"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_-4.pack",
+      "sha256": "70db9d1981b509fa780d54b5f6df0f470d83f999bef173c478177cfb8b587a3c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_-5.pack",
+      "sha256": "f4cd09270cea141757df284f087d66f3546a126b0d12c7c0ea185b647568c339"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_-6.pack",
+      "sha256": "78f8b4d716ec7a2d4c216b0bfefae592062a5576c2daa5536c1ea96f94198e5e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_-7.pack",
+      "sha256": "aa650f90fbebfc0555ab72bc3afea67818b4926bb534eabb81849f0f64bb20d3"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_-8.pack",
+      "sha256": "64bf148539675dafc99ee4314503c8aa4817ccced6746b69fdfe2b6bc933801d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_0.pack",
+      "sha256": "cc2b372e2c0e13b11d7bc6754ccdae90ac412dc641b482875a4d511d526b0f1b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_1.pack",
+      "sha256": "c0f7c4e2c62390dc9f3524471a250e5d7397613633d7d839fde6b10df52e1b1a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_2.pack",
+      "sha256": "e448b0bd871f52646c0b0c79aae46ec0f76732038ed18bef9fd4dbd961ebb10c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_3.pack",
+      "sha256": "3dee26a89da9e5ab7c38c8e11e87c5c3a07ae92fc3a720767bc07523a8a31d09"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_4.pack",
+      "sha256": "4efaffcf74648fcc89571130407e703b941bdde32399696fce2c7d5ebb548dac"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_5.pack",
+      "sha256": "b698523af0de8a87a1c0a07c0bfbf551921ca3530f228519f836e44ab85f2461"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_6.pack",
+      "sha256": "79e45e65092b4c130271d31b28361bacf86fda7da1f2561242b064c380155bc1"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-4_7.pack",
+      "sha256": "71744646627bcaaf3dffed4a6f919d6cb6701afceca9b407cfb958a73ab4758a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_-1.pack",
+      "sha256": "613a8aee5f245bd42820803e6d175f907672607656412e663e38e0797c362d76"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_-2.pack",
+      "sha256": "bdb65fde00fcec76aebdefc3862f88bb72210064548a4d6de656de8805b15d83"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_-3.pack",
+      "sha256": "72d126acada3718bd84afa9b37fe9524b13bf1da98b6f19704efd3f30b1ae137"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_-4.pack",
+      "sha256": "8b634be9dadd45257f1a99056f6dad2c2f4a2a98f1febd432bda1e3e33840c98"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_-5.pack",
+      "sha256": "b787648d44b86041e5f5d63c29fc12ac00a0f774beae16e58e26ca498d28a13e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_-6.pack",
+      "sha256": "1382c15e51c0d69909679929befb1a6f3f2d39d3d60abd4f1c043934ffbabb30"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_-7.pack",
+      "sha256": "d2f87a688a51635b1da9eab9f8f4dd208da21c2a7f324872bde388c3e15bb507"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_-8.pack",
+      "sha256": "07233f6cf90265261b194af5dca0cb8425aa5f07aef796e405a76d2853a28fc4"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_0.pack",
+      "sha256": "64c1605258f89829e3bb9fde4b3d7e15a204fe52ae19fd5b471f93507f3527c2"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_1.pack",
+      "sha256": "8b66334c241fe4287176c088c5e7417629b447e0f58121d36643ab4b66e37dad"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_2.pack",
+      "sha256": "528f6aea8b88fffae3bef9f6b0fc21d48e4862cf9d80c1ffeb54b308ea5cfd22"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_3.pack",
+      "sha256": "a362f4c4f4bb9bf3da3079845b72f19a574a81bc7924d1b7cd3c9576b326f338"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_4.pack",
+      "sha256": "ee5756b2e3c5948cc20c9c7c0de63c61536303e7ed28dc16f1a119a7eaa4a773"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_5.pack",
+      "sha256": "024b7f192f502a54840c3f18272037fefea7a64cb3f756d310f814bb40f592af"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_6.pack",
+      "sha256": "ce709957075ae51c90ec598e5b4fd80edf6444a9b7bdebbae3973a16bad99046"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-5_7.pack",
+      "sha256": "9ac28dfd08c5d4d178a2eec4ed4622e1b9c72bca063f1bc5b69a5b5f9ebbb1bb"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_-1.pack",
+      "sha256": "599cb2935261f307c47f1a48752906f757c730e4ac4430e49675faa08a1dd61d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_-2.pack",
+      "sha256": "f69ea4d3a032c895417a2d13a17ab1bf0b5656e468c6d65758bd646da142eee8"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_-3.pack",
+      "sha256": "ae5ffea9c99271c3d4edf816643622d8714b6b9bcc807075aa23ecb941b3be85"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_-4.pack",
+      "sha256": "d3289605beb1e5f895a19f230df96d7a08e0138ea81ec793dba0663c8746cc93"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_-5.pack",
+      "sha256": "ae1b8fd6d0288e2679ef53d47a419348bcf920181729a54bff7609f45533dfc9"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_-6.pack",
+      "sha256": "582c658cfcb9633a71c384aa161315d02c2ec8239563f9d67a9cf4c9b83f55c3"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_-7.pack",
+      "sha256": "76dee25a76ce2fba17f9df515e0c7b84d03da6d02c92036fdb124f2b2bdd7cdd"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_-8.pack",
+      "sha256": "f486a225cf70511b7552f89059dfb2019d1aebf161f9ddbd0002ab746c0f9825"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_0.pack",
+      "sha256": "f4d8f361c0e012d5db3a49af09ab46e0f28b1c3f30f367295e4f659354c47651"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_1.pack",
+      "sha256": "5d546531bf83cd6f352b26f4457cbf61eaa92c9ff47f0db8d59e1c8ec470b543"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_2.pack",
+      "sha256": "fbd2dcf9f86351b774af7d32c69b50f61f919531be503a38647e880d3df28610"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_3.pack",
+      "sha256": "f9a4b8585b307d7d98a69c7c2a9bf2819ca409146b62080be5e318397ef841b9"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_4.pack",
+      "sha256": "d88772b75a4f01309c1c832c07225e81d2690454c80f206a32879f854cd00309"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_5.pack",
+      "sha256": "b701bd0a0e407f0da36ee12097e8144089644fd55e8bc54e5a2d556fceb45020"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_6.pack",
+      "sha256": "3f8db0c193439d029cd345793236971f3a8c5fb6cf3f017f28b2a495584d76a9"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-6_7.pack",
+      "sha256": "580f33b6b87d25e5d8fb0e196b61cd8d922b32c546442e9c8d88c09dab2ab5e2"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_-1.pack",
+      "sha256": "de9b04f0a16c542e10097af3fee38faeffeb283ffe773d8a82d74041e26039cb"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_-2.pack",
+      "sha256": "449ed9de7e0d1b82046b205788ec40ec1f8ebbf12b51ab3dc5add55715ab2cf5"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_-3.pack",
+      "sha256": "f2803f3cbb2d33f66c4af64d9e36f0186cb177e41267a155fe8496f1399182d2"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_-4.pack",
+      "sha256": "54e9e71aa0b3d6ff10f3ba96713746578884eb527f541b31cec2bdbb14a389a0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_-5.pack",
+      "sha256": "e9ff651da31ecda3db80feda28f44b002be23b97caf4690002dda42183fdad9f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_-6.pack",
+      "sha256": "2febe8f00854a581135dd2aa3ac36c8d5053864a30e6540c0f9b9427a2a663fd"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_-7.pack",
+      "sha256": "91367f4b732c5cf4331faf27618fe9b1cf9ab93d064ac5d1fb1f897dc3c3e9d0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_-8.pack",
+      "sha256": "2a6836ab2af097d402b232b77722904e56b37699cf35c51057852725d75122f8"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_0.pack",
+      "sha256": "ab28155c0ab417e4a961f43b0d3da53be2f8b18c05bb172169f82a24e9579bbc"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_1.pack",
+      "sha256": "c2c976a2af948b784566cb14ffd525e0a625a10f1bdbb034d4f4c3ce260631ce"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_2.pack",
+      "sha256": "c0a63a8b44ba20bd103ebe2c566d6595ff905086f36a8fbb101e80d1c0ea72ca"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_3.pack",
+      "sha256": "05fc8af6e71cd89a498ed177a66a8055b7b5d8062e3a86ebb3efd1e36f75080a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_4.pack",
+      "sha256": "420e59acc46ecd686916cb973cea3ccdab66321595b3fd8ffed85b1b2a11cd48"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-7_5.pack",
+      "sha256": "a0c6a40b8cd76edbb00d6c99f55febbb7727dcdff69eec98137345ed306656eb"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_-1.pack",
+      "sha256": "15ff9c18a6e2837582ad427294c461a8f01241976c70e22e861dc95e2c5f112d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_-2.pack",
+      "sha256": "d9069284a42f59779dc4ad2c38f00182ea20b9e0aa836849a4de53440fd186a3"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_-3.pack",
+      "sha256": "d7be412f813490c61bd50138fee21ee4b85bc25665972351a5ada689b5bf18b3"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_-4.pack",
+      "sha256": "96ed5ede1880c3bcd354efd8bef01c645cb787fccc7d4cdf10d4d59c46afe265"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_-5.pack",
+      "sha256": "d5e80958e8ca2afdaf3fa28457e569645d88a2f6be99c2c2564edfa39f3e6cbb"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_-6.pack",
+      "sha256": "52fa21c5cbb6df4b7438ac3ea776e9b950bef7cd818c4ab2b4cce4e8105ba043"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_-7.pack",
+      "sha256": "d3c09b6c4200f44d1b53f6680f850b10b37ec4582b83c5c8162db0db7ec06f15"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_-8.pack",
+      "sha256": "b0afba58a4d73b7759a536a399e5f845f8852c0d22bf7749ec9af52621af0af0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_0.pack",
+      "sha256": "8958416a7cf59d122bdc650bee3c8bf0cdc585c0073f2aae433f6f77f2887a0c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_1.pack",
+      "sha256": "605df915580bcc7f8a64f652852001f91062caf102048e6be099d510646512e5"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_2.pack",
+      "sha256": "a83bb965b36b6079775672c95fd3870aa52ef26eb5666dfae8105804ae94e6bc"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_3.pack",
+      "sha256": "90cef95f81dd3f9d3c9ed7f85b67ca994a41a5f8dafda9ce990a26a5adac8cbd"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_4.pack",
+      "sha256": "a973b3f0fd5064e85ff112c1d65d1a425d989f9b9d7fbd0a0811d6703abc664a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_5.pack",
+      "sha256": "4b5ffc6745eaf74ec7ac75202a16ab2e80b9fe91b894da06871ba3b3d16bc13b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/-8_6.pack",
+      "sha256": "26ede10b04016e32dfd4a120cd494223fb3701275db9976c99c6ac8c2087b503"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_-1.pack",
+      "sha256": "5699a3713a8f7f1a56f3dcaf0e642dc084152e70ffcf9e2b77d8dcda6e9f7872"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_-2.pack",
+      "sha256": "52a74c08d28a0c42f7be55b39423b211bfbbbdc8b4f7ce59fb5bb1dc93096a86"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_-3.pack",
+      "sha256": "4ff0158db6aeffdeac311fcbd6950e44399d59344a23027f53849baff7568679"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_-4.pack",
+      "sha256": "ace8eb28d363f7ea08077fb5d42265e4537be88983000faef3facad3f46dcdb1"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_-5.pack",
+      "sha256": "8811aa1c15c6114a94e9717c3b3db3ae378e07018373134d4420d82f9dc062f7"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_-6.pack",
+      "sha256": "7960eec7fb8886684c0f2ec10b547a081d4a4fae0b87525dc7019270c3d22a86"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_-7.pack",
+      "sha256": "0ce905500d994caf8a1ff3c39050dca4f8e07bdddbe4537b81cb817dd62cd951"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_-8.pack",
+      "sha256": "b2372ffac3dd9924935976cc07c296c7c57fdd911f82986cdc935d4f7196b7e0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_0.pack",
+      "sha256": "4db43db944e626f6e33c57c83b34a882d4f954f3bc1680d20afb871069574a03"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_1.pack",
+      "sha256": "c6a469153abb7b99ac903c547424809abe8d774de9c8e13336f9d7c84f7ec971"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_2.pack",
+      "sha256": "fc2ec77a4b1c8b5121e9cf22f687370ee0a6397f85bb47eef02d460cc924ea4c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_3.pack",
+      "sha256": "89dd702074370a6276e95c7fdae047ba01fb42688f20fa22d4af2ce6b7ca1c00"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_4.pack",
+      "sha256": "66eed8a2237a239f61f4ceddd7391b4ad077ba255b7cb9a9c29446cb5efb8a34"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_5.pack",
+      "sha256": "985a5c187d0a4037c09083ee178fabffc096412f434395b3268aee32dbe8422b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_6.pack",
+      "sha256": "8b6113644511e75877494b7adfc6a822a90b7ba9a7ddc15d07368aa9ff58d8bc"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/0_7.pack",
+      "sha256": "dccfa0bc8ac4e4d06a6af0dca4e3d014d05e10e8a085ee9cd889f69c9e5a4ca0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_-1.pack",
+      "sha256": "aa407b7b688f121fa95b7afcb3ebceee6890d2354488ce04bf8c7c8ac92c046b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_-2.pack",
+      "sha256": "77e97f64d4cee3c2bb7f459e483eacf4d45de928b27127d463b28ac149c9ab05"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_-3.pack",
+      "sha256": "c5650f7790ca9a06da8b36c89b5baf68e305e03c64674f96a569b40fc12339f8"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_-4.pack",
+      "sha256": "6e6be83b183edf391fe2f7fe72c8d8692b1eabd93f76c9cd312cdda624959345"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_-5.pack",
+      "sha256": "5087d7e5d0b87fa349456526355369feaed37fae18916cbd5d09b54ffe77b26b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_-6.pack",
+      "sha256": "4d051441189b4931748f17348fe269f9b4bc092fb97ca88edbecff0a3be90fdc"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_-7.pack",
+      "sha256": "daac09805d2030bdbaed3f4e646fbc6ac21fce3a02668fd9c5b4898435975087"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_-8.pack",
+      "sha256": "5e527a852d5bddace5214962d49311cced2a7c66c8dbf4600f96121ed15830a0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_0.pack",
+      "sha256": "21787396494169345fe57c1b984919d85ad900f86ee7f8504a543d526142ad80"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_1.pack",
+      "sha256": "6540b460c830fb5072299a42f5e51f0a97e7799360cf25cb96813cc8d394e660"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_2.pack",
+      "sha256": "29bea3de6104f2f6bb6a42a45f08f87f7093b3c8b3e1d133608c5e3d34563f4b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_3.pack",
+      "sha256": "4bbfbd439954170f98be7014fc923583db4da66e4e9172a13485090c12aaec62"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_4.pack",
+      "sha256": "12829e705c4654e9203735f3e53c995de558cfa3e892a072256c058d7601f5c7"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_5.pack",
+      "sha256": "07b909a96e54728a521596a1376c1896239b8a60adaaf147f99b53fa130c4a67"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_6.pack",
+      "sha256": "9b5493452c4683e623b4b0de7a8ed0b52747e6a7d76284a7ec9b5eb014463511"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/1_7.pack",
+      "sha256": "cdbf0833ce11f96b58d90d1fe9f0ad2ef875a8ea1f4c53bcfa2bb976ef1e1788"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_-1.pack",
+      "sha256": "6bc20c1b856578ced7d4973c5ed61c6991492ff6c64e668f0b21dbe626426b2e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_-2.pack",
+      "sha256": "0ee5b846b74df57069bbb37e46856b66db972476362e010a6aca561310354851"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_-3.pack",
+      "sha256": "1ca17f009d42b2ff86b6b766fa1bc07c76ce2e30c8cfa3b990b2c834c9606b68"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_-4.pack",
+      "sha256": "7d1c28db005f46f3ea33551bb58ad23885cd8045dc1e2b2875e46b7f37e40125"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_-5.pack",
+      "sha256": "715bfd083ef9a219be5c01b457c744c600e014e756a973e2bd4304a26dc209ef"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_-6.pack",
+      "sha256": "32669e13e86f7d586ad71f2995b127d4fcf0840e49a3d8e854545d499af07f12"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_-7.pack",
+      "sha256": "13e4058b1ad0a8c9e8026f2106dde0d22a492aae7e33cc78a89c6030f9ad67e6"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_-8.pack",
+      "sha256": "a3f6135fc8f4026b65a9f751a08f66d47bc506f432a4752b4fcfa147fad3243d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_0.pack",
+      "sha256": "756c284fec2abd656bd28bb71567ca97202182ece510f47d348232f11c73d308"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_1.pack",
+      "sha256": "08134143b952874e7813190a9853556f89ae1b94c191c2af2da84dda1024400b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_2.pack",
+      "sha256": "2771797f284b5f4f8e4b9a37d7ede304280f4a1d4cbf5bbc81e3955465aceb59"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_3.pack",
+      "sha256": "d69bf5264c60228ba824d0c8a8ed275cdc8723dc2aeceffd27e143e555937760"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_4.pack",
+      "sha256": "b3d35a9cfa06b4706434406d05681062deaf9329f5432754534f394df7e02913"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_5.pack",
+      "sha256": "73e067c122bfa2e10b0640dec6b7c48e4e1996ef27a599303810fc12f4d8bb4e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_6.pack",
+      "sha256": "02178b7b6ae7a1daaea7d7d7a1db28125f5b4384f75a2145b8712b8cfbfc9433"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/2_7.pack",
+      "sha256": "fd54c076a4c19051dde102aeae106498eca533beda59d49d489c7893d6e8846e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_-1.pack",
+      "sha256": "250a8045b96549fb597e7ab5a551698a2451e847d277d352c6a9e394d483f380"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_-2.pack",
+      "sha256": "0dd782caeb304a4818d24e0b45fb41e427f42bfeedce225712ab32e145b63d7c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_-3.pack",
+      "sha256": "642a424159b643a3bf9301a650a88c3ed5448b65dd410a6eb0ecd5a04ff3a278"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_-4.pack",
+      "sha256": "c6f3ac846ee8701cddeaf3c18e5f3ac34afa8ed0676218b8af400dab49f504ef"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_-5.pack",
+      "sha256": "e667989bdccc128bbfc6de2c599d0adfc383e9fc91adc4ea65763fe184e18e9a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_-6.pack",
+      "sha256": "f90f164214cc5f878d0a82633b0b7f725ef212c9e03baae288236c2cc4c89c11"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_-7.pack",
+      "sha256": "f73d0c2eaf47a66380389c4d0e7981737d5d413f992d49f7159f0b2849968137"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_-8.pack",
+      "sha256": "1459253a30457831162c68b6e6a41d30a6d5e088a7f57d2ac6cbd3add4afccd6"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_0.pack",
+      "sha256": "5a73e7c2384a4c109bb89e2c4eeb86ca78d8427408882c74baf63d6c189186fa"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_1.pack",
+      "sha256": "4d776141a1451ce06e24c50568cadd52ed0d7f1ab34dcd140d999605b921b9c9"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_2.pack",
+      "sha256": "381ef6860d7620b753667946990df922ae15f0f5bb6ac9309958991fb122ab31"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_3.pack",
+      "sha256": "0bee5ef7df81a07a6c23b32489f15b6e534c86c06a6668421a089ad5dbb4fb5a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_4.pack",
+      "sha256": "ed3917584826d9b981fe435d41d481425aa071f0ff9a6b20b69af28e64d789fd"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_5.pack",
+      "sha256": "da80df208854cae27fad524fbd74d3f0cd08e817d602fb6d49a1b407787c137e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_6.pack",
+      "sha256": "247ebb5adec93e82f57710e1360dfffcce02b20c5ec5757b6bd004b8be97f864"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/3_7.pack",
+      "sha256": "b0faca861a438eb4e13120fdbbe819191495943b5159258e8dd9934e1acba8c3"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_-1.pack",
+      "sha256": "60b17263aacdf5933c57665822d3d4bcd091c4f2416ad7ab5158d9860d77aad9"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_-2.pack",
+      "sha256": "825dc5931721ef58b52ee1d7e130f77d6132df3b1f78e9d14a2c8c5b1d080f53"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_-3.pack",
+      "sha256": "66452360903fadabcaf697ec8a068696b4483bc29d1fd7bfe8ec9ac9a2a72633"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_-4.pack",
+      "sha256": "9bb02e407fea22a28996a2d1e6353eb102582bcc8067a38e3b9c6406771d015c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_-5.pack",
+      "sha256": "53c46127956d7e9af02878a079815d945bc2a362bf209162602aff1c5a389d2b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_-6.pack",
+      "sha256": "5b362b5ac8ec677ee796f7fbade2d77e37f66e6ab5ecfb6dcc691ee99950d3f7"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_-7.pack",
+      "sha256": "f7f834eb81467ca08c64dc890968eedeeee09b3dcbad8738f1603a534428ad0b"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_-8.pack",
+      "sha256": "926b713cb94391862e42d33c43c6e880b071c693383d0f542d23ae7cdd65d596"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_0.pack",
+      "sha256": "f000bc8838c410124301316640911d675bc0ab1d258ec02049d5e3b1d5c8ffbf"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_1.pack",
+      "sha256": "381a7c3eab546ca80f1af930d91e47ecae06a691158f8c8c0ab4dc4c6e819a5a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_2.pack",
+      "sha256": "4ac11addcdeccb0a50b973688efc50651e611a9f89375d3f55e0a5381418be79"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_3.pack",
+      "sha256": "6b3a39ba22b9f2028c96eb1984076285f64b8ff7fea410f6f413268b4ef75d69"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_4.pack",
+      "sha256": "17cdf140d078df3dc25329567a2e763b3c4e24b97d88a21e88204a59359f15ba"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_5.pack",
+      "sha256": "c75bfe590873c3e3a1cf795b834a35f04d7c4b96c17274783270da260f12c522"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_6.pack",
+      "sha256": "f14d6282f7e5a83d99f4974bfdf24e5b678ca73f6cb5d335469ebe74270b991f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/4_7.pack",
+      "sha256": "f0914dc4fa939ae652950f64e5a9fc36d415f647e977189e61b8eaa99b24a206"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_-1.pack",
+      "sha256": "b32d4408d9a8466840af58834d5afa9bb644a47f073a96961b4b1a9cf9c4fd8f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_-2.pack",
+      "sha256": "230c5e3e9d36b0e90090af3565fc04abaa8f36dbdd42ee0c9b9c9f2fd4f8019e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_-3.pack",
+      "sha256": "d66cde2c72f597e969b090d7e27c3c386789003356695d3ced613c1f6e93494f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_-4.pack",
+      "sha256": "ad8b43838652ec857f8461cdd780c0ec21e2de2c03effd3bbd6507e85731d09d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_-5.pack",
+      "sha256": "7397737a94e1b6aa99883e922fa5bdec1e863e5c3e3eff0a42a00d587f4b0b99"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_-6.pack",
+      "sha256": "adf0a6c04d60747d49fbb94acfe573b61aa2800abab374c7b282541dd7586058"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_-7.pack",
+      "sha256": "2fcc39b96a68b02fe45fa26b894de7ab5f14ca7ef701d3b8ad7c72ebd42ac623"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_-8.pack",
+      "sha256": "77ac924d2c79c3f12a7f9809baa40c97cc664234f599851ffc3416797a20c8a1"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_0.pack",
+      "sha256": "57e740d6fddaea464b7f9827b52935b37cf272c1c46bac1de7c1e060113c870a"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_1.pack",
+      "sha256": "aba77d9a754242da63fd21ab155cb33799ba090f96905594cc9d3c89f0db0899"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_2.pack",
+      "sha256": "0435def096a8f7dbeb8a01ef0db485142d4f83b460b6c12d4852ea9ff637295c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_3.pack",
+      "sha256": "fc1738f02e7a4e00142be1e207514a4ad9cd09a903f5f0568db7975ceaa72040"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_4.pack",
+      "sha256": "a3e01e6e9239636988a9ac5bc7c300e6646213836ed88362e36cb029a21a210d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_5.pack",
+      "sha256": "a4d1bc461d9151ae6144ccb5c32d3b4dadb5951eaf4839c9447a8872c2d09a2d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_6.pack",
+      "sha256": "6ad41536e1aa7be413b56d28e3d48a3d557f37b65159e20835c7527eca95fbed"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/5_7.pack",
+      "sha256": "0d3a9e0d1060a3aa96dc4ac8ef5e482a002fd70f2d9d2cd0f1c1c4f865dcd9b0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_-1.pack",
+      "sha256": "6118cc1ba2b53b5b387718dc53ca9145268feb0d3e592599484aa478267d3a36"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_-2.pack",
+      "sha256": "605df915580bcc7f8a64f652852001f91062caf102048e6be099d510646512e5"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_-4.pack",
+      "sha256": "8bf469dfb71ee3d4d215ef606cd29acf773163f9a9602f603da44b66f7fa8803"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_-5.pack",
+      "sha256": "a65d5fc089f21a7cb94a9d410fdd3f40cdb91a31475d307e0828ccc0f0d3da0c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_-6.pack",
+      "sha256": "605df915580bcc7f8a64f652852001f91062caf102048e6be099d510646512e5"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_-7.pack",
+      "sha256": "605df915580bcc7f8a64f652852001f91062caf102048e6be099d510646512e5"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_-8.pack",
+      "sha256": "582044166a40ba227fe5e9dcc01eaed0cfb8a0488c7799c4c9c95bad1688d8e8"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_0.pack",
+      "sha256": "29c3585eb5a4470431e893c56dc0302cde6318db03fe00b0ee0c2f76bde52453"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_1.pack",
+      "sha256": "9b1ac06e0f2f987d2e6a6786af4ca9abf52959a350accc58ccee2f993fbcf03d"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_2.pack",
+      "sha256": "a434a5b9709a3eb554f88a4bd3a5982c55a7b4fb3868dd223eb89dce4e023dfd"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_3.pack",
+      "sha256": "aa930b5a5140494f75bf28d4960ba4ad8c6a7b6f9a03a4bf2fde481e5868f00f"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_4.pack",
+      "sha256": "784cb261ba6bb7bb3a5649ecd0153e816faa34164cec5efb5f865bd3d992d64c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_5.pack",
+      "sha256": "93765684fb092a443a2b70cefadb633917478ee6ace80429531da7449a5e05b0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_6.pack",
+      "sha256": "3881b379e29453bcb293e6c008a58a5e2289adb67933d73f1be774c75dbf4a19"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/6_7.pack",
+      "sha256": "84a0fc8f5171cab1466c076b0d9138469fa0f00566f8296eab4a1112996ab267"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_-1.pack",
+      "sha256": "350d3e99aae7697f35245ed3a56ad5567c2e94054303bac6794e807bd1221822"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_-2.pack",
+      "sha256": "1db26d0e451c7152ea48fd349f48d8236407c9deaf097d78b39cdf02c7726a6e"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_-4.pack",
+      "sha256": "605df915580bcc7f8a64f652852001f91062caf102048e6be099d510646512e5"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_-5.pack",
+      "sha256": "53d1a7646f8c190dce4e546efc5b7a888ab46fbbc8144fecd3a986c812991e47"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_-7.pack",
+      "sha256": "998c1fb7dc305754afd444fb52b43882b3bae86064740b0e271d1d9b1a2fad27"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_-8.pack",
+      "sha256": "413002c30a219f24f18a7a5c1e26bcd225f52a9038307151f650a0427cb78f70"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_0.pack",
+      "sha256": "a9b24c378227fbdea81127d64f49b6ebae55ac7121e433dcb10ecb1b79f4f1a1"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_1.pack",
+      "sha256": "f5ee8d8693b695dc7e81009188ac408e0a29466a969b8d4f259ce2043565d7eb"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_2.pack",
+      "sha256": "55b1d88b3cf2867dd993c9a40be52eb57838ad5997381842b1bf81294c35073c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_3.pack",
+      "sha256": "7ea536a80399205d22aaf2b92c9bc1cbad027f9dacd65ccd61993193fa3503c0"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_4.pack",
+      "sha256": "b10f17e7285e04198d2867a5a2986add043a5c328053e7e8eb8993901577306c"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_5.pack",
+      "sha256": "4dbd213cddf60f4694a64d4068a6602d94a04893323237f0c706002b49e30458"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_6.pack",
+      "sha256": "26107369776bcb7be3f80cecfa78537c7f75d63539cb218c6ef053d432450f71"
+    },
+    {
+      "file": "public/data/angles-decorations/nature/7_7.pack",
+      "sha256": "605df915580bcc7f8a64f652852001f91062caf102048e6be099d510646512e5"
+    },
+    {
+      "file": "public/data/angles-decorations/static.pack",
+      "sha256": "efae36e5fa77baad51a6f30a89e9613e2809d726574cbeecff6b385c7deca986"
+    },
+    {
+      "file": "public/data/angles-earth.json",
+      "sha256": "4e76c200eeb8f43fc3f0dd54522760328ec2e87dc4bab4ffc2955b0a7a68d29d"
+    },
+    {
+      "file": "public/data/angles-environment.json",
+      "sha256": "dfcc8100915c0d65f95c57eb063885d35067326e9f51887a9d9c74415f544fba"
+    },
+    {
+      "file": "public/data/angles-landcover.png",
+      "sha256": "46c8d0e006a4511d0a976ef099bb01800c2c00915f6bb9dcf8af869ff5d6610f"
+    },
+    {
+      "file": "public/data/angles-landmark-surface.json",
+      "sha256": "27939d933fbdaed136f2d9cc71a542badc9cbe7fa13708046bea5eb3e580e3c5"
+    },
+    {
+      "file": "public/data/angles-landmark-surface.pack",
+      "sha256": "b381813a2d1932ec140ab3d2ef991e29a07aaefda06f7510a1e95bbd7eb0cbde"
+    },
+    {
+      "file": "public/data/angles-landmarks.LICENSE.md",
+      "sha256": "455e504865828e12b9a4dfd2daa802ef8d6010d02df09b6b1a7883c3a9bd0012"
+    },
+    {
+      "file": "public/data/angles-landmarks.json",
+      "sha256": "0b03bca4ac4c30db6691726c47f2fffe0154f900e1801e73fbcfb839a460121a"
+    },
+    {
+      "file": "public/data/angles-landmarks.pack",
+      "sha256": "017f9867cd584b0aa13330411d150fbb33b62c1a9fd4183fbc0a890858d55de6"
+    },
+    {
+      "file": "public/data/angles-lighting.LICENSE.md",
+      "sha256": "967d21db1ab1be5cd03a1323d5681fd3ab93e5ac8ecdff28c9d91e44b8b188e2"
+    },
+    {
+      "file": "public/data/angles-lighting.json",
+      "sha256": "0ba12d63cd1811c3d579dd95b591c9a722495d1da6590531f2779fcbfdfc9422"
+    },
+    {
+      "file": "public/data/angles-lighting.pack",
+      "sha256": "7306c4cffedecceb91d1ba434605155361c10afbf83ed9a51ed15ac63aed582d"
+    },
+    {
+      "file": "public/data/angles-osm.geojson",
+      "sha256": "06b79e259d8cca94ed6619d90a058e650d1a9bb5e245802f0dd141b679587aac"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/architecture/-1_0.pack",
+      "sha256": "6cf6fabe67d3186875f230291195590b052df756c8aebcd2052f6452dbd577ff"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/architecture/-1_1.pack",
+      "sha256": "290986755313010a3a20d972eb6884b60c34711397ce23b102294feb22069b8b"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/architecture/-2_0.pack",
+      "sha256": "def89af1c8bdbccf005e2812ef9169628d387b57faaac846715543b7a68e817f"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/architecture/-2_1.pack",
+      "sha256": "58bd56dc5ef7c44e63306f5d0950c512ae740a81e7def682866131cb6a116b86"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/architecture/0_0.pack",
+      "sha256": "8685bd93a1df44c746619e101e00ca997c13f6456672ba41ff717ad20a465992"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/architecture/0_1.pack",
+      "sha256": "2a0938950b544e1a2ecfc0c88ed0616e71b5e2fddc129d9ffdab4a60cea6c0e6"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/manifest.json",
+      "sha256": "b48f1f13c46ca40b2afa0cea9bcc9deaa47531863a9202e3b5577a0e0da3fc28"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/-1_0.pack",
+      "sha256": "087f9e91ee877abf99e6676f547abf811f2189692491e57388416a9792851ded"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/-1_1.pack",
+      "sha256": "da99788325a19eed98995b9f3ecff0503dc65a0eb1e8d64faa78d89bde1ff748"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/-1_2.pack",
+      "sha256": "2fb6d30772ccf7870bb4812bf6a1f0ef88eebe845fecc86bf405d8b1af68ab6f"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/-1_3.pack",
+      "sha256": "b401f2e76c4d92918b5241e8f14a1841df85d5bfd3283ff1161db592b3584484"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/-2_0.pack",
+      "sha256": "1920b30ca496609e5dda0be4006ea1a352f72432d166211c30e8707ffa0eee36"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/-2_1.pack",
+      "sha256": "ad33b4c91eb6f282c7a87b7e68c881a6e5e634dfb0ff5dff71a1ec8b70402983"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/-2_3.pack",
+      "sha256": "9e08508f99a30696314f1e1dc636700a881b799de7d6c1cbb95335a47afae716"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/0_0.pack",
+      "sha256": "246d311548e57b9160d2eba91d62a64a96c7082f21b0ec26920383081575d4c7"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/0_1.pack",
+      "sha256": "fc56b8d8b04e9fe6becca124c9559d340f6ff76e2132fbd408fad4a401b2e7d3"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/0_2.pack",
+      "sha256": "d14b589d12edc3afc659f52af19eaf9472a2c2c3035d457fbbf3da6b7dfa36a7"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/nature/0_3.pack",
+      "sha256": "134afdf3b02d40c347fdaeab1a031d171d2e047b75f35cb02223db0b65abeea8"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/static.pack",
+      "sha256": "5a24943b20d1b37aadf878f94b6b10057355329b51006eaa4ac78ab52cbf9636"
+    },
+    {
+      "file": "public/data/angles-relief-surface.json",
+      "sha256": "0ab821e47926958608705e1a0c58bc50cc993489679d53395a53b795f3e6d29d"
+    },
+    {
+      "file": "public/data/angles-relief-surface.pack",
+      "sha256": "3ff9581c68180526e3881500f530f0193a440818d13e1daca663037c60e7a7e0"
+    },
+    {
+      "file": "public/data/angles-relief.LICENSE.md",
+      "sha256": "c1f239bd3c7c62157e6183fe2584300741f2afb26458b72ee51de4678ddcac04"
+    },
+    {
+      "file": "public/data/angles-relief.json",
+      "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615"
+    },
+    {
+      "file": "public/data/angles-road-edge.json",
+      "sha256": "2f622f8efc88fa2b7b04259801f7d717f609bd2bbb98e04abe249bdc3f9352c3"
+    },
+    {
+      "file": "public/data/angles-road-edge.pack",
+      "sha256": "56105f50397fa23b1a0e000fa51e2331a70fba0a1d2b17d492124c7657c2064a"
+    },
+    {
+      "file": "public/data/angles-surface.json",
+      "sha256": "9e5e9c53756ae38b2d2a939ef8c19ebbd4b94e5b17ffa4acad12c8da0b1e69e5"
+    },
+    {
+      "file": "public/data/angles-surface.pack",
+      "sha256": "f41b742db528a8737d7cf225004cae13631a1ce36feec7b966d47419fd5049c9"
+    },
+    {
+      "file": "public/data/angles-terrain-lod.bin",
+      "sha256": "0390908830741ce7dd7490e913220fbc2c189e51d2e1853502bccaae8ba76eca"
+    },
+    {
+      "file": "public/data/angles-terrain.json",
+      "sha256": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1"
+    },
+    {
+      "file": "public/materials/architecture/README.md",
+      "sha256": "437d19ba3e23ec26040f11968784f92c8e16acee07c41469ce3978c65b7d43e7"
+    },
+    {
+      "file": "public/materials/architecture/atlas.png",
+      "sha256": "d5cf706f485b08a446417b183b81b742640e58723912b357ebdbaabf875a96c8"
+    },
+    {
+      "file": "public/materials/architecture/catalog.json",
+      "sha256": "81bc3ac1bab8cb81a8c631a2c185e16fd2bbabd7df7cf1a50f3791da05fe9c87"
+    },
+    {
+      "file": "public/materials/authentic/LICENSE-CC0.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "file": "public/materials/authentic/catalog.json",
+      "sha256": "e5ef3770e50b9ab17b961f27d26cd137e823edbcfde6dc6414d9e4103a10b022"
+    },
+    {
+      "file": "public/materials/authentic/credits.html",
+      "sha256": "f06b9ff74c2451318bd3ca69f21fb7964239f4918c86967c162e62f1b4f98668"
+    },
+    {
+      "file": "public/materials/authentic/hybrid.png",
+      "sha256": "c162244ad6d8dfe2a5150dac421f111af71b1fb114eeab9813999082ce28d25b"
+    },
+    {
+      "file": "public/materials/authentic/photographic-color.jpg",
+      "sha256": "fc2e7340bf82de07bc8d008191c36954f130e2d7f510fce6db4151393305d9e5"
+    },
+    {
+      "file": "public/materials/authentic/photographic-data.png",
+      "sha256": "e4c82d844309e586d2f9c5bab584fdda603c6228cd032477b0e2c0964f69dd45"
+    },
+    {
+      "file": "public/materials/authentic/previews/bank-soil-hybrid.jpg",
+      "sha256": "a54620901ee08aff3603a322eb2016725841de3d30284869e23bf1e2ba9eef22"
+    },
+    {
+      "file": "public/materials/authentic/previews/bank-soil-photo.jpg",
+      "sha256": "091846fe7650336d0ed5c931fa643c990af5d5c29e7bbffd60af45f09d4c412e"
+    },
+    {
+      "file": "public/materials/authentic/previews/earth-dry-hybrid.jpg",
+      "sha256": "34edf0fd0329b33d65a98d736a8ba87b9a1ab0b900270046fd5687d57067e00d"
+    },
+    {
+      "file": "public/materials/authentic/previews/earth-dry-photo.jpg",
+      "sha256": "d7f7094ec8a2fde0f01f7a32ce404b1106b07341a724e30759b3e3213b7fee8b"
+    },
+    {
+      "file": "public/materials/authentic/previews/gravel-hybrid.jpg",
+      "sha256": "9f14cead15200ed2bdb53b4688aa45f136cd4b3f75c78dfa0466bf9cf8b934d9"
+    },
+    {
+      "file": "public/materials/authentic/previews/gravel-photo.jpg",
+      "sha256": "d5c7178c35de5f462b3784b393a0c70e309331da4caad37c53ea5d31dcb4f071"
+    },
+    {
+      "file": "public/materials/authentic/previews/plaster-fine-hybrid.jpg",
+      "sha256": "ced388554e2c4080c3f90760fe8abfa30b8821939a04b5b874a7d8b5ddadf426"
+    },
+    {
+      "file": "public/materials/authentic/previews/plaster-fine-photo.jpg",
+      "sha256": "2f31c513eeb9dac3ba37e25497fe31aa8ea918d9c8ee7a9823c24b53cf9cf1c8"
+    },
+    {
+      "file": "public/materials/authentic/previews/plaster-worn-hybrid.jpg",
+      "sha256": "b586588c5a8f350f88e49f1fec7d9eb095fc37d7f3f8983776b79be5719451ca"
+    },
+    {
+      "file": "public/materials/authentic/previews/plaster-worn-photo.jpg",
+      "sha256": "5a8a055baea3c303cd563b3f949286b0d3757f4d09ddb3ca39ec64bb586cfa00"
+    },
+    {
+      "file": "public/materials/authentic/previews/rock-existing-hybrid.jpg",
+      "sha256": "3c45ae4752576215ef2b4f8f94a82b2ea5c3cd50d4a6e56fab6a530bf0aab732"
+    },
+    {
+      "file": "public/materials/authentic/previews/rock-existing-photo.jpg",
+      "sha256": "1bc9a4fe17556a4560fc370e54a9e070e81a09dd371befac38b0cd979ec166ee"
+    },
+    {
+      "file": "public/materials/authentic/previews/rock-layered-hybrid.jpg",
+      "sha256": "e5d10075f93c44ebd82170f6552f02bb4859c0aadd41c0ec9c770b5d182dbfad"
+    },
+    {
+      "file": "public/materials/authentic/previews/rock-layered-photo.jpg",
+      "sha256": "0a0e1ab36967a00af91c7ab6aaea4c1399b32f0d3b0ef42eb2110cfbcc623ba9"
+    },
+    {
+      "file": "public/materials/authentic/previews/roof-flat-hybrid.jpg",
+      "sha256": "4fe117dc91f28af2ceb8d381d2e1edd911b860800d5414ea9eb9883fb0748802"
+    },
+    {
+      "file": "public/materials/authentic/previews/roof-flat-photo.jpg",
+      "sha256": "3af45949a0a6e3e6a6967585fd09c48a7fe19a9861651512c385329e0afa1a66"
+    },
+    {
+      "file": "public/materials/authentic/previews/stone-coursed-hybrid.jpg",
+      "sha256": "f31504b4fca17608b778452eed0a54a5f2ea655a163a492d1f066c1db8b9c525"
+    },
+    {
+      "file": "public/materials/authentic/previews/stone-coursed-photo.jpg",
+      "sha256": "5820bb05ad9b67834e4604030a82f2b77dc93a162ac650b6e9f898fbb9d30bcc"
+    },
+    {
+      "file": "public/materials/authentic/previews/stone-rubble-hybrid.jpg",
+      "sha256": "305328cfcff726e28e6d44d4b5a3ae99de539de4b2233db7a0ed5e0406ed7889"
+    },
+    {
+      "file": "public/materials/authentic/previews/stone-rubble-photo.jpg",
+      "sha256": "3a58b85546c10dab5696b07916e582b8f302d317c948c8c213df89f262034926"
+    },
+    {
+      "file": "public/materials/authentic/sources.json",
+      "sha256": "1402c27eb4927ca3d18fb08f14388f59c78db21a45bcb36ddf53e7e24e535545"
+    },
+    {
+      "file": "public/materials/earth/LICENSE-CC0.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "file": "public/materials/earth/catalog.json",
+      "sha256": "52ddc99f8c5a6a901b51dfb81dbad3d03cf85d4aadb03b8f02532033561ed532"
+    },
+    {
+      "file": "public/materials/earth/surface-art.json",
+      "sha256": "62b722e47e3457d9000b6fd1bfded86ae6f2e881111ec1b5ac029c5cfa8924a0"
+    },
+    {
+      "file": "public/materials/earth/surface-atlas.png",
+      "sha256": "727dd54214ba2932160ad5acf7b7eefd271aa72558f4706b884adeb81a26d463"
+    },
+    {
+      "file": "public/materials/earth/surface-field.png",
+      "sha256": "eac0afe657bc7aaf036255a13f04cb7e70bbff864146ecba258ae86927201ea9"
+    },
+    {
+      "file": "public/materials/france/LICENSE-CC0.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "file": "public/materials/france/atlantic.png",
+      "sha256": "b80df75909c7230d6abe46a31cdcdaee319693f06a0f252b975485b5418185bd"
+    },
+    {
+      "file": "public/materials/france/catalog.json",
+      "sha256": "65519bae08caa98024b288199cd1f96442297bc8cd31e2f1a72072af1984e3c4"
+    },
+    {
+      "file": "public/materials/france/granite-source.json",
+      "sha256": "d93f9bd186feb42329bfbb7384775236437a7ac1f14c91273a09f15a55b7da39"
+    },
+    {
+      "file": "public/materials/france/mediterranean.png",
+      "sha256": "b38a518626f75b4411c7cf870696b476bc739dc60dec87776819ded872edc788"
+    },
+    {
+      "file": "public/materials/france/poitou.png",
+      "sha256": "30dd95c34eeba44ee7ba5c2b209f54d1240f4ac01f5c26de376dc608b50e8a87"
+    },
+    {
+      "file": "public/materials/nature/README.md",
+      "sha256": "531a30010633108c6e9ed4ec5597a6fa1d183989af08f3341288fdb59f406d4c"
+    },
+    {
+      "file": "public/materials/nature/catalog.json",
+      "sha256": "767ec0dc702abc15cbf30d7b94327f03fdd1fb88719fb923057ffe571d3a329d"
+    },
+    {
+      "file": "public/materials/nature/leaf-spray.png",
+      "sha256": "adf7c6e8ed7fa9c89bc5f6598f9b42ee9b0968ecc0bc6c426273caf685a0f719"
+    },
+    {
+      "file": "src/architecture/appearance.mjs",
+      "sha256": "97f8b6676398d39a9d402807fe7d42f163cb32e2e9ef779d0859229752bfd5af"
+    },
+    {
+      "file": "src/architecture/material.ts",
+      "sha256": "5f5813379859db289ab30bc6ea0472e181f230f6da56d03b4206317d2ba8a8a3"
+    },
+    {
+      "file": "src/architecture/plan.mjs",
+      "sha256": "e8541f4f4be736176d7d8c61e6d515f6836ee81ec70c5416a0d0c2366cd2efec"
+    },
+    {
+      "file": "src/architecture/render.ts",
+      "sha256": "facef6be0bd186efe278a7b65f7d7b11b57281b43a400bf89888c5c8f7e057a1"
+    },
+    {
+      "file": "src/architecture/style.mjs",
+      "sha256": "ca89d094199ac73708597107485b0f708bba7271d12cd4630204f458111a2eea"
+    },
+    {
+      "file": "src/architecture/texture.mjs",
+      "sha256": "5b04b0bc5c84bb120e5abd081a42df8a45c3375eead0cea885a361c2d7e5a302"
+    },
+    {
+      "file": "src/audio/catalog.mjs",
+      "sha256": "e0bb8ad5def552e48301f28fa4bfd4d1f46d4f74bf12358fa218b0c42e66747b"
+    },
+    {
+      "file": "src/audio/context.mjs",
+      "sha256": "a1d2c797c0ce9b4598867863638bd5b0a89b1ad6bf1e10ee21f9bb84de82f633"
+    },
+    {
+      "file": "src/audio/director.mjs",
+      "sha256": "7a35a7b8ba04f483ab71a573ba0f92653d8b6d042efafe5bacccca4f6b496b06"
+    },
+    {
+      "file": "src/audio/emitters.mjs",
+      "sha256": "ec6d756e5c5387bac2461d6c1de60c838f2fa0e08b8f23ba88c8df5ab63c2b15"
+    },
+    {
+      "file": "src/audio/fixtures.mjs",
+      "sha256": "e40c99ce42df7785f237acd9862f3a4e996e3ca8bcc81380bf90180dc78df0ae"
+    },
+    {
+      "file": "src/audio/geography.mjs",
+      "sha256": "15d510103c79e5e6297f7530809b1bc82f8e5e256417fb1a6ddcf16d90a487c2"
+    },
+    {
+      "file": "src/audio/materials.mjs",
+      "sha256": "a00121b825498c6783fa49ae4b3d69b54346883dec8f856308df43d19364cda9"
+    },
+    {
+      "file": "src/audio/profiles.mjs",
+      "sha256": "cbbcdaefced26f3e824e8c36ba93020b30a8e0b62d391db82f0ade8b1f42497b"
+    },
+    {
+      "file": "src/audio/renderer.ts",
+      "sha256": "f177da962ce3d262b3a2eb86d9013a5779a988925404c57c42c27c647f05f427"
+    },
+    {
+      "file": "src/audio/resources.ts",
+      "sha256": "45a6e6c3f1c1ff214597fcb4150e42fd345863161836b41d1452fcfe630a96dd"
+    },
+    {
+      "file": "src/audio/types.ts",
+      "sha256": "2af4ede3fcb8ff100c695010ae050bceea868d7cf7312097b8718ad5ba02924a"
+    },
+    {
+      "file": "src/controls/ambience.ts",
+      "sha256": "8a08cc8e65e95a5fafd2423638d85e6ea0f6d898566894aa9ced86c60ebf698e"
+    },
+    {
+      "file": "src/controls/input.ts",
+      "sha256": "16e983974b2eab5fcee6757fb3e194f9d9957bdad1e3f73e800df35d2021ccf6"
+    },
+    {
+      "file": "src/controls/orbit.mjs",
+      "sha256": "fe028f668980a632c221ba00812ebd6c8fda95c1705615780fc340be5547eb1f"
+    },
+    {
+      "file": "src/controls/walking.mjs",
+      "sha256": "3f78cae0cf6080613f6d3874c830a4f294c6e7ac9fa5f7c9e248b4d4face60b7"
+    },
+    {
+      "file": "src/earthlife/budget.mjs",
+      "sha256": "54e18368059443f587d1c7d4ed557ccfa5a637f3723e344ce513ba80fa179613"
+    },
+    {
+      "file": "src/earthlife/capabilities.mjs",
+      "sha256": "fd3edd3fd6c4d22a2f6b2f933d3e543c2a10c87a867b629560a5d0664e6efd88"
+    },
+    {
+      "file": "src/earthlife/cloud-layer.ts",
+      "sha256": "49cae7b4d4a61745d2ecaa2a72abd84b1405efb2548fd53107ce2a76adf2a2fd"
+    },
+    {
+      "file": "src/earthlife/clouds.mjs",
+      "sha256": "5de2d91effc93b4796aad240515d351ca66c45d70ede0401d126cfa4307525d0"
+    },
+    {
+      "file": "src/earthlife/events.mjs",
+      "sha256": "5cc1805fe5e1c404b906580ec6d38667857a5caae33935c789039b8c8c06a20d"
+    },
+    {
+      "file": "src/earthlife/fauna-render.ts",
+      "sha256": "922644cb725201f8054d67a3835ca6a6fdd77d3353cc36365b05fe053dfe9ac3"
+    },
+    {
+      "file": "src/earthlife/fauna.mjs",
+      "sha256": "bd35556129c3a790f8cf3db98ce9a344af769aafedf2954382de49e35c4eb942"
+    },
+    {
+      "file": "src/earthlife/habitat.mjs",
+      "sha256": "d2709841a6d93f029d7d2d34d84929b0922f9bc15826dea01aa894066db52b84"
+    },
+    {
+      "file": "src/earthlife/instance-wind.mjs",
+      "sha256": "acbf076bd61e9623b6de45b29e7ae86fb7540fb8f9a082780e04ba2a86b57f51"
+    },
+    {
+      "file": "src/earthlife/micro-events.ts",
+      "sha256": "b65468a78e20ec02bc7742ea4282381ba5e2af4fadc402a6aa1d0af08dce05d2"
+    },
+    {
+      "file": "src/earthlife/preferences.ts",
+      "sha256": "be7928582ee9c8e70875f3b41e463849fbd99b30acaff5a827d3630b1fdaf847"
+    },
+    {
+      "file": "src/earthlife/state.mjs",
+      "sha256": "4d95a590a4ffbc2eb728df875a433e4ee2fbbd7f36ac267589ecb531e0ac45d1"
+    },
+    {
+      "file": "src/earthlife/water.mjs",
+      "sha256": "60b4ca3a15b327551c675361db540a1ef9e6a977270f105e0917d6e8d982f068"
+    },
+    {
+      "file": "src/earthlife/wind.mjs",
+      "sha256": "6e82d91e4ef10d4d2fbcf1cd8a448c0b6d6c79f9478b01550ad8eb9688719715"
+    },
+    {
+      "file": "src/living/atmosphere.ts",
+      "sha256": "e370e3771254c9802a6b5c109754ecb84b86e75c2608991a0c18c9c3ef68a021"
+    },
+    {
+      "file": "src/living/geography.ts",
+      "sha256": "51a86574cc9d47e5bb4dd6691b5374bebc02e2b38bd06381568ece0c2ad481b1"
+    },
+    {
+      "file": "src/living/graph.mjs",
+      "sha256": "4b09f15eaa77c834e8ced1953d5c84495cde9fa106f522583b8529b401c8d825"
+    },
+    {
+      "file": "src/living/sound.ts",
+      "sha256": "35e93f1ef98ec3ab15b23d5add5b640ae190df4e4375b1b2045c123f5681eab5"
+    },
+    {
+      "file": "src/living/walk.mjs",
+      "sha256": "e1fd3b386988d42e8e48d2d87e71031d5dff181aab5b6b45c5f87017c665c3ed"
+    },
+    {
+      "file": "src/main.ts",
+      "sha256": "0d4327bc035f2346c26431e7ff3586dccc45da90f728b7c8005069b8e01a9da4"
+    },
+    {
+      "file": "src/materials/authentic-model.mjs",
+      "sha256": "38f0fed41a835346dc244521eb00462b00a00a1571dcbb7fa30230d45c82f0f3"
+    },
+    {
+      "file": "src/materials/authentic.ts",
+      "sha256": "bedf39e3625497aafc330fa2f5059e5cd5ccffdd59c2604f02ae4b1655af62c9"
+    },
+    {
+      "file": "src/materials/france-model.mjs",
+      "sha256": "8c45446e03ef947a4b523acd53e93eb5f70429b9385d06d90815e004f94a47c5"
+    },
+    {
+      "file": "src/materials/france-style.mjs",
+      "sha256": "ff6991743d5e703492d37f224eb7a0c8eebc7112f1f3f4ef4105fb04baa1b34e"
+    },
+    {
+      "file": "src/materials/france.ts",
+      "sha256": "9a36af4994bbef03e9f34a1380f1eb9421e8d91ef571d62a13ce2c9beb435410"
+    },
+    {
+      "file": "src/materials/world-policy.mjs",
+      "sha256": "472092104b5d7ce5d7f3ee5520005e37901ce20fe778d3ff2ef689f0c7cea5bc"
+    },
+    {
+      "file": "src/materials/world.ts",
+      "sha256": "af705780a21ea51287f778da450ab2371e845e1141a665452fda82fedd653291"
+    },
+    {
+      "file": "src/nature/atmosphere.ts",
+      "sha256": "dcab0e42af1295893b8d81149e2bc8481599c189a23341a8871ee65a80d3fcfe"
+    },
+    {
+      "file": "src/nature/climate.mjs",
+      "sha256": "8aff246b615a27844aa9c64a05e61e864979526b9050ccbe1be6881886b5f0c7"
+    },
+    {
+      "file": "src/nature/ecology.mjs",
+      "sha256": "b6c6a59d3d1d4a6320af07aa9117befe0cc66f62307f358632512ea374bf66d1"
+    },
+    {
+      "file": "src/nature/leaf-texture.mjs",
+      "sha256": "d8589c754030f1d8460e7b0661c949646c9ff13a6b163f4edd60794704d7c42f"
+    },
+    {
+      "file": "src/nature/library.mjs",
+      "sha256": "a9b1b309bc2c6017e99e408e24d7cd2c03db8d708a3972159716a6ebdc65d7cb"
+    },
+    {
+      "file": "src/nature/material.ts",
+      "sha256": "a6b0c85c9a440de2af4f14fa92ee1aaef620fc0179c8548edbe822ed6e5d716a"
+    },
+    {
+      "file": "src/nature/precipitation.ts",
+      "sha256": "45b7327688ef7c0a374519f2a8d31fc821a5d4d291e2d072b3ff8f7b70f6fc4a"
+    },
+    {
+      "file": "src/nature/render.ts",
+      "sha256": "578f87765ce9b34198310ebb13bfdd49c4f0b644f36079de008d13076a64da10"
+    },
+    {
+      "file": "src/nature/sky.ts",
+      "sha256": "e8ec8a417c2559b489e7471a5c39b6e77b52ea768eeda1e9c90e20c76437f662"
+    },
+    {
+      "file": "src/nature/surfaces.ts",
+      "sha256": "59f320291db346023738e5477351246264482ca90ea0e0f1414aa116c8b13432"
+    },
+    {
+      "file": "src/nature/tree-geometry.mjs",
+      "sha256": "aea563843c19440af0e19b4cb516f4dedf5125de05002e95688db7cc3efba9aa"
+    }
+  ]
+}

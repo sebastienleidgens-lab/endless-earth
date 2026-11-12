@@ -1,4 +1,5 @@
 import {registerLifeMaterial} from './capabilities.mjs';
+import {lightingReceiver} from '../lighting/state.mjs';
 import * as THREE from 'three';
 // @ts-ignore Pure deterministic models also tested in Node.
 import {windGLSL,windTemporal,windAtWorld} from './wind.mjs';
@@ -40,5 +41,5 @@ export function cloudReceiver(material,role={}){
  #include <project_vertex>`);
  s.fragmentShader=lifePrelude+'#if LIFE_SHADOWS == 1\nvarying float lifeCloudShade;\n#endif\n'+s.fragmentShader;
  s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>','#if LIFE_SHADOWS == 1\nif(lifeShadow>0.)outgoingLight*=1.-smoothstep(.84-lifeCloudCover*.53,1.-lifeCloudCover*.53,lifeCloudShade)*lifeShadow*clamp((lifeSun.y-.08)/.2,0.,1.);\n#endif\n#include <opaque_fragment>');
- };material.customProgramCacheKey=()=>key+'-earthlife-cloud-specialized-v4';
+ };material.customProgramCacheKey=()=>key+'-earthlife-cloud-specialized-v4';lightingReceiver(material);
 }

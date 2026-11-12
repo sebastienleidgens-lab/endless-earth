@@ -1,0 +1,34 @@
+Mission 14B — local validation, 12 November 2026
+Node 24 / Python 3.12 / Chromium 156 / SwiftShader software.
+Runtime assets match determinism.json after final preparation.
+
+tests log excerpt:
+✔ road policy retains paved/unknown/gravel classes and never promotes an unknown to documented soil (0.193449ms)
+ℹ tests 199
+ℹ suites 0
+ℹ pass 199
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8409.349578
+
+build log excerpt:
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.23s
+
+smoke log excerpt:
+Position : -10.18, -1.39, -35.32
+PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors.
+
+gallery log excerpt:
+PASS 22 captures, five credited photos, slider, native AV playback, local links and responsive gallery
+
+final-runtime log excerpt:
+PASS normal
+PASS absent-model
+PASS corrupt-model
+PASS bad-binding
+PASS bad-normals
+PASS absent-underlay
+PASS bad-underlay-hash

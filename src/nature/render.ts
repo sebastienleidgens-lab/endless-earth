@@ -13,9 +13,10 @@ import {createEcology,detailRecipe,noise,POITOU,habitat} from './ecology.mjs';
 import {animateFoliage} from '../living/atmosphere';
 type Tree={x:number;y:number;z:number;kind:string;leaf?:string;scale:number};
 const dummy=new THREE.Object3D();
-export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z:number)=>number|null,prepared?:any,style=POITOU){
+export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z:number)=>number|null,prepared?:any,style=POITOU,fixedAnchors?:Tree[]){
  if(prepared&&prepared.manifest.natureStyleId!==style.id)prepared=undefined;
  const ecology=prepared?{trees:prepared.manifest.trees,profile:style}:createEcology(features,height,style),cells=new Map<string,Tree[]>();
+ if(!prepared&&fixedAnchors)ecology.trees=fixedAnchors;
  for(const p of ecology.trees){const key=`${Math.floor(p.x/180)}:${Math.floor(p.z/180)}:${p.leaf==='needle'&&p.kind!=='riparian'?'needle':'broad'}`;if(!cells.has(key))cells.set(key,[]);cells.get(key)!.push(p)}
  const art=createTreeArt(),crown=art.crown,distantCrown=art.farCrown,needleCrown=art.needle,farNeedleCrown=art.farNeedle,trunk=art.trunk;
  const pixels=leafSprayPixels(),texture=new THREE.DataTexture(pixels.data,pixels.width,pixels.height);texture.name='Original procedural leaf sprays';texture.generateMipmaps=true;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.needsUpdate=true;

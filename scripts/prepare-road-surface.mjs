@@ -5,12 +5,19 @@ import {fileURLToPath} from 'node:url';
 import {gzipSync} from 'node:zlib';
 import {sourceGeometry} from '../src/world/source-geometry.mjs';
 import {cellIndices,sampleGrid} from '../src/world/terrain-grid.mjs';
+import {barycentric,refinedCell} from '../src/world/terrain-refinement.mjs';
 import {ROAD_STYLES} from '../src/world/road-style.mjs';
 import {farIndices,ERROR} from './prepare-earth.mjs';
 import {roadSegments,segmentCells,partitionRoads,rectangle,area,pc,capsule} from './lib/road-topology.mjs';
 const digest=data=>createHash('sha256').update(data).digest('hex');
 const faceKey=ids=>[...ids].sort((a,b)=>a-b).join(':');
-function interpolation(g,x,z){
+function interpolation(g,x,z,source){
+ const refined=refinedCell(g,x,z);
+ if(refined){
+  const ids=source.userData.refinedCells.get(refined.z*g.width+refined.x),p=source.attributes.position;
+  for(let i=0;i<ids.length;i+=3){const tri=ids.slice(i,i+3),w=barycentric(tri.map(id=>({x:p.getX(id),z:p.getZ(id)})),x,z);if(w.every(v=>v>=-1e-7))return tri.map((id,j)=>[id,w[j]])}
+  throw Error('Uncovered refined attribute');
+ }
  const fx=(x-g.origin_x_m)/g.step_m,fz=(z-g.origin_z_m)/g.step_m,col=Math.min(g.width-2,Math.floor(fx)),row=Math.min(g.height-2,Math.floor(fz)),tx=fx-col,tz=fz-row;
  const a=row*g.width+col,b=a+1,c=a+g.width,d=c+1,h=g.elevations_m;
  if(Math.abs(h[a]-h[d])<Math.abs(h[b]-h[c]))return tx>=tz?[[a,1-tx],[b,tx-tz],[d,tz]]:[[a,1-tz],[c,tz-tx],[d,tx]];
@@ -32,7 +39,7 @@ export function buildSurface(g,segments,{tileCells=40,coverTiles=[],auditLegacy=
    const x=Math.fround(Math.max(g.origin_x_m,Math.min(g.origin_x_m+(g.width-1)*g.step_m,Math.round(xx*1e6)/1e6)));
    const z=Math.fround(Math.max(g.origin_z_m,Math.min(g.origin_z_m+(g.height-1)*g.step_m,Math.round(zz*1e6)/1e6)));
    const key=`${x}:${z}:${style}:${wet}`;if(map.has(key))return map.get(key);
-   const id=r.length,weights=interpolation(g,x,z);map.set(key,id);
+   const id=r.length,weights=interpolation(g,x,z,source);map.set(key,id);
    raw.push(xx,zz);p.push(x,sampleGrid(g,x,z)-baseline,z);
    for(let axis=0;axis<3;axis++)n.push(weights.reduce((s,[v,w])=>s+w*normals.array[v*3+axis],0));
    if(style){const col=palette[style];c.push(col.r,col.g,col.b)}else for(let axis=0;axis<3;axis++)c.push(weights.reduce((s,[v,w])=>s+w*colors.array[v*3+axis],0));
@@ -90,8 +97,9 @@ export function buildSurface(g,segments,{tileCells=40,coverTiles=[],auditLegacy=
     const shapes=candidates.map(s=>capsule(s.a,s.b,s.width,false)).filter(Boolean).map(poly=>pc.intersection(poly,domain)).filter(p=>p.length);
     if(shapes.length){const excess=shapes.reduce((sum,v)=>sum+area(v),0)-area(pc.union(...shapes));stats.legacyOverlapExcessM2+=Math.max(0,excess);if(excess>1e-6)stats.legacyConflictCells++}
    }
-   const ids=cellIndices(g,x,z,g.width,key);
-   for(let triangle=0;triangle<6;triangle+=3){
+   const original=cellIndices(g,x,z,g.width,key),refined=source.userData.refinedCells.get(key),ids=refined??original,cellStart=index.length;
+   if(refined)blocked.add(key);
+   for(let triangle=0;triangle<ids.length;triangle+=3){
     const base=ids.slice(triangle,triangle+3),emitted=[];
     if(roadArea<=1e-9&&waterArea<=1e-9){emitted.push(...base.map(gridVertex))}
     else {
@@ -112,6 +120,9 @@ export function buildSurface(g,segments,{tileCells=40,coverTiles=[],auditLegacy=
     }
     const noded=roadArea>1e-9||waterArea>1e-9?nodeFaces(emitted):emitted;faces.set(faceKey(base),noded);index.push(...noded);
    }
+   // Keep the documented detail in both LODs: no distant cliff collapse or
+   // collision/render discrepancy. Other cells retain the existing LOD.
+   if(refined){faces.set(faceKey(original.slice(0,3)),index.slice(cellStart));faces.set(faceKey(original.slice(3,6)),[]);}
   }
   const rawFar=tileCells%8===0?farIndices(g,ox,oz,tileCells,ERROR,blocked):null,far=[];
   if(rawFar){

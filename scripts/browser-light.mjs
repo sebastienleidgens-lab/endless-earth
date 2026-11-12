@@ -1,0 +1,7 @@
+import {launch,openGame,settle,views} from './lib/browser-light.mjs';import {mkdir,readFile,writeFile} from 'node:fs/promises';import {gzipSync} from 'node:zlib';import assert from 'node:assert/strict';
+const phase=process.argv[2]??'after',dir='docs/mission-14-evidence/light',browser=await launch();await mkdir(dir+'/'+phase,{recursive:true});
+try{const game=await openGame(browser,phase==='before'?5181:5173),p=game.page,reference=phase==='before'?null:JSON.parse(await readFile(dir+'/before.json')),rows=[];
+ for(const moment of ['morning','afternoon','evening'])for(const v of views){const id=moment+'-'+v[0],pose=reference?.rows.find(r=>r.id===id).state.camera;await p.evaluate(({v,moment,pose})=>window.m14c.setup(v,moment,'balanced',pose),{v,moment,pose});await settle(p);await p.evaluate(()=>window.m14c.render());const state=await p.evaluate(()=>window.m14c.state());if(pose)assert.ok(state.camera.matrix.every((x,i)=>Math.abs(x-pose.matrix[i])<1e-12));await p.screenshot({path:dir+'/'+phase+'/'+id+'.jpg',type:'jpeg',quality:90});rows.push({id,station:v,moment,state});console.log(phase,id)}
+ assert.deepEqual(game.errors,[]);await writeFile(dir+'/'+phase+'.json',JSON.stringify({phase,referenceCommit:'0709d10f7635fffa0ea7cf4828e72059d737424b',startupMs:game.startupMs,rows,errors:game.errors,warnings:game.warnings},null,2)+'\n');
+ if(phase==='before'){await writeFile('work/mission-14C/render-source.json.gz',gzipSync(JSON.stringify(await p.evaluate(()=>window.m14c.export()))));}
+}finally{await browser.close()}

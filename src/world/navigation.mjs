@@ -10,12 +10,12 @@ export function pedestrianAccess(tags) {
   return !['no','private','use_sidepath'].includes(access)&&!tags['access:conditional']&&!tags['foot:conditional'];
 }
 function nearest(x,z,points,closed=false){
-  let best={distance:Infinity,y:null};
+  let best={distance:Infinity,y:null,outside:false};
   for(let i=1;i<points.length+(closed?1:0);i++){
     const a=points[i-1],b=points[i%points.length],dx=b.x-a.x,dz=b.z-a.z;
-    const t=Math.max(0,Math.min(1,((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz||1)));
+    const raw=((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz||1),t=Math.max(0,Math.min(1,raw));
     const distance=Math.hypot(x-a.x-t*dx,z-a.z-t*dz);
-    if(distance<best.distance)best={distance,y:Number.isFinite(a.y)&&Number.isFinite(b.y)?a.y+(b.y-a.y)*t:null};
+    if(distance<best.distance)best={distance,y:Number.isFinite(a.y)&&Number.isFinite(b.y)?a.y+(b.y-a.y)*t:null,outside:!closed&&((i===1&&raw<0)||(i===points.length-1&&raw>1))};
   }
   return best;
 }
@@ -26,8 +26,11 @@ export function createNavigation(features) {
     if(points.length<2)continue;
     const historicWall=['citywalls','castle','ruins'].includes(tags.historic)||tags.barrier==='city_wall';
     if(!tags.highway&&!tags.waterway&&tags.natural!=='water'&&!tags.barrier&&!historicWall)continue;
-    const width=historicWall?1.25:tags.highway?lineWidth(tags):tags.waterway?Number(tags.width)||6:.3;
+    const width=historicWall?1.25:tags.highway?lineWidth(tags):tags.waterway?Number(tags.width)||6:Number(tags.width)||.3;
     const item={...feature,width,historicWall};
+    // A shared provider also sees unknown bridges. Only a deck verified at its
+    // mapped start may discard the old endpoint exclusion capsule.
+    if(item.support&&tags.bridge&&tags.bridge!=='no'&&item.support(points[0].x,points[0].z)===null)item.support=undefined;
     const xs=points.map(p=>p.x),zs=points.map(p=>p.z),margin=width/2+.3;
     for(let x=Math.floor((Math.min(...xs)-margin)/20);x<=Math.floor((Math.max(...xs)+margin)/20);x++)
       for(let z=Math.floor((Math.min(...zs)-margin)/20);z<=Math.floor((Math.max(...zs)+margin)/20);z++){
@@ -48,9 +51,11 @@ export function createNavigation(features) {
       if(tags.highway){
         if(!pedestrianAccess(tags)||['motorway','motorway_link','construction','proposed'].includes(tags.highway)||tags.tunnel&&tags.tunnel!=='no')blocked=true;
         if(tags.bridge&&tags.bridge!=='no'){
+          if(item.support&&n.outside)continue;
           // layer/clearance are NOT deck elevations. Unknown bridge blocks even on dry DEM.
-          if(n.y===null)blocked=true;
-          else if(n.distance<=Math.max(0,width/2-.3))support=n.y;
+          const height=item.support?item.support(x,z):n.y;
+          if(height===null)blocked=true;
+          else if(n.distance<=Math.max(0,width/2-.3))support=height;
         }
         if(tags.highway==='steps'&&n.distance<=Math.max(0,width/2-.3))steps=true;
       }
