@@ -210,6 +210,7 @@ export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain
   if(!response.ok)return 0;
   const text=await response.text(),data=JSON.parse(text) as Collection;
   const prepared=await loadDecorations(terrain,text);
+  scene.userData.decorationManifest=prepared?.manifest??null;
   if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
   const count=renderGeoFeatures(scene,mergeEnvironment(data.features,terrain?.environment),terrain,prepared);
   if(count>0)setBuildingFootprints([...data.features,...(terrain?.landmarks?.collisionFeatures??[])],undefined,terrain?.landmarks?(feature:any,x:number,z:number)=>terrain.landmarks.support(`osm-way-${feature.properties?.osm_id}`,x,z):undefined);

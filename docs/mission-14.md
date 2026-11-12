@@ -1,6 +1,151 @@
 # Mission 14 — Les paysages remarquables de France
 
-## 14B livré pour validation — arrêt avant 14C
+## 14C livré pour validation artistique — arrêt avant 14D
+
+Votre **« go » valide 14B et autorise 14C**. Le paysage reçoit maintenant un ombrage de contact précalculé et des ombres solaires proches, à partir des volumes déjà affichés. Le sous-bois suit les couronnes existantes et leur calendrier. **Le soleil, le ciel, la météo, le vent, les matériaux, les formes et les collisions gardent leurs propriétaires et leurs données.** La profondeur atmosphérique existante est conservée, sans nouveau brouillard permanent ni effet spectaculaire.
+
+[Galerie 14C](mission-14-evidence/light/index.html) · [Planche directement lisible sur GitHub](mission-14-evidence/light/comparison.jpg) · [Traversée du pont](mission-14-evidence/light/after-promenade.webm) · [Observation forestière](mission-14-evidence/light/forest-promenade.webm) · [PR #23 en brouillon](https://github.com/sebastienleidgens-lab/endless-earth/pull/23).
+
+![Mission 14B / 14C : matin, après-midi, soir, forêt et vue éloignée](mission-14-evidence/light/comparison.jpg)
+
+Même branche `mission/14-paysages-remarquables-france`. Référence de ce jalon : **`0709d10f7635fffa0ea7cf4828e72059d737424b`**, livraison 14B propre. 14A est le commit `9bc0a25`, issu de `main` `03d963f` (Mission 13 / PR #22 fusionnée). **Budget : 0 €. Aucune fusion, aucun déploiement, aucun changement Living Paintings / LP-01.** Les rapports A/B restent plus bas comme archives de leurs livraisons. Les essais longs et la généralisation de 14D ne sont pas commencés.
+
+## Audit de lumière et choix du compromis
+
+Le mode géographique courant désactivait les shadow maps Three.js. Le soleil directionnel, l’hémisphère, le ciel Preetham, le brouillard selon la météo et les ombres analytiques des nuages étaient déjà pilotés par Mission 11. Les matériaux recevaient cette lumière, mais ni les masses du village, ni les couronnes ne projetaient des ombres solaires proches dans ce mode. Les reliefs de matière Mission 13 et la transmission discrète des feuilles restent en place.
+
+| Solution examinée | Apport | Décision et limites |
+| --- | --- | --- |
+| Contact précalculé et atténuation sous les couronnes | Contacts, creux et sous-bois moins uniformes, sans passe supplémentaire. | Retenu dans tous les profils. Interpolé sur les sommets existants ; ne remplace pas une ombre orientée du soleil. |
+| Carte locale initiale plus large | Ombres solaires du terrain, des enveloppes bâties et des couronnes. | Candidat mesuré puis resserré : rayon 64 / 80 m, y compris en vue éloignée, jusqu’à +12,6 % de médiane Équilibré dans cette campagne. [Chiffres du candidat](mission-14-evidence/light/candidate-wide-performance.json). |
+| Carte locale retenue, filtrée et mise en cache | Ombres proches et ombrage des volumes, y compris autour du pont ; une seule passe additionnelle lors des mises à jour. | **48 m / 512² en Équilibré**, **64 m / 1024² en Qualité**. Atténuation des vues éloignées ; aucune carte en Éco. Coût et pics conservés ci-dessous. |
+| Shadow maps globales, occultation d’écran et nouveaux effets atmosphériques | Couverture plus large possible. | Non activés : les premiers gains utiles sont proches, et le ciel/brume M11 assure déjà la continuité des plans. Aucun nouveau post-traitement, bloom, éclairage intérieur ou deuxième soleil. |
+
+Le candidat et la version finale sont deux campagnes logicielles distinctes ; leur différence ne mesure pas à elle seule l’effet du rayon. Dans la campagne finale, le surcoût médian **des deux vues proches** est **+5,5 à +6,5 % en Équilibré**. En Qualité, ces vues atteignent environ **+13 %**. La vue éloignée conserve surtout le contact et montre peu de bénéfice ; une variation négative dans un essai n’est pas une optimisation revendiquée. **La beauté et l’intérêt de ce compromis attendent votre validation.**
+
+## Sources et précalcul : des effets visuels, aucune nouvelle observation
+
+Aucune acquisition géographique, photographie ou ressource 3D supplémentaire. Les sources, licences, datums et incertitudes de 14A/14B restent applicables : IGN LiDAR HD / BD TOPO sous Licence Ouverte 2.0 ; OSM sous ODbL ; géométries régionales et formes végétales interprétées. Les références photographiques créditées restent dans l’archive 14B ; elles ne servent pas à prétendre mesurer l’éclairage.
+
+Le vrai renderer exporte **287 maillages sélectionnés**, **529,724 sommets** pour les canaux ambiants, et **331,646 triangles opaques** pour les ombres : terrain fin, enveloppes et ouvertures statiques du bâti, ouvrages 14B. L’eau ne devient pas un obstacle opaque. Les détails streamés, petits linéaires, animaux et personnage ne reçoivent pas de nouveaux casters individuels. Leurs géométries restent inchangées.
+
+- Contact : **8 rayons** dans l’hémisphère du sommet, portée **4 m**, départ à **5,5 cm** de la surface pour éviter les auto-intersections numériques. Ce sont des paramètres de rendu, pas une précision du relevé.
+- Sous les arbres : atténuation analytique attachée aux **bornes des couronnes et aux 2 500 ancrages existants** ; canaux séparés feuillus / persistants, rétention lue dans le calendrier M11/M12. Une légère composante de contact suit le pied des troncs. Aucun placement de tache sans arbre correspondant.
+- Positions de casters : **Float32 conservés sans quantification**, indexation spatiale en **1024 cellules de 64 m**, indices compressés par deltas sans perte. Un BVH sert seulement au calcul hors ligne ; aucun ray tracing de ce type pendant la marche.
+- Le navigateur charge **2,040,657 octets** de pack, environ **228,051 octets** de manifeste. Binaire décompressé : **5,295,244 octets**. Les sources rendues brutes restent dans `work/`, hors Git.
+
+[Protocole, tailles et inventaire](mission-14-evidence/light/preparation.json) · [Contrat, empreintes et provenance du dérivé](../public/data/angles-lighting.json) · [Droits et interprétations](../public/data/angles-lighting.LICENSE.md).
+
+Les nouveaux canaux ne sont **ni des mesures photométriques, ni de la géométrie observée supplémentaire**. Les rayons courts et les sommets espacés parfois de 10 m limitent le contact au sol ; les murs et tours incomplets de 14B conservent leurs défauts. L’ombre d’un volume estimé reste celle d’un volume estimé.
+
+## Intégration, stabilité et profils
+
+Les modules `src/lighting/` sont génériques ; l’URL du dérivé local est choisie par le point d’entrée du monde. Le chargeur vérifie les liens de sources déjà validées, l’empreinte binaire, les budgets et la correspondance des positions/matrices avant d’appliquer les attributs. Les deux LOD d’une tuile partagent le même attribut ambiant. Aucun sommet, normale de géométrie, indice de circulation ou collision n’est modifié. L’apparition de l’effet s’atténue sur environ 0,7 s après chargement.
+
+La carte est rendue dans une scène auxiliaire : **un lot statique sélectionné** et au plus deux lots de couronnes. Les couronnes utilisent les silhouettes lointaines existantes, leurs traits stables et le même porteur de vent que l’affichage lointain. Le détail de chaque feuille et ses battements proches ne sont pas reproduits dans cette approximation d’ombre.
+
+| Profil | Carte solaire | Couronnes maximum | Actualisation temporelle | Cible couleur + profondeur estimée |
+| --- | --- | ---: | ---: | ---: |
+| Éco | Désactivée, contact seul | 0 | 0 | 0 ; la cible est libérée |
+| Équilibré | 512², rayon 48 m | 160 | jusqu’à 2 Hz | 1 310 720 o |
+| Qualité | 1024², rayon 64 m | 256 | jusqu’à 4 Hz | 5 242 880 o |
+
+Le mouvement du joueur de plus de 2 m, un changement d’angle solaire ou de profil invalide aussi le cache. La projection est alignée aux texels, la comparaison suit le plan récepteur et quatre lectures filtrent le bord. Le champ s’atténue de 78 % du rayon à sa limite. L’effet décroît avec la distance caméra/joueur **de 140 à 180 m** ; au-delà, aucun échantillonnage ni nouvelle passe solaire. La cible peut rester allouée en cache dans une vue éloignée ou la nuit, dans la limite du dernier profil ; Éco la libère.
+
+Les ombres diminuent la lumière directe existante ; le contact atténue la composante indirecte, avec un plancher pour éviter les creux noirs. L’eau reçoit une atténuation limitée sous un obstacle ; **aucun reflet géométrique du pont ni bathymétrie** n’est calculé. Soleil bas, nuit et météo utilisent les valeurs M11. Le ciel, la visibilité, la brume et les transitions jour/nuit gardent leurs paramètres antérieurs.
+
+Le pack ou ses sources absents, corrompus ou incompatibles laissent l’éclairage 14B fonctionnel. Les autres modes géographiques ne disposent pas automatiquement d’un relevé d’occlusion : ils conservent le repli. Les sources brutes LiDAR ne sont jamais demandées par le navigateur. Les caches de décor, les profils et les **25 tuiles** existants restent en place.
+
+## Captures et essais natifs
+
+**18 paires**, six scènes × matin / après-midi / soir : château depuis le pont, falaise depuis la vallée, sous-face du pont, façades, sous-bois/lisière, vue éloignée. **960 × 640, FOV 55°, Équilibré, 21 juin 2026 clair**, caméras et dates identiques au checkout propre 14B `0709d10`. Le badge après indique les sources modifiées ; aucun rendu généré ou retouché ne remplace le moteur. Les deux inspections vallée/sous-face n’ouvrent aucun chemin. La galerie conserve les gains faibles et propose trois comparaisons « contact seul » l’après-midi.
+
+[Poses avant](mission-14-evidence/light/before.json) / [après](mission-14-evidence/light/after.json) · [Caméras, soleil, météo et vent identiques sur les 18 paires](mission-14-evidence/light/climate-and-cameras.json) · [Contact seul](mission-14-evidence/light/ao.json).
+
+Traversée native manuelle du pont : **83.714 m en 63.641 s**, **348 images** instrumentées, profil **Équilibré**, 640 × 360. Une pose initiale, puis marche/orientation seulement, six secondes d’arrêt final. Tous les pas restent admissibles et sur le même support ; pas horizontal maximal **0.339 m**. **116 mises à jour** de carte pendant l’enregistrement, sans erreur JavaScript. Les distances de fin varient légèrement avec le seuil d’arrêt et les pas natifs. La politique AutoWalk reste inchangée.
+
+L’observation forestière séparée dure **22.016 s**, **187 images**, zéro déplacement ; **38 mises à jour** d’ombres. Elle ne prétend pas relier la forêt et le pont par une promenade. Le vent et les calmes n’y sont pas accélérés ou forcés.
+
+[Traversée](mission-14-evidence/light/after-promenade.webm) · [Mesures](mission-14-evidence/light/after-walk.json) · [Détail et images](mission-14-evidence/light/after-walk-frames.json.gz) · [Forêt](mission-14-evidence/light/forest-promenade.webm) · [Mesures forestières](mission-14-evidence/light/forest-walk.json). Son natif post-limiteur. La vidéo du pont est publiée intégralement en VP9 (**1,159,745 o**) avec temps et paquets Opus conservés ; l’original VP8 (**1,404,525 o**) reste dans `work/`. La vidéo forestière conserve son VP8/Opus natif remuxé. [Encodage et SHA audio](mission-14-evidence/light/video-publication.json).
+
+Ces intervalles incluent le rendu **SwiftShader logiciel** et l’enregistrement. La vidéo B utilisait Éco ; celle-ci utilise Équilibré pour inspecter les ombres. Leurs cadences ne sont pas un benchmark apparié. Le pic d’intervalle de la traversée est **234.1 ms** ; aucune fluidité sur GPU physique ou Android n’est revendiquée. Les instantanés après GC et les caches d’une courte séquence ne prouvent pas une stabilité sur 30 minutes.
+
+## Coût final, y compris les pics
+
+**432 rendus synchronisés avec lecture complète des pixels**, Chromium 156 / SwiftShader logiciel, trois profils, trois vues, quatre variantes, trois passages à ordre alterné et quatre échantillons par passage. Même pose absolue, date et météo. Le rafraîchissement forcé garde l’horloge et le vent inchangés pour isoler son coût ; il ne simule pas une fréquence de jeu. Aucun autre rendu de test ou préparation lourde n’est lancé pendant ces mesures.
+
+| Profil / scène | 14B médiane (ms) | Contact seul (ms) | 14C cache (ms / évolution) | Mise à jour forcée (ms) | P95 cache (ms) | Pic forcé (ms) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| eco / chateau | 222.6 | 221.0 | 221.4 (-0.5 %) | 225.9 | 253.1 | 278.9 |
+| eco / sous-bois | 150.5 | 147.4 | 149.9 (-0.4 %) | 141.9 | 157.3 | 160.8 |
+| eco / vallee | 260.3 | 261.5 | 263.0 (+1.1 %) | 272.0 | 280.7 | 299.3 |
+| balanced / chateau | 292.8 | 307.0 | 311.8 (+6.5 %) | 320.0 | 353.6 | 367.6 |
+| balanced / sous-bois | 184.3 | 192.8 | 194.5 (+5.5 %) | 193.7 | 202.2 | 222.3 |
+| balanced / vallee | 328.0 | 343.5 | 320.3 (-2.3 %) | 329.4 | 333.2 | 350.8 |
+| quality / chateau | 279.4 | 278.8 | 315.5 (+13.0 %) | 324.7 | 363.8 | 347.4 |
+| quality / sous-bois | 174.5 | 175.1 | 198.0 (+13.4 %) | 201.6 | 205.0 | 246.0 |
+| quality / vallee | 303.3 | 314.0 | 330.7 (+9.0 %) | 330.8 | 344.4 | 401.4 |
+
+En vue éloignée, la « mise à jour forcée » ne crée pas de passe quand la politique la désactive. Les petits écarts entre variantes Éco/contact identiques et les valeurs négatives reflètent la variabilité de mesure. **Le coût Qualité reste sensible** ; le propriétaire doit apprécier son intérêt visuel.
+
+Les attributs ambiants ajoutent environ **1,59 Mo** aux buffers géométriques de la scène. Le lot de casters et son index de sélection réservent environ **6,42 Mo** de buffers, plus environ **53 ko** d’instances de couronnes ; ils sont hors de l’inventaire des seules géométries de la scène couleur. La cible de carte est comptée séparément dans le tableau des profils. Les buffers CPU du pack et des index représentent environ **13,25 Mo**, hors petits objets JS ; certains servent aussi de source d’envoi GPU. Ces inventaires sont des tailles logiques, **pas une mesure de VRAM**. Pendant la traversée courte, le heap JS après GC passe de **92.16 à 93.42 Mo** ; les buffers externes déclarés par Chromium passent de **68.72 à 68.41 Mo**. Cache audio maximal : **21,657,600 o**, trois voix, dans le budget existant.
+
+La traversée atteint au plus **12 textures** et **22 programmes** dans ce navigateur ; les cibles et le petit texel de repli sont distingués des textures artistiques, inchangées. Les choix de profils libèrent les anciennes cibles ; les contrôles répétés, la nuit et la pluie sont consignés. Démarrage local observé, une valeur par variante : 14B **12.20 s**, contact **12.09 s**, local **11.90 s**. Ces valeurs incluent compilation/cache logiciel et ne démontrent pas un gain réseau ou matériel.
+
+[Résumé complet](mission-14-evidence/light/performance-summary.json) · [Trace intégrale compressée](mission-14-evidence/light/performance.json.gz). Les campagnes A/B restent dans leurs archives ; il ne faut pas additionner leurs pourcentages à ceux-ci, les poses et conditions de mesure diffèrent. La comparaison cumulée et les essais longs appartiennent à 14D.
+
+## Vérifications et reproduction
+
+**204 tests Node**, TypeScript/Vite, smoke du jeu compilé et contrôle du chargement de lumière dans le vrai bundle passent. Les nouveaux tests couvrent les rayons de contact, le contrat et les budgets, les données invalides et la compression d’indices sans perte. L’avertissement Vite historique de chunk >500 ko demeure.
+
+**Sept scénarios navigateur** : normal, désactivation explicite, contact seul, manifeste absent, pack corrompu, sources périmées et aucune géométrie compatible. Cycle de neuf choix de profils, cache/réactualisation, nuit, pluie et viewport 390 × 844 ; les cibles Éco sont libérées et le compte des textures reste borné. [Résultats](mission-14-evidence/light/runtime.json) · [Bundle compilé](mission-14-evidence/light/production.json) · [Galerie : 39 images et deux vidéos contrôlées](mission-14-evidence/light/gallery.json).
+
+**608 fichiers protégés** identiques à 14B, dont relief, positions, maillages du pont, navigation, contrôles, géométrie et matières régionales, saisons, vent, sons et workflows. Les deux manifestes de décor ne changent que l’empreinte du module de raccordement ; les données de scène et les 2 500 arbres sont identiques. [Preuve par SHA](mission-14-evidence/light/preservation.json). Deux préparations depuis les mêmes géométries sources donnent les deux dérivés identiques octet pour octet : [déterminisme](mission-14-evidence/light/determinism.json).
+
+```sh
+npm ci
+npm test
+npm run build
+npm run dev -- --port 5173
+# Jeu : http://localhost:5173/endless-earth/
+# Revue : http://localhost:5173/endless-earth/docs/mission-14-evidence/light/index.html
+```
+
+Les dérivés sont déjà versionnés. Pour les préparer à nouveau avec Node 24, Playwright et Chromium installés, depuis le jeu local servi sur 5173 :
+
+```sh
+node scripts/export-light-source.mjs
+node scripts/prepare-light.mjs
+npm run test:lighting
+```
+
+Pour les comparaisons, servir le checkout propre 14B sur 5181 et la branche courante sur 5173, sans autres rendus simultanés :
+
+```sh
+git worktree add --detach work/mission-14C/baseline 0709d10
+# Autre terminal : cd work/mission-14C/baseline && npm run dev -- --port 5181
+node scripts/browser-light.mjs before
+node scripts/browser-light.mjs after
+node scripts/browser-light-variants.mjs
+node scripts/benchmark-light.mjs
+node scripts/browser-light-checks.mjs
+node scripts/browser-light-walk.mjs
+node scripts/browser-light-walk.mjs forest
+node scripts/audit-light.mjs
+# Avec Pillow dans le venv documentaire existant :
+work/geo-venv/bin/python scripts/report-light.py
+node scripts/browser-light-gallery.mjs
+# Avec le build servi sur 5180 :
+node scripts/browser-light-production.mjs
+```
+
+**Arrêt après le commit 14C et la mise à jour de la PR en brouillon. Votre validation explicite est requise avant 14D.** La lecture artistique des ombres, leur naturel et le plaisir de promenade restent à juger ; les tests techniques ne les approuvent pas à votre place.
+
+---
+
+> **Archives A/B** : les paragraphes suivants décrivent les livraisons précédentes. Les mentions « avant 14C », leurs coûts et états sont historiques. L’état courant est celui de 14C décrit ci-dessus.
+
+## Archive 14B — livré au commit 0709d10, puis validé par « go »
 
 Votre **« Go » valide le jalon 14A** et autorise 14B. Le pont possède maintenant un tablier distinct du terrain, trois arches principales et des garde-corps métalliques sur un soubassement de pierre. Le château reçoit des crêtes et fragments élevés issus du LiDAR, en conservant l’implantation OSM et l’état de ruine. **La reconstruction du château reste partielle ; sa reconnaissance et sa qualité artistique attendent votre validation.** Les travaux d’ombres 14C et la campagne longue/généralisation 14D ne sont pas commencés.
 
@@ -10,7 +155,7 @@ Votre **« Go » valide le jalon 14A** et autorise 14B. Le pont possède mainten
 
 Même branche `mission/14-paysages-remarquables-france`. Référence 14B : **`9bc0a253935518fcbe8e1768f65e9c1dd71e80e5`**, commit 14A propre, issu de `main` **`03d963f`** (Mission 13 fusionnée, PR #22). **Budget supplémentaire : 0 €. Aucune fusion, aucun déploiement, aucun changement Living Paintings / LP-01.** Le rapport 14A est conservé plus bas comme archive datée de sa livraison ; ses chiffres ne sont pas réattribués à 14B.
 
-## Sources effectivement acquises pour 14B
+### Sources effectivement acquises pour 14B
 
 | Source | Acquisition et emploi | Droits / limites |
 | --- | --- | --- |
@@ -27,7 +172,7 @@ Références consultées : [ArmmA](https://armma.saprat.fr/monument/angles-sur-l
 
 Le sous-ensemble LiDAR brut et le MNT restent dans le cache de préparation. **Aucun nuage de points n’est chargé dans le navigateur.** L’inverse du repère métrique local existant est conservé, sans déplacement ni changement d’échelle ; sa limite métrique héritée d’environ 0,2 % reste applicable. Décimales, résolution de grille et précision absolue sont distinctes.
 
-## Inventaire, dimensions et niveaux de confiance
+### Inventaire, dimensions et niveaux de confiance
 
 | Élément | Observé ou documenté | Reconstruction / interprétation / inconnu |
 | --- | --- | --- |
@@ -45,7 +190,7 @@ Le sous-ensemble LiDAR brut et le MNT restent dans le cache de préparation. **A
 
 Aucun autre escalier, ouvrage hydraulique ou muret de rue n’est ajouté. Les maisons ordinaires et les arbres gardent leurs données et positions, même lorsqu’ils masquent les ruines.
 
-## Rendu, support physique et navigation
+### Rendu, support physique et navigation
 
 Le contrat **générique** `landmark-model.mjs` charge des géométries locales liées par SHA au terrain, à OSM et au raffinement. Aucun identifiant ou emplacement d’Angles n’est codé dans le moteur générique. Les positions patrimoniales et paramètres sont dans les dérivés préparés hors ligne. Le renderer utilise les matériaux régionaux existants de pierre, chaussée et métal ; **aucune nouvelle texture ni passe de rendu**.
 
@@ -59,7 +204,7 @@ L’audit des axes autorisés signale **13 échantillons modifiés**, dont un do
 
 **553 fichiers protégés** comparés à 14A, dont données originales, matières, sons, systèmes régionaux et workflows ; **2 500 ancrages d’arbres identiques**. Les deux manifestes de décor ne changent que l’empreinte du module de chargement : aucun pack ni placement modifié. [SHA, points modifiés et parcours](mission-14-evidence/heritage/preservation-and-navigation.json).
 
-## Comparaisons et traversée dans le vrai moteur
+### Comparaisons et traversée dans le vrai moteur
 
 **11 paires originales** : château depuis le pont, rive opposée, vallée, rue, zone haute, aérien ; pont en ensemble, sous-face et tablier ; village éloigné ; forêt témoin. Avant : vrai checkout détaché **propre `9bc0a25`**, servi sur 5179. Après : sources 14B modifiées sur cette base, badge explicite. Même matrice de caméra absolue, quaternion et FOV **55°**, résolution **960 × 640**, profil **Équilibré**, **21 juin 2026 après-midi clair**. [Métadonnées avant](mission-14-evidence/heritage/before.json) / [après](mission-14-evidence/heritage/after.json).
 
@@ -69,7 +214,7 @@ Les vues rive/valée et sous-face sont des **inspections hors promenade**. Le po
 
 [Vidéo](mission-14-evidence/heritage/after-promenade.webm) · [Mesures](mission-14-evidence/heritage/after-walk.json) · [Détail](mission-14-evidence/heritage/after-walk-detail.json.gz) · [Toutes les images instrumentées](mission-14-evidence/heritage/after-walk-frames.json.gz). Vidéo native VP8/Opus **1 789 814 o** dans `work/` ; publication intégrale VP9 **1 159 234 o**, mêmes temps et paquets Opus identiques par SHA, sans montage ou normalisation. [Preuve d’encodage](mission-14-evidence/heritage/video-publication.json). SwiftShader : intervalles d’images affectés par le rendu logiciel et l’enregistrement ; aucun objectif de FPS physique revendiqué.
 
-## Coûts mesurés et régressions
+### Coûts mesurés et régressions
 
 **216 rendus synchronisés avec lecture complète des pixels**, Chromium 156 / **SwiftShader logiciel**, 960 × 640, trois profils, trois poses, trois passages à ordre alterné, quatre images par passage. Même caméra, date et météo, aucun autre rendu de test en parallèle. Ces données ne mesurent ni un GPU physique ni Android.
 
@@ -100,7 +245,7 @@ Les vues rive/valée et sous-face sont des **inspections hors promenade**. Le po
 
 Le démarrage inclut préparation, compilation et premier chargement dans ce navigateur logiciel. **Un seul relevé par version**, non un benchmark Internet ou matériel : la régression est visible, ses causes ne sont pas isolées ici. Les buffers inventoriés ne sont ni tout le heap JS ni une mesure de VRAM. [Médianes, P95, pics, ressources, mémoire et démarrage](mission-14-evidence/heritage/performance-summary.json) · [Trace intégrale](mission-14-evidence/heritage/performance.json.gz).
 
-## Vérifications et reproduction de 14B
+### Vérifications et reproduction de 14B
 
 **199 tests Node passent**, TypeScript/Vite et jeu compilé passent. Les cinq tests patrimoniaux couvrent le même triangle routier rendu/support, sa face supérieure, la traversée physique dans les deux sens, garde-corps et pont inconnu, sous-face sans variation d’altitude, et refus des données invalides. Le smoke test compilé vérifie chargement, vues, marche, yeux, audio, profil et mobile. L’avertissement Vite historique de chunk >500 ko subsiste.
 

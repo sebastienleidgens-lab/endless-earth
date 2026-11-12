@@ -57,7 +57,12 @@
     "test:landmarks": "node --test tests/landmarks.test.mjs",
     "test:landmarks:browser": "node scripts/browser-landmarks-checks.mjs",
     "bench:landmarks": "node scripts/benchmark-landmarks.mjs",
-    "report:landmarks": "python scripts/report-landmarks.py"
+    "report:landmarks": "python scripts/report-landmarks.py",
+    "geo:lighting": "node scripts/export-light-source.mjs && node scripts/prepare-light.mjs",
+    "test:lighting": "node --test tests/lighting.test.mjs",
+    "test:lighting:browser": "node scripts/browser-light-checks.mjs",
+    "bench:lighting": "node scripts/benchmark-light.mjs",
+    "report:lighting": "python scripts/report-light.py"
   },
   "dependencies": {
     "three": "^0.180.0"

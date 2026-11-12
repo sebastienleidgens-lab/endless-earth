@@ -21,6 +21,7 @@ import { movement, nextView, cameraFraction, smoothMovement, transitionWeight } 
 
 import './style.css';
 import {buildIdentity} from 'virtual:build-identity';
+import {createLandscapeLighting} from './lighting/runtime';
 // @ts-ignore Pure HTML formatter, shared with the compiled-build tests.
 import {buildIdentityMarkup} from './ui/build-identity.mjs';
 const root=document.querySelector<HTMLDivElement>('#app')!;
@@ -44,6 +45,7 @@ renderer.domElement.setAttribute('aria-label','Vue 3D du village');
 const hemisphere=new THREE.HemisphereLight(0xffffff,0x738465,2);scene.add(hemisphere);
 const sun=new THREE.DirectionalLight(0xffe5bc,2.3); sun.position.set(-60,100,55); sun.castShadow=true;
 sun.shadow.mapSize.set(1024,1024); sun.shadow.camera.left=-65; sun.shadow.camera.right=65; sun.shadow.camera.top=65; sun.shadow.camera.bottom=-65; scene.add(sun); scene.add(sun.target);
+const landscapeLighting=createLandscapeLighting(scene,renderer,sun,()=>avatar,{manifestUrl:import.meta.env.BASE_URL+'data/angles-lighting.json',packUrl:import.meta.env.BASE_URL+'data/angles-lighting.pack'});
 // Render a complete fallback synchronously: network requests must never block first paint.
 const demo = new THREE.Group();
 createDemoWorld(demo);
@@ -149,6 +151,7 @@ if(tilesPreview && !terrainPreview){
     }
     try{
       const count=await loadAnglesGeography(realWorld,terrain??undefined);
+      void landscapeLighting.install(realWorld,terrain);
       scene.userData.decorationStream=realWorld.userData.decorationStream;
       scene.userData.lifeHabitat=realWorld.userData.lifeHabitat;
       scene.userData.lifeCeiling=new THREE.Box3().setFromObject(realWorld).max.y+12;
@@ -188,6 +191,7 @@ for(let i=0;i<4;i++){
   mesh.position.y=i<2?-.35:-.27;pivot.add(mesh);avatar.add(pivot);limbs.push(pivot);
 }
 avatar.traverse(o=>{if(o instanceof THREE.Mesh)o.castShadow=true});scene.add(avatar);
+
 let yaw=.65, pitch=.2, zoom=tilesPreview?125:45, smoothZoom=zoom, dragging=false;
 type ViewMode='aerial'|'first'|'third';
 let viewMode:ViewMode='third';
@@ -244,8 +248,8 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-if(import.meta.hot)import.meta.hot.dispose(()=>{disposeWorldMaterials();updateAtmosphere.dispose();void sound.dispose()});
-addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){disposeWorldMaterials();updateAtmosphere.dispose();void sound.dispose()}});
+if(import.meta.hot)import.meta.hot.dispose(()=>{landscapeLighting.dispose();disposeWorldMaterials();updateAtmosphere.dispose();void sound.dispose()});
+addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){landscapeLighting.dispose();disposeWorldMaterials();updateAtmosphere.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
 const audioForward=new THREE.Vector3(),audioUp=new THREE.Vector3(),worldUp=new THREE.Vector3(0,1,0);
 const canvas=renderer.domElement;canvas.style.touchAction='none';
@@ -289,7 +293,7 @@ const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0,walkPhase=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({authentic:worldMaterialStatus(),decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({authentic:worldMaterialStatus(),lighting:scene.userData.landscapeLighting??null,decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
