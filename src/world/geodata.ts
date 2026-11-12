@@ -21,6 +21,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { toLocal } from './geo';
 import { setBuildingFootprints } from './collisions';
 import type { Terrain } from './terrain';
+import {addLandmarks} from './landmarks';
 type Feature = { geometry?: { type: string; coordinates: unknown }; properties?: Record<string,unknown> };
 type Collection = { type: string; features: Feature[] };
 function coordsToPoints(coords: unknown, terrain?:Terrain): THREE.Vector3[] {
@@ -160,6 +161,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
   const architecture=prepared?null:new ArchitectureBatch(scene);
   for(const f of features){
     const tags=f.properties??{};
+    if(terrain?.landmarks?.objects.some((o:any)=>o.featureId===`osm-way-${tags.osm_id}`))continue;
     if(f.geometry?.type==='LineString'){
       const pts=coordsToPoints(f.geometry.coordinates,terrain);
       if(tags.historic==='citywalls'||tags.historic==='castle'||tags.historic==='ruins'||tags.barrier==='city_wall'){addHistoricWall(scene,pts,terrain,tags.historic==='castle'||tags.historic==='ruins');count++;}
@@ -199,6 +201,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
   }
   batchLinearFeatures(scene);
   if(prepared)installPreparedArchitecture(scene,prepared);else architecture!.finish();
+  addLandmarks(scene,terrain?.landmarks);
   return count;
 }
 export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain):Promise<number>{
@@ -209,7 +212,7 @@ export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain
   const prepared=await loadDecorations(terrain,text);
   if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
   const count=renderGeoFeatures(scene,mergeEnvironment(data.features,terrain?.environment),terrain,prepared);
-  if(count>0)setBuildingFootprints(data.features);
+  if(count>0)setBuildingFootprints([...data.features,...(terrain?.landmarks?.collisionFeatures??[])],undefined,terrain?.landmarks?(feature:any,x:number,z:number)=>terrain.landmarks.support(`osm-way-${feature.properties?.osm_id}`,x,z):undefined);
   return count;
 }
 

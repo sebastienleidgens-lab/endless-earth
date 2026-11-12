@@ -10,7 +10,7 @@ export const walkingHeight=(height:(x:number,z:number)=>number|null)=>(x:number,
 let realFootprints: Point[][] | null = null;
 const cells=new Map<string,Point[][]>();
 const cellKey=(x:number,z:number)=>`${Math.floor(x/20)},${Math.floor(z/20)}`;
-export function setBuildingFootprints(features: Array<{geometry?:{type:string;coordinates:unknown};properties?:Record<string,unknown>}>, verifiedDeckHeight?:(feature:unknown,lon:number,lat:number)=>number|null) {
+export function setBuildingFootprints(features: Array<{geometry?:{type:string;coordinates:unknown};properties?:Record<string,unknown>}>, verifiedDeckHeight?:(feature:unknown,lon:number,lat:number)=>number|null,verifiedSupport?:(feature:unknown,x:number,z:number)=>number|null) {
   const localFeatures=features.flatMap(feature=>{
     const geometry=feature.geometry;
     if(!geometry||!Array.isArray(geometry.coordinates))return [];
@@ -19,7 +19,7 @@ export function setBuildingFootprints(features: Array<{geometry?:{type:string;co
     return groups.flatMap(coordinates=>{
       if(!Array.isArray(coordinates))return [];
       // Existing OSM import has no verified vertical datum: arbitrary Z is not a deck.
-      return [{tags:feature.properties??{},polygon:['Polygon','MultiPolygon'].includes(geometry.type),points:coordinates.flatMap((p:unknown)=>Array.isArray(p)&&typeof p[0]==='number'&&typeof p[1]==='number'?[{...toLocal({lon:p[0],lat:p[1]}),y:verifiedDeckHeight?.(feature,p[0],p[1])??undefined}]:[])}];
+      return [{tags:feature.properties??{},polygon:['Polygon','MultiPolygon'].includes(geometry.type),support:verifiedSupport?(x:number,z:number)=>verifiedSupport(feature,x,z):undefined,points:coordinates.flatMap((p:unknown)=>Array.isArray(p)&&typeof p[0]==='number'&&typeof p[1]==='number'?[{...toLocal({lon:p[0],lat:p[1]}),y:verifiedDeckHeight?.(feature,p[0],p[1])??undefined}]:[])}];
     });
   });
   navigation=createNavigation(localFeatures);

@@ -4,7 +4,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import assert from 'node:assert/strict';
-const dir='docs/mission-14-evidence',video=dir+'/after-promenade.webm',raw='work/mission-14/after-native.webm';
+const dir=process.env.EVIDENCE_DIR??'docs/mission-14-evidence',video=dir+'/after-promenade.webm',raw=process.env.NATIVE_VIDEO??'work/mission-14/after-native.webm';
 const probe=f=>JSON.parse(execFileSync('ffprobe',['-v','error','-show_entries','stream=codec_name,width,height','-show_entries','format=duration,size','-of','json',f],{encoding:'utf8'}));
 const initial=probe(video);assert.equal(initial.streams[0].codec_name,'vp8','Publish only a fresh native recording');
 await copyFile(video,raw);

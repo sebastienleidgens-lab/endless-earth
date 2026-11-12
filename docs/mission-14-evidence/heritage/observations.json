@@ -1,0 +1,53 @@
+{
+  "castle": {
+    "fits": [
+      {
+        "returns": 566,
+        "axisXZ": [
+          -0.8090169943749473,
+          0.5877852522924732
+        ],
+        "normalOffsetM": -87.75,
+        "heightRangeM": [
+          98.9,
+          110.38
+        ],
+        "candidateRegionCount": 1,
+        "confidence": "reconstruction from class 1/6 LiDAR; 0.5 m occupancy, 3x3 closing, hole fill <=0.5 m2; width inherited, not measured"
+      },
+      {
+        "returns": 324,
+        "axisXZ": [
+          -0.7986355100472929,
+          0.6018150231520482
+        ],
+        "normalOffsetM": -86.25,
+        "heightRangeM": [
+          97.13,
+          112.11
+        ],
+        "candidateRegionCount": 7,
+        "confidence": "reconstruction from class 1/6 LiDAR; 0.5 m occupancy, 3x3 closing, hole fill <=0.5 m2; width inherited, not measured"
+      }
+    ],
+    "outerSegments": 403,
+    "panels": 2
+  },
+  "bridge": {
+    "class17Returns": 5930,
+    "coreZQuantilesM": [
+      72.15,
+      72.25,
+      72.31
+    ],
+    "observedChainageP01P99M": [
+      18.587280634063422,
+      80.225837398544
+    ],
+    "osmLengthM": 83.77488281210607,
+    "widthM": 5.5,
+    "widthSource": "BD TOPO TRONROUT0000000054544470 largeur_de_chaussee=5.5; same OSM-derived default width",
+    "verticalCrossCheck": "BD TOPO 3D line Z 71.4\u201371.9 m, precision attribute 1.5 m; LiDAR road core around 72.2 m. Not centimetric independent truth."
+  },
+  "notes": "No raw points in browser; interpolation and uncertain structure dimensions explicitly separated from observed positions."
+}

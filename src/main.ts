@@ -329,7 +329,7 @@ const offset=viewMode==='first'?new THREE.Vector3():viewMode==='third'?new THREE
 const target=eye.clone().add(offset);
 if(viewMode==='third'){
   // Sweep from the eye on every frame; never interpolate across a wall after a turn.
-  const allowed=offset.length()*cameraFraction(eye,offset,cameraClear,terrainHeight);
+  const allowed=offset.length()*cameraFraction(eye,offset,cameraClear,groundHeight);
   boomLength=allowed<boomLength?allowed:THREE.MathUtils.lerp(boomLength,allowed,1-Math.exp(-dt*5));
   target.copy(eye).addScaledVector(offset,offset.length()>0?boomLength/offset.length():0);
 }
@@ -350,7 +350,7 @@ if(transitionElapsed<.8){
   // Each interpolated walking viewpoint must also remain in front of obstacles.
   if(viewMode!=='aerial'){
     const boom=camera.position.clone().sub(eye);
-    camera.position.copy(eye).addScaledVector(boom,cameraFraction(eye,boom,cameraClear,terrainHeight));
+    camera.position.copy(eye).addScaledVector(boom,cameraFraction(eye,boom,cameraClear,groundHeight));
   }
 }
 

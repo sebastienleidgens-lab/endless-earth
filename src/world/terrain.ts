@@ -12,6 +12,8 @@ import {sourceGeometry} from './source-geometry.mjs';
 import {decodeSurface} from './surface-mesh.mjs';
 // @ts-ignore Provider-independent local height-field meshes.
 import {validateRefinement} from './terrain-refinement.mjs';
+// @ts-ignore Validated source-bound local structures and exact support mesh.
+import {prepareLandmarks} from './landmark-model.mjs';
 export type TerrainGrid = {
   schema: 'endless-earth-terrain-v1';
   origin_x_m: number;
@@ -30,6 +32,7 @@ export class Terrain {
   surfaceAppearance:SurfaceAppearance|null=null;
   singleSurface:any=null;
   relief:any=null;
+  landmarks:any=null;
   treeAnchors?:any[];
   get roadsAvailable(){return this.singleSurface!==null;}
   get waterIntegrated(){return this.singleSurface?.manifest.water?.mode==='mapped-outline-dem-drape-v1';}
@@ -180,12 +183,22 @@ async function loadRefinedTerrain(base:string,terrain:Terrain,original:any):Prom
     const response=await fetch(base+'angles-relief-surface.json');if(!response.ok)throw Error('Refined surface manifest unavailable');const m=await response.json();
     if(m.refinementSha256!==refinementSha256||m.terrainSha256!==original.terrainSha256||m.osmSha256!==original.osmSha256||m.sourceSpacingM!==terrain.grid.step_m||
        m.tiles.length!==original.tiles.length||m.tiles.some((t:any,i:number)=>['x','z','size','cover'].some(k=>t[k]!==original.tiles[i][k])))throw Error('Stale refined surface');
-    const packed=await fetch(base+'angles-relief-surface.pack');if(!packed.ok)throw Error('Refined surface unavailable');
-    const buffer=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
-    if(await sha256(buffer)!==m.binarySha256)throw Error('Refined surface checksum mismatch');
-    const surface=decodeSurface(m,buffer);
+    let surface:any=null,landmarks:any=null;
+    try{
+      const r=await fetch(base+'angles-landmarks.pack');if(!r.ok)throw Error('Local landmarks unavailable');const content=await new Response(r.body!.pipeThrough(new DecompressionStream('gzip'))).text(),raw=JSON.parse(content),landmarksSha256=await sha256(new TextEncoder().encode(content));
+      const prepared=prepareLandmarks(raw,terrain.sample(0,0)??terrain.grid.elevations_m[0],{terrain:terrain.sourceSha256,osm:m.osmSha256,refinement:refinementSha256});
+      const response=await fetch(base+'angles-landmark-surface.json');if(!response.ok)throw Error('Landmark underlay unavailable');const lm=await response.json();
+      if(lm.landmarksSha256!==landmarksSha256||lm.refinementSha256!==refinementSha256||lm.terrainSha256!==m.terrainSha256||lm.osmSha256!==m.osmSha256||lm.tiles.length!==m.tiles.length||lm.tiles.some((t:any,i:number)=>['x','z','size','cover'].some(k=>t[k]!==m.tiles[i][k])))throw Error('Stale landmark underlay');
+      const packed=await fetch(base+'angles-landmark-surface.pack');if(!packed.ok)throw Error('Landmark underlay missing');const buffer=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      if(await sha256(buffer)!==lm.binarySha256)throw Error('Landmark underlay checksum mismatch');surface=decodeSurface(lm,buffer);landmarks=prepared;
+    }catch(error){console.warn('Local landmarks unavailable; complete Mission 14A retained',error)}
+    if(!surface){
+      const packed=await fetch(base+'angles-relief-surface.pack');if(!packed.ok)throw Error('Refined surface unavailable');
+      const buffer=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      if(await sha256(buffer)!==m.binarySha256)throw Error('Refined surface checksum mismatch');surface=decodeSurface(m,buffer);
+    }
     // One activation point: colliders, anchors and visual tiles switch together.
-    terrain.singleSurface=surface;terrain.grid.refinement=refinement;
+    terrain.singleSurface=surface;terrain.grid.refinement=refinement;terrain.landmarks=landmarks;
     terrain.relief={sha256:refinementSha256,cells:refinement.cells.size,boundsM:data.boundsM,method:data.provenance.method};terrain.metrics.reliefCells=refinement.cells.size;return true;
   }catch(error){console.warn('Local relief unavailable; complete Mission 13 terrain retained',error);return false;}
 }
