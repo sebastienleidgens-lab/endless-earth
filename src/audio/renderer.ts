@@ -42,6 +42,7 @@ export class AcousticRenderer{
  }
  environmentGuard(c:SoundContext){
   if(!diurnalBirdsAllowed(c))for(const v of this.voices)if(v.asset.startsWith('bird-'))this.retire(v,.45);
+  if((c.weather?.snow??0)>.005){const bed=this.beds.get('rain');if(bed){bed.retiring=true;bed.weight=0;bed.gain.gain.setTargetAtTime(0,this.context.currentTime,.025)}for(const v of this.voices)if(v.bedId==='rain')this.retire(v,.10)}
  }
  updateContext(c:SoundContext){
   if(this.closed)return;
@@ -72,7 +73,7 @@ export class AcousticRenderer{
    }
    b.reason=layer.reason;b.weight=layer.weight;
    b.gain.gain.setTargetAtTime(layer.weight,t,manual?.32:['wind','foliage'].includes(layer.id)?.45:1.2);
-   b.filter.frequency.setTargetAtTime(layer.filter*(1-.3*(c.weather?.rain??0)),t,manual?.32:1);
+   b.filter.frequency.setTargetAtTime(layer.filter*(1-.3*(c.weather?.rain??0))*(1-.22*(c.weather?.snowCover??0)),t,manual?.32:1);
    if(b.pan&&c.water){
     const dx=c.water.point.x-this.lastListener.x,dz=c.water.point.z-this.lastListener.z,f=this.lastForward;
     b.pan.pan.setTargetAtTime(.7*(dx*-f.z+dz*f.x)/(Math.hypot(dx,dz)*Math.hypot(f.x,f.z)||1),t,.3);

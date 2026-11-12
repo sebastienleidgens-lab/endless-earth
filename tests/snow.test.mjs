@@ -1,0 +1,25 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import {gunzipSync} from 'node:zlib';import * as THREE from 'three';
+import {WEATHER,weatherStep} from '../src/nature/climate.mjs';import {snowStep,snowTemperature,surfaceSnowMask,validateSnowExposure,exposureHeight,SNOW_PROFILES} from '../src/nature/snow-model.mjs';import {cloudMorph,cloudRawField} from '../src/earthlife/clouds.mjs';import {lifeUniforms,updateLifeTime,cloudReceiver} from '../src/earthlife/state.mjs';import {setSnowAppearance,resetSnowAppearance,snowReceiverCount} from '../src/nature/snow-state.mjs';import {layerMix} from '../src/audio/profiles.mjs';
+test('snow selection changes precipitation in sequence without mixed pure-rain/pure-snow output',()=>{
+ for(const [from,to]of [['storm','snow'],['snow','rain'],['rain','snow']]){let w={...WEATHER[from]},transitioned=false;for(let i=0;i<1200;i++){const prior={...w};weatherStep(w,WEATHER[to],1/60,w,.65);assert.ok(!(w.rain>.005&&w.snow>.005));assert.ok(Math.abs(w.cloud-prior.cloud)<.03);assert.ok(Object.values(w).every(v=>v>=0&&v<=1));if((to==='snow'?w.snow:w.rain)>.2)transitioned=true}assert.ok(transitioned)}
+ assert.equal(WEATHER.snow.rain,0);assert.ok(WEATHER.snow.snow>0);for(const k of ['clear','cloudy','overcast','mist','rain','storm'])assert.equal(WEATHER[k].snow,0);
+});
+test('snow begins bare, accumulates in real seconds, persists after cessation and melts gradually',()=>{
+ const s={cover:0};snowStep(s,0,{snow:.72,temperature:-3});assert.equal(s.cover,0);for(let i=0;i<30;i++)snowStep(s,1,{snow:.72,temperature:-3});assert.ok(s.cover>.09&&s.cover<.12);const thirty=s.cover;for(let i=0;i<150;i++)snowStep(s,1,{snow:.72,temperature:-3});assert.ok(s.cover>.55&&s.cover<.7);assert.ok(s.cover>thirty);const before=s.cover;snowStep(s,1,{snow:0,temperature:18});assert.ok(s.cover<before&&s.cover>before-.002);assert.equal(s.phase,'melting');for(let i=0;i<1200;i++)snowStep(s,1,{temperature:18});assert.equal(s.cover,0);assert.equal(s.phase,'bare');
+ assert.equal(snowTemperature('2026-07-21',1,.72),-3);assert.ok(snowTemperature('2026-07-21',1,0)>20);assert.ok(snowTemperature('2026-01-21',1,0)<5);
+});
+test('coating requires an exposed upward surface, never a uniformly white vertical facade',()=>{
+ for(const c of [.1,.5,1]){assert.equal(surfaceSnowMask(0,c),0);assert.equal(surfaceSnowMask(-1,c),0);assert.equal(surfaceSnowMask(1,c,0),0);assert.ok(surfaceSnowMask(1,c)>.6*c);assert.ok(surfaceSnowMask(.4,c)<surfaceSnowMask(.9,c))}for(const p of Object.values(SNOW_PROFILES))assert.ok(p.flakes<=1100&&p.range<=36);
+});
+test('exposure is source bound, bounded in size and correctly reconstructs roof height values',async()=>{
+ const m=JSON.parse(await readFile('public/data/angles-snow-exposure.json')),raw=gunzipSync(await readFile('public/data/angles-snow-exposure.pack'));assert.equal(validateSnowExposure(m,raw,m.bindings),m);const stale=structuredClone(m);stale.bindings.surface='old';assert.throws(()=>validateSnowExposure(stale,raw,m.bindings));for(const size of [1,511,2048])assert.throws(()=>validateSnowExposure({...m,size},raw,m.bindings));assert.equal(exposureHeight(raw,m,-2000,0),null);const y=exposureHeight(raw,m,-12,-32);assert.ok(y!==null&&Number.isFinite(y));
+});
+test('sky morphology changes in an advected frame and is shared with shadow shader uniforms',()=>{
+ const a=cloudRawField(100,200,0,{x:0,y:0}),b=cloudRawField(100,200,240,{x:0,y:0});assert.ok(Math.abs(a-b)>.001);const stable=cloudRawField(100,200,0,{x:0,y:0});assert.equal(stable,a);for(const t of [0,60,240]){const m=cloudMorph(t);updateLifeTime(t,.4);assert.deepEqual(lifeUniforms.lifeCloudMorph.value.toArray(),[m.x,m.y,m.z])}updateLifeTime(0,.35);
+});
+test('snow shaders compose once, keep water exclusion, switch off completely and unregister on disposal',()=>{
+ const count=snowReceiverCount(),m=new THREE.MeshLambertMaterial();m.userData.snowIntegratedWater=true;cloudReceiver(m);cloudReceiver(m);assert.equal(snowReceiverCount(),count+1);assert.equal(m.defines.EARTH_SNOW,0);setSnowAppearance(true);assert.equal(m.defines.EARTH_SNOW,1);const shader={uniforms:{},vertexShader:THREE.ShaderLib.lambert.vertexShader,fragmentShader:THREE.ShaderLib.lambert.fragmentShader};m.onBeforeCompile(shader,{});assert.ok(shader.fragmentShader.includes('earthRoadType>6.5'));assert.equal((shader.fragmentShader.match(/float snowTopAt\(/g)??[]).length,1);assert.ok(shader.fragmentShader.includes('gl_FrontFacing'));resetSnowAppearance();assert.equal(m.defines.EARTH_SNOW,0);m.dispose();assert.equal(snowReceiverCount(),count);
+});
+test('pure snow has no rain bed or filler, and accumulated snow gently damps existing sources',()=>{
+ const c={habitat:'wood',influences:{vegetation:1,forest:1},season:'winter',weather:{wind:.5,rain:1,snow:.8,snowCover:.8}};assert.ok(!layerMix(c).some(l=>l.id==='rain'));assert.ok(layerMix(c).every(l=>['water','water-detail','foliage','wind'].includes(l.id)));const bare=layerMix({...c,weather:{...c.weather,snowCover:0}}).find(l=>l.id==='foliage'),covered=layerMix(c).find(l=>l.id==='foliage');assert.ok(covered.weight<bare.weight);
+});

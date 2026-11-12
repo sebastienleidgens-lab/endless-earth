@@ -7,6 +7,7 @@ import {createFauna} from '../earthlife/fauna-render';
 import {createMicroEvents} from '../earthlife/micro-events';
 import {createAtmosphere} from './atmosphere';
 import {createPrecipitation} from './precipitation';
+import {createSnowWeather} from './snow-weather';
 // @ts-ignore Shared shader module.
 import {lifeUniforms,updateLifeTime} from '../earthlife/state.mjs';
 import {lifeSettings} from '../earthlife/preferences';
@@ -24,20 +25,21 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  let fixed=params.get('date')?new Date(params.get('date')!):null;if(fixed&&!Number.isFinite(+fixed))fixed=null;
  let moment=Object.hasOwn(MOMENTS,params.get('moment')??'')?params.get('moment')!:Object.hasOwn(MOMENTS,saved?.moment??'')?saved.moment:'real';
  let weatherKey=Object.hasOwn(WEATHER,params.get('weather')??'')?params.get('weather')!:Object.hasOwn(WEATHER,saved?.weather??'')?saved.weather:'clear';
+ const requestedSnow=Number(params.get('snowfall')),weatherTarget=(key:string)=>key==='snow'&&params.has('perf')&&params.has('snowfall')&&Number.isFinite(requestedSnow)?{...WEATHER.snow,snow:THREE.MathUtils.clamp(requestedSnow,0,1)}:WEATHER[key];
  let selected=momentDate(moment,fixed??new Date(),site),selectedTime=+selected.date;
  if(!fixed&&!params.has('moment')&&moment!=='real'&&Number.isFinite(saved?.dateMs))selectedTime=saved.dateMs;
  let effectiveTime=selectedTime,fromTime=selectedTime,timeBlend=1,demo=params.get('time')==='demo';
- let elapsed=0,state={...WEATHER[weatherKey]},target=WEATHER[weatherKey],weatherTau=45,commandAge=Infinity,commandRevision=0;
+ let elapsed=0,state={...weatherTarget(weatherKey)},target=weatherTarget(weatherKey),weatherTau=45,commandAge=Infinity,commandRevision=0;
  const persist=()=>{try{localStorage.setItem(storageKey,JSON.stringify({moment,weather:weatherKey,dateMs:selectedTime}))}catch{/* Session state is authoritative when storage is denied. */}};
  const command=()=>{commandAge=0;commandRevision++};
  const chooseMoment=(name:string)=>{command();moment=name;demo=false;selected=momentDate(moment,fixed??new Date(),site);selectedTime=+selected.date;fromTime=effectiveTime;timeBlend=0;persist()};
  if(params.has('perf'))addEventListener('nature-test-date',((event:CustomEvent)=>{const date=event.detail===null?null:new Date(event.detail);if(date===null||Number.isFinite(+date)){fixed=date;const reference=date??new Date();selected=momentDate(moment,reference,site);selectedTime=+selected.date;effectiveTime=selectedTime;timeBlend=1}}) as EventListener,{signal:lifecycle.signal});
  const controls=document.createElement('details');controls.className='nature-controls';
- controls.innerHTML=`<summary>Heure et météo</summary><label>Moment de la journée<select aria-label="Moment de la journée">${Object.entries(MOMENTS).map(([key,label])=>`<option value="${key}">${label}</option>`).join('')}</select></label><label>Météo simulée<select aria-label="Météo simulée"><option value="clear">Ensoleillé</option><option value="cloudy">Nuageux</option><option value="overcast">Couvert</option><option value="mist">Brumeux</option><option value="rain">Pluvieux</option><option value="storm">Orageux</option></select></label><small>Une atmosphère choisie, sans prévision météo.</small>`;
+ controls.innerHTML=`<summary>Heure et météo</summary><label>Moment de la journée<select aria-label="Moment de la journée">${Object.entries(MOMENTS).map(([key,label])=>`<option value="${key}">${label}</option>`).join('')}</select></label><label>Météo simulée<select aria-label="Météo simulée"><option value="clear">Ensoleillé</option><option value="cloudy">Nuageux</option><option value="overcast">Couvert</option><option value="mist">Brumeux</option><option value="rain">Pluvieux</option><option value="storm">Orageux</option><option value="snow">Neigeux</option></select></label><small>Une atmosphère choisie, sans prévision météo.</small>`;
  const status=document.createElement('output');status.className='nature-status';status.setAttribute('aria-live','polite');controls.append(status);document.querySelector('#app')!.append(controls);
- const selects=controls.querySelectorAll('select');selects[0].value=moment;selects[0].onchange=()=>chooseMoment(selects[0].value);selects[1].value=weatherKey;selects[1].onchange=()=>{command();weatherKey=selects[1].value;target=WEATHER[weatherKey];weatherTau=.65;persist()};
+ const selects=controls.querySelectorAll('select');selects[0].value=moment;selects[0].onchange=()=>chooseMoment(selects[0].value);selects[1].value=weatherKey;selects[1].onchange=()=>{command();weatherKey=selects[1].value;target=weatherTarget(weatherKey);weatherTau=.65;persist()};
  if(params.has('perf')){const secondary=document.createElement('button');secondary.type='button';secondary.textContent='Diagnostic : horloge ×72';secondary.onclick=()=>{demo=!demo;fromTime=effectiveTime;secondary.setAttribute('aria-pressed',String(demo))};controls.append(secondary)}
- const atmosphere=createAtmosphere(scene),cloudLayer=createCloudLayer(scene),rain=createPrecipitation(scene),budget=new WorldLifeBudget(lifeSettings.profile),fauna=createFauna(scene,budget,height),events=createMicroEvents(scene,budget);
+ const atmosphere=createAtmosphere(scene),cloudLayer=createCloudLayer(scene),rain=createPrecipitation(scene),snow=createSnowWeather(scene,site.lat),budget=new WorldLifeBudget(lifeSettings.profile),fauna=createFauna(scene,budget,height),events=createMicroEvents(scene,budget);
  let lifeRevision=-1,cpuElapsed=Infinity,calm=0,stamp=-1;const localWind={x:0,z:0,speed:0,gust:0},rainWind=new THREE.Vector2(),sunDirection=new THREE.Vector3();
  const hourFormat=new Intl.DateTimeFormat('en-GB',{timeZone:site.timeZone??'UTC',hourCycle:'h23',hour:'2-digit',minute:'2-digit',second:'2-digit'});
  const dateFormat=new Intl.DateTimeFormat('fr-FR',{timeZone:site.timeZone??'UTC',hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'}),horizon=new THREE.Color(),zenith=new THREE.Color();
@@ -46,7 +48,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  const previousAcousticClimate=scene.userData.acousticClimate,environment:any={worldTimeMs:0,solar:{altitude:0},weather:state,acousticWeather:{...state,gust:0},wind:localWind,transition:{revision:0,commandRevision:0,manual:false},simulation:true};
  scene.userData.acousticClimate=environment;
  const conditions={habitat:'unknown',day:0,rain:0,wind:.35,meanWind:.35,month:1,latitude:site.lat,longitude:site.lon,altitude:0};
- const provenance={habitat:'mapped classification, unknown preserved',wind:'simulated',weather:'simulated, not forecast',sky:'Three.js Preetham with artistic night and two cloud altitudes',birds:'generic artistic silhouettes',current:'illustrative surface ripples; hydrological flow unknown'},resources={cpuObjects:11,extraDrawCallsMax:12,extraTextures:0,cloudMaterials:1,birdMaterials:1,particleMaterials:1,rainMaterials:1};
+ const provenance={habitat:'mapped classification, unknown preserved',wind:'simulated',weather:'simulated, not forecast',sky:'Three.js Preetham with artistic night and two cloud altitudes',birds:'generic artistic silhouettes',current:'illustrative surface ripples; hydrological flow unknown'},resources={cpuObjects:11,extraDrawCallsMax:12,extraTextures:0,cloudMaterials:1,birdMaterials:1,particleMaterials:1,rainMaterials:1,snowMaterials:1,snowSeedBytes:26400};
  let habitatX=NaN,habitatZ=NaN,habitatSource:any=null,cachedHabitat='unknown';
  const previousClimate=scene.userData.climate;scene.userData.climate=environment;
  const update=(dt:number,_eco:boolean,wallDt=dt)=>{
@@ -78,18 +80,22 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   cloudLayer.update(camera.position,day,profile.clouds,lifeSettings.name==='eco',warm,state.rain);
   rainWind.set(localWind.x,localWind.z);
   rain.update(camera.position,height(player.position.x,player.position.z)??player.position.y,elapsed,state.rain,rainWind,day,lifeSettings.name);
+  const snowState=snow.update(camera.position,player.position,dt,transitionDt,elapsed,date,state,rainWind,day,lifeSettings.name);
+  if(snowState.cover>0)hemisphere.groundColor.lerp(palette.white,snowState.cover*.35*lightDay);
   cpuElapsed+=dt;if(cpuElapsed>=1/Math.max(1,profile.cpuHz)){
    cpuElapsed=0;const started=performance.now();if(player.position.x!==habitatX||player.position.z!==habitatZ||habitatSource!==scene.userData.lifeHabitat){habitatX=player.position.x;habitatZ=player.position.z;habitatSource=scene.userData.lifeHabitat;cachedHabitat=habitatSource?.(habitatX,habitatZ)??'unknown'}
    conditions.habitat=cachedHabitat;conditions.day=day;conditions.rain=state.rain;conditions.wind=localWind.speed;conditions.meanWind=lifeUniforms.lifeMeanWind.value;conditions.month=s.month;conditions.altitude=player.position.y;
    const activeBirds=fauna.update(elapsed,player.position,conditions),micro=events.update(elapsed,player.position,conditions);calm=micro.calm;
    const diagnostic=scene.userData.earthLife??={time:0,profile:'balanced',budget:{birds:0,particles:0,events:0},limits:profile,activeBirds:0,activeEvents:0,habitat:'unknown',wind:{x:0,z:0,speed:0,gust:0},cpuMs:0,maxCpuMs:0,provenance,resources};
-   diagnostic.time=elapsed;diagnostic.profile=lifeSettings.name;Object.assign(diagnostic.budget,budget.allocated);diagnostic.limits=profile;diagnostic.activeBirds=activeBirds;diagnostic.activeEvents=micro.active;diagnostic.habitat=cachedHabitat;Object.assign(diagnostic.wind,localWind);diagnostic.resources.cpuObjects=10+Number(profile.particles>0);diagnostic.cpuMs=performance.now()-started;diagnostic.maxCpuMs=Math.max(diagnostic.maxCpuMs,diagnostic.cpuMs);
+   diagnostic.time=elapsed;diagnostic.profile=lifeSettings.name;Object.assign(diagnostic.budget,budget.allocated);diagnostic.limits=profile;diagnostic.activeBirds=activeBirds;diagnostic.activeEvents=micro.active;diagnostic.habitat=cachedHabitat;Object.assign(diagnostic.wind,localWind);diagnostic.resources.cpuObjects=11+Number(profile.particles>0);diagnostic.cpuMs=performance.now()-started;diagnostic.maxCpuMs=Math.max(diagnostic.maxCpuMs,diagnostic.cpuMs);
   }
   // Both consumers retain this one environment; only geographic queries are throttled.
   Object.assign(environment,{worldTimeMs:+date,moment,mode:demo?'demo':moment,date:date.toISOString(),localTime,localHour,season:seasonAt(s.month,site.lat),timeZone:site.timeZone??'UTC',polar:selected.polar,targetWeather:weatherKey,weatherTau,solar:s,effectiveMeanWind:lifeUniforms.lifeMeanWind.value,starVisibility:atmosphere.starVisibility,rainDrops:state.rain>.005?(lifeSettings.name==='eco'?260:lifeSettings.name==='quality'?900:520):0});
   Object.assign(environment.acousticWeather,state,{wind:localWind.speed,gust:localWind.gust});
+  environment.snow={...snowState};environment.acousticWeather.snowCover=snowState.cover;
+  environment.cloudMotion={drift:lifeUniforms.lifeCloudDrift.value.toArray(),morph:lifeUniforms.lifeCloudMorph.value.toArray(),baseHeight:230,upperHeight:540};
   environment.transition.revision++;environment.transition.commandRevision=commandRevision;environment.transition.manual=commandAge<3.5;
-  if(Math.floor(elapsed*2)!==stamp){stamp=Math.floor(elapsed*2);status.textContent=`${MOMENTS[moment]} · ${localTime} (${site.timeZone??'UTC'})${selected.polar==='polar-day'?' · soleil de minuit':selected.polar==='polar-night'?' · nuit polaire':''}`;}
+  if(Math.floor(elapsed*2)!==stamp){stamp=Math.floor(elapsed*2);status.textContent=`${MOMENTS[moment]} · ${localTime} (${site.timeZone??'UTC'})${selected.polar==='polar-day'?' · soleil de minuit':selected.polar==='polar-night'?' · nuit polaire':''}${weatherKey==='snow'&&['fallback','unavailable'].includes(scene.userData.snow?.exposure)?' · neige visuelle indisponible':''}`;}
  };
- return Object.assign(update,{dispose(){if(scene.userData.acousticClimate===environment)scene.userData.acousticClimate=previousAcousticClimate;scene.userData.climate=previousClimate;lifecycle.abort();atmosphere.dispose();cloudLayer.dispose();rain.dispose();fauna.dispose();events.dispose();budget.clear();controls.remove()}});
+ return Object.assign(update,{dispose(){if(scene.userData.acousticClimate===environment)scene.userData.acousticClimate=previousAcousticClimate;scene.userData.climate=previousClimate;lifecycle.abort();atmosphere.dispose();cloudLayer.dispose();rain.dispose();snow.dispose();fauna.dispose();events.dispose();budget.clear();controls.remove()}});
 }

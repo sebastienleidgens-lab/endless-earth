@@ -1,0 +1,205 @@
+{
+  "method": "Full FFmpeg audio/video decode with native VFR sink timebase (-fps_mode passthrough -enc_time_base -1); ffprobe stream metadata and packet SHA-256/size/native PTS/DTS equality against MediaRecorder source. Cloud films are unchanged native prefixes (first120s); other films retain their complete native packets. FFmpeg -copyts -c copy indexing only. No re-encoding, time acceleration or reconstructed frames.",
+  "rows": [
+    {
+      "id": "before-clouds",
+      "file": "docs/mission-15-evidence/snow-sky/before-clouds.webm",
+      "bytes": 2311824,
+      "sha256": "794446b520a7ccb882d8a5682b646c6fb4484a142a8e518b39979b19e2d39fb4",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 904,
+          "packetsAndNativeTimestampsIdentical": true
+        }
+      ],
+      "streams": [
+        {
+          "codec": "vp9",
+          "type": "video",
+          "width": 800,
+          "height": 540
+        }
+      ],
+      "durationSeconds": 119.972,
+      "decodeSucceeded": true,
+      "audio": null
+    },
+    {
+      "id": "after-clouds",
+      "file": "docs/mission-15-evidence/snow-sky/after-clouds.webm",
+      "bytes": 2298858,
+      "sha256": "80d89ba465a5f85b14d0194faae7dd2b1ab03d159eb308d7e5dff0e062325f85",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 927,
+          "packetsAndNativeTimestampsIdentical": true
+        }
+      ],
+      "streams": [
+        {
+          "codec": "vp9",
+          "type": "video",
+          "width": 800,
+          "height": 540
+        }
+      ],
+      "durationSeconds": 119.905,
+      "decodeSucceeded": true,
+      "audio": null
+    },
+    {
+      "id": "snow-walk",
+      "file": "docs/mission-15-evidence/snow-sky/snow-walk.webm",
+      "bytes": 1712122,
+      "sha256": "063b55f99d3957906ad0e7fe7e2ffebb036bdb371dc11fa83491d93f3fa6e163",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 251,
+          "packetsAndNativeTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 2019,
+          "packetsAndNativeTimestampsIdentical": true
+        }
+      ],
+      "streams": [
+        {
+          "codec": "vp9",
+          "type": "video",
+          "width": 800,
+          "height": 540
+        },
+        {
+          "codec": "opus",
+          "type": "audio",
+          "sampleRate": "48000",
+          "channels": 2
+        }
+      ],
+      "durationSeconds": 121.161,
+      "decodeSucceeded": true,
+      "audio": {
+        "rmsDB": -65.431826,
+        "provenance": "Actual post-limiter Opus track; full decode passed. Original verified game resources, no added soundtrack."
+      }
+    },
+    {
+      "id": "melt",
+      "file": "docs/mission-15-evidence/snow-sky/melt.webm",
+      "bytes": 4812570,
+      "sha256": "1f6d0b0e14c0119d30b802493e65794d9ff95509252da3857de47c71d413fed5",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 735,
+          "packetsAndNativeTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 5045,
+          "packetsAndNativeTimestampsIdentical": true
+        }
+      ],
+      "streams": [
+        {
+          "codec": "vp9",
+          "type": "video",
+          "width": 800,
+          "height": 540
+        },
+        {
+          "codec": "opus",
+          "type": "audio",
+          "sampleRate": "48000",
+          "channels": 2
+        }
+      ],
+      "durationSeconds": 302.718,
+      "decodeSucceeded": true,
+      "audio": {
+        "rmsDB": -65.747535,
+        "provenance": "Actual post-limiter Opus track; full decode passed. Original verified game resources, no added soundtrack."
+      }
+    },
+    {
+      "id": "light",
+      "file": "docs/mission-15-evidence/snow-sky/light.webm",
+      "bytes": 425565,
+      "sha256": "41d78a6544ba6e89f5a5651f8e450400787418632a9bc1a3085bba35079a8492",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 68,
+          "packetsAndNativeTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 528,
+          "packetsAndNativeTimestampsIdentical": true
+        }
+      ],
+      "streams": [
+        {
+          "codec": "vp9",
+          "type": "video",
+          "width": 800,
+          "height": 540
+        },
+        {
+          "codec": "opus",
+          "type": "audio",
+          "sampleRate": "48000",
+          "channels": 2
+        }
+      ],
+      "durationSeconds": 31.666,
+      "decodeSucceeded": true,
+      "audio": {
+        "rmsDB": -66.161991,
+        "provenance": "Actual post-limiter Opus track; full decode passed. Original verified game resources, no added soundtrack."
+      }
+    },
+    {
+      "id": "heavy",
+      "file": "docs/mission-15-evidence/snow-sky/heavy.webm",
+      "bytes": 426807,
+      "sha256": "a520cd2101a0f30f812377ac9f4febf10da82a620c1ddfea6fce370ccb56598e",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 69,
+          "packetsAndNativeTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 525,
+          "packetsAndNativeTimestampsIdentical": true
+        }
+      ],
+      "streams": [
+        {
+          "codec": "vp9",
+          "type": "video",
+          "width": 800,
+          "height": 540
+        },
+        {
+          "codec": "opus",
+          "type": "audio",
+          "sampleRate": "48000",
+          "channels": 2
+        }
+      ],
+      "durationSeconds": 31.538,
+      "decodeSucceeded": true,
+      "audio": {
+        "rmsDB": -66.31475,
+        "provenance": "Actual post-limiter Opus track; full decode passed. Original verified game resources, no added soundtrack."
+      }
+    }
+  ]
+}

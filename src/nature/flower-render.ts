@@ -26,7 +26,11 @@ export function addVillageFlowers(zone:THREE.Object3D,features:any[],height:(x:n
    #endif`);
   s.fragmentShader='varying float vFlowerPart,vFlowerPhase;uniform vec2 flowerCalendar;\n'+s.fragmentShader;
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
-   if(vFlowerPart>1.5){if(fract(vFlowerPhase*.017)>.98*flowerCalendar.y)discard;diffuseColor.rgb*=.85+.15*flowerCalendar.y;}
+   float snowBloom=1.;
+   #if EARTH_SNOW == 1
+   snowBloom=1.-smoothstep(0.,.15,earthSnowCover);
+   #endif
+   if(vFlowerPart>1.5){if(fract(vFlowerPhase*.017)>snowBloom*.98*flowerCalendar.y)discard;diffuseColor.rgb*=.85+.15*flowerCalendar.y;}
    else if(vFlowerPart>.5&&fract(vFlowerPhase*.013)>.98*flowerCalendar.x)discard;`);
  };
  material.customProgramCacheKey=()=>FLOWER_VERSION;cloudReceiver(material);registerLifeMaterial(material,{foliage:true});

@@ -24,6 +24,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden}#app{position:fixed;in
 .build-indicator code{font:inherit;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;white-space:nowrap;font-variant-numeric:tabular-nums}
 .hud .build-indicator__place{font-size:10px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:550px){.build-indicator strong{font-size:15px}.build-indicator__heading{gap:8px}.hud .build-indicator__mission{font-size:clamp(10.5px,3.4vw,11.5px)}.build-indicator__details{gap:8px;font-size:10.5px}}
+@media(max-width:360px){.hud .build-indicator__mission{white-space:normal}}
 
 .quality-control{max-width:270px;box-sizing:border-box;line-height:1.6}
 .quality-control summary{cursor:pointer}.quality-control label{display:block}

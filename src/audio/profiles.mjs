@@ -11,11 +11,12 @@ export const LAYERS=Object.freeze([
 // Calibrated by family. Calm/unknown places have no permanent air/filler bed.
 export function riverGain(distance){const d=Math.max(0,distance);return .56/(1+Math.pow(d/18,1.5))*(1-smooth(95,150,d))}
 export function layerMix(c){
- const v=c.influences.vegetation??0,wind=c.weather?.wind??0,rain=c.weather?.rain??0,gust=c.weather?.gust??0;
+ const v=c.influences.vegetation??0,wind=c.weather?.wind??0,rain=(c.weather?.snow??0)>.005?0:c.weather?.rain??0,gust=c.weather?.gust??0,snowCover=Math.max(0,Math.min(1,c.weather?.snowCover??0));
  const exposure=Math.max(c.influences.exposure??0,({rock:1,water:1,meadow:.9,farmland:1,built:.24,garden:.35,orchard:.35,scrub:.65,riparian:.5,wood:.25,forest:.25})[c.habitat]??0)*(1-(c.influences.forest??0)*.65);
  const water=c.water&&Number.isFinite(c.water.distanceM)?(c.water.kind==='stream'?.22*(1-smooth(4,55,c.water.distanceM)):riverGain(c.water.distanceM)):0;
  const turbulence=c.water&&Number.isFinite(c.water.weirDistanceM)?.20*(1-smooth(6,38,c.water.weirDistanceM))*water/.56:0;
  const weights={foliage:v*.28*smooth(.08,.55,wind)*(.8+.2*gust),water,'water-detail':turbulence,wind:exposure*.36*smooth(.20,.70,wind),rain:.24*smooth(.05,.55,rain)};
+ for(const k of ['foliage','water','water-detail'])weights[k]*=1-snowCover*.28;
  const reasons={foliage:`mapped vegetation ${v.toFixed(2)} × shared wind ${wind.toFixed(2)}, gust ${gust.toFixed(2)}`,water:c.water?`${c.water.provenance}; physical proximity ${c.water.distanceM.toFixed(1)} m`:'no mapped river evidence','water-detail':c.water?`mapped weir proximity ${c.water.weirDistanceM?.toFixed(1)??'unknown'} m; turbulence is an artistic interpretation, discharge unknown`:'no mapped weir',wind:`mapped exposure ${exposure.toFixed(2)} × shared wind ${wind.toFixed(2)}; silent in calm`,rain:`EarthLife simulated rain ${rain.toFixed(2)}`};
  // Source fs-501243 explicitly contains distant thunder. Admit it only in
  // storm-strength rain; ordinary showers use the verified thunder-free source.
