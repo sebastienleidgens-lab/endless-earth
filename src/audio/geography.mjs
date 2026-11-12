@@ -1,3 +1,4 @@
+import {roadWidth} from '../world/road-style.mjs';
 import {proximityIndex} from './context.mjs';
 const inside=(p,ring)=>{let v=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a.z>p.z)!==(b.z>p.z)&&p.x<(b.x-a.x)*(p.z-a.z)/(b.z-a.z)+a.x)v=!v}return v};
 /** Bank contours are OSM polygons, not a measured width/discharge. Index built
@@ -38,3 +39,7 @@ export function trafficCandidates(index,listener,altitudeAt=null){
  return out.sort((a,b)=>a.distance-b.distance).slice(0,4);
 }
 export function roadSourceHidden(position,listener){const dx=position.x-listener.position.x,dz=position.z-listener.position.z,d=Math.hypot(dx,dz),f=listener.forward,l=Math.hypot(f.x,f.z);return d>=45&&d<=210&&l>.4&&(dx*f.x+dz*f.z)/(d*l)<.15&&Math.abs(position.y-listener.position.y)<30}
+
+// Foot material comes from every mapped road under an admitted physical step;
+// AutoWalk eligibility and motor access do not erase explicit surface evidence.
+export function footRoadIndex(roads){return proximityIndex(roads.map(road=>Object.assign([...road.points],{surface:road.tags?.surface??null,tags:road.tags,width:roadWidth(road.tags??{}).metres})))}

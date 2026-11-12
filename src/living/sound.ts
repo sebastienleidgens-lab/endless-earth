@@ -1,4 +1,4 @@
-import {paths,navigationReady,riverAreas,riverLines,mappedWeirs,acousticRoads} from './geography';
+import {navigationReady,riverAreas,riverLines,mappedWeirs,acousticRoads} from './geography';
 import {ANGLES} from '../world/geo';
 import {AcousticRenderer} from '../audio/renderer';
 import type {SoundContext,Vec3} from '../audio/types';
@@ -13,7 +13,7 @@ import {roadWidth} from '../world/road-style.mjs';
 // @ts-ignore Stable acoustic perches, not another visible ecology.
 import {emitterCandidates} from '../audio/emitters.mjs';
 // @ts-ignore Indexed bank geometry and conservative offscreen road eligibility.
-import {riverAcousticIndex,trafficRoadIndex,trafficCandidates} from '../audio/geography.mjs';
+import {riverAcousticIndex,trafficRoadIndex,trafficCandidates,footRoadIndex} from '../audio/geography.mjs';
 /** Host adapter. No ecology, weather model, or per-frame proximity scan here. */
 export class Soundscape {
  context:AudioContext|null=null;renderer:AcousticRenderer|null=null;enabled=false;volume=.7;distance=0;
@@ -35,7 +35,7 @@ export class Soundscape {
  return this.enabled;
  }
  setHidden(hidden:boolean){this.hidden=hidden;const p=this.transition.then(async()=>{if(this.disposed||!this.context)return this.enabled;this.renderer?.setVolume(this.volume,this.enabled&&!this.hidden);if(this.hidden){await this.context.suspend();this.distance=0;this.director.resetClock()}else if(this.enabled){await this.context.resume();this.nextContext=0;this.director.resetClock()}return this.enabled});this.transition=p;return p}
- update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number},flight?:{id:string;position:Vec3;velocity:Vec3;eligible:boolean}|null){
+ update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number},flight?:{id:string;position:Vec3;velocity:Vec3;eligible:boolean}|null,absoluteSupportAltitude:number|null=null){
  if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer){this.cpuMs=0;return;}
  const start=performance.now(),now=start/1000;
  if(profile!==this.renderer.profile)this.renderer.setProfile(profile);
@@ -44,8 +44,8 @@ export class Soundscape {
  if(now>=this.nextContext||commandChanged){
  this.commandRevision=commandRevision;
  this.nextContext=now+1/this.renderer.budget.hz;
- if(!this.waterIndex&&navigationReady()){this.waterIndex=riverAcousticIndex(riverAreas,riverLines,mappedWeirs);this.trafficIndex=trafficRoadIndex(acousticRoads);this.roadsIndex=proximityIndex(paths.map(path=>Object.assign([...path.points],{surface:path.surface,tags:path.tags,width:roadWidth(path.tags).metres})))}
- const altitude=typeof altitudeM==='function'?altitudeM(p.x,p.z):altitudeM,listener={position:{...this.renderer.lastListener},forward:{...this.renderer.lastForward}};
+ if(!this.waterIndex&&navigationReady()){this.waterIndex=riverAcousticIndex(riverAreas,riverLines,mappedWeirs);this.trafficIndex=trafficRoadIndex(acousticRoads);this.roadsIndex=footRoadIndex(acousticRoads)}
+ const altitude=Number.isFinite(absoluteSupportAltitude)?absoluteSupportAltitude:typeof altitudeM==='function'?altitudeM(p.x,p.z):altitudeM,listener={position:{...this.renderer.lastListener},forward:{...this.renderer.lastForward}};
  const ear={...listener.position,altitudeM:Number.isFinite(altitude)?altitude!+listener.position.y-p.y:null};
  const near=this.waterIndex?.query(ear,typeof altitudeM==='function'?altitudeM:null,160),road=this.roadsIndex?.query(p,40);this.nearbyChecks=(near?.checked??0)+(road?.checked??0);
  const influences=habitatInfluences(p,habitatAt);
