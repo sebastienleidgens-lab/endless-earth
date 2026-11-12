@@ -21,7 +21,7 @@ Le mode géographique courant désactivait les shadow maps Three.js. Le soleil d
 | Carte locale retenue, filtrée et mise en cache | Ombres proches et ombrage des volumes, y compris autour du pont ; une seule passe additionnelle lors des mises à jour. | **48 m / 512² en Équilibré**, **64 m / 1024² en Qualité**. Atténuation des vues éloignées ; aucune carte en Éco. Coût et pics conservés ci-dessous. |
 | Shadow maps globales, occultation d’écran et nouveaux effets atmosphériques | Couverture plus large possible. | Non activés : les premiers gains utiles sont proches, et le ciel/brume M11 assure déjà la continuité des plans. Aucun nouveau post-traitement, bloom, éclairage intérieur ou deuxième soleil. |
 
-Le candidat et la version finale sont deux campagnes logicielles distinctes ; leur différence ne mesure pas à elle seule l’effet du rayon. Dans la campagne finale, le surcoût médian **des deux vues proches** est **+5,5 à +6,5 % en Équilibré**. En Qualité, ces vues atteignent environ **+13 %**. La vue éloignée conserve surtout le contact et montre peu de bénéfice ; une variation négative dans un essai n’est pas une optimisation revendiquée. **La beauté et l’intérêt de ce compromis attendent votre validation.**
+Le candidat initial est exploratoire : ses deux variantes solaires partageaient une page et leur phase de vent n’était pas synchronisée. La campagne finale utilise une page par variante et vérifie l’égalité du vent. Leurs différences ne mesurent pas à elles seules l’effet du rayon. Dans la campagne finale, le surcoût médian **des deux vues proches** est **+14.0 à +14.9 % en Équilibré**. En Qualité, ces vues atteignent **+11.4 à +11.9 %**. La vue éloignée conserve surtout le contact et montre peu de bénéfice ; une variation négative dans un essai n’est pas une optimisation revendiquée. **La beauté et l’intérêt de ce compromis attendent votre validation.**
 
 ## Sources et précalcul : des effets visuels, aucune nouvelle observation
 
@@ -72,27 +72,27 @@ Ces intervalles incluent le rendu **SwiftShader logiciel** et l’enregistrement
 
 ## Coût final, y compris les pics
 
-**432 rendus synchronisés avec lecture complète des pixels**, Chromium 156 / SwiftShader logiciel, trois profils, trois vues, quatre variantes, trois passages à ordre alterné et quatre échantillons par passage. Même pose absolue, date et météo. Le rafraîchissement forcé garde l’horloge et le vent inchangés pour isoler son coût ; il ne simule pas une fréquence de jeu. Aucun autre rendu de test ou préparation lourde n’est lancé pendant ces mesures.
+**432 rendus synchronisés avec lecture complète des pixels**, Chromium 156 / SwiftShader logiciel, trois profils, trois vues, quatre variantes, trois passages à ordre alterné et quatre échantillons par passage. Une page tenue séparée par variante ; mêmes matrices de caméra, date, état solaire, météo et vent, avec égalité contrôlée. Le rafraîchissement forcé garde l’horloge et le vent inchangés pour isoler son coût ; il ne simule pas une fréquence de jeu. Aucun autre rendu de test ou préparation lourde n’est lancé pendant ces mesures. Les images mesurées suivent un rendu de chauffe ; les compilations initiales de variantes ne sont pas incluses dans ces médianes.
 
 | Profil / scène | 14B médiane (ms) | Contact seul (ms) | 14C cache (ms / évolution) | Mise à jour forcée (ms) | P95 cache (ms) | Pic forcé (ms) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| eco / chateau | 222.6 | 221.0 | 221.4 (-0.5 %) | 225.9 | 253.1 | 278.9 |
-| eco / sous-bois | 150.5 | 147.4 | 149.9 (-0.4 %) | 141.9 | 157.3 | 160.8 |
-| eco / vallee | 260.3 | 261.5 | 263.0 (+1.1 %) | 272.0 | 280.7 | 299.3 |
-| balanced / chateau | 292.8 | 307.0 | 311.8 (+6.5 %) | 320.0 | 353.6 | 367.6 |
-| balanced / sous-bois | 184.3 | 192.8 | 194.5 (+5.5 %) | 193.7 | 202.2 | 222.3 |
-| balanced / vallee | 328.0 | 343.5 | 320.3 (-2.3 %) | 329.4 | 333.2 | 350.8 |
-| quality / chateau | 279.4 | 278.8 | 315.5 (+13.0 %) | 324.7 | 363.8 | 347.4 |
-| quality / sous-bois | 174.5 | 175.1 | 198.0 (+13.4 %) | 201.6 | 205.0 | 246.0 |
-| quality / vallee | 303.3 | 314.0 | 330.7 (+9.0 %) | 330.8 | 344.4 | 401.4 |
+| eco / chateau | 226.9 | 239.3 | 236.8 (+4.4 %) | 244.6 | 260.0 | 295.7 |
+| eco / sous-bois | 145.1 | 152.8 | 142.4 (-1.9 %) | 148.8 | 158.2 | 172.4 |
+| eco / vallee | 263.1 | 264.9 | 264.9 (+0.7 %) | 277.8 | 294.8 | 299.4 |
+| balanced / chateau | 279.8 | 287.0 | 319.0 (+14.0 %) | 323.2 | 349.3 | 369.5 |
+| balanced / sous-bois | 170.6 | 178.3 | 196.0 (+14.9 %) | 200.0 | 203.1 | 281.1 |
+| balanced / vallee | 299.4 | 308.0 | 309.1 (+3.3 %) | 307.9 | 338.2 | 369.5 |
+| quality / chateau | 281.1 | 291.0 | 313.2 (+11.4 %) | 344.6 | 338.5 | 390.0 |
+| quality / sous-bois | 173.9 | 184.4 | 194.6 (+11.9 %) | 197.3 | 210.2 | 219.6 |
+| quality / vallee | 310.5 | 317.9 | 313.9 (+1.1 %) | 314.8 | 333.8 | 365.9 |
 
 En vue éloignée, la « mise à jour forcée » ne crée pas de passe quand la politique la désactive. Les petits écarts entre variantes Éco/contact identiques et les valeurs négatives reflètent la variabilité de mesure. **Le coût Qualité reste sensible** ; le propriétaire doit apprécier son intérêt visuel.
 
-Les attributs ambiants ajoutent environ **1,59 Mo** aux buffers géométriques de la scène. Le lot de casters et son index de sélection réservent environ **6,42 Mo** de buffers, plus environ **53 ko** d’instances de couronnes ; ils sont hors de l’inventaire des seules géométries de la scène couleur. La cible de carte est comptée séparément dans le tableau des profils. Les buffers CPU du pack et des index représentent environ **13,25 Mo**, hors petits objets JS ; certains servent aussi de source d’envoi GPU. Ces inventaires sont des tailles logiques, **pas une mesure de VRAM**. Pendant la traversée courte, le heap JS après GC passe de **92.16 à 93.42 Mo** ; les buffers externes déclarés par Chromium passent de **68.72 à 68.41 Mo**. Cache audio maximal : **21,657,600 o**, trois voix, dans le budget existant.
+Les attributs ambiants ajoutent environ **1,59 Mo** aux buffers géométriques de la scène. Le lot de casters et son index de sélection réservent environ **6,42 Mo** de buffers, plus environ **53 ko** d’instances de couronnes ; ils sont hors de l’inventaire des seules géométries de la scène couleur. La cible de carte est comptée séparément dans le tableau des profils. Les buffers CPU du pack et des index représentent environ **13,25 Mo**, hors petits objets JS ; certains servent aussi de source d’envoi GPU. Ces inventaires sont des tailles logiques, **pas une mesure de VRAM**. Pendant la traversée courte, le heap JS après GC passe de **92.16 à 93.42 Mo** ; les buffers externes déclarés passent de **68.72 à 68.41 Mo**. Le cache audio maximal reste à **21,657,600 o**, trois voix, dans le budget existant.
 
-La traversée atteint au plus **12 textures** et **22 programmes** dans ce navigateur ; les cibles et le petit texel de repli sont distingués des textures artistiques, inchangées. Les choix de profils libèrent les anciennes cibles ; les contrôles répétés, la nuit et la pluie sont consignés. Démarrage local observé, une valeur par variante : 14B **12.20 s**, contact **12.09 s**, local **11.90 s**. Ces valeurs incluent compilation/cache logiciel et ne démontrent pas un gain réseau ou matériel.
+La traversée atteint au plus **12 textures** et **22 programmes** dans ce navigateur ; les cibles et le petit texel de repli sont distingués des textures artistiques, inchangées. Les choix de profils libèrent les anciennes cibles ; les contrôles répétés, la nuit et la pluie sont consignés. Démarrage local observé, une valeur par variante : 14B **12.48 s**, contact **12.54 s**, local **12.07 s**. Ces valeurs incluent compilation/cache logiciel et ne démontrent pas un gain réseau ou matériel.
 
-[Résumé complet](mission-14-evidence/light/performance-summary.json) · [Trace intégrale compressée](mission-14-evidence/light/performance.json.gz). Les campagnes A/B restent dans leurs archives ; il ne faut pas additionner leurs pourcentages à ceux-ci, les poses et conditions de mesure diffèrent. La comparaison cumulée et les essais longs appartiennent à 14D.
+[Conditions appariées vérifiées](mission-14-evidence/light/paired-conditions.json) · [Résumé complet](mission-14-evidence/light/performance-summary.json) · [Trace intégrale compressée](mission-14-evidence/light/performance.json.gz). Les campagnes A/B restent dans leurs archives ; il ne faut pas additionner leurs pourcentages à ceux-ci, les poses et conditions de mesure diffèrent. La comparaison cumulée et les essais longs appartiennent à 14D.
 
 ## Vérifications et reproduction
 
