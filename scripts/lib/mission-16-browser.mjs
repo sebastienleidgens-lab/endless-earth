@@ -15,4 +15,4 @@ window.q16={
  exportSurface(){return activeTerrain.singleSurface.tiles.map(t=>({descriptor:t.descriptor,position:Array.from(t.attributes.position.array),road:Array.from(t.attributes.earthRoad.array),wet:Array.from(t.attributes.earthWater.array),index:Array.from(t.fine.array)}))},
  buildings(){return scene.userData.architectureAnchors},
 };`;
-export async function open16(browser,port=5303,options={}){return openWalker(browser,port,{...options,append:injection+(options.append??'')})}
+export async function open16(browser,port=5303,options={}){port=port===5303?Number(process.env.MISSION16_PORT??port):port;return openWalker(browser,port,{...options,append:injection+(options.append??'')})}

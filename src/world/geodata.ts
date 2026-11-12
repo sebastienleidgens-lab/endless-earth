@@ -1,3 +1,6 @@
+import {repairFoundationFeet} from '../architecture/foundations';
+// @ts-ignore Original source surface, excluding local road reconstruction.
+import {sampleGrid} from './terrain-grid.mjs';
 import {loadRiverFlow} from '../earthlife/river-flow';
 import {configureWindowBuildings} from '../architecture/window-seeds';
 // @ts-ignore Indexed mapped habitat queries.
@@ -204,6 +207,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
   }
   batchLinearFeatures(scene);
   if(prepared)installPreparedArchitecture(scene,prepared);else architecture!.finish();
+  if(terrain?.walkSupport){const zero=sampleGrid(terrain.grid,0,0)??terrain.grid.elevations_m[0];scene.userData.foundationRepairs=repairFoundationFeet(scene,features,(x,z)=>{const h=sampleGrid(terrain.grid,x,z);return h===null?null:h-zero},(x,z)=>terrain.relativeHeight(x,z));}
   addLandmarks(scene,terrain?.landmarks);
   return count;
 }
