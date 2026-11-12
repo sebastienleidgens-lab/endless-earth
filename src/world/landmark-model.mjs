@@ -1,7 +1,7 @@
 // Geographic data contract shared by offline preparation, rendering and physics.
 import {barycentric} from './terrain-refinement.mjs';
-export function prepareLandmarks(raw,baseline,bindings){
- if(raw?.schema!=='endless-earth-landmarks-v1'||raw.verticalDatum!=='IGN69'||!Array.isArray(raw.objects)||raw.objects.length>32||
+export function prepareLandmarks(raw,baseline,bindings,verticalDatum='IGN69'){
+ if(raw?.schema!=='endless-earth-landmarks-v1'||raw.verticalDatum!==verticalDatum||!Array.isArray(raw.objects)||raw.objects.length>32||
     Object.entries(bindings).some(([k,v])=>raw.bindings?.[k]!==v))throw Error('Stale or invalid local landmarks');
  let vertices=0;const objects=raw.objects.map(object=>{
   if(typeof object.featureId!=='string'||!Array.isArray(object.parts)||object.parts.length>16)throw Error('Invalid landmark object');

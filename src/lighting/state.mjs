@@ -28,7 +28,7 @@ export function lightingReceiver(material){
  vec2 slope=abs(determinant)>1e-10?vec2(dy.y*dx.z-dx.y*dy.z,dx.x*dy.z-dy.x*dx.z)/determinant:vec2(0.);
  if(any(lessThan(q,vec3(.002)))||any(greaterThan(q,vec3(.998))))return 1.;
  float fade=1.-smoothstep(m14ShadowRadius*.78,m14ShadowRadius,length(vM14WorldXZ-m14ShadowCenter.xz));
- if(fade<.001)return 1.;float visible=0.;vec2 pixel=q.xy/m14ShadowSize-.5,base=floor(pixel),fraction=fract(pixel);
+ fade*=smoothstep(.002,.05,min(min(q.x,1.-q.x),min(q.y,1.-q.y)));if(fade<.001)return 1.;float visible=0.;vec2 pixel=q.xy/m14ShadowSize-.5,base=floor(pixel),fraction=fract(pixel);
  for(int x=0;x<2;x++)for(int y=0;y<2;y++){
  vec2 corner=vec2(float(x),float(y)),uv=(base+corner+.5)*m14ShadowSize;
  float planeDepth=q.z+dot(slope,uv-q.xy)-.000008;
@@ -49,3 +49,5 @@ export function lightingReceiver(material){
  s.fragmentShader=s.fragmentShader.replace('outgoingLight=mix(outgoingLight,waterRadiance,waterMask);','outgoingLight=mix(outgoingLight,waterRadiance*mix(1.,max(.6,m14Ambient),.4*m14AOAmount)*mix(.72,1.,m14SunVisibility),waterMask);');
  };material.customProgramCacheKey=()=>key+'-bounded-landscape-light-v1';
 }
+
+export function resetLighting(){lightingUniforms.m14AOAmount.value=0;lightingUniforms.m14ShadowActive.value=0;lightingUniforms.m14Shadow.value=white;lightingCapabilities(false)}

@@ -1,5 +1,182 @@
 # Mission 14 — Les paysages remarquables de France
 
+## 14D livré — arrêt pour validation artistique finale
+
+Vos **« Go » ont autorisé les jalons A, B, C puis D**. La livraison D harmonise les ombres locales, réduit leurs allocations, vérifie une session native de plus de trente minutes et démontre les modules sur trois scènes synthétiques. **Elle n’ajoute aucune nouvelle observation géographique à Angles.** La validation du plaisir de promenade et du compromis visuel reste la vôtre.
+
+[Comparatif interactif des cinq étapes](mission-14-evidence/final/index.html) · [Planche directement lisible sur GitHub](mission-14-evidence/final/comparison.jpg) · [Preuves finales](mission-14-evidence/final/) · [PR #23 en brouillon](https://github.com/sebastienleidgens-lab/endless-earth/pull/23).
+
+![Mission 13 / Mission 14D — mêmes caméras, scènes proches et éloignées](mission-14-evidence/final/comparison.jpg)
+
+Branche `mission/14-paysages-remarquables-france`. `main` distant revérifié : **`03d963fb1afeea9e2f209800748bfde5d1fab5f8`**, fusion Mission 13 / PR #22. Références : **A `9bc0a25`**, **B `0709d10`**, **C `d4766f8`**. Les quatre serveurs de référence proviennent de checkouts propres ; leur identité servie a été vérifiée. Les captures D précèdent le commit final et portent le badge de sources modifiées : le manifeste de préservation relie les octets testés au code livré. **0 € supplémentaire, aucune fusion, aucun déploiement, aucun changement Living Paintings / LP-01.**
+
+## Ce que D optimise et conserve
+
+Le relief A reste limité à **330 cellules de 10 m, soit 3,30 ha**, guidées par l’écart au MNT IGN natif de 0,5 m. L’erreur moyenne au raster passe de **0,765 à 0,195 m** ; le maximum résiduel reste **9,293 m**. Ce sont des écarts au raster source, pas une précision absolue du terrain. Le pont B conserve son axe de **83,775 m, approches comprises**, sa largeur documentée de **5,5 m** et ses altitudes de tablier autour de **72,25 m IGN69**. Les ruines restent une reconstruction partielle à partir de retours incomplets, sans toit, salle ou accès inventé.
+
+| Éclairage | État C | Livraison D |
+| --- | --- | --- |
+| Index des cellules | Tous décompressés et conservés : **3 979 752 octets**. | Validation complète à l’installation, puis décodage à la demande des seules cellules sélectionnées. |
+| Index de sélection | Tableau de tout le monde : **3 979 752 octets**. | Croissance locale par puissances de deux, plafonnée au nombre d’indices source ; **0 octet en Éco initial, 524 288 en Équilibré et 1 048 576 en Qualité** dans cette campagne. |
+| Mises à jour du vent | Reconstruit les bornes, les indices et les listes de couronnes. | Réutilise les bornes et la sélection ; seuls le raster d’ombre et les uniformes de vent sont mis à jour. Déplacement, soleil et profil invalident la sélection. |
+| Éco / vue éloignée | Données de casters et copies de couronnes préparées même sans carte active. | Copies de couronnes différées au premier besoin ; aucune carte solaire en Éco. L’index déjà alloué reste un cache borné après retour à Éco. |
+| Bord de carte / déchargement | Atténuation radiale. | Atténuation supplémentaire au bord du frustum ; nettoyage des références et du sampler lors de la destruction. |
+
+Les tableaux CPU du dérivé et des index occupaient **13,255 Mo** en C. Ils occupent **5,295 Mo en Éco initial, 5,820 Mo en Équilibré et 6,344 Mo en Qualité** dans les vues D mesurées, hors objets JavaScript et autres données du monde. Avec un index de 524 288 octets, cela donne **5,820 Mo**. Les positions de casters, canaux ambiants et packs d’Angles restent identiques à l’octet près. Le calcul hors ligne a été extrait dans `scripts/lib/bake-local-lighting.mjs` ; le réexécuter sur l’export C reproduit **exactement** le manifeste et le pack existants.
+
+Un prototype de filtrage matériel a été sondé puis écarté : il n’apportait pas de gain suffisamment convaincant face au filtre existant et compliquait le biais des surfaces rasantes. Le filtre à correction du plan récepteur de C reste en place. Les budgets restent **512² / 48 m / jusqu’à 2 Hz en Équilibré**, **1024² / 64 m / jusqu’à 4 Hz en Qualité**, contact précalculé seul en Éco. Les ombres solaires s’atténuent à grande distance et la nuit. Le calendrier, le ciel, le soleil, la météo, le vent, les matières et le son gardent leurs propriétaires M11–M13.
+
+[Préservation du dérivé](mission-14-evidence/final/bake-preservation.json) · [Identités des références](mission-14-evidence/final/stage-identity.json) · [587 fichiers protégés et identité avec la copie d’essai](mission-14-evidence/final/preservation.json).
+
+## Parcours géographiques, accès et physique
+
+La session prolongée suit d’abord le **parcours OSM natif de 450 m**, du village vers un espace naturel, puis le même tracé en sens inverse et à nouveau vers l’extérieur. Aucune vitesse, horloge de simulation ou position n’est rejouée pour fabriquer cette marche. Les retours rejoignent les mêmes coordonnées et chargent à nouveau les détails nécessaires.
+
+Une **branche manuelle vers la rue du Château**, depuis le même départ normal, complète les observations du bâti, des ruines et de la vallée : **247,5 m en 222,5 s, sans téléportation**. Elle suit les sommets OSM de Place Aimé Octobre, rue du Four Banal, rue terrier du château, rue du Château et Tranchée des Anglais. Le script utilise les entrées W et les orientations, avec des arrêts aux angles et des pauses de caméra. Les voies secondaires et les marches de cette branche **restent exclues de l’AutoWalk par sa politique existante** ; leur accès manuel n’ajoute pas d’exception au moteur.
+
+[Vidéo continue de 450 m](mission-14-evidence/final/promenade-continue.webm) · [Branche vers le château](mission-14-evidence/final/castle-promenade.webm) · [Trace de cette branche](mission-14-evidence/final/castle-walk.json) · [Tracé source reproductible](mission-14-evidence/final/reference-route.json).
+
+Le pont est inspecté séparément : **une seule position initiale explicite sur l’axe, puis déplacement W natif jusqu’à l’autre extrémité**. Il n’est pas présenté comme relié à la promenade précédente. Sur le graphe des axes importés, plus permissif que l’AutoWalk mais vérifié dans les deux sens par le moteur de collision, **1 147 nœuds / 1 158 arêtes**, 744 nœuds sont atteignables depuis le départ et aucune connexion praticable au tablier n’est établie. Ce résultat ne prouve pas l’absence de toute solution piétonne dans le monde réel.
+
+- Rue du Pont : à l’échantillon bloquant, le MNT impose environ **0,1485 m de descente pour 0,0998 m horizontal**, au-delà de la pente admise. Aucune rampe ni marche n’est inventée pour réparer cet axe.
+- Quai du Premier Président Pérevier : deux gabarits de corps de **30 cm de rayon** rencontrent la maçonnerie reconstruite sous la voûte, avec seulement **0,425 à 0,668 m** de dégagement au bord du gabarit. Leur blocage est cohérent avec le maillage affiché. Ces dégagements sont calculés sur une **sous-face interprétée**, pas relevés sur place.
+- Le moteur reste un modèle de hauteur de support et de collisions en plan ; il ne fournit pas une navigation complète à plusieurs étages sous un pont. Les tabliers non documentés restent bloqués.
+
+[Audit d’accès et premières positions bloquantes](mission-14-evidence/final/route-access.json) · [Intersections exactes du gabarit avec le maillage](mission-14-evidence/final/quai-clearance.json) · [Traversée distincte du pont](mission-14-evidence/final/pont-distinct.webm).
+
+Les coordonnées des routes, bâtiments, arbres documentés et ouvrages, les collisions et les surfaces physiques d’Angles ne changent pas en D. Les corrections A/B autorisées et leurs limites restent dans les archives. Le support du pont utilise les mêmes triangles Float32 que son rendu ; le relief et ses raccords utilisent la même triangulation que l’échantillonnage physique. Les tests du relief marqué synthétique incluent un aller-retour praticable et une tentative de franchissement de la pente abrupte, qui reste bloquée.
+
+## Essai natif de trente minutes
+
+**1 802,4 secondes réelles, soit 30 min 2,4 s ; 1 478,0 m cumulés hors coupures, 11 474 images instrumentées**. Sept chapitres : marche continue, retours, couvert, pluie du soir en Qualité, coupure explicite vers le pont, pause forestière, alternance de stations Éco / Qualité et nuit orageuse, puis retour au départ pour une marche matinale. Les changements de station sont exclus des distances et des pas ; ils ne sont pas montés en faux trajet continu.
+
+Le jeu rend et joue son son natif pendant toute la session. Les vidéos sont deux extraits continus du moteur et du flux audio après limiteur, sans reconstruction d’images. Leur copie de publication conserve la durée, les temps natifs et les paquets Opus ; la vidéo passe de VP8 à VP9 lorsque cela réduit son poids, sinon le VP8 natif est conservé. La branche du château possède son propre enregistrement continu. Les traces complètes sont compressées, pas trente minutes de vidéo dans Git.
+
+| Contrôle | Observation |
+| --- | --- |
+| Contact au support | **0 m d’écart maximal** sur les 11 474 images instrumentées ; pas horizontal maximal **0,3625 m**, variation verticale maximale **0,09345 m** hors coupures. |
+| Dérive en pause | Aucune distance parcourue pendant les pauses forestières et les changements de station immobiles. |
+| JavaScript / WebGL | **Aucune erreur**, aucune perte/restauration de contexte, aucun avertissement pendant la session finale. |
+| Audio | Au plus **6 voix**, cache maximal **25 133 436 octets**, dans le budget **24 Mio**. Après destruction : contexte fermé, zéro nœud et zéro octet de cache. |
+| Géométries / textures / programmes | Maximum **527 / 12 / 32**. La hausse initiale correspond à la première exposition de géométries/LOD et aux variantes de profils ; les stations répétées et les derniers retours sont conservés dans la trace. Éco libère la cible solaire. |
+| Tas V8 après GC | **93,179 → 94,946 Mo** ; stockage de backing déclaré **61,462 → 64,116 Mo**. Ce sont des compteurs de navigateur, pas la mémoire totale du processus ni de la VRAM. |
+| Intervalles d’image | Médiane **115,7 ms**, P95 **376,8 ms**, pic **1 537,5 ms**. Ces valeurs SwiftShader incluent les captures vidéo, GC de diagnostic, compilations et travaux CPU de préparation/tests sur la machine partagée. Elles ne démontrent pas une promenade fluide sur GPU physique. |
+
+Le sol préparé du pilote reste résident ; les chargements/déchargements suivis concernent surtout les détails du décor et leurs caches. **Le compteur du chargeur termine à **155 requêtes  152 chargements achevés et 151 installations**  zéro échec  zéro réponse obsolète  aucune demande active ou prête restante. Son compteur de volume demandé atteint **18 865 019 octets** (y compris les demandes annulées  pas une mesure de trafic réseau effectivement reçu)**. Les compteurs de terrain, décor, son, ombres et ressources sont conservés par chapitre. Aucune surface de terrain n’est absente du contrôle physique, mais ces compteurs ne mesurent pas à eux seuls la gêne visuelle d’une apparition tardive. Les vidéos et la promenade sur votre appareil restent nécessaires pour cette appréciation.
+
+Le premier lancement du banc d’essai avait été interrompu à sept minutes par un sélecteur replié ; l’interaction de test a été corrigée et **la session finale a été entièrement recommencée**. Aucun résultat de ce lancement interrompu ne sert de validation de trente minutes.
+
+[Résumé de session](mission-14-evidence/final/soak-30min.json) · [Trace par image et relevés](mission-14-evidence/final/soak-trace.json.gz) · [Statistiques par chapitre](mission-14-evidence/final/final-summary.json) · [Publication des vidéos](mission-14-evidence/final/video-publication.json).
+
+## Trois niveaux d’architecture, trois scènes synthétiques
+
+| Niveau | Responsabilité et démonstration |
+| --- | --- |
+| Monde géographique | `Terrain`, TIN local, triangulation des routes, `createNavigation`, `moveGrounded` et support des tabliers ; mêmes modules que le pilote. |
+| Style régional | Bibliothèque de matériaux, architecture et végétation existantes. Les données de relief et de repère local restent indépendantes de ces choix. |
+| Repère remarquable | Maillage local lié à sa source et son datum, chargé par `prepareLandmarks` / `addLandmarks`. Les matériaux peuvent être fournis par le monde régional ; le moteur ne contient pas de château d’Angles. |
+
+Les trois fixtures portent explicitement **« synthétique »**, leur provenance originale **CC0-1.0** et le datum **`SYNTHETIC-METRES`** ; elles ne prétendent reproduire aucun lieu réel ou relevé IGN69. Les distances ci-dessous sont des trajectoires simulées par le même noyau physique que le jeu ; le visualiseur permet la rotation et le zoom. Elles ne sont pas présentées comme des vidéos de promenade.
+
+- **A — Relief marqué et chemin** : choix local de 16 cellules par erreur de courbure, intérieur à 1 m, bords détaillés partagés entre cellules fines et coins seuls vers la grille grossière. Écart moyen à la fonction synthétique **1,965 → 0,0392 m** sur 576 sondes intérieures des cellules sélectionnées ; rendu / support à **moins de 0,000001 m**, raccords sondés à moins de 0,000001 m. Aller-retour de 200 m possible, pente abrupte bloquée.
+- **B — Ouvrage générique** : pont à poutres **48 m × 4 m**, deux piles, tablier incliné partagé par rendu et support. Aller-retour de 96 m ; garde-corps, eau hors tablier et ouvrage privé de support vérifié bloqués. Aucun maillage des arches d’Angles copié.
+- **C — Autre contexte régional** : fragments bas d’un point d’observation en granite, maison ordinaire et végétation de style atlantique. Le même décodeur charge les parties locales ; sans détail local, le terrain et le parcours de 80 m restent fonctionnels. Le chargement avec le datum IGN69 implicite est refusé.
+
+Les petits packs d’éclairage sont fabriqués par **le même précalcul générique** que celui d’Angles, sur le terrain et les maillages locaux de ces fixtures ; la maison régionale n’est pas ajoutée à ce précalcul statique. Les couronnes utilisent le mécanisme dynamique commun. Le navigateur recalcule l’empreinte des définitions synthétiques avant de demander l’application du dérivé. **Le contrôle réel du navigateur passe **neuf cycles de chargement/déchargement**, sans croissance des nombres de géométries/textures pour une même scène sur les deux derniers cycles, puis le repli sans détail local et le format mobile. Aucune erreur JavaScript ni avertissement. Les flottants des données synthétiques sont arrondis avant préparation pour éviter des différences de dernier bit entre Node et Chromium ; la géographie réelle ne change pas**.
+
+[Ouvrir les scènes dans le serveur de développement](../fixtures/remarkable.html?perf=1&date=2026-06-21T12:00:00Z&moment=afternoon&weather=clear) · [Audit physique](mission-14-evidence/final/synthetic-physics.json) · [Chargement et déchargement réels](mission-14-evidence/final/synthetic-browser.json) · [Droits](../public/data/remarkable-fixtures/LICENSE.md). Ces tests de contrats locaux ne constituent pas une validation d’un streaming national continu ou d’un autre village réel.
+
+## Coûts comparés : M13 / A / B / C / D
+
+**1 008 rendus synchronisés avec fin GPU et lecture complète**, Chromium / SwiftShader logiciel, **960 × 640 / DPR 1**, trois profils, quatre vues/distances, cinq étapes et deux variantes de rafraîchissement forcé C/D. Trois passages alternés, quatre échantillons par passage et combinaison. Les caméras, FOV, résolution, date, soleil, météo et **état climatique complet, dont la phase de vent**, sont identiques et vérifiés. Une page tenue en pause par variante empêche le décalage du vent rencontré dans un ancien candidat C. Les passages sont alternés ; C et D possèdent aussi des pages séparées pour forcer uniquement le rafraîchissement de la carte. Aucun autre test graphique ne tourne pendant cette campagne.
+
+![Temps logiciels Équilibré des cinq étapes](mission-14-evidence/final/performance.png)
+
+| Équilibré · médiane ms | M13 | 14A | 14B | 14C | 14D | D / M13 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Château proche | 244,3 | 302,7 | 296,2 | 327,9 | 320,5 | +31,1 % |
+| Falaise proche | 287,9 | 338,6 | 321,0 | 349,1 | 351,7 | +22,2 % |
+| Sous-bois | 170,1 | 196,4 | 193,5 | 190,0 | 192,7 | +13,3 % |
+| Vallée éloignée | 282,3 | 337,2 | 311,2 | 309,4 | 319,5 | +13,2 % |
+
+Les valeurs portent sur douze échantillons par combinaison. Les P95 et pics détaillés ne sont pas des bornes statistiques de confiance. **Face à M13, les médianes D en Équilibré restent **+13,2 à +31,1 %** selon la vue. Face à C, D varie de **−2,3 à +3,3 %** dans ce profil ; en Qualité, une vue monte jusqu’à **+9,3 %** dans cette campagne. Les temps CPU observés des mises à jour forcées proches (sélection éventuelle et soumission de la passe, sans attendre le GPU) passent de **0,6–0,8 ms à environ 0,2 ms** en Équilibré. Il n’y a aucun rafraîchissement effectif en Éco ou dans la vue éloignée ; leurs temps de mise à jour sont donc notés `null`, et non la dernière valeur d’une autre scène. Les buffers WebGL diminuent exactement de **3 455 464 octets** en Équilibré et de **2 931 176 octets** en Qualité par rapport à C dans les vues appariées**. Les gains D revendiqués concernent surtout les allocations et le travail de sélection ; aucun gain uniforme de temps de rendu n’est déduit d’une petite variation logicielle. Le surcoût total et les scènes à faible gain restent visibles pour votre décision artistique.
+
+![Stockage logique des buffers et estimation des textures](mission-14-evidence/final/memory.png)
+
+Le relevé de mémoire distingue les tableaux retenus en scène, les buffers réellement alloués par les appels WebGL et les estimations de stockage des textures. L’instrumentation observe `bufferData/deleteBuffer` et les appels de création de stockage/mipmaps/destruction des textures **avant la création du contexte**. Les textures de profondeur 24 bits sont comptées prudemment à 4 octets par texel. Les allocations du pilote et du framebuffer par défaut sont exclues : **il ne s’agit pas de VRAM physique mesurée**. Les démarrages du benchmark sont des relevés locaux uniques jusqu’aux données prêtes, avec la boucle tenue avant la première image de mesure. Le contrôle distinct du bundle natif compilé observe **21,23 s jusqu’à sa première capture complète**, préparation, compilation et capture comprises. Ces relevés ne prédisent pas le chargement Internet ou Android.
+
+**Les packs distribués représentent **37 284 003 octets en M13**  puis **44 399 892 / 46 344 896 / 48 385 553 / 48 400 968 octets en A / B / C / D**. D ne modifie aucun pack du pilote ; il ajoute seulement les petits dérivés des fixtures synthétiques**. L’inventaire de distribution comprend les anciens packs de repli et n’est pas présenté comme le volume réellement téléchargé sur un trajet. Le manifeste et le pack lumière du pilote restent **228 051 / 2 040 657 octets** ; binaire **5 295 244 octets**. Aucune donnée LiDAR brute ne rejoint le navigateur. Les profils, les distances de caméra, les triangles, les appels, les caches et les rafraîchissements sont détaillés dans les JSON, y compris les cas où le coût augmente.
+
+[Mesures et démarrages](mission-14-evidence/final/performance-summary.json) · [Échantillons complets](mission-14-evidence/final/performance.json.gz) · [Égalité des conditions](mission-14-evidence/final/paired-conditions.json) · [Inventaire des packs](mission-14-evidence/final/pack-inventory.json).
+
+## Sources, droits et limites qui restent visibles
+
+Aucune nouvelle acquisition réelle en D. MNT IGN LiDAR HD / BD TOPO : **Licence Ouverte 2.0**, acquisition LiDAR 9 avril 2023, édition de dalle 24 janvier 2025, Lambert-93 / IGN69. OSM du pilote : 8 novembre 2026, **© OpenStreetMap contributors / ODbL 1.0**. Les géométries et détails artistiques gardent leurs termes existants. Les archives A/B ci-dessous contiennent les emprises, résolutions, transformations, sources réellement acquises, droits et écarts.
+
+Les photographies Commons restent celles de B : **Floppy36, CC BY-SA 4.0**, et les références M13 **Daniel Jolivet, CC BY 2.0**. Réduction et réencodage déclarés, aucune nouvelle transformation ni texture photographique ajoutée. Les documents patrimoniaux privés étudiés ne sont pas redistribués et ne confèrent aucun droit de modèle 3D. La galerie finale juxtapose photos et vues du moteur en signalant leurs orientations différentes et l’absence de calibration.
+
+[Crédits des références](mission-14-evidence/heritage/reference-credits.json) · [LiDAR réellement acquis pour B](mission-14-evidence/heritage/lidar-source.json) · [BD TOPO](mission-14-evidence/heritage/wfs-sources.json) · [Droits du relief](../public/data/angles-relief.LICENSE.md) · [Droits des ouvrages](../public/data/angles-landmarks.LICENSE.md) · [Droits du dérivé lumineux](../public/data/angles-lighting.LICENSE.md).
+
+Le MNT ne décrit pas les surplombs ; les ruines sont incomplètes et certaines hauteurs/épaisseurs héritées ; les profils des arches et raccords aux rives sont interprétés ; l’eau reste un contour drapé sans nouveau niveau hydrologique ; les petites feuilles, détails linéaires, faune et personnage ne deviennent pas de nouveaux casters. L’AO reste interpolée sur les sommets existants, les couronnes d’ombre grossières et mises à jour à fréquence bornée. Les voies secondaires et ponts ne sont pas rendus automatiquement éligibles à la promenade. Les plans lointains et lieux masqués peuvent montrer peu de gain. **Aucun test sur GPU physique ou téléphone Android et aucun 60 FPS ne sont revendiqués.**
+
+## Vérification et reproduction
+
+**210 tests Node réussis**, TypeScript/Vite, smoke natif (chargement, trois caméras, déplacement et arrêt sans dérive, son et mobile), bundle compilé avec quatre changements de profils et contrôle mobile, sept scénarios d’éclairage dont absence/corruption/dérivé obsolète/géométrie incompatible, parcours de départ identique après chaque chargement, neuf cycles de scènes synthétiques, 55 captures appariées des cinq étapes et 1 008 rendus de comparaison. Les contrôles de galerie, images et lecteurs sont consignés séparément. Les nouvelles scènes sont des entrées de validation sur le serveur Vite ; elles n’ajoutent pas de dépendance ni de code de fixture à l’entrée principale. Le bundle compilé principal et ses commandes natives sont également vérifiés. La CI et l’identité du dernier commit de production sont liées dans la PR après envoi. [Contrôle de galerie, 55 sélections et trois lecteurs réellement décodés](mission-14-evidence/final/gallery-validation.json) · [Bundle natif compilé et démarrage](mission-14-evidence/final/production.json).
+
+```bash
+npm ci
+npm test
+npm run build
+npm run dev -- --port 5173
+# Jeu : http://localhost:5173/endless-earth/
+# Comparatif : http://localhost:5173/endless-earth/docs/mission-14-evidence/final/index.html
+# Scènes synthétiques : http://localhost:5173/endless-earth/fixtures/remarkable.html
+node scripts/prepare-remarkable-fixtures.mjs
+node scripts/audit-remarkable-fixtures.mjs
+node scripts/browser-remarkable-fixtures.mjs
+node scripts/browser-light-checks.mjs
+```
+
+Pour les mesures, servir les checkouts propres **M13 sur 5177**, **A sur 5179**, **B sur 5181**, **C sur 5182**, puis D sur 5173 ; `scripts/lib/mission-14-final.mjs` conserve leurs commits exacts. Préparer une copie de `src`, `public`, `build`, `docs/mission-14.md`, `index.html`, `vite.config.ts`, `tsconfig.json` et `package.json` dans `work/mission-14D/frozen`, avec `node_modules` relié aux dépendances installées, et la servir sur **5184** pour les promenades. Cette copie doit rester figée ; le script contrôle les SHA avant et après l’essai.
+
+```bash
+node scripts/audit-mission-14-route.mjs
+node scripts/audit-mission-14-clearance.mjs
+node scripts/browser-mission-14-soak.mjs             # au moins 30 minutes réelles
+node scripts/browser-mission-14-castle-walk.mjs
+node scripts/publish-mission-14-final-videos.mjs     # copie VP9, Opus et durée vérifiés
+node scripts/benchmark-mission-14-final.mjs          # sans autre test graphique
+node scripts/browser-mission-14-captures.mjs
+python scripts/report-mission-14-final.py           # Pillow + Matplotlib
+node scripts/browser-mission-14-final-gallery.mjs
+node scripts/audit-mission-14-preservation.mjs
+# Avec le bundle compilé servi sur 5180 :
+node scripts/browser-light-production.mjs
+npm run test:browser
+EARTHLIFE_WAIT_WORLD=1 npm run test:build-identity
+```
+
+Le recalcul lumineux d’Angles utilise l’export réel de C dans `work/mission-14C/render-source.json.gz` ; l’archive C donne la commande d’export. Les bruts et enregistrements natifs restent dans `work/`. Les captures, vidéos, traces compressées et graphiques utiles sont seuls ajoutés aux preuves finales.
+
+## Validation artistique finale — aucune fusion avant accord
+
+1. Les falaises paraissent-elles plus fidèles ?
+2. Le château est-il davantage reconnaissable ?
+3. Le pont semble-t-il réellement construit et praticable ?
+4. Les ombres donnent-elles plus de profondeur ?
+5. La lumière reste-t-elle naturelle ?
+6. Le jeu reste-t-il fluide sur votre matériel ?
+7. Les collisions restent-elles fiables ?
+8. A-t-on davantage envie de se promener ?
+
+**Arrêt au jalon 14D. PR en brouillon ; validation explicite du propriétaire attendue.**
+
+---
+
+## Archive 14C — état livré au commit d4766f8, puis autorisé pour 14D par « Go »
+
+Le bloc suivant conserve le rapport de livraison C et ses chiffres historiques. Ses mentions « D non commencé » décrivent cette étape passée.
+
 ## 14C livré pour validation artistique — arrêt avant 14D
 
 Votre **« go » valide 14B et autorise 14C**. Le paysage reçoit maintenant un ombrage de contact précalculé et des ombres solaires proches, à partir des volumes déjà affichés. Le sous-bois suit les couronnes existantes et leur calendrier. **Le soleil, le ciel, la météo, le vent, les matériaux, les formes et les collisions gardent leurs propriétaires et leurs données.** La profondeur atmosphérique existante est conservée, sans nouveau brouillard permanent ni effet spectaculaire.

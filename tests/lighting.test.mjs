@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';import {decodeLighting,lightingPolicy,encodeLightingIndices,decodeLightingIndices} from '../src/lighting/model.mjs';import {triangleBVH,contactVisibility} from '../scripts/lib/occlusion-bvh.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';import {decodeLighting,lightingPolicy,encodeLightingIndices,decodeLightingIndices,shadowIndexCapacity} from '../src/lighting/model.mjs';import {triangleBVH,contactVisibility} from '../scripts/lib/occlusion-bvh.mjs';
 const manifest=JSON.parse(await readFile('public/data/angles-lighting.json')),bytes=gunzipSync(await readFile('public/data/angles-lighting.pack')),buffer=bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),data=decodeLighting(manifest,buffer,manifest.bindings);
 test('prepared lighting is source-bound and every ambient buffer matches its original vertex count',()=>{
  assert.equal(createHash('sha256').update(bytes).digest('hex'),manifest.binarySha256);let vertices=0;for(const g of manifest.geometry){const entry=data.geometry.get(g.positionSha256);assert.equal(entry.ao.length,g.vertices*3);assert.ok(entry.ao.every(v=>v>=105&&v<=255));vertices+=g.vertices}assert.ok(vertices>500000);assert.ok(data.cells.reduce((n,c)=>n+c.index.length/3,0)>300000);
@@ -16,4 +16,9 @@ test('contact visibility responds to actual nearby triangles and leaves open or 
 });
 test('profile budgets disable the solar target in Eco and keep higher modes within one bounded map and 256 crowns',()=>{
  assert.equal(lightingPolicy('eco').size,0);for(const name of ['balanced','quality','custom']){const p=lightingPolicy(name);assert.ok(p.size*p.size*5<=6*1024*1024);assert.ok(p.trees<=256&&p.hz<=4&&p.radius<=80)}
+});
+
+test('local shadow index capacity grows within source limits and decoded cells do not retain duplicate arrays',()=>{
+ for(const required of [0,3,4095,4097,100000,900000]){const capacity=shadowIndexCapacity(required,1000000);assert.ok(capacity>=required&&capacity<=1000000);if(required)assert.ok(capacity<=Math.max(4096,required*2))}for(const args of [[-1,10],[11,10],[1,2400001],[1.5,10]])assert.throws(()=>shadowIndexCapacity(...args));
+ const cell=data.cells.find(c=>c.indexCount>0),first=cell.index,second=cell.index;assert.deepEqual(first,second);assert.notEqual(first,second);first.fill(0);assert.deepEqual(cell.index,second);assert.equal(cell.indexCount,second.length);
 });

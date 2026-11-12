@@ -1,0 +1,1962 @@
+{
+  "rows": [
+    {
+      "scenario": "normal",
+      "startupRoute": {
+        "length": 450,
+        "points": [
+          {
+            "x": -12.277392682727118,
+            "y": 0.19599999999999795,
+            "z": -32.416383999943434
+          },
+          {
+            "x": -18.43135941299998,
+            "z": -38.63917199989373
+          },
+          {
+            "x": -31.594434652441496,
+            "z": -44.65045199974526
+          },
+          {
+            "x": -48.010102729480714,
+            "z": -52.76567999966346
+          },
+          {
+            "x": -67.05991289329494,
+            "z": -62.43938799960176
+          },
+          {
+            "x": -88.2933886710723,
+            "z": -77.79041599944378
+          },
+          {
+            "x": -122.97244188311758,
+            "z": -90.79259199952105
+          },
+          {
+            "x": -131.01230164363483,
+            "z": -99.24177999938706
+          },
+          {
+            "x": -149.58872975126897,
+            "z": -130.90118799997612
+          },
+          {
+            "x": -163.07248315779748,
+            "z": -151.48425599926412
+          },
+          {
+            "x": -182.03830618261475,
+            "z": -168.54961199936554
+          },
+          {
+            "x": -211.30400652645892,
+            "z": -184.26799599954563
+          },
+          {
+            "x": -253.0532498033101,
+            "z": -202.93635999939653
+          },
+          {
+            "x": -269.4307419080718,
+            "z": -214.97005200002064
+          },
+          {
+            "x": -297.6275150282983,
+            "z": -258.1176839996053
+          },
+          {
+            "x": -313.78358649387934,
+            "z": -276.6858599998673
+          },
+          {
+            "x": -328.9394474859304,
+            "z": -293.6844239999792
+          },
+          {
+            "x": -338.9415522212385,
+            "z": -299.8738159995392
+          },
+          {
+            "x": -337.15140628868664,
+            "z": -315.1730579613076
+          }
+        ]
+      },
+      "state": {
+        "camera": {
+          "position": [
+            -55,
+            -10.494999999999996,
+            70
+          ],
+          "quaternion": [
+            0.02277359590128961,
+            0.41219193820993777,
+            -0.01030694582510389,
+            0.910754048177782
+          ],
+          "matrix": [
+            0.6599831458849865,
+            3.469446951953614e-18,
+            -0.7512804051402888,
+            0,
+            0.03754837053824983,
+            0.9987502603949663,
+            0.03298540936398012,
+            0,
+            0.7503415002634992,
+            -0.049979169270677706,
+            0.6591583388089193,
+            0,
+            -55,
+            -10.494999999999996,
+            70,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782019991000,
+          "solar": {
+            "altitude": 0.22186825606893526,
+            "azimuth": 1.2118521521551222,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.96,
+            "mist": 0.44,
+            "wind": 0.64,
+            "rain": 0.6
+          },
+          "acousticWeather": {
+            "cloud": 0.96,
+            "mist": 0.44,
+            "wind": 0.5715397424433157,
+            "rain": 0.6,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.5088737316046549,
+            "z": -0.26051609921006424,
+            "speed": 0.5715397424433157,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 2894,
+            "commandRevision": 13,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "morning",
+          "mode": "morning",
+          "date": "2026-06-21T05:33:11.000Z",
+          "localTime": "21 juin, 07:33",
+          "localHour": 7.553055555555555,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "rain",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.64,
+          "starVisibility": 0,
+          "rainDrops": 520
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 67840,
+          "treeInstances": 7,
+          "updates": 10,
+          "lastUpdateCpuMs": 1.800000000745058,
+          "maxUpdateCpuMs": 41.80000000074506,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 68260,
+          "extraPasses": 1,
+          "selectionBuilds": 8,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5295244,
+          "filter": "receiver-plane-pcf"
+        },
+        "gpu": {
+          "geometries": 345,
+          "textures": 11,
+          "programs": 24
+        },
+        "memory": {
+          "geometryBytes": 48283700,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 757
+        },
+        "terrain": {
+          "preparationMs": 4,
+          "tiles": 25,
+          "fineTriangles": 130397,
+          "farTriangles": 121373,
+          "farTiles": 17,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "walkable": true,
+        "sun": {
+          "direction": [
+            0.9133184701019614,
+            0.22005246750048843,
+            -0.3426751869008893
+          ],
+          "intensity": 0.0903236160201205
+        },
+        "hemisphere": 0.8683788672508194,
+        "shadowMap": false
+      },
+      "checks": [
+        {
+          "cachedWindRefresh": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 512,
+            "shadowBytes": 1310720,
+            "staticTriangles": 1680,
+            "treeInstances": 93,
+            "updates": 3,
+            "lastUpdateCpuMs": 0.3999999985098839,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 7260,
+            "extraPasses": 1,
+            "selectionBuilds": 1,
+            "shadowIndexBytes": 32768,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          }
+        },
+        {
+          "profile": "quality",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 1024,
+            "shadowBytes": 5242880,
+            "staticTriangles": 48019,
+            "treeInstances": 14,
+            "updates": 4,
+            "lastUpdateCpuMs": 2.899999998509884,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 48859,
+            "extraPasses": 1,
+            "selectionBuilds": 2,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 208,
+            "textures": 11,
+            "programs": 14
+          }
+        },
+        {
+          "profile": "eco",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 0,
+            "shadowBytes": 0,
+            "staticTriangles": 48019,
+            "treeInstances": 14,
+            "updates": 4,
+            "lastUpdateCpuMs": 2.899999998509884,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 48859,
+            "extraPasses": 0,
+            "selectionBuilds": 2,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 210,
+            "textures": 9,
+            "programs": 20
+          }
+        },
+        {
+          "profile": "balanced",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 512,
+            "shadowBytes": 1310720,
+            "staticTriangles": 40085,
+            "treeInstances": 10,
+            "updates": 5,
+            "lastUpdateCpuMs": 1.6000000014901161,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 40685,
+            "extraPasses": 1,
+            "selectionBuilds": 3,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 210,
+            "textures": 11,
+            "programs": 20
+          }
+        },
+        {
+          "profile": "quality",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 1024,
+            "shadowBytes": 5242880,
+            "staticTriangles": 47551,
+            "treeInstances": 18,
+            "updates": 6,
+            "lastUpdateCpuMs": 1.800000000745058,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 48631,
+            "extraPasses": 1,
+            "selectionBuilds": 4,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 286,
+            "textures": 11,
+            "programs": 20
+          }
+        },
+        {
+          "profile": "eco",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 0,
+            "shadowBytes": 0,
+            "staticTriangles": 47551,
+            "treeInstances": 18,
+            "updates": 6,
+            "lastUpdateCpuMs": 1.800000000745058,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 48631,
+            "extraPasses": 0,
+            "selectionBuilds": 4,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 287,
+            "textures": 9,
+            "programs": 20
+          }
+        },
+        {
+          "profile": "balanced",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 512,
+            "shadowBytes": 1310720,
+            "staticTriangles": 30538,
+            "treeInstances": 12,
+            "updates": 7,
+            "lastUpdateCpuMs": 1.5,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 31258,
+            "extraPasses": 1,
+            "selectionBuilds": 5,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 287,
+            "textures": 11,
+            "programs": 20
+          }
+        },
+        {
+          "profile": "quality",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 1024,
+            "shadowBytes": 5242880,
+            "staticTriangles": 44331,
+            "treeInstances": 18,
+            "updates": 8,
+            "lastUpdateCpuMs": 2,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 45411,
+            "extraPasses": 1,
+            "selectionBuilds": 6,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 291,
+            "textures": 11,
+            "programs": 20
+          }
+        },
+        {
+          "profile": "eco",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 0,
+            "shadowBytes": 0,
+            "staticTriangles": 44331,
+            "treeInstances": 18,
+            "updates": 8,
+            "lastUpdateCpuMs": 2,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 45411,
+            "extraPasses": 0,
+            "selectionBuilds": 6,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 291,
+            "textures": 9,
+            "programs": 20
+          }
+        },
+        {
+          "profile": "balanced",
+          "lighting": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 529724,
+            "shadowSize": 512,
+            "shadowBytes": 1310720,
+            "staticTriangles": 38090,
+            "treeInstances": 12,
+            "updates": 9,
+            "lastUpdateCpuMs": 1.699999999254942,
+            "maxUpdateCpuMs": 41.80000000074506,
+            "lastShadowCalls": 2,
+            "lastShadowTriangles": 38810,
+            "extraPasses": 1,
+            "selectionBuilds": 7,
+            "shadowIndexBytes": 1048576,
+            "sourceBytes": 5295244,
+            "filter": "receiver-plane-pcf"
+          },
+          "gpu": {
+            "geometries": 291,
+            "textures": 11,
+            "programs": 20
+          }
+        },
+        {
+          "night": {
+            "camera": {
+              "position": [
+                -426.72308821603656,
+                8.484994513228523,
+                346.51291632745415
+              ],
+              "quaternion": [
+                -0.09223405030067897,
+                0.38077160918615593,
+                0.03820459454714347,
+                0.9192639830638452
+              ],
+              "matrix": [
+                0.7071067811865475,
+                -2.7755575615628914e-17,
+                -0.7071067811865476,
+                0,
+                -0.1404804310189855,
+                0.9800665778412404,
+                -0.14048043101898547,
+                0,
+                0.6930117232058345,
+                0.1986693307950673,
+                0.6930117232058344,
+                0,
+                -426.72308821603656,
+                8.484994513228523,
+                346.51291632745415,
+                1
+              ],
+              "fov": 55
+            },
+            "climate": {
+              "worldTimeMs": 1782083323400,
+              "solar": {
+                "altitude": -0.33428450333506726,
+                "azimuth": 6.075049611942648,
+                "month": 6
+              },
+              "weather": {
+                "cloud": 0.16,
+                "mist": 0,
+                "wind": 0.24,
+                "rain": 0
+              },
+              "acousticWeather": {
+                "cloud": 0.16,
+                "mist": 0,
+                "wind": 0.21834729938753936,
+                "rain": 0,
+                "gust": 0.003519524448001316
+              },
+              "wind": {
+                "x": 0.19625398433819224,
+                "z": -0.09610368811034707,
+                "speed": 0.21834729938753936,
+                "gust": 0.003519524448001316
+              },
+              "transition": {
+                "revision": 2652,
+                "commandRevision": 11,
+                "manual": false
+              },
+              "simulation": true,
+              "moment": "night",
+              "mode": "night",
+              "date": "2026-06-21T23:08:43.400Z",
+              "localTime": "22 juin, 01:08",
+              "localHour": 1.1452777777777778,
+              "season": "summer",
+              "timeZone": "Europe/Paris",
+              "polar": null,
+              "targetWeather": "clear",
+              "weatherTau": 45,
+              "effectiveMeanWind": 0.24,
+              "starVisibility": 1,
+              "rainDrops": 0
+            },
+            "lighting": {
+              "state": "ready",
+              "mode": "local",
+              "matchedGeometry": 287,
+              "ambientVertices": 529724,
+              "shadowSize": 512,
+              "shadowBytes": 1310720,
+              "staticTriangles": 38090,
+              "treeInstances": 12,
+              "updates": 9,
+              "lastUpdateCpuMs": 1.699999999254942,
+              "maxUpdateCpuMs": 41.80000000074506,
+              "lastShadowCalls": 2,
+              "lastShadowTriangles": 38810,
+              "extraPasses": 0,
+              "selectionBuilds": 7,
+              "shadowIndexBytes": 1048576,
+              "sourceBytes": 5295244,
+              "filter": "receiver-plane-pcf"
+            },
+            "gpu": {
+              "geometries": 288,
+              "textures": 11,
+              "programs": 24
+            },
+            "memory": {
+              "geometryBytes": 38501300,
+              "terrainTextureBytesWithMipmaps": 11810474.666666666,
+              "roadTextureBytesWithMipmaps": 6477141.333333333,
+              "geometries": 753
+            },
+            "terrain": {
+              "preparationMs": 4,
+              "tiles": 25,
+              "fineTriangles": 130397,
+              "farTriangles": 121373,
+              "farTiles": 17,
+              "maxFarErrorM": 0.25,
+              "surface": "integrated",
+              "water": "mapped-outline-dem-drape-v1",
+              "reliefCells": 330
+            },
+            "walkable": true,
+            "sun": {
+              "direction": [
+                -0.1951979068169563,
+                -0.3280933633503899,
+                -0.9242578223091801
+              ],
+              "intensity": 0
+            },
+            "hemisphere": 0.052008,
+            "shadowMap": false
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "scenario": "off",
+      "startupRoute": {
+        "length": 450,
+        "points": [
+          {
+            "x": -12.277392682727118,
+            "y": 0.19599999999999795,
+            "z": -32.416383999943434
+          },
+          {
+            "x": -18.43135941299998,
+            "z": -38.63917199989373
+          },
+          {
+            "x": -31.594434652441496,
+            "z": -44.65045199974526
+          },
+          {
+            "x": -48.010102729480714,
+            "z": -52.76567999966346
+          },
+          {
+            "x": -67.05991289329494,
+            "z": -62.43938799960176
+          },
+          {
+            "x": -88.2933886710723,
+            "z": -77.79041599944378
+          },
+          {
+            "x": -122.97244188311758,
+            "z": -90.79259199952105
+          },
+          {
+            "x": -131.01230164363483,
+            "z": -99.24177999938706
+          },
+          {
+            "x": -149.58872975126897,
+            "z": -130.90118799997612
+          },
+          {
+            "x": -163.07248315779748,
+            "z": -151.48425599926412
+          },
+          {
+            "x": -182.03830618261475,
+            "z": -168.54961199936554
+          },
+          {
+            "x": -211.30400652645892,
+            "z": -184.26799599954563
+          },
+          {
+            "x": -253.0532498033101,
+            "z": -202.93635999939653
+          },
+          {
+            "x": -269.4307419080718,
+            "z": -214.97005200002064
+          },
+          {
+            "x": -297.6275150282983,
+            "z": -258.1176839996053
+          },
+          {
+            "x": -313.78358649387934,
+            "z": -276.6858599998673
+          },
+          {
+            "x": -328.9394474859304,
+            "z": -293.6844239999792
+          },
+          {
+            "x": -338.9415522212385,
+            "z": -299.8738159995392
+          },
+          {
+            "x": -337.15140628868664,
+            "z": -315.1730579613076
+          }
+        ]
+      },
+      "state": {
+        "camera": {
+          "position": [
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415
+          ],
+          "quaternion": [
+            -0.09223405030067897,
+            0.38077160918615593,
+            0.03820459454714347,
+            0.9192639830638452
+          ],
+          "matrix": [
+            0.7071067811865475,
+            -2.7755575615628914e-17,
+            -0.7071067811865476,
+            0,
+            -0.1404804310189855,
+            0.9800665778412404,
+            -0.14048043101898547,
+            0,
+            0.6930117232058345,
+            0.1986693307950673,
+            0.6930117232058344,
+            0,
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17286413218749816,
+            "rain": 0,
+            "gust": 0.056617169982610537
+          },
+          "wind": {
+            "x": 0.16176079315257452,
+            "z": -0.0642504332979732,
+            "speed": 0.17286413218749816,
+            "gust": 0.056617169982610537
+          },
+          "transition": {
+            "revision": 241,
+            "commandRevision": 1,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "lighting": {
+          "state": "disabled",
+          "mode": "off",
+          "matchedGeometry": 0,
+          "ambientVertices": 0,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 0,
+          "filter": "none"
+        },
+        "gpu": {
+          "geometries": 55,
+          "textures": 9,
+          "programs": 10
+        },
+        "memory": {
+          "geometryBytes": 32003072,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 745
+        },
+        "terrain": {
+          "preparationMs": 3.2999999970197678,
+          "tiles": 25,
+          "fineTriangles": 130397,
+          "farTriangles": 121373,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "walkable": true,
+        "sun": {
+          "direction": [
+            -0.45927882380010265,
+            0.8332233526071583,
+            0.3078990202629454
+          ],
+          "intensity": 1.8064282284523192
+        },
+        "hemisphere": 1.470408,
+        "shadowMap": false
+      },
+      "checks": [],
+      "warnings": []
+    },
+    {
+      "scenario": "ao-only",
+      "startupRoute": {
+        "length": 450,
+        "points": [
+          {
+            "x": -12.277392682727118,
+            "y": 0.19599999999999795,
+            "z": -32.416383999943434
+          },
+          {
+            "x": -18.43135941299998,
+            "z": -38.63917199989373
+          },
+          {
+            "x": -31.594434652441496,
+            "z": -44.65045199974526
+          },
+          {
+            "x": -48.010102729480714,
+            "z": -52.76567999966346
+          },
+          {
+            "x": -67.05991289329494,
+            "z": -62.43938799960176
+          },
+          {
+            "x": -88.2933886710723,
+            "z": -77.79041599944378
+          },
+          {
+            "x": -122.97244188311758,
+            "z": -90.79259199952105
+          },
+          {
+            "x": -131.01230164363483,
+            "z": -99.24177999938706
+          },
+          {
+            "x": -149.58872975126897,
+            "z": -130.90118799997612
+          },
+          {
+            "x": -163.07248315779748,
+            "z": -151.48425599926412
+          },
+          {
+            "x": -182.03830618261475,
+            "z": -168.54961199936554
+          },
+          {
+            "x": -211.30400652645892,
+            "z": -184.26799599954563
+          },
+          {
+            "x": -253.0532498033101,
+            "z": -202.93635999939653
+          },
+          {
+            "x": -269.4307419080718,
+            "z": -214.97005200002064
+          },
+          {
+            "x": -297.6275150282983,
+            "z": -258.1176839996053
+          },
+          {
+            "x": -313.78358649387934,
+            "z": -276.6858599998673
+          },
+          {
+            "x": -328.9394474859304,
+            "z": -293.6844239999792
+          },
+          {
+            "x": -338.9415522212385,
+            "z": -299.8738159995392
+          },
+          {
+            "x": -337.15140628868664,
+            "z": -315.1730579613076
+          }
+        ]
+      },
+      "state": {
+        "camera": {
+          "position": [
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415
+          ],
+          "quaternion": [
+            -0.09223405030067897,
+            0.38077160918615593,
+            0.03820459454714347,
+            0.9192639830638452
+          ],
+          "matrix": [
+            0.7071067811865475,
+            -2.7755575615628914e-17,
+            -0.7071067811865476,
+            0,
+            -0.1404804310189855,
+            0.9800665778412404,
+            -0.14048043101898547,
+            0,
+            0.6930117232058345,
+            0.1986693307950673,
+            0.6930117232058344,
+            0,
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17286413218749816,
+            "rain": 0,
+            "gust": 0.056617169982610537
+          },
+          "wind": {
+            "x": 0.16176079315257452,
+            "z": -0.0642504332979732,
+            "speed": 0.17286413218749816,
+            "gust": 0.056617169982610537
+          },
+          "transition": {
+            "revision": 241,
+            "commandRevision": 1,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "ao",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 5295244,
+          "filter": "none"
+        },
+        "gpu": {
+          "geometries": 55,
+          "textures": 9,
+          "programs": 10
+        },
+        "memory": {
+          "geometryBytes": 33592244,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 745
+        },
+        "terrain": {
+          "preparationMs": 2.899999998509884,
+          "tiles": 25,
+          "fineTriangles": 130397,
+          "farTriangles": 121373,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "walkable": true,
+        "sun": {
+          "direction": [
+            -0.45927882380010265,
+            0.8332233526071583,
+            0.3078990202629454
+          ],
+          "intensity": 1.8064282284523192
+        },
+        "hemisphere": 1.470408,
+        "shadowMap": false
+      },
+      "checks": [],
+      "warnings": []
+    },
+    {
+      "scenario": "absent",
+      "startupRoute": {
+        "length": 450,
+        "points": [
+          {
+            "x": -12.277392682727118,
+            "y": 0.19599999999999795,
+            "z": -32.416383999943434
+          },
+          {
+            "x": -18.43135941299998,
+            "z": -38.63917199989373
+          },
+          {
+            "x": -31.594434652441496,
+            "z": -44.65045199974526
+          },
+          {
+            "x": -48.010102729480714,
+            "z": -52.76567999966346
+          },
+          {
+            "x": -67.05991289329494,
+            "z": -62.43938799960176
+          },
+          {
+            "x": -88.2933886710723,
+            "z": -77.79041599944378
+          },
+          {
+            "x": -122.97244188311758,
+            "z": -90.79259199952105
+          },
+          {
+            "x": -131.01230164363483,
+            "z": -99.24177999938706
+          },
+          {
+            "x": -149.58872975126897,
+            "z": -130.90118799997612
+          },
+          {
+            "x": -163.07248315779748,
+            "z": -151.48425599926412
+          },
+          {
+            "x": -182.03830618261475,
+            "z": -168.54961199936554
+          },
+          {
+            "x": -211.30400652645892,
+            "z": -184.26799599954563
+          },
+          {
+            "x": -253.0532498033101,
+            "z": -202.93635999939653
+          },
+          {
+            "x": -269.4307419080718,
+            "z": -214.97005200002064
+          },
+          {
+            "x": -297.6275150282983,
+            "z": -258.1176839996053
+          },
+          {
+            "x": -313.78358649387934,
+            "z": -276.6858599998673
+          },
+          {
+            "x": -328.9394474859304,
+            "z": -293.6844239999792
+          },
+          {
+            "x": -338.9415522212385,
+            "z": -299.8738159995392
+          },
+          {
+            "x": -337.15140628868664,
+            "z": -315.1730579613076
+          }
+        ]
+      },
+      "state": {
+        "camera": {
+          "position": [
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415
+          ],
+          "quaternion": [
+            -0.09223405030067897,
+            0.38077160918615593,
+            0.03820459454714347,
+            0.9192639830638452
+          ],
+          "matrix": [
+            0.7071067811865475,
+            -2.7755575615628914e-17,
+            -0.7071067811865476,
+            0,
+            -0.1404804310189855,
+            0.9800665778412404,
+            -0.14048043101898547,
+            0,
+            0.6930117232058345,
+            0.1986693307950673,
+            0.6930117232058344,
+            0,
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17286413218749816,
+            "rain": 0,
+            "gust": 0.056617169982610537
+          },
+          "wind": {
+            "x": 0.16176079315257452,
+            "z": -0.0642504332979732,
+            "speed": 0.17286413218749816,
+            "gust": 0.056617169982610537
+          },
+          "transition": {
+            "revision": 241,
+            "commandRevision": 1,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "lighting": {
+          "state": "fallback",
+          "mode": "local",
+          "matchedGeometry": 0,
+          "ambientVertices": 0,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 0,
+          "filter": "none"
+        },
+        "gpu": {
+          "geometries": 55,
+          "textures": 9,
+          "programs": 10
+        },
+        "memory": {
+          "geometryBytes": 32003072,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 745
+        },
+        "terrain": {
+          "preparationMs": 2.899999998509884,
+          "tiles": 25,
+          "fineTriangles": 130397,
+          "farTriangles": 121373,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "walkable": true,
+        "sun": {
+          "direction": [
+            -0.45927882380010265,
+            0.8332233526071583,
+            0.3078990202629454
+          ],
+          "intensity": 1.8064282284523192
+        },
+        "hemisphere": 1.470408,
+        "shadowMap": false
+      },
+      "checks": [],
+      "warnings": [
+        "Local lighting unavailable; Mission 14B lighting retained TypeError: Cannot read properties of null (reading 'binarySha256')\n    at Object.install (http://localhost:5173/endless-earth/src/lighting/runtime.ts?t=1794485608327:41:42)"
+      ]
+    },
+    {
+      "scenario": "corrupt",
+      "startupRoute": {
+        "length": 450,
+        "points": [
+          {
+            "x": -12.277392682727118,
+            "y": 0.19599999999999795,
+            "z": -32.416383999943434
+          },
+          {
+            "x": -18.43135941299998,
+            "z": -38.63917199989373
+          },
+          {
+            "x": -31.594434652441496,
+            "z": -44.65045199974526
+          },
+          {
+            "x": -48.010102729480714,
+            "z": -52.76567999966346
+          },
+          {
+            "x": -67.05991289329494,
+            "z": -62.43938799960176
+          },
+          {
+            "x": -88.2933886710723,
+            "z": -77.79041599944378
+          },
+          {
+            "x": -122.97244188311758,
+            "z": -90.79259199952105
+          },
+          {
+            "x": -131.01230164363483,
+            "z": -99.24177999938706
+          },
+          {
+            "x": -149.58872975126897,
+            "z": -130.90118799997612
+          },
+          {
+            "x": -163.07248315779748,
+            "z": -151.48425599926412
+          },
+          {
+            "x": -182.03830618261475,
+            "z": -168.54961199936554
+          },
+          {
+            "x": -211.30400652645892,
+            "z": -184.26799599954563
+          },
+          {
+            "x": -253.0532498033101,
+            "z": -202.93635999939653
+          },
+          {
+            "x": -269.4307419080718,
+            "z": -214.97005200002064
+          },
+          {
+            "x": -297.6275150282983,
+            "z": -258.1176839996053
+          },
+          {
+            "x": -313.78358649387934,
+            "z": -276.6858599998673
+          },
+          {
+            "x": -328.9394474859304,
+            "z": -293.6844239999792
+          },
+          {
+            "x": -338.9415522212385,
+            "z": -299.8738159995392
+          },
+          {
+            "x": -337.15140628868664,
+            "z": -315.1730579613076
+          }
+        ]
+      },
+      "state": {
+        "camera": {
+          "position": [
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415
+          ],
+          "quaternion": [
+            -0.09223405030067897,
+            0.38077160918615593,
+            0.03820459454714347,
+            0.9192639830638452
+          ],
+          "matrix": [
+            0.7071067811865475,
+            -2.7755575615628914e-17,
+            -0.7071067811865476,
+            0,
+            -0.1404804310189855,
+            0.9800665778412404,
+            -0.14048043101898547,
+            0,
+            0.6930117232058345,
+            0.1986693307950673,
+            0.6930117232058344,
+            0,
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17286413218749816,
+            "rain": 0,
+            "gust": 0.056617169982610537
+          },
+          "wind": {
+            "x": 0.16176079315257452,
+            "z": -0.0642504332979732,
+            "speed": 0.17286413218749816,
+            "gust": 0.056617169982610537
+          },
+          "transition": {
+            "revision": 241,
+            "commandRevision": 1,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "lighting": {
+          "state": "fallback",
+          "mode": "local",
+          "matchedGeometry": 0,
+          "ambientVertices": 0,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 0,
+          "filter": "none"
+        },
+        "gpu": {
+          "geometries": 55,
+          "textures": 9,
+          "programs": 10
+        },
+        "memory": {
+          "geometryBytes": 32003072,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 745
+        },
+        "terrain": {
+          "preparationMs": 2.900000002235174,
+          "tiles": 25,
+          "fineTriangles": 130397,
+          "farTriangles": 121373,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "walkable": true,
+        "sun": {
+          "direction": [
+            -0.45927882380010265,
+            0.8332233526071583,
+            0.3078990202629454
+          ],
+          "intensity": 1.8064282284523192
+        },
+        "hemisphere": 1.470408,
+        "shadowMap": false
+      },
+      "checks": [],
+      "warnings": [
+        "Local lighting unavailable; Mission 14B lighting retained TypeError: Failed to fetch"
+      ]
+    },
+    {
+      "scenario": "stale",
+      "startupRoute": {
+        "length": 450,
+        "points": [
+          {
+            "x": -12.277392682727118,
+            "y": 0.19599999999999795,
+            "z": -32.416383999943434
+          },
+          {
+            "x": -18.43135941299998,
+            "z": -38.63917199989373
+          },
+          {
+            "x": -31.594434652441496,
+            "z": -44.65045199974526
+          },
+          {
+            "x": -48.010102729480714,
+            "z": -52.76567999966346
+          },
+          {
+            "x": -67.05991289329494,
+            "z": -62.43938799960176
+          },
+          {
+            "x": -88.2933886710723,
+            "z": -77.79041599944378
+          },
+          {
+            "x": -122.97244188311758,
+            "z": -90.79259199952105
+          },
+          {
+            "x": -131.01230164363483,
+            "z": -99.24177999938706
+          },
+          {
+            "x": -149.58872975126897,
+            "z": -130.90118799997612
+          },
+          {
+            "x": -163.07248315779748,
+            "z": -151.48425599926412
+          },
+          {
+            "x": -182.03830618261475,
+            "z": -168.54961199936554
+          },
+          {
+            "x": -211.30400652645892,
+            "z": -184.26799599954563
+          },
+          {
+            "x": -253.0532498033101,
+            "z": -202.93635999939653
+          },
+          {
+            "x": -269.4307419080718,
+            "z": -214.97005200002064
+          },
+          {
+            "x": -297.6275150282983,
+            "z": -258.1176839996053
+          },
+          {
+            "x": -313.78358649387934,
+            "z": -276.6858599998673
+          },
+          {
+            "x": -328.9394474859304,
+            "z": -293.6844239999792
+          },
+          {
+            "x": -338.9415522212385,
+            "z": -299.8738159995392
+          },
+          {
+            "x": -337.15140628868664,
+            "z": -315.1730579613076
+          }
+        ]
+      },
+      "state": {
+        "camera": {
+          "position": [
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415
+          ],
+          "quaternion": [
+            -0.09223405030067897,
+            0.38077160918615593,
+            0.03820459454714347,
+            0.9192639830638452
+          ],
+          "matrix": [
+            0.7071067811865475,
+            -2.7755575615628914e-17,
+            -0.7071067811865476,
+            0,
+            -0.1404804310189855,
+            0.9800665778412404,
+            -0.14048043101898547,
+            0,
+            0.6930117232058345,
+            0.1986693307950673,
+            0.6930117232058344,
+            0,
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17286413218749816,
+            "rain": 0,
+            "gust": 0.056617169982610537
+          },
+          "wind": {
+            "x": 0.16176079315257452,
+            "z": -0.0642504332979732,
+            "speed": 0.17286413218749816,
+            "gust": 0.056617169982610537
+          },
+          "transition": {
+            "revision": 241,
+            "commandRevision": 1,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "lighting": {
+          "state": "fallback",
+          "mode": "local",
+          "matchedGeometry": 0,
+          "ambientVertices": 0,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 0,
+          "filter": "none"
+        },
+        "gpu": {
+          "geometries": 55,
+          "textures": 9,
+          "programs": 10
+        },
+        "memory": {
+          "geometryBytes": 32003072,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 745
+        },
+        "terrain": {
+          "preparationMs": 3.099999997764826,
+          "tiles": 25,
+          "fineTriangles": 130397,
+          "farTriangles": 121373,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "walkable": true,
+        "sun": {
+          "direction": [
+            -0.45927882380010265,
+            0.8332233526071583,
+            0.3078990202629454
+          ],
+          "intensity": 1.8064282284523192
+        },
+        "hemisphere": 1.470408,
+        "shadowMap": false
+      },
+      "checks": [],
+      "warnings": [
+        "Local lighting unavailable; Mission 14B lighting retained Error: Invalid or stale lighting\n    at decodeLighting (http://localhost:5173/endless-earth/src/lighting/model.mjs?t=1794484675210:3:339)\n    at Object.install (http://localhost:5173/endless-earth/src/lighting/runtime.ts?t=1794485608327:42:22)"
+      ]
+    },
+    {
+      "scenario": "no-compatible-mesh",
+      "startupRoute": {
+        "length": 450,
+        "points": [
+          {
+            "x": -12.277392682727118,
+            "y": 0.19599999999999795,
+            "z": -32.416383999943434
+          },
+          {
+            "x": -18.43135941299998,
+            "z": -38.63917199989373
+          },
+          {
+            "x": -31.594434652441496,
+            "z": -44.65045199974526
+          },
+          {
+            "x": -48.010102729480714,
+            "z": -52.76567999966346
+          },
+          {
+            "x": -67.05991289329494,
+            "z": -62.43938799960176
+          },
+          {
+            "x": -88.2933886710723,
+            "z": -77.79041599944378
+          },
+          {
+            "x": -122.97244188311758,
+            "z": -90.79259199952105
+          },
+          {
+            "x": -131.01230164363483,
+            "z": -99.24177999938706
+          },
+          {
+            "x": -149.58872975126897,
+            "z": -130.90118799997612
+          },
+          {
+            "x": -163.07248315779748,
+            "z": -151.48425599926412
+          },
+          {
+            "x": -182.03830618261475,
+            "z": -168.54961199936554
+          },
+          {
+            "x": -211.30400652645892,
+            "z": -184.26799599954563
+          },
+          {
+            "x": -253.0532498033101,
+            "z": -202.93635999939653
+          },
+          {
+            "x": -269.4307419080718,
+            "z": -214.97005200002064
+          },
+          {
+            "x": -297.6275150282983,
+            "z": -258.1176839996053
+          },
+          {
+            "x": -313.78358649387934,
+            "z": -276.6858599998673
+          },
+          {
+            "x": -328.9394474859304,
+            "z": -293.6844239999792
+          },
+          {
+            "x": -338.9415522212385,
+            "z": -299.8738159995392
+          },
+          {
+            "x": -337.15140628868664,
+            "z": -315.1730579613076
+          }
+        ]
+      },
+      "state": {
+        "camera": {
+          "position": [
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415
+          ],
+          "quaternion": [
+            -0.09223405030067897,
+            0.38077160918615593,
+            0.03820459454714347,
+            0.9192639830638452
+          ],
+          "matrix": [
+            0.7071067811865475,
+            -2.7755575615628914e-17,
+            -0.7071067811865476,
+            0,
+            -0.1404804310189855,
+            0.9800665778412404,
+            -0.14048043101898547,
+            0,
+            0.6930117232058345,
+            0.1986693307950673,
+            0.6930117232058344,
+            0,
+            -426.72308821603656,
+            8.484994513228523,
+            346.51291632745415,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17286413218749816,
+            "rain": 0,
+            "gust": 0.056617169982610537
+          },
+          "wind": {
+            "x": 0.16176079315257452,
+            "z": -0.0642504332979732,
+            "speed": 0.17286413218749816,
+            "gust": 0.056617169982610537
+          },
+          "transition": {
+            "revision": 241,
+            "commandRevision": 1,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "lighting": {
+          "state": "fallback",
+          "mode": "local",
+          "matchedGeometry": 0,
+          "ambientVertices": 0,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 0,
+          "filter": "none"
+        },
+        "gpu": {
+          "geometries": 55,
+          "textures": 9,
+          "programs": 10
+        },
+        "memory": {
+          "geometryBytes": 32003072,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 745
+        },
+        "terrain": {
+          "preparationMs": 2.7999999970197678,
+          "tiles": 25,
+          "fineTriangles": 130397,
+          "farTriangles": 121373,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "walkable": true,
+        "sun": {
+          "direction": [
+            -0.45927882380010265,
+            0.8332233526071583,
+            0.3078990202629454
+          ],
+          "intensity": 1.8064282284523192
+        },
+        "hemisphere": 1.470408,
+        "shadowMap": false
+      },
+      "checks": [],
+      "warnings": [
+        "Local lighting unavailable; Mission 14B lighting retained Error: No compatible lighting receivers\n    at Object.install (http://localhost:5173/endless-earth/src/lighting/runtime.ts?t=1794485608327:61:43)"
+      ]
+    }
+  ]
+}
