@@ -40,6 +40,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  const selects=controls.querySelectorAll('select');selects[0].value=moment;selects[0].onchange=()=>chooseMoment(selects[0].value);selects[1].value=weatherKey;selects[1].onchange=()=>{command();weatherKey=selects[1].value;target=weatherTarget(weatherKey);weatherTau=.65;persist()};
  if(params.has('perf')){const secondary=document.createElement('button');secondary.type='button';secondary.textContent='Diagnostic : horloge ×72';secondary.onclick=()=>{demo=!demo;fromTime=effectiveTime;secondary.setAttribute('aria-pressed',String(demo))};controls.append(secondary)}
  const atmosphere=createAtmosphere(scene),cloudLayer=createCloudLayer(scene),rain=createPrecipitation(scene),snow=createSnowWeather(scene,site.lat),budget=new WorldLifeBudget(lifeSettings.profile),fauna=createFauna(scene,budget,height),events=createMicroEvents(scene,budget);
+ const previousLifeBudget=scene.userData.lifeBudget;scene.userData.lifeBudget=budget;
  let lifeRevision=-1,cpuElapsed=Infinity,calm=0,stamp=-1;const localWind={x:0,z:0,speed:0,gust:0},rainWind=new THREE.Vector2(),sunDirection=new THREE.Vector3();
  const hourFormat=new Intl.DateTimeFormat('en-GB',{timeZone:site.timeZone??'UTC',hourCycle:'h23',hour:'2-digit',minute:'2-digit',second:'2-digit'});
  const dateFormat=new Intl.DateTimeFormat('fr-FR',{timeZone:site.timeZone??'UTC',hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'}),horizon=new THREE.Color(),zenith=new THREE.Color();
@@ -97,5 +98,5 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   environment.transition.revision++;environment.transition.commandRevision=commandRevision;environment.transition.manual=commandAge<3.5;
   if(Math.floor(elapsed*2)!==stamp){stamp=Math.floor(elapsed*2);status.textContent=`${MOMENTS[moment]} · ${localTime} (${site.timeZone??'UTC'})${selected.polar==='polar-day'?' · soleil de minuit':selected.polar==='polar-night'?' · nuit polaire':''}${weatherKey==='snow'&&['fallback','unavailable'].includes(scene.userData.snow?.exposure)?' · neige visuelle indisponible':''}`;}
  };
- return Object.assign(update,{dispose(){if(scene.userData.acousticClimate===environment)scene.userData.acousticClimate=previousAcousticClimate;scene.userData.climate=previousClimate;lifecycle.abort();atmosphere.dispose();cloudLayer.dispose();rain.dispose();snow.dispose();fauna.dispose();events.dispose();budget.clear();controls.remove()}});
+ return Object.assign(update,{dispose(){if(scene.userData.lifeBudget===budget)scene.userData.lifeBudget=previousLifeBudget;if(scene.userData.acousticClimate===environment)scene.userData.acousticClimate=previousAcousticClimate;scene.userData.climate=previousClimate;lifecycle.abort();atmosphere.dispose();cloudLayer.dispose();rain.dispose();snow.dispose();fauna.dispose();events.dispose();budget.clear();controls.remove()}});
 }

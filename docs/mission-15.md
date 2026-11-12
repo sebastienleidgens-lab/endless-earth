@@ -1,106 +1,113 @@
 # Mission 15 — Un monde vivant, généreux et immersif
 
-## 15C livré pour validation — arrêt avant 15D
+## Mission 15 complète — proposée à la validation artistique finale
 
-**Un promeneur articulé, un écran dégagé et un départ aléatoire pour chaque visiteur.** Le « go » du propriétaire valide 15B et autorise 15C. **15D n’est pas commencé**. Branche `mission/15-monde-vivant-immersif`, [PR brouillon #24](https://github.com/sebastienleidgens-lab/endless-earth/pull/24), référence **`acf05c3ae66e7cfab391998bc93a774ed462d412`**. Budget supplémentaire **0 €** ; aucune fusion, mise en ligne, modification de GitHub Pages ou Living Paintings / LP-01.
+**Un village plus généreux, un ciel vivant, une promenade dégagée et quelques signes de vie discrets.** Les « Go » du propriétaire ont accepté 15A, 15B puis 15C et autorisé 15D. Les quatre jalons sont livrés dans la [PR brouillon #24](https://github.com/sebastienleidgens-lab/endless-earth/pull/24), branche `mission/15-monde-vivant-immersif`. **Arrêt pour revue finale ; aucune fusion, aucun déploiement, aucune modification de GitHub Pages ou Living Paintings / LP-01. Budget supplémentaire : 0 €.**
 
-[Galerie locale avec films](mission-15-evidence/walker-menu/index.html) · [Planche avant/après](mission-15-evidence/walker-menu/comparison.jpg) · [Rapport historique 15B](mission-15b.md) · [15A](mission-15a.md).
+[Galerie et six films natifs](mission-15-evidence/signs-life/index.html) · [Planche M14 / M15](mission-15-evidence/signs-life/comparison.jpg) · [Historique 15A](mission-15a.md) · [15B](mission-15b.md) · [15C](mission-15c.md).
 
-![Personnage et interface avant/après, mêmes poses](mission-15-evidence/walker-menu/comparison.jpg)
+![Comparaisons réelles Mission 14 et Mission 15](mission-15-evidence/signs-life/comparison.jpg)
 
-## Une silhouette humaine et des articulations
+## Ce qui reste des quatre jalons
 
-Les six maillages du personnage en capsules sont remplacés par **un maillage skinné original, 16 os, 1 936 triangles, un matériau à couleurs de sommets** : veste verte sourde, pantalon, poignets, mains, chaussures, visage sobre et cheveux. La silhouette reste légèrement stylisée, sans modèle photoréaliste extérieur. Taille d’environ 1,78 m ; le gabarit physique existant reste inchangé. **Aucune texture d’image** nouvelle ; la texture interne de matrices du squelette utilise **1 024 octets**.
+**15A — Nature généreuse.** Les 2 500 ancrages sont conservés ; les couronnes sont plus amples, ajourées de près et simplifiées à distance. Les écotypes, saisons et exclusions autour des maçonneries restent explicites. Les **180 compositions fleuries** sont des interprétations guidées par les références documentaires du village, sans devenir des observations géolocalisées. Les essais de techniques et les ombres re-préparées sont conservés dans le [rapport 15A](mission-15a.md), avec ses images et ses limites de densité.
 
-Les références [Universal Base Characters](https://quaternius.com/packs/universalbasecharacters.html) et [Universal Animation Library](https://quaternius.com/packs/universalanimationlibrary.html) de Quaternius ont été étudiées : CC0 annoncée par l’auteur, corps humanoïdes autour de 13 000 triangles et plus de 120 animations selon leurs pages. Ce sont des chiffres publiés, **pas des candidats importés ou mesurés ici**. La proposition originale permet de régler tenue, masse et contacts sans achat ou retargeting. Aucun modèle ou texture d’image supplémentaire à télécharger ; le code compilé passe de 798,06 à environ 818,5 ko (avertissement Vite >500 ko déjà présent). [Droits, sources et inventaire](mission-15-evidence/walker-menu/audit.json).
+**15B — Neige et ciel.** Le choix Neigeux, le dépôt/fonte progressifs, l’abri et les contacts utilisent les dérivés liés aux mêmes sources. Fleurs et feuillages respectent calendrier et dépôt ; rivière et surfaces verticales ne deviennent pas de la glace. La pluie laisse sa place à la neige sans particules contradictoires. Les nuages se déforment lentement et gardent le porteur du vent commun. Les films de plusieurs minutes et le compromis sous neige restent dans le [rapport 15B](mission-15b.md), accepté par le propriétaire.
 
-La marche et la course utilisent la **distance effectivement parcourue**, après résolution des collisions, et le même pas métrique que l’audio. Accélération, décélération, bras opposés aux jambes, flexion des coudes en course et orientation progressive suivent ce mouvement. Au repos : respiration légère, tête calme, jambes immobiles. Les pieds sont maintenus dans le monde pendant l’appui ; deux articulations et l’inclinaison de la chaussure suivent le sol. Les contacts sont reconstruits même lorsqu’une image saute un passage d’appui. Après un arrêt, le prochain départ reprend une amorce de pas adaptée au pied arrière. Le ralentissement ne réapplique pas d’amortissement au déplacement du pied : la distance physique suffit. Un test de régression couvre aussi la course suivie d’un virage latéral et du repos.
+**15C — Promeneur et immersion.** Un personnage original de **1 936 triangles / 16 os / un appel**, appuis liés à la distance réellement parcourue, marche/course/repos et contacts sonores partagés. Un seul bouton de menu, fermé par défaut ; gestes tactiles relatifs, clavier, son, profils et sources restent accessibles. Forteresse et sa téléportation, joystick visible et panneaux permanents sont supprimés. Chaque chargement ordinaire tire un nouveau départ parmi **1 556 points / 80 secteurs** vérifiés ; `spawnSeed` reproduit les mêmes données. Les 112 ouvertures et les films de marche/course/pentes restent [archivés en 15C](mission-15c.md). La navigation précalculée évite son ancien calcul bloquant au premier bouton et ne téléporte pas le promeneur.
 
-Les tests couvrent marche/course, pente, virage, arrêt et reprise à **4, 8, 30 et 60 images/s**, dont des pas de temps de 250 ms. Le matériau du sol, les sons vérifiés et leurs budgets restent ceux du moteur audio ; seule la commande de contact vient maintenant de cette cadence commune, avec préchargement du premier pas. Aucune distance fictive n’est ajoutée lorsque la collision bloque le joueur. Les films exposent aussi les pauses du rendu logiciel.
+**15D — Petits signes de vie.** Un avion générique original, quelques finitions de cheminées et une fumée occasionnelle s’ajoutent à ce monde. Leur rareté, leurs budgets et leur provenance restent séparés de la géographie vérifiée.
 
-## Une seule entrée dans l’interface
+## Avions : un passage, pas un fond permanent
 
-**Un bouton de 44 × 44 px en haut à gauche**, menu fermé par défaut. Un dialogue natif regroupe heure/météo, vue, promenade automatique, son/volume, course tactile, profil, réglages avancés, aide, sources/licences/version et diagnostics lorsqu’ils sont activés. Les contrôles existants gardent leurs propriétaires et leurs écouteurs ; il n’y a pas de second système météo ou audio.
+Le petit appareil à aile haute est une création de **228 triangles**, un matériau à couleurs de sommets et une envergure de **10,1 m**. Il suit une trajectoire rectiligne continue, à altitude décorative constante au-dessus de l’enveloppe chargée, sans virage artificiel ou ré-ancrage à la caméra. Il devient minuscule au loin et s’efface dans la distance. **Un seul appareil peut exister à la fois. Aucun trafic aérien réel ou service de suivi n’est utilisé.**
 
-Le bouton **Forteresse et son gestionnaire de téléportation sont supprimés**. Le joystick visible et les panneaux permanents disparaissent. Sources et version restent accessibles dans le menu. Les captures ordinaires montrent l’interface réelle, sans masque de test. Les films du canevas montrent le rendu 3D ; l’interface est inspectée séparément.
+Le planificateur utilise une graine de session, des attentes exponentielles et un intervalle minimal de calme. Il attend au moins trois minutes avant un premier passage éventuel ; les grosses pluies et brumes peuvent supprimer une tentative. Une promenade n’a aucune garantie d’en voir un. Dans **120 simulations unitaires de trente minutes**, 37 sessions ne contiennent aucun avion. Ces simulations accélérées ne remplacent pas la vraie session prolongée ci-dessous. [Distribution](mission-15-evidence/signs-life/rarity.json).
 
-Clavier : ZQSD/WASD/flèches, Maj pour courir, V pour changer de vue. Au toucher : geste relatif dans la moitié gauche pour marcher, moitié droite pour regarder, deux doigts simultanés possibles ; relâcher arrête la commande. L’aide est accessible dans le menu. L’ouverture du dialogue met la promenade en pause et efface les commandes actives. Espace ouvre le bouton, Tab reste dans le dialogue, Échap ferme et rend le focus. Le panneau défile en gardant son bouton Fermer accessible.
+Le son vient de [Small plane flyover 1, SoundsLikeYukon](https://freesound.org/people/SoundsLikeYukon/sounds/820324/), annoncé **CC0** par l’auteur et vérifié sur sa page. La captation est canadienne ; elle ne documente pas Angles. L’aperçu HQ MP3 est déclaré comme tel, découpé sur 24 s puis filtré, réglé par gain linéaire borné, fondu et préparé en mono 32 kHz / FLAC PCM16. Il reste une source initialement avec pertes. **531,885 octets compressés**, 3 072 000 octets décodés au taux demandé.
 
-Les essais réels couvrent **960 × 640, 390 × 844, 320 × 568 et 844 × 390**, puis le multitouch natif émulé par Chromium. Météo, profils et changements de vue laissent exactement la même position et la même graine au repos. **Ce n’est pas un essai Android physique**, ni une certification complète d’accessibilité. [Contrôles, focus et gestes](mission-15-evidence/walker-menu/ui-runtime.json).
+Le passage utilise **le Soundscape et l’AcousticRenderer existants** : une voix ponctuelle de faible priorité, déplacement du Panner en trois dimensions, atténuation avec la distance et extinction naturelle. Aucun oscillateur, second contexte ou lit de vrombissement. Si la voix, le cache ou l’enregistrement sont indisponibles, le passage peut rester silencieux. Les limites de **24 Mio**, 8/12/12 voix et 1/2/3 HRTF restent en place. [Sources, licences et empreintes](../public/audio/sources.json) · [Transformations](../public/audio/manifest.json) · [Crédits](../public/audio/credits.html).
 
-## Un départ nouveau à chaque chargement
+## Cheminées et fumée : hypothèses artistiques discrètes
 
-La sélection s’applique à **tous les visiteurs**, sans dépendre du mode `perf`. Sans graine, deux entiers issus de `crypto.getRandomValues` sont tirés à chaque chargement. `?spawnSeed=12345` reproduit position et orientation avec les mêmes données ; aucune position n’est relue comme un départ permanent depuis le stockage.
+Le moteur possédait déjà des cheminées dans ses toitures procédurales. **238 caps existants** sont retrouvés dans les vraies géométries indexées chargées, avec leurs dimensions et leur teinte caractéristiques ; aucun point aléatoire n’est posé sur une emprise. Les murs et toitures d’origine ne sont pas déplacés. Des couronnements de pierre et pots de terre cuite, **52 triangles par instance**, ajoutent une petite variation de hauteur et de ton. Ils restent sur environ un quart des bâtiments, jamais sur chaque toit. Un seul appel instancié, avec disparition progressive à distance et plafonds **24 / 48 / 72** détails pour Éco / Équilibré / Qualité. Ils reçoivent lumière et neige communes. [Inventaire](mission-15-evidence/signs-life/chimneys.json).
 
-Les voies OSM autorisées sont échantillonnées à distance régulière, puis les points sont contrôlés avec le terrain réellement chargé, le gabarit de 30 cm, l’eau, les obstacles et les supports d’ouvrage. Le voisinage de 35 cm et d’un mètre doit être stable ; les fortes pentes et les supports de pont sont exclus des départs. Un secteur de **200 m** est choisi, puis un point de ce secteur : le nombre de sommets OSM d’une ruelle ne lui donne pas plus de poids qu’à tous les autres secteurs. L’orientation finale dispose d’une direction dégagée vérifiée.
+La température vient de la neige/calendrier déjà simulés. Le planificateur choisit parmi **toutes** les cheminées et ne consulte ni caméra ni visibilité pour décider d’un chauffage. Un maximum de deux sources peut être planifié ; le budget global peut en refuser. Cela ne constitue pas une observation d’occupation, de cheminée réelle, de chauffage ou d’émission réelle d’une maison.
 
-Le jeu actuel trouve **1 556 points stables dans 80 secteurs**. Le calcul détaillé du regard est réservé au point choisi, ce qui réduit la préparation d’environ 8,5 à 1,4 seconde dans le premier essai local. Le personnage reste masqué et les mouvements bloqués jusqu’à la disponibilité du terrain et des collisions. Si aucun point n’est trouvé, un ancien point connu est **revalidé** ; sans données permettant de garantir la sécurité, le jeu reste en attente avec un message explicite. Aucun départ inventé sur un sol plat de secours.
+Les bouffées naissent irrégulièrement, montent peu, s’élargissent, dérivent avec **le même vecteur de vent** puis se dissipent. Le bassin de particules est fixe ; le rendu est diffus, transparent et sans texture d’image. Avions, fumée, oiseaux et micro-événements partagent **un seul WorldLifeBudget**. Éco reçoit un petit plafond global de quatre particules, contre huit et seize dans les autres profils ; un refus de particules ne permet plus aux feuilles d’en dessiner sans allocation. Les sons gardent leur budget distinct existant. Une cheminée n’émet pas seulement parce qu’elle devient visible.
 
-**112 ouvertures complètes du vrai jeu** : 100 graines 0–99, six répétitions et six ouvertures ordinaires sans graine, toutes sans `perf`. Chaque position est revérifiée par le vrai inspecteur de terrain et de collision, puis une première image normale est rendue. Les 100 graines donnent **95 positions dans 60 secteurs** ; les répétitions reproduisent les coordonnées et le regard à l’identique. Les six ouvertures ordinaires donnent six graines nouvelles et **6 positions distinctes**. La liste finie autorise naturellement des collisions entre graines différentes. [Série complète](mission-15-evidence/walker-menu/starts.json).
+La séquence de fumée est une **inspection explicite avec graine et caméra de toiture**, à temps natif ; elle n’est pas présentée comme un événement rencontré au hasard. Elle est volontairement silencieuse, sans crépitement d’occupation inventé. La session prolongée n’utilise aucun forçage d’avion ou de foyer.
 
-Le départ initial est conservé dans les diagnostics. **Aucun bouton météo, menu ou vue ne rappelle la sélection.** AutoWalk réutilise le graphe et les accès de Mission 14 ; il démarre depuis la position courante si un chemin est admissible, sinon il explique son indisponibilité. Il ne replace plus le personnage pour lui fabriquer une longue promenade.
+## Une vraie promenade continue de trente minutes
 
-## Preuves natives et physique conservée
+**1800.97 secondes réelles continues**, **1530.5 m cumulés**, **6,464 intervalles instrumentés**, sur une copie figée du build de production, 720 × 460. Le départ est celui de `spawnSeed=79` et le planificateur ordinaire reçoit `lifeSeed=normal-30m-0`. Aucun déplacement de position, trajet imposé pendant la session, accélération ou inspection d’événement rare. Les reprises d’AutoWalk utilisent le graphe depuis la position courante ; la distance est cumulée et peut inclure des retours sur des voies déjà parcourues.
 
-Les poses rapprochées, forêt, pente, première personne et vue élevée sont des inspections séparées, avec caméra/soleil/vent appariés. Les films partent de stations diagnostiques annoncées, puis utilisent les boutons, le clavier et la boucle ordinaires, sans itinéraire forcé ni déplacement de position pendant la séquence. La route utilise AutoWalk ; marche/course/arrêt et déplacement latéral utilisent le clavier. Une pente réelle admissible est choisie parmi les voies chargées. La marche/course sonore se déroule sur l’asphalte OSM du Quai du Premier Président Pérevier : les compteurs de pas doivent augmenter en marche et en course, puis rester fixes au repos. Sur la pente, la matière acoustique est inconnue et les pas restent volontairement silencieux selon la règle audio héritée.
+La session couvre été, passage au calendrier hivernal et neige, pluie printanière, orage, retour estival, soir, trois profils, plusieurs pauses contemplatives et reprises. Les réglages météo/heure/profil utilisent le menu ; les dates utilisent le diagnostic de calendrier existant, déclaré dans le protocole. Le monde continue ses événements pendant les arrêts. Les quatre premières minutes restent calmes ; deux vols ont été planifiés pendant cette session, avec **66 échantillons où l’appareil est rendu**, et **1 événement audio admis**. Une voix n’est pas garantie pour chaque vol. Un foyer a été admis hors champ pendant cette marche ; aucune bouffée n’y a été visible. La scène active visible est donc vérifiée séparément par l’inspection déclarée.
 
-| Film natif | Durée conteneur | Distance | Médiane / P95 / pic moteur ms |
+**Médiane 266.6 ms, P95 516.6 ms, pic 1083.2 ms** : ce sont les intervalles du rendu logiciel, avec interface, streaming et enregistrement, sans retirer les pauses longues. Aucun autre travail navigateur/GPU pendant la session. Les contrôles n’ont relevé ni coordonnées invalides, mélange pluie/flocons contradictoire, dépassement des voix/cache/allocations de vie, ni recours à l’inspection rare. Les seules pistes sonores des extraits viennent du véritable bus après limiteur, observé par une branche diagnostique. [Résultat et chronologie](mission-15-evidence/signs-life/soak.json) · [Trace complète comprimée](mission-15-evidence/signs-life/soak-trace.json.gz).
+
+Deux films supplémentaires comparent la marche native M14/M15 à une même station initiale : vrai bouton AutoWalk, arrêt, première personne puis vue élevée. Ces films ne prétendent pas apparier chaque position à la même seconde : le pas physique reste plafonné pendant une image lente.
+
+| Séquence native | Durée conteneur | Distance | Médiane / P95 / pic ms |
 | --- | ---: | ---: | ---: |
-| before-route | 80.50 s | 20.9 m | 436.8 / 524.4 / 916.9 |
-| after-route | 80.53 s | 20.6 m | 437.0 / 568.9 / 985.0 |
-| before-run | 46.12 s | 39.1 m | 336.6 / 395.4 / 739.2 |
-| after-run | 46.33 s | 36.5 m | 350.6 / 462.0 / 1044.9 |
-| after-slope | 46.08 s | 11.3 m | 306.2 / 399.9 / 711.9 |
+| M14-native-walk | 60.03 s | 19.6 m | 412.5 / 512.1 / 1088.2 |
+| M15-native-walk | 60.16 s | 18.9 m | 418.0 / 481.0 / 642.3 |
 
 
-Les films sont **à vitesse normale**, VP9/Opus natifs, canevas au plus 8 images/s et véritable bus après limiteur. Les traces incluent une courte chauffe et les intervalles instrumentés ; durée du conteneur et fenêtre d’observation sont distinctes. Les temps incluent le rendu logiciel, la capture, les transitions et compilations. Ce ne sont pas des FPS matériels. Tous les paquets et PTS/DTS sont conservés par remuxage, et le décodage audiovisuel complet est vérifié. [Films et contrôle](mission-15-evidence/walker-menu/video-validation.json).
+Les médias gardent leurs paquets et PTS/DTS natifs par remuxage, sans accélération ou bande-son ajoutée. Les six films sont intégralement décodés ; le poster de vol au milieu vient d’une vraie image du flux. [Vérification audiovisuelle](mission-15-evidence/signs-life/media.json).
 
-**642 fichiers de sources et données protégées identiques à 15B** : données géographiques, dérivés, végétation, neige, ciel, lumière, catalogue audio et noyaux de déplacement/caméra/navigation. Le fichier de collisions reçoit uniquement une interrogation de support en lecture seule ; sans cette ligne, il est identique. **2 898 réponses de collision et 20 déplacements identiques** au navigateur, six cycles de création/rendu/destruction du rig, entrée en collision sans pas sur place, données retardées ou manquantes. Les limites d’accès M14 autour du pont et des ruines restent conservées. Les ombres 15A/B ne demandent pas de régénération géographique ; le nouveau personnage reçoit l’éclairage commun. [Audit](mission-15-evidence/walker-menu/audit.json) · [Runtime](mission-15-evidence/walker-menu/runtime.json).
+## Coûts finaux : mêmes caméras et météo commune
 
-## Coût graphique et animation
+**324 rendus synchronisés**, 960 × 640 DPR 1 : trois profils × trois scènes × M14 fusionnée / 15C / 15D × trois passages alternés × quatre échantillons. Caméra, soleil, date, phase du vent et champs météo communs sont vérifiés identiques. Le mode Neigeux n’existant pas en M14, la matrice principale utilise un été clair commun ; son coût est isolé ensuite. **SwiftShader logiciel uniquement**, aucun GPU physique ou Android disponible mesuré. Douze valeurs par ligne ne constituent pas une garantie statistique de fluidité matérielle.
 
-**216 rendus synchronisés**, 960 × 640 DPR 1, trois profils × trois scènes × deux versions × trois passages alternés × quatre échantillons. Fin GPU et lecture d’un pixel ; mêmes caméra, date, soleil, vent, météo et état nuageux vérifiés. Aucun autre travail navigateur/graphique pendant cette campagne. Douze valeurs par ligne ne garantissent pas une borne statistique haute. **SwiftShader logiciel uniquement**, aucun GPU physique ou Android accessible mesuré.
-
-| Profil · vue | 15B médiane ms | 15C médiane ms | Écart | 15C P95 / pic ms |
-| --- | ---: | ---: | ---: | ---: |
-| eco · rue | 418.1 | 379.2 | -9.3 % | 426.8 / 428.7 |
-| eco · foret | 197.8 | 183.6 | -7.2 % | 259.5 / 281.0 |
-| eco · vallee | 319.5 | 318.5 | -0.3 % | 366.4 / 375.2 |
-| balanced · rue | 554.1 | 532.5 | -3.9 % | 595.0 / 615.0 |
-| balanced · foret | 250.7 | 277.0 | +10.5 % | 315.2 / 340.9 |
-| balanced · vallee | 396.7 | 381.1 | -3.9 % | 425.7 / 435.7 |
-| quality · rue | 564.8 | 553.3 | -2.0 % | 621.7 / 632.5 |
-| quality · foret | 267.0 | 284.1 | +6.4 % | 329.0 / 339.1 |
-| quality · vallee | 396.2 | 403.3 | +1.8 % | 545.7 / 557.4 |
+| Profil · scène | M14 médiane ms | M15 médiane ms | Écart M14 | Écart 15C | M15 P95 / pic ms |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| eco · rue | 364.4 | 399.8 | +9.7 % | +1.8 % | 488.0 / 518.0 |
+| eco · foret | 173.0 | 177.9 | +2.9 % | +0.6 % | 198.8 / 198.9 |
+| eco · vallee | 356.1 | 346.5 | -2.7 % | -7.1 % | 393.4 / 420.6 |
+| balanced · rue | 576.1 | 531.9 | -7.7 % | -2.1 % | 634.6 / 697.1 |
+| balanced · foret | 252.9 | 262.9 | +3.9 % | +2.6 % | 347.3 / 349.9 |
+| balanced · vallee | 365.6 | 378.5 | +3.5 % | +1.3 % | 465.4 / 499.1 |
+| quality · rue | 525.3 | 543.5 | +3.5 % | -0.9 % | 614.2 / 632.0 |
+| quality · foret | 233.2 | 260.1 | +11.5 % | +1.3 % | 273.1 / 283.9 |
+| quality · vallee | 377.6 | 386.5 | +2.4 % | +0.4 % | 459.8 / 467.4 |
 
 
-En Équilibré, les écarts finaux vont de **-3.9 à +10.5 %**. Les appels et triangles, tas après GC, textures, allocations logiques et métriques de streaming figurent dans les données. Le personnage passe de six appels à un ; sa texture de squelette est comptée séparément des textures d’image. En Équilibré, cinq appels et cinq géométries de moins, 59 900 octets de buffers en plus, avec le pool de diagnostic et le graphe conservés dans le tas ; 1 024 octets de texture de squelette en plus. Le personnage passe de 620 à 1 936 triangles. Les allocations WebGL estimées ne sont pas de la VRAM physique.
+**Le seuil de 10 % est dépassé en forêt Qualité (+11,5 % face à M14), avec +1,3 % pour 15D / 15C.** Les profils alternatifs mesurés restent à +2,9 % en forêt Éco et +3,9 % en Équilibré face à M14. Les grandes couronnes et les ombres locales sont conservées pour leur apport artistique déjà accepté ; ce compromis Qualité reste proposé à votre revue finale, sans garantie de fluidité matérielle.
 
-| Équilibré · vue | Appels 15B / 15C | Triangles 15B / 15C | Tas après GC 15B / 15C (Mo) |
+Les appels, triangles, textures, tas après GC, allocations WebGL logiques, temps de préparation et streaming figurent dans la [matrice complète](mission-15-evidence/signs-life/performance-summary.json). Ces estimations ne sont pas de la VRAM physique. Les compromis historiques 15A et 15B restent archivés, notamment **+16,0 à +26,4 % sous neige en 15B / 15A** et la scène de forêt 15C ; une nouvelle campagne ne les efface pas.
+
+**486 rendus supplémentaires** séparent les coûts, avec activation/désactivation du propriétaire réel, boucles tenues et échauffement :
+
+| Élément isolé | Éco on / off ms | Équilibré on / off ms | Qualité on / off ms |
 | --- | ---: | ---: | ---: |
-| rue | 133 / 128 | 246 329 / 247 645 | 160.17 / 160.96 |
-| foret | 41 / 36 | 112 840 / 114 156 | 153.59 / 154.38 |
-| vallee | 163 / 158 | 289 627 / 290 943 | 154.28 / 155.11 |
-
-Données prêtes en 18.16 s / 5.25 s dans cette observation locale isolée, pas un résultat réseau Internet. Un dérivé de 38 657 octets charge les 919 nœuds et 896 segments exacts du graphe validé par le moteur. Son calcul direct bloquait le premier lancement environ 14 secondes : il est maintenant préparé hors promenade, lié aux données et aux générateurs physiques, borné, vérifié par SHA-256 et régénéré à l’identique. Un cache absent, périmé ou corrompu désactive AutoWalk en conservant la marche libre ; aucun calcul lourd ne se cache derrière le bouton. Le premier trajet final de 450 m est obtenu en **1.6 ms**, sans changement de position. [Latence du premier trajet](mission-15-evidence/walker-menu/graph-latency.json) · [Licence du graphe dérivé](../public/data/angles-walk-graph.LICENSE.md) · [Matrice, mémoire, chargement et streaming](mission-15-evidence/walker-menu/performance-summary.json) · [Trace](mission-15-evidence/walker-menu/performance.json.gz).
-
-**Le seuil de 10 % est dépassé en forêt Équilibré (+10,5 %).** Une alternative retire uniquement les ombres locales reçues par le personnage : 24 rendus supplémentaires appariés donnent 275.6 / 268.9 ms, soit -2.4 %. Ce gain limité ne compense pas la perte de cohérence d’éclairage entre le corps et le sous-bois. La proposition conserve donc l’éclairage commun, la silhouette articulée et les contacts au sol ; ce compromis reste **soumis à la validation artistique du propriétaire**, sans promesse de fluidité matérielle. [Variante mesurée et protocole](mission-15-evidence/walker-menu/alternative.json) · [Éclairage conservé](mission-15-evidence/walker-menu/alternative-full.jpg) · [Prototype sans ombres locales du corps](mission-15-evidence/walker-menu/alternative-without-character-local-shadows.jpg).
-
-Le CPU d’animation est isolé séparément : propriétaire réel 15C, boucle exacte des quatre membres 15B, distances synthétiques et racine tenue. Ces lots ne sont **pas une preuve de marche** ; les films ci-dessus remplissent ce rôle. Deux cents appels de chauffe, douze lots de 200 par cas :
-
-| Vitesse diagnostique | 15B ms/update | 15C ms/update |
-| --- | ---: | ---: |
-| 0 m/s | 0.0005 | 0.2195 |
-| 1.45 m/s | 0.0005 | 0.1890 |
-| 3.2 m/s | 0.0005 | 0.1845 |
+| Maillages d’arbres visibles | 173.3 / 153.0 | 254.6 / 186.7 | 253.4 / 184.2 |
+| Fleurs | 452.5 / 464.6 | 690.4 / 644.4 | 699.6 / 682.6 |
+| Nuages + ombres nuageuses | 214.8 / 197.9 | 271.5 / 244.2 | 273.5 / 253.0 |
+| Personnage | 371.2 / 355.5 | 501.8 / 509.9 | 534.5 / 543.9 |
+| Neige : dépôt + flocons | 438.5 / 372.1 | 695.9 / 524.6 | 643.4 / 539.4 |
+| Finitions de cheminées | 447.3 / 455.0 | 636.3 / 661.8 | 657.2 / 642.6 |
+| Fumée | 419.5 / 408.5 | 581.5 / 628.3 | 612.4 / 612.3 |
+| Avion | 108.3 / 111.8 | 88.3 / 91.1 | 153.4 / 156.2 |
+| 15D combiné sous neige | 388.5 / 385.7 | 531.9 / 560.8 | 557.7 / 560.8 |
 
 
-[Échantillons CPU et pics des moyennes de lot](mission-15-evidence/walker-menu/animation-cpu.json).
+Les scènes diffèrent selon l’effet : forêt, rue et fleurs proches, ciel, rue enneigée, toitures. « Combiné » enlève les ajouts 15D d’une scène enneigée ; les événements simultanés restent ceux admis par le profil, un seul en Éco. Les ombres statiques d’arbres restent dans le cache lors de l’ablation de leurs maillages. Les petites inversions de temps illustrent le bruit du rendu logiciel ; elles ne constituent pas un gain garanti. Ces écarts marginaux **ne s’additionnent pas** et la visibilité ne libère pas les allocations. Les événements de ces inspections sont explicitement placés pour les mesurer ; ils ne prouvent pas la rareté ordinaire. [Composants, P95, pics, appels et triangles](mission-15-evidence/signs-life/components.json).
 
-## Validation et limites
+## Préservation, ressources et validation
 
-**229 tests Node**, TypeScript/Vite, shaders réels, navigateur compilé, identité de production et formats mobiles vérifiés. Les tests fonctionnels incluent la météo neigeuse héritée, les contrôles au clavier et au toucher, le masquage initial, les replis, les contacts sur pentes et les grandes images. Les sources finales sont figées pendant les campagnes. Le build de travail vérifié porte `acf05c3a · modifié`, avant le commit 15C ; les builds suivants embarquent automatiquement leur propre identité. Le zoom respecte une vue choisie avant la fin du chargement ; les grands pas de temps, le cache de navigation et ses replis sont vérifiés séparément. [Validation finale et empreintes](mission-15-evidence/walker-menu/validation.json).
+**235 tests Node**, TypeScript/Vite et contrôles du navigateur compilé. Les nouveaux tests couvrent rareté, trajectoire, hauteur, chauffage saisonnier, reconnaissance des caps, budgets partagés, changements de profils et destruction. Les contrôles navigateur couvrent collisions, chargements retardés/manquants, navigation, clavier/focus et tactile, trois profils, six cycles réels de création/rendu/destruction des nouveaux objets et douze stations distinctes de streaming. Ces stations sont des inspections, pas un itinéraire de marche fabriqué. Le repli sans captation d’avion garde les autres sons et ne fabrique pas de bruit.
 
-Limites : visage et vêtements encore stylisés, phénologie et contacts selon les données existantes, pas de doigts articulés ni de capture de mouvement, pieds posés selon le support physique et une approximation de chaussure, pas de nouvel enregistrement neigeux. La fluidité d’un téléphone réel et l’appréciation artistique restent à valider par le propriétaire. Aucun ajout d’avion, cheminée ou fumée de 15D, aucune promenade de trente minutes revendiquée ici.
+Les **112 démarrages de 15C** restent conservés ; **12 ouvertures complètes supplémentaires** vérifient les sources finales, six graines, deux répétitions et quatre ouvertures ordinaires. Les mêmes graines reproduisent exactement les positions et orientations de 15C. Menu, météo et vue ne relancent pas la sélection.
 
-**Arrêt après 15C. Attendre la validation du propriétaire avant 15D.**
+**518 fichiers protégés identiques à 15C**, dont données géographiques, relief, routes, emprises, pont/ruines, surfaces, colliders, navigation, personnage, végétation, matières et éclairage. **270 preuves historiques** conservées. Les 40 captations et 93 actifs audio antérieurs restent identiques ; une seule captation CC0 est ajoutée. Les crédits IGN/ASP Licence Ouverte 2.0, OSM ODbL et matières/sons préexistants sont conservés. Les trois nouveaux petits modèles/effets sont originaux et n’ajoutent aucune texture d’image. [Audit et inventaire](mission-15-evidence/signs-life/audit.json) · [Contrôles finaux](mission-15-evidence/signs-life/validation.json).
+
+Les preuves sont produites sur les sources figées. Les captures portent la base `8455726` modifiée avant le commit 15D ; les builds suivants embarquent leur propre commit, sans requête de métadonnées distante.
+
+## Limites et choix artistiques à valider
+
+Le MNT, les hauteurs estimées, les accès M14 au pont et aux ruines, le style des couronnes, vêtements et visages restent ceux des jalons documentés. Les pots/couronnements nouveaux ne sont pas ré-intégrés à la silhouette du cache d’ombres statiques M14 ; ils reçoivent la lumière commune mais n’ajoutent pas une passe solaire. La fumée est une approximation légère, sans aérodynamique ou combustion ; l’avion générique n’est pas du trafic réel. Les pas restent silencieux sur un sol de matière inconnue et il n’y a pas de nouvelle captation de pas neigeux. La fluidité et l’accessibilité sur un appareil Android physique restent à examiner par le propriétaire.
+
+La décision finale porte sur : **1.** beauté et volume des arbres ; **2.** densité naturelle des forêts ; **3.** présence et fidélité des fleurs ; **4.** neige convaincante ; **5.** ciel vivant ; **6.** promeneur agréable en marche/course ; **7.** paysage dégagé ; **8.** départs sans incident ; **9.** subtilité des avions et fumées ; **10.** fluidité et plaisir de promenade. Les tests techniques ne répondent pas à votre place.
+
+**Arrêt après 15D pour validation artistique finale. Ne pas fusionner ou déployer sans nouvel accord explicite.**

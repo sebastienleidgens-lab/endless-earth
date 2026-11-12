@@ -53,3 +53,7 @@ test('world wind direction survives every tree orientation and anisotropic scale
  const w={x:.88,z:-.475},expected=new THREE.Vector3(w.x,0,w.z).normalize();
  for(let i=0;i<64;i++)for(const [sx,sz] of [[.5,1.4],[1.8,.7],[1,1]]){const m=new THREE.Matrix4().compose(new THREE.Vector3(),new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),i*Math.PI/32),new THREE.Vector3(sx,1,sz)),x=new THREE.Vector3().setFromMatrixColumn(m,0),z=new THREE.Vector3().setFromMatrixColumn(m,2),local=windToInstance(w,x,z),world=new THREE.Vector3(local.x,0,local.z).applyMatrix4(m);assert.ok(world.clone().normalize().dot(expected)>1-1e-12);assert.ok(Math.abs(world.length()/Math.hypot(w.x,w.z)-Math.sqrt(sx*sz))<1e-12)}
 });
+test('leaves cannot draw unclaimed particles when another world event owns the allowance',()=>{
+ const scene=new THREE.Scene(),budget=new WorldLifeBudget(lifeProfile('quality')),events=createMicroEvents(scene,budget),p=new THREE.Vector3(10,0,10);budget.claim('other-particles','particles',budget.profile.particles);let observed=false;
+ for(let t=0;t<1000;t+=.25){const event=eventAt(t,0,9);events.update(t,p,conditions);if(event.active&&event.kind==='leaves'){observed=true;const points=scene.getObjectByName('earthlife-leaves');assert.equal(points.visible,false)}}assert.ok(observed);events.dispose();budget.release('other-particles');assert.equal(budget.cells.size,0)
+});
