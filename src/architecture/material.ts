@@ -1,3 +1,5 @@
+// @ts-ignore Shared deterministic window schedule.
+import {windowFragment} from './windows.mjs';
 import {worldMaterialUniforms,worldMaterialPrelude,worldArchitectureColor,registerWorldMaterial} from '../materials/world';
 // @ts-ignore Shared artistic contract, static shader literals.
 import {ART_DNA,glsl} from '../art/dna.mjs';
@@ -32,13 +34,14 @@ vec3 architectureBump(vec3 n,vec3 eye,float h){vec3 dx=dFdx(eye),dy=dFdy(eye),a=
 `;
 export function architectureMaterial(heritage=false){
  const art=ART_DNA.architecture;
- const m=new THREE.MeshLambertMaterial({vertexColors:!heritage,color:heritage?0xc7bda5:0xffffff,map:architectureAtlas,side:heritage?THREE.FrontSide:THREE.DoubleSide});m.userData.architectureShared=true;
+ const m=new THREE.MeshLambertMaterial({vertexColors:!heritage,color:heritage?0xc7bda5:0xffffff,map:architectureAtlas,side:heritage?THREE.FrontSide:THREE.DoubleSide});m.userData.architectureShared=true;(m as any).defaultAttributeValues={...(m as any).defaultAttributeValues,windowSeed:[1]};
  m.onBeforeCompile=s=>{
   Object.assign(s.uniforms,worldMaterialUniforms,lifeUniforms,{architectureAtlasSize:size,architectureTile:tile});
+  s.vertexShader='attribute float windowSeed;varying float vWindowSeed;\n'+s.vertexShader;
   s.vertexShader=(heritage?'varying vec2 vHeritageUV;':'attribute float architectureMaterial;')+'varying float vArchitectureMaterial;varying vec2 m13WallUV;\n'+s.vertexShader;
-  s.vertexShader=s.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>\nvec3 m13P=(modelMatrix*vec4(position,1.)).xyz;vec3 m13N=normalize(mat3(modelMatrix)*normal);m13WallUV=vec2(dot(m13P.xz,normalize(vec2(m13N.z,-m13N.x)+vec2(1e-8))),m13P.y);\n${heritage?'vArchitectureMaterial=0.;vec3 heritageP=(modelMatrix*vec4(position,1.)).xyz;vHeritageUV=vec2(abs(normal.x)>abs(normal.z)?heritageP.z:heritageP.x,heritageP.y)/vec2(4.,2.4);':'vArchitectureMaterial=architectureMaterial;'}`);
+  s.vertexShader=s.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>\nvWindowSeed=windowSeed;vec3 m13P=(modelMatrix*vec4(position,1.)).xyz;vec3 m13N=normalize(mat3(modelMatrix)*normal);m13WallUV=vec2(dot(m13P.xz,normalize(vec2(m13N.z,-m13N.x)+vec2(1e-8))),m13P.y);\n${heritage?'vArchitectureMaterial=0.;vec3 heritageP=(modelMatrix*vec4(position,1.)).xyz;vHeritageUV=vec2(abs(normal.x)>abs(normal.z)?heritageP.z:heritageP.x,heritageP.y)/vec2(4.,2.4);':'vArchitectureMaterial=architectureMaterial;'}`);
   // map is declared by Three's map_pars_fragment, before our sampling functions.
-  s.fragmentShader=s.fragmentShader.replace('#include <map_pars_fragment>','#include <map_pars_fragment>\n'+prelude+worldMaterialPrelude+(heritage?'varying vec2 vHeritageUV;':''));
+  s.fragmentShader=s.fragmentShader.replace('#include <map_pars_fragment>','#include <map_pars_fragment>\n'+prelude+worldMaterialPrelude+windowFragment+(heritage?'varying vec2 vHeritageUV;':''));
   s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`
    float architectureHeight=0.;float architectureSource=floor(vArchitectureMaterial+.5);float architectureKind=architectureSource>7.5?0.:architectureSource;
    float architectureFade=1.-smoothstep(${glsl(art.detailM[0])},${glsl(art.detailM[1])},length(vViewPosition));
@@ -56,10 +59,10 @@ export function architectureMaterial(heritage=false){
    diffuseColor.rgb*=1.-lifeRain*.035;
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n#if LIFE_ARCH_DETAIL == 1\nif(architectureKind<5.5)normal=architectureBump(normal,-vViewPosition,architectureHeight);\n#endif');
-  s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35);}\n#include <opaque_fragment>`);
+  s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35)+vec3(.85,.39,.115)*warmWindow();}\n#include <opaque_fragment>`);
  };
  m.userData.snowGlass=true;
- m.customProgramCacheKey=()=> 'regional-architecture-authentic-v13-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;
+ m.customProgramCacheKey=()=> 'regional-architecture-stable-v16-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;
 }
 export const architectureMaterials={stone:architectureMaterial(),plaster:architectureMaterial(),tile:architectureMaterial(),plain:architectureMaterial()};
 export const heritageMaterial=architectureMaterial(true);

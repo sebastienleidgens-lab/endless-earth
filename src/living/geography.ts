@@ -1,3 +1,5 @@
+// @ts-ignore Access and physical roles remain separate from surface material.
+import {roadCategory} from '../world/road-category.mjs';
 // @ts-ignore Validated, source-bound derivative of this exact navigation graph.
 import {readWalkGraph} from './walk-graph-cache.mjs';
 import { toLocal } from '../world/geo';
@@ -9,6 +11,7 @@ import { allowed } from './walk.mjs';
 import { buildGraph, graphRoute } from './graph.mjs';
 type Point={x:number;z:number;perchY?:number};
 export const paths:{points:Point[];surface:string;name:string;tags:Record<string,string>}[]=[];
+export const roadInventory:Array<{id:unknown;name:unknown;category:string;role:string;carAccess:string;surface:unknown;width:unknown;confidence:string}>=[];
 export const nature:Point[]=[];
 export const water:Point[]=[];
 export const waterLines:Point[][]=[];
@@ -25,6 +28,7 @@ export async function loadNavigation(){
  const data=await response.json();
  for(const f of data.features){
   const t=f.properties??{},g=f.geometry;
+  if(g?.type==='LineString'&&t.highway)roadInventory.push({id:t.osm_id,name:t.name??null,...roadCategory(t)});
   const local=(p:number[])=>toLocal({lon:p[0],lat:p[1]});
   if(g?.type==='LineString'&&allowed(t))paths.push({points:g.coordinates.map(local),surface:t.surface??'',name:t.name??'Voie OSM',tags:t});
   if(g?.type==='Point'&&t.natural==='tree')nature.push(local(g.coordinates));
@@ -46,7 +50,7 @@ export function validPoint(p:Point,terrain:Terrain|null){
 }
 let graph:ReturnType<typeof buildGraph>|null=null;
 export const navigationGraphStats={state:'idle',nodes:0,edges:0};
-export function walkingGraphBindings(terrain:Terrain){return {terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface?.manifest.binarySha256,osm:terrain.singleSurface?.manifest.osmSha256,policy:'capsule-0.3-grounded-0.7-v1'}}
+export function walkingGraphBindings(terrain:Terrain){return {terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface?.manifest.binarySha256,osm:terrain.singleSurface?.manifest.osmSha256,policy:'capsule-0.3-grounded-0.7-landing0.18-v16'}}
 export function prepareGraphForDiagnostics(terrain:Terrain){graph=buildGraph(paths,(q:Point)=>validPoint(q,terrain));Object.assign(navigationGraphStats,{state:'prepared',nodes:graph.nodes.length,edges:graph.edges.length});return graph}
 export function exportNavigationGraph(){return graph}
 export function hasPreparedGraph(){return graph!==null}

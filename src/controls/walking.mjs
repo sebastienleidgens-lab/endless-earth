@@ -16,14 +16,22 @@ export function circleHitsPolygon(x,z,poly,radius=.3) {
   }
   return inside;
 }
-export function moveGrounded(position, displacement, clear, height, slope=()=>.7,slide=true) {
+export function moveGrounded(position, displacement, clear, height, slope=()=>.7,slide=true,diagnostic=null) {
   const steps=Math.max(1,Math.ceil(Math.hypot(displacement.x,displacement.z)/.1));
   const dx=displacement.x/steps,dz=displacement.z/steps;
   const attempt=(x,z)=>{
-    if(!clear(x,z))return false;
     const h=height(x,z),old=height(position.x,position.z),distance=Math.hypot(x-position.x,z-position.z);
+    const report=rule=>{diagnostic?.({position:{x:position.x,y:position.y,z:position.z},requested:{x,z},currentHeight:old,nextHeight:h,horizontalM:distance,riseM:h===null||old===null?null:h-old,slope:distance&&h!==null&&old!==null?(h-old)/distance:null,limit:Math.min(slope(x,z),slope(position.x,position.z)),rule});return false};
+    if(!clear(x,z))return report('obstacle');
     // Both ascent and descent are bounded: no snapping down cliffs, no unknown DEM.
-    if(h===null||old===null||Math.abs(h-old)>distance*Math.min(slope(x,z),slope(position.x,position.z))+.001)return false;
+    if(h===null||old===null)return report('unknown-support');
+    if(Math.abs(h-old)>distance*Math.min(slope(x,z),slope(position.x,position.z))+.001){
+      // A small ledge is distinct from a sustained steep slope. Require a clear,
+      // nearly level landing beyond it; this cannot ratchet up a cliff/ramp.
+      if(distance<1e-9||Math.abs(h-old)>.18)return report('slope');
+      const ux=(x-position.x)/distance,uz=(z-position.z)/distance;
+      for(const d of [.10,.20,.30]){const xx=x+ux*d,zz=z+uz*d,landing=height(xx,zz);if(!clear(xx,zz)||landing===null||Math.abs(landing-h)>.025)return report('slope');}
+    }
     position.x=x;position.z=z;position.y=h;return true;
   };
   for(let i=0;i<steps;i++) {

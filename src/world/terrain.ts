@@ -14,6 +14,8 @@ import {decodeSurface} from './surface-mesh.mjs';
 import {validateRefinement} from './terrain-refinement.mjs';
 // @ts-ignore Validated source-bound local structures and exact support mesh.
 import {prepareLandmarks} from './landmark-model.mjs';
+// @ts-ignore Exact rendered surface support for locally reconstructed roads.
+import {surfaceSupport} from './surface-support.mjs';
 export type TerrainGrid = {
   schema: 'endless-earth-terrain-v1';
   origin_x_m: number;
@@ -33,6 +35,7 @@ export class Terrain {
   singleSurface:any=null;
   relief:any=null;
   landmarks:any=null;
+  walkSupport:any=null;
   treeAnchors?:any[];
   get roadsAvailable(){return this.singleSurface!==null;}
   get waterIntegrated(){return this.singleSurface?.manifest.water?.mode==='mapped-outline-dem-drape-v1';}
@@ -55,6 +58,8 @@ export class Terrain {
   }
   // Rows increase in local +Z, columns in local +X. Heights are absolute metres.
   sample(x:number,z:number):number|null {
+    const corrected=this.walkSupport?.sample(x,z);
+    if(corrected!==undefined)return corrected+(sampleGrid(this.grid,0,0)??this.grid.elevations_m[0]);
     return sampleGrid(this.grid,x,z);
   }
   createMesh():THREE.Object3D {
@@ -174,6 +179,15 @@ export function updateTerrainLOD(scene:THREE.Object3D,camera:{x:number;z:number}
   scene.traverse(o=>{if(o.userData.terrainMetrics){let count=0;o.traverse(c=>{if(c.userData.earthTile?.far)count++});o.userData.terrainMetrics.farTiles=count}});
 }
 const sha256=async(data:BufferSource)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',data))).map(v=>v.toString(16).padStart(2,'0')).join('');
+async function loadWalkingSurface(base:string,original:any,terrain:Terrain,refinementSha256:string){
+    try{
+      const r=await fetch(base+'angles-walk-surface.json');if(!r.ok)throw Error('Road correction unavailable');const m=await r.json();
+      if(m.walkCorrection?.schema!=='endless-earth-walk-correction-v1'||m.walkCorrection.baseSurfaceSha256!==original.binarySha256||m.landmarksSha256!==original.landmarksSha256||m.refinementSha256!==refinementSha256||m.terrainSha256!==terrain.sourceSha256||m.osmSha256!==original.osmSha256||m.tiles.length!==original.tiles.length||!Array.isArray(m.walkCorrection.bounds)||m.walkCorrection.bounds.length!==4||!m.walkCorrection.bounds.every(Number.isFinite))throw Error('Stale road correction');
+      const packed=await fetch(base+'angles-walk-surface.pack');if(!packed.ok)throw Error('Road correction missing');const bytes=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      if(await sha256(bytes)!==m.binarySha256)throw Error('Road correction checksum mismatch');const corrected=decodeSurface(m,bytes);
+      terrain.walkSupport=surfaceSupport(corrected.tiles,m.walkCorrection.bounds);return corrected;
+    }catch(error){console.warn('Road correction unavailable; original complete surface retained',error);return null}
+}
 async function loadRefinedTerrain(base:string,terrain:Terrain,original:any):Promise<boolean>{
   try{
     const r=await fetch(base+'angles-relief.json');if(!r.ok)throw Error('Local terrain refinement unavailable');
@@ -189,8 +203,10 @@ async function loadRefinedTerrain(base:string,terrain:Terrain,original:any):Prom
       const prepared=prepareLandmarks(raw,terrain.sample(0,0)??terrain.grid.elevations_m[0],{terrain:terrain.sourceSha256,osm:m.osmSha256,refinement:refinementSha256});
       const response=await fetch(base+'angles-landmark-surface.json');if(!response.ok)throw Error('Landmark underlay unavailable');const lm=await response.json();
       if(lm.landmarksSha256!==landmarksSha256||lm.refinementSha256!==refinementSha256||lm.terrainSha256!==m.terrainSha256||lm.osmSha256!==m.osmSha256||lm.tiles.length!==m.tiles.length||lm.tiles.some((t:any,i:number)=>['x','z','size','cover'].some(k=>t[k]!==m.tiles[i][k])))throw Error('Stale landmark underlay');
-      const packed=await fetch(base+'angles-landmark-surface.pack');if(!packed.ok)throw Error('Landmark underlay missing');const buffer=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
-      if(await sha256(buffer)!==lm.binarySha256)throw Error('Landmark underlay checksum mismatch');surface=decodeSurface(lm,buffer);landmarks=prepared;
+      surface=await loadWalkingSurface(base,lm,terrain,refinementSha256);
+      if(!surface){const packed=await fetch(base+'angles-landmark-surface.pack');if(!packed.ok)throw Error('Landmark underlay missing');const buffer=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      if(await sha256(buffer)!==lm.binarySha256)throw Error('Landmark underlay checksum mismatch');surface=decodeSurface(lm,buffer);}
+      landmarks=prepared;
     }catch(error){console.warn('Local landmarks unavailable; complete Mission 14A retained',error)}
     if(!surface){
       const packed=await fetch(base+'angles-relief-surface.pack');if(!packed.ok)throw Error('Refined surface unavailable');
@@ -198,6 +214,7 @@ async function loadRefinedTerrain(base:string,terrain:Terrain,original:any):Prom
       if(await sha256(buffer)!==m.binarySha256)throw Error('Refined surface checksum mismatch');surface=decodeSurface(m,buffer);
     }
     // One activation point: colliders, anchors and visual tiles switch together.
+
     terrain.singleSurface=surface;terrain.grid.refinement=refinement;terrain.landmarks=landmarks;
     terrain.relief={sha256:refinementSha256,cells:refinement.cells.size,boundsM:data.boundsM,method:data.provenance.method};terrain.metrics.reliefCells=refinement.cells.size;return true;
   }catch(error){console.warn('Local relief unavailable; complete Mission 13 terrain retained',error);return false;}

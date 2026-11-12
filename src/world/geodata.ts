@@ -1,3 +1,5 @@
+import {loadRiverFlow} from '../earthlife/river-flow';
+import {configureWindowBuildings} from '../architecture/window-seeds';
 // @ts-ignore Indexed mapped habitat queries.
 import {habitatIndex} from '../earthlife/habitat.mjs';
 // @ts-ignore Shared normalized environmental features.
@@ -156,6 +158,7 @@ function batchLinearFeatures(scene:THREE.Object3D):void{
 }
 export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terrain?:Terrain,prepared?:any):number{
   if(prepared)scene.userData.decorationStream=prepared.stream;
+  configureWindowBuildings(features);
   let count=addMappedTrees(scene,features,terrain,prepared);
   const sharedEdges=sharedBuildingEdges(features);
   const architecture=prepared?null:new ArchitectureBatch(scene);
@@ -209,7 +212,7 @@ export async function loadAnglesGeography(scene:THREE.Object3D, terrain?:Terrain
   const response=await fetch(`${import.meta.env.BASE_URL}data/angles-osm.geojson`);
   if(!response.ok)return 0;
   const text=await response.text(),data=JSON.parse(text) as Collection;
-  const prepared=await loadDecorations(terrain,text);
+  const [prepared]=await Promise.all([loadDecorations(terrain,text),loadRiverFlow(text)]);
   scene.userData.decorationManifest=prepared?.manifest??null;
   if(data.type!=='FeatureCollection'||!Array.isArray(data.features))throw new Error('Invalid GeoJSON');
   const count=renderGeoFeatures(scene,mergeEnvironment(data.features,terrain?.environment),terrain,prepared);

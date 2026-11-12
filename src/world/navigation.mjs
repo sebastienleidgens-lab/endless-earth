@@ -1,9 +1,9 @@
 // Geographic navigation independent of rendering and village. Local metres;
 // optional point.y is a VERIFIED deck elevation in the terrain's relative datum.
 import {circleHitsPolygon} from '../controls/walking.mjs';
+import {roadWidth} from './road-style.mjs';
 export function lineWidth(tags) {
-  const width=Number(tags.width);
-  return Number.isFinite(width)&&width>0?Math.min(width,30):['path','footway','steps','cycleway'].includes(tags.highway)?2.5:5.5;
+  return roadWidth(tags).metres;
 }
 export function pedestrianAccess(tags) {
   const access=String(tags.foot??tags.access??'yes');
@@ -37,29 +37,30 @@ export function createNavigation(features) {
         const key=`${x},${z}`;if(!cells.has(key))cells.set(key,[]);cells.get(key).push(item);
       }
   }
-  return (x,z)=>{
-    let water=false,blocked=false,cameraBlocked=false,support=null,steps=false;
+  return (x,z,explain=false)=>{
+    let water=false,blocked=false,cameraBlocked=false,support=null,steps=false;const reasons=explain?[]:null;
     for(const item of cells.get(`${Math.floor(x/20)},${Math.floor(z/20)}`)??[]){
       const {tags,points,polygon,width,historicWall}=item,n=nearest(x,z,points,polygon);
       const hits=historicWall?n.distance<width/2+.3:polygon?circleHitsPolygon(x,z,points,.3):n.distance<width/2+.3;
       if(!hits)continue;
+      const block=(rule,camera=false)=>{blocked=true;if(camera)cameraBlocked=true;reasons?.push({rule,id:tags.osm_id??null,name:tags.name??null,barrier:tags.barrier??null,highway:tags.highway??null})};
       // Same 1.25 m footprint as the rendered ruin walls; keep courtyards free.
-      if(historicWall&&n.distance<width/2+.3){blocked=true;cameraBlocked=true;}
-      if(tags.natural==='water'||tags.waterway)water=true;
-      if(tags.barrier&&!['entrance','gate','lift_gate','bollard'].includes(tags.barrier)){blocked=true;cameraBlocked=true;}
-      if(tags.barrier&&!pedestrianAccess(tags))blocked=true;
+      if(historicWall&&n.distance<width/2+.3)block('historic-masonry',true);
+      if(tags.natural==='water'||tags.waterway){water=true;reasons?.push({rule:'mapped-water',id:tags.osm_id??null,name:tags.name??null})}
+      if(tags.barrier&&!['entrance','gate','lift_gate','bollard'].includes(tags.barrier))block('barrier',true);
+      if(tags.barrier&&!pedestrianAccess(tags))block('barrier-access');
       if(tags.highway){
-        if(!pedestrianAccess(tags)||['motorway','motorway_link','construction','proposed'].includes(tags.highway)||tags.tunnel&&tags.tunnel!=='no')blocked=true;
+        if(!pedestrianAccess(tags)||['motorway','motorway_link','construction','proposed'].includes(tags.highway)||tags.tunnel&&tags.tunnel!=='no')block('pedestrian-access');
         if(tags.bridge&&tags.bridge!=='no'){
           if(item.support&&n.outside)continue;
           // layer/clearance are NOT deck elevations. Unknown bridge blocks even on dry DEM.
           const height=item.support?item.support(x,z):n.y;
-          if(height===null)blocked=true;
+          if(height===null)block('unverified-bridge-support');
           else if(n.distance<=Math.max(0,width/2-.3))support=height;
         }
         if(tags.highway==='steps'&&n.distance<=Math.max(0,width/2-.3))steps=true;
       }
     }
-    return {cameraClear:!cameraBlocked,clear:!blocked&&(!water||support!==null),support, slope:steps?1.2:.7};
+    return {cameraClear:!cameraBlocked,clear:!blocked&&(!water||support!==null),support, slope:steps?1.2:.7,...(reasons?{reasons}: {})};
   };
 }

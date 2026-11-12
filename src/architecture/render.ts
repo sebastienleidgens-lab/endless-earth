@@ -1,3 +1,5 @@
+import {orientArchitectureGeometry} from './orientation';
+import {attachWindowSeeds} from './window-seeds';
 import {architectureMaterials} from './material';
 import * as THREE from 'three';
 // @ts-ignore Pure deterministic planning shared with Node tests.
@@ -21,7 +23,7 @@ function quad(b:Bucket,p:number[][],tint:number,uv=[[0,0],[1,0],[1,1],[0,1]],kin
  const start=b.p.length/3;color.setHex(tint);for(let i=0;i<4;i++){b.p.push(...p[i]);b.uv.push(...uv[i]);b.c.push(color.r,color.g,color.b);b.a.push(kind)}b.indices.push(start,start+1,start+2,start,start+2,start+3);
 }
 const {stone,plaster,tile,plain}=architectureMaterials;
-function mesh(b:Bucket,material:THREE.Material){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(b.p,3));if((material as THREE.MeshLambertMaterial).map)g.setAttribute('uv',new THREE.Float32BufferAttribute(b.uv,2));g.setAttribute('color',new THREE.Float32BufferAttribute(b.c,3));g.setAttribute('architectureMaterial',new THREE.Uint8BufferAttribute(b.a,1));g.setIndex(b.indices);g.computeVertexNormals();g.computeBoundingSphere();const m=new THREE.Mesh(g,material);m.receiveShadow=true;return m}
+function mesh(b:Bucket,material:THREE.Material){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(b.p,3));if((material as THREE.MeshLambertMaterial).map)g.setAttribute('uv',new THREE.Float32BufferAttribute(b.uv,2));g.setAttribute('color',new THREE.Float32BufferAttribute(b.c,3));g.setAttribute('architectureMaterial',new THREE.Uint8BufferAttribute(b.a,1));g.setIndex(b.indices);g.computeVertexNormals();g.computeBoundingSphere();orientArchitectureGeometry(g);attachWindowSeeds(g);const m=new THREE.Mesh(g,material);m.receiveShadow=true;return m}
 // Clip a triangulated footprint to each roof plane, preserving concavities/holes.
 function clip(poly:Point[],value:(p:Point)=>number){const out:Point[]=[];for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],va=value(a),vb=value(b);if(va>=-1e-8)out.push(a);if((va>0&&vb<0)||(va<0&&vb>0)){const t=va/(va-vb);out.push({x:a.x+(b.x-a.x)*t,z:a.z+(b.z-a.z)*t})}}return out}
 function fineDetails(detail:Bucket,p:any,style:typeof POITOU){
@@ -133,7 +135,7 @@ export function updateArchitectureLOD(scene:THREE.Object3D,camera:THREE.Camera,l
  const distance=(o:THREE.Object3D)=>Math.hypot(Math.max(0,Math.abs(camera.position.x-o.userData.centerX)-o.userData.architectureStyle.cellSize/2),Math.max(0,Math.abs(camera.position.z-o.userData.centerZ)-o.userData.architectureStyle.cellSize/2));
  slots.sort((a,b)=>distance(a)-distance(b));let generated=0;
  for(const o of slots){const wanted=detailVisible(o.visible,distance(o),low,o.userData.architectureStyle);
-  if(o.userData.prepared&&!o.children.length){if(distance(o)<o.userData.architectureStyle.detailDistance[low?'low':'high']+(stream?.policy.prefetchM??48))requests.push({id:o.userData.prepared,priority:distance(o)-(wanted?1000:0),d:distance(o),wanted,install:(data:any)=>{const start=performance.now();const m=new THREE.Mesh(data.meshes[0].geometry,plain);m.name='architecture-detail';m.receiveShadow=true;o.add(m);o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;}});}
+  if(o.userData.prepared&&!o.children.length){if(distance(o)<o.userData.architectureStyle.detailDistance[low?'low':'high']+(stream?.policy.prefetchM??48))requests.push({id:o.userData.prepared,priority:distance(o)-(wanted?1000:0),d:distance(o),wanted,install:(data:any)=>{const start=performance.now();orientArchitectureGeometry(data.meshes[0].geometry);attachWindowSeeds(data.meshes[0].geometry);const m=new THREE.Mesh(data.meshes[0].geometry,plain);m.name='architecture-detail';m.receiveShadow=true;o.add(m);o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;}});}
   else if(wanted&&!o.children.length&&generated===0){const start=performance.now();o.userData.create();o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;generated++;}
   o.visible=wanted&&o.children.length>0;if(o.userData.openingMesh)o.userData.openingMesh.visible=!o.visible;
  }
@@ -148,7 +150,7 @@ export function architectureMemory(scene:THREE.Object3D){let triangles=0,bytes=0
 // Hydrate the exact offline buffers. Regional materials/animation remain runtime
 // resources; no facade planning, triangulation or normal computation on a walk.
 export function installPreparedArchitecture(scene:THREE.Object3D,prepared:any,style=POITOU){
- const start=performance.now(),meshes:THREE.Mesh[]=[];for(const r of prepared.static.meshes){const kind=r.name.slice('architecture-'.length),material=kind==='shell'?stone:kind==='render'?plaster:kind==='roof'?tile:plain;const m=new THREE.Mesh(r.geometry,material);m.receiveShadow=true;m.name=r.name;meshes.push(m);scene.add(m)}
+ const start=performance.now(),meshes:THREE.Mesh[]=[];for(const r of prepared.static.meshes){const kind=r.name.slice('architecture-'.length),material=kind==='shell'?stone:kind==='render'?plaster:kind==='roof'?tile:plain;orientArchitectureGeometry(r.geometry);attachWindowSeeds(r.geometry);const m=new THREE.Mesh(r.geometry,material);m.receiveShadow=true;m.name=r.name;meshes.push(m);scene.add(m)}
  for(const r of prepared.manifest.architectureSlots){const slot=new THREE.Group();slot.name='architecture-detail-cache';Object.assign(slot.userData,{architectureDetail:true,architectureStyle:style,centerX:r.x,centerZ:r.z,openingMesh:meshes[r.openingIndex],prepared:r.id});slot.visible=false;scene.add(slot)}
  scene.userData.architecture={...prepared.manifest.architectureStats,generationMs:performance.now()-start,builds:1};scene.userData.architectureAnchors=prepared.manifest.architectureAnchors;
 }

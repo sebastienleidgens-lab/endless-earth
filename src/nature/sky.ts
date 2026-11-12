@@ -73,7 +73,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   if(lifeRevision!==lifeSettings.revision){lifeRevision=lifeSettings.revision;budget.setProfile(lifeSettings.profile);setLifeCapabilities(lifeSettings.profile)}
   const profile=lifeSettings.profile;
   lifeUniforms.lifeVegetation.value=profile.vegetation;lifeUniforms.lifeFine.value=profile.fine;lifeUniforms.lifeWater.value=profile.water;lifeUniforms.lifeCloudCover.value=state.cloud;lifeUniforms.lifeShadow.value=profile.shadows*profile.clouds;
-  lifeUniforms.lifeSun.value.copy(sunDirection);
+  lifeUniforms.lifeSun.value.copy(sunDirection);lifeUniforms.lifeHour.value=localHour;
   // The river receives the same simulated sky/weather/light as the scene.
   lifeUniforms.lifeRain.value=state.rain;lifeUniforms.lifeDay.value=day;
   lifeUniforms.lifeHorizon.value.copy(horizon);lifeUniforms.lifeZenith.value.copy(zenith);
