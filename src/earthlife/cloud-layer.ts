@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 // @ts-ignore One advected macro field also feeds the existing terrain shadows.
 import {lifeUniforms,lifePrelude} from './state.mjs';
+// @ts-ignore Same altitude as the shared shadow field.
+import {CLOUD_HEIGHT} from './clouds.mjs';
 
 /** Two altitude layers projected onto a curved sky, with lit edges and darker
  * bases. World coordinates prevent a camera-following ceiling or tile seams. */
@@ -14,16 +16,16 @@ export function createCloudLayer(scene:THREE.Scene){
  float detail(vec2 p){float n=noise(p)*.6+noise(p*2.07+17.3)*.28;return n+(cloudEco<.5?noise(p*4.13-11.4)*.12:.06);}
  void main(){
   vec3 d=normalize(ray);if(d.y<.015)discard;
-  float h=max(65.,280.-cloudOrigin.y);vec2 p=cloudOrigin.xz+d.xz*h/sqrt(d.y*d.y+.014);
+  float h=max(65.,${CLOUD_HEIGHT.toFixed(1)}-cloudOrigin.y);vec2 p=cloudOrigin.xz+d.xz*h/sqrt(d.y*d.y+.014);
   vec2 flow=lifeCloudDrift;
   float macro=lifeCloudField(p,lifeTime);
   vec2 uv=(p-flow)*.007;
-  uv+=vec2(noise(uv*.7+4.),noise(uv*.7-7.))*1.8;
+  uv+=vec2(noise(uv*.7+4.+lifeCloudMorph.xy*.5),noise(uv*.7-7.+lifeCloudMorph.yz*.4))*1.8;
   float n=detail(uv);
   float field=macro*.35+n*.65;
   float edge=cloudShape.x;
   float density=smoothstep(edge-.015,edge+.085,field);
-  float upper=0.;if(cloudEco<.5){vec2 p2=cloudOrigin.xz+d.xz*max(140.,540.-cloudOrigin.y)/sqrt(d.y*d.y+.018);upper=smoothstep(.72-lifeCloudCover*.3,.94-lifeCloudCover*.3,detail((p2-flow*.65)*.0043));}
+  float upper=0.;if(cloudEco<.5){vec2 p2=cloudOrigin.xz+d.xz*max(140.,540.-cloudOrigin.y)/sqrt(d.y*d.y+.018);upper=smoothstep(.72-lifeCloudCover*.3,.94-lifeCloudCover*.3,detail((p2-flow*.65)*.0043+lifeCloudMorph.zx*.18));}
   float alpha=max(density+upper*.35*(1.-density),cloudShape.y)*smoothstep(.015,.12,d.y)*lifeCloudEnabled;
   float rim=pow(max(0.,dot(d,lifeSun)),12.)*cloudShape.z;
   float thickness=smoothstep(edge,edge+.27,field);
@@ -41,6 +43,6 @@ export function createCloudLayer(scene:THREE.Scene){
   // lighting detail and opacity remain at the original full resolution.
   u.cloudBase.value.set(.025+day*.455,.035+day*.495,.055+day*.515).multiplyScalar(attenuation);
   u.cloudLit.value.set(.05+day*.89,.065+day*.875,.095+day*.815).lerp(warmTint,warm*.45*day).multiplyScalar(attenuation);
-  u.cloudShape.value.set(.72-cover*.38,THREE.MathUtils.smoothstep(cover,.78,1)*.8,(1-cover)*.25*day*attenuation);
+  u.cloudShape.value.set(.72-cover*.38,THREE.MathUtils.smoothstep(cover,.78,1)*.46,(1-cover)*.25*day*attenuation);
  },dispose(){scene.remove(mesh);geometry.dispose();material.dispose()}};
 }

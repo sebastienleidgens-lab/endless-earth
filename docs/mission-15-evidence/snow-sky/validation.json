@@ -1,0 +1,596 @@
+{
+  "finishedUTC": "2026-11-12T18:04:08.888Z",
+  "reference15A": "62be56993d7f7ec69a45406f57d298a1885daea9",
+  "authorization": "Owner go accepted15A and authorized15B. 15B artistic validation pending; stop before15C.",
+  "tests": 221,
+  "checks": {
+    "tests": {
+      "passed": true,
+      "sha256": "8b46e8288f4e246ce6c88893f2f447223c9e3f580a64f7969cfee47e96474e53"
+    },
+    "build": {
+      "passed": true,
+      "sha256": "c6a33d5b70e8bf95a7fd2e0786ff0eeafa51194cb0fbc6f26eee1e8817b93e0c"
+    },
+    "smoke": {
+      "passed": true,
+      "sha256": "b462bab8ee74381f3baacd4c675d712678b8e353ff5e0c87c8848c1c94fae436"
+    },
+    "compiled": {
+      "passed": true,
+      "sha256": "1dd22ecf068fd7581c39d26575cdc66c2b18a181973cfc7edfe9b80d8eeddc6c"
+    },
+    "identity": {
+      "passed": true,
+      "sha256": "147066d93034bbd2d16774c5396486ea4a83cedd1eabe6ebca75f40851805bc3"
+    },
+    "media": {
+      "passed": true,
+      "sha256": "9c91c5ccfe89debc2be1561885fe693df89d6034b6dbc1f6bcea81af48d6d04f"
+    },
+    "cpu": {
+      "passed": true,
+      "sha256": "21abd7f2f03a35620c97ba583b8ad285d9b00dd99057e930c9f777c52185554b"
+    }
+  },
+  "sourceSnapshotSha256": "ef230e2ed799a9bf7fb03376105176f29f7c93328bc3f4b8bdaf7efa265fba7e",
+  "postCaptureChanges": [
+    {
+      "file": "src/style.css",
+      "beforeSha256": "ca12e7f4756482c4efd226134536ff741b61c0eecc566080b391bc5f2255b5d1",
+      "afterSha256": "f16d4c43862740b1c31c0cf2fcbab36796f4b69c7714eaec2eaa72612a06c167",
+      "reason": "Identity check found long Mission15 title clipped at320px. Only @media(max-width:360px) white-space wrapping changed. All main evidence cameras/captures are390px or wider and all3D runtime sources stay identical.",
+      "validation": "Four compiled layouts, including320px, rerun after fix."
+    }
+  ],
+  "physicalFilesIdentical": 599,
+  "historical15AFilesIdentical": 58,
+  "exposureRebuildByteIdentical": true,
+  "softwareOnly": true,
+  "physicalGPUAvailable": false,
+  "androidAvailable": false,
+  "cloud": [
+    {
+      "phase": "before",
+      "wallSeconds": 239.90010643699998,
+      "simulationSeconds": 239.39270000000002,
+      "driftMetres": 682.8282201537028,
+      "fixedCamera": true
+    },
+    {
+      "phase": "after",
+      "wallSeconds": 240.00248171200002,
+      "simulationSeconds": 239.88419999999905,
+      "driftMetres": 683.9718826155104,
+      "fixedCamera": true
+    }
+  ],
+  "snow": [
+    {
+      "id": "snow-walk",
+      "wallSeconds": 120.03032335499998,
+      "coverStart": 0,
+      "coverEnd": 0.4089437663846662,
+      "distanceMetres": 55.05539035828033,
+      "frames": 267,
+      "frameMedianMs": 478.79999999981374,
+      "frameP95Ms": 641.6000000005588,
+      "framePeakMs": 1593.0999999996275,
+      "readyFromFirstRecordedFrameSeconds": 1.5930999999996274,
+      "audioSteps": 87
+    },
+    {
+      "id": "melt",
+      "wallSeconds": 300.039309946,
+      "coverStart": 0.23564037599999987,
+      "coverEnd": 0,
+      "distanceMetres": 0,
+      "frames": 757,
+      "frameMedianMs": 401,
+      "frameP95Ms": 490.29999999981374,
+      "framePeakMs": 1434.4000000003725,
+      "readyFromFirstRecordedFrameSeconds": 0,
+      "audioSteps": 0
+    },
+    {
+      "id": "light",
+      "wallSeconds": 30.014743201000005,
+      "coverStart": 0.3,
+      "coverEnd": 0.3,
+      "distanceMetres": 0,
+      "frames": 84,
+      "frameMedianMs": 428.1000000005588,
+      "frameP95Ms": 821.9000000003725,
+      "framePeakMs": 1195.3999999994412,
+      "readyFromFirstRecordedFrameSeconds": 0,
+      "audioSteps": 0
+    },
+    {
+      "id": "heavy",
+      "wallSeconds": 30.048031032000004,
+      "coverStart": 0.3,
+      "coverEnd": 0.3,
+      "distanceMetres": 0,
+      "frames": 83,
+      "frameMedianMs": 431.29999999981374,
+      "frameP95Ms": 539.5,
+      "framePeakMs": 856.2000000001863,
+      "readyFromFirstRecordedFrameSeconds": 0,
+      "audioSteps": 0
+    }
+  ],
+  "gallery": {
+    "images": 81,
+    "videos": 6,
+    "layouts": [
+      {
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "width": {
+          "page": 1280,
+          "viewport": 1280
+        }
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "width": {
+          "page": 390,
+          "viewport": 390
+        }
+      }
+    ]
+  },
+  "compiledBadge": {
+    "commit": "62be56993d7f7ec69a45406f57d298a1885daea9",
+    "dirty": "true",
+    "environment": "production",
+    "text": "ENDLESS EARTH\nProduction\nMission 15 — Un monde vivant, généreux et immersif\nBase 62be5699 · modifié\nAngles-sur-l'Anglin"
+  },
+  "media": [
+    {
+      "name": "15a-falaise-bare-balanced.jpg",
+      "bytes": 54155,
+      "sha256": "4a00b97e7d1cd57c80a4b55749512e77df39f140e4752291a25f6e9dc3d498ca"
+    },
+    {
+      "name": "15a-foret-bare-balanced.jpg",
+      "bytes": 66030,
+      "sha256": "96a6e334cacedca7b59766890058130d8ede4a0e681b9e726cc63cde128566a9"
+    },
+    {
+      "name": "15a-persistants-bare-balanced.jpg",
+      "bytes": 76536,
+      "sha256": "82a9d4dc8ad99fb6def19d0373bc74bf045cfdf62889ca8e0d65a5fa8a01dc74"
+    },
+    {
+      "name": "15a-pont-bare-balanced.jpg",
+      "bytes": 72654,
+      "sha256": "50b72f21cde0aefb69c99122edbe911c7c2cf8ea9ba8791559d0ce6ba0934658"
+    },
+    {
+      "name": "15a-rue-bare-balanced.jpg",
+      "bytes": 67522,
+      "sha256": "0064958ea5219703be88240f70a53be3ffacbdf15e4cc6fa2b77dfdfc6cc4303"
+    },
+    {
+      "name": "15a-sous-pont-bare-balanced.jpg",
+      "bytes": 78425,
+      "sha256": "ae27b3e4f5ec917dbf01c7eb4b5f94f76c4b28651c56e7c4fb1403616e43c31c"
+    },
+    {
+      "name": "15a-toitures-bare-balanced.jpg",
+      "bytes": 75924,
+      "sha256": "85c726bb109d3eb4a60b370c6efe46c9b74c9763bcd91849aefc97c22fcdbc38"
+    },
+    {
+      "name": "15a-vallee-bare-balanced.jpg",
+      "bytes": 88089,
+      "sha256": "5a3aa6c2099b9d84e9a232edfecdc1c88cbe9d71340636d09b73d650dd147e94"
+    },
+    {
+      "name": "after-cloud-0s.jpg",
+      "bytes": 38558,
+      "sha256": "5b8da339574dafefb13316f7d7627f170d48adc470e58f89b8db2663f78d87bb"
+    },
+    {
+      "name": "after-cloud-120s.jpg",
+      "bytes": 41651,
+      "sha256": "0ab3606cb8c5cc9b5a1315e95c1987e83050dc23ef949b854dcb2f305823c05f"
+    },
+    {
+      "name": "after-cloud-180s.jpg",
+      "bytes": 40833,
+      "sha256": "0392f2d0298bba3dd74df6b12d4a36b6e9688c1286c7e43d5a3930361064ddf4"
+    },
+    {
+      "name": "after-cloud-240s.jpg",
+      "bytes": 38898,
+      "sha256": "64c91a1cff6f6fcf124b49878e3bd69ea20b95637496e0a4d5f49f24c9a8c19e"
+    },
+    {
+      "name": "after-cloud-60s.jpg",
+      "bytes": 39094,
+      "sha256": "e83b5cb34f14217eeb8c517dfa75e7879a947df145ca2e180e8863af6a5dda0e"
+    },
+    {
+      "name": "after-clouds.webm",
+      "bytes": 2298858,
+      "sha256": "80d89ba465a5f85b14d0194faae7dd2b1ab03d159eb308d7e5dff0e062325f85"
+    },
+    {
+      "name": "alternative-coarse-foret.jpg",
+      "bytes": 56727,
+      "sha256": "64c92c3e511ed7ae770f2a3b46911c8067dd7804eb7ffc99619c1d80792aeef0"
+    },
+    {
+      "name": "alternative-coarse-rue.jpg",
+      "bytes": 58571,
+      "sha256": "0413c8b8581aa778880ba1e2779b48a8a8f6e2ec466ce0482e560ee9ad070db8"
+    },
+    {
+      "name": "alternative-coarse-vallee.jpg",
+      "bytes": 88592,
+      "sha256": "4ed2cc0c129a329eb86b04167ce8566f673be095612f75aafe3ae1d3175c2b55"
+    },
+    {
+      "name": "alternative-retained-foret.jpg",
+      "bytes": 57202,
+      "sha256": "ef75fb8ab4aff1846146ee1a297bba0420eecf6780cfb7599d96887d249ca3f8"
+    },
+    {
+      "name": "alternative-retained-rue.jpg",
+      "bytes": 58627,
+      "sha256": "27fd94836ab2c35b9c08a9bc1f211b4fc4c9938f2fa0a2daa901ae93e8a218df"
+    },
+    {
+      "name": "alternative-retained-vallee.jpg",
+      "bytes": 88557,
+      "sha256": "0e2009c32d7f4b73c698e44de0dac58f373422042c83fecef903e52b3fd2f7a0"
+    },
+    {
+      "name": "alternative-unprotected-foret.jpg",
+      "bytes": 56734,
+      "sha256": "b080c615cd0b11c54d037b0559519158d3923b45757541be18ef7180921c193f"
+    },
+    {
+      "name": "alternative-unprotected-rue.jpg",
+      "bytes": 57606,
+      "sha256": "b794b7f03dd1a910d5a3aed33730f29b5d151c6bfd2bceadc0f46d61cacf2980"
+    },
+    {
+      "name": "alternative-unprotected-vallee.jpg",
+      "bytes": 83559,
+      "sha256": "83850cd32c40a57dbfc61af14e67151195a955f3c3013c881210c2854e61ab06"
+    },
+    {
+      "name": "before-cloud-0s.jpg",
+      "bytes": 40234,
+      "sha256": "fe3a7a94f13d31db059b6a0f3bba979c65e2205127694450c40c5775c31868ba"
+    },
+    {
+      "name": "before-cloud-120s.jpg",
+      "bytes": 42251,
+      "sha256": "c0c8ff5ef2ae5c7c5e3a265839bdc39e0aab1f888f098a3ca4ab63118288778e"
+    },
+    {
+      "name": "before-cloud-180s.jpg",
+      "bytes": 42122,
+      "sha256": "681d187636b5963e57955418ffc5042c3fd60d9b3bddb38a9a68e263f9a2ce6b"
+    },
+    {
+      "name": "before-cloud-240s.jpg",
+      "bytes": 40326,
+      "sha256": "ecffb5b15175256786377db2cdb89fca75dca524902432a4ccef750290043b2c"
+    },
+    {
+      "name": "before-cloud-60s.jpg",
+      "bytes": 40976,
+      "sha256": "1ad48f27b69fa04d4aae2a26a635b3d0676ae447d8875e65c1ce1b18aa8801d8"
+    },
+    {
+      "name": "before-clouds.webm",
+      "bytes": 2311824,
+      "sha256": "794446b520a7ccb882d8a5682b646c6fb4484a142a8e518b39979b19e2d39fb4"
+    },
+    {
+      "name": "comparison.jpg",
+      "bytes": 488107,
+      "sha256": "dca40f1efc0331d337d74e6067ba12421ce06917b2c52649ffb8edb86de9fa6a"
+    },
+    {
+      "name": "desktop-controls.jpg",
+      "bytes": 94550,
+      "sha256": "170639d46d95f013b6ab03e610c2a7ba874887f3f05f62ac6b46a28aa93de2a9"
+    },
+    {
+      "name": "falaise-bare-balanced.jpg",
+      "bytes": 54971,
+      "sha256": "503fc6d91547e0ef6e9f2499850ab98ee993ab92fb2a1e79bbf94e11380970b3"
+    },
+    {
+      "name": "falaise-covered-balanced.jpg",
+      "bytes": 52874,
+      "sha256": "6168089b5d4a9c8f3f0d44f02390a9582f085ee0b55b5e9c36cfe286469a5ed6"
+    },
+    {
+      "name": "falaise-light-balanced.jpg",
+      "bytes": 58147,
+      "sha256": "5c81c95a69c26fb110a5de5099cc37490fe62ec366e74d95cdc0518a6d2c40b0"
+    },
+    {
+      "name": "fleurs-snow-covered-balanced.jpg",
+      "bytes": 42921,
+      "sha256": "aa7b4606d7d66e57e1406444a9e2712ed4f26d7b26d3c7c62893f5829b29fe83"
+    },
+    {
+      "name": "fleurs-summer-balanced.jpg",
+      "bytes": 44532,
+      "sha256": "a71353f4a70caa2b2ca1d82404e848c084e7aebcd8cdd6f86abc82b2e2f791a0"
+    },
+    {
+      "name": "foret-bare-balanced.jpg",
+      "bytes": 64807,
+      "sha256": "d636c45e8f86131132c9254651ca01a1b848568815c2d6dfac5acc0d25c1303d"
+    },
+    {
+      "name": "foret-covered-balanced.jpg",
+      "bytes": 61767,
+      "sha256": "cbafd7ddc3f4bc15b66869c3b22cc8fb23a1ba516e8d14e62bc376642440b728"
+    },
+    {
+      "name": "foret-light-balanced.jpg",
+      "bytes": 77352,
+      "sha256": "d1a7f84d491e635453bba25b7b4341ef3c636f3773b564f1f9e6ea147fb3f2b5"
+    },
+    {
+      "name": "foret-snowfall-eco.jpg",
+      "bytes": 55100,
+      "sha256": "84ba9feccc4efd3f6cfc4a7c3a2b30f96aa6b5404e9e0fdddf4dd17e4ada6e4f"
+    },
+    {
+      "name": "foret-snowfall-quality.jpg",
+      "bytes": 61432,
+      "sha256": "bb03db14a35bb27b3c25448d1b19d1a4420499e5d21d2652202a850edf0bd8c2"
+    },
+    {
+      "name": "heavy-0s.jpg",
+      "bytes": 56064,
+      "sha256": "f8cd4a734d1f8cca1579b75d2339f187e217a84887583d2a6047b1a64028a20e"
+    },
+    {
+      "name": "heavy-15s.jpg",
+      "bytes": 56129,
+      "sha256": "e6a78f0e50ce396bd560c377f7ccb57237de5e2c3bd7ba3aff889cbef853d586"
+    },
+    {
+      "name": "heavy-30s.jpg",
+      "bytes": 56137,
+      "sha256": "43631b14daa70a5cd2855fb4160c977eb17ba7c908be149237120da58e53b0f6"
+    },
+    {
+      "name": "heavy.webm",
+      "bytes": 426807,
+      "sha256": "a520cd2101a0f30f812377ac9f4febf10da82a620c1ddfea6fce370ccb56598e"
+    },
+    {
+      "name": "light-0s.jpg",
+      "bytes": 55940,
+      "sha256": "4779732d0db906901994f4df30050583bc6387c24e77913c5bd8a20cd9a48b40"
+    },
+    {
+      "name": "light-15s.jpg",
+      "bytes": 55983,
+      "sha256": "406366da4072d8dae78433d825183237fb59d61f0088814a7f3aea3468342131"
+    },
+    {
+      "name": "light-30s.jpg",
+      "bytes": 55972,
+      "sha256": "865558aa94ceccbe368e180f4810edff77824a9c9c04e536093da37ff684ea3e"
+    },
+    {
+      "name": "light.webm",
+      "bytes": 425565,
+      "sha256": "41d78a6544ba6e89f5a5651f8e450400787418632a9bc1a3085bba35079a8492"
+    },
+    {
+      "name": "melt-0s.jpg",
+      "bytes": 64047,
+      "sha256": "a62d57c124e03c8449a2b4b2af4566cb730f59ac9ec18cd3a72d80dfa89a7528"
+    },
+    {
+      "name": "melt-120s.jpg",
+      "bytes": 59715,
+      "sha256": "8179baccbf919e3a58d01dfc57a3a4d4b452933c5141b272b76874011146aaf7"
+    },
+    {
+      "name": "melt-180s.jpg",
+      "bytes": 56294,
+      "sha256": "63451d5b21be013b4604898fb74356cced2fc3019e10c84b387a432eab74ce9e"
+    },
+    {
+      "name": "melt-240s.jpg",
+      "bytes": 55768,
+      "sha256": "f130c4595bbf2bc177f55d04a00259869ff1d3a527e26d500282e57eb56a2728"
+    },
+    {
+      "name": "melt-300s.jpg",
+      "bytes": 56305,
+      "sha256": "4f0718e1c87af78e402ceb74bb7301c4424f87bbcf5dd0d2c08cca0893e84dbd"
+    },
+    {
+      "name": "melt-60s.jpg",
+      "bytes": 63249,
+      "sha256": "cee4b07a01c25e4a3e76359f267f23a6871c5b82d9b9a44c1fc1f0b73258e09d"
+    },
+    {
+      "name": "melt.webm",
+      "bytes": 4812570,
+      "sha256": "1f6d0b0e14c0119d30b802493e65794d9ff95509252da3857de47c71d413fed5"
+    },
+    {
+      "name": "mobile-controls.jpg",
+      "bytes": 56197,
+      "sha256": "cdb6986d8904ae532a1a7f4741ca79696b66785b9ee228d6eba01722afd8f596"
+    },
+    {
+      "name": "mobile-snowfall-eco.jpg",
+      "bytes": 36437,
+      "sha256": "a6f63d8ddd289270696d86ee32730d742856c359e55f5e4b3112025dc55c9ef2"
+    },
+    {
+      "name": "persistants-bare-balanced.jpg",
+      "bytes": 76205,
+      "sha256": "c06216ad7663b4af7e048b46900fea020d8d1de10c4c007aa022d9193ef4a3c1"
+    },
+    {
+      "name": "persistants-covered-balanced.jpg",
+      "bytes": 76558,
+      "sha256": "0da5ad7bf27052b3648b264bc88f932b8243e548d818bfd44e3876b0258627cb"
+    },
+    {
+      "name": "persistants-light-balanced.jpg",
+      "bytes": 87342,
+      "sha256": "953831e4723bd3ad4c08f66ff45284b5ce249cffdfb6d557a115d08b05779fa0"
+    },
+    {
+      "name": "pont-bare-balanced.jpg",
+      "bytes": 72034,
+      "sha256": "bf102b49a80859b029b8f20eb4eee6a75a467fb34e3d0f13df492900e88f53df"
+    },
+    {
+      "name": "pont-covered-balanced.jpg",
+      "bytes": 79620,
+      "sha256": "347614cbaaa6f9e8f0c71be93f3dfcedc84b683de6c799d9e40f15116e79add0"
+    },
+    {
+      "name": "pont-light-balanced.jpg",
+      "bytes": 76147,
+      "sha256": "952fb6bd192049393a64a5389f669e86e51df4e74bb37a4e46302a3ac5e5085c"
+    },
+    {
+      "name": "rue-bare-balanced.jpg",
+      "bytes": 67251,
+      "sha256": "a6b144d4a002e82307edf144e4dd5626d75e31ef30a9e3c091789494a8029c86"
+    },
+    {
+      "name": "rue-covered-balanced.jpg",
+      "bytes": 66484,
+      "sha256": "96dea648f60816c49dc3df96e107ea9b389ec484903135f50e042e2c6c0e5a95"
+    },
+    {
+      "name": "rue-light-balanced.jpg",
+      "bytes": 75945,
+      "sha256": "f08d5c2517c6aafa2b41f2c8eb77e541cf27ed234e7c3cf7ebc971e190cf6890"
+    },
+    {
+      "name": "rue-snowfall-eco.jpg",
+      "bytes": 61013,
+      "sha256": "35f4cbd2395c574f1fdcb5235069b56a450961407196554dd44a862a818fe413"
+    },
+    {
+      "name": "rue-snowfall-quality.jpg",
+      "bytes": 63039,
+      "sha256": "57cc06c0b431155d03af49e1816bfa7e8b38f7f72ff1f0bc7869134ceaadfe40"
+    },
+    {
+      "name": "snow-walk-0s.jpg",
+      "bytes": 45642,
+      "sha256": "d3f32c0ed2e9551d8c012f2e76d764eeda5ac8fb67ee4d2bc704eb5776a942c4"
+    },
+    {
+      "name": "snow-walk-110s.jpg",
+      "bytes": 41078,
+      "sha256": "58e940a46ba25eeb1f2a2a59a8ddb157cd2475c435c1be8cb4b302916a9ecfc7"
+    },
+    {
+      "name": "snow-walk-120s.jpg",
+      "bytes": 40589,
+      "sha256": "b4b8faaebcdd44ba81a309abf45760b3d22928abc3b68f6c14cc1bbc0e9d6ebe"
+    },
+    {
+      "name": "snow-walk-30s.jpg",
+      "bytes": 43709,
+      "sha256": "6b69148b4ad8cc3961e86b6ad4432923057f4d90240a2180d83d137656b9fcf7"
+    },
+    {
+      "name": "snow-walk-60s.jpg",
+      "bytes": 41694,
+      "sha256": "afbeb81f7f6b633aa0d2fe64b46a0f6d0917f5e1ed3d0a7fdad91b869f22228c"
+    },
+    {
+      "name": "snow-walk-90s.jpg",
+      "bytes": 45868,
+      "sha256": "e9c02f6f4003d76641b16ab801997eafca4697b5153e762b8fb518094aaa5239"
+    },
+    {
+      "name": "snow-walk.webm",
+      "bytes": 1712122,
+      "sha256": "063b55f99d3957906ad0e7fe7e2ffebb036bdb371dc11fa83491d93f3fa6e163"
+    },
+    {
+      "name": "sous-pont-bare-balanced.jpg",
+      "bytes": 77038,
+      "sha256": "1ccbe3e4654825eeb89605b23695545b46386bca1d7b4778271b39ef6995b995"
+    },
+    {
+      "name": "sous-pont-covered-balanced.jpg",
+      "bytes": 77824,
+      "sha256": "9aa2d820108d7b5dd52c4924e96fad9e39eaa893bcfcbb6d1d987fcae60cc796"
+    },
+    {
+      "name": "sous-pont-light-balanced.jpg",
+      "bytes": 77880,
+      "sha256": "6b89ee5205b73f7b70c91f21ad953ec80363640f88e840298c092c0547438ccf"
+    },
+    {
+      "name": "toitures-bare-balanced.jpg",
+      "bytes": 76534,
+      "sha256": "b1d61bcff341261638b700e76534299e13f53a4ca41517bf46b66f163b7f94ca"
+    },
+    {
+      "name": "toitures-covered-balanced.jpg",
+      "bytes": 90590,
+      "sha256": "5532f0468d4a946a3dce09d655193051b6c5058ee9f30ba2c4d7c14c800c75a8"
+    },
+    {
+      "name": "toitures-light-balanced.jpg",
+      "bytes": 109304,
+      "sha256": "cc267412ee89ad505e0d5a402939a3c1ae25e88044ad74472dd3d14a7f8b3d2e"
+    },
+    {
+      "name": "vallee-bare-balanced.jpg",
+      "bytes": 88608,
+      "sha256": "66ed7719c1ed57c540cc2ea519ba26520ba38e341e6466935ede9042006dd77a"
+    },
+    {
+      "name": "vallee-covered-balanced.jpg",
+      "bytes": 99127,
+      "sha256": "8520aab50870dd58f0279d789b5de00ffe7e05c05fa11d6c3773b3ac11130107"
+    },
+    {
+      "name": "vallee-light-balanced.jpg",
+      "bytes": 138784,
+      "sha256": "221c812139b8ed1e282fc644cdd8777630b21af40b27acb1c8364fad935f3c31"
+    },
+    {
+      "name": "vallee-snowfall-eco.jpg",
+      "bytes": 98732,
+      "sha256": "2c5d0e880037b87c915eecc36b54429b2cff2089123437f7de2d288743f4e7a0"
+    },
+    {
+      "name": "vallee-snowfall-quality.jpg",
+      "bytes": 98507,
+      "sha256": "3461acf12943fc82abba922bc97292ce0e7b6974314044c5336769267bfdf81c"
+    }
+  ],
+  "merge": false,
+  "deployment": false,
+  "githubPagesChanged": false,
+  "livingPaintingsChanged": false,
+  "limitations": "Snow coating and shelter are artistic approximations; no physical depth, drifts, per-leaf collision or new snow footstep recording. Software timings not hardware FPS. No15D thirty-minute soak claimed."
+}

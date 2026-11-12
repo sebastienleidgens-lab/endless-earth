@@ -7,20 +7,22 @@ import {lifeUniforms,cloudReceiver} from '../earthlife/state.mjs';
 import {windGLSL} from '../earthlife/wind.mjs';
 // @ts-ignore Structural quality modes remain bounded.
 import {registerLifeMaterial} from '../earthlife/capabilities.mjs';
-export function natureArtMaterial(season:{value:THREE.Vector4},texture:THREE.Texture|null,grounded=false,far=false){
+// @ts-ignore Common crown deformation for colour and local solar casters.
+import {canopyGLSL} from './canopy.mjs';
+export function natureArtMaterial(season:{value:THREE.Vector4},texture:THREE.Texture|null,grounded=false,far=false,perforated=false){
  const m=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide,map:texture});
+ (m as any).defaultAttributeValues={...(m as any).defaultAttributeValues,natureFringe:[0]};
  m.onBeforeCompile=s=>{
   Object.assign(s.uniforms,lifeUniforms,{natureCalendar:season});
-  const attrs=grounded?'attribute float natureBend,natureKind;varying float vNatureKind;':'attribute vec4 natureTraits;attribute float natureCluster;attribute vec4 lifeBasis;attribute vec2 lifeAnchor;varying vec4 vNatureTraits;varying float vNatureCluster;';
-  s.vertexShader=attrs+'uniform vec4 natureCalendar;uniform float lifeTime,lifeMeanWind,lifeVegetation,lifeFine;\n'+windGLSL+s.vertexShader;
+  const attrs=grounded?'attribute float natureBend,natureKind;varying float vNatureKind;':'attribute vec4 natureTraits;attribute float natureCluster,natureFringe;attribute vec4 lifeBasis;attribute vec2 lifeAnchor;varying vec4 vNatureTraits;varying float vNatureCluster,vNatureFringe;';
+  s.vertexShader=attrs+'uniform vec4 natureCalendar;uniform float lifeTime,lifeMeanWind,lifeVegetation,lifeFine;\n'+windGLSL+(grounded?'':canopyGLSL)+s.vertexShader;
   s.vertexShader=s.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
    ${grounded?`vNatureKind=natureKind;
    float growing=1.;if(natureKind<1.5||natureKind>5.5)growing=.25+.75*natureCalendar.x;
    transformed.y-=natureBend*(1.-growing);
    vec2 worldAnchor=(modelMatrix*vec4(position,1.)).xz;
-   float bend=natureBend*growing*.75;`:`vNatureTraits=natureTraits;vNatureCluster=natureCluster;
-   transformed.x*=.84+.16*abs(sin(natureTraits.x*6.283));
-   transformed.z*=.85+.15*abs(cos(natureTraits.x*6.283));
+   float bend=natureBend*growing*.75;`:`vNatureTraits=natureTraits;vNatureCluster=natureCluster;vNatureFringe=natureFringe;
+   transformed=canopyShape(transformed,natureTraits);
    vec2 worldAnchor=lifeAnchor;
    float bend=${far?'.18':'.20+clamp((position.y+2.4)/5.1,0.,1.)*.26'};`}
    #if LIFE_WIND_MODE > 0
@@ -32,10 +34,10 @@ export function natureArtMaterial(season:{value:THREE.Vector4},texture:THREE.Tex
    ${!grounded&&!far?'sway+=sin(lifeTime*2.4+phase+natureCluster*19.)*lifeFine*.16;':''}
    #endif
    ${grounded?'':'wind=vec2(dot(lifeBasis.xy,wind),dot(lifeBasis.zw,wind));'}
-   transformed.xz+=wind*bend*sway*lifeVegetation;
+   ${grounded?'transformed.xz+=wind*bend*sway*lifeVegetation;':`transformed.xz+=canopySway(position,lifeBasis,lifeAnchor,natureCluster,${far?'0.':'natureFringe'});`}
    #endif`);
-  s.fragmentShader='uniform vec4 natureCalendar;'+(grounded?'varying float vNatureKind;':'varying vec4 vNatureTraits;varying float vNatureCluster;')+'\n'+s.fragmentShader;
-  if(texture)s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`if(vNatureTraits.z<.5){vec4 spray=texture2D(map,vMapUv);if(spray.a<.32)discard;diffuseColor.rgb*=spray.rgb;}`);
+  s.fragmentShader='uniform vec4 natureCalendar;'+(grounded?'varying float vNatureKind;':'varying vec4 vNatureTraits;varying float vNatureCluster,vNatureFringe;')+'\n'+s.fragmentShader;
+  if(texture)s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`if(vNatureTraits.z<.5){vec4 spray=texture2D(map,vMapUv);if(${perforated?'spray.a<(vNatureFringe>.5?.32:.12)':'vNatureFringe>.5&&spray.a<.32'})discard;diffuseColor.rgb*=mix(vec3(.94),spray.rgb,vNatureFringe>.5?1.:.8);}`);
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    ${grounded?`if(vNatureKind<1.5||vNatureKind>5.5){diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(1.16,.96,.67),max(natureCalendar.w,(1.-natureCalendar.x)*.7));}`:`
    if(vNatureTraits.z<.5){
@@ -48,5 +50,8 @@ export function natureArtMaterial(season:{value:THREE.Vector4},texture:THREE.Tex
   // A restrained transmission cue for thin leaves under the existing daylight.
   if(!grounded)s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`outgoingLight+=diffuseColor.rgb*lifeDay*${glsl(ART_DNA.lighting.leafTransmission)};\n#include <opaque_fragment>`);
  };
- m.customProgramCacheKey=()=>`nature-art-v1-${grounded}-${far}-${!!texture}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,stationary:far});return m;
+ // Far cells keep cloud illumination and keep casting solar shadows, but
+ // bypass fine local-map reception outside their useful detail range.
+ m.userData.coarseSolarReceiver=far;
+ m.customProgramCacheKey=()=>`nature-art-v2-${grounded}-${far}-${!!texture}-${perforated}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,stationary:far});return m;
 }

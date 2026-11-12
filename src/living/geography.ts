@@ -1,3 +1,5 @@
+// @ts-ignore Validated, source-bound derivative of this exact navigation graph.
+import {readWalkGraph} from './walk-graph-cache.mjs';
 import { toLocal } from '../world/geo';
 import { canWalk,walkingHeight } from '../world/collisions';
 import type { Terrain } from '../world/terrain';
@@ -43,7 +45,13 @@ export function validPoint(p:Point,terrain:Terrain|null){
  return [[.5,0],[-.5,0],[0,.5],[0,-.5]].every(([x,z])=>{const v=support(p.x+x,p.z+z);return v!==null&&Math.abs(v-h)<.3;});
 }
 let graph:ReturnType<typeof buildGraph>|null=null;
-export function routeAt(p:Point,terrain:Terrain|null){const valid=(q:Point)=>validPoint(q,terrain);graph??=buildGraph(paths,valid);return graphRoute(graph,p,valid);}
+export const navigationGraphStats={state:'idle',nodes:0,edges:0};
+export function walkingGraphBindings(terrain:Terrain){return {terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface?.manifest.binarySha256,osm:terrain.singleSurface?.manifest.osmSha256,policy:'capsule-0.3-grounded-0.7-v1'}}
+export function prepareGraphForDiagnostics(terrain:Terrain){graph=buildGraph(paths,(q:Point)=>validPoint(q,terrain));Object.assign(navigationGraphStats,{state:'prepared',nodes:graph.nodes.length,edges:graph.edges.length});return graph}
+export function exportNavigationGraph(){return graph}
+export function hasPreparedGraph(){return graph!==null}
+export async function loadPreparedGraph(terrain:Terrain){navigationGraphStats.state='loading';try{graph=await readWalkGraph(import.meta.env.BASE_URL+'data/',walkingGraphBindings(terrain));Object.assign(navigationGraphStats,{state:'ready',nodes:graph!.nodes.length,edges:graph!.edges.length})}catch(error){graph=null;navigationGraphStats.state='unavailable';console.warn('Prepared walking graph unavailable; manual walking remains ready',error)}}
+export function routeAt(p:Point,terrain:Terrain|null){return graph?graphRoute(graph,p,(q:Point)=>validPoint(q,terrain)):null;}
 export function surfaceAt(p:Point){
  let best=Infinity,surface='grass';
  for(const line of paths)for(let i=1;i<line.points.length;i++){

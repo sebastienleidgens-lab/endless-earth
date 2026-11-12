@@ -1,0 +1,15 @@
+import {writeFile} from 'node:fs/promises';import {gzipSync} from 'node:zlib';import assert from 'node:assert/strict';
+import {launch,openGame,settle,views} from './lib/mission-15-browser.mjs';
+const brief=s=>{if(s.flowers){s.flowers.count=s.flowers.recipes.length;delete s.flowers.recipes}return s};
+const out='docs/mission-15-evidence',browser=await launch(),rows=[],q=(a,p)=>{const s=[...a].sort((a,b)=>a-b);return s[Math.floor((s.length-1)*p)]};
+try{
+ for(const [id,port]of [['m14',5179],['15a',5173]]){
+  const g=await openGame(browser,port),p=g.page;await p.setViewportSize({width:800,height:540});await p.evaluate(v=>window.m15.setup(v,'balanced'),views[0]);await settle(p);await p.evaluate(()=>window.m15.render());
+  await p.evaluate(()=>{window.m15Chunks=[];const stream=document.querySelector('canvas').captureStream(8);window.m15Recorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9',videoBitsPerSecond:900000});window.m15Recorder.ondataavailable=e=>{if(e.data.size)window.m15Chunks.push(e.data)};window.m15Recorder.start(1000);window.m15.native(true)});
+  const chapters=[];for(const weather of ['clear','cloudy','storm']){if(weather!=='clear')await p.evaluate(weather=>{const s=document.querySelector('select[aria-label="Météo simulée"]');s.value=weather;s.dispatchEvent(new Event('change'))},weather);chapters.push({weather,startedMs:await p.evaluate(()=>performance.now()),state:brief(await p.evaluate(()=>window.m15.state()))});await p.waitForTimeout(15000);console.log(id,weather)}
+  const result=await p.evaluate(async()=>{window.m15.native(false);const r=window.m15Recorder;await new Promise(resolve=>{r.onstop=resolve;r.stop()});r.stream.getTracks().forEach(t=>t.stop());const blob=new Blob(window.m15Chunks,{type:r.mimeType}),data=Array.from(new Uint8Array(await blob.arrayBuffer()));return {data,frames:window.m15Frames,state:window.m15.state()}});
+  await writeFile(`${out}/${id}-vent.webm`,Buffer.from(result.data));delete result.data;result.state=brief(result.state);const intervals=result.frames.slice(1).map(f=>f.ms);assert.ok(result.frames.length>60);assert.deepEqual(g.errors,[]);rows.push({id,environment:g.environment,chapters,frames:result.frames,state:result.state,summary:{durationMs:result.frames.at(-1).t-result.frames[0].t,frames:result.frames.length,medianMs:q(intervals,.5),p95Ms:q(intervals,.95),peakMs:Math.max(...intervals)}});await p.close();console.log('PASS',id,rows.at(-1).summary)
+ }
+ await writeFile(out+'/motion.json',JSON.stringify({method:'Two continuous real-time native game recordings: 15 s clear, 15 s cloudy, 15 s storm; camera fixed, Balanced at 800x540, canvas captureStream 8 fps VP9. Native animation loop; no time acceleration, no frame reconstruction, no simulated walk. Weather transitions remain native. Video capture included in frame intervals; software renderer, not physical GPU FPS. Video is silent; audio was not modified in 15A.',rows:rows.map(({frames,...r})=>r)},null,2)+'\n');await writeFile(out+'/motion-trace.json.gz',gzipSync(JSON.stringify(rows),{level:9}));
+}finally{await browser.close()}
+await import('./index-mission-15-videos.mjs');

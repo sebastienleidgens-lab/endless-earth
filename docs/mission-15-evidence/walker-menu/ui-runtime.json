@@ -1,0 +1,211 @@
+{
+  "method": "Actual native game, real controls, keyboard Space/Escape and focus cycling; weather/view/profile changes cannot move the initial position or seed; modal pauses movement. Four layouts. Separate Chromium touch emulation via native CDP touch events, left walk/right look/simultaneous fingers, release. This is not a physical Android test.",
+  "rows": [
+    {
+      "type": "desktop-keyboard-menu",
+      "focus": [
+        {
+          "inside": true,
+          "name": "Heure et météo"
+        },
+        {
+          "inside": true,
+          "name": "Moment de la journée"
+        },
+        {
+          "inside": true,
+          "name": "Météo simulée"
+        },
+        {
+          "inside": true,
+          "name": "Vue du personnage"
+        },
+        {
+          "inside": true,
+          "name": "Promenade automatique"
+        },
+        {
+          "inside": true,
+          "name": "Course au toucher"
+        },
+        {
+          "inside": true,
+          "name": "Activer le son"
+        },
+        {
+          "inside": true,
+          "name": "Volume de l’ambiance"
+        },
+        {
+          "inside": true,
+          "name": "Sons et licences"
+        },
+        {
+          "inside": true,
+          "name": "Paysage vivant · réglages"
+        },
+        {
+          "inside": true,
+          "name": "Profil graphique"
+        },
+        {
+          "inside": true,
+          "name": "Commandes et aide"
+        },
+        {
+          "inside": true,
+          "name": "Sources, licences et version"
+        },
+        {
+          "inside": true,
+          "name": "Diagnostics"
+        },
+        {
+          "inside": true,
+          "name": "Fermer le menu"
+        },
+        {
+          "inside": true,
+          "name": "Heure et météo"
+        },
+        {
+          "inside": true,
+          "name": "Moment de la journée"
+        },
+        {
+          "inside": true,
+          "name": "Météo simulée"
+        },
+        {
+          "inside": true,
+          "name": "Vue du personnage"
+        },
+        {
+          "inside": true,
+          "name": "Promenade automatique"
+        },
+        {
+          "inside": true,
+          "name": "Course au toucher"
+        },
+        {
+          "inside": true,
+          "name": "Activer le son"
+        }
+      ],
+      "layouts": [
+        {
+          "bounds": [
+            12,
+            12,
+            394,
+            628
+          ],
+          "width": 960,
+          "height": 640,
+          "scrollable": true,
+          "closeVisible": true
+        },
+        {
+          "bounds": [
+            12,
+            12,
+            378,
+            832
+          ],
+          "width": 390,
+          "height": 844,
+          "scrollable": true,
+          "closeVisible": true
+        },
+        {
+          "bounds": [
+            12,
+            12,
+            308,
+            556
+          ],
+          "width": 320,
+          "height": 568,
+          "scrollable": true,
+          "closeVisible": true
+        },
+        {
+          "bounds": [
+            8,
+            8,
+            390,
+            382
+          ],
+          "width": 844,
+          "height": 390,
+          "scrollable": true,
+          "closeVisible": true
+        }
+      ],
+      "initialSpawn": {
+        "version": "verified-sector-start-v1",
+        "seed": "12345",
+        "revision": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1:930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615:e0b25ccafa2f18f32d19f1e326c9a9446612c48035afe40a4e1677a59760dd25",
+        "sector": "3,1",
+        "x": 788.9294024468364,
+        "y": 18.105391910525057,
+        "z": 236.89372295707523,
+        "yaw": 5.497787143782138,
+        "candidates": 1556,
+        "sectors": 80,
+        "fallback": false,
+        "preparationMs": 1593.6000000014901,
+        "provenance": "Initial selection from admitted OSM paths; actual loaded terrain and 30cm navigation capsule verified. Sector-balanced artistic start, not a surveyed viewpoint."
+      },
+      "errors": []
+    },
+    {
+      "type": "native-CDP-multitouch",
+      "p0": [
+        788.9294024468364,
+        18.105391910525057,
+        236.89372295707523
+      ],
+      "before": {
+        "position": [
+          789.3554569486091,
+          18.10581796502683,
+          236.46766845530212
+        ],
+        "yaw": 5.497787143782138
+      },
+      "looked": {
+        "position": [
+          789.3554569486091,
+          18.10581796502683,
+          236.46766845530212
+        ],
+        "yaw": 5.247787143782138
+      },
+      "after": {
+        "position": [
+          790.4979507894293,
+          18.121982908056395,
+          236.10119461339093
+        ],
+        "yaw": 5.022787143782138,
+        "walker": {
+          "version": "poitou-walker-rig-v1",
+          "bones": 16,
+          "triangles": 1936,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1024,
+          "phase": 4.43650676182267,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 2.842170943040401e-14,
+          "mode": "idle"
+        }
+      },
+      "errors": []
+    }
+  ]
+}

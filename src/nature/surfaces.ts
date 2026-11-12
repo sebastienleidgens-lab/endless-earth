@@ -60,10 +60,11 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
   if(water)applyWaterLighting(s);
  };
  material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v12-'+!!edges+'-'+water+'-'+art+'-'+groundArt.id:'nature-ground-atlas-v5';
+ material.userData.snowIntegratedWater=roads&&water;
  if(roads)registerWorldMaterial(material);cloudReceiver(material,{water,surface:art});
 }
 export function waterMaterial(){
- const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;
+ const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;material.userData.snowExcluded=true;
  material.onBeforeCompile=s=>{Object.assign(s.uniforms,lifeUniforms);s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=(modelMatrix*vec4(position,1.)).xyz;');s.fragmentShader=waterPrelude+'varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\n'+waterColor('waterPosition'));applyWaterLighting(s)};
  material.customProgramCacheKey=()=> 'earthlife-river-sky-v12';cloudReceiver(material,{water:true});return material;
 }

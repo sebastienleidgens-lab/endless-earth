@@ -20,6 +20,7 @@ export class Soundscape {
  private transition:Promise<boolean>=Promise.resolve(false);private disposed=false;private hidden=false;
  private timer:ReturnType<typeof setInterval>|null=null;private director=new SoundDirector({seed:crypto.getRandomValues(new Uint32Array(1))[0]});
  private emitterCache=new Map();private nextContext=0;private waterIndex:ReturnType<typeof riverAcousticIndex>|null=null;private roadsIndex:ReturnType<typeof proximityIndex>|null=null;private trafficIndex:ReturnType<typeof trafficRoadIndex>|null=null;
+ private heardFlight='';private flightAttempt=-Infinity;private aircraftEvents=0;
  private commandRevision=-1;private lastStep=-Infinity;private lastMove=0;private contact:ReturnType<typeof footContact>=footContact();private frameContext:SoundContext|null=null;
  contextUpdates=0;cpuMs=0;maxCpuMs=0;nearbyChecks=0;
  get master(){return this.renderer?.master??null}
@@ -34,7 +35,7 @@ export class Soundscape {
  return this.enabled;
  }
  setHidden(hidden:boolean){this.hidden=hidden;const p=this.transition.then(async()=>{if(this.disposed||!this.context)return this.enabled;this.renderer?.setVolume(this.volume,this.enabled&&!this.hidden);if(this.hidden){await this.context.suspend();this.distance=0;this.director.resetClock()}else if(this.enabled){await this.context.resume();this.nextContext=0;this.director.resetClock()}return this.enabled});this.transition=p;return p}
- update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[]){
+ update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number},flight?:{id:string;position:Vec3;velocity:Vec3;eligible:boolean}|null){
  if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer){this.cpuMs=0;return;}
  const start=performance.now(),now=start/1000;
  if(profile!==this.renderer.profile)this.renderer.setProfile(profile);
@@ -57,11 +58,15 @@ export class Soundscape {
  this.frameContext!.traffic=this.trafficIndex?trafficCandidates(this.trafficIndex,listener,renderHeight):[];
  this.frameContext!.emitters=emitterCandidates(this.frameContext,habitatAt,typeof altitudeM==='function'?altitudeM:null,this.emitterCache);this.renderer.updateContext(this.frameContext);for(const id of this.director.preload(this.frameContext,now))void this.renderer.resources.request(id);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.contextUpdates++;
  }
- if(travel>0&&travel<3){const dt=this.lastMove?Math.max(.01,Math.min(.5,now-this.lastMove)):.1,speed=Math.min(6,travel/dt);this.lastMove=now;this.distance+=travel;const stride=stepStride(speed);if(this.distance>=stride&&now-this.lastStep>=.17){this.distance%=stride;this.lastStep=now;const road=this.roadsIndex?.query(p,8),onRoad=!!road?.point&&road.distance<=(road.width??5.5)/2;this.contact=footContact({surface:onRoad?road.surface:null,onRoad,habitat:habitatAt?.(p.x,p.z)??'unknown',season:this.frameContext?.season,rain:climate?.weather?.rain??null});if(this.frameContext)this.frameContext.ground=this.contact;this.renderer.footstep(this.contact.material,speed);this.renderer.preloadSteps(this.contact.material)}}
+ if(travel>0&&travel<3){const first=this.lastMove===0,dt=this.lastMove?Math.max(.01,Math.min(.5,now-this.lastMove)):.1,speed=locomotion?.speed??Math.min(6,travel/dt);this.lastMove=now;this.distance+=travel;const stride=stepStride(speed),due=locomotion?locomotion.contacts>0:this.distance>=stride;
+  if(first||due){const road=this.roadsIndex?.query(p,8),onRoad=!!road?.point&&road.distance<=(road.width??5.5)/2;this.contact=footContact({surface:onRoad?road.surface:null,onRoad,habitat:habitatAt?.(p.x,p.z)??'unknown',season:this.frameContext?.season,rain:climate?.weather?.rain??null});if(this.frameContext)this.frameContext.ground=this.contact;this.renderer.preloadSteps(this.contact.material)}
+  if(due&&now-this.lastStep>=.17){this.distance=locomotion?0:this.distance%stride;this.lastStep=now;this.renderer.footstep(this.contact.material,speed)}
+ }
  else if(travel===0){this.distance=0;this.lastMove=0}
+ if(flight?.eligible&&flight.id!==this.heardFlight&&now-this.flightAttempt>1){this.flightAttempt=now;const asset='aircraft-fs-820324-m15';void this.renderer.resources.request(asset);if(this.renderer.event({asset,position:flight.position,velocity:flight.velocity,priority:20,gain:.12,refDistance:90,maxDistance:1400,reason:'Simulated light aircraft, matched CC0 propeller flyover; no real traffic data'})){this.heardFlight=flight.id;this.aircraftEvents++}}
  this.cpuMs=performance.now()-start;this.maxCpuMs=Math.max(this.maxCpuMs,this.cpuMs);
  }
  listener(position:Vec3,forward:Vec3,up:Vec3){if(this.enabled&&!this.hidden)this.renderer?.listener(position,forward,up)}
- stats(){return {...this.renderer?.stats(),contextUpdates:this.contextUpdates,cpuMs:this.cpuMs,maxCpuMs:this.maxCpuMs,nearbyChecks:this.nearbyChecks,memoryCells:this.director.memory.size,perches:this.director.perches.size,contact:this.contact,context:this.frameContext}}
+ stats(){return {...this.renderer?.stats(),aircraftEvents:this.aircraftEvents,contextUpdates:this.contextUpdates,cpuMs:this.cpuMs,maxCpuMs:this.maxCpuMs,nearbyChecks:this.nearbyChecks,memoryCells:this.director.memory.size,perches:this.director.perches.size,contact:this.contact,context:this.frameContext}}
  async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.emitterCache.clear();this.waterIndex=this.roadsIndex=this.trafficIndex=null;this.frameContext=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
 }

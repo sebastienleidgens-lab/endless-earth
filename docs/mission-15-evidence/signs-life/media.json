@@ -1,0 +1,234 @@
+{
+  "method": "Native MediaRecorder streams indexed by packet copy only. Every video/audio packet SHA-256,size,PTS and DTS identical to its source; full FFmpeg decode at native VFR timebase. Smoke inspection is intentionally silent. All other audio is the real post-limiter bus, no added soundtrack, reconstruction, normalization or time acceleration. The middle flight poster is one decoded source frame at22s.",
+  "rows": [
+    {
+      "id": "soak-summer",
+      "sha256": "583f67488fd965c5b01564db5959cfc02e3df19bf9705bbeccd6f0aadd783167",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 106,
+          "payloadAndPTSIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 513,
+          "payloadAndPTSIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 720,
+            "height": 460
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "30.780000",
+          "size": "472908"
+        }
+      },
+      "rmsDB": -79.111154,
+      "decoded": true
+    },
+    {
+      "id": "soak-snow",
+      "sha256": "7a268dff45d37489107a7609461c619ea6a54b1eb00cf886f19560ab247d6be0",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 114,
+          "payloadAndPTSIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 586,
+          "payloadAndPTSIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 720,
+            "height": 460
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "35.186000",
+          "size": "541814"
+        }
+      },
+      "rmsDB": -64.024429,
+      "decoded": true
+    },
+    {
+      "id": "soak-natural-flight",
+      "sha256": "cac4dc59dec31050f56deef99796db236a352a39d5b6cab3ca050f78d2bb67a5",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 146,
+          "payloadAndPTSIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 766,
+          "payloadAndPTSIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 720,
+            "height": 460
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "45.982000",
+          "size": "661322"
+        }
+      },
+      "rmsDB": -66.187902,
+      "decoded": true
+    },
+    {
+      "id": "smoke-inspection",
+      "sha256": "e3c1c13977e0037be01b9d9789938f0588ce2f65aa74c837ae4f5389db35ccb8",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 67,
+          "payloadAndPTSIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 960,
+            "height": 640
+          }
+        ],
+        "format": {
+          "duration": "42.288000",
+          "size": "228434"
+        }
+      },
+      "rmsDB": null,
+      "decoded": true
+    },
+    {
+      "id": "M14-native-walk",
+      "sha256": "af58ecf504de24b2bd527f5fba309d0202bdbc3f6f6d2354b7e723544758008a",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 157,
+          "payloadAndPTSIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 551,
+          "payloadAndPTSIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 800,
+            "height": 540
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "60.032000",
+          "size": "652838"
+        }
+      },
+      "rmsDB": -66.914811,
+      "decoded": true
+    },
+    {
+      "id": "M15-native-walk",
+      "sha256": "cc0772215e014d1cc34e71849b3c198ecb8592afcb83347a57818ffe9040ebfc",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 162,
+          "payloadAndPTSIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 560,
+          "payloadAndPTSIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 800,
+            "height": 540
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "60.159000",
+          "size": "678851"
+        }
+      },
+      "rmsDB": -65.271054,
+      "decoded": true
+    }
+  ]
+}

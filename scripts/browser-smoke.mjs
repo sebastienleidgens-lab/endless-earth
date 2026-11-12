@@ -7,7 +7,7 @@ try{
   const page=await browser.newPage({viewport:{width:960,height:600}});
   page.setDefaultTimeout(60000);
   const errors=[];page.on('pageerror',e=>errors.push(String(e)));
-  await page.goto(process.env.TEST_URL||'http://localhost:5173/endless-earth/?tiles=1&perf=1');
+  await page.goto(process.env.TEST_URL||'http://localhost:5173/endless-earth/?tiles=1&perf=1&spawnSeed=12345');
   await page.waitForFunction(()=>window.endlessDiagnostics?.ready,{timeout:30000});
   const state=()=>page.evaluate(()=>window.endlessDiagnostics);
   await page.waitForTimeout(6500);
@@ -31,8 +31,8 @@ try{
   await page.screenshot({path:'work/visual/first.png'});
   await page.mouse.move(600,400);await page.mouse.down();await page.mouse.move(850,480,{steps:10});await page.mouse.up();
   await page.keyboard.down('Shift');await page.keyboard.down('w');await page.waitForTimeout(1200);await page.keyboard.up('w');await page.keyboard.up('Shift');
-  await page.locator('#sound').click();await page.waitForTimeout(200);assert.match(await page.locator('#sound').innerText(),/Désactiver le son/);
-  await page.locator('.quality-control').click();await page.waitForTimeout(200);
+  await page.locator('#walk-menu-toggle').click();await page.locator('#sound').click();await page.waitForTimeout(200);assert.match(await page.locator('#sound').innerText(),/Désactiver le son/);
+  await page.locator('select[aria-label="Profil graphique"]').selectOption('eco');await page.keyboard.press('Escape');await page.waitForTimeout(200);
   await page.keyboard.press('v');await page.waitForFunction(()=>window.endlessDiagnostics.mode==='aerial');
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:'work/visual/mobile.png'});
   console.log('FINAL',await state(),await page.locator('.perf-panel').innerText());

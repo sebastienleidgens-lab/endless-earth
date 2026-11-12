@@ -1,0 +1,25 @@
+# Mission 15 finale — Les petits signes de vie
+
+[Rapport](../../mission-15.md) · [Galerie locale](index.html) · [Comparaison M14/M15](comparison.jpg).
+
+Références : M14 fusionnée `96a2687caf41fd8de9b778c681e7d693994093a6`, 15C accepté `8455726f58bb80ad5f10559cc258f4b0d0d814f3`. Budget supplémentaire 0 €. Arrêt pour revue artistique finale, aucune fusion, publication, modification GitHub Pages ou Living Paintings.
+
+Les vols, pots/couronnements et fumées sont des interprétations artistiques. Ils ne décrivent ni trafic réel ni occupation réelle d’une maison. Les positions des cheminées proviennent des caps existants dans les géométries procédurales indexées. Leurs murs et toitures restent intacts. Les petites silhouettes nouvelles des pots ne sont pas rebakées dans le cache solaire M14 ; elles reçoivent lumière et neige communes.
+
+Le son de petit avion est une captation CC0 de SoundsLikeYukon, conservée avec page, licence, empreintes et transformations dans `public/audio`. Aperçu HQ MP3, pas original WAV ; découpe 15–39 s, filtres 75 / 8 000 Hz, gain linéaire borné, fondus, mono 32 kHz, sortie FLAC PCM16. Aucun son synthétique ou nouveau fond permanent. Une voix ponctuelle de faible priorité utilise le moteur et le cache existants.
+
+## Reproduire
+
+1. `npm ci`, Chromium/Playwright et FFmpeg disponibles. Python/Pillow pour le rapport.
+2. M14 propre sur Vite **5310**, 15C propre sur **5312**, sources finales sur **5303**. Préfixe `/endless-earth/`. Chaque checkout utilise les dépendances du projet.
+3. `python scripts/prepare-life-audio.py` prépare la seule captation nouvelle à partir de la page et du MP3 officiel. Il conserve toutes les entrées antérieures ; aucun serveur externe n’est consulté pendant le jeu.
+4. `npm test`, `npm run build`. Figer les SHA-256 de tous les fichiers `src` et `package.json` dans `work/mission15d/frozen-source.json`. Copier `dist` dans `work/mission15d/frozen-site/endless-earth`, servir ce dossier parent sur **5311**.
+5. `node scripts/browser-mission-15d-soak.mjs` doit durer au moins **1 800 secondes réelles continues**. Il lance une vraie page compilée, sélectionne un départ admissible avec route et utilise menu, AutoWalk, clavier et souris. La graine `normal-30m-0` sélectionne le planificateur ordinaire ; **aucun événement rare n’est forcé**. Les dates passent par le diagnostic de calendrier existant. Aucun déplacement de position ou accélération. Un observateur RAF collecte les intervalles ; une branche du vrai bus après limiteur permet trois courts extraits. Ne pas effectuer d’autre travail navigateur/GPU pendant cette session. Un arrêt ou rechargement impose de recommencer une session continue complète.
+6. Fermer cette page, puis `node scripts/benchmark-mission-15d.mjs` et `node scripts/benchmark-mission-15d-components.mjs`, **seuls**. 324 rendus comparatifs puis 486 rendus par effet, trois profils. Les ablations sont diagnostiques et non additives : cellules fleuries uniquement, maillages d’arbres visibles (cache d’ombres conservé), nuages et ombres nuageuses, personnage, neige, cheminée, fumée, avion, combinaison admise par le profil.
+7. `node scripts/browser-mission-15d-runtime.mjs`, `browser-mission-15d-life.mjs`, `browser-mission-15d-starts.mjs`, `browser-mission-15d-ui.mjs` : physique C/D, replis, ressources, douze stations de streaming, douze nouveaux chargements réels, clavier/focus et gestes natifs CDP. Le checkpoint de démarrages est lié aux sources figées.
+8. `node scripts/browser-mission-15d-captures.mjs`, puis `browser-mission-15d-smoke-film.mjs`. La fumée est inspectée avec une graine/commande diagnostique explicite et caméra de toiture fixe. Cette inspection est silencieuse, sans crépitement ajouté. Les autres captures sont celles du vrai moteur, sans masque d’interface. La taille apparente du modèle d’avion rapproché n’est pas celle d’un passage normal.
+9. `node scripts/browser-mission-15d-motion.mjs M14` puis `M15` : vrais boutons et caméras à une même station initiale, sans trajet ou déplacement forcé pendant le film. Les lecteurs de canevas excluent les contrôles HTML, montrés séparément.
+10. Sur le serveur compilé 5311 : `TEST_URL='http://localhost:5311/endless-earth/?perf=1&spawnSeed=12345&moment=afternoon&weather=snow&date=2026-01-21T12:00:00Z' npm run test:browser`. `EARTHLIFE_WAIT_WORLD=1 npm run test:build-identity` démarre son propre preview.
+11. `node scripts/verify-mission-15d-media.mjs` vérifie paquets/temps, décode intégralement et extrait un vrai poster du vol. `node scripts/audit-mission-15d.mjs`, `python scripts/report-mission-15d.py`, puis validations galerie/finale. Galerie statique servie à la racine du dépôt sur **5313**.
+
+Les observations du build précédent portent la base 8455726 modifiée avant le commit 15D, déclarée dans le rapport. Les builds ultérieurs embarquent automatiquement leur propre identité. Mesures **SwiftShader logiciel uniquement** ; aucun GPU physique ou appareil Android revendiqué. Les 120 simulations unitaires accélérées de rareté sont distinctes de la véritable marche continue de trente minutes. Les droits et preuves historiques des trois jalons précédents restent conservés.

@@ -1,6 +1,6 @@
 // One allowance for the whole visible world, never one allowance per tile.
 export const LIFE_PROFILES=Object.freeze({
- eco:Object.freeze({vegetation:.55,fine:0,water:.5,clouds:.7,shadows:0,birds:2,particles:0,events:1,cpuHz:5}),
+ eco:Object.freeze({vegetation:.55,fine:0,water:.5,clouds:.7,shadows:0,birds:2,particles:4,events:1,cpuHz:5}),
  balanced:Object.freeze({vegetation:1,fine:.45,water:.8,clouds:1,shadows:.10,birds:6,particles:8,events:2,cpuHz:10}),
  quality:Object.freeze({vegetation:1,fine:1,water:1,clouds:1,shadows:.15,birds:9,particles:16,events:3,cpuHz:10})
 });

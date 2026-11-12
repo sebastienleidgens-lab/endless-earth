@@ -6,6 +6,7 @@ import { createNavigation } from './navigation.mjs';
 import { toLocal } from './geo';
 type Point = { x:number; z:number };
 let navigation:(x:number,z:number)=>{clear:boolean;cameraClear?:boolean;support:number|null;slope:number}=()=>({clear:true,support:null,slope:.7});
+export const hasWalkingSupport=(x:number,z:number)=>navigation(x,z).support!==null;
 export const walkingHeight=(height:(x:number,z:number)=>number|null)=>(x:number,z:number)=>navigation(x,z).support??height(x,z);
 let realFootprints: Point[][] | null = null;
 const cells=new Map<string,Point[][]>();

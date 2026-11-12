@@ -4,7 +4,7 @@ import {momentDate,MOMENTS,solar,weatherStep,WEATHER} from '../src/nature/climat
 import {lifeUniforms,updateLifeTime} from '../src/earthlife/state.mjs';
 const angles={lat:46.6953,lon:.8844,timeZone:'Europe/Paris'};
 test('five stable solar-relative moments track season and latitude',()=>{
- assert.equal(Object.keys(MOMENTS).length,5);assert.equal(Object.keys(WEATHER).length,6);
+ assert.equal(Object.keys(MOMENTS).length,5);assert.equal(Object.keys(WEATHER).length,7);
  for(const site of [angles,{lat:45.44,lon:12.33,timeZone:'Europe/Rome'},{lat:0,lon:-78.5,timeZone:'America/Guayaquil'},{lat:-33.9,lon:151.2,timeZone:'Australia/Sydney'}])for(const ref of ['2026-06-21T12:00Z','2026-12-21T12:00Z']){
   const r=momentDate('morning',ref,site),a=momentDate('afternoon',ref,site),e=momentDate('evening',ref,site),n=momentDate('night',ref,site);
   assert.equal(r.polar,null);assert.ok(+r.date>r.sunrise&&+r.date<r.solarNoon);assert.ok(+a.date>a.solarNoon&&+a.date<a.sunset);assert.ok(+e.date<e.sunset&&+e.date>e.solarNoon);assert.ok(solar(n.date,site.lat,site.lon).altitude<-.1);assert.equal(+r.date,+momentDate('morning',ref,site).date);

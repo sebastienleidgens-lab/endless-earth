@@ -1,0 +1,205 @@
+{
+  "method": "All VP9/Opus packet payload SHA-256, size and native PTS/DTS exactly identical to MediaRecorder sources. FFmpeg copyts/copy indexing only; full audiovisual decode uses passthrough native VFR timebase. No acceleration, reconstructed frames or added soundtrack. Quiet sources can remain quiet; RMS is measured, not normalized.",
+  "rows": [
+    {
+      "id": "before-route",
+      "sha256": "027396162a8276ab7c5fc703d82501ddb72f3183ffeaec800834e97c2ad00387",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 194,
+          "payloadAndTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 571,
+          "payloadAndTimestampsIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 800,
+            "height": 540
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "80.500000",
+          "size": "788622"
+        }
+      },
+      "rmsDB": -66.963886,
+      "decoded": true
+    },
+    {
+      "id": "after-route",
+      "sha256": "88895a56acb87cc2e6a65a6aa339f11ac2f777ebe88ec974e519a445e1610e6a",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 185,
+          "payloadAndTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 725,
+          "payloadAndTimestampsIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 800,
+            "height": 540
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "80.529000",
+          "size": "831395"
+        }
+      },
+      "rmsDB": -53.876964,
+      "decoded": true
+    },
+    {
+      "id": "before-run",
+      "sha256": "407ab13a3c9bf95fcda8b51f26fc572e55288f5c9932ecdae6db69543688cfc9",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 130,
+          "payloadAndTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 769,
+          "payloadAndTimestampsIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 800,
+            "height": 540
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "46.122000",
+          "size": "814387"
+        }
+      },
+      "rmsDB": -44.440329,
+      "decoded": true
+    },
+    {
+      "id": "after-run",
+      "sha256": "1c51ab8806c378788b311adf35502b20d8f60176053b76f09bec968b9a71e8b2",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 121,
+          "payloadAndTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 772,
+          "payloadAndTimestampsIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 800,
+            "height": 540
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "46.334000",
+          "size": "762483"
+        }
+      },
+      "rmsDB": -44.571134,
+      "decoded": true
+    },
+    {
+      "id": "after-slope",
+      "sha256": "5dc7654a69792f3d65eac2203fa1eab1a967e6fd8fb2c50d2406d7bf9cd6b8dd",
+      "tracks": [
+        {
+          "type": "v:0",
+          "packets": 140,
+          "payloadAndTimestampsIdentical": true
+        },
+        {
+          "type": "a:0",
+          "packets": 768,
+          "payloadAndTimestampsIdentical": true
+        }
+      ],
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 800,
+            "height": 540
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "46.076000",
+          "size": "809286"
+        }
+      },
+      "rmsDB": -58.066735,
+      "decoded": true
+    }
+  ]
+}

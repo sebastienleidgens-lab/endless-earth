@@ -58,6 +58,7 @@ export function architectureMaterial(heritage=false){
   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n#if LIFE_ARCH_DETAIL == 1\nif(architectureKind<5.5)normal=architectureBump(normal,-vViewPosition,architectureHeight);\n#endif');
   s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35);}\n#include <opaque_fragment>`);
  };
+ m.userData.snowGlass=true;
  m.customProgramCacheKey=()=> 'regional-architecture-authentic-v13-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;
 }
 export const architectureMaterials={stone:architectureMaterial(),plaster:architectureMaterial(),tile:architectureMaterial(),plain:architectureMaterial()};

@@ -1,0 +1,1031 @@
+{
+  "method": "240 wall-clock seconds in the ordinary native game loop, fixed camera and Cloudy weather, no simulation/time acceleration. Five real captures spaced by 60 s. First 120 s native video retained by packet-copy remux only; full source stays in work. Software SwiftShader; timings include capture and shared CPU work and are not a benchmark.",
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "resolution": [
+      960,
+      640
+    ],
+    "dpr": 1
+  },
+  "observations": [
+    {
+      "wallSeconds": 0.4968558859999975,
+      "state": {
+        "camera": {
+          "position": [
+            -55,
+            -10.494999999999996,
+            70
+          ],
+          "quaternion": [
+            0.2779202336221206,
+            0.392666922015784,
+            -0.12578201545594425,
+            0.8676127688582718
+          ],
+          "matrix": [
+            0.6599831458849816,
+            -5.551115123125783e-17,
+            -0.7512804051402933,
+            0,
+            0.43652033080922287,
+            0.813878456662533,
+            0.38347341312119676,
+            0,
+            0.6114509366563845,
+            -0.5810351605373064,
+            0.5371460641961523,
+            0,
+            -55,
+            -10.494999999999996,
+            70,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.43,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.4470382116825833,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.5497413199887905,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.4057152636304525,
+            "z": -0.18951569609068877,
+            "speed": 0.4470382116825833,
+            "gust": 0.5497413199887905
+          },
+          "transition": {
+            "revision": 249,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "cloudy",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.43,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              611.7399821554312,
+              -333.2200130617723
+            ],
+            "morph": [
+              0.21887788253888488,
+              0.141616669709736,
+              0.19044572065378404
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 47133,
+          "treeInstances": 7,
+          "updates": 3,
+          "lastUpdateCpuMs": 0.39999999944120646,
+          "maxUpdateCpuMs": 35.799999999813735,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 47539,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5295244,
+          "filter": "receiver-plane-pcf"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 5,
+          "builds": 5,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "art": {
+          "version": "temperate-nature-v1",
+          "canopy": "generous-canopy-v2",
+          "approach": "hybrid",
+          "texture": [
+            256,
+            256
+          ],
+          "trimmedCrowns": 12,
+          "inferredIndividuals": 2500
+        },
+        "flowers": {
+          "version": "village-window-gardens-v1",
+          "builds": 8,
+          "resident": 8,
+          "visible": 8,
+          "season": [
+            1,
+            0.967741935483871
+          ]
+        },
+        "memory": {
+          "geometryBytes": 48859880,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 764
+        },
+        "gpu": {
+          "geometries": 197,
+          "textures": 11,
+          "programs": 14
+        },
+        "stream": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 24,
+          "cacheHits": 0,
+          "bytes": 3636713,
+          "maxDecodeCpuMs": 0.5,
+          "maxFetchDecodeWallMs": 42.5,
+          "maxInstallMs": 0.599999999627471,
+          "maxDisposeMs": 0,
+          "maxTickMs": 1.2000000001862645,
+          "active": 0,
+          "ready": 0
+        },
+        "position": [
+          -55,
+          -12.144999999999996,
+          70
+        ],
+        "walkable": true,
+        "heap": 215517814
+      },
+      "time": 22867.799999999814,
+      "simulation": 241.28559999999965,
+      "drift": [
+        611.7399821554312,
+        -333.2200130617723
+      ],
+      "morph": [
+        0.21887788253888488,
+        0.141616669709736,
+        0.19044572065378404
+      ]
+    },
+    {
+      "wallSeconds": 60.486940948,
+      "state": {
+        "camera": {
+          "position": [
+            -55,
+            -10.494999999999996,
+            70
+          ],
+          "quaternion": [
+            0.2779202336221206,
+            0.392666922015784,
+            -0.12578201545594425,
+            0.8676127688582718
+          ],
+          "matrix": [
+            0.6599831458849816,
+            -5.551115123125783e-17,
+            -0.7512804051402933,
+            0,
+            0.43652033080922287,
+            0.813878456662533,
+            0.38347341312119676,
+            0,
+            0.6114509366563845,
+            -0.5810351605373064,
+            0.5371460641961523,
+            0,
+            -55,
+            -10.494999999999996,
+            70,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.43,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.3465888915959281,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.10077690512756482,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.30100234953165406,
+            "z": -0.17203260785339455,
+            "speed": 0.3465888915959281,
+            "gust": 0.10077690512756482
+          },
+          "transition": {
+            "revision": 836,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "cloudy",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.43,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              757.9473120118272,
+              -407.10577508016354
+            ],
+            "morph": [
+              0.2614008659147735,
+              0.1732900258435213,
+              0.2250686400297985
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 47133,
+          "treeInstances": 7,
+          "updates": 110,
+          "lastUpdateCpuMs": 0.09999999962747097,
+          "maxUpdateCpuMs": 35.799999999813735,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 47539,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5295244,
+          "filter": "receiver-plane-pcf"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 5,
+          "builds": 5,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "art": {
+          "version": "temperate-nature-v1",
+          "canopy": "generous-canopy-v2",
+          "approach": "hybrid",
+          "texture": [
+            256,
+            256
+          ],
+          "trimmedCrowns": 12,
+          "inferredIndividuals": 2500
+        },
+        "flowers": {
+          "version": "village-window-gardens-v1",
+          "builds": 8,
+          "resident": 8,
+          "visible": 8,
+          "season": [
+            1,
+            0.967741935483871
+          ]
+        },
+        "memory": {
+          "geometryBytes": 48859880,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 764
+        },
+        "gpu": {
+          "geometries": 197,
+          "textures": 11,
+          "programs": 14
+        },
+        "stream": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 24,
+          "cacheHits": 0,
+          "bytes": 3636713,
+          "maxDecodeCpuMs": 0.5,
+          "maxFetchDecodeWallMs": 42.5,
+          "maxInstallMs": 0.599999999627471,
+          "maxDisposeMs": 0,
+          "maxTickMs": 1.2000000001862645,
+          "active": 0,
+          "ready": 0
+        },
+        "position": [
+          -55,
+          -12.144999999999996,
+          70
+        ],
+        "walkable": true,
+        "heap": 160806526
+      },
+      "time": 82874.79999999981,
+      "simulation": 301.188199999999,
+      "drift": [
+        757.9473120118272,
+        -407.10577508016354
+      ],
+      "morph": [
+        0.2614008659147735,
+        0.1732900258435213,
+        0.2250686400297985
+      ]
+    },
+    {
+      "wallSeconds": 120.440943955,
+      "state": {
+        "camera": {
+          "position": [
+            -55,
+            -10.494999999999996,
+            70
+          ],
+          "quaternion": [
+            0.2779202336221206,
+            0.392666922015784,
+            -0.12578201545594425,
+            0.8676127688582718
+          ],
+          "matrix": [
+            0.6599831458849816,
+            -5.551115123125783e-17,
+            -0.7512804051402933,
+            0,
+            0.43652033080922287,
+            0.813878456662533,
+            0.38347341312119676,
+            0,
+            0.6114509366563845,
+            -0.5810351605373064,
+            0.5371460641961523,
+            0,
+            -55,
+            -10.494999999999996,
+            70,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.43,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.42844766298190357,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.002065176111197805,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.3637463788202728,
+            "z": -0.22812960170871174,
+            "speed": 0.42844766298190357,
+            "gust": 0.002065176111197805
+          },
+          "transition": {
+            "revision": 1424,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "cloudy",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.43,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              907.1715267848964,
+              -497.98743677056063
+            ],
+            "morph": [
+              0.2966000808624781,
+              0.2027326522607182,
+              0.2519619737326003
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 47133,
+          "treeInstances": 7,
+          "updates": 218,
+          "lastUpdateCpuMs": 0.09999999962747097,
+          "maxUpdateCpuMs": 35.799999999813735,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 47539,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5295244,
+          "filter": "receiver-plane-pcf"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 5,
+          "builds": 5,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "art": {
+          "version": "temperate-nature-v1",
+          "canopy": "generous-canopy-v2",
+          "approach": "hybrid",
+          "texture": [
+            256,
+            256
+          ],
+          "trimmedCrowns": 12,
+          "inferredIndividuals": 2500
+        },
+        "flowers": {
+          "version": "village-window-gardens-v1",
+          "builds": 8,
+          "resident": 8,
+          "visible": 8,
+          "season": [
+            1,
+            0.967741935483871
+          ]
+        },
+        "memory": {
+          "geometryBytes": 48859880,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 764
+        },
+        "gpu": {
+          "geometries": 197,
+          "textures": 11,
+          "programs": 14
+        },
+        "stream": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 24,
+          "cacheHits": 0,
+          "bytes": 3636713,
+          "maxDecodeCpuMs": 0.5,
+          "maxFetchDecodeWallMs": 42.5,
+          "maxInstallMs": 0.599999999627471,
+          "maxDisposeMs": 0,
+          "maxTickMs": 1.2000000001862645,
+          "active": 0,
+          "ready": 0
+        },
+        "position": [
+          -55,
+          -12.144999999999996,
+          70
+        ],
+        "walkable": true,
+        "heap": 162341198
+      },
+      "time": 142870.90000000037,
+      "simulation": 361.11549999999886,
+      "drift": [
+        907.1715267848964,
+        -497.98743677056063
+      ],
+      "morph": [
+        0.2966000808624781,
+        0.2027326522607182,
+        0.2519619737326003
+      ]
+    },
+    {
+      "wallSeconds": 180.472651795,
+      "state": {
+        "camera": {
+          "position": [
+            -55,
+            -10.494999999999996,
+            70
+          ],
+          "quaternion": [
+            0.2779202336221206,
+            0.392666922015784,
+            -0.12578201545594425,
+            0.8676127688582718
+          ],
+          "matrix": [
+            0.6599831458849816,
+            -5.551115123125783e-17,
+            -0.7512804051402933,
+            0,
+            0.43652033080922287,
+            0.813878456662533,
+            0.38347341312119676,
+            0,
+            0.6114509366563845,
+            -0.5810351605373064,
+            0.5371460641961523,
+            0,
+            -55,
+            -10.494999999999996,
+            70,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.43,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.35348473048551704,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.0000031605574788654538,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.3065379195685808,
+            "z": -0.17629515449142757,
+            "speed": 0.35348473048551704,
+            "gust": 0.0000031605574788654538
+          },
+          "transition": {
+            "revision": 2038,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "cloudy",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.43,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1063.2187417921657,
+              -592.3197204884984
+            ],
+            "morph": [
+              0.32352992623943144,
+              0.2296200068686644,
+              0.2702222576191857
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 47133,
+          "treeInstances": 7,
+          "updates": 324,
+          "lastUpdateCpuMs": 0.2999999998137355,
+          "maxUpdateCpuMs": 35.799999999813735,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 47539,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5295244,
+          "filter": "receiver-plane-pcf"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 5,
+          "builds": 5,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "art": {
+          "version": "temperate-nature-v1",
+          "canopy": "generous-canopy-v2",
+          "approach": "hybrid",
+          "texture": [
+            256,
+            256
+          ],
+          "trimmedCrowns": 12,
+          "inferredIndividuals": 2500
+        },
+        "flowers": {
+          "version": "village-window-gardens-v1",
+          "builds": 8,
+          "resident": 8,
+          "visible": 8,
+          "season": [
+            1,
+            0.967741935483871
+          ]
+        },
+        "memory": {
+          "geometryBytes": 48859880,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 764
+        },
+        "gpu": {
+          "geometries": 197,
+          "textures": 11,
+          "programs": 14
+        },
+        "stream": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 24,
+          "cacheHits": 0,
+          "bytes": 3636713,
+          "maxDecodeCpuMs": 0.5,
+          "maxFetchDecodeWallMs": 42.5,
+          "maxInstallMs": 0.599999999627471,
+          "maxDisposeMs": 0,
+          "maxTickMs": 1.2000000001862645,
+          "active": 0,
+          "ready": 0
+        },
+        "position": [
+          -55,
+          -12.144999999999996,
+          70
+        ],
+        "walkable": true,
+        "heap": 162614162
+      },
+      "time": 202874.7000000002,
+      "simulation": 421.20859999999914,
+      "drift": [
+        1063.2187417921657,
+        -592.3197204884984
+      ],
+      "morph": [
+        0.32352992623943144,
+        0.2296200068686644,
+        0.2702222576191857
+      ]
+    },
+    {
+      "wallSeconds": 240.499337598,
+      "state": {
+        "camera": {
+          "position": [
+            -55,
+            -10.494999999999996,
+            70
+          ],
+          "quaternion": [
+            0.2779202336221206,
+            0.392666922015784,
+            -0.12578201545594425,
+            0.8676127688582718
+          ],
+          "matrix": [
+            0.6599831458849816,
+            -5.551115123125783e-17,
+            -0.7512804051402933,
+            0,
+            0.43652033080922287,
+            0.813878456662533,
+            0.38347341312119676,
+            0,
+            0.6114509366563845,
+            -0.5810351605373064,
+            0.5371460641961523,
+            0,
+            -55,
+            -10.494999999999996,
+            70,
+            1
+          ],
+          "fov": 55
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.43,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.49,
+            "mist": 0.06,
+            "wind": 0.2784724587004715,
+            "rain": 0,
+            "snow": 0,
+            "gust": 3.852834051028585e-17,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.2534438381020525,
+            "z": -0.11673440627817429,
+            "speed": 0.2784724587004715,
+            "gust": 3.852834051028585e-17
+          },
+          "transition": {
+            "revision": 2620,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "cloudy",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.43,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1209.745756059054,
+              -665.1938532759293
+            ],
+            "morph": [
+              0.34129306406988325,
+              0.2534682587022407,
+              0.2791229549781449
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 47133,
+          "treeInstances": 7,
+          "updates": 432,
+          "lastUpdateCpuMs": 0.09999999962747097,
+          "maxUpdateCpuMs": 35.799999999813735,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 47539,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5295244,
+          "filter": "receiver-plane-pcf"
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 5,
+          "builds": 5,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "art": {
+          "version": "temperate-nature-v1",
+          "canopy": "generous-canopy-v2",
+          "approach": "hybrid",
+          "texture": [
+            256,
+            256
+          ],
+          "trimmedCrowns": 12,
+          "inferredIndividuals": 2500
+        },
+        "flowers": {
+          "version": "village-window-gardens-v1",
+          "builds": 8,
+          "resident": 8,
+          "visible": 8,
+          "season": [
+            1,
+            0.967741935483871
+          ]
+        },
+        "memory": {
+          "geometryBytes": 48859880,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 764
+        },
+        "gpu": {
+          "geometries": 197,
+          "textures": 11,
+          "programs": 14
+        },
+        "stream": {
+          "requests": 24,
+          "completed": 24,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 24,
+          "cacheHits": 0,
+          "bytes": 3636713,
+          "maxDecodeCpuMs": 0.5,
+          "maxFetchDecodeWallMs": 42.5,
+          "maxInstallMs": 0.599999999627471,
+          "maxDisposeMs": 0,
+          "maxTickMs": 1.2000000001862645,
+          "active": 0,
+          "ready": 0
+        },
+        "position": [
+          -55,
+          -12.144999999999996,
+          70
+        ],
+        "walkable": true,
+        "heap": 162803842
+      },
+      "time": 262896.5999999996,
+      "simulation": 481.1697999999987,
+      "drift": [
+        1209.745756059054,
+        -665.1938532759293
+      ],
+      "morph": [
+        0.34129306406988325,
+        0.2534682587022407,
+        0.2791229549781449
+      ]
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}
