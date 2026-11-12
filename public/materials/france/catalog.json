@@ -1,0 +1,365 @@
+{
+  "schema": "endless-earth-france-materials-v1",
+  "checked": "2026-11-11",
+  "budgetEUR": 0,
+  "tilePixels": 128,
+  "gutterPixels": 8,
+  "columns": 3,
+  "gpuChannels": 2,
+  "encoding": "R mean-centered hybrid tone, G normalized provider height. PNG RGB B=0, decoded to GPU RG8. Neutral warmth; Lambert does not need the old roughness channel.",
+  "baseCatalogueSha256": "e5ef3770e50b9ab17b961f27d26cd137e823edbcfde6dc6414d9e4103a10b022",
+  "graniteSourceSha256": "d93f9bd186feb42329bfbb7384775236437a7ac1f14c91273a09f15a55b7da39",
+  "pipelineSha256": "d52a94fc0b8b88cc4210ffc3f06385748ecef3127c8821560ff3eca020a56050",
+  "packs": [
+    {
+      "id": "poitou",
+      "file": "poitou.png",
+      "sha256": "30dd95c34eeba44ee7ba5c2b209f54d1240f4ac01f5c26de376dc608b50e8a87",
+      "bytes": 173289,
+      "dimensions": [
+        432,
+        288
+      ],
+      "gpuBytesWithMipmapsEstimate": 331748,
+      "entries": [
+        {
+          "id": "stone-rubble",
+          "sourceId": "P-old_stone_wall",
+          "source": "https://polyhaven.com/a/old_stone_wall",
+          "author": {
+            "Charlotte Baglioni": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            2,
+            2
+          ],
+          "reliefM": 0.009,
+          "scaleStatus": "provider",
+          "slot": 0
+        },
+        {
+          "id": "plaster-worn",
+          "sourceId": "P-plaster_stone_wall_01",
+          "source": "https://polyhaven.com/a/plaster_stone_wall_01",
+          "author": {
+            "Charlotte Baglioni": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            2.3,
+            2.3
+          ],
+          "reliefM": 0.003,
+          "scaleStatus": "provider rounded to centimetres",
+          "slot": 1
+        },
+        {
+          "id": "roof-flat",
+          "sourceId": "P-roof_tiles_14",
+          "source": "https://polyhaven.com/a/roof_tiles_14",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.5,
+            1.5
+          ],
+          "reliefM": 0.014,
+          "scaleStatus": "provider; no surveyed local roof profile",
+          "slot": 2
+        },
+        {
+          "id": "earth-dry",
+          "sourceId": "P-brown_mud_dry",
+          "source": "https://polyhaven.com/a/brown_mud_dry",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.3,
+            1.3
+          ],
+          "reliefM": 0.006,
+          "scaleStatus": "provider rounded to centimetres",
+          "slot": 3
+        },
+        {
+          "id": "bank-soil",
+          "sourceId": "P-brown_mud",
+          "source": "https://polyhaven.com/a/brown_mud",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.3,
+            1.3
+          ],
+          "reliefM": 0.006,
+          "scaleStatus": "provider rounded to centimetres; not a universal bank classification",
+          "slot": 4
+        },
+        {
+          "id": "rock-existing",
+          "sourceId": "P-rock_face_03",
+          "source": "https://polyhaven.com/a/rock_face_03",
+          "author": {
+            "Dario Barresi": "Photography",
+            "Rico Cilliers": "Processing"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            2.7,
+            2.7
+          ],
+          "reliefM": 0.025,
+          "scaleStatus": "provider; Mission 12 reference remains at artistic 27m, unchanged",
+          "slot": 5
+        }
+      ]
+    },
+    {
+      "id": "atlantic",
+      "file": "atlantic.png",
+      "sha256": "b80df75909c7230d6abe46a31cdcdaee319693f06a0f252b975485b5418185bd",
+      "bytes": 201949,
+      "dimensions": [
+        432,
+        432
+      ],
+      "gpuBytesWithMipmapsEstimate": 497608,
+      "entries": [
+        {
+          "id": "stone-rubble",
+          "sourceId": "P-old_stone_wall",
+          "source": "https://polyhaven.com/a/old_stone_wall",
+          "author": {
+            "Charlotte Baglioni": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            2,
+            2
+          ],
+          "reliefM": 0.009,
+          "scaleStatus": "provider",
+          "slot": 0
+        },
+        {
+          "id": "plaster-fine",
+          "sourceId": "P-white_plaster_02",
+          "source": "https://polyhaven.com/a/white_plaster_02",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1,
+            1
+          ],
+          "reliefM": 0.0016,
+          "scaleStatus": "provider",
+          "slot": 1
+        },
+        {
+          "id": "roof-flat",
+          "sourceId": "P-roof_tiles_14",
+          "source": "https://polyhaven.com/a/roof_tiles_14",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.5,
+            1.5
+          ],
+          "reliefM": 0.014,
+          "scaleStatus": "provider; no surveyed local roof profile",
+          "slot": 2
+        },
+        {
+          "id": "earth-dry",
+          "sourceId": "P-brown_mud_dry",
+          "source": "https://polyhaven.com/a/brown_mud_dry",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.3,
+            1.3
+          ],
+          "reliefM": 0.006,
+          "scaleStatus": "provider rounded to centimetres",
+          "slot": 3
+        },
+        {
+          "id": "bank-soil",
+          "sourceId": "P-brown_mud",
+          "source": "https://polyhaven.com/a/brown_mud",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.3,
+            1.3
+          ],
+          "reliefM": 0.006,
+          "scaleStatus": "provider rounded to centimetres; not a universal bank classification",
+          "slot": 4
+        },
+        {
+          "id": "rock-existing",
+          "sourceId": "P-rock_face_03",
+          "source": "https://polyhaven.com/a/rock_face_03",
+          "author": {
+            "Dario Barresi": "Photography",
+            "Rico Cilliers": "Processing"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            2.7,
+            2.7
+          ],
+          "reliefM": 0.025,
+          "scaleStatus": "provider; Mission 12 reference remains at artistic 27m, unchanged",
+          "slot": 5
+        },
+        {
+          "id": "granite-regional",
+          "sourceId": "P-granite_wall",
+          "source": "https://polyhaven.com/a/granite_wall",
+          "author": {
+            "Dimitrios Savva": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.9,
+            1.9
+          ],
+          "reliefM": 0.009,
+          "scaleStatus": "provider; regional demonstration, not local geology",
+          "slot": 6
+        }
+      ]
+    },
+    {
+      "id": "mediterranean",
+      "file": "mediterranean.png",
+      "sha256": "b38a518626f75b4411c7cf870696b476bc739dc60dec87776819ded872edc788",
+      "bytes": 173841,
+      "dimensions": [
+        432,
+        288
+      ],
+      "gpuBytesWithMipmapsEstimate": 331748,
+      "entries": [
+        {
+          "id": "stone-rubble",
+          "sourceId": "P-old_stone_wall",
+          "source": "https://polyhaven.com/a/old_stone_wall",
+          "author": {
+            "Charlotte Baglioni": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            2,
+            2
+          ],
+          "reliefM": 0.009,
+          "scaleStatus": "provider",
+          "slot": 0
+        },
+        {
+          "id": "plaster-fine",
+          "sourceId": "P-white_plaster_02",
+          "source": "https://polyhaven.com/a/white_plaster_02",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1,
+            1
+          ],
+          "reliefM": 0.0016,
+          "scaleStatus": "provider",
+          "slot": 1
+        },
+        {
+          "id": "roof-flat",
+          "sourceId": "P-roof_tiles_14",
+          "source": "https://polyhaven.com/a/roof_tiles_14",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.5,
+            1.5
+          ],
+          "reliefM": 0.014,
+          "scaleStatus": "provider; no surveyed local roof profile",
+          "slot": 2
+        },
+        {
+          "id": "earth-dry",
+          "sourceId": "P-brown_mud_dry",
+          "source": "https://polyhaven.com/a/brown_mud_dry",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.3,
+            1.3
+          ],
+          "reliefM": 0.006,
+          "scaleStatus": "provider rounded to centimetres",
+          "slot": 3
+        },
+        {
+          "id": "bank-soil",
+          "sourceId": "P-brown_mud",
+          "source": "https://polyhaven.com/a/brown_mud",
+          "author": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "metres": [
+            1.3,
+            1.3
+          ],
+          "reliefM": 0.006,
+          "scaleStatus": "provider rounded to centimetres; not a universal bank classification",
+          "slot": 4
+        },
+        {
+          "id": "rock-layered",
+          "sourceId": "A-Rock023",
+          "source": "https://ambientcg.com/view?id=Rock023",
+          "author": "ambientCG / Lennart Demes (site publisher)",
+          "license": "CC0-1.0",
+          "metres": [
+            2.5,
+            2.5
+          ],
+          "reliefM": 0.025,
+          "scaleStatus": "artistic estimate; source scale unavailable; no geological identification",
+          "slot": 5
+        }
+      ]
+    }
+  ],
+  "policy": "Only the selected context PNG is downloaded. At most two packs cached; no per-house textures. Main pilot uses Poitou. Other contexts are synthetic demonstrations only.",
+  "transformations": [
+    "13B periodic 256px tiles reduced to 128px with Lanczos",
+    "4px symmetric periodic seam belt, 8px wrapped gutters",
+    "Warmth and roughness omitted from retained Lambert pack; height is artistic shading, never geometry",
+    "Granite: pinned source diffuse and normalized displacement, restrained residual tone, no geological claim"
+  ]
+}

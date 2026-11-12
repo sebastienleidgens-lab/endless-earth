@@ -1,0 +1,123 @@
+{
+  "codeReference": "a8ce9c950c4aa3ac1630add0f3d971d9068108c9",
+  "node": {
+    "tests": 179,
+    "pass": 179,
+    "fail": 0
+  },
+  "build": {
+    "typeScript": "pass",
+    "vite": "pass",
+    "jsBytes": 734120,
+    "jsGzipApproxBytes": 209100,
+    "warning": "Existing bundle >500 kB warning; no code or dependency change in 13A"
+  },
+  "compiledBrowserSmoke": {
+    "pass": true,
+    "checks": [
+      "loading",
+      "three camera modes",
+      "player movement",
+      "ground clearance",
+      "release without drift",
+      "audio activation",
+      "quality override",
+      "390x844 layout"
+    ],
+    "errors": []
+  },
+  "runtime": {
+    "zoneReloads": 3,
+    "zoneCounts": [
+      {
+        "cycle": 0,
+        "geometries": 125,
+        "textures": 8,
+        "programs": 10,
+        "anchors": 2500,
+        "heapAfterGCBytes": 80096740
+      },
+      {
+        "cycle": 1,
+        "geometries": 125,
+        "textures": 8,
+        "programs": 10,
+        "anchors": 2500,
+        "heapAfterGCBytes": 83625372
+      },
+      {
+        "cycle": 2,
+        "geometries": 125,
+        "textures": 8,
+        "programs": 10,
+        "anchors": 2500,
+        "heapAfterGCBytes": 83817788
+      },
+      {
+        "cycle": 3,
+        "geometries": 125,
+        "textures": 8,
+        "programs": 10,
+        "anchors": 2500,
+        "heapAfterGCBytes": 83909768
+      }
+    ],
+    "architectureScenarios": [
+      {
+        "mode": "normal",
+        "samples": 18
+      },
+      {
+        "mode": "corrupt-atlas",
+        "samples": 1
+      },
+      {
+        "mode": "stale-chunks",
+        "samples": 1
+      }
+    ],
+    "natureScenarios": [
+      {
+        "mode": "normal",
+        "samples": 18
+      },
+      {
+        "mode": "corrupt-chunk",
+        "samples": 1
+      },
+      {
+        "mode": "stale-chunks",
+        "samples": 1
+      }
+    ],
+    "rapidNativeProfileWeatherMomentChanges": 30,
+    "skyDisposeRecreateCycles": 36,
+    "audioContextDisposeCycles": 24,
+    "errors": []
+  },
+  "limits": [
+    "SwiftShader only; no physical GPU or Android claim",
+    "Finite cycles do not establish absence of every possible leak",
+    "No 13B materials or 13C integration, therefore no before/after M13 visual benefit claim",
+    "Six synchronized samples per baseline row are descriptive, not a robust performance regression benchmark",
+    "No new full walking video in this research-only milestone; Mission 12 final walk remains linked and source files unchanged"
+  ],
+  "gallery": {
+    "imagesDecoded": 70,
+    "catalogEntries": 38,
+    "filterCounts": {
+      "photos": 17,
+      "textures": 21
+    },
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "allPreviewHashesMatch": true,
+    "errors": []
+  }
+}

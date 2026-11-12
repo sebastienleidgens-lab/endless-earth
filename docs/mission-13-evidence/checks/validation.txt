@@ -1,0 +1,49 @@
+Node tests (fresh run):
+ℹ tests 179
+ℹ suites 0
+ℹ pass 179
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10192.744522
+
+TypeScript/Vite (fresh run):
+
+> endless-earth@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 79 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.56 kB │ gzip:   0.37 kB
+dist/assets/index-Cb07mrj-.css    5.92 kB │ gzip:   1.81 kB
+dist/assets/index-BKS7YHuw.js   734.12 kB │ gzip: 209.10 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.93s
+
+Compiled browser:
+PASS: load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors.
+
+Runtime checks:
+Running unchanged check logic: browser-final-runtime.mjs
+CYCLE 0 { geometries: 125, textures: 8 } 10 80096740
+CYCLE 1 { geometries: 125, textures: 8 } 10 83625372
+CYCLE 2 { geometries: 125, textures: 8 } 10 83817788
+CYCLE 3 { geometries: 125, textures: 8 } 10 83909768
+Running unchanged check logic: browser-regional-architecture-runtime.mjs
+PASS normal 18
+PASS corrupt-atlas 1
+PASS stale-chunks 1
+Running unchanged check logic: browser-regional-nature-runtime.mjs
+PASS normal 18
+PASS corrupt-chunk 1
+PASS stale-chunks 1
+Running unchanged check logic: browser-immersive-runtime.mjs
+PASS rapid choices, all profiles, GPU resource plateau, AudioContext disposal, keyboard and mobile UI

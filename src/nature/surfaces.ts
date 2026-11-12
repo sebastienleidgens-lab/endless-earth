@@ -1,3 +1,4 @@
+import {worldMaterialUniforms,registerWorldMaterial} from '../materials/world';
 // @ts-ignore Shared artistic contract.
 import {ART_DNA} from '../art/dna.mjs';
 // @ts-ignore Shared shader module.
@@ -15,7 +16,7 @@ const soilTexture=new THREE.DataTexture(pixels,64,64);soilTexture.wrapS=soilText
 export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edges:RoadEdges|null=null,water=false,appearance:SurfaceAppearance|null=null,groundArt=ART_DNA.surfaces){
  const art=roads&&!!appearance;
  material.onBeforeCompile=s=>{
-  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,lifeUniforms);
+  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,lifeUniforms,worldMaterialUniforms);
   if(water){s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;}
   if(roads){Object.assign(s.uniforms,roadUniforms);if(edges){
    s.uniforms.roadEdges={value:edges.texture};s.uniforms.roadEdgeOrigin={value:new THREE.Vector2(...edges.manifest.origin)};
@@ -59,7 +60,7 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
   if(water)applyWaterLighting(s);
  };
  material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v12-'+!!edges+'-'+water+'-'+art+'-'+groundArt.id:'nature-ground-atlas-v5';
- cloudReceiver(material,{water,surface:art});
+ if(roads)registerWorldMaterial(material);cloudReceiver(material,{water,surface:art});
 }
 export function waterMaterial(){
  const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;

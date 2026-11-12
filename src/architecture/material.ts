@@ -1,3 +1,4 @@
+import {worldMaterialUniforms,worldMaterialPrelude,worldArchitectureColor,registerWorldMaterial} from '../materials/world';
 // @ts-ignore Shared artistic contract, static shader literals.
 import {ART_DNA,glsl} from '../art/dna.mjs';
 import * as THREE from 'three';
@@ -25,7 +26,7 @@ export function loadArchitectureAtlas(){
   return true;
  }catch(error){console.warn('Architecture atlas unavailable; deterministic compact material fallback retained',error);return false}})();
 }
-const prelude=`uniform vec2 architectureAtlasSize,architectureTile;varying float vArchitectureMaterial;
+const prelude=`uniform vec2 architectureAtlasSize,architectureTile;varying float vArchitectureMaterial;varying vec2 m13WallUV;
 vec4 architectureSample(vec2 uv,float kind){vec2 cell=vec2(mod(kind,3.),floor(kind/3.));vec2 scale=architectureTile.xx/architectureAtlasSize;return textureGrad(map,(cell*(architectureTile.x+architectureTile.y*2.)+fract(uv)*architectureTile.x+architectureTile.y)/architectureAtlasSize,dFdx(uv)*scale,dFdy(uv)*scale);}
 vec3 architectureBump(vec3 n,vec3 eye,float h){vec3 dx=dFdx(eye),dy=dFdy(eye),a=cross(dy,n),b=cross(n,dx);float d=dot(dx,a);return normalize(abs(d)*n-sign(d)*(dFdx(h)*a+dFdy(h)*b));}
 `;
@@ -33,14 +34,16 @@ export function architectureMaterial(heritage=false){
  const art=ART_DNA.architecture;
  const m=new THREE.MeshLambertMaterial({vertexColors:!heritage,color:heritage?0xc7bda5:0xffffff,map:architectureAtlas,side:heritage?THREE.FrontSide:THREE.DoubleSide});m.userData.architectureShared=true;
  m.onBeforeCompile=s=>{
-  Object.assign(s.uniforms,lifeUniforms,{architectureAtlasSize:size,architectureTile:tile});
-  s.vertexShader=(heritage?'varying vec2 vHeritageUV;':'attribute float architectureMaterial;')+'varying float vArchitectureMaterial;\n'+s.vertexShader;
-  s.vertexShader=s.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>\n${heritage?'vArchitectureMaterial=0.;vec3 heritageP=(modelMatrix*vec4(position,1.)).xyz;vHeritageUV=vec2(abs(normal.x)>abs(normal.z)?heritageP.z:heritageP.x,heritageP.y)/vec2(4.,2.4);':'vArchitectureMaterial=architectureMaterial;'}`);
+  Object.assign(s.uniforms,worldMaterialUniforms,lifeUniforms,{architectureAtlasSize:size,architectureTile:tile});
+  s.vertexShader=(heritage?'varying vec2 vHeritageUV;':'attribute float architectureMaterial;')+'varying float vArchitectureMaterial;varying vec2 m13WallUV;\n'+s.vertexShader;
+  s.vertexShader=s.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>\nvec3 m13P=(modelMatrix*vec4(position,1.)).xyz;vec3 m13N=normalize(mat3(modelMatrix)*normal);m13WallUV=vec2(dot(m13P.xz,normalize(vec2(m13N.z,-m13N.x)+vec2(1e-8))),m13P.y);\n${heritage?'vArchitectureMaterial=0.;vec3 heritageP=(modelMatrix*vec4(position,1.)).xyz;vHeritageUV=vec2(abs(normal.x)>abs(normal.z)?heritageP.z:heritageP.x,heritageP.y)/vec2(4.,2.4);':'vArchitectureMaterial=architectureMaterial;'}`);
   // map is declared by Three's map_pars_fragment, before our sampling functions.
-  s.fragmentShader=s.fragmentShader.replace('#include <map_pars_fragment>','#include <map_pars_fragment>\n'+prelude+(heritage?'varying vec2 vHeritageUV;':''));
+  s.fragmentShader=s.fragmentShader.replace('#include <map_pars_fragment>','#include <map_pars_fragment>\n'+prelude+worldMaterialPrelude+(heritage?'varying vec2 vHeritageUV;':''));
   s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`
-   float architectureHeight=0.;float architectureKind=floor(vArchitectureMaterial+.5);
+   float architectureHeight=0.;float architectureSource=floor(vArchitectureMaterial+.5);float architectureKind=architectureSource>7.5?0.:architectureSource;
    float architectureFade=1.-smoothstep(${glsl(art.detailM[0])},${glsl(art.detailM[1])},length(vViewPosition));
+   vec2 m13ArchitectureUV=${heritage?'vHeritageUV':'vMapUv'};
+   ${worldArchitectureColor}
    if(architectureKind<5.5&&architectureFade>.001){
     vec4 art=architectureSample(${heritage?'vHeritageUV':'vMapUv'},architectureKind);
     diffuseColor.rgb*=mix(vec3(${glsl(art.meanTone)}),vec3(${glsl(art.toneFloor)}+art.r*${glsl(art.toneRange)}),architectureFade)*(vec3(1.)+vec3(.06,0.,-.045)*(art.b-.5));
@@ -55,7 +58,7 @@ export function architectureMaterial(heritage=false){
   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n#if LIFE_ARCH_DETAIL == 1\nif(architectureKind<5.5)normal=architectureBump(normal,-vViewPosition,architectureHeight);\n#endif');
   s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35);}\n#include <opaque_fragment>`);
  };
- m.customProgramCacheKey=()=> 'regional-architecture-dna-v1-'+heritage;cloudReceiver(m,{architecture:true});return m;
+ m.customProgramCacheKey=()=> 'regional-architecture-authentic-v13-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;
 }
 export const architectureMaterials={stone:architectureMaterial(),plaster:architectureMaterial(),tile:architectureMaterial(),plain:architectureMaterial()};
 export const heritageMaterial=architectureMaterial(true);
