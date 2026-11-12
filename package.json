@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-13.md"
+    "missionReport": "docs/mission-14.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -50,7 +50,9 @@
     "geo:nature-art": "node scripts/prepare-nature-art.mjs && DECORATION_EVIDENCE_DIR=work/mission-12C/preparation node scripts/prepare-decorations.mjs",
     "test:nature-art": "node scripts/browser-regional-nature.mjs after",
     "geo:art-dna": "node scripts/prepare-art-dna.mjs && DECORATION_EVIDENCE_DIR=work/mission-12D/preparation node scripts/prepare-decorations.mjs",
-    "test:art-dna": "node scripts/verify-art-dna.mjs && node scripts/browser-art-dna-gallery.mjs"
+    "test:art-dna": "node scripts/verify-art-dna.mjs && node scripts/browser-art-dna-gallery.mjs",
+    "geo:relief": "node scripts/prepare-relief-protection.mjs && python scripts/prepare-terrain-refinement.py && node scripts/prepare-relief-surface.mjs",
+    "test:relief": "node --test tests/terrain-refinement.test.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

@@ -1,0 +1,21 @@
+// Compact publication copy, with native timestamps and unchanged Opus packets.
+import {readFile,writeFile,copyFile,rename,stat} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
+import assert from 'node:assert/strict';
+const dir='docs/mission-14-evidence',video=dir+'/after-promenade.webm',raw='work/mission-14/after-native.webm';
+const probe=f=>JSON.parse(execFileSync('ffprobe',['-v','error','-show_entries','stream=codec_name,width,height','-show_entries','format=duration,size','-of','json',f],{encoding:'utf8'}));
+const initial=probe(video);assert.equal(initial.streams[0].codec_name,'vp8','Publish only a fresh native recording');
+await copyFile(video,raw);
+execFileSync('ffmpeg',['-hide_banner','-loglevel','error','-y','-i',raw,'-map','0:v:0','-map','0:a:0','-c:v','libvpx-vp9','-b:v','90k','-crf','38','-deadline','good','-cpu-used','4','-row-mt','1','-threads','2','-fps_mode','passthrough','-c:a','copy',video+'.compact.webm']);
+await rename(video+'.compact.webm',video);const published=probe(video);
+assert.ok(Math.abs(Number(initial.format.duration)-Number(published.format.duration))<.05);
+const audioHash=f=>execFileSync('ffmpeg',['-v','error','-i',f,'-map','0:a:0','-c','copy','-f','hash','-hash','sha256','-'],{encoding:'utf8'}).trim();
+assert.equal(audioHash(raw),audioHash(video));
+const hash=async f=>createHash('sha256').update(await readFile(f)).digest('hex');
+await writeFile(dir+'/video-publication.json',JSON.stringify({method:'Full continuous recording, VP8 original kept in work/; publication copy VP9 at 90 kbit/s target, CRF38, native timestamps passed through. No edit, camera/path/speed change, audio re-encoding or normalization.',native:{...initial,sha256:await hash(raw)},published:{...published,sha256:await hash(video)},identicalEncodedAudioHash:audioHash(video)},null,2)+'\n');
+const text=await readFile(dir+'/after-walk.json','utf8'),w=JSON.parse(text);await writeFile(dir+'/after-walk-detail.json.gz',gzipSync(text,{level:9,mtime:0}));
+const rows=w.rows.map(r=>({seconds:r.seconds,metres:r.metres,memory:r.memory,heap:r.heap,position:r.state.position,autoWalk:r.state.autoWalk,audioVoices:r.state.audio.voices,audioCacheBytes:r.state.audio.cacheBytes}));
+await writeFile(dir+'/after-walk.json',JSON.stringify({...w,rows,publication:'See video-publication.json; public video is a compact VP9 copy, native Opus packets and timing retained.',fullDetail:'after-walk-detail.json.gz'},null,2)+'\n');
+console.log('Publication video bytes',(await stat(raw)).size,'→',(await stat(video)).size);

@@ -39,9 +39,23 @@ export function sourceGeometry(g){
       }
       colors.push(color.r,color.g,color.b);
     }
-    for(let z=0;z<g.height-1;z++)for(let x=0;x<g.width-1;x++)indices.push(...cellIndices(g,x,z,g.width,z*g.width+x));
+    const cells=new Map(),extra=new Map();
+    const vertex=p=>{
+      const fx=(p.x-g.origin_x_m)/g.step_m,fz=(p.z-g.origin_z_m)/g.step_m;
+      if(Number.isInteger(fx)&&Number.isInteger(fz))return fz*g.width+fx;
+      const key=`${p.x}:${p.z}`;if(extra.has(key))return extra.get(key);
+      const id=positions.length/3;extra.set(key,id);positions.push(p.x,p.y-baseline,p.z);
+      // Keep the established palette; steep faces acquire their volume from
+      // the real geometry and its normals, without adding a new material.
+      const from=(Math.round(fz)*g.width+Math.round(fx))*3;colors.push(...colors.slice(from,from+3));return id;
+    };
+    for(let z=0;z<g.height-1;z++)for(let x=0;x<g.width-1;x++){
+      const key=z*g.width+x,refined=g.refinement?.cells.get(key);
+      const ids=refined?refined.triangles.flatMap(t=>[vertex(t[0]),vertex(t[2]),vertex(t[1])]):cellIndices(g,x,z,g.width,key);
+      if(refined)cells.set(key,ids);indices.push(...ids);
+    }
     const geometry=new THREE.BufferGeometry();
     geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
-    geometry.setIndex(indices);geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();
+    geometry.setIndex(indices);geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();geometry.userData.refinedCells=cells;
 return geometry;
 }

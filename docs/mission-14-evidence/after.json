@@ -1,0 +1,1887 @@
+{
+  "phase": "after",
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "resolution": [
+      960,
+      640
+    ],
+    "dpr": 1
+  },
+  "startupMs": 4811.215951,
+  "rows": [
+    {
+      "id": "chateau-pont",
+      "station": [
+        "chateau-pont",
+        -184,
+        154,
+        -1.12,
+        -0.35,
+        0,
+        "first"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -184,
+            -34.01800000000001,
+            154
+          ],
+          "quaternion": [
+            0.14751400944520177,
+            -0.5230731461926978,
+            0.09248383963542743,
+            0.8343145930377595
+          ],
+          "fov": 55,
+          "matrix": [
+            0.43568244627672215,
+            2.7755575615628914e-17,
+            0.9001004421765002,
+            0,
+            -0.30864246811200413,
+            0.9393727128473789,
+            0.1493945555751155,
+            0,
+            -0.8455297942024644,
+            -0.34289780745545134,
+            0.40926820149894694,
+            0,
+            -184,
+            -34.01800000000001,
+            154,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.230193335401344,
+            "rain": 0,
+            "gust": 0.4241120623790584
+          },
+          "wind": {
+            "x": 0.2115771131071293,
+            "z": -0.09265522252727423,
+            "speed": 0.230193335401344,
+            "gust": 0.4241120623790584
+          },
+          "transition": {
+            "revision": 241,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 17,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 19,
+          "completed": 19,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 19,
+          "cacheHits": 0,
+          "bytes": 2337340,
+          "maxDecodeCpuMs": 0.2999999998137355,
+          "maxFetchDecodeWallMs": 22.799999999813735,
+          "maxInstallMs": 0.19999999995343387,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.5,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 6,
+          "builds": 6,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 35910386,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 747
+        },
+        "walkable": false
+      },
+      "samples": [
+        {
+          "frame": 3,
+          "calls": 175,
+          "triangles": 275845,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.9000000001396984,
+          "textures": 9,
+          "ms": 298.4000000001397
+        },
+        {
+          "frame": 4,
+          "calls": 175,
+          "triangles": 275845,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 3.1000000000931323,
+          "textures": 9,
+          "ms": 341.80000000004657
+        },
+        {
+          "frame": 5,
+          "calls": 175,
+          "triangles": 275845,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2.3999999999068677,
+          "textures": 9,
+          "ms": 317.39999999990687
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "chateau-rive",
+      "station": [
+        "chateau-rive",
+        -222,
+        204,
+        -0.91,
+        -0.28,
+        0,
+        "first"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -222,
+            -28.972000000000016,
+            204
+          ],
+          "quaternion": [
+            0.12534614163556954,
+            -0.4351626128631821,
+            0.06132394003723254,
+            0.8894724388768177
+          ],
+          "fov": 55,
+          "matrix": [
+            0.6137457494887965,
+            2.7755575615628914e-17,
+            0.7895037396899622,
+            0,
+            -0.21818381802581177,
+            0.9610554383107713,
+            0.16961210465344367,
+            0,
+            -0.7587568625957297,
+            -0.27635564856411254,
+            0.5898436902863281,
+            0,
+            -222,
+            -28.972000000000016,
+            204,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1550467513377824,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.14544436814694917,
+            "z": -0.05696754428894861,
+            "speed": 0.1550467513377824,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 482,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 21,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 23,
+          "completed": 23,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 23,
+          "cacheHits": 0,
+          "bytes": 2812173,
+          "maxDecodeCpuMs": 0.2999999998137355,
+          "maxFetchDecodeWallMs": 22.799999999813735,
+          "maxInstallMs": 0.19999999995343387,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.5,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 6,
+          "builds": 8,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 37301714,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 749
+        },
+        "walkable": true
+      },
+      "samples": [
+        {
+          "frame": 7,
+          "calls": 181,
+          "triangles": 291189,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3000000000465661,
+          "textures": 9,
+          "ms": 312.80000000004657
+        },
+        {
+          "frame": 8,
+          "calls": 181,
+          "triangles": 291189,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.8000000000465661,
+          "textures": 9,
+          "ms": 356.10000000009313
+        },
+        {
+          "frame": 9,
+          "calls": 181,
+          "triangles": 291189,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2,
+          "textures": 9,
+          "ms": 320.39999999990687
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "falaise-vallee",
+      "station": [
+        "falaise-vallee",
+        -80,
+        210,
+        -0.75,
+        -0.28,
+        0,
+        "first"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -80,
+            -31.81000000000001,
+            210
+          ],
+          "quaternion": [
+            0.12984593176184547,
+            -0.3626889172742562,
+            0.05111080951728751,
+            0.921403531815357
+          ],
+          "fov": 55,
+          "matrix": [
+            0.7316888688738307,
+            -2.7755575615628914e-17,
+            0.6816387600233237,
+            0,
+            -0.1883747216126827,
+            0.9610554383107714,
+            0.202206351904769,
+            0,
+            -0.655092637283826,
+            -0.27635564856411204,
+            0.7031935665826519,
+            0,
+            -80,
+            -31.81000000000001,
+            210,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18070881996665303,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.16476755138869636,
+            "z": -0.07519556308441974,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 723,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 19,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 29,
+          "completed": 29,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 29,
+          "cacheHits": 0,
+          "bytes": 3144688,
+          "maxDecodeCpuMs": 0.2999999998137355,
+          "maxFetchDecodeWallMs": 22.799999999813735,
+          "maxInstallMs": 0.19999999995343387,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.5,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 123,
+          "cells": 250,
+          "resident": 6,
+          "builds": 11,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 37437266,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 752
+        },
+        "walkable": false
+      },
+      "samples": [
+        {
+          "frame": 11,
+          "calls": 163,
+          "triangles": 248891,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3000000000465661,
+          "textures": 9,
+          "ms": 313.69999999995343
+        },
+        {
+          "frame": 12,
+          "calls": 163,
+          "triangles": 248891,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3999999999068677,
+          "textures": 9,
+          "ms": 317.19999999995343
+        },
+        {
+          "frame": 13,
+          "calls": 163,
+          "triangles": 248891,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9,
+          "ms": 300.69999999995343
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "village-pont",
+      "station": [
+        "village-pont",
+        -100,
+        155,
+        0.5,
+        0.5,
+        210,
+        "aerial"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            0.6793631068826329,
+            145.8,
+            339.2923379969783
+          ],
+          "quaternion": [
+            -0.3150810935699816,
+            0.23395719178722557,
+            0.08045341177258418,
+            0.916250612780112
+          ],
+          "fov": 55,
+          "matrix": [
+            0.8775825618903728,
+            -2.7755575615628914e-17,
+            -0.47942553860420295,
+            0,
+            -0.2948619513475238,
+            0.788502306017791,
+            -0.5397411815418167,
+            0,
+            0.37802814275323554,
+            0.6150317986938771,
+            0.6919758737715597,
+            0,
+            0.6793631068826329,
+            145.8,
+            339.2923379969783,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.21146881451762195,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.18627646803233663,
+            "z": -0.10010696709374454,
+            "speed": 0.21146881451762195,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 964,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 33,
+          "completed": 33,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 33,
+          "cacheHits": 0,
+          "bytes": 3645897,
+          "maxDecodeCpuMs": 0.2999999998137355,
+          "maxFetchDecodeWallMs": 22.799999999813735,
+          "maxInstallMs": 0.19999999995343387,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.5,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 123,
+          "cells": 250,
+          "resident": 6,
+          "builds": 14,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 37829618,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 751
+        },
+        "walkable": true
+      },
+      "samples": [
+        {
+          "frame": 15,
+          "calls": 167,
+          "triangles": 273615,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9,
+          "ms": 299.19999999995343
+        },
+        {
+          "frame": 16,
+          "calls": 167,
+          "triangles": 273615,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.6999999999534339,
+          "textures": 9,
+          "ms": 323.19999999995343
+        },
+        {
+          "frame": 17,
+          "calls": 167,
+          "triangles": 273615,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 2.1000000000931323,
+          "textures": 9,
+          "ms": 299.5
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "rue-chateau",
+      "station": [
+        "rue-chateau",
+        -55,
+        70,
+        0.85,
+        -0.05,
+        0,
+        "first"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -55,
+            -10.560000000000008,
+            70
+          ],
+          "quaternion": [
+            0.02277359590128961,
+            0.41219193820993777,
+            -0.01030694582510389,
+            0.910754048177782
+          ],
+          "fov": 55,
+          "matrix": [
+            0.6599831458849865,
+            3.469446951953614e-18,
+            -0.7512804051402888,
+            0,
+            0.03754837053824983,
+            0.9987502603949663,
+            0.03298540936398012,
+            0,
+            0.7503415002634992,
+            -0.049979169270677706,
+            0.6591583388089193,
+            0,
+            -55,
+            -10.560000000000008,
+            70,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.2136019850284822,
+            "rain": 0,
+            "gust": 0.00006346306419520576
+          },
+          "wind": {
+            "x": 0.18247498807455406,
+            "z": -0.11164070646842181,
+            "speed": 0.2136019850284822,
+            "gust": 0.00006346306419520576
+          },
+          "transition": {
+            "revision": 1205,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 17,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 45,
+          "completed": 45,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 45,
+          "cacheHits": 0,
+          "bytes": 5393893,
+          "maxDecodeCpuMs": 0.30000000004656613,
+          "maxFetchDecodeWallMs": 22.799999999813735,
+          "maxInstallMs": 0.19999999995343387,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.8000000000465661,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 5,
+          "builds": 18,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 45253586,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 754
+        },
+        "walkable": true
+      },
+      "samples": [
+        {
+          "frame": 19,
+          "calls": 116,
+          "triangles": 212912,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.1999999999534339,
+          "textures": 9,
+          "ms": 302.9000000001397
+        },
+        {
+          "frame": 20,
+          "calls": 116,
+          "triangles": 212912,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.1999999999534339,
+          "textures": 9,
+          "ms": 353.30000000004657
+        },
+        {
+          "frame": 21,
+          "calls": 116,
+          "triangles": 212912,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5999999998603016,
+          "textures": 9,
+          "ms": 309.5999999998603
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "sur-pont",
+      "station": [
+        "sur-pont",
+        -185,
+        155,
+        -0.15,
+        0,
+        0,
+        "first"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -185,
+            -34.09000000000001,
+            155
+          ],
+          "quaternion": [
+            0,
+            -0.07492970727273882,
+            0,
+            0.9971888181122078
+          ],
+          "fov": 55,
+          "matrix": [
+            0.9887710779360434,
+            0,
+            0.14943813247359225,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -0.14943813247359225,
+            0,
+            0.9887710779360434,
+            0,
+            -185,
+            -34.09000000000001,
+            155,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24820855384929683,
+            "rain": 0,
+            "gust": 0.3790448334733394
+          },
+          "wind": {
+            "x": 0.20522329082499427,
+            "z": -0.14235423818346968,
+            "speed": 0.24820855384929683,
+            "gust": 0.3790448334733394
+          },
+          "transition": {
+            "revision": 1446,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 17,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 48,
+          "completed": 48,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 48,
+          "cacheHits": 0,
+          "bytes": 5667786,
+          "maxDecodeCpuMs": 0.30000000004656613,
+          "maxFetchDecodeWallMs": 22.799999999813735,
+          "maxInstallMs": 0.19999999995343387,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.8000000000465661,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 6,
+          "builds": 21,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 41558066,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 753
+        },
+        "walkable": false
+      },
+      "samples": [
+        {
+          "frame": 23,
+          "calls": 178,
+          "triangles": 243298,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.1999999999534339,
+          "textures": 9,
+          "ms": 295.19999999995343
+        },
+        {
+          "frame": 24,
+          "calls": 178,
+          "triangles": 243298,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.4000000001396984,
+          "textures": 9,
+          "ms": 312.69999999995343
+        },
+        {
+          "frame": 25,
+          "calls": 178,
+          "triangles": 243298,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5999999998603016,
+          "textures": 9,
+          "ms": 294.19999999995343
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "zone-haute",
+      "station": [
+        "zone-haute",
+        80,
+        90,
+        1,
+        0.08,
+        0,
+        "first"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            80,
+            9.089999999999998,
+            90
+          ],
+          "quaternion": [
+            -0.03509394234379675,
+            0.47904204930931804,
+            0.019171908080850675,
+            0.8768805894446738
+          ],
+          "fov": 55,
+          "matrix": [
+            0.5403023058681367,
+            -6.938893903907228e-18,
+            -0.8414709848078985,
+            0,
+            -0.0672458962348618,
+            0.9968017063026193,
+            -0.043178093424290624,
+            0,
+            0.8387797134606587,
+            0.07991469396917295,
+            0.5385742604085983,
+            0,
+            80,
+            9.089999999999998,
+            90,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1727175869611885,
+            "rain": 0,
+            "gust": 0.0003985175803462643
+          },
+          "wind": {
+            "x": 0.15022222340295208,
+            "z": -0.08531862801318885,
+            "speed": 0.1727175869611885,
+            "gust": 0.0003985175803462643
+          },
+          "transition": {
+            "revision": 1687,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 17,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 57,
+          "completed": 57,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 57,
+          "cacheHits": 0,
+          "bytes": 6858342,
+          "maxDecodeCpuMs": 0.4000000001396984,
+          "maxFetchDecodeWallMs": 53.200000000186265,
+          "maxInstallMs": 0.19999999995343387,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.8000000000465661,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 6,
+          "builds": 26,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 46698770,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 755
+        },
+        "walkable": true
+      },
+      "samples": [
+        {
+          "frame": 27,
+          "calls": 146,
+          "triangles": 301845,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3000000000465661,
+          "textures": 9,
+          "ms": 385.5999999998603
+        },
+        {
+          "frame": 28,
+          "calls": 146,
+          "triangles": 301845,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3000000000465661,
+          "textures": 9,
+          "ms": 363.9000000001397
+        },
+        {
+          "frame": 29,
+          "calls": 146,
+          "triangles": 301845,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9,
+          "ms": 388.69999999995343
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "aerienne",
+      "station": [
+        "aerienne",
+        -70,
+        200,
+        0.5,
+        0.5,
+        310,
+        "aerial"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            78.62191696730292,
+            212.12,
+            472.05059418601553
+          ],
+          "quaternion": [
+            -0.3150810935699816,
+            0.23395719178722557,
+            0.0804534117725842,
+            0.916250612780112
+          ],
+          "fov": 55,
+          "matrix": [
+            0.8775825618903728,
+            0,
+            -0.47942553860420295,
+            0,
+            -0.2948619513475238,
+            0.788502306017791,
+            -0.5397411815418167,
+            0,
+            0.37802814275323554,
+            0.6150317986938771,
+            0.6919758737715597,
+            0,
+            78.62191696730292,
+            212.12,
+            472.05059418601553,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18953540409641897,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.16585952127173673,
+            "z": -0.09175529213135379,
+            "speed": 0.18953540409641897,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 1928,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 15,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 66,
+          "completed": 66,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 66,
+          "cacheHits": 0,
+          "bytes": 8165216,
+          "maxDecodeCpuMs": 0.4000000001396984,
+          "maxFetchDecodeWallMs": 53.200000000186265,
+          "maxInstallMs": 0.20000000018626451,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.8000000000465661,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 125,
+          "cells": 250,
+          "resident": 6,
+          "builds": 32,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 36435218,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 749
+        },
+        "walkable": true
+      },
+      "samples": [
+        {
+          "frame": 31,
+          "calls": 211,
+          "triangles": 309169,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.3000000000465661,
+          "textures": 9,
+          "ms": 313.10000000009313
+        },
+        {
+          "frame": 32,
+          "calls": 211,
+          "triangles": 309169,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9,
+          "ms": 323.20000000018626
+        },
+        {
+          "frame": 33,
+          "calls": 211,
+          "triangles": 309169,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5999999998603016,
+          "textures": 9,
+          "ms": 318.5
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "berges",
+      "station": [
+        "berges",
+        -150,
+        245,
+        -1.1,
+        0.25,
+        0,
+        "first"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -150,
+            -31.860000000000007,
+            245
+          ],
+          "quaternion": [
+            -0.10628826749213637,
+            -0.5186090492355566,
+            -0.06516589091079167,
+            0.845872842043244
+          ],
+          "fov": 55,
+          "matrix": [
+            0.4535961214255896,
+            1.3877787807814457e-17,
+            0.8912073600614291,
+            0,
+            0.2204882293959654,
+            0.9689124217106457,
+            -0.11222147634318452,
+            0,
+            -0.8635018814834706,
+            0.2474039592545192,
+            0.43949491648902417,
+            0,
+            -150,
+            -31.860000000000007,
+            245,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.22451589600836608,
+            "rain": 0,
+            "gust": 0
+          },
+          "wind": {
+            "x": 0.2062000776303416,
+            "z": -0.09066408545487514,
+            "speed": 0.22451589600836608,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 2169,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 17,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 76,
+          "completed": 76,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 76,
+          "cacheHits": 0,
+          "bytes": 9128308,
+          "maxDecodeCpuMs": 0.4000000001396984,
+          "maxFetchDecodeWallMs": 53.200000000186265,
+          "maxInstallMs": 0.20000000018626451,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.8000000000465661,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 122,
+          "cells": 250,
+          "resident": 7,
+          "builds": 39,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 37045682,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 753
+        },
+        "walkable": true
+      },
+      "samples": [
+        {
+          "frame": 35,
+          "calls": 163,
+          "triangles": 249799,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.0999999998603016,
+          "textures": 9,
+          "ms": 248.29999999981374
+        },
+        {
+          "frame": 36,
+          "calls": 163,
+          "triangles": 249799,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.2999999998137355,
+          "textures": 9,
+          "ms": 321.0999999998603
+        },
+        {
+          "frame": 37,
+          "calls": 163,
+          "triangles": 249799,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.5,
+          "textures": 9,
+          "ms": 353.5
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    },
+    {
+      "id": "foret-relief",
+      "station": [
+        "foret-relief",
+        -430,
+        340,
+        1,
+        -0.12,
+        0,
+        "first"
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -430,
+            8.930000000000001,
+            340
+          ],
+          "quaternion": [
+            0.052623366427441476,
+            0.4785628314934467,
+            -0.028748276103273823,
+            0.876003387116687
+          ],
+          "fov": 55,
+          "matrix": [
+            0.5403023058681298,
+            -6.938893903907228e-18,
+            -0.8414709848079029,
+            0,
+            0.1007343489609343,
+            0.9928086358538664,
+            0.06468078163876634,
+            0,
+            0.8354196605377435,
+            -0.11971220728891879,
+            0.5364167952376364,
+            0,
+            -430,
+            8.930000000000001,
+            340,
+            1
+          ]
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.27210095919572014,
+            "rain": 0,
+            "gust": 0.2090764146104548
+          },
+          "wind": {
+            "x": 0.2522602155314961,
+            "z": -0.10551320431996525,
+            "speed": 0.27210095919572014,
+            "gust": 0.2090764146104548
+          },
+          "transition": {
+            "revision": 2410,
+            "commandRevision": 0,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 45,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0
+        },
+        "terrain": {
+          "preparationMs": 3,
+          "tiles": 25,
+          "fineTriangles": 130196,
+          "farTriangles": 121172,
+          "farTiles": 16,
+          "maxFarErrorM": 0.25,
+          "surface": "integrated",
+          "water": "mapped-outline-dem-drape-v1",
+          "reliefCells": 330
+        },
+        "relief": {
+          "sha256": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "cells": 330,
+          "boundsM": [
+            -220,
+            40,
+            120,
+            420
+          ],
+          "method": "Nearest native pixel, 2-decimal metre elevations; 1 m candidate nodes; Delaunay insertion at >0.4 m node residual; shared edges simplified at 0.25 m; coarse perimeter retained. No overhangs."
+        },
+        "stream": {
+          "requests": 82,
+          "completed": 82,
+          "cancelled": 0,
+          "stale": 0,
+          "failed": 0,
+          "installed": 82,
+          "cacheHits": 0,
+          "bytes": 10256484,
+          "maxDecodeCpuMs": 0.4000000001396984,
+          "maxFetchDecodeWallMs": 53.200000000186265,
+          "maxInstallMs": 0.20000000018626451,
+          "maxDisposeMs": 0,
+          "maxTickMs": 0.8000000000465661,
+          "active": 0,
+          "ready": 0
+        },
+        "nature": {
+          "treeCells": 125,
+          "farCells": 121,
+          "cells": 250,
+          "resident": 6,
+          "builds": 44,
+          "pending": 0,
+          "work": 0,
+          "needed": 0,
+          "preparation": null
+        },
+        "memory": {
+          "geometryBytes": 36766514,
+          "terrainTextureBytesWithMipmaps": 11810474.666666666,
+          "roadTextureBytesWithMipmaps": 6477141.333333333,
+          "geometries": 749
+        },
+        "walkable": true
+      },
+      "samples": [
+        {
+          "frame": 39,
+          "calls": 34,
+          "triangles": 81318,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1,
+          "textures": 9,
+          "ms": 145.89999999990687
+        },
+        {
+          "frame": 40,
+          "calls": 34,
+          "triangles": 81318,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1.1999999999534339,
+          "textures": 9,
+          "ms": 140
+        },
+        {
+          "frame": 41,
+          "calls": 34,
+          "triangles": 81318,
+          "points": 0,
+          "lines": 0,
+          "cpuSubmitMs": 1,
+          "textures": 9,
+          "ms": 128.10000000009313
+        }
+      ],
+      "sources": [
+        "IGN LiDAR HD MNT / IGN69, acquisition 2023-04-09",
+        "IGN/ASP normalized environment",
+        "OSM excerpt 2026-11-08"
+      ],
+      "referenceCommit": "03d963fb1afeea9e2f209800748bfde5d1fab5f8"
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}
