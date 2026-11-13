@@ -16,17 +16,31 @@ import {canopyLayout,CANOPY_VERSION} from './canopy.mjs';
 // @ts-ignore Once-per-zone masonry index.
 import {masonryClearance} from './clearance.mjs';
 import {addVillageFlowers,updateVillageFlowers} from './flower-render';
+import {addForest} from './forest-render';
 type Tree={x:number;y:number;z:number;kind:string;leaf?:string;scale:number};
 const dummy=new THREE.Object3D();
 export function addNature(scene:THREE.Object3D,features:any[],height:(x:number,z:number)=>number|null,prepared?:any,style=POITOU,fixedAnchors?:Tree[]){
  if(prepared&&prepared.manifest.natureStyleId!==style.id)prepared=undefined;
  const ecology=prepared?{trees:prepared.manifest.trees,profile:style}:createEcology(features,height,style),cells=new Map<string,Tree[]>();
  if(!prepared&&fixedAnchors)ecology.trees=fixedAnchors;
+ const calendar={value:new THREE.Vector4(1,0,0,.1)};
+ scene.userData.natureCalendar=calendar;scene.userData.natureLatitude=style.latitude;
+ const resources={geometries:[] as THREE.BufferGeometry[],materials:[] as THREE.Material[]};scene.userData.natureResources=resources;
+ const legacy=typeof location!=='undefined'&&new URLSearchParams(location.search).has('perf')&&new URLSearchParams(location.search).get('forest17')==='legacy';
+ if(!legacy){
+  const trees=addForest(scene,ecology.trees,features,height,calendar,resources,prepared);
+  // Existing understory cells retain their original ecology, buffers and stream.
+  addVillageFlowers(scene,features,height);
+  const detailCells=new Set<string>();
+  if(prepared){for(const e of prepared.manifest.entries.filter((e:any)=>e.kind==='nature')){const g=new THREE.Group();g.userData.natureCell={cx:e.cx,cz:e.cz,ecology,height,builds:0,calendar,natureStyle:style,prepared:e.id};scene.add(g)}}
+  else for(const f of features){if(!f.rings||!habitat(f.tags))continue;const r=f.rings[0],xs=r.map((p:any)=>p.x),zs=r.map((p:any)=>p.z);for(let cz=Math.floor(Math.max(-980,Math.min(...zs))/128);cz<=Math.floor(Math.min(980,Math.max(...zs))/128);cz++)for(let cx=Math.floor(Math.max(-980,Math.min(...xs))/128);cx<=Math.floor(Math.min(980,Math.max(...xs))/128);cx++){const k=`${cx}:${cz}`;if(detailCells.has(k))continue;detailCells.add(k);const g=new THREE.Group();g.userData.natureCell={cx,cz,ecology,height,builds:0,calendar,natureStyle:style};scene.add(g)}}
+  scene.userData.nature={trees:trees.length,cells:scene.userData.forest.forms.length,detailCells:prepared?prepared.manifest.entries.filter((e:any)=>e.kind==='nature').length:detailCells.size,profile:style.id,art:scene.userData.forest.version};
+  return trees;
+ }
  for(const p of ecology.trees){const key=`${Math.floor(p.x/180)}:${Math.floor(p.z/180)}:${p.leaf==='needle'&&p.kind!=='riparian'?'needle':'broad'}`;if(!cells.has(key))cells.set(key,[]);cells.get(key)!.push(p)}
  const params=typeof location==='undefined'?null:new URLSearchParams(location.search);
  const art=createTreeArt(params?.has('perf')&&['perforated','volume'].includes(params.get('canopy')??'')?params.get('canopy'):'hybrid'),clearance=masonryClearance(features),crown=art.crown,distantCrown=art.farCrown,needleCrown=art.needle,farNeedleCrown=art.farNeedle,trunk=art.trunk;
  const pixels=leafSprayPixels(),texture=new THREE.DataTexture(pixels.data,pixels.width,pixels.height);texture.name='Original procedural leaf sprays';texture.generateMipmaps=true;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.needsUpdate=true;
- const calendar={value:new THREE.Vector4(1,0,0,.1)};
  const bark=new THREE.MeshLambertMaterial({color:style.bark});animateFoliage(bark,false,false,false,true,true);
  const leaves=natureArtMaterial(calendar,art.approach==='volume'?null:texture,false,false,art.approach==='perforated'),distantLeaves=natureArtMaterial(calendar,null,false,true);
  scene.userData.natureArt={version:NATURE_ART_VERSION,canopy:CANOPY_VERSION,approach:art.approach,texture:[pixels.width,pixels.height],trimmedCrowns:0,inferredIndividuals:ecology.trees.filter((p:any)=>!p.mapped).length};
@@ -86,6 +100,7 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
  scene.traverse(o=>{
   if(o.userData.villageFlowers)updateVillageFlowers(o,camera,climate?.date,eco);
   if(o.userData.natureCalendar)o.userData.natureCalendar.value.fromArray(foliageSeason(climate?.date,o.userData.natureLatitude??46));
+  if(o.userData.updateForest)o.userData.updateForest(camera,eco?'eco':scene.userData.earthLife?.profile??'balanced');
   const tree=o.userData.natureTreeCell;
   if(tree){const d=Math.hypot(camera.position.x-tree.x,camera.position.z-tree.z),crowns=o.children[1] as THREE.InstancedMesh;
    o.children[0].visible=o.children[0].visible?d<650:d<620;crowns.visible=crowns.visible?d<1050:d<1020;
@@ -112,5 +127,5 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
  }
  hidden.sort((a,b)=>a.d-b.d);for(const {o,c} of hidden.slice(4)){o.remove(c.detail);c.detail.geometry.dispose();c.detail.material.dispose();c.detail=null;if(c.prepared)stream?.release(c.prepared)}
 }
-export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,cells=0,resident=0,builds=0,pending=0,work=0,needed=0;scene.traverse(o=>{const t=o.userData.natureTreeCell;if(t){treeCells++;if(t.lod==='far')farCells++}const c=o.userData.natureCell;if(c){cells++;if(c.detail)resident++;else if(c.wanted)needed++;builds+=c.builds;if(c.pending){pending++;work+=c.pending.cursor}}});return {treeCells,farCells,cells,resident,builds,pending,work,needed,preparation:scene.userData.natureWork??null}}
-export function disposeNatureZone(group:THREE.Object3D){group.userData.decorationStream?.dispose();const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{o.userData.releaseNatureAnchors?.();const resources=o.userData.natureResources??o.userData.terrainResources;if(resources){for(const g of resources.geometries)geometries.add(g);for(const m of resources.materials)materials.add(m)}if(o instanceof THREE.Mesh){geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.traverse(o=>{for(const t of [o.userData.terrainTexture,o.userData.roadEdgeTexture,o.userData.natureLeafTexture,...(o.userData.surfaceTextures??[])])if(t){t.dispose();t.image?.close?.()}});group.clear();group.userData={};}
+export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,cells=0,resident=0,builds=0,pending=0,work=0,needed=0;let forest:any=null;scene.traverse(o=>{const t=o.userData.natureTreeCell;if(t){treeCells++;if(t.lod==='far')farCells++}const f=o.userData.forest;if(f){treeCells+=f.models.size;farCells+=f.levels[2];forest={version:f.version,total:f.total,original:f.original,added:f.added,visible:f.visible,levels:f.levels,triangles:f.submittedTriangles,families:f.families,selectionUpdates:f.selectionUpdates,maxSelectionCpuMs:f.maxSelectionCpuMs,source:f.source}}const c=o.userData.natureCell;if(c){cells++;if(c.detail)resident++;else if(c.wanted)needed++;builds+=c.builds;if(c.pending){pending++;work+=c.pending.cursor}}});return {treeCells,farCells,cells,resident,builds,pending,work,needed,forest,preparation:scene.userData.natureWork??null}}
+export function disposeNatureZone(group:THREE.Object3D){group.userData.decorationStream?.dispose();const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{o.userData.releaseNatureAnchors?.();const resources=o.userData.natureResources??o.userData.terrainResources;if(resources){for(const g of resources.geometries)geometries.add(g);for(const m of resources.materials)materials.add(m)}if(o instanceof THREE.Mesh){if((o as THREE.InstancedMesh).isInstancedMesh)(o as THREE.InstancedMesh).dispose();geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.traverse(o=>{for(const t of [o.userData.terrainTexture,o.userData.roadEdgeTexture,o.userData.natureLeafTexture,...(o.userData.surfaceTextures??[])])if(t){t.dispose();t.image?.close?.()}});group.clear();group.userData={};}

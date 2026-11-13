@@ -33,6 +33,6 @@ test('flower cell cache releases hidden meshes and zone-owned material on repeat
  let freed=0;zone.userData.villageFlowers.material.addEventListener('dispose',()=>freed++);disposeNatureZone(zone);assert.equal(freed,1);assert.equal(zone.children.length,0);
 });
 test('canopy lighting is rebuilt and refuses the prior crown contract',async()=>{
- const m=JSON.parse(await readFile('public/data/angles-lighting.json')),packed=gunzipSync(await readFile('public/data/angles-lighting.pack')),buffer=packed.buffer.slice(packed.byteOffset,packed.byteOffset+packed.byteLength);
+ const m=JSON.parse(await readFile('public/data/angles-walk-lighting.json')),packed=gunzipSync(await readFile('public/data/angles-walk-lighting.pack')),buffer=packed.buffer.slice(packed.byteOffset,packed.byteOffset+packed.byteLength);
  assert.equal(m.bindings.canopy,CANOPY_VERSION);const stale=structuredClone(m);delete stale.bindings.canopy;assert.throws(()=>decodeLighting(stale,buffer,m.bindings));
 });
