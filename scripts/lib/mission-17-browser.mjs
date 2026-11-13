@@ -1,0 +1,22 @@
+import {open16,launch,settle} from './mission-16-browser.mjs';
+export {launch,settle};
+export const inspection=`
+import {lifeUniforms as t17Life} from '/endless-earth/src/earthlife/state.mjs';
+import {createTreeSkeleton as t17Skeleton,createPrototypeGeometry as t17Geometry,prototypeMetrics as t17Metrics,conformPrototypeRoots as t17Conform} from '/endless-earth/src/nature/tree-prototype.mjs';
+import {prototypeMaterial as t17Material} from '/endless-earth/src/nature/tree-prototype-material.ts';
+import {foliageSeason as t17Season} from '/endless-earth/src/nature/library.mjs';
+const t17Calendar={value:new THREE.Vector4(1,0,0,.1)};
+window.t17={
+ trees(){const out=[];scene.updateMatrixWorld(true);scene.traverse(o=>{if(!o.userData.natureTreeCell)return;const crown=o.children[1],trunk=o.children[0];for(let i=0;i<crown.count;i++){const m=new THREE.Matrix4();trunk.getMatrixAt(i,m);m.premultiply(trunk.matrixWorld);const p=new THREE.Vector3().setFromMatrixPosition(m);out.push({cell:o.uuid,index:i,x:p.x,y:p.y,z:p.z,ground:p.y-2.25*m.elements[5],scale:m.elements[5],yaw:Math.atan2(m.elements[8],m.elements[10]),needle:!!crown.geometry.attributes.natureTraits.getZ(i)})}});return out},
+ camera(p,target,fov=45){camera.position.fromArray(p);camera.lookAt(...target);camera.fov=fov;camera.updateProjectionMatrix();camera.updateMatrixWorld()},
+ season(date){dispatchEvent(new CustomEvent('nature-test-date',{detail:date+'T12:00:00Z'}));for(let i=0;i<240;i++)updateAtmosphere(1,quality==='low');t17Calendar.value.fromArray(t17Season(scene.userData.climate.date));window.c15.tick()},
+ prototype(id,t){if(window.t17.prototypeGroup){const g=window.t17.prototypeGroup;scene.remove(g);g.children.forEach(m=>{m.geometry.dispose();m.material.dispose()})}const art=t17Geometry(t17Skeleton(id)),g=new THREE.Group(),anchor=new THREE.Vector3(t.x,t.ground,t.z),contact=t17Conform(art,anchor,t.yaw,(x,z)=>activeTerrain.relativeHeight(x,z));g.position.copy(anchor);g.rotation.y=t.yaw;g.name='Mission17A diagnostic prototype, inferred form';for(const [part,leaf]of [[art.wood,false],[art.foliage,true]])g.add(new THREE.Mesh(part,t17Material(t17Calendar,art.tree.config.height,id==='riverside'?1.5:id==='young'?1.8:1,anchor,leaf,t.yaw)));scene.add(g);window.t17.prototypeGroup=g;if(window.t17.original)window.t17.original.visible=false;return {...t17Metrics(art),contact}},
+ originalVisible(value){if(window.t17.original)window.t17.original.visible=value;if(window.t17.prototypeGroup)window.t17.prototypeGroup.visible=!value},
+ isolate(cell,index){window.t17.restore();const group=scene.getObjectByProperty('uuid',cell),clone=new THREE.Group();clone.name='mission17-inspected-original';scene.traverse(o=>{if(o.userData.natureTreeCell)o.visible=false});for(const source of group.children){const m=new THREE.InstancedMesh(source.geometry,source.material,1),matrix=new THREE.Matrix4();source.getMatrixAt(index,matrix);m.setMatrixAt(0,matrix);if(source.instanceColor){const c=new THREE.Color();source.getColorAt(index,c);m.setColorAt(0,c)}m.frustumCulled=false;const g=new THREE.BufferGeometry();for(const [name,a]of Object.entries(source.geometry.attributes)){g.setAttribute(name,a.isInstancedBufferAttribute?new THREE.InstancedBufferAttribute(a.array.slice(index*a.itemSize,(index+1)*a.itemSize),a.itemSize):a)}g.setIndex(source.geometry.index);m.geometry=g;clone.add(m)}clone.applyMatrix4(group.matrixWorld);scene.add(clone);window.t17.original=clone;return clone.children.map(m=>({name:m.geometry.name,count:m.geometry.attributes.position.count,index:m.geometry.index?.count}))},
+ restore(){scene.traverse(o=>{if(o.userData.natureTreeCell)o.visible=true});if(window.t17.original){window.t17.original.children.forEach(m=>{m.geometry.dispose()});scene.remove(window.t17.original);delete window.t17.original}},
+ retention(value){scene.traverse(o=>{if(o.userData.natureCalendar)o.userData.natureCalendar.value.x=value})},
+ wind(value){t17Life.lifeVegetation.value=value},
+ render(){return window.c15.render()},
+ state(){return {camera:{position:camera.position.toArray(),quaternion:camera.quaternion.toArray(),fov:camera.fov},climate:scene.userData.climate,lighting:scene.userData.landscapeLighting,render:{...renderer.info.render},memory:{...renderer.info.memory}}}
+};`;
+export async function open17(browser,options={}){return open16(browser,Number(process.env.MISSION17_PORT??5317),{...options,append:inspection+(options.append??'')})}
