@@ -1,0 +1,43 @@
+{
+  "source": "IGN LiDAR HD MNH",
+  "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=IGNF_LIDAR-HD_MNH_ELEVATION.ELEVATIONGRIDCOVERAGE.LAMB93&FORMAT=image/geotiff&STYLES=&CRS=EPSG:2154&BBOX=537276,6622779,539434,6624931&WIDTH=1079&HEIGHT=1076",
+  "retrievedAt": "2026-11-13T09:51:52.099221+00:00",
+  "http": 200,
+  "sha256": "63b299361e890f75794875ca526e99a488bc82a24f8bf105bd8e9a9daba4770d",
+  "license": "Licence Ouverte 2.0, IGN",
+  "acquisition": "2023-04-09, local tiles metadata retained from Mission 08.5",
+  "nativeResolutionM": 0.5,
+  "requestedSampleM": 2,
+  "rasterSize": [
+    1079,
+    1076
+  ],
+  "bbox2154": [
+    537276,
+    6622779,
+    539434,
+    6624931
+  ],
+  "studyGridM": 8,
+  "mappedWoodSamples": 16242,
+  "validSamples": 16226,
+  "woodHeightQuantilesM": {
+    "p50": 9.134274005889893,
+    "p75": 13.527565956115723,
+    "p90": 16.891416549682617,
+    "p95": 19.03279685974121,
+    "p99": 24.69949197769165
+  },
+  "woodAbove2mFraction": 0.8331689880438802,
+  "decision": "Use as a stand-level plausibility and openness reference in this milestone, not as an individual tree inventory or species map. Spring leaf-off acquisition, resampled WMS, terrain/normalization errors and temporal differences prevent interpreting every low pixel as a permanent clearing. Existing mapped exclusions remain authoritative. No new height measurements assigned to individual inferred trees.",
+  "currentMetadata": {
+    "url": "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=IGNF_LIDAR-HD_METADONNEE:metadata&OUTPUTFORMAT=application/json&SRSNAME=EPSG:2154&BBOX=537276,6622779,539434,6624931,EPSG:2154&COUNT=30",
+    "http": 200,
+    "checkedAt": "2026-11-13T09:37:17.700266+00:00",
+    "sha256": "a4c45401d0ff27c27e3a56d8168c754a755b5f6179a97cd40d967a156d763ccf",
+    "tiles": 9,
+    "acquisitionDates": [
+      "2023-04-09Z"
+    ]
+  }
+}

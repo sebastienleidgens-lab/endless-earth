@@ -1,0 +1,6 @@
+import {FOREST_COARSE_BEND} from '../nature/forest-life.mjs';
+// Bound the coarse continuous bend used by the solar proxy. The 1.5 factor
+// covers the static girth/twist Jacobian; Frobenius scale and area-preserving local wind
+// transform bounds also cover nonuniform instance transforms conservatively.
+export function forestShadowWindGain(source,trees){source.computeBoundingBox();const box=source.boundingBox,y=Math.max(Math.abs(box.min.y),Math.abs(box.max.y)),flex=source.attributes.forestData.getY(0);let scale=0;for(const t of trees){const e=t.matrix.elements,sx=Math.hypot(e[0],e[1],e[2]),sz=Math.hypot(e[8],e[9],e[10]),det=e[0]*e[10]-e[2]*e[8],windOperator=Math.hypot(e[0],e[2],e[8],e[10])/Math.sqrt(Math.max(.0001,Math.abs(det)));scale=Math.max(scale,Math.hypot(sx,sz)*windOperator*(t.form?.[3]??1))}return FOREST_COARSE_BEND*y*y*flex*scale*1.5}
+export function forestShadowWindError(data,reference,gain){if(!reference||reference.length!==data.length/2)return Infinity;let delta=0;for(let i=0;i<reference.length;i+=4)delta=Math.max(delta,Math.hypot(data[i]-reference[i],data[i+1]-reference[i+1]),Math.hypot(data[i+2]-reference[i+2],data[i+3]-reference[i+3]));return delta>0?(delta+.002)*gain:0}

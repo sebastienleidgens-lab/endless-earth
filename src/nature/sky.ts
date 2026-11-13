@@ -34,6 +34,9 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  const command=()=>{commandAge=0;commandRevision++};
  const chooseMoment=(name:string)=>{command();moment=name;demo=false;selected=momentDate(moment,fixed??new Date(),site);selectedTime=+selected.date;fromTime=effectiveTime;timeBlend=0;persist()};
  if(params.has('perf'))addEventListener('nature-test-date',((event:CustomEvent)=>{const date=event.detail===null?null:new Date(event.detail);if(date===null||Number.isFinite(+date)){fixed=date;const reference=date??new Date();selected=momentDate(moment,reference,site);selectedTime=+selected.date;effectiveTime=selectedTime;timeBlend=1}}) as EventListener,{signal:lifecycle.signal});
+ // Diagnostic command to the existing weather owner, with its normal transition.
+ // It creates no clock or production control and is removed with this owner.
+ if(params.has('perf'))addEventListener('nature-test-wind',((event:CustomEvent)=>{const mean=event.detail;if(mean!==null&&!Number.isFinite(mean))return;command();target=mean===null?weatherTarget(weatherKey):{...weatherTarget(weatherKey),wind:THREE.MathUtils.clamp(mean,0,1)};weatherTau=.65;}) as EventListener,{signal:lifecycle.signal});
  const controls=document.createElement('details');controls.className='nature-controls';
  controls.innerHTML=`<summary>Heure et météo</summary><label>Moment de la journée<select aria-label="Moment de la journée">${Object.entries(MOMENTS).map(([key,label])=>`<option value="${key}">${label}</option>`).join('')}</select></label><label>Météo simulée<select aria-label="Météo simulée"><option value="clear">Ensoleillé</option><option value="cloudy">Nuageux</option><option value="overcast">Couvert</option><option value="mist">Brumeux</option><option value="rain">Pluvieux</option><option value="storm">Orageux</option><option value="snow">Neigeux</option></select></label><small>Une atmosphère choisie, sans prévision météo.</small>`;
  const status=document.createElement('output');status.className='nature-status';status.setAttribute('aria-live','polite');controls.append(status);document.querySelector('#app')!.append(controls);
@@ -56,7 +59,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   // Main's movement timestep is capped for collisions. User commands use wall
   // time so a slow frame cannot stretch a two-second atmospheric transition.
   const transitionDt=Math.max(0,Math.min(wallDt,1));
-  commandAge+=transitionDt;elapsed+=dt;environmentalTime.value+=dt;state=weatherStep(state,target,weatherTau<45?transitionDt:dt,state,weatherTau);windUniform.value=elapsed;updateLifeTime(elapsed,state.wind*(1-calm*.45),player.position.x,player.position.z,localWind);environmentalWind.value=localWind.speed;
+  commandAge+=transitionDt;elapsed+=transitionDt;environmentalTime.value+=transitionDt;state=weatherStep(state,target,weatherTau<45?transitionDt:dt,state,weatherTau);windUniform.value=elapsed;updateLifeTime(elapsed,state.wind*(1-calm*.45),player.position.x,player.position.z,localWind);environmentalWind.value=localWind.speed;
   if(demo)effectiveTime+=dt*72000;
   else{timeBlend=Math.min(1,timeBlend+transitionDt/2.4);const blend=timeBlend*timeBlend*(3-2*timeBlend),to=moment==='real'?+(fixed??new Date()):selectedTime;effectiveTime=timeBlend===1?to:fromTime+(to-fromTime)*blend;}
   const date=new Date(effectiveTime),second=Math.floor(effectiveTime/1000);

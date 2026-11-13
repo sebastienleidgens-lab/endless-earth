@@ -1,0 +1,10 @@
+import {execFileSync} from 'node:child_process';import {openForest,launch,forestViews} from './mission-17b-browser.mjs';export {launch,forestViews};
+export const FINAL_BASES={m16:'9cde6af3c48a3973928d669f2228285ded674f1d',m17c:'04a758cd8a3e85aa5b8e7ad01b9e730f472438d1'};
+export async function finalRoute(page,sha){for(const name of ['angles-forest.json','angles-walk-lighting.json','angles-walk-lighting.pack','angles-lighting.json','angles-lighting.pack','angles-decorations/manifest.json','angles-relief-decorations/manifest.json','angles-walk-graph.json']){let body;try{body=execFileSync('git',['show',sha+':public/data/'+name],{maxBuffer:128*1024*1024,stdio:['ignore','pipe','ignore']})}catch{continue}await page.route('**/data/'+name,r=>r.fulfill({body,contentType:name.endsWith('.json')?'application/json':'application/octet-stream'}))}}
+export const finalInspection=`window.d17={
+ step(dt=.5){updateAtmosphere(dt,quality==='low',dt);if(typeof updateForestLife!=='undefined')updateForestLife(scene);window.c15.tick()},
+ finish(){for(let i=0;i<60;i++)this.step(.25)},
+ state(){let forest,life;scene.traverse(o=>{if(o.userData.forest){const f=o.userData.forest;forest={...window.f17.summary().forest,lodVersion:f.lodVersion,transitioning:f.transitioning,pendingTransitions:f.pendingTransitions,maxTransitions:f.maxTransitions}}if(o.userData.forestLife){const l=o.userData.forestLife;life={wind:l.field.metrics,jointBytes:l.joints.bytes,records:l.joints.records,vertices:l.joints.vertices}}});return {forest,life,game:window.c15.snapshot()}},
+};`;
+export async function openFinal(browser,version='after',options={}){return openForest(browser,version==='m16'?5322:version==='m17c'?5321:5317,{...options,route:version==='after'?options.route:async p=>{await finalRoute(p,FINAL_BASES[version]);await options.route?.(p)},append:finalInspection+(options.append??'')})}
+export async function settleFinal(p){for(let i=0;i<35;i++){await p.evaluate(()=>window.c15.tick());await p.waitForTimeout(20)}await p.evaluate(()=>window.d17.finish())}

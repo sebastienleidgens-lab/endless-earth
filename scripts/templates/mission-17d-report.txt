@@ -1,0 +1,131 @@
+# Mission 17 — La renaissance des arbres (17D)
+
+**17D apporte quatre niveaux de détail, une réduction de l’atlas de pivots et une validation prolongée. La réserve de fluidité reste ouverte : cette branche demeure en brouillon.** Le « Go » après 17C autorise ce jalon. Aucune fusion ni publication.
+
+[PR brouillon #26](https://github.com/sebastienleidgens-lab/endless-earth/pull/26) · [Galerie de trente paires et six films](mission-17-evidence/final/index.html) · [17C archivé](mission-17c.md) · [17B](mission-17b.md) · [17A](mission-17a.md).
+
+| Été dans le pilote | Hiver dans le pilote |
+| --- | --- |
+| ![Groupe à 40 m en été](mission-17-evidence/final/groupe-40m-06-after.jpg) | ![Même groupe en hiver](mission-17-evidence/final/groupe-40m-01-after.jpg) |
+
+## Résultat perceptif et limites
+
+Le tronc, les charpentières et les vides entre pousses remplacent les anciens lobes autonomes. L’hiver expose une ramure ; l’automne laisse voir des feuilles et des ouvertures différentes selon les individus. La vue aérienne montre des peuplements plus irréguliers. **Ce constat visuel ne vaut pas approbation artistique du propriétaire.** Les couronnes restent stylisées ; les pousses planes et les ramifications simplifiées se lisent dans certaines vues lointaines. Les LOD 2/3 forcés à grande taille dans l’atelier révèlent des amas plus grossiers et une enveloppe différente du niveau proche ; le fondu atténue la transition sans rendre ces silhouettes identiques. La structure de quelques arbres paraît encore répétitive. Les tests et le nombre de triangles ne démontrent pas leur beauté.
+
+La galerie fournit **dix situations en été, automne et hiver**, sans retirer les arbres pour la prise : arbre seul à 5 m, plusieurs arbres à 15 m, groupe à 40 m, lisière à 100 m, forêt lointaine, ciel, berges, village, pente et sous-bois dense. Les trente paires Mission 16 / 17D ont exactement la même caméra, date et météo. L’arbre isolé est un ancrage original, dont le voisin le plus proche est à 94,38 m. Le cadrage à cinq mètres coupe volontairement la couronne haute. La station lointaine est une caméra de revue, sans prétention de point de vue relevé.
+
+**Les cinq captures du propriétaire n’étaient pas jointes au texte reçu.** Elles ne sont donc ni réinventées ni déclarées reproduites à l’identique. Les stations documentées couvrent les situations demandées. [Protocole et positions complets](mission-17-evidence/final/captures.json).
+
+## Détail projeté et profils
+
+Les quatre représentations utilisent la même bibliothèque déterministe et les mêmes identités. Les niveaux détaillés gardent les branches et les pousses attachées de 17C. À moyenne distance, chaque pousse garde son contour et sa racine, avec un plan sur deux alterné dans le volume de la couronne ; le centre plié est supprimé. Les deux niveaux lointains gardent des branches distribuées en trois dimensions. Le dernier conserve un plan alterné par pousse. Aucun arbre entier n’est remplacé par un panneau universel visible de profil.
+
+La sélection dépend de la hauteur projetée dans le viewport CSS, du FOV et de la distance. Les seuils ont une hystérésis de 12 à 14 %. Les changements passent par un fondu complémentaire de **0,48 s**, limité à **48 arbres simultanés** ; les autres changements attendent leur tour. Les deux représentations d’un arbre partagent les pixels pendant le fondu et la densité saisonnière reste distincte. Un déplacement ou une rotation rapides peuvent encore rendre cette simplification perceptible ; les films natifs l’exposent.
+
+| Profil | Proches détaillés maximum | Niveau moyen maximum | Feuillage proche | Mouvement |
+| --- | ---: | ---: | --- | --- |
+| Éco | 3 | 48 | Pousses aplaties, deux plans par pousse | Flexion continue simplifiée |
+| Équilibré | 6 | 80 | Pousses aplaties, deux plans par pousse | Hiérarchie au premier niveau, flexion simplifiée au-delà |
+| Qualité | 10 | 120 | Pousses pliées de 17C | Hiérarchie au premier niveau, flexion simplifiée au-delà |
+
+Ces limites concernent le détail, pas le nombre total d’arbres. Les **3 889 individus** restent présents ; les suivants utilisent les niveaux lointains avec le même culling conservateur jusqu’à la portée de 1 050 m. Les niveaux proches respectent leurs plafonds après stabilisation. Un fondu peut temporairement soumettre deux représentations du même individu. Les compteurs distinguent individus visibles et triangles effectivement soumis.
+
+[Comparaison des quatre LOD à caméra fixe et des trois profils](mission-17-evidence/final/index.html#library) · [Politiques et inventaire](mission-17-evidence/final/inventory.json).
+
+## Coût réduit et propriétaires conservés
+
+Le bois et le feuillage partagent un batch par famille et niveau, deux matériaux de forêt, un atlas de feuilles et les géométries communes. Les instances sont triées de l’avant vers l’arrière dans chaque batch. Le bois lointain supprime une surface redondante de ses rubans double face. En hiver caduc dormant, le draw range s’arrête après le bois ; les persistants gardent leurs aiguilles.
+
+Les mipmaps sont préparés avec RGB pondéré par alpha et une correction de couverture au seuil d’alpha-test. Le niveau de base reste identique à 17C. La chaîne s’arrête à deux pixels par côté de tuile pour conserver les huit motifs ; le filtrage bilinéaire peut encore mélanger des bordures à très petite échelle. Les matériaux utilisent un alpha-test avec écriture de profondeur, sans tri transparent par arbre. Un essai de prépasse de profondeur augmentait le coût logiciel malgré une image identique ; il a été écarté.
+
+L’atlas partagé de pivots déduplique les tuples de cinq articulations : **14 155 enregistrements uniques pour 175 044 sommets logiques**, soit **573 440 octets (0,55 Mio)** au lieu de **7 413 760 (7,07 Mio)** en 17C, une baisse d’environ **92,3 %** pour cette texture. Il évite toujours de dépasser les seize emplacements d’attributs WebGL. Les géométries source et les variantes de rendu restent en mémoire ; cette réduction n’est pas celle de toute la forêt.
+
+La forme statique s’applique une seule fois après la chaîne de joints. Le niveau simplifié utilise une déformation continue de hauteur, commune aux points d’attache. Il ne construit aucune armature CPU par arbre. La banque de vent reste partagée : **256 cellules, 32 Kio CPU et 4 Kio GPU**, pilotées par le champ, le climat et l’horloge **Mission 11**. La commande de calme du banc de test agit sur la cible météo existante ; elle n’introduit pas un autre vent dans le jeu.
+
+Les ombres **Mission 14** gardent leurs plafonds : Éco sans target local ; Équilibré **160 arbres / 512 px / 2 Hz** ; Qualité **256 / 1 024 px / 4 Hz**. Une estimation conservatrice de déplacement du proxy permet de réutiliser la carte lorsque l’écart reste inférieur à un quart de texel. Les changements de saison, de sélection, de soleil ou les invalidations imposent toujours une mise à jour. Le quart de texel est un seuil de décision géométrique, pas une preuve d’égalité pixel à pixel ni une borne garantie entre deux contrôles sous rafale rapide. Le proxy conserve la flexion grossière, sans frémissement fin.
+
+La neige, l’accumulation, l’exposition et la fonte restent celles de **Mission 15**. Les pousses et aiguilles reçoivent la neige sur leurs surfaces, sans volume blanc de couronne ajouté. Les douze films 17C sur neige, fonte et mouvements restent consultables dans [l’archive intacte](mission-17-evidence/life/index.html).
+
+## Mesures directes et réserve de fluidité
+
+**17D améliore neuf des douze cellules face à 17C, mais reste plus coûteux que Mission 16 dans les douze. La fusion reste bloquée sur la fluidité et l’évaluation artistique.** Les gains les plus nets concernent le bois en Équilibré et Qualité. Trois cellules régressent légèrement face à 17C ; elles restent dans le tableau.
+
+**SwiftShader logiciel**, Chromium, **960 × 640, DPR 1**. **432 rendus synchronisés** par `finish` et lecture GPU, douze échantillons chauds alternés par cellule. Caméra et climat complets identiques sont vérifiés automatiquement. Le temps est tenu pendant les échantillons et les LOD sont stabilisés avant mesure. Les trois copies sont résidentes ; aucune autre campagne graphique ne tourne simultanément. Les campagnes « couleur » désactivent la carte solaire locale des trois versions ; « ombre locale » conserve la carte compatible stable de chaque version. Cette dernière ne mesure pas son recalcul forcé. Les quantiles suivent l’échantillon trié d’indice `ceil((n−1) × q)` ; avec seulement douze échantillons par cellule, le P95 observé coïncide avec la pointe.
+
+@@PERFORMANCE@@
+
+Les versions comparées sont **Mission 16 `9cde6af`**, **17C `04a758c`** et le runtime **17D `7f43739`**. Les manifestes actifs des deux bases sont servis depuis leurs objets Git épinglés, même lorsque les fichiers publics inchangés sont mutualisés localement. Mission 16 a 2 500 arbres, 17C/17D en ont 3 889 : cette différence, demandée et introduite en 17B, fait partie du coût réel du résultat proposé.
+
+[Résumé et allocations par cellule](mission-17-evidence/final/performance-summary.json) · [432 mesures brutes compressées](mission-17-evidence/final/performance.json.gz).
+
+@@ALLOCATIONS@@
+
+En Qualité dans cette cellule, les buffers augmentent légèrement de **11,38 à 11,60 Mio**, tandis que les textures estimées passent de **29,14 à 22,62 Mio**. La coexistence des variantes proches a donc un coût, même si la texture de pivots baisse nettement.
+
+@@COSTS@@
+
+Les temps de chargement sont des observations locales individuelles de cette campagne, avec caches et sources du serveur de développement ; ils ne constituent pas une mesure réseau, froide reproductible ou mobile. Le nombre de textures et les allocations logiques sont conservés dans chaque état. **Ces octets ne mesurent pas la VRAM physique.**
+
+L’exécuteur ne possède pas de `/dev/dri`. Chromium lancé sans forcer ANGLE expose aussi SwiftShader. [Sonde matérielle](mission-17-evidence/final/hardware-probe.json). Aucun FPS smartphone n’est inventé. La vérification mobile porte sur les contrôles, la disposition et le fonctionnement WebGL dans des viewports mobiles. Une mesure sur téléphone Android / GPU physique et un budget d’image accepté restent nécessaires avant de lever la réserve.
+
+## Promenade native de trente minutes
+
+@@SOAK@@
+
+L’avatar suit une véritable route admise du graphe OSM, longue de 450 m. Le départ est fixé avant l’essai, puis aucune relocalisation n’est autorisée. Le parcours ne peut s’inverser qu’à son extrémité validée. La direction de caméra suit doucement le trajet ; les chapitres passent aussi en troisième personne et en aérien. Les dates et la météo sont des commandes diagnostiques, sans accélération de la marche ni du vent. Le test conserve les à-coups du rendu logiciel et les passages de GC dans les intervalles.
+
+Six chapitres de cinq minutes couvrent l’été équilibré, l’orage Éco, l’automne Qualité aérien, l’hiver Équilibré en troisième personne, le printemps Qualité au calme, puis l’été Équilibré. Deux chapitres libèrent et rechargent les cellules de sous-bois pendant la marche. Cela teste le cycle du décor bas ; les arbres du pilote gardent tous leurs ancrages et leur bibliothèque commune, sans prétendre à un streaming de tuiles forestières du territoire entier.
+
+Trois extraits natifs avec son sont conservés, et non une vidéo redondante de trente minutes. Les films supplémentaires montrent le vent puis son retour au calme, les trois profils et les quatre saisons. **Seul le calendrier accéléré mars–décembre est explicitement marqué comme diagnostic dans ses pixels.** Les WebM sont indexés par copie de codec, avec identité des paquets vidéo et timestamps vidéo vérifiée. [Galerie](mission-17-evidence/final/index.html#motion) · [Trace prolongée](mission-17-evidence/final/soak-trace.json.gz).
+
+@@MEMORY@@
+
+## Géométrie, navigation et préservation
+
+**275 tests Node passent**, dont les nouveaux contrôles de LOD, alpha, fondu, mise à jour par frame et borne de mouvement des ombres. Les joints quantifiés restent attachés à moins de **1,5 mm** dans les tests ; les racines de pousses à moins de **2 mm**, avec croissance et frémissement. L’enveloppe de mouvement passe à **3,8 m**, vérifiée jusqu’à l’échelle **2,2**, couvrant le maximum réel du pilote **2,194626**. Les restrictions d’habitat et les marges des chemins, bâtiments et berges restent celles de la préparation approuvée. Elles décrivent des volumes artistiques conservateurs, sans promettre l’absence de tout contact visuel de feuille dans toute météo.
+
+- **3 889 ancrages et attributs individuels identiques** à 17C, dont les 1 389 compléments inférés de 17B. Aucun individu ajouté ou supprimé en 17D.
+- **792 buffers source canoniques identiques octet par octet** sur les onze familles et trois niveaux d’origine, y compris leurs attributs de mouvement ; les variantes simplifiées de rendu sont construites séparément. Atlas de base identique.
+- **843 fichiers publics ou preuves antérieures identiques**. Seuls les quatre manifestes JSON autorisés changent de version / empreinte. Rapports et preuves 17A–C conservés ; `docs/mission-17c.md` est une copie exacte du rapport approuvé.
+- Terrain, eaux, relief, routes, bâtiments, repères et packs de décor inchangés. Graphe recalculé : **919 nœuds, 896 arêtes**, même SHA-256. **2 898 points de collision et vingt déplacements identiques** aux deux bases.
+- Contrat `branch-attached-forest-v3`. Le dérivé de lumière actif est réellement rebaké à partir des **287 maillages / 3 889 arbres**. Ses bounds au repos étant conservés, son binaire reste identique ; le manifeste porte la nouvelle compatibilité.
+- Trois profils, transitions par frame, cinq états saisonniers / neige, rechargement stable, caches absent / corrompu / périmé reconstruits avec les mêmes individus. Aucune erreur ni avertissement WebGL dans ces contrôles.
+
+[Audit de préservation](mission-17-evidence/final/preservation.json) · [Navigation](mission-17-evidence/final/navigation-equivalence.json) · [Lumière recalculée](mission-17-evidence/final/light-preparation.json) · [Validation navigateur](mission-17-evidence/final/validation.json).
+
+@@COMPILED@@
+
+@@GALLERY@@
+
+## Bibliothèque, provenance et portée géographique
+
+Onze familles procédurales originales : étalé, cime haute, élancé, berge, pendant, jeune, asymétrique, petit, dense, conifère et verger. Le verger reste disponible dans la bibliothèque et n’est pas implanté artificiellement dans le pilote. Les plages de dimensions, triangles des quatre niveaux, phénologies génériques et budgets sont dans [l’inventaire](mission-17-evidence/final/inventory.json). La galerie montre les silhouettes à échelle commune, les quatre saisons et les quatre représentations à caméra fixe. Les [vues individuelles de la bibliothèque 17B](mission-17-evidence/forest/index.html) restent conservées ; leur géométrie proche canonique est inchangée.
+
+Aucun modèle téléchargé, scan, texture botanique externe ou service payant n’est ajouté en 17D. Les références photographiques 17A et les vidéos naturalistes CC BY-SA 17C restent attribuées dans leurs journaux : [sources 17A](mission-17-evidence/sources.json), [observations de mouvement 17C](mission-17-evidence/life/naturalist-references.json). Leurs pixels n’entrent pas dans les matériaux du jeu. Les données géographiques gardent leurs [licences et attributions](../public/data/LICENSE.md) IGN / OSM et leurs compléments de relief et navigation.
+
+Les positions originales sont déjà des ancrages reconstruits ; les compléments se limitent aux bois cartographiés existants. Les familles, hauteurs, formes, distances entre arbres et dates de feuillaison sont des interprétations déterministes, **pas un inventaire arboricole local ni une identification d’espèces**. Le résultat ne constitue pas une nouvelle observation de terrain.
+
+Même branche et PR #26 en brouillon. Aucun travail Living Paintings / LP-01. Budget supplémentaire : **0 €**.
+
+## Reproduction
+
+```sh
+npm test
+npm run build
+npm run dev -- --port 5317
+node scripts/audit-forest-final-preservation.mjs
+node scripts/verify-forest-final-integration.mjs
+node scripts/validate-forest-final.mjs
+```
+
+Les campagnes 17D écrivent dans `docs/mission-17-evidence/final/`. Ne pas relancer les anciens générateurs 17A–C sur leurs archives. `prepare-forest-final-baselines.mjs` prépare les copies exactes de Mission 16 / 17C ; les servir respectivement aux ports 5322 / 5321. Le helper fournit leurs manifestes depuis Git. Exécuter les campagnes graphiques **séparément** :
+
+```sh
+node scripts/benchmark-forest-final.mjs
+node scripts/measure-forest-final-cost.mjs
+node scripts/capture-forest-final.mjs
+node scripts/capture-forest-final-library.mjs
+node scripts/record-forest-final.mjs
+```
+
+L’essai prolongé exige le worktree détaché propre `work/mission-17d/frozen` au commit `7f43739`, ses dépendances, et son serveur Vite sur **5330**. `choose-forest-walk.mjs` prépare les candidats de route, puis `node scripts/soak-forest-final.mjs` exécute **1 805 secondes réelles au minimum**. Un essai court via `FOREST_SOAK_SECONDS` écrit seulement dans `work/mission-17d/soak-smoke/` et ne peut devenir une preuve de trente minutes. `python scripts/report-forest-final.py` régénère la galerie depuis les résultats complets. Les exports bruts, copies de sources et enregistrements intermédiaires restent dans `work/`, hors Git.

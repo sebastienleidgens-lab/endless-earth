@@ -1,0 +1,122 @@
+{
+  "baseline": "9cde6af3c48a3973928d669f2228285ded674f1d",
+  "implementationCommit": "49caf98",
+  "scope": "17A only, no normal forest replacement; draft PR26, no merge/deploy",
+  "unitTests": {
+    "count": 255,
+    "passed": 255,
+    "command": "npm test"
+  },
+  "build": {
+    "passed": true,
+    "command": "npm run build",
+    "warning": "Pre-existing Vite >500 kB bundle warning"
+  },
+  "compiledSmoke": {
+    "passed": true,
+    "command": "TEST_URL=http://localhost:5319/endless-earth/?tiles=1&perf=1&spawnSeed=12345 npm run test:browser",
+    "checks": [
+      "loading",
+      "movement",
+      "eye clearance",
+      "camera modes",
+      "rest stability",
+      "audio activation",
+      "quality",
+      "mobile viewport"
+    ]
+  },
+  "gallery": {
+    "pairs": 36,
+    "angleViews": 32,
+    "mobileViewport": [
+      390,
+      844
+    ],
+    "physicalAndroid": false
+  },
+  "benchmark": {
+    "samples": 288,
+    "renderer": "SwiftShader software",
+    "physicalGPU": false,
+    "newForestBenchmark": false
+  },
+  "media": {
+    "rows": [
+      {
+        "file": "light-wind.webm",
+        "duration": 7.213,
+        "packets": 26,
+        "firstPTS": "0.000000",
+        "lastPTS": "7.213000",
+        "samePacketDataAndPTS": true,
+        "codec": {
+          "codec_name": "vp9",
+          "width": 800,
+          "height": 530
+        },
+        "sha256": "068a2f8887314e91df65b4806cf202e3cd5df328fb4864b08507ece1f39d5b31",
+        "method": "Native MediaRecorder, then lossless copy remux for finite duration; packet SHA-256, PTS/DTS identical, fully decoded by ffmpeg. Silent workshop inspection, source timing unchanged. Render cadence is software-limited; not a natural-motion certification."
+      },
+      {
+        "file": "moderate-wind.webm",
+        "duration": 8.008,
+        "packets": 48,
+        "firstPTS": "0.000000",
+        "lastPTS": "8.007000",
+        "samePacketDataAndPTS": true,
+        "codec": {
+          "codec_name": "vp9",
+          "width": 800,
+          "height": 530
+        },
+        "sha256": "f6d30bc8f0135bef5c251de9e553026914687d873a4edb8e4b69dc51f6a91bcf",
+        "method": "Native MediaRecorder, then lossless copy remux for finite duration; packet SHA-256, PTS/DTS identical, fully decoded by ffmpeg. Silent workshop inspection, source timing unchanged. Render cadence is software-limited; not a natural-motion certification."
+      }
+    ]
+  },
+  "preservation": {
+    "existingTrackedFilesChecked": 4306,
+    "changedExistingFiles": []
+  },
+  "imagesVerified": 137,
+  "reportLinksVerified": [
+    "docs/mission-17-evidence/index.html",
+    "fixtures/trees.html",
+    "docs/mission-17-evidence/README.md",
+    "docs/mission-17-evidence/prototypes/all-summer.jpg",
+    "docs/mission-17-evidence/preservation.json",
+    "docs/mission-17-evidence/audit/captures.json",
+    "docs/mission-17-evidence/audit/structure.json",
+    "docs/mission-17-evidence/comparison.jpg",
+    "docs/mission-17-evidence/audit/autumn-calendar.jpg",
+    "docs/mission-17-evidence/audit/autumn-no-season-mask.jpg",
+    "docs/mission-17-evidence/audit/autumn-no-wind.jpg",
+    "docs/mission-17-evidence/methods-comparison.jpg",
+    "docs/mission-17-evidence/sources.json",
+    "docs/mission-17-evidence/references.jpg",
+    "docs/mission-17-evidence/light-wind.webm",
+    "docs/mission-17-evidence/moderate-wind.webm",
+    "docs/mission-17-evidence/performance-summary.json",
+    "docs/mission-17-evidence/performance.json.gz",
+    "docs/mission-17-evidence/captures.json",
+    "docs/mission-17-evidence/review-validation.json",
+    "docs/mission-17-evidence/validation.json",
+    "docs/mission-17-evidence/media.json",
+    "docs/mission-17.md",
+    "docs/mission-17-evidence/sources.json",
+    "docs/mission-17-evidence/preservation.json",
+    "docs/mission-17-evidence/validation.json",
+    "docs/mission-17-evidence/index.html"
+  ],
+  "meshBuffersFinalMatchFrozen": true,
+  "limits": [
+    "No 17B/C/D",
+    "No artist acceptance claimed",
+    "No production LOD or generalized forest",
+    "No new baked shadow/snow integration",
+    "No 30-minute walk in this milestone",
+    "No physical GPU or Android measured",
+    "Owner five screenshots absent from received attachment"
+  ]
+}

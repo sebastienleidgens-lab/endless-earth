@@ -137,7 +137,7 @@ function addMappedTrees(scene:THREE.Object3D,features:Feature[],terrain?:Terrain
  const local=features.map(f=>{const g=f.geometry,tags=f.properties??{},c=g?.coordinates;if(!g||!Array.isArray(c))return {tags};if(g.type==='Polygon')return {tags,rings:c.map(r=>coordsToPoints(r))};if(g.type==='LineString')return {tags,line:coordsToPoints(c)};if(g.type==='Point'&&typeof c[0]==='number'&&typeof c[1]==='number')return {tags,point:toLocal({lon:c[0],lat:c[1]})};return {tags};});
  scene.userData.lifeHabitat=habitatIndex(local);
  const trees=addNature(scene,local,(x,z)=>terrain?terrain.relativeHeight(x,z):0,prepared,undefined,terrain?.treeAnchors);
- const anchors=trees.map((p:{x:number;y:number;z:number;scale:number;kind:string})=>({x:p.x,z:p.z,perchY:p.y+8.5*p.scale*(p.kind==='riparian'?1.35:1)}));nature.push(...anchors);scene.userData.natureAnchors=anchors;
+ const anchors=trees.map((p:{x:number;y:number;z:number;scale:number;kind:string},i:number)=>({x:p.x,z:p.z,perchY:p.y+(scene.userData.forest?.items[i]?.l.height*.75||8.5*p.scale*(p.kind==='riparian'?1.35:1))}));nature.push(...anchors);scene.userData.natureAnchors=anchors;
  const owned=new Set<object>(anchors);
  scene.userData.releaseNatureAnchors=()=>{let write=0;for(const p of nature)if(!owned.has(p))nature[write++]=p;nature.length=write;owned.clear();};
  return trees.length;

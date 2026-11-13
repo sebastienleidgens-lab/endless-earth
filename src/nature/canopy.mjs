@@ -1,6 +1,6 @@
 // Original, generic temperate canopy art; no surveyed tree/species is implied.
 // Binds the baked ambient attenuation to the actual crown representation.
-export const CANOPY_VERSION='generous-canopy-v2';
+export const CANOPY_VERSION='branch-attached-forest-v3';
 export const CANOPY_LOBES=[
  [0,.1,0,2.9,2.8,2.6],[-2.25,-.25,.5,2.45,2.15,2.3],
  [2.05,.15,-.85,2.6,2.5,2.15],[-.65,2.15,-.2,2.5,2.05,2.35],
