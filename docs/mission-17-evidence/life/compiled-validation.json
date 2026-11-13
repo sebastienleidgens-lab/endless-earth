@@ -1,0 +1,126 @@
+{
+  "implementationCommit": "c7f61d021c25883c5b50b3bc0f4b6e3df43b7312",
+  "compiledIdentity": {
+    "expected": {
+      "app": "ENDLESS EARTH",
+      "mission": {
+        "number": "17",
+        "name": "La renaissance des arbres (17C)",
+        "source": "docs/mission-17.md"
+      },
+      "commit": "c7f61d021c25883c5b50b3bc0f4b6e3df43b7312",
+      "shortCommit": "c7f61d02",
+      "dirty": false,
+      "environment": "production"
+    },
+    "layouts": [
+      {
+        "viewport": [
+          1280,
+          800
+        ],
+        "bounds": [
+          33,
+          663.9375,
+          373,
+          726.4375
+        ],
+        "hudBottom": 750.9375,
+        "blocked": [],
+        "pointerEvents": "auto",
+        "missionClipped": false,
+        "commitClipped": false,
+        "fontSize": "11px"
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "bounds": [
+          33,
+          707.9375,
+          357,
+          770.4375
+        ],
+        "hudBottom": 794.9375,
+        "blocked": [],
+        "pointerEvents": "auto",
+        "missionClipped": false,
+        "commitClipped": false,
+        "fontSize": "11px"
+      },
+      {
+        "viewport": [
+          320,
+          568
+        ],
+        "bounds": [
+          33,
+          397.125,
+          287,
+          477.625
+        ],
+        "hudBottom": 518.625,
+        "blocked": [],
+        "pointerEvents": "auto",
+        "missionClipped": false,
+        "commitClipped": false,
+        "fontSize": "11px"
+      },
+      {
+        "viewport": [
+          844,
+          390
+        ],
+        "bounds": [
+          25,
+          301.9375,
+          373,
+          364.4375
+        ],
+        "hudBottom": 388.9375,
+        "blocked": [],
+        "pointerEvents": "auto",
+        "missionClipped": false,
+        "commitClipped": false,
+        "fontSize": "11px"
+      }
+    ],
+    "errors": []
+  },
+  "nodeTests": {
+    "total": 267,
+    "passed": 267,
+    "failed": 0,
+    "logSha256": "3c53ec16b5cb922fbc24c10814bc14f140b842c0205bf600d68f9df4d0146c72"
+  },
+  "build": {
+    "typescript": "pass",
+    "vite": "pass",
+    "existingWarning": "JavaScript chunk over 500 kB"
+  },
+  "compiledSmoke": {
+    "status": "pass",
+    "checks": [
+      "world loading",
+      "camera modes",
+      "manual movement",
+      "first-person eye clearance",
+      "released-input stability",
+      "audio activation",
+      "graphics profile override",
+      "mobile viewport"
+    ],
+    "javascriptErrors": 0,
+    "logSha256": "72039848b139693264208c340550e6e243d092727797ab8ec14e7ad74c212f1e"
+  },
+  "scaleEnvelope": {
+    "maximumPilotInstanceScale": 2.1946256628200294,
+    "testedInstanceScale": 2.2,
+    "windPaddingM": 3.2,
+    "targetedTestsPassed": 7
+  },
+  "environment": "Chromium with SwiftShader software GPU. Four viewport layouts are not physical-device performance.",
+  "scope": "Implementation bundle tested at clean c7f61d0; following proof commit adds only evidence, report and a stronger test assertion, with no application runtime change."
+}

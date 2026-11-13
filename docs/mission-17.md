@@ -70,6 +70,8 @@ Base `origin/main` vérifiée : **`9cde6af3c48a3973928d669f2228285ded674f1d`**, 
 - **267 tests Node passent**, dont sept nouveaux contrôles de réponse, stabilité à 30/60/120 Hz, phénologie, attaches, enveloppe et atlas de pivots.
 - Build TypeScript/Vite réussi. Le navigateur rend les trois profils avec couleur, ombres estivales/hivernales et neige, sans erreur ni avertissement WebGL. Six cycles de création/destruction reviennent au même nombre de textures, géométries et octets logiques. Rechargement stable ; caches d’ancrages absent, corrompu ou périmé reconstruits à l’identique.
 
+Le bundle de production est testé depuis le commit propre **`c7f61d021c25883c5b50b3bc0f4b6e3df43b7312`**. Il charge le monde et passe déplacement, modes de caméra, hauteur d’œil, arrêt sans dérive, son et changement de profil. Son identité embarquée « Mission 17 — La renaissance des arbres (17C) » passe quatre formats sans recouvrement des contrôles ni requête de métadonnées externe. Le test d’enveloppe est ensuite renforcé jusqu’à une échelle de **2,2**, couvrant le maximum réel de **2,194626**, et ses sept contrôles ciblés repassent. Le commit de preuve suivant ne modifie pas le runtime de l’application. [Validation compilée](mission-17-evidence/life/compiled-validation.json).
+
 [Audit de préservation](mission-17-evidence/life/preservation.json) · [Navigation](mission-17-evidence/life/navigation-equivalence.json) · [Validation navigateur](mission-17-evidence/life/validation.json).
 
 ## Coût et réserve de fluidité
