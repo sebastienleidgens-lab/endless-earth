@@ -14,8 +14,9 @@ export function createForestJointAtlas(models:Map<string,any>){
 export function createForestLife(center:THREE.Vector3,models:Map<string,any>){
  const joints=createForestJointAtlas(models);
  const field=createForestWindField({origin:[center.x-1100,center.z-1100]}),pixels=new Uint16Array(field.data.length),texture=new THREE.DataTexture(pixels,field.size,field.size*2,THREE.RGBAFormat,THREE.HalfFloatType);texture.name='M11-driven damped forest responses';texture.minFilter=texture.magFilter=THREE.LinearFilter;
- const uniforms={forestJoints:{value:joints.texture},forestWindField:{value:texture},forestWindRect:{value:new THREE.Vector4(...field.origin,field.extent,field.size)},forestDay:{value:172}};
- return {uniforms,texture,field,joints,update(date:string|Date|undefined,latitude=46){uniforms.forestDay.value=forestDay(date,latitude);if(field.update(lifeUniforms.lifeTime.value,lifeUniforms.lifeMeanWind.value)){for(let i=0;i<pixels.length;i++)pixels[i]=THREE.DataUtils.toHalfFloat(field.data[i]);texture.needsUpdate=true}},dispose(){texture.dispose();joints.texture.dispose()}};
+ const uniforms={forestJoints:{value:joints.texture},forestWindField:{value:texture},forestWindRect:{value:new THREE.Vector4(...field.origin,field.extent,field.size)},forestDay:{value:172},forestPreviousDay:{value:172},forestSeasonBlend:{value:1}};
+ let initialized=false,changedAt=-Infinity,calendarDirty=false;
+ return {uniforms,texture,field,joints,get calendarDirty(){return calendarDirty},update(date:string|Date|undefined,latitude=46){const day=forestDay(date,latitude),now=performance.now(),changed=Math.abs(day-uniforms.forestDay.value)>2,blend=THREE.MathUtils.smoothstep(now-changedAt,0,800);calendarDirty=!initialized||changed||(uniforms.forestSeasonBlend.value<1&&blend===1);if(!initialized){uniforms.forestPreviousDay.value=day;initialized=true}else if(changed){uniforms.forestPreviousDay.value=uniforms.forestDay.value;changedAt=now}uniforms.forestDay.value=day;uniforms.forestSeasonBlend.value=changed?0:blend;if(field.update(lifeUniforms.lifeTime.value,lifeUniforms.lifeMeanWind.value)){for(let i=0;i<pixels.length;i++)pixels[i]=THREE.DataUtils.toHalfFloat(field.data[i]);texture.needsUpdate=true}},dispose(){texture.dispose();joints.texture.dispose()}};
 }
 
 // @ts-ignore Pure typed-array mip generation, shared by workshop and world.

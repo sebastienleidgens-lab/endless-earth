@@ -2,7 +2,7 @@
 import {noise,hash} from './road-texture.mjs';
 export const SURFACE_ART_VERSION='endless-earth-surface-art-v1';
 export const ART_TILE=256,ART_GUTTER=16,SHORE_RANGE=16;
-export const ART_METRES=Object.freeze([2,4,3,27]);
+export const ART_METRES=Object.freeze([1.7,2.8,2.4,27]);
 export function habitatWeights(type){
  if(['meadow','open','orchard','garden','scrub'].includes(type))return [1,0,0];
  if(type==='wood')return [0,1,0];
@@ -17,14 +17,23 @@ export function groundPixel(kind,u,v){
   const fibre=noise(u*128,v*128,128,139),tuft=noise(u*16,v*16,16,149);
   tone=.5+(tuft-.5)*.38+(fibre-.5)*.48+(medium-.5)*.20;
   height=.5+(fibre-.5)*.5+(medium-.5)*.28;
+  // Jittered, independently oriented small blades. Periodic roots include the
+  // neighbouring cells so neither the tile nor the tuft grid leaves a seam.
+  const px=u*28,py=v*28,ix=Math.floor(px),iy=Math.floor(py);let blades=0;
+  for(let z=-1;z<=1;z++)for(let x=-1;x<=1;x++){
+   const a=(ix+x+28)%28,b=(iy+z+28)%28,dx=px-(ix+x+.18+hash(a,b,181)*.64),dy=py-(iy+z+.18+hash(a,b,191)*.64),angle=hash(a,b,193)*Math.PI,cs=Math.cos(angle),sn=Math.sin(angle);
+   const along=(dx*cs-dy*sn)/.43,across=(dx*sn+dy*cs)/.07;
+   blades=Math.max(blades,Math.max(0,1-along*along-across*across));
+  }
+  tone+=blades*.14-(tuft-.5)*.06;height+=blades*.22;
  }else if(kind===2){
   // Scattered, centimetre-scale litter impressions; a material, not new objects.
-  const x=u*25,y=v*25,ix=Math.floor(x),iy=Math.floor(y),dx=x-ix-.5,dy=y-iy-.5;
+  const x=u*25,y=v*25,ix=Math.floor(x),iy=Math.floor(y),dx=x-ix-.3-hash(ix,iy,167)*.4,dy=y-iy-.3-hash(ix,iy,169)*.4;
   const angle=hash(ix,iy,157)*Math.PI,c=Math.cos(angle),s=Math.sin(angle);
   const a=(c*dx-s*dy)/.38,b=(s*dx+c*dy)/.17;
-  const leaf=Math.max(0,1-a*a-b*b)*(.6+hash(ix,iy,163)*.4);
+  const leaf=Math.max(0,1-a*a-b*b)*(.6+hash(ix,iy,163)*.4),vein=Math.max(0,1-Math.abs(b)*9)*Math.max(0,1-a*a);
   tone=.44+leaf*.18+(broad-.5)*.30+(fine-.5)*.12;
-  height=.4+leaf*.30+(medium-.5)*.2;
+  height=.4+leaf*.30+vein*.045+(medium-.5)*.2;
  }else if(kind===3){
   // Alternative procedural rock, retained for the in-engine asset comparison.
   const vein=Math.abs(Math.sin(v*42+noise(u*8,v*8,8,173)*2.2));

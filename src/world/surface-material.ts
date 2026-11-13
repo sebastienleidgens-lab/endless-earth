@@ -40,15 +40,23 @@ if(earthRoadType<.5){
  vec3 n=normalize(surfaceNormal);
  float rock=max(surfaceClass.b,smoothstep(.124,.405,1.-abs(n.y))*(1.-surfaceClass.g*.45));
  float forest=surfaceClass.g*(1.-rock),grass=surfaceClass.r*(1.-rock);
+ // Habitat-bound seasonal material states. Unknown land never becomes meadow.
+ float dormant=1.-earthGroundSeason.x,dry=earthGroundSeason.w,litter=earthGroundSeason.z;
+ vec3 meadowTone=mix(vec3(1.),vec3(1.12,1.05,.77),dry*.72);
+ meadowTone=mix(meadowTone,vec3(.87,.91,.83),dormant*.55);
+ meadowTone*=mix(vec3(1.),vec3(1.02,1.07,.91),earthGroundSeason.y*.35);
+ diffuseColor.rgb*=mix(vec3(1.),meadowTone,grass);
+ diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(1.20,.91,.65),forest*litter*.65);
  float detail=1.-smoothstep(${glsl(art.detailM[0])},${glsl(art.detailM[1])},length(vViewPosition));
  vec2 grain=vec2(.5);
  if(detail>.001&&(m13Mode<.5||rock<.995)){
   vec2 quadrant=forest>.5?vec2(0.,1.):grass>.5?vec2(1.,0.):vec2(0.);
-  float metres=forest>.5?3.:grass>.5?4.:2.;
-  vec2 materialUV=p/metres;
+  float metres=forest>.5?2.4:grass>.5?2.8:1.7;
+  // A fixed irrational rotation avoids the world-axis grid in near grass/soil.
+  vec2 materialUV=mat2(.9323,.3616,-.3616,.9323)*p/metres;
   #if LIFE_SURFACE_MODE == 2
   // Continuous world noise perturbs the repeat without a second texture read.
-  materialUV+=vec2(groundPatch*.11,groundMineral*.012)*grass;
+  materialUV+=vec2(groundPatch*.19,groundMineral*.12)*(grass+forest*.4);
   #endif
   if(m13Mode>.5&&forest+grass<.01)grain=m13Grain(p/1.3,6.);else grain=surfaceSample(materialUV,quadrant);
  }

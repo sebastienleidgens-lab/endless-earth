@@ -2,7 +2,7 @@
 
 An exploratory Three.js walking simulation, piloting **Angles-sur-l’Anglin (Vienne)**. The normal URL uses the committed OSM extract, 921 mapped building footprints and a real IGN elevation grid sampled every 10 m. Building heights, architecture, individual trees, materials, ruin heights and weather remain largely interpreted. This is a stylized geographic pilot, not a surveyed digital twin.
 
-Mission 16 répare l’orientation des façades, la continuité locale de la Rue du Pont, l’accès piéton au pont et les pas sur son tablier ; elle ajoute des fenêtres du soir, un courant orienté et affine le randonneur. [Rapport, preuves et limites](docs/mission-16.md) · [Galerie locale](docs/mission-16-evidence/index.html). Les profils routiers encore problématiques restent signalés pour une future voiture.
+Mission 18 ajoute le choix des douze mois dans le menu de promenade, des sols saisonniers et humides et l’ombre du randonneur, en conservant le calendrier solaire et les arbres de Mission 17. [Rapport, contrôles et limites](docs/mission-18.md) · [Galerie locale des douze mois](docs/mission-18-evidence/index.html). La neige reste une météo volontaire, y compris en été.
 
 ## Run
 
