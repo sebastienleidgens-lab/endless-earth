@@ -101,7 +101,7 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
   if(o.userData.villageFlowers)updateVillageFlowers(o,camera,climate?.date,eco);
   if(o.userData.natureCalendar)o.userData.natureCalendar.value.fromArray(foliageSeason(climate?.date,o.userData.natureLatitude??46));
   o.userData.forestLife?.update(climate?.date,o.userData.natureLatitude??46);
-  if(o.userData.updateForest)o.userData.updateForest(camera,eco?'eco':scene.userData.earthLife?.profile??'balanced');
+  if(o.userData.updateForest){o.userData.forestCamera=camera;o.userData.updateForest(camera,eco?'eco':scene.userData.earthLife?.profile??'balanced');}
   const tree=o.userData.natureTreeCell;
   if(tree){const d=Math.hypot(camera.position.x-tree.x,camera.position.z-tree.z),crowns=o.children[1] as THREE.InstancedMesh;
    o.children[0].visible=o.children[0].visible?d<650:d<620;crowns.visible=crowns.visible?d<1050:d<1020;
@@ -132,4 +132,4 @@ export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,ce
 export function disposeNatureZone(group:THREE.Object3D){group.userData.decorationStream?.dispose();const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{o.userData.releaseNatureAnchors?.();o.userData.forestLife?.dispose();const resources=o.userData.natureResources??o.userData.terrainResources;if(resources){for(const g of resources.geometries)geometries.add(g);for(const m of resources.materials)materials.add(m)}if(o instanceof THREE.Mesh){if((o as THREE.InstancedMesh).isInstancedMesh)(o as THREE.InstancedMesh).dispose();geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.traverse(o=>{for(const t of [o.userData.terrainTexture,o.userData.roadEdgeTexture,o.userData.natureLeafTexture,...(o.userData.surfaceTextures??[])])if(t){t.dispose();t.image?.close?.()}});group.clear();group.userData={};}
 
 // M11 has advanced its single environment clock; sync responses even at a fixed camera.
-export function updateForestLife(scene:THREE.Object3D){const climate=scene.userData.climate;scene.traverse(o=>o.userData.forestLife?.update(climate?.date,o.userData.natureLatitude??46));}
+export function updateForestLife(scene:THREE.Object3D){const climate=scene.userData.climate;scene.traverse(o=>{o.userData.forestLife?.update(climate?.date,o.userData.natureLatitude??46);if(o.userData.forest?.pendingTransitions>0&&o.userData.forestCamera)o.userData.updateForest(o.userData.forestCamera,scene.userData.earthLife?.profile??'balanced')});}

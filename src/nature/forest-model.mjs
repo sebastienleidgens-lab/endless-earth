@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 // Original, generic temperate architecture. No local species identification.
 // Derived artistically from the four approved Mission 17A references.
-export const FOREST_VERSION='branch-attached-forest-v2';
+export const FOREST_VERSION='branch-attached-forest-v3';
 const form=(label,height,width,trunk,base,stem,limbs,rise,gravity,options={})=>Object.freeze({label,height,width,trunk,base,stem,limbs,rise,gravity,flex:1,leaf:0,...options});
 export const FOREST_LIBRARY=Object.freeze({
  spreading:form('Grand feuillu étalé',[11,19],16,.50,2.7,.36,9,4.8,0,{inner:true}),

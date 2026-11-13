@@ -11,7 +11,7 @@ test('forest bounds contain transformed model vertices; camera/profile selection
  const g=new THREE.Group(),camera=new THREE.PerspectiveCamera(55,1.5,.1,2000);addNature(g,features,()=>0);const f=g.userData.forest;assert.ok(f.items.length>100);const v=new THREE.Vector3();
  for(const t of f.items.filter((_,i)=>i%37===0))for(const part of ['wood','leaves']){const a=t.model.levels[0][part].attributes.position;for(let j=0;j<a.count;j++){v.fromBufferAttribute(a,j).applyMatrix4(t.worldMatrix);assert.ok(v.distanceTo(t.center)<t.radius-1.4)}}
  camera.position.set(0,2,0);camera.lookAt(0,5,-200);camera.updateProjectionMatrix();updateNatureLOD(g,camera);const updates=f.selectionUpdates,levels=[...f.levels];updateNatureLOD(g,camera);assert.equal(f.selectionUpdates,updates);assert.deepEqual(f.levels,levels);
- camera.aspect=.45;camera.updateProjectionMatrix();updateNatureLOD(g,camera);assert.equal(f.selectionUpdates,updates+1);assert.ok(f.visible<=f.total);g.userData.updateForest(camera,'eco',true);assert.equal(f.levels[0]+f.levels[1]+f.levels[2],f.visible);disposeNatureZone(g);
+ camera.aspect=.45;camera.updateProjectionMatrix();updateNatureLOD(g,camera);assert.equal(f.selectionUpdates,updates+1);assert.ok(f.visible<=f.total);g.userData.updateForest(camera,'eco',true);assert.equal(f.levels.reduce((a,b)=>a+b,0),f.visible);disposeNatureZone(g);
 });
 test('detail recipes progress in bounded slices and cancel when a cell leaves range',()=>{
  const g=new THREE.Group(),camera=new THREE.PerspectiveCamera();addNature(g,features,()=>0);camera.position.set(64,2,64);updateNatureLOD(g,camera);
