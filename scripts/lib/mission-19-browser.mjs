@@ -15,4 +15,4 @@ window.m19={
  support(x,z){return {height:walkingHeight((x,z)=>activeTerrain.relativeHeight(x,z))(x,z),clear:validPoint({x,z},activeTerrain)}},
  state(){return {game:window.c15.snapshot(),forest:this.forest(),tours:m19Tour(),glError:renderer.getContext().getError()}}
 };`;
-export async function open19(browser,{port=5330,...options}={}){return open18(browser,{port,...options,append:inspection+(options.append??'')})}
+export async function open19(browser,{port=Number(process.env.MISSION19_PORT??5332),...options}={}){return open18(browser,{port,...options,append:inspection+(options.append??'')})}

@@ -1,0 +1,22 @@
+{
+  "applicationCommit": "a7b99bba986587aae78f18a0863171ce77163518",
+  "nodeTests": 290,
+  "failures": 0,
+  "checks": [
+    {
+      "command": "npm test",
+      "result": "pass",
+      "log": "node-tests.txt",
+      "sha256": "20b4d9a53fed6bda25138d5ae30e301fda3f3fb604cf4b1c4a6fbbcbd2840b56",
+      "logSavedUTC": "2026-11-13T18:59:26.819621+00:00"
+    },
+    {
+      "command": "npm run build",
+      "result": "pass",
+      "log": "build.txt",
+      "sha256": "cb8c1792ccc6801fdb4572e0861561a6fb8120f36154af481ab41313dfe932da",
+      "logSavedUTC": "2026-11-13T19:07:40.094226+00:00"
+    }
+  ],
+  "note": "Application src/public remain byte-identical to this source freeze. Proof/report scripts changed afterward; production build identifies the source commit with a dirty indicator because evidence scripts are uncommitted. No deployment."
+}
