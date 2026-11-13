@@ -1,0 +1,606 @@
+{
+  "protocol": "Full ffmpeg decode of every delivered native WebM, preserving variable frame timestamps in a millisecond validation sink (no CFR quantization). Encoded video AND audio packet SHA256 payloads, PTS, DTS and sizes compared with the corresponding untouched MediaRecorder output. Metadata-only -c copy remux. No frame reconstruction, speed-up, substituted or normalized soundtrack.",
+  "files": 24,
+  "rows": [
+    {
+      "file": "audio/bitume.webm",
+      "bytes": 134214,
+      "durationSeconds": 10.017,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 23,
+          "firstPTS": "0.356000",
+          "lastPTS": "8.839000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 164,
+          "firstPTS": "0.000000",
+          "lastPTS": "9.957000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "9304c45305753e05dce6e21dd8255a77b19eb7f342aec44df054ba3bcd9dedeb",
+      "indexedSha256": "0375500b08b9a42e62e3b10095302a8a641a9f1a2af2a7249ea14ee3a6f5d4a9"
+    },
+    {
+      "file": "audio/gravier.webm",
+      "bytes": 208212,
+      "durationSeconds": 10.084,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 50,
+          "firstPTS": "0.000000",
+          "lastPTS": "9.420000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 161,
+          "firstPTS": "0.024000",
+          "lastPTS": "10.024000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "2d70d875056eafb560d1fecbcc4fc2f10d2133820f07f6a40e5589780cf543be",
+      "indexedSha256": "5895bca5aeafe5b3405741c85639f9150895125626090e7f5aaed8710e49e75b"
+    },
+    {
+      "file": "audio/herbe.webm",
+      "bytes": 235382,
+      "durationSeconds": 10.039,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 63,
+          "firstPTS": "0.000000",
+          "lastPTS": "9.442000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 162,
+          "firstPTS": "0.019000",
+          "lastPTS": "9.979000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "119227f6aa9035bcf89ed594ebf2535962e4fdbb3c6cf46b5772f102c279638d",
+      "indexedSha256": "9bdf01ca52a091450e38fd55c04a100e48ee7d9312f70909f69c1f6c7c9a8fe7"
+    },
+    {
+      "file": "audio/neige-fraiche.webm",
+      "bytes": 176763,
+      "durationSeconds": 10,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 46,
+          "firstPTS": "0.281000",
+          "lastPTS": "9.349000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 162,
+          "firstPTS": "0.000000",
+          "lastPTS": "9.940000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "8fac1e1cbeb4e90053c48ad618bdd72a9660398893cddf1898532bd47c494eda",
+      "indexedSha256": "70b69e9f236e035b9114154c43e8dc9fbd2cdd6907b491cbfd31ae3d66a79ebc"
+    },
+    {
+      "file": "audio/neige-humide.webm",
+      "bytes": 202972,
+      "durationSeconds": 10.057,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 54,
+          "firstPTS": "0.000000",
+          "lastPTS": "9.326000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 161,
+          "firstPTS": "0.019000",
+          "lastPTS": "9.997000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "04f25369ce9f8b1850a30d1faae7833e87e04df57c16aec82c967142a7db1844",
+      "indexedSha256": "3261c305eb71256e4d2fdde99f02e2e36f6de2868954b7ce7acebaca9a64ae31"
+    },
+    {
+      "file": "audio/neige-tassee.webm",
+      "bytes": 136764,
+      "durationSeconds": 10.016,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 24,
+          "firstPTS": "0.025000",
+          "lastPTS": "8.535000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 164,
+          "firstPTS": "0.000000",
+          "lastPTS": "9.956000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "a6df90eb2523969765fefd5b0e9b633d62bd2a1365258347c54c530d26c82d06",
+      "indexedSha256": "d7bb78e948bffc93960a2910c98f0bcfe084261a8dc13e1bf76a002bb0c8306a"
+    },
+    {
+      "file": "audio/pierre.webm",
+      "bytes": 184466,
+      "durationSeconds": 10.02,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 45,
+          "firstPTS": "0.037000",
+          "lastPTS": "9.219000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 163,
+          "firstPTS": "0.000000",
+          "lastPTS": "9.960000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "9dacc18cf3ebce74c31ad7aa66c6d6cd3692ed8cd9ab839f8fd12feb9e80bb7a",
+      "indexedSha256": "a999b5cf6e92db7404095b492da3e2e8c8604c5fbd9d1b404a7beb14ed791dc5"
+    },
+    {
+      "file": "audio/terre.webm",
+      "bytes": 174408,
+      "durationSeconds": 9.969,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 39,
+          "firstPTS": "0.021000",
+          "lastPTS": "9.103000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 162,
+          "firstPTS": "0.000000",
+          "lastPTS": "9.909000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "a984d1035c0e5c24ab663bb74cc45590b9d0d3da59655f60da302dbe15e9d967",
+      "indexedSha256": "f2f5de1f6c38b8dfb79ff4cb77558b28ee41cf874228a32044a0712623e03435"
+    },
+    {
+      "file": "motion/after-approach.webm",
+      "bytes": 435425,
+      "durationSeconds": 19.778,
+      "width": 640,
+      "height": 420,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 157,
+          "firstPTS": "0.000000",
+          "lastPTS": "19.777000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "8274f1c2ffe5a394cf2ab41e04ca65f803cbf2637a0bde7e85f7d1021079fe56",
+      "indexedSha256": "c7254577d7d024f573427079fd6c967be11926be738e039318093d22bba1581c"
+    },
+    {
+      "file": "motion/after-rotation.webm",
+      "bytes": 343873,
+      "durationSeconds": 19.251,
+      "width": 640,
+      "height": 420,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 64,
+          "firstPTS": "0.000000",
+          "lastPTS": "19.250000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "fc3e9a740edaf2d423885b1de3a5fe8977d113428170665e3b1fe9aae2fb71ec",
+      "indexedSha256": "208afebb79f00ebf4e314b0c59e2caf3b52e61d9e381f139d3ae3c0e00d23c52"
+    },
+    {
+      "file": "motion/after-run-forest-trail.webm",
+      "bytes": 162939,
+      "durationSeconds": 12.189,
+      "width": 640,
+      "height": 420,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 21,
+          "firstPTS": "0.491000",
+          "lastPTS": "10.572000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 187,
+          "firstPTS": "0.000000",
+          "lastPTS": "12.129000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "23afa70c8b7efd762fa916097c12e125db457507b3005f819860b492aa3723ec",
+      "indexedSha256": "5e20ce0e3cf9da6f22bdab4da3fd25186d29b9772a924f5d6062eee77f0404e0"
+    },
+    {
+      "file": "motion/after-run-walk-turn.webm",
+      "bytes": 195716,
+      "durationSeconds": 15.559,
+      "width": 640,
+      "height": 420,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 31,
+          "firstPTS": "0.507000",
+          "lastPTS": "14.152000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 244,
+          "firstPTS": "0.000000",
+          "lastPTS": "15.499000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "5dd104102206cadc6120a40598280df0ce3c0292b94d5b15ff1568b94e075dbb",
+      "indexedSha256": "fdb4558421c6ef4ae235d5a58140f0de7b6920db34ddb1eba709c4e7ef54cba1"
+    },
+    {
+      "file": "motion/after-walker.webm",
+      "bytes": 222452,
+      "durationSeconds": 20.027,
+      "width": 640,
+      "height": 420,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 39,
+          "firstPTS": "0.000000",
+          "lastPTS": "18.519000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 313,
+          "firstPTS": "0.007000",
+          "lastPTS": "19.967000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "59f8b6ec34fa2671566fcba8232134cb705b9ac06039c1721c220bddf90088b6",
+      "indexedSha256": "84184d37eadfae3d6035de34b09326c4e548decd3f7732689292577ca2e5cc93"
+    },
+    {
+      "file": "motion/before-approach.webm",
+      "bytes": 457155,
+      "durationSeconds": 19.801,
+      "width": 640,
+      "height": 420,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 157,
+          "firstPTS": "0.000000",
+          "lastPTS": "19.800000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "26aca2be6496d2d37c11541e1a9edeaaed83f8f9d8aeff9052b02b92be485b5e",
+      "indexedSha256": "19242d5bcc90c81ed518ecee9b15bebac7545452fb69ee677b6cc2d4428bd956"
+    },
+    {
+      "file": "motion/before-rotation.webm",
+      "bytes": 408485,
+      "durationSeconds": 19.291,
+      "width": 640,
+      "height": 420,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 72,
+          "firstPTS": "0.000000",
+          "lastPTS": "19.290000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "b7cd7f402f556f44486055f3ee5c85a62fe06291164c6700e46fb3024f3eb042",
+      "indexedSha256": "63f070dc4998f875cd37db926aaee544d806a014c78295134fcca11d14cfcd5a"
+    },
+    {
+      "file": "motion/before-walker.webm",
+      "bytes": 267271,
+      "durationSeconds": 19.995,
+      "width": 640,
+      "height": 420,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 50,
+          "firstPTS": "0.009000",
+          "lastPTS": "18.684000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 333,
+          "firstPTS": "0.000000",
+          "lastPTS": "19.935000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "4df36bac2cc8fdfc0242b07db130a57178dace1349802c6eb78af633c58fdb2e",
+      "indexedSha256": "192c524e5f7f075b986bc7c6029a8f1e778ad955adb7beff68a8734c7e62df84"
+    },
+    {
+      "file": "soak-closing.webm",
+      "bytes": 460106,
+      "durationSeconds": 33.418,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 82,
+          "firstPTS": "0.000000",
+          "lastPTS": "32.088000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 536,
+          "firstPTS": "0.008000",
+          "lastPTS": "33.358000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "2ff0ad3da782ed05ef0d75ce44b800cec01aee38bf9b0f5dc83169cec2b42136",
+      "indexedSha256": "d9a03bff770cfb9e63768e4e33692094f934750ef15049ac23b33f72eedc5171"
+    },
+    {
+      "file": "soak-opening.webm",
+      "bytes": 496287,
+      "durationSeconds": 32.37,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 91,
+          "firstPTS": "0.229000",
+          "lastPTS": "31.131000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 530,
+          "firstPTS": "0.000000",
+          "lastPTS": "32.310000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "58c31040a259e4f9ecae4d2d2c9b043d98db447e7a26d126c4139b5354d64ca6",
+      "indexedSha256": "ceb496941dbce9eac94a136fae1743218c08f798ded6d2599f10918c42f94b59"
+    },
+    {
+      "file": "soak-winter.webm",
+      "bytes": 479704,
+      "durationSeconds": 34.16,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 80,
+          "firstPTS": "0.228000",
+          "lastPTS": "32.433000",
+          "identicalPayloadsAndPTS": true
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "packets": 555,
+          "firstPTS": "0.000000",
+          "lastPTS": "34.100000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "19a4d75fe93f253a273ba3d3e12228e8029df2507799c50f84465542c00420e3",
+      "indexedSha256": "30be396bbaa64c241f4c53a7f352e3eb0faba9d8ba0274860abd78363cb26bc2"
+    },
+    {
+      "file": "tours/berge-pont.webm",
+      "bytes": 1185583,
+      "durationSeconds": 89.762,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 413,
+          "firstPTS": "0.000000",
+          "lastPTS": "89.761000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "790cb33085903b7e6fee318a80d5508053302a098b1c5fe7e4195d6e5bd0bc8e",
+      "indexedSha256": "35a59814c85db8fb2b182331df234e05d189a74b0520478b5cd034203fa9009a"
+    },
+    {
+      "file": "tours/nature.webm",
+      "bytes": 319784,
+      "durationSeconds": 39.231,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 109,
+          "firstPTS": "0.000000",
+          "lastPTS": "39.230000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "651526b289bd43ff5d4c6df464c5d427fc027f00be92e28655005e0a783dbac6",
+      "indexedSha256": "bfa9ee8ea458bfc3ba51f13bb505e9775413400442a7518ebabe71043404ec10"
+    },
+    {
+      "file": "tours/rue.webm",
+      "bytes": 577047,
+      "durationSeconds": 58.098,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 195,
+          "firstPTS": "0.000000",
+          "lastPTS": "58.097000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "cd168003867f68b04d12f8581cc44994eff1a467eb0df196808cc33f0a22b93b",
+      "indexedSha256": "d47a8ad482065b9ee89587966557fc4b021fb0b72a08e3c13ee8f8471f862e1d"
+    },
+    {
+      "file": "tours/sentier-forestier.webm",
+      "bytes": 849337,
+      "durationSeconds": 43.324,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 328,
+          "firstPTS": "0.000000",
+          "lastPTS": "43.323000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "ce6f4eadc82524e9c60efde56264eae4646cb50976a08a475ff3704577f659f5",
+      "indexedSha256": "92413c8d00f6ac773f44b98d6c7ef542dc066aa9b7d62273c84336b2e93a6417"
+    },
+    {
+      "file": "tours/village.webm",
+      "bytes": 183363,
+      "durationSeconds": 19.18,
+      "width": 480,
+      "height": 320,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "packets": 70,
+          "firstPTS": "0.000000",
+          "lastPTS": "19.179000",
+          "identicalPayloadsAndPTS": true
+        }
+      ],
+      "decodeAllPackets": "pass",
+      "rawSha256": "8c4ff95b602817d2eb937f0e4909edcac615013b1162b1171a95a14109f38ac2",
+      "indexedSha256": "63bcfbb8bedddd7e151ba05bddfb22ca5e2db6332f1f5b9544bb5e9e7c8a2067"
+    }
+  ]
+}

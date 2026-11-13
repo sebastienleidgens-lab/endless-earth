@@ -1,3 +1,4 @@
+import {coverageReceiver} from '../world/coverage';
 import * as THREE from 'three';
 // @ts-ignore Deterministic, noncolliding window gardens, seasonal calendar.
 import {villageFlowerRecipes,flowerSeason,FLOWER_VERSION} from './flowers.mjs';
@@ -33,7 +34,7 @@ export function addVillageFlowers(zone:THREE.Object3D,features:any[],height:(x:n
    if(vFlowerPart>1.5){if(fract(vFlowerPhase*.017)>snowBloom*.98*flowerCalendar.y)discard;diffuseColor.rgb*=.85+.15*flowerCalendar.y;}
    else if(vFlowerPart>.5&&fract(vFlowerPhase*.013)>.98*flowerCalendar.x)discard;`);
  };
- material.customProgramCacheKey=()=>FLOWER_VERSION;cloudReceiver(material);registerLifeMaterial(material,{foliage:true});
+ material.customProgramCacheKey=()=>FLOWER_VERSION;coverageReceiver(material,new THREE.Vector2(60,95));cloudReceiver(material);registerLifeMaterial(material,{foliage:true});
  zone.userData.natureResources.materials.push(material);
  zone.userData.villageFlowers={version:FLOWER_VERSION,recipes,season,material,cells:[],builds:0,
   provenance:'C16/C24 photograph-guided types; every placement is decorative interpretation; no new collider'};
@@ -75,9 +76,10 @@ function buildFlowers(points:Recipe[],material:THREE.Material){
 }
 export function updateVillageFlowers(zone:THREE.Object3D,camera:THREE.Camera,date:string,eco=false){
  const f=zone.userData.villageFlowers;if(!f)return;const season=flowerSeason(date);f.season.value.set(season.leaf,season.bloom);
+ f.material.userData.coverage19.range.value.set(eco?35:60,eco?55:95);
  const resident:THREE.Object3D[]=[],wanted:THREE.Object3D[]=[];
- for(const cell of f.cells){const c=cell.userData.flowerCell,d=Math.hypot(camera.position.x-c.x,camera.position.z-c.z);c.distance=d;
-  cell.visible=d<(eco?55:95)+(cell.visible?12:0);if(cell.children.length)resident.push(cell);else if(cell.visible)wanted.push(cell);
+ for(const cell of f.cells){const c=cell.userData.flowerCell;if(!c.height19)c.height19=[Math.min(...c.points.map((p:Recipe)=>p.y))-.2,Math.max(...c.points.map((p:Recipe)=>p.y))+1];const d=Math.hypot(Math.max(0,Math.abs(camera.position.x-c.x)-32),Math.max(0,Math.abs(camera.position.z-c.z)-32),Math.max(0,c.height19[0]-camera.position.y,camera.position.y-c.height19[1]));c.distance=d;
+  cell.visible=d<(eco?55:95)+(cell.visible?12:0);if(cell.children.length)resident.push(cell);else if(d<(eco?55:95)+40)wanted.push(cell);
  }
  wanted.sort((a,b)=>a.userData.flowerCell.distance-b.userData.flowerCell.distance);
  if(wanted.length){const cell=wanted[0];cell.add(buildFlowers(cell.userData.flowerCell.points,f.material));f.builds++;}

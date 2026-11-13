@@ -33,7 +33,7 @@ export const TRAFFIC=Object.freeze({assets:AUDIO_GROUPS.traffic??[],cooldown:150
 export function trafficActivity(c){if(!c.traffic?.length||c.localHour===null||!c.weather||c.weather.rain>.8)return 0;return c.localHour>=7&&c.localHour<21?1:c.localHour>=5&&c.localHour<23?.25:.06}
 export const EVENTS=Object.freeze([]); // Other human/rare sounds require evidence.
 export function diurnalBirdsAllowed(c){return Number.isFinite(c.solarAltitude)&&c.solarAltitude>0&&!!c.weather&&c.weather.rain<=.2&&c.weather.wind<=.8}
-export const MATERIALS=Object.freeze(Object.fromEntries(['stone','hard','dry-earth','wet-earth','gravel','grass','leaves'].map(kind=>[kind,{assets:AUDIO_GROUPS['step-'+(kind==='hard'?'stone':kind)]??[],gain:kind==='grass'?.105:kind==='leaves'?.10:kind==='gravel'?.13:.145,filter:9500}])));
+export const MATERIALS=Object.freeze({...Object.fromEntries(['stone','hard','dry-earth','wet-earth','gravel','grass','leaves'].map(kind=>[kind,{assets:AUDIO_GROUPS['step-'+(kind==='hard'?'stone':kind)]??[],gain:kind==='grass'?.105:kind==='leaves'?.10:kind==='gravel'?.13:.145,filter:9500}])),...Object.fromEntries(['fresh','packed','wet'].map(kind=>['snow-'+kind,{assets:AUDIO_GROUPS[kind==='packed'?'step-snow-firm':'step-snow-soft']??[],gain:kind==='packed'?.12:.105,filter:kind==='wet'?4600:kind==='packed'?7800:10500}]))});
 export function eventAffinity(e,c){
  if(e.fixtureOnly&&!c.fixture)return 0;
  if(e.daylight&&(c.solarAltitude===null||c.solarAltitude<=0))return 0;

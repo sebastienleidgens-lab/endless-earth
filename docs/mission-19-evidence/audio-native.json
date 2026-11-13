@@ -1,0 +1,3969 @@
+{
+  "protocol": "Eight separate native 10 s engine recordings on mapped public graph edges with explicit OSM surfaces. Actual rig/terrain contacts trigger the actual AudioContext, captured after limiter. Snow cover is explicitly diagnostic simulation through the existing snow owner; no added soundtrack. These are separate initialized stations, not one connected route. Leaves have licensed recordings but no locally verified leaf-litter station; no geographic leaf test invented.",
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "resolution": [
+      480,
+      320
+    ],
+    "dpr": 1
+  },
+  "rows": [
+    {
+      "label": "bitume",
+      "surface": "asphalt",
+      "snow": 0,
+      "weather": "clear",
+      "route": {
+        "points": [
+          {
+            "x": 679.2574394442809,
+            "z": -298.88306799982587
+          },
+          {
+            "x": 633.8814788015836,
+            "z": -270.1513759994384
+          }
+        ],
+        "length": 53.7074289968598,
+        "name": "Rue de Tournon",
+        "surface": "asphalt"
+      },
+      "audio": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.04446374252438545,
+            "targetGain": 0.04091957988672901,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 0.32 × shared wind 0.30, gust 0.88",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 15.071248084641994
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.029203135520219803,
+            "targetGain": 0.026133316071827527,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.65 × shared wind 0.30; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 21.919999999999998
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 0.38 × shared wind 0.16, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.65 × shared wind 0.23; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-stone-fs-521590-3",
+            "recording": "fs-521590",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.12216617166996002,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual hard right foot contact, 1.35 m/s, running 0.00",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 18,
+        "voices": 3,
+        "peakVoices": 3,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 11,
+        "lastStepAssets": [
+          "step-stone-fs-517141-3",
+          "step-stone-fs-813622-2",
+          "step-stone-fs-521590-3"
+        ],
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 21162236,
+        "peakBytes": 21162236,
+        "cached": 15,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 15,
+        "decodes": 15,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 14,
+        "cpuMs": 0.6999999997206032,
+        "maxCpuMs": 8.300000000279397,
+        "nearbyChecks": 14,
+        "memoryCells": 1,
+        "perches": 3,
+        "contact": {
+          "surface": "asphalt",
+          "material": "hard",
+          "basis": "explicit OSM hard surface; generic hard-contact recording",
+          "confidence": "mapped",
+          "wetness": 0
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.69794967947657,
+            "lon": 0.8932153013673948
+          },
+          "key": "wgs84-v1:69989:92617",
+          "worldTimeMs": 1768489067015,
+          "localHour": 15.963055555555554,
+          "season": "winter",
+          "timeBasis": "civil",
+          "altitudeM": 122.71817656803222,
+          "habitat": "scrub",
+          "solarAltitude": 0.20441965355013628,
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.3039426551499801,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.875357895726085,
+            "snowCover": 0
+          },
+          "position": {
+            "x": 673.065401144984,
+            "y": 21.518176568032217,
+            "z": -294.96231933136414
+          },
+          "water": null,
+          "emitters": [
+            {
+              "id": "perch-v1:95635:1827",
+              "geo": {
+                "lat": 46.697140136718744,
+                "lon": 0.8922270507812501
+              },
+              "position": {
+                "x": 597.614249590084,
+                "y": 23.853578143923897,
+                "z": -204.84401952991817
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95636:1827",
+              "geo": {
+                "lat": 46.6975244140625,
+                "lon": 0.8921904296875001
+              },
+              "position": {
+                "x": 594.818295068652,
+                "y": 25.026590939452717,
+                "z": -247.62177343677564
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95636:1828",
+              "geo": {
+                "lat": 46.697652832031245,
+                "lon": 0.8927436523437501
+              },
+              "position": {
+                "x": 637.0558480390605,
+                "y": 28.404471883815972,
+                "z": -261.91726171757637
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95637:1829",
+              "geo": {
+                "lat": 46.6979365234375,
+                "lon": 0.8931899414062501
+              },
+              "position": {
+                "x": 671.1292138068906,
+                "y": 27.55925087193839,
+                "z": -293.4977890616301
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95638:1829",
+              "geo": {
+                "lat": 46.6984580078125,
+                "lon": 0.8934150390625001
+              },
+              "position": {
+                "x": 688.3150142652826,
+                "y": 28.84459580856219,
+                "z": -351.54942968659213
+              },
+              "habitat": "meadow",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95639:1828",
+              "geo": {
+                "lat": 46.69902734375,
+                "lon": 0.8928613281250001
+              },
+              "position": {
+                "x": 646.040181901256,
+                "y": 26.490431894540677,
+                "z": -414.9279062489529
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95639:1829",
+              "geo": {
+                "lat": 46.69889892578125,
+                "lon": 0.8933588867187501
+              },
+              "position": {
+                "x": 684.0278839990891,
+                "y": 29.75346628400888,
+                "z": -400.6324179681522
+              },
+              "habitat": "meadow",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95639:1830",
+              "geo": {
+                "lat": 46.6988798828125,
+                "lon": 0.89371728515625
+              },
+              "position": {
+                "x": 711.3909589154841,
+                "y": 28.57534911378562,
+                "z": -398.51255468666807
+              },
+              "habitat": "meadow",
+              "interpreted": true
+            }
+          ],
+          "ground": {
+            "surface": "asphalt",
+            "material": "hard",
+            "basis": "explicit OSM hard surface; generic hard-contact recording",
+            "confidence": "mapped",
+            "wetness": 0
+          },
+          "influences": {
+            "vegetation": 0.3225,
+            "rural": 0.18
+          },
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 297,
+            "commandRevision": 4,
+            "manual": false
+          },
+          "mixRevision": 297,
+          "listener": {
+            "position": {
+              "x": 675.5494967325392,
+              "y": 24.263990701707943,
+              "z": -296.535228605576
+            },
+            "forward": {
+              "x": -0.7916591057139559,
+              "y": -0.3492879708227894,
+              "z": 0.5012721553993178
+            }
+          },
+          "traffic": [
+            {
+              "id": "road:647696739:30:-15",
+              "position": {
+                "x": 757.4831600030711,
+                "z": -370.3478371203557,
+                "y": 21.379428008552953
+              },
+              "distance": 110.27885723331124,
+              "tags": {
+                "osm_id": 647696739,
+                "source": "OpenStreetMap",
+                "highway": "secondary",
+                "lane_markings": "yes",
+                "lanes": "2",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            }
+          ]
+        }
+      },
+      "frames": 27,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 23,
+        "rawSha256": "9304c45305753e05dce6e21dd8255a77b19eb7f342aec44df054ba3bcd9dedeb",
+        "indexedSha256": "0375500b08b9a42e62e3b10095302a8a641a9f1a2af2a7249ea14ee3a6f5d4a9"
+      }
+    },
+    {
+      "label": "pierre",
+      "surface": "sett",
+      "snow": 0,
+      "weather": "clear",
+      "route": {
+        "points": [
+          {
+            "x": -98.58563079564878,
+            "z": 47.622696000467215
+          },
+          {
+            "x": -90.99624750794341,
+            "z": 39.08445200035146
+          }
+        ],
+        "length": 11.423674946934296,
+        "name": "Rue de la Cueille",
+        "surface": "sett"
+      },
+      "audio": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.004507200792431831,
+            "targetGain": 0.004543981692915704,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 0.15 × shared wind 0.19, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 2.6032480846419936
+          },
+          {
+            "id": "water",
+            "asset": "river-moderate-fs-591733-m11-1",
+            "actualBusGain": 0.009272242896258831,
+            "targetGain": 0.008182887788143843,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 130.1 m",
+            "diffuse": false,
+            "pan": 0.021846437826752663,
+            "transition": "smoothing",
+            "nextWindowIn": 16.46
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 0.38 × shared wind 0.16, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "river-moderate-fs-591733-m11-1",
+            "recording": "fs-591733",
+            "position": null,
+            "diffuse": false,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 119.1 m",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 15,
+        "voices": 2,
+        "peakVoices": 3,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 28,
+        "lastStepAssets": [
+          "step-stone-fs-521590-2",
+          "step-stone-fs-813622-3",
+          "step-stone-fs-517141-3"
+        ],
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 18986236,
+        "peakBytes": 22788476,
+        "cached": 16,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 25,
+        "decodes": 25,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 31,
+        "cpuMs": 0.10000000009313226,
+        "maxCpuMs": 17.399999999906868,
+        "nearbyChecks": 172,
+        "memoryCells": 2,
+        "perches": 13,
+        "contact": {
+          "surface": "sett",
+          "material": "stone",
+          "basis": "explicit OSM surface",
+          "confidence": "mapped",
+          "wetness": 0
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.69494573999979,
+            "lon": 0.8832041047715683
+          },
+          "key": "wgs84-v1:69987:92612",
+          "worldTimeMs": 1768489067015,
+          "localHour": 15.963055555555554,
+          "season": "winter",
+          "timeBasis": "civil",
+          "altitudeM": 79.92855478730708,
+          "habitat": "built",
+          "solarAltitude": 0.20441965355013628,
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18920567726759546,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "position": {
+            "x": -91.30892616205988,
+            "y": -21.271445212692925,
+            "z": 39.43622322355467
+          },
+          "water": {
+            "distanceM": 130.08076676542336,
+            "horizontalDistanceM": 129.31870220628494,
+            "bankDistanceM": 129.31870220628494,
+            "centrelineDistanceM": 156.53263478864002,
+            "verticalDistanceM": 14.059841462927935,
+            "point": {
+              "x": -176.1210304804319,
+              "z": 140.91998799999232
+            },
+            "insideMappedWater": false,
+            "kind": "river",
+            "weirDistanceM": null,
+            "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+            "heightBasis": "DEM approximation, not measured water level"
+          },
+          "emitters": [
+            {
+              "id": "perch-v1:95629:1806",
+              "geo": {
+                "lat": 46.694228515625,
+                "lon": 0.8820717773437501
+              },
+              "position": {
+                "x": -177.764894296967,
+                "y": -26.085721142386916,
+                "z": 119.27764062504693
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1807",
+              "geo": {
+                "lat": 46.694014648437495,
+                "lon": 0.8825507812500001
+              },
+              "position": {
+                "x": -141.19177468699647,
+                "y": -20.966958928596256,
+                "z": 143.08533593804682
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1809",
+              "geo": {
+                "lat": 46.694100097656246,
+                "lon": 0.8835458984375001
+              },
+              "position": {
+                "x": -65.21214393763789,
+                "y": -11.48956217528432,
+                "z": 133.57312890663863
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1810",
+              "geo": {
+                "lat": 46.69411962890625,
+                "lon": 0.8841640625
+              },
+              "position": {
+                "x": -18.013806092360184,
+                "y": 1.7559429913054885,
+                "z": 131.39891015619568
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1806",
+              "geo": {
+                "lat": 46.694638671875,
+                "lon": 0.88224853515625
+              },
+              "position": {
+                "x": -164.26900306475088,
+                "y": -23.448189641422246,
+                "z": 73.61904687523676
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1809",
+              "geo": {
+                "lat": 46.69468115234375,
+                "lon": 0.883685546875
+              },
+              "position": {
+                "x": -54.54964423483928,
+                "y": -5.354240905636672,
+                "z": 68.89012109401207
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1810",
+              "geo": {
+                "lat": 46.69469970703125,
+                "lon": 0.8841552734375
+              },
+              "position": {
+                "x": -18.68487250722312,
+                "y": 4.963758336416575,
+                "z": 66.82461328148676
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95631:1806",
+              "geo": {
+                "lat": 46.69519775390625,
+                "lon": 0.881990234375
+              },
+              "position": {
+                "x": -183.99089936819064,
+                "y": -0.03902234504118951,
+                "z": 11.382035156265296
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95631:1807",
+              "geo": {
+                "lat": 46.69506982421875,
+                "lon": 0.88248779296875
+              },
+              "position": {
+                "x": -146.00108399351134,
+                "y": -4.702570043058074,
+                "z": 25.62316796889818
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95631:1808",
+              "geo": {
+                "lat": 46.69494189453125,
+                "lon": 0.8829853515625
+              },
+              "position": {
+                "x": -108.01126861883205,
+                "y": -15.589500494909444,
+                "z": 39.864300781531064
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95631:1809",
+              "geo": {
+                "lat": 46.6951552734375,
+                "lon": 0.88348291015625
+              },
+              "position": {
+                "x": -70.02145324415275,
+                "y": -4.766876934111394,
+                "z": 16.110960937489985
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95632:1806",
+              "geo": {
+                "lat": 46.69569482421875,
+                "lon": 0.88219677734375
+              },
+              "position": {
+                "x": -168.2208386189371,
+                "y": 4.015502415664159,
+                "z": -43.95183203103854
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95632:1807",
+              "geo": {
+                "lat": 46.695481445312495,
+                "lon": 0.88267578125
+              },
+              "position": {
+                "x": -131.6477190089666,
+                "y": 0.7819348995421223,
+                "z": -20.198492186997463
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95632:1810",
+              "geo": {
+                "lat": 46.69558544921875,
+                "lon": 0.88406640625
+              },
+              "position": {
+                "x": -25.470099590826862,
+                "y": 3.7107344624767364,
+                "z": -31.77620703093097
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95633:1806",
+              "geo": {
+                "lat": 46.696054687499995,
+                "lon": 0.8820712890625001
+              },
+              "position": {
+                "x": -177.80217576445847,
+                "y": 2.069639625804811,
+                "z": -84.01181249944685
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95633:1807",
+              "geo": {
+                "lat": 46.695926757812494,
+                "lon": 0.8825688476562501
+              },
+              "position": {
+                "x": -139.81236038977914,
+                "y": 1.9610007198987205,
+                "z": -69.77067968681396
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95633:1808",
+              "geo": {
+                "lat": 46.695969726562495,
+                "lon": 0.883177734375
+              },
+              "position": {
+                "x": -93.32237042685583,
+                "y": 5.806396851570412,
+                "z": -74.55396093699747
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95633:1809",
+              "geo": {
+                "lat": 46.69618359375,
+                "lon": 0.88367529296875
+              },
+              "position": {
+                "x": -55.33255505217654,
+                "y": 6.135904910720356,
+                "z": -98.36165624999737
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95633:1810",
+              "geo": {
+                "lat": 46.69616455078125,
+                "lon": 0.88418212890625
+              },
+              "position": {
+                "x": -16.634391795142875,
+                "y": 4.702478858913892,
+                "z": -96.24179296851324
+              },
+              "habitat": "built",
+              "interpreted": true
+            }
+          ],
+          "ground": {
+            "surface": "sett",
+            "material": "stone",
+            "basis": "explicit OSM surface",
+            "confidence": "mapped",
+            "wetness": 0
+          },
+          "influences": {
+            "settlement": 0.32999999999999996,
+            "vegetation": 0.15,
+            "forest": 0.15
+          },
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 619,
+            "commandRevision": 8,
+            "manual": false
+          },
+          "mixRevision": 617,
+          "listener": {
+            "position": {
+              "x": -93.2622645425527,
+              "y": -18.5288769717016,
+              "z": 41.63377723752263
+            },
+            "forward": {
+              "x": 0.6225115181576392,
+              "y": -0.3492879708227863,
+              "z": -0.7003408621518323
+            }
+          },
+          "traffic": [
+            {
+              "id": "road:614408867:-8:2",
+              "position": {
+                "x": -200.8650629128761,
+                "z": 41.14792283933919,
+                "y": -5.994444495246367
+              },
+              "distance": 107.60389524371647,
+              "tags": {
+                "osm_id": 614408867,
+                "source": "OpenStreetMap",
+                "highway": "service",
+                "name": "Place du Champ de Foire",
+                "surface": "compacted"
+              },
+              "interpreted": true
+            },
+            {
+              "id": "road:647696686:-7:5",
+              "position": {
+                "x": -168.36344692756475,
+                "z": 121.10661106059365,
+                "y": -30.93830772042119
+              },
+              "distance": 109.34403921337599,
+              "tags": {
+                "osm_id": 647696686,
+                "source": "OpenStreetMap",
+                "highway": "residential",
+                "maxspeed": "30",
+                "name": "Quai du Premier Président Pérevier"
+              },
+              "interpreted": true
+            },
+            {
+              "id": "road:58717598:-4:7",
+              "position": {
+                "x": -111.99495394078573,
+                "z": 174.33394925789852,
+                "y": -31.4658004292265
+              },
+              "distance": 134.0158546826756,
+              "tags": {
+                "osm_id": 58717598,
+                "source": "OpenStreetMap",
+                "highway": "residential",
+                "name": "Rue du Donjon"
+              },
+              "interpreted": true
+            }
+          ]
+        }
+      },
+      "frames": 52,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 45,
+        "rawSha256": "9dacc18cf3ebce74c31ad7aa66c6d6cd3692ed8cd9ab839f8fd12feb9e80bb7a",
+        "indexedSha256": "a999b5cf6e92db7404095b492da3e2e8c8604c5fbd9d1b404a7beb14ed791dc5"
+      }
+    },
+    {
+      "label": "terre",
+      "surface": "dirt",
+      "snow": 0,
+      "weather": "clear",
+      "route": {
+        "points": [
+          {
+            "x": -162.7594401851694,
+            "z": 498.323980000296
+          },
+          {
+            "x": -168.1804282478209,
+            "z": 488.52782000050865
+          }
+        ],
+        "length": 11.19606459059805,
+        "name": "Voie piétonne OSM",
+        "surface": "dirt"
+      },
+      "audio": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.057400524616241455,
+            "targetGain": 0.0606777963797065,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 0.30 × shared wind 0.39, gust 0.98",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 15.133064218804243
+          },
+          {
+            "id": "water",
+            "asset": "river-moderate-fs-591733-m11-1",
+            "actualBusGain": 0.02868676744401455,
+            "targetGain": 0.027907036609638475,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 110.5 m",
+            "diffuse": false,
+            "pan": 0.5899567008018494,
+            "transition": "steady",
+            "nextWindowIn": 4.740000000000002
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.0011162074515596032,
+            "targetGain": 0,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.19 × shared wind 0.31; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "fading out",
+            "nextWindowIn": 3.7719999999999985
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "river-moderate-fs-591733-m11-1",
+            "recording": "fs-591733",
+            "position": null,
+            "diffuse": false,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 119.1 m",
+            "transition": "playing"
+          },
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 0.30 × shared wind 0.22, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 0.10774735361337662,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.19 × shared wind 0.24; silent in calm",
+            "transition": "fading out"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 21,
+        "voices": 3,
+        "peakVoices": 5,
+        "hrtf": 0,
+        "beds": 3,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 44,
+        "lastStepAssets": [
+          "step-dry-earth-fs-389454-3",
+          "step-dry-earth-fs-545511-2",
+          "step-dry-earth-fs-353799-1"
+        ],
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 21997440,
+        "peakBytes": 22788476,
+        "cached": 16,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 38,
+        "decodes": 38,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 46,
+        "cpuMs": 0.7000000001862645,
+        "maxCpuMs": 17.399999999906868,
+        "nearbyChecks": 73,
+        "memoryCells": 3,
+        "perches": 21,
+        "contact": {
+          "surface": "dirt",
+          "material": "dry-earth",
+          "basis": "mapped earth, dry contact interpretation",
+          "confidence": "interpreted",
+          "wetness": 0
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.690911248307025,
+            "lon": 0.8821975030704676
+          },
+          "key": "wgs84-v1:69985:92611",
+          "worldTimeMs": 1768489067015,
+          "localHour": 15.963055555555554,
+          "season": "winter",
+          "timeBasis": "civil",
+          "altitudeM": 88.78989540536395,
+          "habitat": "open",
+          "solarAltitude": 0.20441965355013628,
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.3877402492543245,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.9835741959865223,
+            "snowCover": 0
+          },
+          "position": {
+            "x": -168.16492342273241,
+            "y": -12.410104594636053,
+            "z": 488.5558384623795
+          },
+          "water": {
+            "distanceM": 110.45925338901382,
+            "horizontalDistanceM": 107.81713711031291,
+            "bankDistanceM": 107.81713711031291,
+            "centrelineDistanceM": 131.63933310071616,
+            "verticalDistanceM": 24.014820519719564,
+            "point": {
+              "x": -59.13615637185687,
+              "z": 497.8859549704472
+            },
+            "insideMappedWater": false,
+            "kind": "river",
+            "weirDistanceM": null,
+            "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+            "heightBasis": "DEM approximation, not measured water level"
+          },
+          "emitters": [
+            {
+              "id": "perch-v1:95620:1804",
+              "geo": {
+                "lat": 46.68970849609375,
+                "lon": 0.88109765625
+              },
+              "position": {
+                "x": -252.14719135823174,
+                "y": 1.8967427249373117,
+                "z": 622.4462148440455
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95620:1805",
+              "geo": {
+                "lat": 46.689580078125,
+                "lon": 0.88159521484375
+              },
+              "position": {
+                "x": -214.1545378756698,
+                "y": -1.4570772518278545,
+                "z": 636.7417031256372
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95620:1807",
+              "geo": {
+                "lat": 46.689836425781245,
+                "lon": 0.88255322265625
+              },
+              "position": {
+                "x": -141.00283411434916,
+                "y": -3.39777577273955,
+                "z": 608.2050820322036
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95620:1808",
+              "geo": {
+                "lat": 46.68953759765625,
+                "lon": 0.883087890625
+              },
+              "position": {
+                "x": -100.17657742798394,
+                "y": -10.321032359870372,
+                "z": 641.4706289068619
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95621:1804",
+              "geo": {
+                "lat": 46.690073242187495,
+                "lon": 0.88097509765625
+              },
+              "position": {
+                "x": -261.50553878131524,
+                "y": 1.619414391546357,
+                "z": 581.8426796884219
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95621:1806",
+              "geo": {
+                "lat": 46.690158691406246,
+                "lon": 0.88197021484375
+              },
+              "position": {
+                "x": -185.52023181619134,
+                "y": -6.902151440823076,
+                "z": 572.3304726570137
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95621:1807",
+              "geo": {
+                "lat": 46.690287109375,
+                "lon": 0.88244921875
+              },
+              "position": {
+                "x": -148.94437993553103,
+                "y": -11.965503256477447,
+                "z": 558.034984375422
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95621:1808",
+              "geo": {
+                "lat": 46.690243652343746,
+                "lon": 0.88315869140625
+              },
+              "position": {
+                "x": -94.770360789151,
+                "y": -12.649569927518158,
+                "z": 562.8726210945644
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95622:1804",
+              "geo": {
+                "lat": 46.69075537109375,
+                "lon": 0.8810478515625001
+              },
+              "position": {
+                "x": -255.9501851317509,
+                "y": -1.0334606309066885,
+                "z": 505.9080898440328
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95622:1805",
+              "geo": {
+                "lat": 46.69062744140625,
+                "lon": 0.8815454101562501
+              },
+              "position": {
+                "x": -217.95753164918895,
+                "y": -3.7804367792209774,
+                "z": 520.1492226566656
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95622:1807",
+              "geo": {
+                "lat": 46.690712890624994,
+                "lon": 0.88254052734375
+              },
+              "position": {
+                "x": -141.97222468407355,
+                "y": -9.046852636469168,
+                "z": 510.6370156260485
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95622:1808",
+              "geo": {
+                "lat": 46.69058447265625,
+                "lon": 0.8829638671875001
+              },
+              "position": {
+                "x": -109.64677760910965,
+                "y": -20.838171886501144,
+                "z": 524.9325039068492
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95623:1804",
+              "geo": {
+                "lat": 46.691031249999995,
+                "lon": 0.8809741210937501
+              },
+              "position": {
+                "x": -261.5801072866767,
+                "y": -3.883008702495985,
+                "z": 475.19725000094724
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95623:1805",
+              "geo": {
+                "lat": 46.691159179687496,
+                "lon": 0.8814531250000001
+              },
+              "position": {
+                "x": -225.0042554060164,
+                "y": -5.227951901347282,
+                "z": 460.95611718831435
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95623:1807",
+              "geo": {
+                "lat": 46.691073730468744,
+                "lon": 0.8824111328125
+              },
+              "position": {
+                "x": -151.85255164469575,
+                "y": -8.08020364701109,
+                "z": 470.46832421972255
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95623:1808",
+              "geo": {
+                "lat": 46.691201660156246,
+                "lon": 0.88315771484375
+              },
+              "position": {
+                "x": -94.84492929451247,
+                "y": -23.782091654336213,
+                "z": 456.22719140708966
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95624:1805",
+              "geo": {
+                "lat": 46.6917626953125,
+                "lon": 0.88148779296875
+              },
+              "position": {
+                "x": -222.35707346562526,
+                "y": -9.874744064600677,
+                "z": 393.7727578130739
+              },
+              "habitat": "built",
+              "interpreted": true
+            }
+          ],
+          "ground": {
+            "surface": "dirt",
+            "material": "dry-earth",
+            "basis": "mapped earth, dry contact interpretation",
+            "confidence": "interpreted",
+            "wetness": 0
+          },
+          "influences": {
+            "vegetation": 0.3,
+            "forest": 0.3
+          },
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 933,
+            "commandRevision": 12,
+            "manual": false
+          },
+          "mixRevision": 933,
+          "listener": {
+            "position": {
+              "x": -166.74131716106209,
+              "y": -9.66422611978198,
+              "z": 491.1284090998443
+            },
+            "forward": {
+              "x": -0.4536906170796294,
+              "y": -0.34928797082278484,
+              "z": -0.8198553149259975
+            }
+          },
+          "traffic": [
+            {
+              "id": "road:35478466:-3:20",
+              "position": {
+                "x": -84.62831439943713,
+                "z": 498.2566653307384,
+                "y": -29.607543128551452
+              },
+              "distance": 82.42182514009204,
+              "tags": {
+                "osm_id": 35478466,
+                "source": "GPS",
+                "highway": "unclassified",
+                "maxspeed": "50"
+              },
+              "interpreted": true
+            },
+            {
+              "id": "road:629843813:-10:23",
+              "position": {
+                "x": -241.21268922903766,
+                "z": 578.4917189198706,
+                "y": -3.572507200531274
+              },
+              "distance": 114.79692138901962,
+              "tags": {
+                "osm_id": 629843813,
+                "source": "OpenStreetMap",
+                "highway": "secondary",
+                "lanes": "2",
+                "maxspeed": "30",
+                "name": "Route de Saint-Pierre de Maillé",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            },
+            {
+              "id": "road:35478466:-3:23",
+              "position": {
+                "x": -71.07807326002167,
+                "z": 569.7263948793867,
+                "y": -31.895548490459586
+              },
+              "distance": 123.81074106179598,
+              "tags": {
+                "osm_id": 35478466,
+                "source": "GPS",
+                "highway": "unclassified",
+                "maxspeed": "50"
+              },
+              "interpreted": true
+            }
+          ]
+        }
+      },
+      "frames": 44,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 39,
+        "rawSha256": "a984d1035c0e5c24ab663bb74cc45590b9d0d3da59655f60da302dbe15e9d967",
+        "indexedSha256": "f2f5de1f6c38b8dfb79ff4cb77558b28ee41cf874228a32044a0712623e03435"
+      }
+    },
+    {
+      "label": "herbe",
+      "surface": "grass",
+      "snow": 0,
+      "weather": "clear",
+      "route": {
+        "points": [
+          {
+            "x": 31.59443465244997,
+            "z": 204.87332800067577
+          },
+          {
+            "x": 64.58610989006343,
+            "z": 216.11664799997328
+          }
+        ],
+        "length": 34.85488315273429,
+        "name": "Voie piétonne OSM",
+        "surface": "grass"
+      },
+      "audio": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.007663479540497065,
+            "targetGain": 0.007640495737407282,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 0.15 × shared wind 0.23, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 3.2530642188042407
+          },
+          {
+            "id": "water",
+            "asset": "river-moderate-fs-591733-m11-1",
+            "actualBusGain": 0.04117560759186745,
+            "targetGain": 0.04052612695797458,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 98.0 m",
+            "diffuse": false,
+            "pan": 0.5845047831535339,
+            "transition": "steady",
+            "nextWindowIn": 18.86
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 0.30 × shared wind 0.22, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "river-moderate-fs-591733-m11-1",
+            "recording": "fs-591733",
+            "position": null,
+            "diffuse": false,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 91.3 m",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-grass-fs-521587-3",
+            "recording": "fs-521587",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.07933395355939865,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual grass right foot contact, 1.37 m/s, running 0.00",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 19,
+        "voices": 3,
+        "peakVoices": 5,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 63,
+        "lastStepAssets": [
+          "step-grass-fs-521587-2",
+          "step-grass-fs-505833-1",
+          "step-grass-fs-521587-3"
+        ],
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 18195200,
+        "peakBytes": 22788476,
+        "cached": 16,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 48,
+        "decodes": 48,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 63,
+        "cpuMs": 0.39999999990686774,
+        "maxCpuMs": 17.399999999906868,
+        "nearbyChecks": 78,
+        "memoryCells": 4,
+        "perches": 29,
+        "contact": {
+          "surface": "grass",
+          "material": "grass",
+          "basis": "explicit grass surface",
+          "confidence": "mapped",
+          "wetness": 0
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.693425568100885,
+            "lon": 0.8849593958772903
+          },
+          "key": "wgs84-v1:69987:92613",
+          "worldTimeMs": 1768489067015,
+          "localHour": 15.963055555555554,
+          "season": "winter",
+          "timeBasis": "civil",
+          "altitudeM": 95.57983789100653,
+          "habitat": "built",
+          "solarAltitude": 0.20441965355013628,
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.22496942542110762,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "position": {
+            "x": 42.710963001210295,
+            "y": -5.620162108993469,
+            "z": 208.66175900959485
+          },
+          "water": {
+            "distanceM": 97.984157242821,
+            "horizontalDistanceM": 93.06051239165042,
+            "bankDistanceM": 93.06051239165042,
+            "centrelineDistanceM": 120.01149776661407,
+            "verticalDistanceM": 30.66979139135691,
+            "point": {
+              "x": -33.73228909968519,
+              "z": 264.5853760000446
+            },
+            "insideMappedWater": false,
+            "kind": "river",
+            "weirDistanceM": null,
+            "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+            "heightBasis": "DEM approximation, not measured water level"
+          },
+          "emitters": [
+            {
+              "id": "perch-v1:95626:1810",
+              "geo": {
+                "lat": 46.69262109375,
+                "lon": 0.8841381835937501
+              },
+              "position": {
+                "x": -19.992368093083144,
+                "y": -30.635307540826332,
+                "z": 298.2158437502414
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1811",
+              "geo": {
+                "lat": 46.6927490234375,
+                "lon": 0.8846171875000001
+              },
+              "position": {
+                "x": 16.581781041135102,
+                "y": -19.19943323708283,
+                "z": 283.9747109376085
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1812",
+              "geo": {
+                "lat": 46.69253564453125,
+                "lon": 0.8850961914062501
+              },
+              "position": {
+                "x": 53.15593017535335,
+                "y": -5.7921846091589515,
+                "z": 307.7280507816496
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1813",
+              "geo": {
+                "lat": 46.69266357421875,
+                "lon": 0.8855751953125001
+              },
+              "position": {
+                "x": 89.73007930957158,
+                "y": 14.205647921753098,
+                "z": 293.4869179690167
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1814",
+              "geo": {
+                "lat": 46.692791992187495,
+                "lon": 0.8861284179687501
+              },
+              "position": {
+                "x": 131.97117102116272,
+                "y": 13.855422378392305,
+                "z": 279.191429688216
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1810",
+              "geo": {
+                "lat": 46.692970703125,
+                "lon": 0.8838720703125
+              },
+              "position": {
+                "x": -40.311339834318325,
+                "y": -30.835598125437656,
+                "z": 259.2973281252224
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1811",
+              "geo": {
+                "lat": 46.693184570312496,
+                "lon": 0.88436962890625
+              },
+              "position": {
+                "x": -2.3204550557568595,
+                "y": -1.667947850037578,
+                "z": 235.4896328130135
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1812",
+              "geo": {
+                "lat": 46.69305615234375,
+                "lon": 0.8848671875
+              },
+              "position": {
+                "x": 35.670429722804606,
+                "y": 10.540066775677346,
+                "z": 249.7851210938142
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1813",
+              "geo": {
+                "lat": 46.69327001953125,
+                "lon": 0.88536474609375
+              },
+              "position": {
+                "x": 73.66131450136606,
+                "y": 6.285749730469888,
+                "z": 225.9774257816053
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1814",
+              "geo": {
+                "lat": 46.693141601562495,
+                "lon": 0.8861298828125
+              },
+              "position": {
+                "x": 132.08301857202926,
+                "y": 12.49951217035661,
+                "z": 240.272914063197
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1811",
+              "geo": {
+                "lat": 46.693495117187496,
+                "lon": 0.8846611328125
+              },
+              "position": {
+                "x": 19.93720756720714,
+                "y": -4.327065028236433,
+                "z": 200.91955468808942
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1812",
+              "geo": {
+                "lat": 46.693452148437494,
+                "lon": 0.88517724609375
+              },
+              "position": {
+                "x": 59.344827990111824,
+                "y": -0.2826905596091649,
+                "z": 205.70283593827293
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1813",
+              "geo": {
+                "lat": 46.69358056640625,
+                "lon": 0.88565625
+              },
+              "position": {
+                "x": 95.91897712433007,
+                "y": 5.916298394550637,
+                "z": 191.40734765668122
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1814",
+              "geo": {
+                "lat": 46.693537597656245,
+                "lon": 0.88609814453125
+              },
+              "position": {
+                "x": 129.65965496986186,
+                "y": 3.5117745774673494,
+                "z": 196.19062890686473
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1810",
+              "geo": {
+                "lat": 46.69411962890625,
+                "lon": 0.8841640625
+              },
+              "position": {
+                "x": -18.01639469439882,
+                "y": 1.7559429913054885,
+                "z": 131.39891015632054
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1812",
+              "geo": {
+                "lat": 46.69403369140625,
+                "lon": 0.8851220703125
+              },
+              "position": {
+                "x": 55.13190357403767,
+                "y": 6.906336443710089,
+                "z": 140.96547265668755
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1810",
+              "geo": {
+                "lat": 46.69469970703125,
+                "lon": 0.8841552734375
+              },
+              "position": {
+                "x": -18.687479999614922,
+                "y": 4.963758336416575,
+                "z": 66.82461328161162
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1811",
+              "geo": {
+                "lat": 46.69457177734375,
+                "lon": 0.88465283203125
+              },
+              "position": {
+                "x": 19.303404778946547,
+                "y": 12.468266498119647,
+                "z": 81.0657460942445
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1813",
+              "geo": {
+                "lat": 46.6946572265625,
+                "lon": 0.88564794921875
+              },
+              "position": {
+                "x": 95.28517433606947,
+                "y": 12.633389814080445,
+                "z": 71.55353906283631
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1814",
+              "geo": {
+                "lat": 46.694528808593745,
+                "lon": 0.8860712890625
+              },
+              "position": {
+                "x": 127.60911653725805,
+                "y": 14.766232530821924,
+                "z": 85.84902734442801
+              },
+              "habitat": "wood",
+              "interpreted": true
+            }
+          ],
+          "ground": {
+            "surface": "grass",
+            "material": "grass",
+            "basis": "explicit grass surface",
+            "confidence": "mapped",
+            "wetness": 0
+          },
+          "influences": {
+            "settlement": 0.32999999999999996,
+            "vegetation": 0.15,
+            "forest": 0.15
+          },
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 1272,
+            "commandRevision": 16,
+            "manual": false
+          },
+          "mixRevision": 1270,
+          "listener": {
+            "position": {
+              "x": 39.92793503014902,
+              "y": -2.8787326768244266,
+              "z": 207.7133235688275
+            },
+            "forward": {
+              "x": 0.8869261898716344,
+              "y": -0.3492879708227871,
+              "z": 0.3022579149638358
+            }
+          },
+          "traffic": [
+            {
+              "id": "road:1395850158:1:5",
+              "position": {
+                "x": 18.684148874163107,
+                "z": 122.74444778725282,
+                "y": -0.18539174107065715
+              },
+              "distance": 87.58429255195206,
+              "tags": {
+                "osm_id": 1395850158,
+                "source": "OpenStreetMap",
+                "cycleway:both": "no",
+                "highway": "secondary",
+                "lane_markings": "no",
+                "name": "Rue du Château",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            },
+            {
+              "id": "road:58717978:-2:6",
+              "position": {
+                "x": -57.63872413886174,
+                "z": 138.3846833513315,
+                "y": -14.81607535913859
+              },
+              "distance": 119.69007200185368,
+              "tags": {
+                "osm_id": 58717978,
+                "source": "OpenStreetMap",
+                "cycleway:both": "no",
+                "highway": "secondary",
+                "lane_markings": "no",
+                "lit": "yes",
+                "name": "Rue du Château",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            }
+          ]
+        }
+      },
+      "frames": 69,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 63,
+        "rawSha256": "119227f6aa9035bcf89ed594ebf2535962e4fdbb3c6cf46b5772f102c279638d",
+        "indexedSha256": "9bdf01ca52a091450e38fd55c04a100e48ee7d9312f70909f69c1f6c7c9a8fe7"
+      }
+    },
+    {
+      "label": "gravier",
+      "surface": "gravel",
+      "snow": 0,
+      "weather": "clear",
+      "route": {
+        "points": [
+          {
+            "x": -24.005051364736122,
+            "z": 212.35403200029765
+          },
+          {
+            "x": -7.367962648524657,
+            "z": 216.918152000639
+          }
+        ],
+        "length": 17.251779975660682,
+        "name": "Voie piétonne OSM",
+        "surface": "gravel"
+      },
+      "audio": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.013659147545695305,
+            "targetGain": 0.013697588983583711,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 0.48 × shared wind 0.18, gust 0.01",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 12.792882949374615
+          },
+          {
+            "id": "water",
+            "asset": "river-moderate-fs-591733-m11-1",
+            "actualBusGain": 0.09234160929918289,
+            "targetGain": 0.09047566227273784,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 54.0 m",
+            "diffuse": false,
+            "pan": 0.5625832080841064,
+            "transition": "smoothing",
+            "nextWindowIn": 7.299999999999997
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "river-moderate-fs-591733-m11-1",
+            "recording": "fs-591733",
+            "position": null,
+            "diffuse": false,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 91.3 m",
+            "transition": "playing"
+          },
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 0.24 × shared wind 0.19, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-gravel-fs-352870-3",
+            "recording": "fs-352870",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.10870058089494705,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual gravel right foot contact, 1.36 m/s, running 0.00",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 19,
+        "voices": 3,
+        "peakVoices": 5,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 81,
+        "lastStepAssets": [
+          "step-gravel-fs-352870-2",
+          "step-gravel-fs-521588-2",
+          "step-gravel-fs-352870-3"
+        ],
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 18195196,
+        "peakBytes": 22788476,
+        "cached": 16,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 59,
+        "decodes": 59,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 81,
+        "cpuMs": 0.3000000002793968,
+        "maxCpuMs": 17.399999999906868,
+        "nearbyChecks": 145,
+        "memoryCells": 4,
+        "perches": 29,
+        "contact": {
+          "surface": "gravel",
+          "material": "gravel",
+          "basis": "explicit OSM surface",
+          "confidence": "mapped",
+          "wetness": 0
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.693363835481264,
+            "lon": 0.8842374099666525
+          },
+          "key": "wgs84-v1:69987:92612",
+          "worldTimeMs": 1768489067015,
+          "localHour": 15.963055555555554,
+          "season": "winter",
+          "timeBasis": "civil",
+          "altitudeM": 99.05096323896338,
+          "habitat": "open",
+          "solarAltitude": 0.20441965355013628,
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18507673623483606,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.012285721066173967,
+            "snowCover": 0
+          },
+          "position": {
+            "x": -12.414065209611271,
+            "y": -2.1490367610366263,
+            "z": 215.5338342263166
+          },
+          "water": {
+            "distanceM": 53.953968879241565,
+            "horizontalDistanceM": 41.73756710589579,
+            "bankDistanceM": 41.73756710589579,
+            "centrelineDistanceM": 75.29059273717696,
+            "verticalDistanceM": 34.19073339229524,
+            "point": {
+              "x": -48.269699340930465,
+              "z": 240.2842200000194
+            },
+            "insideMappedWater": false,
+            "kind": "river",
+            "weirDistanceM": null,
+            "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+            "heightBasis": "DEM approximation, not measured water level"
+          },
+          "emitters": [
+            {
+              "id": "perch-v1:95626:1808",
+              "geo": {
+                "lat": 46.692575683593745,
+                "lon": 0.8831650390625
+              },
+              "position": {
+                "x": -94.29460458921072,
+                "y": -28.706883884051123,
+                "z": 303.270902344983
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1810",
+              "geo": {
+                "lat": 46.69262109375,
+                "lon": 0.8841381835937501
+              },
+              "position": {
+                "x": -19.99046335923255,
+                "y": -30.635307540826332,
+                "z": 298.21584375079647
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1811",
+              "geo": {
+                "lat": 46.6927490234375,
+                "lon": 0.8846171875000001
+              },
+              "position": {
+                "x": 16.583727582364105,
+                "y": -19.19943323708283,
+                "z": 283.9747109381635
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1812",
+              "geo": {
+                "lat": 46.69253564453125,
+                "lon": 0.8850961914062501
+              },
+              "position": {
+                "x": 53.15791852396075,
+                "y": -5.7921846091589515,
+                "z": 307.7280507822046
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1810",
+              "geo": {
+                "lat": 46.692970703125,
+                "lon": 0.8838720703125
+              },
+              "position": {
+                "x": -40.30945832678907,
+                "y": -30.835598125437656,
+                "z": 259.2973281257774
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1811",
+              "geo": {
+                "lat": 46.693184570312496,
+                "lon": 0.88436962890625
+              },
+              "position": {
+                "x": -2.31853012139927,
+                "y": -1.667947850037578,
+                "z": 235.48963281356853
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1812",
+              "geo": {
+                "lat": 46.69305615234375,
+                "lon": 0.8848671875
+              },
+              "position": {
+                "x": 35.67239808399053,
+                "y": 10.540066775677346,
+                "z": 249.78512109436926
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1811",
+              "geo": {
+                "lat": 46.693495117187496,
+                "lon": 0.8846611328125
+              },
+              "position": {
+                "x": 19.939157943975438,
+                "y": -4.327065028236433,
+                "z": 200.91955468864447
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1812",
+              "geo": {
+                "lat": 46.693452148437494,
+                "lon": 0.88517724609375
+              },
+              "position": {
+                "x": 59.3468234131584,
+                "y": -0.2826905596091649,
+                "z": 205.70283593882797
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1809",
+              "geo": {
+                "lat": 46.694100097656246,
+                "lon": 0.8835458984375001
+              },
+              "position": {
+                "x": -65.21420812187854,
+                "y": -11.48956217528432,
+                "z": 133.57312890731853
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1810",
+              "geo": {
+                "lat": 46.69411962890625,
+                "lon": 0.8841640625
+              },
+              "position": {
+                "x": -18.01448770184175,
+                "y": 1.7559429913054885,
+                "z": 131.3989101568756
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1812",
+              "geo": {
+                "lat": 46.69403369140625,
+                "lon": 0.8851220703125
+              },
+              "position": {
+                "x": 55.13389418135156,
+                "y": 6.906336443710089,
+                "z": 140.9654726572426
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1809",
+              "geo": {
+                "lat": 46.69468115234375,
+                "lon": 0.883685546875
+              },
+              "position": {
+                "x": -54.55139608386579,
+                "y": -5.354240905636672,
+                "z": 68.89012109469198
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1810",
+              "geo": {
+                "lat": 46.69469970703125,
+                "lon": 0.8841552734375
+              },
+              "position": {
+                "x": -18.685573774165714,
+                "y": 4.963758336416575,
+                "z": 66.82461328216667
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1811",
+              "geo": {
+                "lat": 46.69457177734375,
+                "lon": 0.88465283203125
+              },
+              "position": {
+                "x": 19.30535443122409,
+                "y": 12.468266498119647,
+                "z": 81.06574609479955
+              },
+              "habitat": "built",
+              "interpreted": true
+            }
+          ],
+          "ground": {
+            "surface": "gravel",
+            "material": "gravel",
+            "basis": "explicit OSM surface",
+            "confidence": "mapped",
+            "wetness": 0
+          },
+          "influences": {
+            "vegetation": 0.48,
+            "forest": 0.3
+          },
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 1597,
+            "commandRevision": 20,
+            "manual": false
+          },
+          "mixRevision": 1596,
+          "listener": {
+            "position": {
+              "x": -15.249503864580676,
+              "y": 0.5934471634730838,
+              "z": 214.7559768441968
+            },
+            "forward": {
+              "x": 0.9036290073318127,
+              "y": -0.3492879708227873,
+              "z": 0.2478962092227761
+            }
+          },
+          "traffic": [
+            {
+              "id": "road:58717978:-3:5",
+              "position": {
+                "x": -63.61166787065429,
+                "z": 124.4047122585977,
+                "y": -16.351510503349186
+              },
+              "distance": 102.48048555489622,
+              "tags": {
+                "osm_id": 58717978,
+                "source": "OpenStreetMap",
+                "cycleway:both": "no",
+                "highway": "secondary",
+                "lane_markings": "no",
+                "lit": "yes",
+                "name": "Rue du Château",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            }
+          ]
+        }
+      },
+      "frames": 55,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 50,
+        "rawSha256": "2d70d875056eafb560d1fecbcc4fc2f10d2133820f07f6a40e5589780cf543be",
+        "indexedSha256": "5895bca5aeafe5b3405741c85639f9150895125626090e7f5aaed8710e49e75b"
+      }
+    },
+    {
+      "label": "neige-fraiche",
+      "surface": "grass",
+      "snow": 0.9,
+      "weather": "snow",
+      "route": {
+        "points": [
+          {
+            "x": 31.59443465244997,
+            "z": 204.87332800067577
+          },
+          {
+            "x": 64.58610989006343,
+            "z": 216.11664799997328
+          }
+        ],
+        "length": 34.85488315273429,
+        "name": "Voie piétonne OSM",
+        "surface": "grass"
+      },
+      "audio": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.011012802831828594,
+            "targetGain": 0.011002823842372946,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 0.15 × shared wind 0.30, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 1.1128829493746224
+          },
+          {
+            "id": "water",
+            "asset": "river-moderate-fs-591733-m11-1",
+            "actualBusGain": 0.03119850717484951,
+            "targetGain": 0.03076712069690239,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 97.2 m",
+            "diffuse": false,
+            "pan": 0.5888734459877014,
+            "transition": "steady",
+            "nextWindowIn": 20.91591389403493
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.007459287531673908,
+            "targetGain": 0.007441738246181952,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.22 × shared wind 0.30; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 11.977964453734472
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 0.24 × shared wind 0.19, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.22 × shared wind 0.30; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "river-moderate-fs-591733-m11-1",
+            "recording": "fs-591733",
+            "position": null,
+            "diffuse": false,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 93.3 m",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-snow-soft-fs-380041-1",
+            "recording": "fs-380041",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.07550885528326035,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual snow-fresh right foot contact, 1.35 m/s, running 0.00",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 25,
+        "voices": 4,
+        "peakVoices": 6,
+        "hrtf": 0,
+        "beds": 3,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 97,
+        "lastStepAssets": [
+          "step-snow-soft-fs-380041-4",
+          "step-snow-soft-fs-380041-5",
+          "step-snow-soft-fs-380041-1"
+        ],
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 22087680,
+        "peakBytes": 22788476,
+        "cached": 13,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 68,
+        "decodes": 68,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 98,
+        "cpuMs": 0.20000000018626451,
+        "maxCpuMs": 19.700000000186265,
+        "nearbyChecks": 78,
+        "memoryCells": 4,
+        "perches": 29,
+        "contact": {
+          "surface": "grass",
+          "material": "snow-fresh",
+          "basis": "simulated coating sampled at the actual foot with renderer exposure; fresh acoustic interpretation",
+          "confidence": "interpreted",
+          "wetness": 0
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.69342955618734,
+            "lon": 0.8849423339747461
+          },
+          "key": "wgs84-v1:69987:92613",
+          "worldTimeMs": 1768489067015,
+          "localHour": 15.963055555555554,
+          "season": "winter",
+          "timeBasis": "civil",
+          "altitudeM": 95.3849851216283,
+          "habitat": "built",
+          "solarAltitude": 0.20441965355013628,
+          "weather": {
+            "cloud": 0.9599999976744223,
+            "mist": 0.29999999912790837,
+            "wind": 0.2952675443208253,
+            "rain": 0,
+            "snow": 0.7199999979069802,
+            "gust": 0,
+            "snowCover": 0.9
+          },
+          "position": {
+            "x": 41.408253564330444,
+            "y": -5.815014878371699,
+            "z": 208.217805225513
+          },
+          "water": {
+            "distanceM": 97.20981029959083,
+            "horizontalDistanceM": 92.30782470090652,
+            "bankDistanceM": 92.30782470090652,
+            "centrelineDistanceM": 119.27823124486697,
+            "verticalDistanceM": 30.47970993085636,
+            "point": {
+              "x": -33.73228909968519,
+              "z": 264.5853760000446
+            },
+            "insideMappedWater": false,
+            "kind": "river",
+            "weirDistanceM": null,
+            "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+            "heightBasis": "DEM approximation, not measured water level"
+          },
+          "emitters": [
+            {
+              "id": "perch-v1:95626:1810",
+              "geo": {
+                "lat": 46.69262109375,
+                "lon": 0.8841381835937501
+              },
+              "position": {
+                "x": -19.992318341724868,
+                "y": -30.635307540826332,
+                "z": 298.21584375031387
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1811",
+              "geo": {
+                "lat": 46.6927490234375,
+                "lon": 0.8846171875000001
+              },
+              "position": {
+                "x": 16.581828091627443,
+                "y": -19.19943323708283,
+                "z": 283.9747109376809
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1812",
+              "geo": {
+                "lat": 46.69253564453125,
+                "lon": 0.8850961914062501
+              },
+              "position": {
+                "x": 53.15597452497975,
+                "y": -5.7921846091589515,
+                "z": 307.728050781722
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1813",
+              "geo": {
+                "lat": 46.69266357421875,
+                "lon": 0.8855751953125001
+              },
+              "position": {
+                "x": 89.73012095833207,
+                "y": 14.205647921753098,
+                "z": 293.4869179690892
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1814",
+              "geo": {
+                "lat": 46.692791992187495,
+                "lon": 0.8861284179687501
+              },
+              "position": {
+                "x": 131.97120955057446,
+                "y": 13.855422378392305,
+                "z": 279.1914296882884
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1810",
+              "geo": {
+                "lat": 46.692970703125,
+                "lon": 0.8838720703125
+              },
+              "position": {
+                "x": -40.31128858247897,
+                "y": -30.835598125437656,
+                "z": 259.2973281252948
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1811",
+              "geo": {
+                "lat": 46.693184570312496,
+                "lon": 0.88436962890625
+              },
+              "position": {
+                "x": -2.320406609404145,
+                "y": -1.667947850037578,
+                "z": 235.48963281308593
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1812",
+              "geo": {
+                "lat": 46.69305615234375,
+                "lon": 0.8848671875
+              },
+              "position": {
+                "x": 35.67047536367069,
+                "y": 10.540066775677346,
+                "z": 249.78512109388666
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1813",
+              "geo": {
+                "lat": 46.69327001953125,
+                "lon": 0.88536474609375
+              },
+              "position": {
+                "x": 73.66135733674551,
+                "y": 6.285749730469888,
+                "z": 225.97742578167774
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1814",
+              "geo": {
+                "lat": 46.693141601562495,
+                "lon": 0.8861298828125
+              },
+              "position": {
+                "x": 132.08305709318145,
+                "y": 12.49951217035661,
+                "z": 240.27291406326944
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1811",
+              "geo": {
+                "lat": 46.693495117187496,
+                "lon": 0.8846611328125
+              },
+              "position": {
+                "x": 19.937254369913614,
+                "y": -4.327065028236433,
+                "z": 200.91955468816187
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1812",
+              "geo": {
+                "lat": 46.693452148437494,
+                "lon": 0.88517724609375
+              },
+              "position": {
+                "x": 59.34487188271096,
+                "y": -0.2826905596091649,
+                "z": 205.70283593834537
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1813",
+              "geo": {
+                "lat": 46.69358056640625,
+                "lon": 0.88565625
+              },
+              "position": {
+                "x": 95.91901831606327,
+                "y": 5.916298394550637,
+                "z": 191.40734765675367
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1814",
+              "geo": {
+                "lat": 46.693537597656245,
+                "lon": 0.88609814453125
+              },
+              "position": {
+                "x": 129.65969366997055,
+                "y": 3.5117745774673494,
+                "z": 196.19062890693718
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1810",
+              "geo": {
+                "lat": 46.69411962890625,
+                "lon": 0.8841640625
+              },
+              "position": {
+                "x": -18.016345088958886,
+                "y": 1.7559429913054885,
+                "z": 131.398910156393
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1812",
+              "geo": {
+                "lat": 46.69403369140625,
+                "lon": 0.8851220703125
+              },
+              "position": {
+                "x": 55.13194777774573,
+                "y": 6.906336443710089,
+                "z": 140.96547265676
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1810",
+              "geo": {
+                "lat": 46.69469970703125,
+                "lon": 0.8841552734375
+              },
+              "position": {
+                "x": -18.687430344617816,
+                "y": 4.963758336416575,
+                "z": 66.82461328168407
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1811",
+              "geo": {
+                "lat": 46.69457177734375,
+                "lon": 0.88465283203125
+              },
+              "position": {
+                "x": 19.303451628457015,
+                "y": 12.468266498119647,
+                "z": 81.06574609431695
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1813",
+              "geo": {
+                "lat": 46.6946572265625,
+                "lon": 0.88564794921875
+              },
+              "position": {
+                "x": 95.28521557460667,
+                "y": 12.633389814080445,
+                "z": 71.55353906290875
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1814",
+              "geo": {
+                "lat": 46.694528808593745,
+                "lon": 0.8860712890625
+              },
+              "position": {
+                "x": 127.60915538879141,
+                "y": 14.766232530821924,
+                "z": 85.84902734450046
+              },
+              "habitat": "wood",
+              "interpreted": true
+            }
+          ],
+          "ground": {
+            "surface": "grass",
+            "material": "snow-fresh",
+            "basis": "simulated coating sampled at the actual foot with renderer exposure; fresh acoustic interpretation",
+            "confidence": "interpreted",
+            "wetness": 0
+          },
+          "influences": {
+            "settlement": 0.32999999999999996,
+            "vegetation": 0.15,
+            "forest": 0.15
+          },
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 1918,
+            "commandRevision": 24,
+            "manual": false
+          },
+          "mixRevision": 1916,
+          "listener": {
+            "position": {
+              "x": 38.62522559326916,
+              "y": -3.068814137324972,
+              "z": 207.2693697847457
+            },
+            "forward": {
+              "x": 0.8869261898716403,
+              "y": -0.34928797082278756,
+              "z": 0.30225791496381804
+            }
+          },
+          "traffic": [
+            {
+              "id": "road:1395850158:1:5",
+              "position": {
+                "x": 17.707861379469072,
+                "z": 121.91587762064493,
+                "y": -0.057622170906736825
+              },
+              "distance": 87.87920544850172,
+              "tags": {
+                "osm_id": 1395850158,
+                "source": "OpenStreetMap",
+                "cycleway:both": "no",
+                "highway": "secondary",
+                "lane_markings": "no",
+                "name": "Rue du Château",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            },
+            {
+              "id": "road:58717978:-2:6",
+              "position": {
+                "x": -58.00021579527367,
+                "z": 137.53859419766945,
+                "y": -14.935424794088402
+              },
+              "distance": 119.15895680772768,
+              "tags": {
+                "osm_id": 58717978,
+                "source": "OpenStreetMap",
+                "cycleway:both": "no",
+                "highway": "secondary",
+                "lane_markings": "no",
+                "lit": "yes",
+                "name": "Rue du Château",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            }
+          ]
+        }
+      },
+      "frames": 51,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 46,
+        "rawSha256": "8fac1e1cbeb4e90053c48ad618bdd72a9660398893cddf1898532bd47c494eda",
+        "indexedSha256": "70b69e9f236e035b9114154c43e8dc9fbd2cdd6907b491cbfd31ae3d66a79ebc"
+      }
+    },
+    {
+      "label": "neige-tassee",
+      "surface": "asphalt",
+      "snow": 0.9,
+      "weather": "snow",
+      "route": {
+        "points": [
+          {
+            "x": 679.2574394442809,
+            "z": -298.88306799982587
+          },
+          {
+            "x": 633.8814788015836,
+            "z": -270.1513759994384
+          }
+        ],
+        "length": 53.7074289968598,
+        "name": "Rue de Tournon",
+        "surface": "asphalt"
+      },
+      "audio": {
+        "layers": [
+          {
+            "id": "foliage",
+            "asset": "foliage-commons-85708704-1",
+            "actualBusGain": 0.0322304368019104,
+            "targetGain": 0.03198597656376634,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped vegetation 0.32 × shared wind 0.34, gust 0.00",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 17.835485908918088
+          },
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.047125041484832764,
+            "targetGain": 0.047021547162383645,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.65 × shared wind 0.34; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": -0.022035546265527728
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.22 × shared wind 0.30; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "foliage-commons-85708704-1",
+            "recording": "commons-85708704",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped vegetation 0.15 × shared wind 0.30, gust 0.00",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-snow-firm-fs-841736-2",
+            "recording": "fs-841736",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.09743630141019821,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual snow-packed right foot contact, 1.35 m/s, running 0.00",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [],
+        "nodes": 18,
+        "voices": 3,
+        "peakVoices": 6,
+        "hrtf": 0,
+        "beds": 2,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 109,
+        "lastStepAssets": [
+          "step-snow-firm-fs-841736-4",
+          "step-snow-firm-fs-841736-6",
+          "step-snow-firm-fs-841736-2"
+        ],
+        "heardBirds": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "cacheBytes": 22302716,
+        "peakBytes": 22788476,
+        "cached": 16,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 75,
+        "decodes": 75,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 112,
+        "cpuMs": 0.2999999998137355,
+        "maxCpuMs": 19.700000000186265,
+        "nearbyChecks": 14,
+        "memoryCells": 4,
+        "perches": 29,
+        "contact": {
+          "surface": "asphalt",
+          "material": "snow-packed",
+          "basis": "simulated coating sampled at the actual foot with renderer exposure; packed acoustic interpretation",
+          "confidence": "interpreted",
+          "wetness": 0
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.69794933007649,
+            "lon": 0.8932144968402099
+          },
+          "key": "wgs84-v1:69989:92617",
+          "worldTimeMs": 1768489067015,
+          "localHour": 15.963055555555554,
+          "season": "winter",
+          "timeBasis": "civil",
+          "altitudeM": 122.71951777232375,
+          "habitat": "scrub",
+          "solarAltitude": 0.20441965355013628,
+          "weather": {
+            "cloud": 0.9599999961769621,
+            "mist": 0.2999999985663608,
+            "wind": 0.34364513678567754,
+            "rain": 0,
+            "snow": 0.7199999965592658,
+            "gust": 0,
+            "snowCover": 0.9
+          },
+          "position": {
+            "x": 673.0039739299835,
+            "y": 21.519517772323752,
+            "z": -294.92342411467155
+          },
+          "water": null,
+          "emitters": [
+            {
+              "id": "perch-v1:95635:1827",
+              "geo": {
+                "lat": 46.697140136718744,
+                "lon": 0.8922270507812501
+              },
+              "position": {
+                "x": 597.6142460881671,
+                "y": 23.85357814392391,
+                "z": -204.8440195303761
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95636:1827",
+              "geo": {
+                "lat": 46.6975244140625,
+                "lon": 0.8921904296875001
+              },
+              "position": {
+                "x": 594.8182915486432,
+                "y": 25.026590939452703,
+                "z": -247.62177343723357
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95636:1828",
+              "geo": {
+                "lat": 46.697652832031245,
+                "lon": 0.8927436523437501
+              },
+              "position": {
+                "x": 637.0558447923611,
+                "y": 28.404471883815958,
+                "z": -261.9172617180343
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95637:1829",
+              "geo": {
+                "lat": 46.6979365234375,
+                "lon": 0.8931899414062501
+              },
+              "position": {
+                "x": 671.1292107806721,
+                "y": 27.559250871938374,
+                "z": -293.49778906208803
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95638:1829",
+              "geo": {
+                "lat": 46.6984580078125,
+                "lon": 0.8934150390625001
+              },
+              "position": {
+                "x": 688.3150113502694,
+                "y": 28.844595808562204,
+                "z": -351.54942968705006
+              },
+              "habitat": "meadow",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95639:1828",
+              "geo": {
+                "lat": 46.69902734375,
+                "lon": 0.8928613281250001
+              },
+              "position": {
+                "x": 646.0401787126921,
+                "y": 26.490431894540663,
+                "z": -414.92790624941085
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95639:1829",
+              "geo": {
+                "lat": 46.69889892578125,
+                "lon": 0.8933588867187501
+              },
+              "position": {
+                "x": 684.027881056335,
+                "y": 29.753466284008866,
+                "z": -400.6324179686101
+              },
+              "habitat": "meadow",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95639:1830",
+              "geo": {
+                "lat": 46.6988798828125,
+                "lon": 0.89371728515625
+              },
+              "position": {
+                "x": 711.3909561497901,
+                "y": 28.575349113785634,
+                "z": -398.512554687126
+              },
+              "habitat": "meadow",
+              "interpreted": true
+            }
+          ],
+          "ground": {
+            "surface": "asphalt",
+            "material": "snow-packed",
+            "basis": "simulated coating sampled at the actual foot with renderer exposure; packed acoustic interpretation",
+            "confidence": "interpreted",
+            "wetness": 0
+          },
+          "influences": {
+            "vegetation": 0.3225,
+            "rural": 0.18
+          },
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 2217,
+            "commandRevision": 28,
+            "manual": false
+          },
+          "mixRevision": 2216,
+          "listener": {
+            "position": {
+              "x": 675.4880695175389,
+              "y": 24.265331905999478,
+              "z": -296.49633338888333
+            },
+            "forward": {
+              "x": -0.7916591057139766,
+              "y": -0.34928797082278257,
+              "z": 0.5012721553992898
+            }
+          },
+          "traffic": [
+            {
+              "id": "road:647696739:30:-15",
+              "position": {
+                "x": 757.4344003174524,
+                "z": -370.2968320371325,
+                "y": 21.38094629499992
+              },
+              "distance": 110.28016472738462,
+              "tags": {
+                "osm_id": 647696739,
+                "source": "OpenStreetMap",
+                "highway": "secondary",
+                "lane_markings": "yes",
+                "lanes": "2",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            }
+          ]
+        }
+      },
+      "frames": 29,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 24,
+        "rawSha256": "a6df90eb2523969765fefd5b0e9b633d62bd2a1365258347c54c530d26c82d06",
+        "indexedSha256": "d7bb78e948bffc93960a2910c98f0bcfe084261a8dc13e1bf76a002bb0c8306a"
+      }
+    },
+    {
+      "label": "neige-humide",
+      "surface": "grass",
+      "snow": 0.9,
+      "weather": "rain",
+      "route": {
+        "points": [
+          {
+            "x": 31.59443465244997,
+            "z": 204.87332800067577
+          },
+          {
+            "x": 64.58610989006343,
+            "z": 216.11664799997328
+          }
+        ],
+        "length": 34.85488315273429,
+        "name": "Voie piétonne OSM",
+        "surface": "grass"
+      },
+      "audio": {
+        "layers": [
+          {
+            "id": "wind",
+            "asset": "wind-open-fs-553733-m11-1",
+            "actualBusGain": 0.060738325119018555,
+            "targetGain": 0.05965972029936368,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped exposure 0.22 × shared wind 0.54; silent in calm",
+            "diffuse": true,
+            "pan": null,
+            "transition": "smoothing",
+            "nextWindowIn": 19.88000000000001
+          },
+          {
+            "id": "rain",
+            "asset": "rain-fs-231687-1",
+            "actualBusGain": 0.2399284690618515,
+            "targetGain": 0.24,
+            "masterGain": 0.38499999046325684,
+            "reason": "EarthLife simulated rain 0.60",
+            "diffuse": true,
+            "pan": null,
+            "transition": "steady",
+            "nextWindowIn": 12.555892635621134
+          },
+          {
+            "id": "water",
+            "asset": "river-moderate-fs-591733-m11-1",
+            "actualBusGain": 0.0307850893586874,
+            "targetGain": 0.030285125062857784,
+            "masterGain": 0.38499999046325684,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 98.0 m",
+            "diffuse": false,
+            "pan": 0.5843797922134399,
+            "transition": "steady",
+            "nextWindowIn": 16.480000000000004
+          }
+        ],
+        "activeSources": [
+          {
+            "asset": "rain-fs-231687-1",
+            "recording": "fs-231687",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "EarthLife simulated rain 0.59",
+            "transition": "playing"
+          },
+          {
+            "asset": "river-moderate-fs-591733-m11-1",
+            "recording": "fs-591733",
+            "position": null,
+            "diffuse": false,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 90.0 m",
+            "transition": "playing"
+          },
+          {
+            "asset": "traffic-fs-873189-m11-1",
+            "recording": "fs-873189",
+            "position": {
+              "x": -60.58913932720511,
+              "z": 131.47909024737226,
+              "y": -15.703936921776897
+            },
+            "diffuse": false,
+            "gain": 0.3799999952316284,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": 126.47715558394503,
+            "refDistance": 20,
+            "reason": "rare recorded approach/pass/recession at distant offscreen OSM secondary; plausible interpretation, no traffic measurement",
+            "transition": "playing"
+          },
+          {
+            "asset": "wind-open-fs-553733-m11-1",
+            "recording": "fs-553733",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.699999988079071,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "mapped exposure 0.22 × shared wind 0.76; silent in calm",
+            "transition": "playing"
+          },
+          {
+            "asset": "step-snow-soft-fs-380041-6",
+            "recording": "fs-380041",
+            "position": null,
+            "diffuse": true,
+            "gain": 0.07530057430267334,
+            "retirementGain": 1,
+            "masterGain": 0.38499999046325684,
+            "distance": null,
+            "refDistance": 4,
+            "reason": "actual snow-wet right foot contact, 1.37 m/s, running 0.00",
+            "transition": "playing"
+          }
+        ],
+        "recentEvents": [
+          {
+            "asset": "traffic-fs-873189-m11-1",
+            "emitterId": "road:58717978:-2:5",
+            "position": {
+              "x": -60.58913932720511,
+              "z": 131.47909024737226,
+              "y": -15.703936921776897
+            },
+            "reason": "rare recorded approach/pass/recession at distant offscreen OSM secondary; plausible interpretation, no traffic measurement",
+            "time": 85.54
+          }
+        ],
+        "nodes": 30,
+        "voices": 5,
+        "peakVoices": 8,
+        "hrtf": 1,
+        "beds": 3,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 127,
+        "lastStepAssets": [
+          "step-snow-soft-fs-380041-4",
+          "step-snow-soft-fs-380041-3",
+          "step-snow-soft-fs-380041-6"
+        ],
+        "heardBirds": 0,
+        "roadEvents": 1,
+        "profile": "balanced",
+        "cacheBytes": 25160220,
+        "peakBytes": 25160220,
+        "cached": 12,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 90,
+        "decodes": 90,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 130,
+        "cpuMs": 0.2999999998137355,
+        "maxCpuMs": 19.700000000186265,
+        "nearbyChecks": 78,
+        "memoryCells": 4,
+        "perches": 29,
+        "contact": {
+          "surface": "grass",
+          "material": "snow-wet",
+          "basis": "simulated coating sampled at the actual foot with renderer exposure; wet acoustic interpretation",
+          "confidence": "interpreted",
+          "wetness": 0.59987308698427
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.693425333767514,
+            "lon": 0.8849603984065165
+          },
+          "key": "wgs84-v1:69987:92613",
+          "worldTimeMs": 1768489067015,
+          "localHour": 15.963055555555554,
+          "season": "winter",
+          "timeBasis": "civil",
+          "altitudeM": 95.59460491544856,
+          "habitat": "built",
+          "solarAltitude": 0.20441965355013628,
+          "weather": {
+            "cloud": 0.9599999972447535,
+            "mist": 0.43999999848461446,
+            "wind": 0.54069181175225,
+            "rain": 0.5999999979335652,
+            "snow": 0,
+            "gust": 0.011437425906247453,
+            "snowCover": 0.9
+          },
+          "position": {
+            "x": 42.78750805708887,
+            "y": -5.605395084551446,
+            "z": 208.6878450010284
+          },
+          "water": {
+            "distanceM": 98.03134292804681,
+            "horizontalDistanceM": 93.10518261847764,
+            "bankDistanceM": 93.10518261847764,
+            "centrelineDistanceM": 120.05493474911925,
+            "verticalDistanceM": 30.68499903627574,
+            "point": {
+              "x": -33.73228909968519,
+              "z": 264.5853760000446
+            },
+            "insideMappedWater": false,
+            "kind": "river",
+            "weirDistanceM": null,
+            "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+            "heightBasis": "DEM approximation, not measured water level"
+          },
+          "emitters": [
+            {
+              "id": "perch-v1:95626:1810",
+              "geo": {
+                "lat": 46.69262109375,
+                "lon": 0.8841381835937501
+              },
+              "position": {
+                "x": -19.992371022379366,
+                "y": -30.635307540826332,
+                "z": 298.21584375087247
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1811",
+              "geo": {
+                "lat": 46.6927490234375,
+                "lon": 0.8846171875000001
+              },
+              "position": {
+                "x": 16.581778270537296,
+                "y": -19.19943323708283,
+                "z": 283.9747109382396
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1812",
+              "geo": {
+                "lat": 46.69253564453125,
+                "lon": 0.8850961914062501
+              },
+              "position": {
+                "x": 53.15592756345396,
+                "y": -5.7921846091589515,
+                "z": 307.72805078228066
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1813",
+              "geo": {
+                "lat": 46.69266357421875,
+                "lon": 0.8855751953125001
+              },
+              "position": {
+                "x": 89.73007685637062,
+                "y": 14.205647921753098,
+                "z": 293.4869179696478
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95626:1814",
+              "geo": {
+                "lat": 46.692791992187495,
+                "lon": 0.8861284179687501
+              },
+              "position": {
+                "x": 131.97116875124954,
+                "y": 13.855422378392305,
+                "z": 279.19142968884705
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1810",
+              "geo": {
+                "lat": 46.692970703125,
+                "lon": 0.8838720703125
+              },
+              "position": {
+                "x": -40.31134285178034,
+                "y": -30.835598125437656,
+                "z": 259.2973281258535
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1811",
+              "geo": {
+                "lat": 46.693184570312496,
+                "lon": 0.88436962890625
+              },
+              "position": {
+                "x": -2.3204579083731147,
+                "y": -1.667947850037578,
+                "z": 235.48963281364456
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1812",
+              "geo": {
+                "lat": 46.69305615234375,
+                "lon": 0.8848671875
+              },
+              "position": {
+                "x": 35.67042703503411,
+                "y": 10.540066775677346,
+                "z": 249.7851210944453
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1813",
+              "geo": {
+                "lat": 46.69327001953125,
+                "lon": 0.88536474609375
+              },
+              "position": {
+                "x": 73.66131197844133,
+                "y": 6.285749730469888,
+                "z": 225.97742578223637
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95627:1814",
+              "geo": {
+                "lat": 46.693141601562495,
+                "lon": 0.8861298828125
+              },
+              "position": {
+                "x": 132.08301630260138,
+                "y": 12.49951217035661,
+                "z": 240.27291406382807
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1811",
+              "geo": {
+                "lat": 46.693495117187496,
+                "lon": 0.8846611328125
+              },
+              "position": {
+                "x": 19.93720481116882,
+                "y": -4.327065028236433,
+                "z": 200.9195546887205
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1812",
+              "geo": {
+                "lat": 46.693452148437494,
+                "lon": 0.88517724609375
+              },
+              "position": {
+                "x": 59.3448254050666,
+                "y": -0.2826905596091649,
+                "z": 205.702835938904
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1813",
+              "geo": {
+                "lat": 46.69358056640625,
+                "lon": 0.88565625
+              },
+              "position": {
+                "x": 95.91897469798326,
+                "y": 5.916298394550637,
+                "z": 191.4073476573123
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95628:1814",
+              "geo": {
+                "lat": 46.693537597656245,
+                "lon": 0.88609814453125
+              },
+              "position": {
+                "x": 129.6596526899188,
+                "y": 3.5117745774673494,
+                "z": 196.1906289074958
+              },
+              "habitat": "wood",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1810",
+              "geo": {
+                "lat": 46.69411962890625,
+                "lon": 0.8841640625
+              },
+              "position": {
+                "x": -18.01639761512112,
+                "y": 1.7559429913054885,
+                "z": 131.39891015695162
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95629:1812",
+              "geo": {
+                "lat": 46.69403369140625,
+                "lon": 0.8851220703125
+              },
+              "position": {
+                "x": 55.131900970712195,
+                "y": 6.906336443710089,
+                "z": 140.96547265731863
+              },
+              "habitat": "scrub",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1810",
+              "geo": {
+                "lat": 46.69469970703125,
+                "lon": 0.8841552734375
+              },
+              "position": {
+                "x": -18.68748292324912,
+                "y": 4.963758336416575,
+                "z": 66.8246132822427
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1811",
+              "geo": {
+                "lat": 46.69457177734375,
+                "lon": 0.88465283203125
+              },
+              "position": {
+                "x": 19.303402020158096,
+                "y": 12.468266498119647,
+                "z": 81.06574609487558
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1813",
+              "geo": {
+                "lat": 46.6946572265625,
+                "lon": 0.88564794921875
+              },
+              "position": {
+                "x": 95.28517190697255,
+                "y": 12.633389814080445,
+                "z": 71.55353906346738
+              },
+              "habitat": "built",
+              "interpreted": true
+            },
+            {
+              "id": "perch-v1:95630:1814",
+              "geo": {
+                "lat": 46.694528808593745,
+                "lon": 0.8860712890625
+              },
+              "position": {
+                "x": 127.60911424841753,
+                "y": 14.766232530821924,
+                "z": 85.84902734505908
+              },
+              "habitat": "wood",
+              "interpreted": true
+            }
+          ],
+          "ground": {
+            "surface": "grass",
+            "material": "snow-wet",
+            "basis": "simulated coating sampled at the actual foot with renderer exposure; wet acoustic interpretation",
+            "confidence": "interpreted",
+            "wetness": 0.59987308698427
+          },
+          "influences": {
+            "settlement": 0.32999999999999996,
+            "vegetation": 0.15,
+            "forest": 0.15
+          },
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 2546,
+            "commandRevision": 32,
+            "manual": false
+          },
+          "mixRevision": 2545,
+          "listener": {
+            "position": {
+              "x": 40.00448008602757,
+              "y": -2.863525031905589,
+              "z": 207.73940956026112
+            },
+            "forward": {
+              "x": 0.8869261898716437,
+              "y": -0.3492879708227872,
+              "z": 0.30225791496380877
+            }
+          },
+          "traffic": [
+            {
+              "id": "road:1395850158:1:5",
+              "position": {
+                "x": 18.74151391560652,
+                "z": 122.79313320236318,
+                "y": -0.1875303744798742
+              },
+              "distance": 87.56702345881604,
+              "tags": {
+                "osm_id": 1395850158,
+                "source": "OpenStreetMap",
+                "cycleway:both": "no",
+                "highway": "secondary",
+                "lane_markings": "no",
+                "name": "Rue du Château",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            },
+            {
+              "id": "road:58717978:-2:6",
+              "position": {
+                "x": -57.61748348591437,
+                "z": 138.43439815319954,
+                "y": -14.809306700480771
+              },
+              "distance": 119.72147834776554,
+              "tags": {
+                "osm_id": 58717978,
+                "source": "OpenStreetMap",
+                "cycleway:both": "no",
+                "highway": "secondary",
+                "lane_markings": "no",
+                "lit": "yes",
+                "name": "Rue du Château",
+                "ref": "D 2",
+                "surface": "asphalt"
+              },
+              "interpreted": true
+            }
+          ]
+        }
+      },
+      "frames": 59,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 54,
+        "rawSha256": "04f25369ce9f8b1850a30d1faae7833e87e04df57c16aec82c967142a7db1844",
+        "indexedSha256": "3261c305eb71256e4d2fdde99f02e2e36f6de2868954b7ce7acebaca9a64ae31"
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

@@ -29,12 +29,12 @@ export function planRoute(lines,position,valid){
 }
 export class AutoWalk {
   active=false; speed=0; index=1; message='Prêt · rejoindre une voie OSM'; route=null;
-  start(route){this.route=route;this.index=1;this.speed=0;this.remaining=route?route.points.map(()=>0):[];if(route)for(let i=route.points.length-2;i>=0;i--)this.remaining[i]=this.remaining[i+1]+distance(route.points[i],route.points[i+1]);this.active=!!route;this.message=route?`${route.name} · ${Math.round(route.length)} m validés`:'Aucun trajet sûr ici · rejoignez une voie OSM';}
+  start(route){this.route=route;this.index=1;this.speed=0;this.remaining=route?route.points.map(()=>0):[];if(route)for(let i=route.points.length-2;i>=0;i--)this.remaining[i]=this.remaining[i+1]+distance(route.points[i],route.points[i+1]);this.active=!!route;this.message=route?`${route.destination?'Promenade vers ':''}${route.name} · ${Math.round(route.length)} m validés`:'Aucun trajet sûr ici · rejoignez une voie OSM';}
   stop(message='Promenade interrompue'){this.active=false;this.speed=0;this.message=message;}
   update(position,dt,valid){
     if(!this.active)return {x:0,z:0};
     while(this.index<this.route.points.length&&distance(position,this.route.points[this.index])<.000001)this.index++;
-    if(this.index>=this.route.points.length){this.stop('Fin du parcours OSM validé');return {x:0,z:0};}
+    if(this.index>=this.route.points.length){this.stop(this.route.destination?'Destination atteinte · '+this.route.name:'Fin du parcours OSM validé');return {x:0,z:0};}
     const target=this.route.points[this.index],d=distance(position,target);
     const remaining=d+this.remaining[this.index];
     let limit=1.35;
