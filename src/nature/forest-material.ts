@@ -11,7 +11,16 @@ import {registerLifeMaterial} from '../earthlife/capabilities.mjs';
 // Shared by colour and the coarse solar proxy. Ordered joint rotations preserve
 // branch bases and leaf-spray roots while each level inherits its parent motion.
 export const forestAttributes=`attribute vec4 natureTraits,forestForm,forestDates;
+#ifndef FOREST_CACHED_WIND19
+#define FOREST_CACHED_WIND19 0
+#endif
+#if FOREST_CACHED_WIND19 == 1
+attribute vec4 forestPackedData;attribute vec2 forestInstanceWind;
+#define natureCluster (forestPackedData.w)
+#define forestData (forestPackedData.xyz)
+#else
 attribute float natureCluster;attribute vec3 forestData;
+#endif
 attribute float forestJointIndex;uniform highp usampler2D forestJoints;
 uniform sampler2D forestWindField;uniform vec4 forestWindRect;uniform float forestDay,forestPreviousDay,forestSeasonBlend;
 uniform float lifeTime,lifeMeanWind,lifeVegetation,lifeFine;
@@ -45,7 +54,12 @@ vec3 forestPose(vec3 raw,inout vec3 n,vec4 season){
  if(forestData.z>.5&&season.x<.999){vec3 leafRoot=forestJoint(3).xyz*64.-32.;p=leafRoot+(p-leafRoot)*max(.035,season.x);}
 
  #if LIFE_WIND_MODE == 1
- vec2 anchor=(modelMatrix*instanceMatrix[3]).xz;float size=forestWindRect.w;vec2 q=clamp((anchor-forestWindRect.xy)/forestWindRect.z,0.,1.);vec2 uv=(q*(size-1.)+.5)/size;uv.y*=.5;vec4 bank=texture2D(forestWindField,uv);vec2 w=forestLocal(mix(bank.xy,bank.zw,clamp(.52+forestData.y*.20,0.,1.)));float gain=forestData.y*forestForm.w*lifeVegetation;
+ #if FOREST_CACHED_WIND19 == 1
+ vec2 w=forestInstanceWind;
+ #else
+ vec2 anchor=(modelMatrix*instanceMatrix[3]).xz;float size=forestWindRect.w;vec2 q=clamp((anchor-forestWindRect.xy)/forestWindRect.z,0.,1.);vec2 uv=(q*(size-1.)+.5)/size;uv.y*=.5;vec4 bank=texture2D(forestWindField,uv);vec2 w=forestLocal(mix(bank.xy,bank.zw,clamp(.52+forestData.y*.20,0.,1.)));
+ #endif
+ float gain=forestData.y*forestForm.w*lifeVegetation;
  n.y-=${FOREST_COARSE_BEND*2}*p.y*gain*dot(w,n.xz);p.xz+=w*(${FOREST_COARSE_BEND}*p.y*p.y*gain);
  #elif LIFE_WIND_MODE == 2
  vec4 forestPrimary=forestJoint(0);vec2 lifeAnchor=(modelMatrix*instanceMatrix[3]).xz;
@@ -67,9 +81,9 @@ vec3 forestPose(vec3 raw,inout vec3 n,vec4 season){
  return forestShape(p,natureTraits,forestForm,forestData);
 }
 `;
-export function forestMaterial(calendar:{value:THREE.Vector4},atlas:THREE.Texture|null,far=false,life?:any,merged=false){
+export function forestMaterial(calendar:{value:THREE.Vector4},atlas:THREE.Texture|null,far=false,life?:any,merged=false,cachedWind=false){
  const leaf=!!atlas,m=new THREE.MeshLambertMaterial({vertexColors:true,side:leaf?THREE.DoubleSide:THREE.FrontSide,map:atlas,alphaTest:leaf?.38:0});
- m.userData.forestSnow=true;
+ const flags=m as typeof m & {defines:Record<string,number>};flags.defines??={};flags.defines.FOREST_CACHED_WIND19=Number(cachedWind);m.userData.forestSnow=true;
  m.onBeforeCompile=s=>{
   Object.assign(s.uniforms,lifeUniforms,life?.uniforms??{});
   s.vertexShader=forestAttributes+'varying vec4 vForestTraits,vForestSeason;varying float vForestCluster,vForestPart;varying vec3 vForestPosition,vForestWorld;varying vec3 vForestAnchor;varying vec2 vForestSnow;\n'+windGLSL+forestSeasonGLSL+forestGLSL+s.vertexShader;
@@ -110,5 +124,5 @@ export function forestMaterial(calendar:{value:THREE.Vector4},atlas:THREE.Textur
    ${!leaf||merged?`if(vForestPart<.5){float grain=sin(vForestPosition.y*3.+sin(vForestPosition.x*43.+vForestPosition.z*39.)*1.8);diffuseColor.rgb*=.93+.07*grain;}`:''}`);
   if(leaf)s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>','if(vForestPart>.5)outgoingLight+=diffuseColor.rgb*lifeDay*.12;\n#include <opaque_fragment>');
  };
- m.userData.coarseSolarReceiver=far;m.customProgramCacheKey=()=>`forest-19-${leaf}-${far}-${merged}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,forest:true,far});return m;
+ m.userData.coarseSolarReceiver=far;m.customProgramCacheKey=()=>`forest-19-${leaf}-${far}-${merged}-${cachedWind}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,forest:true,far});return m;
 }
