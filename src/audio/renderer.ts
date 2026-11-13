@@ -1,3 +1,5 @@
+// @ts-ignore Shared existing CC0 library; no new audio acquisition.
+import {AUDIO_GROUPS} from './catalog.mjs';
 // @ts-ignore Shared pure data and deterministic helpers, tested directly in Node.
 import {AUDIO_BUDGETS,layerMix,MATERIALS,diurnalBirdsAllowed} from './profiles.mjs';
 // @ts-ignore Pure clock/memory module.
@@ -6,18 +8,23 @@ import {seededRandom} from './director.mjs';
 import {roadSourceHidden} from './geography.mjs';
 import type {Vec3,SoundContext} from './types';
 import {AudioResources,ASSETS} from './resources';
-type Voice={source:AudioBufferSourceNode;nodes:AudioNode[];gain:GainNode;fadeGain:GainNode;asset:string;priority:number;panner:PannerNode|null;end:number;position?:Vec3;velocity?:Vec3;started:number;retiring:boolean;bedId?:string;reason?:string;refDistance?:number;maxDistance?:number;roadEvent?:boolean};
+type Voice={source:AudioBufferSourceNode;nodes:AudioNode[];gain:GainNode;fadeGain:GainNode;asset:string;priority:number;panner:PannerNode|null;end:number;position?:Vec3;velocity?:Vec3;started:number;retiring:boolean;bedId?:string;reason?:string;refDistance?:number;maxDistance?:number;roadEvent?:boolean;movingId?:string;filterBase?:number;occlusion?:number};
 type Bed={id:string;asset:string;assets:string[];previous:string|null;reason:string;gain:GainNode;filter:BiquadFilterNode;next:number;weight:number;priority:number;retiring:boolean;pan:StereoPannerNode|null;entryFade:number};
 /** Same graph in realtime and OfflineAudioContext. Native audio-clock envelopes
  * run independently of Three.js frames. Diffuse beds never get HRTF nodes. */
 export class AcousticRenderer{
+ private reflection:DelayNode;private reflectionFilter:BiquadFilterNode;private reflectionGain:GainNode;
  readonly master:GainNode;readonly limiter:DynamicsCompressorNode;readonly resources:AudioResources;
  readonly voices=new Set<Voice>();readonly beds=new Map<string,Bed>();readonly random:()=>number;
+ private obstacles:any=null;private obstructionCursor=0;private nextVehicle=0;private vehicleId='';private lastUp:Vec3={x:0,y:1,z:0};
+ obstructionChecks=0;obstructionUpdates=0;
  profile='balanced';volume=.7;budget=AUDIO_BUDGETS.balanced;closed=false;peakVoices=0;dropped=0;steps=0;lastStepVariant=-1;lastStepSource='';lastStepAssets:string[]=[];lastListener:Vec3={x:0,y:0,z:0};lastForward:Vec3={x:0,y:0,z:-1};heardBirds=0;roadEvents=0;recentEvents:unknown[]=[];lastContext:SoundContext|null=null;
  constructor(readonly context:BaseAudioContext,base:string,seed=1){
  this.random=seededRandom(seed);this.master=context.createGain();this.master.gain.value=0;
  this.limiter=context.createDynamicsCompressor();this.limiter.threshold.value=-8;this.limiter.knee.value=8;this.limiter.ratio.value=8;this.limiter.attack.value=.006;this.limiter.release.value=.25;
- this.master.connect(this.limiter).connect(context.destination);this.resources=new AudioResources(context,base,()=>new Set([...this.voices].map(v=>v.asset)));
+ this.master.connect(this.limiter).connect(context.destination);
+ // One quiet early reflection, no feedback and no cathedral tail.
+ this.reflection=context.createDelay(.12);this.reflection.delayTime.value=.047;this.reflectionFilter=context.createBiquadFilter();this.reflectionFilter.type='lowpass';this.reflectionFilter.frequency.value=2300;this.reflectionGain=context.createGain();this.reflectionGain.gain.value=0;this.master.connect(this.reflection).connect(this.reflectionFilter).connect(this.reflectionGain).connect(this.limiter);this.resources=new AudioResources(context,base,()=>new Set([...this.voices].map(v=>v.asset)));
  }
  setVolume(volume:number,audible=true){this.volume=Number.isFinite(volume)?Math.max(0,Math.min(1,volume)):0;this.master.gain.setTargetAtTime(audible?this.volume*.55:0,this.context.currentTime,.12)}
  setProfile(name:string){const next=AUDIO_BUDGETS[name]??AUDIO_BUDGETS.balanced;this.profile=name;this.budget=next;
@@ -38,7 +45,7 @@ export class AcousticRenderer{
  const fade=Math.min(options.fade??.025,duration*.35),curve=new Float32Array(64);for(let i=0;i<64;i++)curve[i]=Math.sin(i/63*Math.PI/2)*options.gain;
  // Schedule after graph construction: currentTime may advance during HRTF setup.
  gain.gain.value=0;const t=c.currentTime+(options.delay??.05);gain.gain.setValueCurveAtTime(curve,t,Math.min(options.entryFade??fade,fade));gain.gain.setValueCurveAtTime(Float32Array.from(curve).reverse(),t+duration-fade,fade);
- const voice:Voice={source,nodes:[filter,gain,fadeGain,...(panner?[panner]:[])],gain,fadeGain,asset,priority:options.priority,panner,end:t+duration,position:options.position?{...options.position}:undefined,velocity:options.velocity,started:t,retiring:false,reason:options.reason,refDistance:options.refDistance??4,maxDistance:options.maxDistance??110};this.voices.add(voice);this.peakVoices=Math.max(this.peakVoices,this.voices.size);source.onended=()=>this.release(voice);source.start(t,options.offset??0);source.stop(t+duration);return voice;
+ const voice:Voice={source,nodes:[filter,gain,fadeGain,...(panner?[panner]:[])],gain,fadeGain,asset,priority:options.priority,panner,end:t+duration,position:options.position?{...options.position}:undefined,velocity:options.velocity,started:t,retiring:false,filterBase:options.filter??6000,reason:options.reason,refDistance:options.refDistance??4,maxDistance:options.maxDistance??110};this.voices.add(voice);this.peakVoices=Math.max(this.peakVoices,this.voices.size);source.onended=()=>this.release(voice);source.start(t,options.offset??0);source.stop(t+duration);return voice;
  }
  environmentGuard(c:SoundContext){
   if(!diurnalBirdsAllowed(c))for(const v of this.voices)if(v.asset.startsWith('bird-'))this.retire(v,.45);
@@ -47,6 +54,7 @@ export class AcousticRenderer{
  updateContext(c:SoundContext){
   if(this.closed)return;
   this.lastContext=c;this.environmentGuard(c);
+  const enclosure=this.obstacles?.enclosure(this.lastListener)??0;this.reflectionGain.gain.setTargetAtTime(enclosure*.035*(1-(c.influences.forest??0)*.7),this.context.currentTime,.7);
   const t=this.context.currentTime,manual=c.environment?.manual===true;
   const mix=layerMix(c).slice(0,this.budget.beds),selected=new Set(mix.map((l:any)=>l.id));
   for(const bed of this.beds.values())if(!selected.has(bed.id)&&!bed.retiring){
@@ -103,10 +111,26 @@ export class AcousticRenderer{
  const next=m.assets.find((a:string)=>!this.resources.cache.has(a));if(next)void this.resources.request(next);
  const v=this.play(id,b,{gain:m.gain*(.88+this.random()*.18)*(.78+run*.4)*(side<0?.98:1.02),rate:1+run*.025+(this.random()-.5)*.018,filter:m.filter*(1-(contact?.wetness??0)*.2),duration:b.duration*(1-run*.13),fade:.005,delay:.002,priority:100,reason:`actual ${kind} ${side<0?'left':'right'} foot contact, ${speed.toFixed(2)} m/s, running ${run.toFixed(2)}`});if(v)this.steps++;return !!v;
  }
- listener(position:Vec3,forward:Vec3,up:Vec3){this.lastListener={...position};this.lastForward={...forward};for(const v of this.voices)if(v.roadEvent&&v.position&&!roadSourceHidden(v.position,{position,forward}))this.retire(v,.3);const l=this.context.listener,t=this.context.currentTime;for(const [param,value] of [[l.positionX,position.x],[l.positionY,position.y],[l.positionZ,position.z],[l.forwardX,forward.x],[l.forwardY,forward.y],[l.forwardZ,forward.z],[l.upX,up.x],[l.upY,up.y],[l.upZ,up.z]] as const)param.setTargetAtTime(value,t,.045)}
+ listener(position:Vec3,forward:Vec3,up:Vec3){if(Math.hypot(position.x-this.lastListener.x,position.y-this.lastListener.y,position.z-this.lastListener.z)<1e-6&&Math.hypot(forward.x-this.lastForward.x,forward.y-this.lastForward.y,forward.z-this.lastForward.z)<1e-6&&Math.hypot(up.x-this.lastUp.x,up.y-this.lastUp.y,up.z-this.lastUp.z)<1e-6)return;this.lastUp={...up};this.lastListener={...position};this.lastForward={...forward};for(const v of this.voices)if(v.roadEvent&&v.position&&!roadSourceHidden(v.position,{position,forward}))this.retire(v,.3);const l=this.context.listener,t=this.context.currentTime;for(const [param,value] of [[l.positionX,position.x],[l.positionY,position.y],[l.positionZ,position.z],[l.forwardX,forward.x],[l.forwardY,forward.y],[l.forwardZ,forward.z],[l.upX,up.x],[l.upY,up.y],[l.upZ,up.z]] as const)param.setTargetAtTime(value,t,.045)}
+ setObstacles(index:any){this.obstacles=index}
+ updateObstructions(){
+  if(!this.obstacles)return;const t=this.context.currentTime,spatial=[...this.voices].filter(v=>v.panner&&v.position&&!v.retiring);
+  // At most two sources per context tick, each index query capped at 64 walls.
+  for(let i=0;i<Math.min(2,spatial.length);i++){const v=spatial[this.obstructionCursor++%spatial.length],a=this.obstacles.between(this.lastListener,v.position);v.occlusion=a;this.obstructionChecks+=this.obstacles.checks;this.obstructionUpdates++;(v.nodes[0]as BiquadFilterNode).frequency.setTargetAtTime((v.filterBase??6000)*(1-a)+900*a,t,.4);v.fadeGain.gain.setTargetAtTime(1-a*.55,t,.4)}
+  const water=this.beds.get('water'),point=this.lastContext?.water?.point;if(water&&point){const a=this.obstacles.between(this.lastListener,{...point,y:this.lastContext!.position.y});water.filter.frequency.setTargetAtTime(8500*(1-a)+1100*a,t,.6);water.gain.gain.setTargetAtTime(water.weight*(1-a*.6),t,.6)}
+ }
+ vehicle(v:{id:string;position:Vec3;speed:number;rain:number}|null){
+  const t=this.context.currentTime;
+  if(!v){for(const voice of this.voices)if(voice.movingId)this.retire(voice,.5);this.vehicleId='';return}
+  const distance=Math.hypot(v.position.x-this.lastListener.x,v.position.z-this.lastListener.z),asset=AUDIO_GROUPS.traffic?.[0];if(!asset)return;if(distance>140){for(const voice of this.voices)if(voice.movingId===v.id)this.retire(voice,.7);return;}
+  const b=this.resources.get(asset);if(!b){void this.resources.request(asset);return}
+  if(this.vehicleId!==v.id){for(const voice of this.voices)if(voice.movingId)this.retire(voice,.5);this.vehicleId=v.id;this.nextVehicle=0}
+  if(t>=this.nextVehicle){const rate=.83+Math.min(1,v.speed/7)*.25,duration=3.8,voice=this.play(asset,b,{gain:.14*(1+v.rain*.15),position:v.position,priority:68,refDistance:5,maxDistance:145,offset:Math.min(b.duration-5,9+this.random()*2),duration,rate,filter:4200*(1-v.rain*.2),fade:.7,reason:'interpreted moving vehicle, existing CC0 motor/rolling excerpt; no local recording'});if(voice){voice.movingId=v.id;this.nextVehicle=t+duration-.7}}
+  for(const voice of this.voices)if(voice.movingId===v.id&&!voice.retiring){voice.position={...v.position};voice.panner!.positionX.setTargetAtTime(v.position.x,t,.08);voice.panner!.positionY.setTargetAtTime(v.position.y,t,.08);voice.panner!.positionZ.setTargetAtTime(v.position.z,t,.08);voice.source.playbackRate.setTargetAtTime(.83+Math.min(1,v.speed/7)*.25,t,.25)}
+ }
  /** Approximate occlusion only for explicit obstruction information from a host. */
  occlude(amount:number){const t=this.context.currentTime,a=Math.max(0,Math.min(1,amount));for(const v of this.voices)if(v.panner){const filter=v.nodes[0] as BiquadFilterNode;filter.frequency.setTargetAtTime(6000*(1-a)+900*a,t,.35)}}
  silence(){for(const v of this.voices)this.retire(v,.18);for(const b of this.beds.values()){b.retiring=true;b.gain.gain.setTargetAtTime(0,this.context.currentTime,.05)}}
- stats(){const t=this.context.currentTime;return {layers:[...this.beds.values()].map(b=>({id:b.id,asset:b.asset,actualBusGain:b.gain.gain.value,targetGain:b.weight,masterGain:this.master.gain.value,reason:b.reason,diffuse:!b.pan,pan:b.pan?.pan.value??null,transition:b.retiring?'fading out':Math.abs(b.gain.gain.value-b.weight)>.001?'smoothing':'steady',nextWindowIn:b.next-t})),activeSources:[...this.voices].map(v=>({asset:v.asset,recording:ASSETS[v.asset]?.source,position:v.position??null,diffuse:v.bedId?!this.beds.get(v.bedId)?.pan:!v.panner,gain:v.gain.gain.value,retirementGain:v.fadeGain.gain.value,masterGain:this.master.gain.value,distance:v.position?Math.hypot(v.position.x-this.lastListener.x,v.position.z-this.lastListener.z):null,refDistance:v.refDistance,reason:v.reason,transition:v.retiring?'fading out':t<v.started?'scheduled':'playing'})),recentEvents:this.recentEvents,nodes:this.closed?0:2+[...this.beds.values()].reduce((n,b)=>n+2+Number(!!b.pan),0)+[...this.voices].reduce((n,v)=>n+1+v.nodes.length,0),voices:this.voices.size,peakVoices:this.peakVoices,hrtf:[...this.voices].filter(v=>v.panner).length,beds:this.beds.size,budget:this.budget,dropped:this.dropped,steps:this.steps,lastStepAssets:[...this.lastStepAssets],heardBirds:this.heardBirds,roadEvents:this.roadEvents,profile:this.profile,...this.resources.stats()}}
- dispose(){if(this.closed)return;this.closed=true;for(const v of this.voices){try{v.source.stop()}catch{/* Already ended. */}this.release(v)}for(const b of this.beds.values()){b.gain.disconnect();b.filter.disconnect();b.pan?.disconnect()}this.beds.clear();this.lastContext=null;this.recentEvents=[];this.resources.dispose();this.master.disconnect();this.limiter.disconnect()}
+ stats(){const t=this.context.currentTime;return {layers:[...this.beds.values()].map(b=>({id:b.id,asset:b.asset,actualBusGain:b.gain.gain.value,targetGain:b.weight,masterGain:this.master.gain.value,reason:b.reason,diffuse:!b.pan,pan:b.pan?.pan.value??null,transition:b.retiring?'fading out':Math.abs(b.gain.gain.value-b.weight)>.001?'smoothing':'steady',nextWindowIn:b.next-t})),activeSources:[...this.voices].map(v=>({asset:v.asset,recording:ASSETS[v.asset]?.source,position:v.position??null,diffuse:v.bedId?!this.beds.get(v.bedId)?.pan:!v.panner,gain:v.gain.gain.value,retirementGain:v.fadeGain.gain.value,masterGain:this.master.gain.value,distance:v.position?Math.hypot(v.position.x-this.lastListener.x,v.position.z-this.lastListener.z):null,refDistance:v.refDistance,reason:v.reason,occlusion:v.occlusion??0,transition:v.retiring?'fading out':t<v.started?'scheduled':'playing'})),recentEvents:this.recentEvents,nodes:this.closed?0:5+[...this.beds.values()].reduce((n,b)=>n+2+Number(!!b.pan),0)+[...this.voices].reduce((n,v)=>n+1+v.nodes.length,0),voices:this.voices.size,peakVoices:this.peakVoices,hrtf:[...this.voices].filter(v=>v.panner).length,beds:this.beds.size,budget:this.budget,dropped:this.dropped,steps:this.steps,lastStepAssets:[...this.lastStepAssets],heardBirds:this.heardBirds,roadEvents:this.roadEvents,profile:this.profile,obstructionChecks:this.obstructionChecks,obstructionUpdates:this.obstructionUpdates,...this.resources.stats()}}
+ dispose(){if(this.closed)return;this.closed=true;for(const v of this.voices){try{v.source.stop()}catch{/* Already ended. */}this.release(v)}for(const b of this.beds.values()){b.gain.disconnect();b.filter.disconnect();b.pan?.disconnect()}this.beds.clear();this.lastContext=null;this.recentEvents=[];this.resources.dispose();this.reflection.disconnect();this.reflectionFilter.disconnect();this.reflectionGain.disconnect();this.master.disconnect();this.limiter.disconnect()}
 }

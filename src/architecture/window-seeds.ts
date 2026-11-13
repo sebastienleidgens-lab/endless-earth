@@ -9,10 +9,11 @@ export function configureWindowBuildings(features:any[]){
  }
 }
 const inside=(x:number,z:number,ring:any[])=>{let yes=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a.z>z)!==(b.z>z)&&x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)yes=!yes}return yes};
-export function attachWindowSeeds(g:THREE.BufferGeometry){
+export function attachWindowSeeds(g:THREE.BufferGeometry){for(const _ of windowSeedSteps(g)){} }
+export function* windowSeedSteps(g:THREE.BufferGeometry):Generator<void,void,unknown>{
  if(g.hasAttribute('windowSeed'))return;const p=g.attributes.position,a=g.attributes.architectureMaterial,index=g.index;if(!a||!index||!a.array.includes(7))return;
  const seeds=new Float32Array(p.count),done=new Set<number>();
- for(let k=0;k<index.count;k+=3){const first=index.getX(k);if(a.getX(first)!==7||done.has(first))continue;
+ for(let k=0;k<index.count;k+=3){if(k%384===0)yield;const first=index.getX(k);if(a.getX(first)!==7||done.has(first))continue;
   // Glass is a connected planar quad; its two indexed triangles share vertices.
   const ids=new Set([index.getX(k),index.getX(k+1),index.getX(k+2)]);if(k+5<index.count&&[0,1,2].some(j=>ids.has(index.getX(k+3+j))))for(let j=0;j<3;j++)ids.add(index.getX(k+3+j));
   let x=0,y=0,z=0;for(const i of ids){x+=p.getX(i)/ids.size;y+=p.getY(i)/ids.size;z+=p.getZ(i)/ids.size;done.add(i)}

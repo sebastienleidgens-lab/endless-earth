@@ -34,13 +34,17 @@ export function coverageClone(source:THREE.Material,range:THREE.Vector2,born:num
  * contribute to the distance fade. The 8 m margin covers motion between ticks. */
 export function selectDetailIndices(mesh:THREE.Mesh,camera:THREE.Camera,range:number){
  const g=mesh.geometry,start=performance.now();let state=g.userData.detailSelection19;
- if(!state){const p=g.attributes.position,source=g.index?.array??Uint32Array.from({length:p.count},(_,i)=>i),groups=new Map<string,any>();
-  for(let i=0;i<source.length;i+=3){const ids=[source[i],source[i+1],source[i+2]],x=ids.reduce((s,j)=>s+p.getX(j)/3,0),z=ids.reduce((s,j)=>s+p.getZ(j)/3,0),key=Math.floor(x/16)+':'+Math.floor(z/16);let b=groups.get(key);if(!b){b={key,ids:[],minX:Infinity,maxX:-Infinity,minZ:Infinity,maxZ:-Infinity,minY:Infinity,maxY:-Infinity};groups.set(key,b)}for(const j of ids){b.ids.push(j);b.minX=Math.min(b.minX,p.getX(j));b.maxX=Math.max(b.maxX,p.getX(j));b.minY=Math.min(b.minY,p.getY(j));b.maxY=Math.max(b.maxY,p.getY(j));b.minZ=Math.min(b.minZ,p.getZ(j));b.maxZ=Math.max(b.maxZ,p.getZ(j))}}
-  const ArrayType=p.count>65535?Uint32Array:Uint16Array,buckets=[...groups.values()].map(b=>({...b,ids:new ArrayType(b.ids)}));g.setIndex(new THREE.BufferAttribute(new ArrayType(source.length),1).setUsage(THREE.DynamicDrawUsage));g.computeBoundingSphere();g.boundingSphere!.radius+=1.2;
-  state=g.userData.detailSelection19={buckets,key:null,x:Infinity,y:Infinity,z:Infinity,range:-1,sourceTriangles:source.length/3,submittedTriangles:0,updates:0,maxCpuMs:0};
- }
+ if(!state){for(const _ of prepareDetailSteps(g)){}state=g.userData.detailSelection19;}
  mesh.updateWorldMatrix(true,false);const local=mesh.worldToLocal(camera.position.clone());if(state.range===range&&Math.hypot(local.x-state.x,local.y-state.y,local.z-state.z)<2)return;
  const chosen=state.buckets.filter((b:any)=>Math.hypot(Math.max(0,b.minX-local.x,local.x-b.maxX),Math.max(0,b.minZ-local.z,local.z-b.maxZ),Math.max(0,b.minY-local.y,local.y-b.maxY))<range+8),key=chosen.map((b:any)=>b.key).join('|');
  if(key!==state.key){let n=0;for(const b of chosen){g.index!.array.set(b.ids,n);n+=b.ids.length}g.setDrawRange(0,n);g.index!.clearUpdateRanges();g.index!.addUpdateRange(0,n);g.index!.needsUpdate=true;state.submittedTriangles=n/3;state.updates++;state.key=key}
  state.x=local.x;state.y=local.y;state.z=local.z;state.range=range;state.maxCpuMs=Math.max(state.maxCpuMs,performance.now()-start);
+}
+
+export function* prepareDetailSteps(g:THREE.BufferGeometry):Generator<void,void,unknown>{
+ if(g.userData.detailSelection19)return;
+const p=g.attributes.position,source=g.index?.array??Uint32Array.from({length:p.count},(_,i)=>i),groups=new Map<string,any>();
+  for(let i=0;i<source.length;i+=3){if(i%768===0)yield;const ids=[source[i],source[i+1],source[i+2]],x=ids.reduce((s,j)=>s+p.getX(j)/3,0),z=ids.reduce((s,j)=>s+p.getZ(j)/3,0),key=Math.floor(x/16)+':'+Math.floor(z/16);let b=groups.get(key);if(!b){b={key,ids:[],minX:Infinity,maxX:-Infinity,minZ:Infinity,maxZ:-Infinity,minY:Infinity,maxY:-Infinity};groups.set(key,b)}for(const j of ids){b.ids.push(j);b.minX=Math.min(b.minX,p.getX(j));b.maxX=Math.max(b.maxX,p.getX(j));b.minY=Math.min(b.minY,p.getY(j));b.maxY=Math.max(b.maxY,p.getY(j));b.minZ=Math.min(b.minZ,p.getZ(j));b.maxZ=Math.max(b.maxZ,p.getZ(j))}}
+  const ArrayType=p.count>65535?Uint32Array:Uint16Array,buckets=[...groups.values()].map(b=>({...b,ids:new ArrayType(b.ids)}));g.setIndex(new THREE.BufferAttribute(new ArrayType(source.length),1).setUsage(THREE.DynamicDrawUsage));g.computeBoundingSphere();g.boundingSphere!.radius+=1.2;
+  g.userData.detailSelection19={buckets,key:null,x:Infinity,y:Infinity,z:Infinity,range:-1,sourceTriangles:source.length/3,submittedTriangles:0,updates:0,maxCpuMs:0};
 }

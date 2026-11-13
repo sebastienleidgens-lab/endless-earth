@@ -1,4 +1,4 @@
-import {coverageReceiver,selectDetailIndices} from '../world/coverage';
+import {coverageReceiver,selectDetailIndices,prepareDetailSteps} from '../world/coverage';
 // @ts-ignore Shared frame time for staggered resource admission.
 import {lifeUniforms} from '../earthlife/state.mjs';
 // @ts-ignore Static instancing metadata, no per-frame tree CPU animation.
@@ -116,7 +116,7 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
   const d=Math.hypot(Math.max(0,Math.abs(camera.position.x-(c.cx+.5)*128)-64),Math.max(0,Math.abs(camera.position.z-(c.cz+.5)*128)-64)),range=eco?c.ecology.profile.ecoRange:c.ecology.profile.detailRange;
   c.range19=range;const visible=d<range+(c.detail?.visible?18:0);c.wanted=visible;
   if(c.detail){const m=c.detail.material;if(!m.userData.coverage19)coverageReceiver(m,new THREE.Vector2(range*.65,range),lifeUniforms.lifeTime.value);else m.userData.coverage19.range.value.set(range*.65,range);c.detail.visible=visible;if(visible){selectDetailIndices(c.detail,camera,range);c.detail.visible=c.detail.geometry.userData.detailSelection19.submittedTriangles>0;}if(!visible)hidden.push({o,c,d})}
-  else if(c.prepared){if(d<range+(stream?.policy.prefetchM??48))requests.push({id:c.prepared,priority:d-(visible?1000:0),d,visible,install:(data:any)=>{const geometry=data.meshes[0].geometry;const material=natureArtMaterial(c.calendar,null,true);coverageReceiver(material,new THREE.Vector2(range*.65,range),lifeUniforms.lifeTime.value);const mesh=new THREE.Mesh(geometry,material);mesh.name='nature-detail';mesh.visible=c.wanted;o.add(mesh);c.detail=mesh;c.builds++;selectDetailIndices(mesh,camera,c.range19??range);}});}
+  else if(c.prepared){if(d<range+(stream?.policy.prefetchM??48))requests.push({id:c.prepared,priority:d-(visible?1000:0),d,visible,prepare:function*(data:any){yield* prepareDetailSteps(data.meshes[0].geometry);},install:(data:any)=>{const geometry=data.meshes[0].geometry;const material=natureArtMaterial(c.calendar,null,true);coverageReceiver(material,new THREE.Vector2(range*.65,range),lifeUniforms.lifeTime.value);const mesh=new THREE.Mesh(geometry,material);mesh.name='nature-detail';mesh.visible=c.wanted;o.add(mesh);c.detail=mesh;c.builds++;selectDetailIndices(mesh,camera,c.range19??range);}});}
   else if(visible)near.push({o,c,d});
   else c.pending=null;
  });

@@ -5,7 +5,7 @@ import {windAtWorld} from './wind.mjs';
 import {eventAt,eligibleLeaves} from './events.mjs';
 // @ts-ignore Global shared allowance.
 import {WorldLifeBudget} from './budget.mjs';
-export function createMicroEvents(scene:THREE.Scene,budget:InstanceType<typeof WorldLifeBudget>){
+export function createMicroEvents(scene:THREE.Scene,budget:InstanceType<typeof WorldLifeBudget>,height:(x:number,z:number)=>number|null=()=>null){
  const geometry=new THREE.BufferGeometry();const values=new Float32Array(16*3);geometry.setAttribute('position',new THREE.BufferAttribute(values,3));
  const material=new THREE.PointsMaterial({size:.065,color:0xb49b58,transparent:true,opacity:0,depthWrite:false});
  const points=new THREE.Points(geometry,material);points.name='earthlife-leaves';points.frustumCulled=false;points.visible=false;scene.add(points);
@@ -17,7 +17,7 @@ export function createMicroEvents(scene:THREE.Scene,budget:InstanceType<typeof W
   if(cell!==key||id!==event.id||!event.active||!eligible||p.distanceTo(anchor)>45){budget.release(cell);active=false;leavesCount=0;cell=key;id=event.id;}
   if(event.active&&eligible&&!active&&event.age<2&&budget.claim(cell,'events')){active=true;anchor.copy(p);if(event.kind==='leaves'&&budget.claim(cell,'particles',budget.profile.particles))leavesCount=budget.profile.particles}
   points.visible=active&&event.kind==='leaves'&&leavesCount>0;
-  if(points.visible){windAtWorld(anchor.x,anchor.z,t,c.meanWind??c.wind,9,wind);const n=leavesCount;geometry.setDrawRange(0,n);for(let i=0;i<n;i++){const age=(event.age+i*.73)%8;values[i*3]=anchor.x+spreadX[i]+age*wind.x;values[i*3+1]=anchor.y+4-age*.38+Math.sin(age+i)*.1;values[i*3+2]=anchor.z+spreadZ[i]-age*-wind.z;}geometry.attributes.position.needsUpdate=true;material.opacity=event.envelope*.65;}
+  if(points.visible){windAtWorld(anchor.x,anchor.z,t,c.meanWind??c.wind,9,wind);const n=leavesCount;geometry.setDrawRange(0,n);for(let i=0;i<n;i++){const age=Math.max(0,event.age-i*.17);values[i*3]=anchor.x+spreadX[i]+age*wind.x;values[i*3+1]=Math.max((height(values[i*3],anchor.z+spreadZ[i]+age*wind.z)??anchor.y)+.025,anchor.y+2.6-age*.38+Math.sin(age+i)*.1);values[i*3+2]=anchor.z+spreadZ[i]-age*-wind.z;}geometry.attributes.position.needsUpdate=true;material.opacity=event.envelope*.65;}
   result.active=Number(active);result.calm=active&&event.kind==='calm'?event.envelope:0;return result;
  },dispose(){budget.release(cell);scene.remove(points);geometry.dispose();material.dispose()}};
 }

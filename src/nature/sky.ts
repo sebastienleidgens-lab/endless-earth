@@ -1,3 +1,10 @@
+// @ts-ignore Artistic responses to this owner’s one calendar/weather state.
+import {sensitiveConditions} from '../earthlife/sensitive-model.mjs';
+// @ts-ignore Shared material uniforms, no extra render pass.
+import {sensitiveUniforms} from '../earthlife/sensitive-state.mjs';
+// @ts-ignore Same geographic bank index as the acoustic owner.
+import {proximityIndex} from '../audio/context.mjs';
+import {riverAreas,riverLines} from '../living/geography';
 // @ts-ignore Shader specialization changes only when the structural profile changes.
 import {setLifeCapabilities} from '../earthlife/capabilities.mjs';
 import * as THREE from 'three';
@@ -51,7 +58,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  const momentSelect=controls.querySelector<HTMLSelectElement>('select[aria-label="Moment de la journée"]')!,weatherSelect=controls.querySelector<HTMLSelectElement>('select[aria-label="Météo simulée"]')!;
  monthSelect.value=String(manualMonth??civilParts(selectedTime,site.timeZone).month);monthSelect.onchange=()=>chooseMonth(Number(monthSelect.value));momentSelect.value=moment;momentSelect.onchange=()=>chooseMoment(momentSelect.value);weatherSelect.value=weatherKey;weatherSelect.onchange=()=>{command();weatherKey=weatherSelect.value;target=weatherTarget(weatherKey);weatherTau=.65;persist()};
  if(params.has('perf')){const secondary=document.createElement('button');secondary.type='button';secondary.textContent='Diagnostic : horloge ×72';secondary.onclick=()=>{demo=!demo;fromTime=effectiveTime;secondary.setAttribute('aria-pressed',String(demo))};controls.append(secondary)}
- const atmosphere=createAtmosphere(scene),cloudLayer=createCloudLayer(scene),rain=createPrecipitation(scene),snow=createSnowWeather(scene,site.lat),budget=new WorldLifeBudget(lifeSettings.profile),fauna=createFauna(scene,budget,height),events=createMicroEvents(scene,budget);
+ const atmosphere=createAtmosphere(scene),cloudLayer=createCloudLayer(scene),rain=createPrecipitation(scene),snow=createSnowWeather(scene,site.lat),budget=new WorldLifeBudget(lifeSettings.profile),fauna=createFauna(scene,budget,height),events=createMicroEvents(scene,budget,height);
  const previousLifeBudget=scene.userData.lifeBudget;scene.userData.lifeBudget=budget;
  let lifeRevision=-1,cpuElapsed=Infinity,calm=0,stamp=-1;const localWind={x:0,z:0,speed:0,gust:0},rainWind=new THREE.Vector2(),sunDirection=new THREE.Vector3();
  const hourFormat=new Intl.DateTimeFormat('en-GB',{timeZone:site.timeZone??'UTC',hourCycle:'h23',hour:'2-digit',minute:'2-digit',second:'2-digit'});
@@ -62,6 +69,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  scene.userData.acousticClimate=environment;
  const conditions={habitat:'unknown',day:0,rain:0,wind:.35,meanWind:.35,month:1,latitude:site.lat,longitude:site.lon,altitude:0};
  const provenance={habitat:'mapped classification, unknown preserved',wind:'simulated',weather:'simulated, not forecast',sky:'Three.js Preetham with artistic night and two cloud altitudes',birds:'generic artistic silhouettes',current:'illustrative surface ripples; hydrological flow unknown'},resources={cpuObjects:11,extraDrawCallsMax:12,extraTextures:0,cloudMaterials:1,birdMaterials:1,particleMaterials:1,rainMaterials:1,snowMaterials:1,snowSeedBytes:26400};
+ let banks:any=null,bankCount=0,bankQuery:any=null,bankX=Infinity,bankZ=Infinity;
  let habitatX=NaN,habitatZ=NaN,habitatSource:any=null,cachedHabitat='unknown';
  const previousClimate=scene.userData.climate;scene.userData.climate=environment;
  const update=(dt:number,_eco:boolean,wallDt=dt)=>{
@@ -79,7 +87,13 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   horizon.set(0x101a2b).lerp(palette.dayHorizon,day).lerp(palette.warm,warm*.36*(1-state.cloud*.6)).lerp(palette.cloudHorizon,state.cloud*.48*day).multiplyScalar(1-state.rain*.24);
   zenith.set(0x030915).lerp(palette.dayZenith,day).lerp(palette.cloudZenith,state.cloud*.68*day).multiplyScalar(1-state.rain*.34);
   (scene.background as THREE.Color).copy(horizon);const fog=scene.fog as THREE.Fog;fog.color.copy(horizon);fog.near=320-state.mist*290;fog.far=1450-state.mist*1120;
-  sun.intensity=Math.max(0,Math.sin(s.altitude))*2.5*(1-state.cloud*.83)*(1-state.rain*.32);sun.color.set(0xfff4e4).lerp(palette.sunWarm,warm*.75);
+  const count=riverAreas.length+riverLines.length;if(count!==bankCount){bankCount=count;banks=proximityIndex(riverAreas.length?riverAreas.flatMap(a=>a.rings.map(r=>[...r,r[0]])):riverLines)}
+  if(banks&&(!bankQuery||Math.hypot(player.position.x-bankX,player.position.z-bankZ)>3)){bankX=player.position.x;bankZ=player.position.z;bankQuery=banks.query(player.position,180)}
+  const bank=bankQuery?.point,bankHeight=bank?height(bank.x,bank.z):null;
+  const sensitive=sensitiveConditions({day,hour:localHour,month:s.month,rain:state.rain,cloud:state.cloud,wind:localWind.speed,altitude:bankHeight===null?100:player.position.y-bankHeight,bankDistance:bankQuery?.distance??1000,dayKey:Math.floor(effectiveTime/86400000),wetness:groundAppearance.earthWetness.value});
+  sensitiveUniforms.worldDew.value=sensitive.dew;sensitiveUniforms.worldWet.value=groundAppearance.earthWetness.value;sensitiveUniforms.valleyTint.value.copy(horizon);
+  const mist=sensitiveUniforms.valleyMist.value;mist.w+=(sensitive.mist-mist.w)*(1-Math.exp(-transitionDt/9));if(bank)mist.set(bank.x,bank.z,bankHeight??0,mist.w);environment.sensitive={...sensitive,mist:mist.w,bankDistance:bankQuery?.distance??null};
+  sun.intensity=Math.pow(Math.max(0,Math.sin(s.altitude)),.72)*2.5*(1-state.cloud*.83)*(1-state.rain*.32);sun.color.set(0xfff4e4).lerp(palette.sunWarm,warm*.82);
   hemisphere.intensity=(.055+lightDay*1.5)*(1-state.cloud*.34)*(1-state.rain*.20);hemisphere.color.copy(zenith).lerp(palette.white,.65);hemisphere.groundColor.set(0x65705d).multiplyScalar(.4+lightDay*.6);
   sunDirection.set(Math.sin(s.azimuth)*Math.cos(s.altitude),Math.sin(s.altitude),-Math.cos(s.azimuth)*Math.cos(s.altitude));sun.position.copy(player.position).addScaledVector(sunDirection,150);sun.target.position.copy(player.position);sun.target.updateMatrixWorld();
   atmosphere.update(camera.position,sunDirection,day,state.cloud,state.mist,horizon,zenith);
