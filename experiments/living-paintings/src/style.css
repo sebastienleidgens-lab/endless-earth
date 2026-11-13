@@ -1,0 +1,498 @@
+:root {
+  color: #e5e5d6;
+  background: #172928;
+  font-family: Arial, Helvetica, sans-serif;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at 50% 30%, #34453b66, transparent 65%);
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+button:focus-visible,
+a:focus-visible,
+canvas:focus-visible {
+  outline: 2px solid #e1c48c;
+  outline-offset: 4px;
+}
+header {
+  height: 105px;
+  margin: 0 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #bfbd9f23;
+}
+.brand {
+  font:
+    italic 42px Georgia,
+    serif;
+  text-decoration: none;
+  color: #d5be8c;
+  display: flex;
+  gap: 17px;
+  align-items: center;
+}
+.brand > span {
+  font: 11px Arial;
+  letter-spacing: 3px;
+  color: #e5e5d6;
+}
+.brand small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #94a59a;
+  margin-top: 8px;
+}
+.edition {
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #9caa9f;
+}
+.edition span {
+  display: block;
+  color: #d2d7c7;
+  font: italic 21px Georgia;
+  margin-top: 8px;
+  letter-spacing: 0;
+}
+header button {
+  font-size: 11px;
+  color: #c4cabb;
+}
+header button span {
+  margin-left: 18px;
+  color: #c7b079;
+}
+main {
+  max-width: 1550px;
+  margin: auto;
+  padding: 0 5vw;
+}
+.intro {
+  text-align: center;
+  padding: 34px 0 30px;
+}
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 2.7px;
+  color: #bca77d;
+}
+h1 {
+  font:
+    normal clamp(25px, 3vw, 44px) / 1.3 Georgia,
+    serif;
+  margin: 15px 0 10px;
+  letter-spacing: -0.7px;
+}
+h1 em {
+  color: #d5bd8b;
+  font-weight: normal;
+}
+.subtitle {
+  font:
+    13px Georgia,
+    serif;
+  color: #a7b2a4;
+  letter-spacing: 0.3px;
+}
+.painting {
+  position: relative;
+  aspect-ratio: 1.9;
+  max-height: 70vh;
+  border: 1px solid #bfbd9f4d;
+  box-shadow: 0 18px 60px #0a19194d;
+  background: #283b34;
+  overflow: hidden;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  object-fit: contain;
+}
+.painting:after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 45px #0d241c66;
+}
+.scene-label {
+  pointer-events: none;
+  position: absolute;
+  left: 28px;
+  top: 24px;
+  text-shadow: 0 2px 8px #192820;
+}
+.scene-label > span {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #efdfb4;
+}
+.scene-label h2 {
+  font: normal 24px Georgia;
+  margin: 9px 0;
+  color: #fff5d9;
+}
+.scene-label p {
+  font: 12px Georgia;
+  color: #eee8cc;
+  max-width: 330px;
+}
+.compass {
+  position: absolute;
+  top: 25px;
+  right: 26px;
+  display: grid;
+  gap: 8px;
+  color: #f0e4c5;
+  text-align: center;
+  font: 14px Georgia;
+  pointer-events: none;
+}
+.compass span {
+  display: block;
+  transform: rotate(-40deg);
+}
+.compass small {
+  font: 8px Arial;
+  letter-spacing: 1px;
+}
+#walk {
+  position: absolute;
+  bottom: 25px;
+  left: 28px;
+  padding: 14px 20px;
+  background: #1a302eee;
+  border: 1px solid #cbb77d88;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+}
+#walk span {
+  padding-left: 22px;
+  color: #d6b777;
+}
+#walk.running {
+  background: #263d35bd;
+}
+#loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #203631;
+  z-index: 3;
+  font: 20px Georgia;
+}
+.trail {
+  padding: 25px 0 0;
+}
+.trail-heading {
+  display: flex;
+  justify-content: space-between;
+  color: #9ba99d;
+  font-size: 8px;
+  letter-spacing: 1.8px;
+}
+.trail ol {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin: 20px 0 0;
+}
+.trail li {
+  width: 33.333%;
+  border-top: 1px solid #81917f55;
+  padding: 18px 0;
+  display: flex;
+  gap: 12px;
+  color: #9baa9d;
+  align-items: center;
+}
+.trail li > span {
+  font: 12px Georgia;
+  border: 1px solid #81917f66;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: grid;
+  place-items: center;
+}
+.trail li.active {
+  border-top-color: #d8bd89;
+  color: #e6dcc0;
+}
+.trail li.active > span {
+  background: #c2a671;
+  color: #19302b;
+  border-color: #c2a671;
+}
+.trail li div {
+  font: 15px Georgia;
+}
+.trail small {
+  display: block;
+  font: 9px Arial;
+  margin-top: 6px;
+  color: #8d9f91;
+}
+footer {
+  padding: 9px 0 22px;
+  border-top: 1px solid #bfbd9f23;
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #92a197;
+  line-height: 1.8;
+}
+footer span {
+  margin: 0 8px;
+}
+footer button {
+  font-size: 9px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+kbd {
+  font: 10px Arial;
+  margin-right: 2px;
+  color: #c9cbb9;
+}
+dialog {
+  max-width: 540px;
+  background: #233a33;
+  color: #e5e5d6;
+  border: 1px solid #b3a37d;
+  padding: 35px;
+  box-shadow: 0 20px 100px #0009;
+}
+dialog::backdrop {
+  background: #102422bb;
+  backdrop-filter: blur(5px);
+}
+dialog h2 {
+  font: 30px Georgia;
+}
+dialog p {
+  font: 14px/1.8 Georgia;
+  color: #c4d0bd;
+}
+dialog .credits {
+  font: 11px/1.8 Arial;
+}
+#close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+}
+#toast {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #fff2c9;
+  text-shadow: 0 2px 4px #000;
+  pointer-events: none;
+  text-align: center;
+}
+.mobile-pad {
+  display: none;
+}
+@media (max-width: 650px) {
+  header {
+    height: 76px;
+    margin: 0 5vw;
+  }
+  .brand {
+    font-size: 30px;
+    gap: 10px;
+  }
+  .brand > span {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+  .brand small {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+  .edition {
+    display: none;
+  }
+  .intro {
+    padding: 22px 0 15px;
+  }
+  .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1.7px;
+  }
+  h1 {
+    font-size: 27px;
+    max-width: 320px;
+    margin: 12px auto;
+    line-height: 1.25;
+  }
+  .subtitle {
+    font-size: 11px;
+  }
+  .painting {
+    aspect-ratio: auto;
+    height: 52vh;
+    max-height: none;
+    margin: 0 -3vw;
+  }
+  .scene-label {
+    left: 15px;
+    top: 16px;
+  }
+  .scene-label h2 {
+    font-size: 20px;
+  }
+  .scene-label p {
+    font-size: 10px;
+    max-width: 230px;
+  }
+  .compass {
+    right: 15px;
+    top: 20px;
+  }
+  #walk {
+    left: 15px;
+    bottom: 15px;
+    padding: 11px 12px;
+    font-size: 10px;
+    max-width: 51%;
+  }
+  #walk span {
+    padding-left: 8px;
+  }
+  .mobile-pad {
+    display: block;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    text-align: center;
+  }
+  .mobile-pad button {
+    width: 36px;
+    height: 36px;
+    margin: 2px;
+    background: #17332bd9;
+    border: 1px solid #e0d1ac66;
+    color: #e6d9b5;
+    border-radius: 4px;
+    touch-action: none;
+  }
+  .trail {
+    padding-top: 19px;
+  }
+  .trail-heading {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .trail ol {
+    margin-top: 15px;
+  }
+  .trail li {
+    gap: 6px;
+    padding: 14px 0;
+  }
+  .trail li > span {
+    width: 23px;
+    height: 23px;
+    font-size: 10px;
+  }
+  .trail li div {
+    font-size: 12px;
+  }
+  .trail small {
+    font-size: 8px;
+    max-width: 85px;
+  }
+  footer {
+    display: block;
+    font-size: 8px;
+    padding-bottom: 9px;
+  }
+  footer p {
+    margin: 5px 0;
+  }
+  footer span {
+    margin: 0 4px;
+  }
+  #toast {
+    bottom: 65px;
+    min-width: 200px;
+    font-size: 10px;
+  }
+}
+@media (max-height: 500px) and (min-width: 651px) {
+  header {
+    height: 60px;
+  }
+  .intro {
+    padding: 10px;
+  }
+  .intro h1 {
+    margin: 5px;
+  }
+  .intro p {
+    margin: 4px;
+  }
+  .painting {
+    height: 65vh;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+  .trail {
+    padding-top: 10px;
+  }
+}
+
+footer a,
+dialog a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+#zoom {
+  position: absolute;
+  right: 22px;
+  bottom: 24px;
+  background: #182c28d9;
+  border: 1px solid #cab88788;
+  padding: 10px 14px;
+  font-size: 10px;
+  letter-spacing: 0.4px;
+}
+@media (max-width: 650px) {
+  #zoom {
+    right: 12px;
+    top: 88px;
+    bottom: auto;
+    padding: 8px 10px;
+    font-size: 9px;
+  }
+  .scene-label p {
+    max-width: 200px;
+  }
+}
