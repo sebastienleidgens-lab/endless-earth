@@ -65,8 +65,8 @@ function meshData(){return {position:[],normal:[],color:[],uv:[],treeAttachment:
 function vertex(out,p,n,color,attachment,leaf,phase,keep,uv=[0,0]){const i=out.position.length/3;out.position.push(...p.toArray());out.normal.push(...n.toArray());out.color.push(...color.toArray());out.uv.push(...uv);out.treeAttachment.push(...attachment.toArray());out.treeLeaf.push(leaf);out.treePhase.push(phase);out.treeKeep.push(keep);return i}
 function geometry(out,name){const g=new THREE.BufferGeometry();for(const [k,n]of Object.entries({position:3,treeAttachment:3,treePhase:1,treeKeep:1}))g.setAttribute(k,new THREE.Float32BufferAttribute(out[k],n));g.setAttribute('normal',new THREE.Int16BufferAttribute(out.normal.map(v=>Math.round(v*32767)),3,true));g.setAttribute('color',new THREE.Uint8BufferAttribute(out.color.map(v=>Math.round(THREE.MathUtils.clamp(v,0,1)*255)),3,true));g.setAttribute('treeLeaf',new THREE.Uint8BufferAttribute(out.treeLeaf,1));g.setIndex(out.index);g.name=name;g.computeBoundingBox();g.computeBoundingSphere();g.boundingSphere.radius+=1.2;return g}
 
-// Shared skeleton across detail variants: reduced ring/leaf tessellation never
-// resamples a crown or moves a branch/leaf anchor. No spheres, crown shells or cards.
+// Reference meshing of the explicit skeleton. No spheres, crown shells or cards.
+// The optional coarse trunk ring count is not a production forest LOD system.
 export function createPrototypeGeometry(tree,detail='reference'){
  const wood=meshData(),foliage=meshData(),c=tree.config;
  for(const b of tree.branches){

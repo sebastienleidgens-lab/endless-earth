@@ -1,0 +1,981 @@
+{
+  "method": "Actual source geometry, instance traits and existing calendar in the original engine; same anchor and camera. Eco forces the existing far crown, balanced keeps its near crown. This exposes the actual LOD variants, not a movement-transition test.",
+  "rows": [
+    {
+      "profile": "balanced",
+      "lod": "near",
+      "nearTriangles": 331,
+      "farTriangles": 58,
+      "woodTriangles": 40,
+      "traits": [
+        0,
+        0.794921875,
+        0,
+        0.8543359637260437
+      ],
+      "trunkBounds": [
+        -441.4542773697672,
+        8.002391904592514,
+        337.5256801189625,
+        -435.5883251692953,
+        18.844879700446313,
+        343.43324322088125
+      ],
+      "crownBounds": [
+        -450.22404448925397,
+        13.1863740790277,
+        328.83768223877667,
+        -427.17895505742104,
+        23.794861829635522,
+        351.8098259710996
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -423.52130126953125,
+            15.002391904592514,
+            355.4794616699219
+          ],
+          "quaternion": [
+            0,
+            0.3826834323650898,
+            0,
+            0.9238795325112867
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1550467513377824,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1433016785166843,
+            "z": -0.06093715876186033,
+            "speed": 0.1550467513377824,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 480,
+            "commandRevision": 4,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              856.0305020542825,
+              -469.4847690398243
+            ],
+            "morph": [
+              0.3410371169172014,
+              0.2530334884363672,
+              0.27904081569812156
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 1764,
+          "treeInstances": 94,
+          "updates": 1,
+          "lastUpdateCpuMs": 40.199999999953434,
+          "maxUpdateCpuMs": 40.199999999953434,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 7216,
+          "extraPasses": 1,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 32768,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 3,
+          "calls": 16,
+          "triangles": 41753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 21,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "profile": "eco",
+      "lod": "far",
+      "nearTriangles": 331,
+      "farTriangles": 58,
+      "woodTriangles": 40,
+      "traits": [
+        0,
+        0.794921875,
+        0,
+        0.8543359637260437
+      ],
+      "trunkBounds": [
+        -441.4542773697672,
+        8.002391904592514,
+        337.5256801189625,
+        -435.5883251692953,
+        18.844879700446313,
+        343.43324322088125
+      ],
+      "crownBounds": [
+        -448.29701310462815,
+        13.640734821287026,
+        330.5737118937175,
+        -428.6234201474888,
+        23.141958810111703,
+        350.1897281849408
+      ],
+      "state": {
+        "camera": {
+          "position": [
+            -423.52130126953125,
+            15.002391904592514,
+            355.4794616699219
+          ],
+          "quaternion": [
+            0,
+            0.3826834323650898,
+            0,
+            0.9238795325112867
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18070881996665303,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1604812742249484,
+            "z": -0.08313645551410023,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 720,
+            "commandRevision": 6,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1280.5037305828746,
+              -701.1388581511102
+            ],
+            "morph": [
+              0.3158830408787193,
+              0.3134423047702664,
+              0.22099102677887772
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 1764,
+          "treeInstances": 94,
+          "updates": 1,
+          "lastUpdateCpuMs": 40.199999999953434,
+          "maxUpdateCpuMs": 40.199999999953434,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 7216,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 32768,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 4,
+          "calls": 16,
+          "triangles": 41480,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 21,
+          "textures": 11
+        }
+      }
+    }
+  ],
+  "retention": [
+    {
+      "date": "2026-06-21T13:57:47.015Z",
+      "calendar": [
+        1,
+        0.04000000000000001,
+        0,
+        0.22666666666666663
+      ],
+      "threshold": 0.8543359637260437,
+      "groups": [
+        {
+          "value": 0.08484567701816559,
+          "vertices": 33,
+          "retained": true
+        },
+        {
+          "value": 0.6471881866455078,
+          "vertices": 117,
+          "retained": true
+        },
+        {
+          "value": 0.17939306795597076,
+          "vertices": 150,
+          "retained": true
+        },
+        {
+          "value": 0.3604358732700348,
+          "vertices": 123,
+          "retained": true
+        },
+        {
+          "value": 0.5137712955474854,
+          "vertices": 150,
+          "retained": true
+        },
+        {
+          "value": 0.08266562968492508,
+          "vertices": 129,
+          "retained": true
+        },
+        {
+          "value": 0.5353841781616211,
+          "vertices": 75,
+          "retained": true
+        },
+        {
+          "value": 0.2140192836523056,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.5561867952346802,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.5376793146133423,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.5380743741989136,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.6084569096565247,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.8451696038246155,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.6866533160209656,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.7108891010284424,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.23950354754924774,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.7107522487640381,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.7690439820289612,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.13315197825431824,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.35475441813468933,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.7444116473197937,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.3836953639984131,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.26866382360458374,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.8041226863861084,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.9089658260345459,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.6628292798995972,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.26550301909446716,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.4803113043308258,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.40880823135375977,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.3837178945541382,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.3503151535987854,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.5971304774284363,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.35009530186653137,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.3984190821647644,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.22239084541797638,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.3290029466152191,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.21931025385856628,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.10658810287714005,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.34708794951438904,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.2715802788734436,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.06738543510437012,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.5807530879974365,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.9556372761726379,
+          "vertices": 6,
+          "retained": false
+        }
+      ],
+      "triangles": 331
+    },
+    {
+      "date": "2026-10-21T13:16:43.682Z",
+      "calendar": [
+        0.28258064516129033,
+        0,
+        0.8387096774193549,
+        0.5145161290322581
+      ],
+      "threshold": 0.2513867640587141,
+      "groups": [
+        {
+          "value": 0.08484567701816559,
+          "vertices": 33,
+          "retained": true
+        },
+        {
+          "value": 0.6471881866455078,
+          "vertices": 117,
+          "retained": false
+        },
+        {
+          "value": 0.17939306795597076,
+          "vertices": 150,
+          "retained": true
+        },
+        {
+          "value": 0.3604358732700348,
+          "vertices": 123,
+          "retained": false
+        },
+        {
+          "value": 0.5137712955474854,
+          "vertices": 150,
+          "retained": false
+        },
+        {
+          "value": 0.08266562968492508,
+          "vertices": 129,
+          "retained": true
+        },
+        {
+          "value": 0.5353841781616211,
+          "vertices": 75,
+          "retained": false
+        },
+        {
+          "value": 0.2140192836523056,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.5561867952346802,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.5376793146133423,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.5380743741989136,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.6084569096565247,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.8451696038246155,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.6866533160209656,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.7108891010284424,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.23950354754924774,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.7107522487640381,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.7690439820289612,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.13315197825431824,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.35475441813468933,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.7444116473197937,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3836953639984131,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.26866382360458374,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.8041226863861084,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.9089658260345459,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.6628292798995972,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.26550301909446716,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.4803113043308258,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.40880823135375977,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3837178945541382,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3503151535987854,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.5971304774284363,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.35009530186653137,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3984190821647644,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.22239084541797638,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.3290029466152191,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.21931025385856628,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.10658810287714005,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.34708794951438904,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.2715802788734436,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.06738543510437012,
+          "vertices": 6,
+          "retained": true
+        },
+        {
+          "value": 0.5807530879974365,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.9556372761726379,
+          "vertices": 6,
+          "retained": false
+        }
+      ],
+      "triangles": 331
+    },
+    {
+      "date": "2026-01-21T13:29:21.440Z",
+      "calendar": [
+        0,
+        0,
+        0,
+        0.2306451612903226
+      ],
+      "threshold": 0,
+      "groups": [
+        {
+          "value": 0.08484567701816559,
+          "vertices": 33,
+          "retained": false
+        },
+        {
+          "value": 0.6471881866455078,
+          "vertices": 117,
+          "retained": false
+        },
+        {
+          "value": 0.17939306795597076,
+          "vertices": 150,
+          "retained": false
+        },
+        {
+          "value": 0.3604358732700348,
+          "vertices": 123,
+          "retained": false
+        },
+        {
+          "value": 0.5137712955474854,
+          "vertices": 150,
+          "retained": false
+        },
+        {
+          "value": 0.08266562968492508,
+          "vertices": 129,
+          "retained": false
+        },
+        {
+          "value": 0.5353841781616211,
+          "vertices": 75,
+          "retained": false
+        },
+        {
+          "value": 0.2140192836523056,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.5561867952346802,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.5376793146133423,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.5380743741989136,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.6084569096565247,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.8451696038246155,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.6866533160209656,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.7108891010284424,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.23950354754924774,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.7107522487640381,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.7690439820289612,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.13315197825431824,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.35475441813468933,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.7444116473197937,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3836953639984131,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.26866382360458374,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.8041226863861084,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.9089658260345459,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.6628292798995972,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.26550301909446716,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.4803113043308258,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.40880823135375977,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3837178945541382,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3503151535987854,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.5971304774284363,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.35009530186653137,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3984190821647644,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.22239084541797638,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.3290029466152191,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.21931025385856628,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.10658810287714005,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.34708794951438904,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.2715802788734436,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.06738543510437012,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.5807530879974365,
+          "vertices": 6,
+          "retained": false
+        },
+        {
+          "value": 0.9556372761726379,
+          "vertices": 6,
+          "retained": false
+        }
+      ],
+      "triangles": 331
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,316 @@
+{
+  "method": "288 synchronized WebGL renders after warmup, one frozen server, alternating versions, 12 samples per version/archetype/profile, 960x640 DPR1. Actual world with all tree cells hidden except the selected original/prototype. Finite M14 cache disabled in both variants; no global forest or LOD claim. Current Eco original uses its far crown, detailed prototypes intentionally remain reference meshes. No concurrent browser workload.",
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "resolution": [
+      960,
+      640
+    ],
+    "dpr": 1
+  },
+  "startupMs": 6603.509085000001,
+  "summary": [
+    {
+      "profile": "eco",
+      "id": "spreading",
+      "before": {
+        "median": 177.5,
+        "p95": 238.80000000004657,
+        "max": 238.80000000004657,
+        "calls": 20,
+        "triangles": 47756,
+        "geometries": 24,
+        "textures": 10,
+        "prototypeBytes": 20975496
+      },
+      "after": {
+        "median": 374.70000000018626,
+        "p95": 446.5999999998603,
+        "max": 446.5999999998603,
+        "calls": 20,
+        "triangles": 425158,
+        "geometries": 24,
+        "textures": 10,
+        "prototypeBytes": 20975496
+      },
+      "deltaPercent": 111.09859154940071
+    },
+    {
+      "profile": "eco",
+      "id": "slender",
+      "before": {
+        "median": 179.19999999995343,
+        "p95": 209.5,
+        "max": 209.5,
+        "calls": 20,
+        "triangles": 47756,
+        "geometries": 24,
+        "textures": 10,
+        "prototypeBytes": 7248000
+      },
+      "after": {
+        "median": 262.60000000009313,
+        "p95": 321.19999999995343,
+        "max": 321.19999999995343,
+        "calls": 20,
+        "triangles": 183884,
+        "geometries": 24,
+        "textures": 10,
+        "prototypeBytes": 7248000
+      },
+      "deltaPercent": 46.540178571518624
+    },
+    {
+      "profile": "eco",
+      "id": "riverside",
+      "before": {
+        "median": 193.29999999981374,
+        "p95": 272.5999999998603,
+        "max": 272.5999999998603,
+        "calls": 20,
+        "triangles": 47756,
+        "geometries": 24,
+        "textures": 10,
+        "prototypeBytes": 12358236
+      },
+      "after": {
+        "median": 354.60000000009313,
+        "p95": 384.89999999990687,
+        "max": 384.89999999990687,
+        "calls": 20,
+        "triangles": 270018,
+        "geometries": 24,
+        "textures": 10,
+        "prototypeBytes": 12358236
+      },
+      "deltaPercent": 83.44542162464295
+    },
+    {
+      "profile": "eco",
+      "id": "young",
+      "before": {
+        "median": 161.80000000004657,
+        "p95": 201.80000000004657,
+        "max": 201.80000000004657,
+        "calls": 20,
+        "triangles": 47756,
+        "geometries": 24,
+        "textures": 10,
+        "prototypeBytes": 2179560
+      },
+      "after": {
+        "median": 183.5999999998603,
+        "p95": 215.5,
+        "max": 215.5,
+        "calls": 20,
+        "triangles": 92978,
+        "geometries": 24,
+        "textures": 10,
+        "prototypeBytes": 2179560
+      },
+      "deltaPercent": 13.473423980103494
+    },
+    {
+      "profile": "balanced",
+      "id": "spreading",
+      "before": {
+        "median": 218.30000000004657,
+        "p95": 256.69999999995343,
+        "max": 256.69999999995343,
+        "calls": 20,
+        "triangles": 48029,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 20975496
+      },
+      "after": {
+        "median": 473.39999999990687,
+        "p95": 492.39999999990687,
+        "max": 492.39999999990687,
+        "calls": 20,
+        "triangles": 425158,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 20975496
+      },
+      "deltaPercent": 116.85753550151436
+    },
+    {
+      "profile": "balanced",
+      "id": "slender",
+      "before": {
+        "median": 244.0999999998603,
+        "p95": 278.80000000004657,
+        "max": 278.80000000004657,
+        "calls": 20,
+        "triangles": 48029,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 7248000
+      },
+      "after": {
+        "median": 330.4000000001397,
+        "p95": 385.5,
+        "max": 385.5,
+        "calls": 20,
+        "triangles": 183884,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 7248000
+      },
+      "deltaPercent": 35.354362966132236
+    },
+    {
+      "profile": "balanced",
+      "id": "riverside",
+      "before": {
+        "median": 266.9000000001397,
+        "p95": 290.30000000004657,
+        "max": 290.30000000004657,
+        "calls": 20,
+        "triangles": 48029,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 12358236
+      },
+      "after": {
+        "median": 382.30000000004657,
+        "p95": 455.69999999995343,
+        "max": 455.69999999995343,
+        "calls": 20,
+        "triangles": 270018,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 12358236
+      },
+      "deltaPercent": 43.23716747839883
+    },
+    {
+      "profile": "balanced",
+      "id": "young",
+      "before": {
+        "median": 229.30000000004657,
+        "p95": 267.5,
+        "max": 267.5,
+        "calls": 20,
+        "triangles": 48029,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 2179560
+      },
+      "after": {
+        "median": 239,
+        "p95": 277.60000000009313,
+        "max": 277.60000000009313,
+        "calls": 20,
+        "triangles": 92978,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 2179560
+      },
+      "deltaPercent": 4.230266027017637
+    },
+    {
+      "profile": "quality",
+      "id": "spreading",
+      "before": {
+        "median": 226.69999999995343,
+        "p95": 283.30000000004657,
+        "max": 283.30000000004657,
+        "calls": 20,
+        "triangles": 48029,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 20975496
+      },
+      "after": {
+        "median": 503.89999999990687,
+        "p95": 564.5999999998603,
+        "max": 564.5999999998603,
+        "calls": 20,
+        "triangles": 425158,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 20975496
+      },
+      "deltaPercent": 122.27613586237776
+    },
+    {
+      "profile": "quality",
+      "id": "slender",
+      "before": {
+        "median": 236.5,
+        "p95": 284.0999999998603,
+        "max": 284.0999999998603,
+        "calls": 20,
+        "triangles": 48029,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 7248000
+      },
+      "after": {
+        "median": 310.69999999995343,
+        "p95": 413.5999999998603,
+        "max": 413.5999999998603,
+        "calls": 20,
+        "triangles": 183884,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 7248000
+      },
+      "deltaPercent": 31.37420718814099
+    },
+    {
+      "profile": "quality",
+      "id": "riverside",
+      "before": {
+        "median": 230.29999999981374,
+        "p95": 296.29999999981374,
+        "max": 296.29999999981374,
+        "calls": 20,
+        "triangles": 48029,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 12358236
+      },
+      "after": {
+        "median": 378.4000000001397,
+        "p95": 430.89999999990687,
+        "max": 430.89999999990687,
+        "calls": 20,
+        "triangles": 270018,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 12358236
+      },
+      "deltaPercent": 64.3074250978922
+    },
+    {
+      "profile": "quality",
+      "id": "young",
+      "before": {
+        "median": 229.30000000004657,
+        "p95": 265.70000000018626,
+        "max": 265.70000000018626,
+        "calls": 20,
+        "triangles": 48029,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 2179560
+      },
+      "after": {
+        "median": 256.20000000018626,
+        "p95": 291,
+        "max": 291,
+        "calls": 20,
+        "triangles": 92978,
+        "geometries": 24,
+        "textures": 11,
+        "prototypeBytes": 2179560
+      },
+      "deltaPercent": 11.731356301846585
+    }
+  ],
+  "errors": [],
+  "sampleCount": 288
+}

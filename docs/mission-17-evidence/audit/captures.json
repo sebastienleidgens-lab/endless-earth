@@ -1,0 +1,1821 @@
+{
+  "baseline": "9cde6af",
+  "method": "Unmodified Mission16 tree geometry, materials, calendar and climate; actual main.ts engine. Explicit single-tree isolation hides other tree cells for inspection. Terrain/buildings/lights retained. Owner screenshots unavailable in attachment.",
+  "tree": {
+    "cell": "be0ba2ef-7724-4e6a-ae2e-835c3973c9ad",
+    "index": 49,
+    "x": -438.52130126953125,
+    "y": 11.455657958984375,
+    "z": 340.4794616699219,
+    "needle": false
+  },
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "resolution": [
+      960,
+      640
+    ],
+    "dpr": 1
+  },
+  "rows": [
+    {
+      "season": "summer",
+      "angle": "front",
+      "file": "summer-front.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -438.52130126953125,
+            16.455657958984375,
+            360.4794616699219
+          ],
+          "quaternion": [
+            -0.024976600270606542,
+            0,
+            0,
+            0.9996880360587107
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1550467513377824,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1433016785166843,
+            "z": -0.06093715876186033,
+            "speed": 0.1550467513377824,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 480,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              856.0305020542825,
+              -469.4847690398243
+            ],
+            "morph": [
+              0.3410371169172014,
+              0.2530334884363672,
+              0.27904081569812156
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 1764,
+          "treeInstances": 94,
+          "updates": 1,
+          "lastUpdateCpuMs": 20.89999999999418,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 7216,
+          "extraPasses": 1,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 32768,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 3,
+          "calls": 87,
+          "triangles": 98414,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 92,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "summer",
+      "angle": "profile",
+      "file": "summer-profile.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -418.52130126953125,
+            16.455657958984375,
+            340.4794616699219
+          ],
+          "quaternion": [
+            -0.017661123422331643,
+            0.7068861893681763,
+            0.017661123422331643,
+            0.7068861893681763
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1550467513377824,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1433016785166843,
+            "z": -0.06093715876186033,
+            "speed": 0.1550467513377824,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 480,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              856.0305020542825,
+              -469.4847690398243
+            ],
+            "morph": [
+              0.3410371169172014,
+              0.2530334884363672,
+              0.27904081569812156
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 1764,
+          "treeInstances": 94,
+          "updates": 1,
+          "lastUpdateCpuMs": 20.89999999999418,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 7216,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 32768,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 4,
+          "calls": 10,
+          "triangles": 29613,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 94,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "summer",
+      "angle": "three-quarter",
+      "file": "summer-three-quarter.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -424.3791656458003,
+            16.455657958984375,
+            354.6215972936528
+          ],
+          "quaternion": [
+            -0.02307536978172925,
+            0.38256404893326307,
+            0.00955813112036654,
+            0.9235913154110482
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1550467513377824,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1433016785166843,
+            "z": -0.06093715876186033,
+            "speed": 0.1550467513377824,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 480,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              856.0305020542825,
+              -469.4847690398243
+            ],
+            "morph": [
+              0.3410371169172014,
+              0.2530334884363672,
+              0.27904081569812156
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 1764,
+          "treeInstances": 94,
+          "updates": 1,
+          "lastUpdateCpuMs": 20.89999999999418,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 7216,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 32768,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 5,
+          "calls": 16,
+          "triangles": 41753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 94,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "summer",
+      "angle": "below",
+      "file": "summer-below.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -435.2852332920315,
+            10.455657958984375,
+            338.12832066075197
+          ],
+          "quaternion": [
+            0.19666356823630102,
+            0.8030670638214998,
+            -0.38597398507069614,
+            0.40918310666781804
+          ],
+          "fov": 65
+        },
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1550467513377824,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1433016785166843,
+            "z": -0.06093715876186033,
+            "speed": 0.1550467513377824,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 480,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 19.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              856.0305020542825,
+              -469.4847690398243
+            ],
+            "morph": [
+              0.3410371169172014,
+              0.2530334884363672,
+              0.27904081569812156
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 1764,
+          "treeInstances": 94,
+          "updates": 1,
+          "lastUpdateCpuMs": 20.89999999999418,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 7216,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 32768,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 6,
+          "calls": 10,
+          "triangles": 29133,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "autumn",
+      "angle": "front",
+      "file": "autumn-front.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -438.52130126953125,
+            16.455657958984375,
+            360.4794616699219
+          ],
+          "quaternion": [
+            -0.024976600270606542,
+            0,
+            0,
+            0.9996880360587107
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1792588603682,
+          "solar": {
+            "altitude": 0.5034284211250987,
+            "azimuth": 3.61438459769081,
+            "month": 10
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18070881996665303,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1604812742249484,
+            "z": -0.08313645551410023,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 720,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-10-21T13:16:43.682Z",
+          "localTime": "21 oct., 15:16",
+          "localHour": 15.278611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 12.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1280.5037305828746,
+              -701.1388581511102
+            ],
+            "morph": [
+              0.3158830408787193,
+              0.3134423047702664,
+              0.22099102677887772
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3675,
+          "treeInstances": 94,
+          "updates": 2,
+          "lastUpdateCpuMs": 2,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 9127,
+          "extraPasses": 1,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 8,
+          "calls": 87,
+          "triangles": 98414,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "autumn",
+      "angle": "profile",
+      "file": "autumn-profile.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -418.52130126953125,
+            16.455657958984375,
+            340.4794616699219
+          ],
+          "quaternion": [
+            -0.017661123422331643,
+            0.7068861893681763,
+            0.017661123422331643,
+            0.7068861893681763
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1792588603682,
+          "solar": {
+            "altitude": 0.5034284211250987,
+            "azimuth": 3.61438459769081,
+            "month": 10
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18070881996665303,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1604812742249484,
+            "z": -0.08313645551410023,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 720,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-10-21T13:16:43.682Z",
+          "localTime": "21 oct., 15:16",
+          "localHour": 15.278611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 12.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1280.5037305828746,
+              -701.1388581511102
+            ],
+            "morph": [
+              0.3158830408787193,
+              0.3134423047702664,
+              0.22099102677887772
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3675,
+          "treeInstances": 94,
+          "updates": 2,
+          "lastUpdateCpuMs": 2,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 9127,
+          "extraPasses": 0,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 9,
+          "calls": 10,
+          "triangles": 29613,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "autumn",
+      "angle": "three-quarter",
+      "file": "autumn-three-quarter.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -424.3791656458003,
+            16.455657958984375,
+            354.6215972936528
+          ],
+          "quaternion": [
+            -0.02307536978172925,
+            0.38256404893326307,
+            0.00955813112036654,
+            0.9235913154110482
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1792588603682,
+          "solar": {
+            "altitude": 0.5034284211250987,
+            "azimuth": 3.61438459769081,
+            "month": 10
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18070881996665303,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1604812742249484,
+            "z": -0.08313645551410023,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 720,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-10-21T13:16:43.682Z",
+          "localTime": "21 oct., 15:16",
+          "localHour": 15.278611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 12.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1280.5037305828746,
+              -701.1388581511102
+            ],
+            "morph": [
+              0.3158830408787193,
+              0.3134423047702664,
+              0.22099102677887772
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3675,
+          "treeInstances": 94,
+          "updates": 2,
+          "lastUpdateCpuMs": 2,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 9127,
+          "extraPasses": 0,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 10,
+          "calls": 16,
+          "triangles": 41753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "autumn",
+      "angle": "below",
+      "file": "autumn-below.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -435.2852332920315,
+            10.455657958984375,
+            338.12832066075197
+          ],
+          "quaternion": [
+            0.19666356823630102,
+            0.8030670638214998,
+            -0.38597398507069614,
+            0.40918310666781804
+          ],
+          "fov": 65
+        },
+        "climate": {
+          "worldTimeMs": 1792588603682,
+          "solar": {
+            "altitude": 0.5034284211250987,
+            "azimuth": 3.61438459769081,
+            "month": 10
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18070881996665303,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1604812742249484,
+            "z": -0.08313645551410023,
+            "speed": 0.18070881996665303,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 720,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-10-21T13:16:43.682Z",
+          "localTime": "21 oct., 15:16",
+          "localHour": 15.278611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 12.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1280.5037305828746,
+              -701.1388581511102
+            ],
+            "morph": [
+              0.3158830408787193,
+              0.3134423047702664,
+              0.22099102677887772
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3675,
+          "treeInstances": 94,
+          "updates": 2,
+          "lastUpdateCpuMs": 2,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 9127,
+          "extraPasses": 0,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 11,
+          "calls": 10,
+          "triangles": 29133,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "winter",
+      "angle": "front",
+      "file": "winter-front.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -438.52130126953125,
+            16.455657958984375,
+            360.4794616699219
+          ],
+          "quaternion": [
+            -0.024976600270606542,
+            0,
+            0,
+            0.9996880360587107
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1769002161440,
+          "solar": {
+            "altitude": 0.3610562736635063,
+            "azimuth": 3.5021385719468667,
+            "month": 1
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.21146881451762195,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1792660740814098,
+            "z": -0.1130946443080932,
+            "speed": 0.21146881451762195,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 960,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-01-21T13:29:21.440Z",
+          "localTime": "21 janv., 14:29",
+          "localHour": 14.489166666666666,
+          "season": "winter",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 4.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1714.2064167728486,
+              -934.0437356476158
+            ],
+            "morph": [
+              0.15336920010475344,
+              0.3097967518107615,
+              0.04615433381712729
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 2989,
+          "treeInstances": 94,
+          "updates": 3,
+          "lastUpdateCpuMs": 1.6000000000058208,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 8441,
+          "extraPasses": 1,
+          "selectionBuilds": 3,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 13,
+          "calls": 87,
+          "triangles": 98414,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "winter",
+      "angle": "profile",
+      "file": "winter-profile.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -418.52130126953125,
+            16.455657958984375,
+            340.4794616699219
+          ],
+          "quaternion": [
+            -0.017661123422331643,
+            0.7068861893681763,
+            0.017661123422331643,
+            0.7068861893681763
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1769002161440,
+          "solar": {
+            "altitude": 0.3610562736635063,
+            "azimuth": 3.5021385719468667,
+            "month": 1
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.21146881451762195,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1792660740814098,
+            "z": -0.1130946443080932,
+            "speed": 0.21146881451762195,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 960,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-01-21T13:29:21.440Z",
+          "localTime": "21 janv., 14:29",
+          "localHour": 14.489166666666666,
+          "season": "winter",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 4.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1714.2064167728486,
+              -934.0437356476158
+            ],
+            "morph": [
+              0.15336920010475344,
+              0.3097967518107615,
+              0.04615433381712729
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 2989,
+          "treeInstances": 94,
+          "updates": 3,
+          "lastUpdateCpuMs": 1.6000000000058208,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 8441,
+          "extraPasses": 0,
+          "selectionBuilds": 3,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 14,
+          "calls": 10,
+          "triangles": 29613,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "winter",
+      "angle": "three-quarter",
+      "file": "winter-three-quarter.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -424.3791656458003,
+            16.455657958984375,
+            354.6215972936528
+          ],
+          "quaternion": [
+            -0.02307536978172925,
+            0.38256404893326307,
+            0.00955813112036654,
+            0.9235913154110482
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1769002161440,
+          "solar": {
+            "altitude": 0.3610562736635063,
+            "azimuth": 3.5021385719468667,
+            "month": 1
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.21146881451762195,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1792660740814098,
+            "z": -0.1130946443080932,
+            "speed": 0.21146881451762195,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 960,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-01-21T13:29:21.440Z",
+          "localTime": "21 janv., 14:29",
+          "localHour": 14.489166666666666,
+          "season": "winter",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 4.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1714.2064167728486,
+              -934.0437356476158
+            ],
+            "morph": [
+              0.15336920010475344,
+              0.3097967518107615,
+              0.04615433381712729
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 2989,
+          "treeInstances": 94,
+          "updates": 3,
+          "lastUpdateCpuMs": 1.6000000000058208,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 8441,
+          "extraPasses": 0,
+          "selectionBuilds": 3,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 15,
+          "calls": 16,
+          "triangles": 41753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "season": "winter",
+      "angle": "below",
+      "file": "winter-below.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -435.2852332920315,
+            10.455657958984375,
+            338.12832066075197
+          ],
+          "quaternion": [
+            0.19666356823630102,
+            0.8030670638214998,
+            -0.38597398507069614,
+            0.40918310666781804
+          ],
+          "fov": 65
+        },
+        "climate": {
+          "worldTimeMs": 1769002161440,
+          "solar": {
+            "altitude": 0.3610562736635063,
+            "azimuth": 3.5021385719468667,
+            "month": 1
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.21146881451762195,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1792660740814098,
+            "z": -0.1130946443080932,
+            "speed": 0.21146881451762195,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 960,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-01-21T13:29:21.440Z",
+          "localTime": "21 janv., 14:29",
+          "localHour": 14.489166666666666,
+          "season": "winter",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 4.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1714.2064167728486,
+              -934.0437356476158
+            ],
+            "morph": [
+              0.15336920010475344,
+              0.3097967518107615,
+              0.04615433381712729
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 2989,
+          "treeInstances": 94,
+          "updates": 3,
+          "lastUpdateCpuMs": 1.6000000000058208,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 8441,
+          "extraPasses": 0,
+          "selectionBuilds": 3,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 16,
+          "calls": 10,
+          "triangles": 29133,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "ablation": "autumn-calendar",
+      "file": "autumn-calendar.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -424.52130126953125,
+            16.455657958984375,
+            354.4794616699219
+          ],
+          "quaternion": [
+            -0.023309198560394203,
+            0.3825616168001559,
+            0.009654986171762702,
+            0.9235854437223151
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1792588603682,
+          "solar": {
+            "altitude": 0.5034284211250987,
+            "azimuth": 3.61438459769081,
+            "month": 10
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.19375715160559903,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.029997383193225667,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.16162346487242604,
+            "z": -0.10849125567716687,
+            "speed": 0.19375715160559903,
+            "gust": 0.029997383193225667
+          },
+          "transition": {
+            "revision": 1440,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-10-21T13:16:43.682Z",
+          "localTime": "21 oct., 15:16",
+          "localHour": 15.278611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 12.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              2586.604153021026,
+              -1400.495495775944
+            ],
+            "morph": [
+              -0.27206482512269053,
+              0.12626028815255286,
+              -0.27140672630953766
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3675,
+          "treeInstances": 94,
+          "updates": 4,
+          "lastUpdateCpuMs": 1,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 9127,
+          "extraPasses": 1,
+          "selectionBuilds": 4,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 18,
+          "calls": 16,
+          "triangles": 41753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "ablation": "autumn-no-season-mask",
+      "file": "autumn-no-season-mask.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -424.52130126953125,
+            16.455657958984375,
+            354.4794616699219
+          ],
+          "quaternion": [
+            -0.023309198560394203,
+            0.3825616168001559,
+            0.009654986171762702,
+            0.9235854437223151
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1792588603682,
+          "solar": {
+            "altitude": 0.5034284211250987,
+            "azimuth": 3.61438459769081,
+            "month": 10
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1726554182186545,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1498696881298497,
+            "z": -0.08584086115756258,
+            "speed": 0.1726554182186545,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 1680,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-10-21T13:16:43.682Z",
+          "localTime": "21 oct., 15:16",
+          "localHour": 15.278611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 12.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              3013.4692176681306,
+              -1626.1041583342935
+            ],
+            "morph": [
+              -0.34998768444864425,
+              -0.016123520782765802,
+              -0.24630992174082125
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3675,
+          "treeInstances": 94,
+          "updates": 5,
+          "lastUpdateCpuMs": 0.5,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 9127,
+          "extraPasses": 1,
+          "selectionBuilds": 4,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 20,
+          "calls": 16,
+          "triangles": 41753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    },
+    {
+      "ablation": "autumn-no-wind",
+      "file": "autumn-no-wind.jpg",
+      "state": {
+        "camera": {
+          "position": [
+            -424.52130126953125,
+            16.455657958984375,
+            354.4794616699219
+          ],
+          "quaternion": [
+            -0.023309198560394203,
+            0.3825616168001559,
+            0.009654986171762702,
+            0.9235854437223151
+          ],
+          "fov": 45
+        },
+        "climate": {
+          "worldTimeMs": 1792588603682,
+          "solar": {
+            "altitude": 0.5034284211250987,
+            "azimuth": 3.61438459769081,
+            "month": 10
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.18953540409641897,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1721428538873706,
+            "z": -0.08011459170660053,
+            "speed": 0.18953540409641897,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 1920,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-10-21T13:16:43.682Z",
+          "localTime": "21 oct., 15:16",
+          "localHour": 15.278611111111111,
+          "season": "autumn",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "targetWeather": "clear",
+          "weatherTau": 0.65,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 12.5,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              3437.660739245741,
+              -1854.9899260643447
+            ],
+            "morph": [
+              -0.27572058807944483,
+              -0.15521236302465705,
+              -0.09104596235886693
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 3675,
+          "treeInstances": 94,
+          "updates": 6,
+          "lastUpdateCpuMs": 0.20000000001164153,
+          "maxUpdateCpuMs": 20.89999999999418,
+          "lastShadowCalls": 2,
+          "lastShadowTriangles": 9127,
+          "extraPasses": 1,
+          "selectionBuilds": 4,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf"
+        },
+        "render": {
+          "frame": 22,
+          "calls": 16,
+          "triangles": 41753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 95,
+          "textures": 13
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}
