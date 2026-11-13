@@ -1,5 +1,22 @@
 export const WEATHER=Object.freeze({clear:{cloud:.16,mist:0,wind:.24,rain:0,snow:0},cloudy:{cloud:.49,mist:.06,wind:.43,rain:0,snow:0},overcast:{cloud:.9,mist:.22,wind:.52,rain:0,snow:0},mist:{cloud:.65,mist:1,wind:.12,rain:0,snow:0},rain:{cloud:.96,mist:.44,wind:.64,rain:.6,snow:0},storm:{cloud:1,mist:.56,wind:.95,rain:1,snow:0},snow:{cloud:.96,mist:.30,wind:.38,rain:0,snow:.72}});
 export const MOMENTS=Object.freeze({morning:'Matin',afternoon:'Après-midi',evening:'Soir',night:'Nuit',real:'Temps réel'});
+export const MONTHS=Object.freeze(['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre']);
+/** Site civil time, never the browser's timezone. Shared by the existing clock. */
+export function civilParts(reference,timeZone='UTC'){
+ const d=new Date(reference);if(!Number.isFinite(+d))throw new RangeError('Invalid calendar date');
+ const parts=new Intl.DateTimeFormat('en-CA',{timeZone,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(d);
+ return Object.fromEntries(parts.filter(p=>p.type!=='literal').map(p=>[p.type,Number(p.value)]));
+}
+/** The 15th in the simulation year, preserving the exact LOCAL clock time.
+ * Iteration resolves the site's UTC offset on the destination date (DST too).
+ * This is a command to Mission 11's clock, not another running calendar. */
+export function representativeMonth(reference,month,site){
+ if(!Number.isInteger(month)||month<1||month>12)throw new RangeError('Invalid month');
+ const zone=site.timeZone??'UTC',p=civilParts(reference,zone),wanted=Date.UTC(p.year,month-1,15,p.hour,p.minute,p.second),ms=new Date(reference).getUTCMilliseconds();
+ let instant=wanted;
+ for(let i=0;i<4;i++){const q=civilParts(instant,zone),observed=Date.UTC(q.year,q.month-1,q.day,q.hour,q.minute,q.second),delta=wanted-observed;instant+=delta;if(delta===0)break}
+ return new Date(instant+ms);
+}
 export function solar(date,lat,lon){const d=new Date(date),day=(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-Date.UTC(d.getUTCFullYear(),0,0))/86400000,g=2*Math.PI/365*(day-1),decl=.006918-.399912*Math.cos(g)+.070257*Math.sin(g)-.006758*Math.cos(2*g)+.000907*Math.sin(2*g),eq=229.18*(.000075+.001868*Math.cos(g)-.032077*Math.sin(g)-.014615*Math.cos(2*g)-.040849*Math.sin(2*g)),hour=(d.getUTCHours()*60+d.getUTCMinutes()+d.getUTCSeconds()/60+eq+4*lon)/4-180,r=Math.PI/180,L=lat*r,H=hour*r;return {altitude:Math.asin(Math.sin(L)*Math.sin(decl)+Math.cos(L)*Math.cos(decl)*Math.cos(H)),azimuth:Math.atan2(Math.sin(H),Math.cos(H)*Math.sin(L)-Math.tan(decl)*Math.cos(L))+Math.PI,month:d.getUTCMonth()+1};}
 const WEATHER_KEYS=['cloud','mist','wind'];
 // Natural evolution keeps the historical 45 s time constant. A player command

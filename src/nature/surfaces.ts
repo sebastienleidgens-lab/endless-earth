@@ -9,7 +9,17 @@ import {waterPrelude,waterColor,applyWaterLighting} from '../earthlife/water.mjs
 import {roadUniforms,roadShaderPrelude,roadColorShader,roadNormalShader,type RoadEdges} from '../world/road-material';
 import {surfacePrelude,surfaceColorFor,surfaceNormalShader,type SurfaceAppearance} from '../world/surface-material';
 import * as THREE from 'three';
+// @ts-ignore Existing phenology; this is a visual response, never a clock.
+import {foliageSeason} from './library.mjs';
 export const environmentalTime={value:0},environmentalWind={value:.35};
+export const groundAppearance={earthGroundSeason:{value:new THREE.Vector4(1,0,0,.1)},earthWetness:{value:0}};
+let groundInitialized=false;
+const groundTarget=new THREE.Vector4();
+export function updateGroundAppearance(date:Date,latitude:number,rain:number,dt:number){
+ groundTarget.fromArray(foliageSeason(date,latitude));
+ groundAppearance.earthGroundSeason.value.lerp(groundTarget,groundInitialized?1-Math.exp(-Math.max(0,dt)/.25):1);
+ const wet=groundAppearance.earthWetness;wet.value+=(Math.max(0,Math.min(1,rain))-wet.value)*(groundInitialized?1-Math.exp(-Math.max(0,dt)/(rain>wet.value?1.4:24)):1);groundInitialized=true;
+}
 // Shared original 64² noise atlas: fixed CPU generation, mipmapped on the GPU.
 const pixels=new Uint8Array(64*64*4);
 for(let z=0;z<64;z++)for(let x=0;x<64;x++){const i=(z*64+x)*4,n=Math.sin(x*127.1+z*311.7)*43758.5453;pixels[i]=Math.floor((n-Math.floor(n))*255);pixels[i+1]=Math.floor(128+Math.sin(x*.37+Math.sin(z*.23))*40+Math.cos(z*.31-x*.12)*30);pixels[i+2]=pixels[i];pixels[i+3]=255;}
@@ -17,7 +27,7 @@ const soilTexture=new THREE.DataTexture(pixels,64,64);soilTexture.wrapS=soilText
 export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edges:RoadEdges|null=null,water=false,appearance:SurfaceAppearance|null=null,groundArt=ART_DNA.surfaces){
  const art=roads&&!!appearance;
  material.onBeforeCompile=s=>{
-  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,riverUniforms,lifeUniforms,worldMaterialUniforms);
+  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,riverUniforms,lifeUniforms,worldMaterialUniforms,groundAppearance);
   if(water){s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;}
   if(roads){Object.assign(s.uniforms,roadUniforms);if(edges){
    s.uniforms.roadEdges={value:edges.texture};s.uniforms.roadEdgeOrigin={value:new THREE.Vector2(...edges.manifest.origin)};
@@ -28,7 +38,7 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
   s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nnaturePosition=position;'+(roads?'earthRoadType=earthRoad;':''));
   if(art){s.vertexShader='varying vec3 surfaceNormal;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('naturePosition=position;','naturePosition=position;surfaceNormal=normalize(mat3(modelMatrix)*normal);');}
   if(water){s.vertexShader='attribute float earthWater;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('earthRoadType=earthRoad;','earthRoadType=earthWater>.5?7.:earthRoad;');}
-  s.fragmentShader=(roads?'varying float earthRoadType;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
+  s.fragmentShader='uniform vec4 earthGroundSeason;uniform float earthWetness;\n'+(roads?'varying float earthRoadType;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
   if(water)s.fragmentShader=waterPrelude+s.fragmentShader;
   if(art)s.fragmentShader=surfacePrelude+s.fragmentShader;
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
@@ -56,11 +66,24 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
    diffuseColor.rgb *= .98+groundPatch*mix(.17,.42,nearDetail)+groundMineral*.08*nearDetail+grain*.13*nearDetail;
    ${art?surfaceColorFor(groundArt):''}
    ${roads?(water?roadColorShader.replace('float mineralHeight=0.;','').replace('float mineralDetail=0.;',''):roadColorShader):''}
+   // One rain owner; darkening is strongest on porous earth, restrained on stone.
+   float wetPatch=clamp(earthWetness*(.82+groundPatch*.5),0.,1.);
+   diffuseColor.rgb*=1.-wetPatch*${roads?'(earthRoadType<.5?.20:earthRoadType<1.5?.28:.16)':'.18'};
    ${water?'}':''}`);
   if(roads)s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n'+roadNormalShader+(art?surfaceNormalShader:''));
   if(water)applyWaterLighting(s);
+  if(roads)s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`
+   #if LIFE_SURFACE_MODE > 0
+   if(earthRoadType>.5&&earthRoadType<6.5&&earthWetness>.01){
+    float sealed=1.-step(1.5,earthRoadType),paved=step(1.5,earthRoadType)*(1.-step(2.5,earthRoadType));
+    vec3 wetSun=normalize((viewMatrix*vec4(lifeSun,0.)).xyz);
+    float sheen=pow(max(0.,dot(normal,normalize(wetSun+normalize(vViewPosition)))),mix(38.,72.,sealed));
+    outgoingLight+=reflectedLight.directDiffuse*sheen*earthWetness*(sealed*.38+paved*.16);
+   }
+   #endif
+   #include <opaque_fragment>`);
  };
- material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v12-'+!!edges+'-'+water+'-'+art+'-'+groundArt.id:'nature-ground-atlas-v5';
+ material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v18-'+!!edges+'-'+water+'-'+art+'-'+groundArt.id:'nature-ground-atlas-v18';
  material.userData.snowIntegratedWater=roads&&water;
  if(roads)registerWorldMaterial(material);cloudReceiver(material,{water,surface:art});
 }

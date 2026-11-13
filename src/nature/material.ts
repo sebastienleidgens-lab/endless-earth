@@ -39,7 +39,9 @@ export function natureArtMaterial(season:{value:THREE.Vector4},texture:THREE.Tex
   s.fragmentShader='uniform vec4 natureCalendar;'+(grounded?'varying float vNatureKind;':'varying vec4 vNatureTraits;varying float vNatureCluster,vNatureFringe;')+'\n'+s.fragmentShader;
   if(texture)s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`if(vNatureTraits.z<.5){vec4 spray=texture2D(map,vMapUv);if(${perforated?'spray.a<(vNatureFringe>.5?.32:.12)':'vNatureFringe>.5&&spray.a<.32'})discard;diffuseColor.rgb*=mix(vec3(.94),spray.rgb,vNatureFringe>.5?1.:.8);}`);
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
-   ${grounded?`if(vNatureKind<1.5||vNatureKind>5.5){diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(1.16,.96,.67),max(natureCalendar.w,(1.-natureCalendar.x)*.7));}`:`
+   ${grounded?`if(vNatureKind>1.5&&vNatureKind<2.5&&natureCalendar.z<.12)discard;
+   if(vNatureKind>2.5&&vNatureKind<3.5&&natureCalendar.x+natureCalendar.y<.25)discard;
+   if(vNatureKind<1.5||vNatureKind>5.5){diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(1.16,.96,.67),max(natureCalendar.w,(1.-natureCalendar.x)*.7));}`:`
    if(vNatureTraits.z<.5){
     float retained=clamp(natureCalendar.x*(1.+(vNatureTraits.y-.5)*.14),0.,1.)*vNatureTraits.w;
     if(vNatureCluster>retained)discard;

@@ -8,8 +8,7 @@ roadTexture.name='Original mineral materials · Mission 07.3';
 roadTexture.wrapS=roadTexture.wrapT=THREE.ClampToEdgeWrapping;
 roadTexture.minFilter=THREE.LinearMipmapLinearFilter;roadTexture.magFilter=THREE.LinearFilter;
 roadTexture.generateMipmaps=true;roadTexture.needsUpdate=true;
-// Dry, diffuse mineral surfaces. The numbers are artistic interpretations,
-// never source evidence. Lambert needs no invented wet/specular response.
+// Regional diffuse interpretations, with the shared rain response in surfaces.ts.
 const palette=[0x898986,0xb2aa97,0xa89a7b,0xb8b09a,0xa5a293,0xa69c80].map(c=>new THREE.Color(c));
 export const roadUniforms={roadAtlas:{value:roadTexture},roadColors:{value:palette}};
 export const roadShaderPrelude=worldMaterialPrelude+`
@@ -45,7 +44,7 @@ if(earthRoadType>.5){
  float gravel=step(3.5,earthRoadType)*(1.-step(4.5,earthRoadType));
  float unknown=step(4.5,earthRoadType)*(1.-step(5.5,earthRoadType));
  vec2 quadrant=sett>0.?vec2(1.,0.):gravel>0.?vec2(0.,1.):rural>0.?vec2(1.,1.):vec2(0.);
- float metres=earthRoadType<1.5||unknown>0.?2.:4.;
+ float metres=earthRoadType<1.5||unknown>0.?1.45:sett>.5?3.2:3.;
  float detailFade=1.-smoothstep(15.,90.,length(vViewPosition));
  mineralDetail=detailFade;
  float mineralTone=0.;
@@ -63,15 +62,16 @@ if(earthRoadType>.5){
  // Existing low-frequency world noise is shared with surrounding ground.
  // No high-contrast aerial blotches and no tiled cracks or invented markings.
  base*=1.+groundPatch*.20+mineralTone*detailFade;
- float edgeDust=1.-smoothstep(.12,(rural>.5?1.10:.65)*(1.+groundPatch*.35),roadBoundaryDistance);
+ float edgeBreak=clamp(.82+groundPatch*1.6+groundMineral*.25,.42,1.18);
+ float edgeDust=1.-smoothstep(.035,(rural>.5?.85:.40)*edgeBreak,roadBoundaryDistance);
  // A restrained mineral shoulder, not grass painted onto sealed roads.
  base=mix(base,roadDust,edgeDust*(rural>.5?.55:.30));
  mineralHeight*=1.-edgeDust*.55;
  diffuseColor.rgb=base;
 }else{
  // Same partition, natural side: a faint mineral/soil transition, no overlay.
- float soilEdge=1.-smoothstep(.12,.80,roadBoundaryDistance);
- diffuseColor.rgb=mix(diffuseColor.rgb,roadDust,soilEdge*.24);
+ float soilEdge=1.-smoothstep(.035,.62*clamp(.8+groundPatch*1.8,.4,1.2),roadBoundaryDistance);
+ diffuseColor.rgb=mix(diffuseColor.rgb,roadDust,soilEdge*.32);
 }
 `;
 export const roadNormalShader=`

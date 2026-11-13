@@ -1,10 +1,10 @@
 {
   "schema": "endless-earth-material-catalog-v1",
-  "checked": "2026-11-11",
+  "checked": "2026-11-13",
   "budgetEUR": 0,
   "atlas": {
     "file": "surface-atlas.png",
-    "sha256": "727dd54214ba2932160ad5acf7b7eefd271aa72558f4706b884adeb81a26d463",
+    "sha256": "945f041fdd652489624d243bda90d322deef34b6e506da2f898428c1ff90baf3",
     "dimensions": [
       576,
       576
@@ -18,21 +18,21 @@
       "author": "Endless Earth",
       "source": "scripts/prepare-surface-art.mjs + src/world/surface-art.mjs",
       "license": "Original project code",
-      "metres": 2
+      "metres": 1.7
     },
     {
       "name": "herbe / prairie documentée",
       "author": "Endless Earth",
       "source": "src/world/surface-art.mjs",
       "license": "Original project code",
-      "metres": 4
+      "metres": 2.8
     },
     {
       "name": "sol forestier interprété",
       "author": "Endless Earth",
       "source": "src/world/surface-art.mjs",
       "license": "Original project code",
-      "metres": 3
+      "metres": 2.4
     },
     {
       "name": "Rock Face 03",
@@ -78,5 +78,5 @@
     }
   ],
   "existing": "Road mineral RG atlas and OSM material classes retained, with more legible shading. No new paving assignment.",
-  "usage": "Shared ground and river-bank material; no runtime third-party request, no geometry displacement."
+  "usage": "Shared ground and river-bank material; one existing atlas, no geometry displacement. Month/date and rainfall come from the Mission 11 owner."
 }

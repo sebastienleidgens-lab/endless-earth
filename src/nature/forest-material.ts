@@ -13,10 +13,15 @@ import {registerLifeMaterial} from '../earthlife/capabilities.mjs';
 export const forestAttributes=`attribute vec4 natureTraits,forestForm,forestDates;
 attribute float natureCluster;attribute vec3 forestData;
 attribute float forestJointIndex;uniform highp usampler2D forestJoints;
-uniform sampler2D forestWindField;uniform vec4 forestWindRect;uniform float forestDay;
+uniform sampler2D forestWindField;uniform vec4 forestWindRect;uniform float forestDay,forestPreviousDay,forestSeasonBlend;
 uniform float lifeTime,lifeMeanWind,lifeVegetation,lifeFine;
 `;
 export const forestGLSL=`
+vec4 forestVisualSeason(vec4 dates,float evergreen){
+ vec4 target=forestSeasonAt(forestDay,dates,evergreen);
+ if(forestSeasonBlend>.9999||evergreen>.5)return target;
+ return mix(forestSeasonAt(forestPreviousDay,dates,evergreen),target,forestSeasonBlend);
+}
 vec3 forestShape(vec3 p,vec4 traits,vec4 form,vec3 data){
  float gain=clamp(p.y/3.,0.,1.);
  p.y+=form.x*data.x*smoothstep(.8,data.x*.45,p.y)*(1.-smoothstep(data.x*.65,data.x,p.y));
@@ -70,7 +75,7 @@ export function forestMaterial(calendar:{value:THREE.Vector4},atlas:THREE.Textur
   s.vertexShader=forestAttributes+'varying vec4 vForestTraits,vForestSeason;varying float vForestCluster,vForestPart;varying vec3 vForestPosition;varying vec2 vForestSnow;\n'+windGLSL+forestSeasonGLSL+forestGLSL+s.vertexShader;
   s.vertexShader=s.vertexShader.replace('#include <beginnormal_vertex>',`#include <beginnormal_vertex>
    vForestTraits=natureTraits;vForestCluster=natureCluster;vForestPart=forestData.z;vForestPosition=position;
-   vForestSeason=forestSeasonAt(forestDay,forestDates,natureTraits.z);
+   vForestSeason=forestVisualSeason(forestDates,natureTraits.z);
    vec3 forestPosition=forestPose(position,objectNormal,vForestSeason);
    float top=clamp(position.y/max(1.,forestData.x),0.,1.);
    vForestSnow=vec2(mix(1.,.18+.82*smoothstep(.25,.92,top),vForestSeason.y),mix(forestData.z>.5?.45:.85,1.3,natureTraits.z));`);
@@ -93,5 +98,5 @@ export function forestMaterial(calendar:{value:THREE.Vector4},atlas:THREE.Textur
    ${!leaf||merged?`if(vForestPart<.5){float grain=sin(vForestPosition.y*3.+sin(vForestPosition.x*43.+vForestPosition.z*39.)*1.8);diffuseColor.rgb*=.93+.07*grain;}`:''}`);
   if(leaf)s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>','if(vForestPart>.5)outgoingLight+=diffuseColor.rgb*lifeDay*.12;\n#include <opaque_fragment>');
  };
- m.userData.coarseSolarReceiver=far;m.customProgramCacheKey=()=>`forest-17d-${leaf}-${far}-${merged}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,forest:true,far});return m;
+ m.userData.coarseSolarReceiver=far;m.customProgramCacheKey=()=>`forest-18-${leaf}-${far}-${merged}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,forest:true,far});return m;
 }
