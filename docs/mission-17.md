@@ -144,6 +144,8 @@ La revue interne a écarté des versions trop ajourées au loin et des pousses t
 
 Le vent raccordé reste une flexion continue, sans l’inertie hiérarchique définitive. Les saisons ont un contrôle de non-régression, sans constituer les films de validation de 17C. La promenade courte ne remplace pas l’essai de 30 minutes de 17D. Les cinq captures du propriétaire n’étant pas jointes au texte initial, aucune reproduction exacte de leurs positions n’est revendiquée.
 
+Le jeu compilé au commit **`c0aad89`** passe le chargement du pilote, les trois caméras, le déplacement et l’arrêt, la garde au sol, le son, le changement de profil et le viewport 390 × 844. L’identité de production est vérifiée sur quatre formats. Les empreintes des quatre modules graphiques correspondent exactement à celles des captures et mesures. Le build conserve l’avertissement préexistant de bundle > 500 ko.
+
 ## Livraison et arrêt
 
 **17B proposé à la validation artistique du propriétaire.** Examiner d’abord la profondeur des couronnes, les différences entre familles, la générosité des bois et les vues de berge, en gardant le coût affiché à côté des images. Les limites de forme et de fluidité restent explicites.
