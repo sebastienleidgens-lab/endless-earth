@@ -1,20 +1,27 @@
 import {ART_DNA,glsl} from '../art/dna.mjs';
 // Analytic sky reflection and oscillating surface normals, not scene reflections,
 // measured flow, a depth estimate or a hydrological current direction.
-export const waterPrelude='';
+export const waterPrelude=`uniform sampler2D riverField;uniform vec4 riverBounds;uniform vec2 riverScale;uniform float riverReady;`;
 export function applyWaterLighting(shader){
  shader.fragmentShader=shader.fragmentShader.replace('void main() {','void main() {\nvec3 waterRadiance=vec3(0.);float waterMask=0.;');
  shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>','outgoingLight=mix(outgoingLight,waterRadiance,waterMask);\n#include <opaque_fragment>');
 }
 export function waterColor(position,shore='16.'){return `
  vec2 waterP=${position}.xz;
+ vec4 flow=texture2D(riverField,(waterP-riverBounds.xy)/riverBounds.zw);
+ float flowAngle=riverScale.x+(flow.r-.5)*6.2831853;
+ vec2 downstream=vec2(cos(flowAngle),sin(flowAngle));
+ float riverAlong=(flow.b*65280.+flow.a*255.)/65535.*riverScale.y;
+ float turbulence=flow.g*riverReady;
+ float carrier=mix(waterP.x*.3+waterP.y*.2,riverAlong,riverReady);
+ float crossing=dot(waterP,vec2(-downstream.y,downstream.x));
  #if LIFE_WATER_MODE <= 1
  vec3 waterV=inverseTransformDirection(normalize(vViewPosition),viewMatrix);
  float grazing=1.-abs(waterV.y),g2=grazing*grazing;
  float fresnel=.025+.66*g2*g2*grazing;
  float ripple=0.;
  #if LIFE_WATER_MODE == 1
- ripple=sin(waterP.x*1.7+waterP.y*.73+sin(waterP.y*.31)*1.8-lifeTime*.82)*(.005+lifeRain*.006)*lifeWater*(1.-smoothstep(35.,150.,length(vViewPosition)));
+ ripple=sin(carrier*1.8+sin(crossing*.7)*.7-lifeTime*.9)*(.005+lifeRain*.006)*lifeWater*(1.-smoothstep(35.,150.,length(vViewPosition)));
  #endif
  vec3 skyReflection=mix(lifeHorizon,lifeZenith,smoothstep(0.,.8,abs(waterV.y)+ripple));
  vec3 body=vec3(.054,.112,.096)*(.12+lifeDay*.84);
@@ -23,10 +30,10 @@ export function waterColor(position,shore='16.'){return `
  float distanceFade=1.-smoothstep(35.,200.,length(vViewPosition));
  vec2 rippleSlope=vec2(0.);
  #if LIFE_WATER_MODE > 0
- float waveA=dot(waterP,vec2(1.7,.73))+sin(waterP.y*.31+sin(waterP.x*.19))*1.8-lifeTime*.82;
- float waveB=dot(waterP,vec2(-.64,2.12))+sin(waterP.x*.27-waterP.y*.21)*1.3+lifeTime*.56;
- float amplitude=(.008+lifeMeanWind*.020)*lifeWater*(.55+.45*pow(sin(waterP.x*.14+waterP.y*.07),2.));
- rippleSlope=(vec2(1.7,.73)*cos(waveA)+vec2(-.64,2.12)*cos(waveB)*.55)*amplitude;
+ float waveA=carrier*1.8+sin(crossing*.7)*.7-lifeTime*.9;
+ float waveB=carrier*3.4+sin(crossing*1.3)*1.3-lifeTime*1.7;
+ float amplitude=(.012+lifeMeanWind*.020+turbulence*.026)*lifeWater*(.55+.45*pow(sin(waterP.x*.14+waterP.y*.07),2.));
+ rippleSlope=(downstream*1.8*cos(waveA)+vec2(-downstream.y,downstream.x)*cos(waveB)*.55)*amplitude;
  #if LIFE_WATER_MODE == 2
  float waveC=dot(waterP,vec2(6.1,-4.3))+sin(waterP.x*.13)*1.2+lifeTime*1.7;
  rippleSlope+=vec2(1.,-.7)*cos(waveC)*(.009+lifeRain*.027)*lifeWater;
@@ -50,6 +57,8 @@ export function waterColor(position,shore='16.'){return `
  }
  #endif
  waterRadiance=mix(body,skyReflection,fresnel)+lifeSunColor*lifeSunIntensity*sunGlint*${glsl(ART_DNA.water.sunGlint)}*(1.-lifeRain*.45);
+ float foam=turbulence*turbulence*smoothstep(.90,.995,sin(carrier*5.-lifeTime*1.3)*sin(crossing*3.7+sin(carrier*.5)))*.14*lifeDay;
+ waterRadiance=mix(waterRadiance,vec3(.65,.70,.65),foam);
  waterMask=1.;diffuseColor.rgb=body;
  #endif
  `}

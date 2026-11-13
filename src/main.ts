@@ -1,3 +1,4 @@
+import {disposeRiverFlow} from './earthlife/river-flow';
 import {initializeWorldMaterials,configureWorldFiltering,disposeWorldMaterials,worldMaterialStatus} from './materials/world';
 import {lifeSettings,setLifeProfile,readLifePreferences,saveLifePreferences,type LifeProfileName} from './earthlife/preferences';
 import {natureMemory} from './nature/render';
@@ -6,7 +7,7 @@ import { updateArchitectureLOD, architectureMemory } from './architecture/render
 import {clampZoom,behind} from './controls/orbit.mjs';
 import {naturalSky} from './nature/sky';
 import { Soundscape } from './living/sound';
-import { loadNavigation, navigationReady, nature, paths, routeAt, validPoint, loadPreparedGraph, hasPreparedGraph, prepareGraphForDiagnostics, exportNavigationGraph, walkingGraphBindings, navigationGraphStats } from './living/geography';
+import { loadNavigation, navigationReady, nature, paths, routeAt, validPoint, loadPreparedGraph, hasPreparedGraph, prepareGraphForDiagnostics, exportNavigationGraph, walkingGraphBindings, navigationGraphStats, roadInventory } from './living/geography';
 // @ts-ignore Shared controller tested directly in Node.
 import { AutoWalk } from './living/walk.mjs';
 import * as THREE from 'three';
@@ -22,7 +23,7 @@ import {createWalkMenu} from './ui/menu';
 import {createWalker} from './character/walker.mjs';
 // @ts-ignore Source-bound, physically verified starts.
 import {prepareStarts,chooseStart,inspectStart} from './controls/spawn.mjs';
-import { canWalk, moveWithCollision, walkingHeight, cameraClear, hasWalkingSupport } from './world/collisions';
+import { canWalk, moveWithCollision, walkingHeight, cameraClear, hasWalkingSupport, lastMovementDiagnostic } from './world/collisions';
 // @ts-ignore shared deterministic runtime
 import { movement, nextView, cameraFraction, smoothMovement, transitionWeight } from './controls/walking.mjs';
 
@@ -140,8 +141,8 @@ if(tilesPreview && !terrainPreview){
     }
     try{
       const count=await loadAnglesGeography(realWorld,terrain??undefined);
-      void landscapeLighting.install(realWorld,terrain);
-      if(terrain?.singleSurface&&realWorld.userData.decorationManifest)scene.userData.snowExposureSource={manifestUrl:import.meta.env.BASE_URL+'data/angles-snow-exposure.json',packUrl:import.meta.env.BASE_URL+'data/angles-snow-exposure.pack',bindings:{terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface.manifest.binarySha256,landmarks:terrain.singleSurface.manifest.landmarksSha256,static:realWorld.userData.decorationManifest.static.sha256}};
+      void landscapeLighting.install(realWorld,terrain,terrain?.walkSupport?{manifestUrl:import.meta.env.BASE_URL+'data/angles-walk-lighting.json',packUrl:import.meta.env.BASE_URL+'data/angles-walk-lighting.pack'}:undefined);
+      if(terrain?.singleSurface&&realWorld.userData.decorationManifest)scene.userData.snowExposureSource={manifestUrl:import.meta.env.BASE_URL+'data/'+(terrain.walkSupport?'angles-walk-snow-exposure.json':'angles-snow-exposure.json'),packUrl:import.meta.env.BASE_URL+'data/'+(terrain.walkSupport?'angles-walk-snow-exposure.pack':'angles-snow-exposure.pack'),bindings:{terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface.manifest.binarySha256,landmarks:terrain.singleSurface.manifest.landmarksSha256,static:realWorld.userData.decorationManifest.static.sha256}};
       scene.userData.decorationStream=realWorld.userData.decorationStream;
       scene.userData.lifeHabitat=realWorld.userData.lifeHabitat;
       scene.userData.lifeCeiling=new THREE.Box3().setFromObject(realWorld).max.y+12;
@@ -214,8 +215,8 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-if(import.meta.hot)import.meta.hot.dispose(()=>{landscapeLighting.dispose();disposeWorldMaterials();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
-addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){landscapeLighting.dispose();disposeWorldMaterials();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
+if(import.meta.hot)import.meta.hot.dispose(()=>{landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
+addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
 const audioForward=new THREE.Vector3(),audioUp=new THREE.Vector3(),worldUp=new THREE.Vector3(0,1,0);
 const canvas=renderer.domElement;canvas.style.touchAction='none';
@@ -267,7 +268,7 @@ const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({authentic:worldMaterialStatus(),lighting:scene.userData.landscapeLighting??null,snow:scene.userData.snow??null,decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,navigation:navigationGraphStats,spawn:scene.userData.spawn??null,walker:walkerModel.metrics,signs:signs.metrics,menuOpen:walkMenu?.open??false,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({authentic:worldMaterialStatus(),lighting:scene.userData.landscapeLighting??null,snow:scene.userData.snow??null,decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,navigation:navigationGraphStats,spawn:scene.userData.spawn??null,walker:walkerModel.metrics,movement:lastMovementDiagnostic(),roads:roadInventory,signs:signs.metrics,menuOpen:walkMenu?.open??false,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
@@ -333,7 +334,7 @@ if(transitionElapsed<.8){
 updateAtmosphere(dt,quality==='low',elapsed);
 signs.update(elapsed,scene.userData.climate,avatar.position,geographyReady);
 camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);
-sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[],locomotion,signs.audioFlight);
+sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[],locomotion,signs.audioFlight,activeTerrain?avatar.position.y+(activeTerrain.sample(0,0)??0):null);
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateTerrainLOD(scene,camera.position,avatar.position,quality==='low');updateVegetationLOD(scene,camera,quality==='low');updateArchitectureLOD(scene,camera,quality==='low')}
 scene.userData.decorationStream?.tick(quality==='low',elapsed*1000,dt>0?moved/dt:0);

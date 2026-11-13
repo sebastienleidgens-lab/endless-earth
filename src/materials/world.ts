@@ -78,7 +78,7 @@ vec2 m13Grain(vec2 uv,float slot){
 }
 `;
 export const worldArchitectureColor=`
-   if(m13Mode>.5&&architectureKind<2.5&&architectureFade>.001){
+   if(m13Mode>.5&&architectureKind<2.5){
     vec2 metres=architectureKind<.5?vec2(2.):architectureKind<1.5?vec2(2.3):vec2(1.5);
     float slot=architectureKind<.5?0.:architectureKind<1.5?3.:4.;
     float relief=architectureKind<.5?.009:architectureKind<1.5?.003:.014;
@@ -90,11 +90,11 @@ export const worldArchitectureColor=`
     #endif
     vec2 metricUV=architectureKind<1.5?m13WallUV:m13ArchitectureUV*4.;
     vec2 uv=metricUV/metres;
-    vec4 packed=m13Sample(m13Data,uv,slot);
+    vec4 packed=vec4(.5,.5,.5,1.);if(architectureFade>.001)packed=m13Sample(m13Data,uv,slot);
     if(m13Mode<1.5){
-     vec3 tone=vec3(min(1.06,.78+packed.r*.36))*(vec3(1.)+vec3(.06,0.,-.045)*(packed.b-.5));
+     vec3 tone=vec3(.88+(packed.r-.5)*.36)*(vec3(1.)+vec3(.06,0.,-.045)*(packed.b-.5));
      float macro=sin(metricUV.x*.19+metricUV.y*.071)*sin(metricUV.y*.14+.7)*.035;
-     diffuseColor.rgb*=mix(vec3(.88),tone,architectureFade)*(1.+macro*architectureFade);
+     diffuseColor.rgb*=mix(vec3(.88),tone,architectureFade)*(1.+macro);
      architectureHeight=(packed.g-.5)*relief;
     }else{
      diffuseColor.rgb=mix(diffuseColor.rgb*.88,m13Sample(m13Photo,uv,slot).rgb,architectureFade);

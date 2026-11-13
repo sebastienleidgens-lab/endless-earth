@@ -1,0 +1,181 @@
+{
+  "sourceCommit": "ce66dcb052b40f4eae9271c4ba5276767e85b707",
+  "tests": {
+    "node": 245,
+    "passed": 245,
+    "failed": 0,
+    "log": "tests.txt"
+  },
+  "build": {
+    "typescript": true,
+    "vite": true,
+    "existingChunkSizeWarning": true,
+    "log": "build.txt"
+  },
+  "compiled": {
+    "cleanIdentity": {
+      "app": "ENDLESS EARTH",
+      "mission": {
+        "number": "16",
+        "name": "R\u00e9alisme, continuit\u00e9 et plaisir de promenade",
+        "source": "docs/mission-16.md"
+      },
+      "commit": "ce66dcb052b40f4eae9271c4ba5276767e85b707",
+      "shortCommit": "ce66dcb0",
+      "dirty": false,
+      "environment": "production"
+    },
+    "fourLayouts": [
+      {
+        "viewport": [
+          1280,
+          800
+        ],
+        "bounds": [
+          33,
+          663.9375,
+          373,
+          726.4375
+        ],
+        "hudBottom": 750.9375,
+        "blocked": [],
+        "pointerEvents": "auto",
+        "missionClipped": false,
+        "commitClipped": false,
+        "fontSize": "11px"
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "bounds": [
+          33,
+          689.9375,
+          357,
+          770.4375
+        ],
+        "hudBottom": 794.9375,
+        "blocked": [],
+        "pointerEvents": "auto",
+        "missionClipped": false,
+        "commitClipped": false,
+        "fontSize": "11px"
+      },
+      {
+        "viewport": [
+          320,
+          568
+        ],
+        "bounds": [
+          33,
+          397.125,
+          287,
+          477.625
+        ],
+        "hudBottom": 518.625,
+        "blocked": [],
+        "pointerEvents": "auto",
+        "missionClipped": false,
+        "commitClipped": false,
+        "fontSize": "11px"
+      },
+      {
+        "viewport": [
+          844,
+          390
+        ],
+        "bounds": [
+          25,
+          301.9375,
+          373,
+          364.4375
+        ],
+        "hudBottom": 388.9375,
+        "blocked": [],
+        "pointerEvents": "auto",
+        "missionClipped": false,
+        "commitClipped": false,
+        "fontSize": "11px"
+      }
+    ],
+    "functionalSmoke": "PASS load, camera cycle, movement, eye clearance, audio activation, quality override, mobile viewport; no JS errors",
+    "smokeLog": "compiled/smoke.txt.gz"
+  },
+  "runtime": {
+    "fixedStepRoutes": 12,
+    "seededStartSamples": 80,
+    "dataFallbackCases": 2,
+    "profiles": true,
+    "reload": true,
+    "railBlocks": true
+  },
+  "native": {
+    "after": {
+      "distanceM": 229.82928901182694,
+      "recordedSeconds": 153.851,
+      "allClear": true,
+      "blocked": false,
+      "errors": [],
+      "warnings": []
+    },
+    "reload": {
+      "distanceM": 128.81543958562514,
+      "recordedSeconds": 100.577,
+      "allClear": true,
+      "blocked": false,
+      "errors": [],
+      "warnings": []
+    },
+    "audio": {
+      "distanceM": 114.72323251467884,
+      "recordedSeconds": 88.379,
+      "allClear": true,
+      "blocked": false,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  "audio": {
+    "playedSteps": 163,
+    "deckAltitudeM": 72.26557760533308
+  },
+  "images": {
+    "distanceSeries": 108,
+    "movingShadowOriginSeries": 24,
+    "matchedSceneImages": 50
+  },
+  "performance": {
+    "pairedRenders": 288,
+    "componentRenders": 72,
+    "backend": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "hardwareFpsClaim": false
+  },
+  "foundations": [
+    {
+      "id": 89224822,
+      "from": -28.484659237433704,
+      "to": -28.693309845755365,
+      "vertices": 8
+    }
+  ],
+  "media": {
+    "fullyDecoded": 9,
+    "nativeEncodedPacketsAndPtsVerified": true,
+    "durationIndexAddedWithoutEncoding": true
+  },
+  "gallery": {
+    "state": "passed",
+    "pairedImagesDecoded": 50,
+    "nativeVideosPlayed": 8,
+    "desktopAndMobile": true,
+    "reportLinksChecked": 37,
+    "errors": []
+  },
+  "budgetEUR": 0,
+  "merge": false,
+  "deployment": false,
+  "livingPaintingsChanged": false,
+  "nativeTimings": "Recorded container durations; controller/export overhead preserved separately in each film JSON.",
+  "sourceWindowsAndShadowClock": "Cloud/wind phase fixed throughout each distance series; extra numerical shadow-bias candidate rejected."
+}

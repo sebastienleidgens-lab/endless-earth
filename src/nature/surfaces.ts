@@ -1,3 +1,4 @@
+import {riverUniforms} from '../earthlife/river-flow';
 import {worldMaterialUniforms,registerWorldMaterial} from '../materials/world';
 // @ts-ignore Shared artistic contract.
 import {ART_DNA} from '../art/dna.mjs';
@@ -16,7 +17,7 @@ const soilTexture=new THREE.DataTexture(pixels,64,64);soilTexture.wrapS=soilText
 export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edges:RoadEdges|null=null,water=false,appearance:SurfaceAppearance|null=null,groundArt=ART_DNA.surfaces){
  const art=roads&&!!appearance;
  material.onBeforeCompile=s=>{
-  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,lifeUniforms,worldMaterialUniforms);
+  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,riverUniforms,lifeUniforms,worldMaterialUniforms);
   if(water){s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;}
   if(roads){Object.assign(s.uniforms,roadUniforms);if(edges){
    s.uniforms.roadEdges={value:edges.texture};s.uniforms.roadEdgeOrigin={value:new THREE.Vector2(...edges.manifest.origin)};
@@ -65,6 +66,6 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
 }
 export function waterMaterial(){
  const material=new THREE.MeshLambertMaterial({color:0x608884,side:THREE.DoubleSide});material.userData.natureShared=true;material.userData.snowExcluded=true;
- material.onBeforeCompile=s=>{Object.assign(s.uniforms,lifeUniforms);s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=(modelMatrix*vec4(position,1.)).xyz;');s.fragmentShader=waterPrelude+'varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\n'+waterColor('waterPosition'));applyWaterLighting(s)};
+ material.onBeforeCompile=s=>{Object.assign(s.uniforms,riverUniforms,lifeUniforms);s.vertexShader='varying vec3 waterPosition;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterPosition=(modelMatrix*vec4(position,1.)).xyz;');s.fragmentShader=waterPrelude+'varying vec3 waterPosition;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\n'+waterColor('waterPosition'));applyWaterLighting(s)};
  material.customProgramCacheKey=()=> 'earthlife-river-sky-v12';cloudReceiver(material,{water:true});return material;
 }

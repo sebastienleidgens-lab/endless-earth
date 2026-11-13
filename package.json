@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-15.md"
+    "missionReport": "docs/mission-16.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -67,7 +67,8 @@
     "test:remarkable-fixtures": "node scripts/audit-remarkable-fixtures.mjs && node scripts/browser-remarkable-fixtures.mjs",
     "test:mission-14:soak": "node scripts/browser-mission-14-soak.mjs",
     "bench:mission-14": "node scripts/benchmark-mission-14-final.mjs",
-    "report:mission-14": "python scripts/report-mission-14-final.py"
+    "report:mission-14": "python scripts/report-mission-14-final.py",
+    "test:mission-16": "node --test tests/mission-16.test.mjs tests/walking.test.mjs tests/navigation.test.mjs tests/walker-spawn.test.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

@@ -1,0 +1,17 @@
+{
+  "staticMeshes": 287,
+  "aoVertices": 529724,
+  "uniqueContactSamples": 430362,
+  "staticTriangles": 331646,
+  "shadowVertices": 203456,
+  "shadowCells": 1024,
+  "bytes": 5294684,
+  "compressedBytes": 2008547,
+  "provenance": {
+    "geometry": "Mission 16 exact single road surface and outward architecture normals; original geography and canopy, water excluded from casters.",
+    "ambient": "8 cosine hemisphere rays, 4 m range, 0.055 m normal offset; visibility bounded to avoid black creases. Spatial interpolation on unchanged source vertices.",
+    "canopy": "Analytic attenuation tied to existing crown instance bounds and tree anchors; separate deciduous/evergreen density, not measured forest irradiance.",
+    "shadow": "Exact static triangles spatially grouped in 64 m cells; runtime local sun map, no raw LiDAR."
+  },
+  "seconds": 40.002651453
+}

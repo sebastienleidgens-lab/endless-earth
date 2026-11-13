@@ -5,8 +5,15 @@ import { circleHitsPolygon, moveGrounded } from '../controls/walking.mjs';
 import { createNavigation } from './navigation.mjs';
 import { toLocal } from './geo';
 type Point = { x:number; z:number };
-let navigation:(x:number,z:number)=>{clear:boolean;cameraClear?:boolean;support:number|null;slope:number}=()=>({clear:true,support:null,slope:.7});
+let navigation:(x:number,z:number,explain?:boolean)=>{clear:boolean;cameraClear?:boolean;support:number|null;slope:number;reasons?:unknown[]}=()=>({clear:true,support:null,slope:.7});
 export const hasWalkingSupport=(x:number,z:number)=>navigation(x,z).support!==null;
+let movementDiagnostic:Record<string,unknown>|null=null;
+export const lastMovementDiagnostic=()=>movementDiagnostic;
+export function inspectCollision(x:number,z:number){
+ const access=navigation(x,z,true);
+ const building=(cells.get(cellKey(x,z))??[]).find(poly=>circleHitsPolygon(x,z,poly));
+ return {surface:access.support!==null?'verified-bridge':'terrain/road',obstacle:Math.abs(x)>1000||Math.abs(z)>1000?'world-boundary':building?'building-footprint':!access.clear?'mapped-water/barrier/access':null,access,building:building??null};
+}
 export const walkingHeight=(height:(x:number,z:number)=>number|null)=>(x:number,z:number)=>navigation(x,z).support??height(x,z);
 let realFootprints: Point[][] | null = null;
 const cells=new Map<string,Point[][]>();
@@ -55,7 +62,8 @@ export function canWalk(x:number,z:number, camera=false):boolean {
   return true;
 }
 export function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null=()=>0,slide=true){
-  moveGrounded(position,displacement,canWalk,walkingHeight(height),(x:number,z:number)=>navigation(x,z).slope,slide);
+  movementDiagnostic=null;
+  moveGrounded(position,displacement,canWalk,walkingHeight(height),(x:number,z:number)=>navigation(x,z).slope,slide,(d:any)=>{movementDiagnostic={...d,...inspectCollision(d.requested.x,d.requested.z)}});
 }
 
 export const cameraClear=(x:number,z:number)=>canWalk(x,z,true);
