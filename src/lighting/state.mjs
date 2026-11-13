@@ -8,15 +8,16 @@ export function lightingCapabilities(enabled){const mode=Number(enabled);if(mode
 export function lightingReceiver(material){
  if(receivers.has(material))return;receivers.add(material);material.addEventListener('dispose',()=>receivers.delete(material));material.defines??={};material.defines.M14_LOCAL_SHADOW=shadowMode;material.defaultAttributeValues={...material.defaultAttributeValues,m14Occlusion:[1,1,1]};
  material.defines.M14_SOLAR_RECEIVER=Number(!material.userData.coarseSolarReceiver);
+ material.defines.M19_WALKER_RECEIVER=Number(!material.userData.excludeWalkerShadow);
  const previous=material.onBeforeCompile,key=material.customProgramCacheKey();material.onBeforeCompile=function(s,r){previous.call(this,s,r);Object.assign(s.uniforms,lightingUniforms);
  s.vertexShader='attribute vec3 m14Occlusion;varying vec3 vM14Occlusion;\n#if M14_LOCAL_SHADOW == 1 && M14_SOLAR_RECEIVER == 1\nuniform mat4 m14ShadowMatrix,m18WalkerMatrix;uniform vec3 m14ShadowSun;varying vec4 vM14Shadow,vM18Walker;varying vec2 vM14WorldXZ;\n#endif\n'+s.vertexShader;
  s.vertexShader=s.vertexShader.replace('#include <project_vertex>',`vM14Occlusion=m14Occlusion;
  #if M14_LOCAL_SHADOW == 1 && M14_SOLAR_RECEIVER == 1
- vec4 m14World=vec4(transformed,1.);vec3 m14Normal=normal;
+ vec4 m14World=vec4(transformed,1.);vec3 m14Normal=inverseTransformDirection(transformedNormal,viewMatrix);
  #ifdef USE_INSTANCING
- m14World=instanceMatrix*m14World;m14Normal=mat3(instanceMatrix)*m14Normal;
+ m14World=instanceMatrix*m14World;
  #endif
- m14World=modelMatrix*m14World;m14Normal=normalize(mat3(modelMatrix)*m14Normal);vM14WorldXZ=m14World.xz;
+ m14World=modelMatrix*m14World;vM14WorldXZ=m14World.xz;
  float m14Bias=.008+(1.-max(0.,dot(m14Normal,m14ShadowSun)))*.025;
  vM14Shadow=m14ShadowMatrix*vec4(m14World.xyz+m14Normal*m14Bias,1.);
  vM18Walker=m18WalkerMatrix*vec4(m14World.xyz+m14Normal*.012,1.);
@@ -26,6 +27,9 @@ export function lightingReceiver(material){
  #if M14_LOCAL_SHADOW == 1 && M14_SOLAR_RECEIVER == 1
  uniform sampler2D m14Shadow,m18WalkerShadow;uniform vec2 m14ShadowSize,m18WalkerSize;uniform vec3 m14ShadowCenter;uniform float m14ShadowRadius,m14ShadowActive,m18WalkerActive;varying vec4 vM14Shadow,vM18Walker;varying vec2 vM14WorldXZ;
  float m18WalkerVisibility(){
+ #if M19_WALKER_RECEIVER == 0
+ return 1.;
+ #else
  if(m18WalkerActive<.001)return 1.;vec3 q=vM18Walker.xyz/vM18Walker.w;
  if(any(lessThan(q,vec3(.002)))||any(greaterThan(q,vec3(.998))))return 1.;
  vec3 dx=dFdx(q),dy=dFdy(q);float determinant=dx.x*dy.y-dx.y*dy.x;
@@ -37,6 +41,7 @@ export function lightingReceiver(material){
  visible+=step(q.z+dot(slope,uv-q.xy)-.00008,texture2D(m18WalkerShadow,uv).r)*weight;
  }
  return mix(1.,visible,m18WalkerActive);
+ #endif
  }
  float m14Visibility(){
  if(m14ShadowActive<.001)return 1.;vec3 q=vM14Shadow.xyz/vM14Shadow.w;
@@ -63,7 +68,7 @@ export function lightingReceiver(material){
  if(max(max(reflectedLight.directDiffuse.r,reflectedLight.directDiffuse.g),reflectedLight.directDiffuse.b)>.0001)m14SunVisibility=min(m14Visibility(),m18WalkerVisibility());reflectedLight.directDiffuse*=m14SunVisibility;
  #endif`);
  s.fragmentShader=s.fragmentShader.replace('outgoingLight=mix(outgoingLight,waterRadiance,waterMask);','outgoingLight=mix(outgoingLight,waterRadiance*mix(1.,max(.6,m14Ambient),.4*m14AOAmount)*mix(.72,1.,m14SunVisibility),waterMask);');
- };material.customProgramCacheKey=()=>key+'-bounded-landscape-light-v18';
+ };material.customProgramCacheKey=()=>key+'-bounded-landscape-light-v19-'+material.defines.M19_WALKER_RECEIVER;
 }
 
 export function resetLighting(){lightingUniforms.m14AOAmount.value=0;lightingUniforms.m14ShadowActive.value=0;lightingUniforms.m14Shadow.value=white;lightingCapabilities(false)}

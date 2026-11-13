@@ -7,7 +7,7 @@ import { updateArchitectureLOD, architectureMemory } from './architecture/render
 import {clampZoom,behind} from './controls/orbit.mjs';
 import {naturalSky} from './nature/sky';
 import { Soundscape } from './living/sound';
-import { loadNavigation, navigationReady, nature, paths, routeAt, validPoint, loadPreparedGraph, hasPreparedGraph, prepareGraphForDiagnostics, exportNavigationGraph, walkingGraphBindings, navigationGraphStats, roadInventory } from './living/geography';
+import { loadNavigation, navigationReady, nature, paths, routeAt, rememberTour, validPoint, loadPreparedGraph, hasPreparedGraph, prepareGraphForDiagnostics, exportNavigationGraph, walkingGraphBindings, navigationGraphStats, roadInventory } from './living/geography';
 // @ts-ignore Shared controller tested directly in Node.
 import { AutoWalk } from './living/walk.mjs';
 import * as THREE from 'three';
@@ -185,7 +185,7 @@ addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat&&!walkM
 let walkMenu:ReturnType<typeof createWalkMenu>|null=null;
 setViewMode('third');
 const input = new InputController(renderer.domElement,()=>!geographyReady||!!walkMenu?.open);
-const walker=new AutoWalk(), sound=new Soundscape();
+const walker=new AutoWalk(), sound=new Soundscape();let tourContinue=false,tourWait=0;
 const updateAtmosphere=naturalSky(scene,sun,(x,z)=>activeTerrain?.relativeHeight(x,z)??0,ANGLES,hemisphere,avatar,camera);
 const panel=document.createElement('div');panel.className='living-panel';
 panel.innerHTML='<button id="auto-walk" disabled>Promenade automatique</button><button id="sound">Activer le son</button><span id="walk-status" role="status">Chargement des voies OSM…</span>';
@@ -194,7 +194,7 @@ const autoButton=panel.querySelector<HTMLButtonElement>('#auto-walk')!;
 const soundButton=panel.querySelector<HTMLButtonElement>('#sound')!;
 const walkStatus=panel.querySelector<HTMLElement>('#walk-status')!;
 const volume=document.createElement('input');volume.type='range';volume.min='0';volume.max='100';volume.value='70';volume.setAttribute('aria-label',"Volume de l’ambiance");volume.oninput=()=>sound.setVolume(Number(volume.value)/100);const volumeLabel=document.createElement('label');volumeLabel.className='ambience-volume';volumeLabel.append('Ambiance ',volume,audioCredit);audioCredit.style.cssText='color:inherit;font-size:10px';panel.append(volumeLabel);
-autoButton.onclick=()=>{if(walker.active)walker.stop();else{walker.start(routeAt(avatar.position,activeTerrain));if(walker.active)walkMenu?.dialog.close()}};
+autoButton.onclick=()=>{if(walker.active||tourContinue){tourContinue=false;walker.stop()}else{walker.start(routeAt(avatar.position,activeTerrain));tourContinue=walker.active;tourWait=0;if(walker.active)walkMenu?.dialog.close()}};
 soundButton.onclick=async()=>{try{const on=await sound.toggle();soundButton.textContent=on?'Désactiver le son':'Activer le son';soundButton.setAttribute('aria-pressed',String(on));}catch{walkStatus.textContent='Son indisponible dans ce navigateur';}};
 let worldReady=false;
 const navigationPromise=loadNavigation().then(()=>{autoButton.disabled=!worldReady;}).catch(()=>{walkStatus.textContent='Navigation OSM indisponible';});
@@ -273,7 +273,8 @@ function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();con
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
 const previous=avatar.position.clone();
-if(controls.forward||controls.strafe){if(walker.active){walker.stop('Contrôle manuel repris');velocity.x=velocity.z=0;}}
+if(controls.forward||controls.strafe){tourContinue=false;if(walker.active){walker.stop('Contrôle manuel repris');velocity.x=velocity.z=0;}}
+if(tourContinue&&!walker.active){if(walker.message.startsWith('Destination atteinte')){if(tourWait===0&&walker.route?.destination)rememberTour(walker.route.destination.id);tourWait+=dt;if(tourWait>=3){walker.start(routeAt(avatar.position,activeTerrain));tourContinue=walker.active;tourWait=0}}else tourContinue=false;}
 const autoStep=walker.active;
 if(autoStep){
  const delta=walker.update(avatar.position,dt,(p:{x:number;z:number})=>validPoint(p,activeTerrain));
@@ -331,7 +332,7 @@ if(transitionElapsed<.8){
   }
 }
 
-updateAtmosphere(dt,quality==='low',elapsed);updateForestLife(scene);
+updateAtmosphere(dt,quality==='low',elapsed);updateForestLife(scene,camera);
 signs.update(elapsed,scene.userData.climate,avatar.position,geographyReady);
 camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);
 sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[],locomotion,signs.audioFlight,activeTerrain?avatar.position.y+(activeTerrain.sample(0,0)??0):null);

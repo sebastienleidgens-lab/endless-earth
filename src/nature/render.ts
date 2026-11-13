@@ -1,3 +1,6 @@
+import {coverageReceiver,selectDetailIndices} from '../world/coverage';
+// @ts-ignore Shared frame time for staggered resource admission.
+import {lifeUniforms} from '../earthlife/state.mjs';
 // @ts-ignore Static instancing metadata, no per-frame tree CPU animation.
 import {instanceWindGeometry} from '../earthlife/instance-wind.mjs';
 // @ts-ignore Original reusable procedural art.
@@ -92,7 +95,7 @@ function buildDetail(cell:THREE.Object3D,recipe:any[]){
   }
  }
  const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));geometry.setAttribute('color',new THREE.Uint8BufferAttribute(colors.map(v=>Math.round(Math.max(0,Math.min(1,v))*255)),3,true));geometry.setAttribute('natureBend',new THREE.Float32BufferAttribute(bends,1));geometry.setAttribute('natureKind',new THREE.Uint8BufferAttribute(kinds,1));geometry.computeVertexNormals();
- const material=natureArtMaterial(c.calendar,null,true);const mesh=new THREE.Mesh(geometry,material);mesh.name='nature-detail';cell.add(mesh);c.detail=mesh;c.builds++;
+ const material=natureArtMaterial(c.calendar,null,true);coverageReceiver(material,new THREE.Vector2((c.range19??110)*.65,c.range19??110),lifeUniforms.lifeTime.value);const mesh=new THREE.Mesh(geometry,material);mesh.name='nature-detail';cell.add(mesh);c.detail=mesh;c.builds++;
 }
 export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=false){
  const hidden:any[]=[],near:any[]=[],requests:any[]=[];const stream=scene.userData.decorationStream;
@@ -110,10 +113,10 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
    crowns.geometry=tree.lod==='near'?tree.nearGeometry:tree.farGeometry;crowns.material=tree.lod==='near'?tree.nearMaterial:tree.farMaterial;return;
   }
   const c=o.userData.natureCell;if(!c)return;
-  const d=Math.hypot(camera.position.x-(c.cx+.5)*128,camera.position.z-(c.cz+.5)*128),range=eco?c.ecology.profile.ecoRange:c.ecology.profile.detailRange;
-  const visible=d<range+(c.detail?.visible?18:0);c.wanted=visible;
-  if(c.detail){c.detail.visible=visible;if(!visible)hidden.push({o,c,d})}
-  else if(c.prepared){if(d<range+(stream?.policy.prefetchM??48))requests.push({id:c.prepared,priority:d-(visible?1000:0),d,visible,install:(data:any)=>{const geometry=data.meshes[0].geometry;const material=natureArtMaterial(c.calendar,null,true);const mesh=new THREE.Mesh(geometry,material);mesh.name='nature-detail';mesh.visible=c.wanted;o.add(mesh);c.detail=mesh;c.builds++;}});}
+  const d=Math.hypot(Math.max(0,Math.abs(camera.position.x-(c.cx+.5)*128)-64),Math.max(0,Math.abs(camera.position.z-(c.cz+.5)*128)-64)),range=eco?c.ecology.profile.ecoRange:c.ecology.profile.detailRange;
+  c.range19=range;const visible=d<range+(c.detail?.visible?18:0);c.wanted=visible;
+  if(c.detail){const m=c.detail.material;if(!m.userData.coverage19)coverageReceiver(m,new THREE.Vector2(range*.65,range),lifeUniforms.lifeTime.value);else m.userData.coverage19.range.value.set(range*.65,range);c.detail.visible=visible;if(visible){selectDetailIndices(c.detail,camera,range);c.detail.visible=c.detail.geometry.userData.detailSelection19.submittedTriangles>0;}if(!visible)hidden.push({o,c,d})}
+  else if(c.prepared){if(d<range+(stream?.policy.prefetchM??48))requests.push({id:c.prepared,priority:d-(visible?1000:0),d,visible,install:(data:any)=>{const geometry=data.meshes[0].geometry;const material=natureArtMaterial(c.calendar,null,true);coverageReceiver(material,new THREE.Vector2(range*.65,range),lifeUniforms.lifeTime.value);const mesh=new THREE.Mesh(geometry,material);mesh.name='nature-detail';mesh.visible=c.wanted;o.add(mesh);c.detail=mesh;c.builds++;selectDetailIndices(mesh,camera,c.range19??range);}});}
   else if(visible)near.push({o,c,d});
   else c.pending=null;
  });
@@ -124,12 +127,12 @@ export function updateNatureLOD(scene:THREE.Object3D,camera:THREE.Camera,eco=fal
   const started=performance.now(),limit=Math.min(3200,job.cursor+256);
   do{const end=Math.min(limit,job.cursor+32);job.points.push(...detailRecipe(c.cx,c.cz,c.ecology,job.cursor,end));job.cursor=end}while(job.cursor<limit&&performance.now()-started<2);
   scene.userData.natureWork??={maxSliceMs:0,maxBuildMs:0,slices:0};const work=scene.userData.natureWork;work.slices++;work.maxSliceMs=Math.max(work.maxSliceMs,performance.now()-started);
-  if(job.cursor===3200){const started=performance.now();buildDetail(o,job.points);work.maxBuildMs=Math.max(work.maxBuildMs,performance.now()-started);c.pending=null}
+  if(job.cursor===3200){const started=performance.now();buildDetail(o,job.points);selectDetailIndices(c.detail,camera,c.range19??110);work.maxBuildMs=Math.max(work.maxBuildMs,performance.now()-started);c.pending=null}
  }
  hidden.sort((a,b)=>a.d-b.d);for(const {o,c} of hidden.slice(4)){o.remove(c.detail);c.detail.geometry.dispose();c.detail.material.dispose();c.detail=null;if(c.prepared)stream?.release(c.prepared)}
 }
-export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,cells=0,resident=0,builds=0,pending=0,work=0,needed=0;let forest:any=null;scene.traverse(o=>{const t=o.userData.natureTreeCell;if(t){treeCells++;if(t.lod==='far')farCells++}const f=o.userData.forest;if(f){treeCells+=f.models.size;farCells+=f.levels[2];forest={version:f.version,total:f.total,original:f.original,added:f.added,visible:f.visible,levels:f.levels,triangles:f.submittedTriangles,families:f.families,selectionUpdates:f.selectionUpdates,maxSelectionCpuMs:f.maxSelectionCpuMs,source:f.source}}const c=o.userData.natureCell;if(c){cells++;if(c.detail)resident++;else if(c.wanted)needed++;builds+=c.builds;if(c.pending){pending++;work+=c.pending.cursor}}});return {treeCells,farCells,cells,resident,builds,pending,work,needed,forest,preparation:scene.userData.natureWork??null}}
+export function natureMemory(scene:THREE.Object3D){let treeCells=0,farCells=0,cells=0,resident=0,builds=0,pending=0,work=0,needed=0;let forest:any=null;scene.traverse(o=>{const t=o.userData.natureTreeCell;if(t){treeCells++;if(t.lod==='far')farCells++}const f=o.userData.forest;if(f){treeCells+=f.models.size;farCells+=f.levels[2];forest={version:f.version,total:f.total,original:f.original,added:f.added,visible:f.visible,levels:f.levels,triangles:f.submittedTriangles,families:f.families,selectionUpdates:f.selectionUpdates,maxSelectionCpuMs:f.maxSelectionCpuMs,source:f.source,selectionCpuMs:f.selectionCpuMs,appearances:f.appearances,disappearances:f.disappearances,lodChanges:f.lodChanges,pendingTransitions:f.pendingTransitions,transitioning:f.transitioning,batchRebuilds:f.batchRebuilds,inspect:(id?:string)=>{const describe=(t:any)=>({id:t.id,distance:t.cameraDistance,projectedPixels:t.pixels,lod:t.lod,requested:t.desired,transition:t.next<0?null:{to:t.next,started:t.started},frustum:t.inFrustum,loaded:t.loaded,visible:t.visible,reason:t.reason});return id?f.items.filter((t:any)=>t.id===id).map(describe):f.items.filter((t:any)=>t.visible).sort((a:any,b:any)=>a.cameraDistance-b.cameraDistance).slice(0,12).map(describe)}}}const c=o.userData.natureCell;if(c){cells++;if(c.detail)resident++;else if(c.wanted)needed++;builds+=c.builds;if(c.pending){pending++;work+=c.pending.cursor}}});return {treeCells,farCells,cells,resident,builds,pending,work,needed,forest,preparation:scene.userData.natureWork??null}}
 export function disposeNatureZone(group:THREE.Object3D){group.userData.decorationStream?.dispose();const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();group.traverse(o=>{o.userData.releaseNatureAnchors?.();o.userData.forestLife?.dispose();const resources=o.userData.natureResources??o.userData.terrainResources;if(resources){for(const g of resources.geometries)geometries.add(g);for(const m of resources.materials)materials.add(m)}if(o instanceof THREE.Mesh){if((o as THREE.InstancedMesh).isInstancedMesh)(o as THREE.InstancedMesh).dispose();geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(!m.userData.architectureShared&&!m.userData.natureShared)materials.add(m)}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());group.traverse(o=>{for(const t of [o.userData.terrainTexture,o.userData.roadEdgeTexture,o.userData.natureLeafTexture,...(o.userData.surfaceTextures??[])])if(t){t.dispose();t.image?.close?.()}});group.clear();group.userData={};}
 
 // M11 has advanced its single environment clock; sync responses even at a fixed camera.
-export function updateForestLife(scene:THREE.Object3D){const climate=scene.userData.climate;scene.traverse(o=>{o.userData.forestLife?.update(climate?.date,o.userData.natureLatitude??46);if((o.userData.forest?.pendingTransitions>0||o.userData.forestLife?.calendarDirty)&&o.userData.forestCamera)o.userData.updateForest(o.userData.forestCamera,scene.userData.earthLife?.profile??'balanced')});}
+export function updateForestLife(scene:THREE.Object3D,camera?:THREE.Camera){const climate=scene.userData.climate;scene.traverse(o=>{o.userData.forestLife?.update(climate?.date,o.userData.natureLatitude??46);if(camera&&o.userData.updateForest)o.userData.forestCamera=camera;if(o.userData.forestCamera)o.userData.updateForest(o.userData.forestCamera,scene.userData.earthLife?.profile??'balanced')});}

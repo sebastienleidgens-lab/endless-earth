@@ -72,19 +72,31 @@ export function forestMaterial(calendar:{value:THREE.Vector4},atlas:THREE.Textur
  m.userData.forestSnow=true;
  m.onBeforeCompile=s=>{
   Object.assign(s.uniforms,lifeUniforms,life?.uniforms??{});
-  s.vertexShader=forestAttributes+'varying vec4 vForestTraits,vForestSeason;varying float vForestCluster,vForestPart;varying vec3 vForestPosition;varying vec2 vForestSnow;\n'+windGLSL+forestSeasonGLSL+forestGLSL+s.vertexShader;
+  s.vertexShader=forestAttributes+'varying vec4 vForestTraits,vForestSeason;varying float vForestCluster,vForestPart;varying vec3 vForestPosition,vForestWorld;varying vec3 vForestAnchor;varying vec2 vForestSnow;\n'+windGLSL+forestSeasonGLSL+forestGLSL+s.vertexShader;
   s.vertexShader=s.vertexShader.replace('#include <beginnormal_vertex>',`#include <beginnormal_vertex>
    vForestTraits=natureTraits;vForestCluster=natureCluster;vForestPart=forestData.z;vForestPosition=position;
    vForestSeason=forestVisualSeason(forestDates,natureTraits.z);
-   vec3 forestPosition=forestPose(position,objectNormal,vForestSeason);
+   vec3 forestPosition=forestPose(position,objectNormal,vForestSeason);vec2 forestRoot=(modelMatrix*instanceMatrix[3]).xz;
+   float forestRange=1.-smoothstep(950.,1050.,length(forestRoot-cameraPosition.xz));vForestAnchor=vec3(forestRoot,forestRange);
+   vForestWorld=vec3(0.);if(natureTraits.w>1.5||forestRange<.9999)vForestWorld=(modelMatrix*(instanceMatrix*vec4(forestPosition,1.))).xyz;
    float top=clamp(position.y/max(1.,forestData.x),0.,1.);
    vForestSnow=vec2(mix(1.,.18+.82*smoothstep(.25,.92,top),vForestSeason.y),mix(forestData.z>.5?.45:.85,1.3,natureTraits.z));`);
   s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','vec3 transformed=forestPosition;');
-  s.fragmentShader='varying vec4 vForestTraits,vForestSeason;varying float vForestCluster,vForestPart;varying vec3 vForestPosition;\n'+forestSeasonGLSL+s.fragmentShader;
+  s.fragmentShader='varying vec4 vForestTraits,vForestSeason;varying float vForestCluster,vForestPart;varying vec3 vForestPosition,vForestWorld;varying vec3 vForestAnchor;\n'+forestSeasonGLSL+s.fragmentShader;
   // The packed trait uses an integer only during a bounded LOD crossfade;
   // its fraction retains the original leaf density. No extra vertex location.
   s.fragmentShader=s.fragmentShader.replace('#include <clipping_planes_fragment>',`#include <clipping_planes_fragment>
-   if(vForestTraits.w>1.5){float k=floor(vForestTraits.w)-2.,progress=floor(k*.5)/255.,side=mod(k,2.);float noise=fract(52.9829189*fract(dot(floor(gl_FragCoord.xy),vec2(.06711056,.00583715))));if((side>.5&&noise>=progress)||(side<.5&&noise<progress))discard;}`);
+   float rangeCoverage=vForestAnchor.z;
+   if(vForestTraits.w>1.5||rangeCoverage<.9999){
+    vec3 ray=vForestWorld-cameraPosition;vec2 origin=vForestAnchor.xy-cameraPosition.xz;
+    bool useX=abs(origin.x)>abs(origin.y);float denominator=useX?ray.x:ray.z;
+    float planeT=(useX?origin.x:origin.y)/(abs(denominator)>1e-8?denominator:1e-8);
+    vec3 planePoint=cameraPosition+ray*planeT;
+    vec2 cell=floor(vec2(planePoint.y,useX?planePoint.z:planePoint.x)*24.);
+    float noise=fract(sin(dot(cell,vec2(12.9898,78.233)))*43758.5453);
+    if(noise>=rangeCoverage)discard;
+    if(vForestTraits.w>1.5){float k=floor(vForestTraits.w)-2.,progress=floor(k*.5)/255.,side=mod(k,2.);if((side>.5&&noise>=progress)||(side<.5&&noise<progress))discard;}
+   }`);
   if(leaf)s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`vec4 forestArt=vec4(1.);if(vForestPart>.5){forestArt=texture2D(map,vMapUv);diffuseColor.rgb*=forestArt.rrr;float density=vForestTraits.w<1.5?vForestTraits.w:fract(vForestTraits.w);diffuseColor.a*=forestLeafAlpha(forestArt,vForestSeason,vForestCluster,vForestTraits.z,density);}`);
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    ${leaf?`if(vForestPart>.5){if(vForestTraits.z<.5){
@@ -98,5 +110,5 @@ export function forestMaterial(calendar:{value:THREE.Vector4},atlas:THREE.Textur
    ${!leaf||merged?`if(vForestPart<.5){float grain=sin(vForestPosition.y*3.+sin(vForestPosition.x*43.+vForestPosition.z*39.)*1.8);diffuseColor.rgb*=.93+.07*grain;}`:''}`);
   if(leaf)s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>','if(vForestPart>.5)outgoingLight+=diffuseColor.rgb*lifeDay*.12;\n#include <opaque_fragment>');
  };
- m.userData.coarseSolarReceiver=far;m.customProgramCacheKey=()=>`forest-18-${leaf}-${far}-${merged}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,forest:true,far});return m;
+ m.userData.coarseSolarReceiver=far;m.customProgramCacheKey=()=>`forest-19-${leaf}-${far}-${merged}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,forest:true,far});return m;
 }

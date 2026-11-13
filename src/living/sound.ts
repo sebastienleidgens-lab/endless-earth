@@ -28,14 +28,14 @@ export class Soundscape {
  toggle(){const p=this.transition.then(()=>this.applyToggle(),()=>this.applyToggle());this.transition=p;return p}
  private async applyToggle(){
  if(this.disposed)return false;
- if(!this.context){const c=new AudioContext({sampleRate:32000,latencyHint:'playback'});this.context=c;this.renderer=new AcousticRenderer(c,`${import.meta.env.BASE_URL}audio/`);this.timer=setInterval(()=>{if(this.enabled&&!this.hidden&&c.state==='running')this.renderer?.pump()},100)}
+ if(!this.context){const c=new AudioContext({sampleRate:32000,latencyHint:'interactive'});this.context=c;this.renderer=new AcousticRenderer(c,`${import.meta.env.BASE_URL}audio/`);this.timer=setInterval(()=>{if(this.enabled&&!this.hidden&&c.state==='running')this.renderer?.pump()},100)}
  const on=!this.enabled;
  if(on){await this.context.resume();if(this.disposed)return false;this.enabled=true;this.nextContext=0;this.distance=0;this.director.resetClock();this.renderer!.setVolume(this.volume,!this.hidden);if(this.hidden)await this.context.suspend()}
  else{this.enabled=false;this.renderer!.setVolume(this.volume,false);this.renderer!.silence();await new Promise(r=>setTimeout(r,220));if(!this.disposed)await this.context.suspend();this.distance=0;this.director.resetClock()}
  return this.enabled;
  }
  setHidden(hidden:boolean){this.hidden=hidden;const p=this.transition.then(async()=>{if(this.disposed||!this.context)return this.enabled;this.renderer?.setVolume(this.volume,this.enabled&&!this.hidden);if(this.hidden){await this.context.suspend();this.distance=0;this.director.resetClock()}else if(this.enabled){await this.context.resume();this.nextContext=0;this.director.resetClock()}return this.enabled});this.transition=p;return p}
- update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number},flight?:{id:string;position:Vec3;velocity:Vec3;eligible:boolean}|null,absoluteSupportAltitude:number|null=null){
+ update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number;footContacts?:Array<{position:Vec3;side:number;run:number;energy:number}>},flight?:{id:string;position:Vec3;velocity:Vec3;eligible:boolean}|null,absoluteSupportAltitude:number|null=null){
  if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer){this.cpuMs=0;return;}
  const start=performance.now(),now=start/1000;
  if(profile!==this.renderer.profile)this.renderer.setProfile(profile);
@@ -58,11 +58,17 @@ export class Soundscape {
  this.frameContext!.traffic=this.trafficIndex?trafficCandidates(this.trafficIndex,listener,renderHeight):[];
  this.frameContext!.emitters=emitterCandidates(this.frameContext,habitatAt,typeof altitudeM==='function'?altitudeM:null,this.emitterCache);this.renderer.updateContext(this.frameContext);for(const id of this.director.preload(this.frameContext,now))void this.renderer.resources.request(id);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.contextUpdates++;
  }
- if(travel>0&&travel<3){const first=this.lastMove===0,dt=this.lastMove?Math.max(.01,Math.min(.5,now-this.lastMove)):.1,speed=locomotion?.speed??Math.min(6,travel/dt);this.lastMove=now;this.distance+=travel;const stride=stepStride(speed),due=locomotion?locomotion.contacts>0:this.distance>=stride;
-  if(first||due){const road=this.roadsIndex?.query(p,8),onRoad=!!road?.point&&road.distance<=(road.width??5.5)/2;this.contact=footContact({surface:onRoad?road.surface:null,onRoad,habitat:habitatAt?.(p.x,p.z)??'unknown',season:this.frameContext?.season,rain:climate?.weather?.rain??null});if(this.frameContext)this.frameContext.ground=this.contact;this.renderer.preloadSteps(this.contact.material)}
-  if(due&&now-this.lastStep>=.17){this.distance=locomotion?0:this.distance%stride;this.lastStep=now;this.renderer.footstep(this.contact.material,speed)}
- }
- else if(travel===0){this.distance=0;this.lastMove=0}
+ if(travel>0&&travel<3){
+  const dt=this.lastMove?Math.max(.01,Math.min(.5,now-this.lastMove)):.1,speed=locomotion?.speed??Math.min(6,travel/dt);this.lastMove=now;this.distance+=travel;
+  const stride=stepStride(speed),fallback=!locomotion&&this.distance>=stride,contacts=locomotion?.footContacts??(locomotion?.contacts||fallback?[{position:p,side:1,run:Math.max(0,Math.min(1,(speed-1.65)/1.25)),energy:1}]:[]);
+  // Preload at the current sole even before the first strike, then query EACH
+  // admitted contact, including the two different surfaces at a boundary.
+  for(const c of contacts.length?contacts:[{position:p,side:1,run:0,energy:1}]){const q=c.position,road=this.roadsIndex?.query(q,8),onRoad=!!road?.point&&road.distance<=(road.width??5.5)/2;
+   this.contact=footContact({surface:onRoad?road.surface:null,onRoad,habitat:habitatAt?.(q.x,q.z)??'unknown',season:this.frameContext?.season,rain:climate?.weather?.rain??null,wetness:climate?.groundWetness??climate?.weather?.rain??0,snow:climate?.groundSnowAt?.(q)});
+   if(this.frameContext)this.frameContext.ground=this.contact;this.renderer.preloadSteps(this.contact.material);
+   if(contacts.length&&now-this.lastStep>=.11){this.lastStep=now;this.distance=0;this.renderer.footstep(this.contact.material,speed,{...c,wetness:this.contact.wetness})}
+  }
+ }else if(travel===0){this.distance=0;this.lastMove=0}
  if(flight?.eligible&&flight.id!==this.heardFlight&&now-this.flightAttempt>1){this.flightAttempt=now;const asset='aircraft-fs-820324-m15';void this.renderer.resources.request(asset);if(this.renderer.event({asset,position:flight.position,velocity:flight.velocity,priority:20,gain:.12,refDistance:90,maxDistance:1400,reason:'Simulated light aircraft, matched CC0 propeller flyover; no real traffic data'})){this.heardFlight=flight.id;this.aircraftEvents++}}
  this.cpuMs=performance.now()-start;this.maxCpuMs=Math.max(this.maxCpuMs,this.cpuMs);
  }

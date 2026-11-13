@@ -1,6 +1,6 @@
 // View-dependent detail, separate from the approved anchor/layout contract.
 import * as THREE from 'three';
-export const FOREST_LOD_VERSION='projected-forest-v1';
+export const FOREST_LOD_VERSION='resident-forest-v2';
 export const FOREST_LOD_POLICIES=Object.freeze({eco:{nearPixels:260,midPixels:42,farPixels:40,near:3,middle:48},balanced:{nearPixels:220,midPixels:48,farPixels:24,near:6,middle:80},quality:{nearPixels:170,midPixels:52,farPixels:18,near:10,middle:120}});
 export const FOREST_FADE_SECONDS=.48,FOREST_FADE_LIMIT=48;
 export function forestDetail(pixels,previous,profile='balanced'){const p=FOREST_LOD_POLICIES[profile]??FOREST_LOD_POLICIES.balanced;return pixels*(previous===0?1.14:1)>=p.nearPixels?0:pixels*(previous===1?1.12:1)>=p.midPixels?1:pixels*(previous===2?1.12:1)>=p.farPixels?2:3}

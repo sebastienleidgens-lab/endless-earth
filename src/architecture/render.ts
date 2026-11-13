@@ -1,3 +1,6 @@
+import {coverageClone} from '../world/coverage';
+// @ts-ignore World clock shared with new detail coverage.
+import {lifeUniforms} from '../earthlife/state.mjs';
 import {orientArchitectureGeometry} from './orientation';
 import {attachWindowSeeds} from './window-seeds';
 import {architectureMaterials} from './material';
@@ -132,16 +135,21 @@ export class ArchitectureBatch{
 }
 export function updateArchitectureLOD(scene:THREE.Object3D,camera:THREE.Camera,low=false){
  const slots:THREE.Object3D[]=[],requests:any[]=[];const stream=scene.userData.decorationStream;scene.traverse(o=>{if(o.userData.architectureDetail)slots.push(o)});
- const distance=(o:THREE.Object3D)=>Math.hypot(Math.max(0,Math.abs(camera.position.x-o.userData.centerX)-o.userData.architectureStyle.cellSize/2),Math.max(0,Math.abs(camera.position.z-o.userData.centerZ)-o.userData.architectureStyle.cellSize/2));
+ const distance=(o:THREE.Object3D)=>{const base=o.userData.openingMesh;if(base&&!o.userData.coverageBounds19){base.updateWorldMatrix(true,false);base.geometry.computeBoundingBox();o.userData.coverageBounds19=base.geometry.boundingBox.clone().applyMatrix4(base.matrixWorld)}const b=o.userData.coverageBounds19,dy=b?Math.max(0,b.min.y-camera.position.y,camera.position.y-b.max.y):0;return Math.hypot(Math.max(0,Math.abs(camera.position.x-o.userData.centerX)-o.userData.architectureStyle.cellSize/2),Math.max(0,Math.abs(camera.position.z-o.userData.centerZ)-o.userData.architectureStyle.cellSize/2),dy)};
  slots.sort((a,b)=>distance(a)-distance(b));let generated=0;
- for(const o of slots){const wanted=detailVisible(o.visible,distance(o),low,o.userData.architectureStyle);
+ for(const o of slots){const limit=o.userData.architectureStyle.detailDistance[low?'low':'high'],wanted=distance(o)<limit+12;
   if(o.userData.prepared&&!o.children.length){if(distance(o)<o.userData.architectureStyle.detailDistance[low?'low':'high']+(stream?.policy.prefetchM??48))requests.push({id:o.userData.prepared,priority:distance(o)-(wanted?1000:0),d:distance(o),wanted,install:(data:any)=>{const start=performance.now();orientArchitectureGeometry(data.meshes[0].geometry);attachWindowSeeds(data.meshes[0].geometry);const m=new THREE.Mesh(data.meshes[0].geometry,plain);m.name='architecture-detail';m.receiveShadow=true;o.add(m);o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;}});}
   else if(wanted&&!o.children.length&&generated===0){const start=performance.now();o.userData.create();o.userData.builds=(o.userData.builds??0)+1;o.userData.generationMs=(o.userData.generationMs??0)+performance.now()-start;generated++;}
-  o.visible=wanted&&o.children.length>0;if(o.userData.openingMesh)o.userData.openingMesh.visible=!o.visible;
+  if(o.children.length&&!o.userData.coverage19){const range=new THREE.Vector2(limit*.65,limit),born=lifeUniforms.lifeTime.value,fine=o.children[0] as THREE.Mesh,base=o.userData.openingMesh;
+   o.userData.originalMaterial=fine.material;fine.material=coverageClone(fine.material as THREE.Material,range,born,true);
+   if(base){o.userData.originalBaseMaterial=base.material;base.material=coverageClone(base.material,range,born,false)}o.userData.coverage19={range,born};
+  }
+  o.userData.coverage19?.range.set(limit*.65,limit);
+  o.visible=wanted&&o.children.length>0;if(o.userData.openingMesh)o.userData.openingMesh.visible=true;
  }
  if(stream){const reserve=[...slots.filter(o=>!o.visible&&o.children.length).map(o=>({id:o.userData.prepared,d:distance(o)})),...requests.filter(r=>!r.wanted)].sort((a,b)=>a.d-b.d).slice(0,12);const keep=new Set(reserve.map(r=>r.id));stream.want('architecture',requests.filter(r=>r.wanted||keep.has(r.id)));}
  // Keep at most twelve invisible cached cells. Required visible cells always win.
- let hidden=0;for(const o of slots){if(o.visible||!o.children.length)continue;if(++hidden<=12)continue;for(const child of [...o.children]){(child as THREE.Mesh).geometry.dispose();o.remove(child)}o.userData.evictions=(o.userData.evictions??0)+1;if(o.userData.prepared)stream?.release(o.userData.prepared);}
+ let hidden=0;for(const o of slots){if(o.visible||!o.children.length)continue;if(++hidden<=12)continue;for(const child of [...o.children]){(child as THREE.Mesh).geometry.dispose();if(o.userData.coverage19)((child as THREE.Mesh).material as THREE.Material).dispose();o.remove(child)}if(o.userData.coverage19){const base=o.userData.openingMesh;if(base){base.material.dispose();base.material=o.userData.originalBaseMaterial}delete o.userData.coverage19}o.userData.evictions=(o.userData.evictions??0)+1;if(o.userData.prepared)stream?.release(o.userData.prepared);}
 }
 export function architectureMemory(scene:THREE.Object3D){let triangles=0,bytes=0,meshes=0,detailCells=0,detailBuilds=0,detailMs=0,evictions=0;
  scene.traverse(o=>{if(o.userData.architectureDetail){detailCells+=Number(o.children.length>0);detailBuilds+=o.userData.builds??0;detailMs+=o.userData.generationMs??0;evictions+=o.userData.evictions??0;}if(!(o instanceof THREE.Mesh)||!o.name.startsWith('architecture-'))return;const g=o.geometry;triangles+=(g.index?.count??g.attributes.position.count)/3;meshes++;for(const a of Object.values(g.attributes) as THREE.BufferAttribute[])bytes+=a.array.byteLength;bytes+=g.index?.array.byteLength??0;});return {triangles,bytes,meshes,detailCells,detailBuilds,detailMs,evictions};

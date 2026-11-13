@@ -3,8 +3,9 @@
 const STONE=new Set(['sett','cobblestone','unhewn_cobblestone','paving_stones','stone']);
 const HARD=new Set(['asphalt','concrete','concrete:plates','concrete:lanes']);
 const EARTH=new Set(['dirt','earth','ground','clay']);
-export function footContact({surface=null,onRoad=false,habitat='unknown',season=null,rain=null,leafLitter=false}={}){
- const base={surface:surface||null,material:'unknown',basis:'no reliable ground material',confidence:'unknown'};
+export function footContact({surface=null,onRoad=false,habitat='unknown',season=null,rain=null,leafLitter=false,snow=null,wetness=0}={}){
+ const base={surface:surface||null,material:'unknown',basis:'no reliable ground material',confidence:'unknown',wetness:Math.max(0,Math.min(1,wetness))};
+ if(snow?.cover>.55){const state=snow.temperature>0||snow.phase==='melting'?'wet':onRoad&&(HARD.has(surface)||STONE.has(surface))?'packed':'fresh';return {...base,material:'snow-'+state,basis:'simulated coating sampled at the actual foot with renderer exposure; '+state+' acoustic interpretation',confidence:'interpreted'}}
  if(STONE.has(surface))return {...base,material:'stone',basis:'explicit OSM surface',confidence:'mapped'};
  if(HARD.has(surface))return {...base,material:'hard',basis:'explicit OSM hard surface; generic hard-contact recording',confidence:'mapped'};
  if(['gravel','fine_gravel','pebblestone'].includes(surface))return {...base,material:'gravel',basis:'explicit OSM surface',confidence:'mapped'};
@@ -15,4 +16,4 @@ export function footContact({surface=null,onRoad=false,habitat='unknown',season=
  if(!onRoad&&['meadow','grass'].includes(habitat))return {...base,material:'grass',basis:'mapped grassy land cover, contact interpretation',confidence:'interpreted'};
  return base;
 }
-export function stepStride(speed){return Math.max(.55,Math.min(1.05,.55+Math.max(0,speed)*.10))}
+export function stepStride(speed){return Math.max(.55,Math.min(1.05,.55+Math.max(0,speed)*.10+Math.max(0,Math.min(1,(speed-1.65)/1.25))*.16))}
