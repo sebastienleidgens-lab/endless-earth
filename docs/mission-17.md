@@ -1,153 +1,133 @@
-# Mission 17 — La renaissance des arbres (17B)
+# Mission 17 — La renaissance des arbres (17C)
 
-**Onze architectures originales, un pilote de 3 889 arbres et une comparaison directe avec Mission 16 sont proposés pour revue artistique.** Le « Go » du propriétaire après 17A autorise ce jalon. **Arrêt après 17B : 17C et 17D ne sont pas livrés.**
+**Le vent hiérarchique, les saisons par feuille et le dépôt de neige sont proposés pour validation artistique.** Le « Go » après la livraison 17B est interprété comme son approbation artistique et l’autorisation de ce jalon. **Arrêt après 17C : 17D reste à faire.** Aucune fusion ni publication.
 
-[PR brouillon #26](https://github.com/sebastienleidgens-lab/endless-earth/pull/26) · [Galerie interactive de revue](mission-17-evidence/forest/index.html) · [Atelier 3D de développement](../fixtures/forest.html?perf=1&moment=afternoon&weather=clear) · [Rapport 17A conservé](mission-17a.md).
+[PR brouillon #26](https://github.com/sebastienleidgens-lab/endless-earth/pull/26) · [Galerie interactive des douze films](mission-17-evidence/life/index.html) · [Atelier 3D](../fixtures/forest-life.html?perf=1) · [Rapport 17B conservé](mission-17b.md) · [Rapport 17A conservé](mission-17a.md).
 
-| Avant · Mission 16 | Après · 17B |
-| --- | --- |
-| ![Bois avant](mission-17-evidence/forest/bois-before.jpg) | ![Bois après](mission-17-evidence/forest/bois-after.jpg) |
-| ![Vue aérienne avant](mission-17-evidence/forest/aerienne-before.jpg) | ![Vue aérienne après](mission-17-evidence/forest/aerienne-after.jpg) |
+| Été | Automne | Hiver |
+| --- | --- | --- |
+| ![Été](mission-17-evidence/life/summer-silhouette.jpg) | ![Automne](mission-17-evidence/life/autumn.jpg) | ![Hiver](mission-17-evidence/life/winter.jpg) |
 
-La régression logicielle reste importante : **+32 à +150 %** sur les médianes de la campagne couleur. **Ce pilote n’est pas prêt à être fusionné pour ses performances.** La validation de fluidité et les optimisations de 17D restent nécessaires.
+Les nouvelles réponses restent des interprétations artistiques. Les petites feuilles sont dessinées dans des pousses planes attachées aux rameaux ; le frémissement anime ces pousses, tandis que la croissance et le retrait distinguent les feuilles de leur atlas. Une simulation mécanique de chaque limbe ou de chaque espèce n’est pas revendiquée. **Les tests ne valident pas la beauté du mouvement.**
 
-La proposition remplace les couronnes en lobes par des charpentes et des pousses feuillées enracinées sur leurs branches. Les masses arborées s’étendent, les hauteurs et les formes varient et les ombres suivent la nouvelle bibliothèque. **Cela reste une proposition artistique, avec des répétitions et des simplifications visibles ; les tests ne certifient pas sa beauté.**
+## Vent, appuis et temps
 
-## Périmètre et préservation
+Le champ et l’horloge sont ceux de Mission 11. Une banque spatiale de **16 × 16 échantillons**, pilotée par ce champ, ajoute trois réponses amorties : **1,7 / 3,4 / 7,5 rad/s**. Elle ne génère ni météo ni temps indépendants. L’interpolation partage la direction des rafales entre voisins ; flexibilité, taille, âge et phases des embranchements différencient les réponses. L’énergie décroît jusqu’au repos quand l’entrée devient nulle.
 
-Base `origin/main` vérifiée : **`9cde6af3c48a3973928d669f2228285ded674f1d`**, Mission 16 fusionnée par PR #25. Même branche `mission/17-renaissance-des-arbres`, même PR brouillon. Les preuves 17A restent conservées sans modification. Aucun déploiement, aucune fusion, aucun travail Living Paintings / LP-01. Budget supplémentaire : **0 €**.
+Les déformations s’appliquent depuis les attaches : frémissement de la pousse, rameau fin, branche secondaire, branche principale, puis très faible flexion du tronc. Les normales suivent les mêmes rotations. Le tronc est particulièrement amorti sur les grands individus ; jeunes et berges sont plus souples, les conifères plus retenus. Les grandes masses ne se déplacent plus comme un seul bloc. Les pivots quantifiés restent attachés à moins de **1,5 mm** sur les joints testés sous entrée forte ; les racines des pousses restent à moins de **2 mm** avec croissance et frémissement.
 
-Les fichiers de terrain, IGN/ASP/OSM, relief, eaux, chemins, bâtiments, repères et packs de décor restent inchangés. Les 2 500 ancrages existants gardent exactement leurs coordonnées et attributs ; un fichier complémentaire distinct contient les nouvelles positions inférées. Le pilote n’a **aucun arbre individuel explicitement cartographié** parmi ces ancrages. La conservation des ancrages cartographiés est aussi testée sur une fixture qui en possède.
+Le propriétaire M11 utilise désormais le temps mural déjà fourni par la boucle pour son horloge environnementale, avec sa limite de reprise à une seconde. Il reste distinct du pas borné des collisions. Cela évite de ralentir artificiellement le vent quand le GPU logiciel rend peu d’images ; aucun deuxième chronomètre n’est ajouté. Les douze traces montrent un écart entre temps enregistré et temps du vent inférieur à **0,02 s**.
 
-Le recalcul réel du graphe de marche produit les **mêmes 919 nœuds, 896 arêtes et SHA-256** ; le pack reste inchangé. Les empreintes des modules de raccord sont actualisées explicitement dans les métadonnées. Les collisions sont comparées sur 2 898 points et 20 mouvements entre les deux versions. Le seul raccord à la faune place les perchoirs à la nouvelle hauteur des arbres.
+L’enveloppe conservatrice de mouvement ajoute **3,2 m** aux bounds de visibilité. À proximité des maçonneries, l’amplitude utilise la marge existante ; **131 individus** ont une réponse atténuée dans le pilote. Les positions et les trois composantes de forme statique restent celles de 17B.
 
-[Équivalence de navigation](mission-17-evidence/forest/navigation-equivalence.json) · [Collisions](mission-17-evidence/forest/collisions.json) · [Audit de préservation](mission-17-evidence/forest/preservation.json).
+## Références consultées
 
-## Onze architectures, des individus reproductibles
+Deux vidéos publiques sous **CC BY-SA 4.0** ont été téléchargées et des séquences de frames horodatées ont été décodées puis inspectées :
 
-![Bibliothèque au même repère métrique](mission-17-evidence/forest/form-all.jpg)
+- [Wind in tree AppletonFarms Massachusetts 2024-10](https://commons.wikimedia.org/wiki/File:Wind_in_tree_AppletonFarms_Massachusetts_2024-10.webm), **Oakley413** : tronc peu mobile, extrémités plus actives, déplacement commun avec des réponses locales différentes. L’espèce n’est pas identifiée ici.
+- [Chaya leaves (Cnidoscolus aconitifolius) swaying in the wind](https://commons.wikimedia.org/wiki/File:Chaya_leaves_(Cnidoscolus_aconitifolius)_swaying_in_the_wind.webm), **Undeka11** : changements d’orientation des limbes autour de leurs attaches et différences entre voisins. Cette plante tropicale sert uniquement à observer le mouvement, sans fournir de modèle botanique français.
 
-Les structures distinguent : étalé, cime haute, élancé, berge, retombant, jeune, mature asymétrique, petit isolé, dense, conifère et verger. Elles changent la flèche, le départ des charpentes, leur portée et leur élévation, la gravité des rameaux, la densité et les leaders intérieurs. Ce ne sont pas onze couleurs d’une même sphère.
+Cela a guidé l’écart entre les trois inerties et l’amplitude discrète du roulement des pousses. Ce sont des observations qualitatives ; aucune vitesse de vent mesurée ni validation de toutes les familles n’en est déduite. Aucun pixel externe n’entre dans les matériaux du jeu. Les originaux restent dans `work/`, hors Git. [Journal des URL, licences, empreintes, segments observés et limites](mission-17-evidence/life/naturalist-references.json).
 
-| Famille | Plage de hauteur | Branches de référence | Triangles proche / intermédiaire / loin |
-| --- | ---: | ---: | ---: |
-| Grand feuillu étalé | 11–19 m | 478 | 14 148 / 2 682 / 276 |
-| Feuillu à cime haute | 16–24 m | 401 | 11 940 / 2 256 / 304 |
-| Feuillu élancé | 12–22 m | 521 | 15 468 / 2 922 / 388 |
-| Feuillu de berge | 8–17 m | 321 | 9 588 / 1 812 / 248 |
-| Ramure retombante | 8–15 m | 281 | 8 412 / 1 590 / 220 |
-| Jeune feuillu | 2.7–6.5 m | 321 | 9 588 / 1 812 / 248 |
-| Feuillu mature asymétrique | 10–20 m | 372 | 11 044 / 2 094 / 220 |
-| Petit arbre isolé | 4–9 m | 372 | 11 044 / 2 094 / 220 |
-| Couronne dense et arrondie | 8–16 m | 716 | 22 004 / 3 974 / 332 |
-| Conifère à étages irréguliers | 8–23 m | 801 | 23 700 / 4 476 / 584 |
-| Petit arbre de verger | 3.5–7.5 m | 319 | 9 492 / 1 800 / 192 |
+## Croissance et retrait saisonnier
 
-Les plages de hauteur vont de **2,7–6,5 m pour les jeunes sujets** à **16–24 m pour les cimes hautes**. Les dimensions des autres familles restent intermédiaires ; les troncs et les couronnes évoluent ensemble. Il n’y a pas d’arbre géant ajouté pour l’effet spectaculaire.
+Chaque famille possède une plage de débourrement et de chute ; l’identité stable de chaque arbre décale ces dates d’environ dix jours. La phénologie est générique et interprétée, sans prétention de relevé local.
 
-L’identité est calculée à partir des coordonnées géographiques locales stables, sans hasard non contrôlé. Elle règle hauteur, largeur, profondeur, âge, teinte, densité, orientation, inclinaison, hauteur de ramification, diamètre apparent du tronc, torsion/asymétrie et gain de réponse au vent. Une déformation continue commune au bois et aux pousses garde leurs attaches cohérentes. La géométrie est partagée par famille ; aucune armature CPU complète n’est instanciée par arbre.
+Le calendrier M11 pilote les bourgeons discrets, l’allongement des pousses et la croissance des feuilles au printemps. L’été garde les couronnes de référence. À l’automne, les pigments varient entre individus et feuilles, puis le retrait ouvre la ramure progressivement. L’hiver caduque expose la vraie charpente, ses branches secondaires et ses ramifications. Les persistants contournent la perte saisonnière.
 
-Le proche ajoute de vraies branches fines et de petites pousses croisées. L’intermédiaire garde les charpentes et les rameaux principaux ; le lointain représente des pousses et leur tige au point d’insertion sur une branche conservée. **Ce sont des représentations provisoires nécessaires à cette intégration, pas la livraison des transitions LOD de 17D.**
+L’ancien seuil de suppression par `natureCluster` est retiré du chemin forestier. Le canal G de l’atlas contient un rang stable par feuille et le canal B une distance à son contour. Chaque feuille croît puis s’efface sur sa pousse ; le rang de pousse décale son calendrier. Les tiges fines s’atténuent vers l’hiver, sans retirer de paquets de triangles de branches. La luminance R et la silhouette alpha d’origine sont conservées. La végétation basse conserve son propriétaire existant.
 
-Les cartes alpha contiennent quatre familles de dessins originaux, déclinées en deux bandes proche/lointain, **512 × 256**, 524 288 octets RGBA hors mipmaps. Elles représentent de petites pousses reliées, avec des feuilles et une tige, dans l’épaisseur de la ramure. Il n’y a pas de coque opaque ou de sphère proche. Les feuilles individuelles très détaillées de 17A restent consultables ; elles ne sont pas dupliquées 3 889 fois.
+Les lointains utilisent le même calendrier et la même règle d’alpha, avec leur représentation simplifiée de 17B. Ils ne simulent pas chaque feuille tridimensionnelle. [Inventaire des familles, plages de dates et modes par profil](mission-17-evidence/life/inventory.json).
 
-[Inventaire, coûts et empreintes](mission-17-evidence/forest/library.json) · [Atlas original](mission-17-evidence/forest/spray-atlas.png). Aucun preset, modèle, code d’extension, photo ou texture externe n’entre dans la forêt de production.
+## Neige et ombres
 
-## Densité : comparer les couronnes et le nombre
+La neige reste celle de **Mission 15** : température, accumulation, fonte, exposition statique et particules viennent de son système existant. La couche suit les surfaces compatibles et les normales déformées ; son grain reste attaché aux branches en mouvement. Les persistants reçoivent un coefficient de dépôt plus élevé que les pousses caduques. L’exposition de la couronne est approchée par hauteur et rétention, en complément de l’exposition M15 du terrain et des bâtiments. Ce n’est pas une simulation de charge de neige ni d’auto-occlusion complète.
 
-| Variante | Arbres dans le pilote | Projection potentielle sur les bois |
-| --- | ---: | ---: |
-| Mission 16 | 2 500 | 33,7 % |
-| 17B, nouvelles couronnes seules | 2 500 | 51,5 % |
-| 17B, couronnes et regarnissage retenus | 3 889 | 59,1 % |
+Aucun volume blanc de couronne n’est créé. Les ouvertures de l’atlas et les espaces entre branches restent ouverts. Le dépôt sur les aiguilles fines est encore discret. La prise de fonte conserve la vitesse M15 : la couverture passe de l’état saturé à une valeur légèrement inférieure sur seize secondes, sans rendre le processus artificiellement rapide. Voir les valeurs exactes dans les métadonnées et la trace `thaw`.
 
-Le nombre augmente de **1 389 sujets (+55,6 %)**, uniquement dans les bois documentés. Le plafond initial de 2 500 n’est donc pas intangible. La limite de sécurité du complément est 2 000, **non atteinte** : la sélection finale résulte des habitats, des exclusions, des espacements et de la place disponible, plutôt que d’un remplissage du plafond.
+Les casters **Mission 14** partagent les fonctions de pose et d’alpha saisonnier avec la couleur. Le proxy distant conserve une déformation de grosses branches, sans le frémissement fin du premier plan. Les plafonds restent **Éco : aucun target local ; Équilibré : 160 arbres, 512 px, 2 Hz ; Qualité : 256 arbres, 1 024 px, 4 Hz**. La carte solaire n’est pas recalculée à chaque petit mouvement de feuille.
 
-L’essai de couronnes seules montre un gain substantiel sans ajouter d’individu. Les couronnes adultes étalées/hautes/denses/asymétriques sont ensuite plus larges, sans gonfler leur hauteur. Le complément ajoute des jeunes sujets et des tailles intermédiaires, avec une distribution par taches à deux échelles, une priorité stable et des distances minimales. Les clairières, cultures, prés et trous des polygones restent ouverts. La strate basse existante est conservée.
+Le contrat devient `branch-attached-forest-v2`. Le pack actif `angles-walk-lighting` est **réellement rebaké** à partir des 287 maillages et des 3 889 ancrages exportés. La géométrie statique et les bounds de couronnes au repos sont identiques à 17B : le binaire calculé reste identique, avec un nouveau contrat explicite dans son manifeste. Les anciens caches incompatibles restent refusés. [Préparation effective, 52,7 s](mission-17-evidence/life/light-preparation.json).
 
-![Cartes comparatives de couverture et MNH](mission-17-evidence/forest/density-maps.jpg)
+## Films natifs et lecture
 
-L’indicateur utilise **16 242 échantillons de bois espacés de 8 m**, dans l’emprise intérieure [−960, +960 m] et la classe de couverture prioritaire, et la projection elliptique des bounds des couronnes réellement rendues. Il ignore les trous du feuillage, les différences verticales et les variations saisonnières. **Ce n’est pas une mesure réelle de fermeture de canopée.** Les proportions ne doivent pas être comparées au MNH comme si leurs méthodes étaient identiques.
+[La galerie](mission-17-evidence/life/index.html) propose : vent faible, vent modéré, rafales, forêt, printemps, été sous la couronne, automne, hiver caduque, hiver persistant, neige, début de fonte et transition saisonnière.
 
-[Comptages et méthode](mission-17-evidence/forest/density.json) · [Synthèse d’implantation](mission-17-evidence/forest/placement.json) · [Détail des positions et dimensions, comprimé](mission-17-evidence/forest/placement.json.gz).
+Les neuf films d’atelier utilisent les modèles, matériaux et propriétaires du jeu dans une scène synthétique, en **640 × 480, profil Qualité**. Chaque nouvelle image GPU est copiée une fois sur un canvas de capture pour y ajouter son libellé ; la capture demande alors une frame native. Les trois films du pilote restent dans le vrai terrain, en **480 × 320** : Éco pour la forêt, Équilibré pour la neige et la fonte, avec une caméra de revue fixe pour ces deux derniers. Aucun arbre n’est caché pour la prise.
 
-## MNH IGN : acquisition et limites établies
+**Tous les mouvements sont enregistrés à vitesse réelle.** Seul le film « Diagnostic calendrier accéléré » parcourt mars à décembre en dix-huit secondes ; l’accélération est inscrite dans ses pixels. Les shaders et les premiers états météorologiques sont stabilisés avant la capture ; la fonte commence après une commande de météo douce, puis évolue naturellement. Aucune avance de simulation n’est ajoutée pendant les films naturels. Les vidéos ne sont ni rejouées ni interpolées ; l’indexation WebM utilise une copie de codec avec vérification d’identité de chaque paquet, de ses timestamps et de son empreinte.
 
-Le service officiel IGN a répondu **HTTP 200** et fourni un véritable GeoTIFF du **MNH LiDAR HD** sur l’emprise du pilote, en Lambert-93. Source native à 0,5 m, requête à **2 m**, 1 079 × 1 076 pixels, environ 4,65 Mo conservés dans `work/`, sans envoyer le raster brut dans le navigateur ni le dépôt. Les métadonnées locales déjà conservées en Mission 08.5 situent l’acquisition au **9 avril 2023**. Licence Ouverte 2.0 / IGN.
+Le GPU est **SwiftShader logiciel**. Les films du pilote peuvent descendre autour de deux à quatre images rendues par seconde ; cette cadence est conservée. Aucun FPS Android physique n’est inventé. [Métadonnées et preuves des douze films](mission-17-evidence/life/movies.json) · [Décodage, seek et quatre formats de galerie](mission-17-evidence/life/media-validation.json) ; les traces par frame sont conservées sous `*-trace.json.gz`.
 
-Sur les échantillons de bois valides, le MNH donne environ **9,1 m à la médiane, 19,0 m au P95 et 24,7 m au P99** ; **83,3 %** sont au-dessus de 2 m. Ce sont des statistiques de pixels de hauteur, pas des hauteurs d’arbres individuels. Elles étayent une hiérarchie verticale et montrent qu’une forêt encore plus fermée pourrait être justifiée dans certains massifs.
+## Préservation et vérifications
 
-La date printanière, l’échantillonnage WMS, les erreurs de normalisation et les différences de date empêchent d’interpréter chaque pixel bas comme une clairière permanente. Le jalon retient le MNH comme référence de plausibilité à l’échelle du peuplement ; il n’invente pas d’individus relevés, d’espèces ni de hauteurs mesurées pour les sujets procéduraux. **La proposition reste plus ouverte que l’observation sur certains bois.**
+Base `origin/main` vérifiée : **`9cde6af3c48a3973928d669f2228285ded674f1d`**, Mission 16 fusionnée par PR #25. Comparaison 17C avec le jalon 17B figé : **`f7c18199af6ed2f68adb18678f6301f466d2fd52`**. Même branche, même PR brouillon. Aucun travail Living Paintings / LP-01. Budget supplémentaire : **0 €**.
 
-[URL officielle, acquisition, empreinte et statistiques](mission-17-evidence/forest/mnh-study.json).
+- **3 889 ancrages identiques** : les 2 500 d’origine et les 1 389 compléments 17B, avec leurs attributs individuels.
+- **462 buffers identiques octet par octet** : positions, indices, normales, couleurs, UV et attributs de base des onze modèles et trois LOD. Seules les données de mouvement et les métadonnées des feuilles s’ajoutent.
+- Archives d’images, vidéos et preuves **17A/17B intactes** ; rapport 17B archivé séparément sans réécriture. Terrain, eaux, relief, routes, bâtiments, repères et packs de décor inchangés.
+- Graphe recalculé : **919 nœuds, 896 arêtes, même SHA-256**, pack inchangé.
+- **267 tests Node passent**, dont sept nouveaux contrôles de réponse, stabilité à 30/60/120 Hz, phénologie, attaches, enveloppe et atlas de pivots.
+- Build TypeScript/Vite réussi. Le navigateur rend les trois profils avec couleur, ombres estivales/hivernales et neige, sans erreur ni avertissement WebGL. Six cycles de création/destruction reviennent au même nombre de textures, géométries et octets logiques. Rechargement stable ; caches d’ancrages absent, corrompu ou périmé reconstruits à l’identique.
 
-## Rives, murs et place disponible
+[Audit de préservation](mission-17-evidence/life/preservation.json) · [Navigation](mission-17-evidence/life/navigation-equivalence.json) · [Validation navigateur](mission-17-evidence/life/validation.json).
 
-Les formes humides sont privilégiées pour les ancrages de berge et le complément situé près de l’eau. Le conifère est limité au couvert qui le justifie ; **12 sujets** sont présents. Le verger existe dans la bibliothèque mais **aucun sujet n’est ajouté sans contexte documenté de verger**.
+## Coût et réserve de fluidité
 
-Les nouvelles positions sont refusées dans l’eau, les bâtiments, les cours contraintes, les couloirs routiers, les trous du couvert et les pentes trop fortes. Les bounds métriques des couronnes sont confrontés aux murs, y compris les contours intérieurs des cours. **96 sujets choisissent une autre forme plus étroite ou un individu entier plus petit** ; aucune couronne n’est écrasée en minuscule boule. L’audit ne trouve pas de forme sans place suffisante selon ces enveloppes conservatrices.
+**La réserve de fluidité reste majeure.** 17B coûtait déjà **+32 à +150 %** face à Mission 16 dans sa campagne logicielle. Cette dette n’est pas résolue. La campagne 17C ajoute du coût dans huit des neuf paires ; une baisse isolée ne démontre pas une amélioration générale. **Cette branche n’est pas prête à être fusionnée pour ses performances.**
 
-Le contrôle distingue les contraintes de tronc et la projection de couronne : du feuillage peut surplomber un chemin comme dans la réalité ; aucune collision physique supplémentaire n’obstrue le parcours. Les limites restent celles des emprises cartographiées et des hauteurs architecturales interprétées.
+Comparaison directe avec 17B, **216 rendus synchronisés**, Chromium / **SwiftShader logiciel**, **960 × 640, DPR 1**, douze échantillons chauds alternés par paire. Caméra et climat complets sont vérifiés identiques. Le temps est figé pendant les échantillons ; les ombres locales utilisent leurs dérivés respectifs et une carte solaire stable. Ce ne sont pas des mesures de rafraîchissement forcé ni des résultats de téléphone.
 
-## Lumière et raccords conservés
+| Campagne | Profil | Vue | 17B médiane ms | 17C médiane ms | Δ | 17C P95 ms |
+| --- | --- | --- | ---: | ---: | ---: | ---: |
+| Couleur | eco | bois | 413.1 | 495.6 | +20.0 % | 580.8 |
+| Couleur | eco | aerienne | 334.6 | 346.2 | +3.5 % | 450.7 |
+| Couleur | balanced | bois | 563.2 | 667.0 | +18.4 % | 709.5 |
+| Couleur | balanced | aerienne | 585.6 | 612.4 | +4.6 % | 718.8 |
+| Couleur | quality | bois | 841.1 | 747.6 | -11.1 % | 842.8 |
+| Couleur | quality | aerienne | 608.2 | 655.2 | +7.7 % | 843.9 |
+| Ombre locale | eco | bois | 403.7 | 501.9 | +24.3 % | 554.6 |
+| Ombre locale | balanced | bois | 693.1 | 840.9 | +21.3 % | 997.1 |
+| Ombre locale | quality | bois | 936.5 | 1046.3 | +11.7 % | 1225.9 |
 
-Le calendrier et le champ de vent viennent des propriétaires M11 ; aucun second climat ou chronomètre ne tourne. La version de couronne devient `branch-attached-forest-v1`. Le **pack actif `angles-walk-lighting` est réellement recalculé**, avec les nouvelles couronnes et les 3 889 ancrages, à partir des mêmes buffers statiques. Les casters locaux utilisent le même shader de forme/vent, le même atlas et le même calendrier que la couleur. Les plafonds M14 restent **160/256 arbres, 512/1 024 px et 2/4 Hz** selon le profil ; Éco désactive ce target.
+La géométrie soumise varie légèrement avec les bounds agrandis. La variation de cadence et le fill rate du logiciel limitent l’interprétation d’une paire isolée. Les mesures brutes et le protocole sont conservés : [résumé](mission-17-evidence/life/performance-summary.json), [216 échantillons](mission-17-evidence/life/performance.json.gz).
 
-L’ancien pack historique `angles-lighting` conserve son ancien contrat. Il n’est pas rebaptisé pour lui faire accepter les nouveaux arbres : si cette voie de repli est utilisée, le cache incompatible est refusé. La géométrie statique et l’enveloppe de neige précalculée de Mission 15 restent inchangées. **L’adaptation artistique de la neige et du vent hiérarchique appartient à 17C.**
+La banque de vent occupe **32 Kio CPU et 4 Kio GPU**. L’atlas commun de pivots ajoute **7,07 Mio de texture GPU**, la même quantité pour son tableau CPU, plus **6,36 Mio** d’attributs source CPU ; il évite de dépasser les seize emplacements d’attributs WebGL. Dans cette campagne, la hausse de textures logiques est de **7,07 Mio** et celle des buffers d’environ **0,74–0,79 Mio**. Ce comptage ne mesure pas la VRAM physique ni les caches du pilote.
 
-[Préparation effective de lumière](mission-17-evidence/forest/light-preparation.json).
+Une ablation sur **un arbre isolé**, même pose et temps figé, mesure **89,0 ms** sans vent, **87,6 ms** avec grosses branches seules et **91,2 ms** avec hiérarchie complète, après synchronisation et lecture GPU. L’écart fin est faible devant le coût de rendu et sa variabilité ; ce résultat ne doit pas être extrapolé à la forêt. La banque seule à 60 Hz, dans le navigateur hôte, reste sous la résolution de 0,1 ms à la médiane, avec **P95 0,1 ms et pointe 0,2 ms**, hors conversion half-float et transfert GPU. [Protocole et données du coût du vent](mission-17-evidence/life/wind-cost.json).
 
-## Coût mesuré et limites de performance
-
-La régression logicielle reste importante : **+32 à +150 %** sur les médianes de la campagne couleur. **Ce pilote n’est pas prêt à être fusionné pour ses performances.** La validation de fluidité et les optimisations de 17D restent nécessaires.
-
-| Profil | Scène | Mission 16 médiane (ms) | 17B médiane (ms) | Δ | 17B P95 (ms) |
-| --- | --- | ---: | ---: | ---: | ---: |
-| eco | bois | 182.2 | 419.1 | +130.0 % | 554.2 |
-| eco | aerienne | 240.6 | 364.7 | +51.6 % | 415.7 |
-| eco | berge | 160.2 | 232.4 | +45.1 % | 279.1 |
-| balanced | bois | 224.4 | 550.1 | +145.1 % | 655.0 |
-| balanced | aerienne | 295.6 | 440.5 | +49.0 % | 496.0 |
-| balanced | berge | 214.3 | 282.8 | +32.0 % | 321.1 |
-| quality | bois | 239.9 | 600.9 | +150.5 % | 696.0 |
-| quality | aerienne | 301.3 | 568.3 | +88.6 % | 614.1 |
-| quality | berge | 201.6 | 341.0 | +69.1 % | 402.4 |
-
-La première version mesurée était encore plus lourde au loin. La représentation distante a été ramenée à 192–584 triangles avant cette campagne ; [l’étude exploratoire](mission-17-evidence/forest/optimization-study.json) conserve les étapes et leurs limites.
-
-Les champs historiques `treeCells`/`farCells` du diagnostic ne sont pas comparables aux anciennes cellules géographiques ; les comptages utilisés ici sont les champs canoniques `forest.total`, `forest.visible` et `forest.levels`.
-
-Les mesures identifient explicitement **Chromium / SwiftShader logiciel**, 960 × 640, DPR 1. Le protocole compare trois variantes à climat et caméra identiques : Mission 16, couronnes seules, forêt retenue. Les trois profils et trois scènes sont observés, puis une campagne distincte compare les lumières locales compatibles. Les rendus sont synchronisés par `gl.finish` et lecture GPU, après chauffe, en passages alternés. Les fenêtres restent figées pendant les échantillons.
-
-La campagne couleur désactive les ombres locales des trois variantes pour isoler la végétation. La campagne lumière mesure une carte solaire stabilisée ; elle **ne mesure pas chaque rafraîchissement forcé**. Le nombre de casters et le target restent bornés, mais la multiplication des familles augmente les appels de leur passe. Les octets de buffers et textures sont des allocations logiques instrumentées, pas de la VRAM physique. Les temps de chargement sont des observations locales isolées.
-
-**Aucun FPS sur GPU ou Android physique n’est revendiqué.** Les niveaux de détail et les atlas rendent ce pilote très inférieur au coût d’une duplication des prototypes 17A, mais ils ne remplacent pas la validation de fluidité et les optimisations de 17D.
-
-[Synthèse et mémoire par profil/scène](mission-17-evidence/forest/performance-summary.json) · [Échantillons comprimés](mission-17-evidence/forest/performance.json.gz).
-
-## Contrôles et revue perceptive
-
-**260 tests Node et build TypeScript/Vite réussis.** Ils couvrent les attaches, dimensions, indices, déterminisme, enveloppes des couronnes, exclusions, ancrages, LOD, resize et destruction. Le contrôle WebGL de six zones a révélé puis corrigé l’oubli de libérer les buffers propres aux `InstancedMesh` ; géométries, textures et octets instrumentés reviennent maintenant exactement au même état après chaque cycle.
-
-Les trois profils et les dates été/automne/hiver chargent les matériaux sans erreur JavaScript/WebGL. Un rechargement conserve les mêmes individus et layouts. Le fichier complémentaire absent (404 attendu), corrompu ou périmé reconstruit **exactement les mêmes individus**, avec le cache de lumière actif toujours compatible. Le placement entier supprime les écarts de décimales observés entre Node et Chrome.
-
-Une marche native courte avec changement de profil parcourt **15.4 m**, sur **52 images observées**, toutes sur un support autorisé. Les commandes durent 20 s puis 2 s d’arrêt ; la trace entre première et dernière image couvre 18.2 s. La vidéo décodée dure 16.9 s. Son conteneur WebM a été indexé par copie codec ; les paquets encodés et leurs PTS sont identiques à l’original. La durée du film ne doit donc pas être confondue avec les attentes de commande ; sa faible cadence logicielle limite le jugement du mouvement. Aucune promenade de 30 minutes n’est revendiquée.
-
-[Contrôles du runtime](mission-17-evidence/forest/validation.json) · [Revue desktop/mobile et décodage](mission-17-evidence/forest/review-validation.json) · [Marche native](mission-17-evidence/forest/forest-native.webm) · [Vérification compilée](mission-17-evidence/forest/compiled-validation.json).
+La validation conserve **2 898 points de collision et 20 mouvements identiques à 17B**. Six cycles de destruction reviennent exactement aux mêmes allocations logiques, sans établir un bilan mémoire sur trente minutes. [Collisions directes](mission-17-evidence/life/collisions.json).
 
 
-La galerie montre neuf paires du vrai moteur : bois au sol, sous-bois, lisière, vue aérienne, vallée, berge, village, pente et sujet isolé. Le sujet isolé garde les autres arbres visibles ; son voisin le plus proche est à environ 94 m. Les onze familles sont aussi rendues à échelle métrique, avec le promeneur natif ; des vues de détail montrent le profil, le dessous et la ramure hivernale. Les ombres compatibles sont actives dans les captures du parcours. Les images de l’atelier synthétique sont explicitement distinguées du paysage réel.
+## Reproduction
 
-La variation statique emploie une déformation polynomiale commune au bois et aux feuilles. Le placement utilise un mélange entier et une normalisation numérique, pour que les octets reconstruits dans Node et Chrome soient identiques ; cela ne revendique aucune précision de relevé.
+Depuis la branche et avec les dépendances installées :
 
-La revue interne a écarté des versions trop ajourées au loin et des pousses trop plates. La version retenue apporte une ramification plus riche, un feuillage dans l’épaisseur et une meilleure continuité entre couronnes. **Des paquets de pousses restent reconnaissables, des jonctions de tubes se voient de très près, certaines formes sont encore trop organisées en étages, et certains massifs restent ouverts.** Les paliers LOD peuvent être perceptibles ; leur transition n’est pas certifiée.
+```sh
+npm test
+npm run build
+npm run dev -- --port 5317
+```
 
-Le vent raccordé reste une flexion continue, sans l’inertie hiérarchique définitive. Les saisons ont un contrôle de non-régression, sans constituer les films de validation de 17C. La promenade courte ne remplace pas l’essai de 30 minutes de 17D. Les cinq captures du propriétaire n’étant pas jointes au texte initial, aucune reproduction exacte de leurs positions n’est revendiquée.
+Dans un second terminal :
 
-Le jeu compilé au commit **`c0aad89`** passe le chargement du pilote, les trois caméras, le déplacement et l’arrêt, la garde au sol, le son, le changement de profil et le viewport 390 × 844. L’identité de production est vérifiée sur quatre formats. Les empreintes des quatre modules graphiques correspondent exactement à celles des captures et mesures. Le build conserve l’avertissement préexistant de bundle > 500 ko.
+```sh
+node scripts/audit-forest-life-preservation.mjs
+node scripts/verify-forest-life-integration.mjs
+node scripts/browser-forest-life-validation.mjs
+node scripts/record-forest-life.mjs stage
+node scripts/record-forest-life.mjs world
+node scripts/catalog-forest-life.mjs
+```
 
-## Livraison et arrêt
+Ces générateurs écrivent seulement les preuves `life/` ; ne pas lancer les anciens générateurs 17A/17B pour cette livraison. Pour préparer le comparateur :
 
-**17B proposé à la validation artistique du propriétaire.** Examiner d’abord la profondeur des couronnes, les différences entre familles, la générosité des bois et les vues de berge, en gardant le coût affiché à côté des images. Les limites de forme et de fluidité restent explicites.
+```sh
+node scripts/prepare-forest-life-baseline.mjs
+cd work/mission-17c/baseline
+npm run dev -- --port 5320
+```
 
-La PR reste en brouillon, sans fusion ni déploiement. **Attendre cette revue avant 17C ; ne pas traiter les tests comme une approbation artistique.**
+Depuis la racine du dépôt, lancer ensuite `node scripts/benchmark-forest-life.mjs` et `node scripts/browser-forest-life-cost.mjs`. Le routage `baselineRoute` fournit tous les manifestes actifs modifiés et la lumière depuis l’objet Git 17B ; le badge de build local hérité ne sert pas à identifier cette copie. Les campagnes graphiques doivent être exécutées séparément, sans autre charge de rendu.
+
+Les positions et la bibliothèque originales ne sont pas de nouvelles observations géographiques. La validation de trente minutes, la performance sur téléphone physique, la campagne complète de streaming et les optimisations générales sont réservées à **17D**, après validation artistique de **17C**.

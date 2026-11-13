@@ -56,7 +56,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   // Main's movement timestep is capped for collisions. User commands use wall
   // time so a slow frame cannot stretch a two-second atmospheric transition.
   const transitionDt=Math.max(0,Math.min(wallDt,1));
-  commandAge+=transitionDt;elapsed+=dt;environmentalTime.value+=dt;state=weatherStep(state,target,weatherTau<45?transitionDt:dt,state,weatherTau);windUniform.value=elapsed;updateLifeTime(elapsed,state.wind*(1-calm*.45),player.position.x,player.position.z,localWind);environmentalWind.value=localWind.speed;
+  commandAge+=transitionDt;elapsed+=transitionDt;environmentalTime.value+=transitionDt;state=weatherStep(state,target,weatherTau<45?transitionDt:dt,state,weatherTau);windUniform.value=elapsed;updateLifeTime(elapsed,state.wind*(1-calm*.45),player.position.x,player.position.z,localWind);environmentalWind.value=localWind.speed;
   if(demo)effectiveTime+=dt*72000;
   else{timeBlend=Math.min(1,timeBlend+transitionDt/2.4);const blend=timeBlend*timeBlend*(3-2*timeBlend),to=moment==='real'?+(fixed??new Date()):selectedTime;effectiveTime=timeBlend===1?to:fromTime+(to-fromTime)*blend;}
   const date=new Date(effectiveTime),second=Math.floor(effectiveTime/1000);

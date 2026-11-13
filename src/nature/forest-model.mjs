@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 // Original, generic temperate architecture. No local species identification.
 // Derived artistically from the four approved Mission 17A references.
-export const FOREST_VERSION='branch-attached-forest-v1';
+export const FOREST_VERSION='branch-attached-forest-v2';
 const form=(label,height,width,trunk,base,stem,limbs,rise,gravity,options={})=>Object.freeze({label,height,width,trunk,base,stem,limbs,rise,gravity,flex:1,leaf:0,...options});
 export const FOREST_LIBRARY=Object.freeze({
  spreading:form('Grand feuillu étalé',[11,19],16,.50,2.7,.36,9,4.8,0,{inner:true}),
@@ -52,19 +52,25 @@ export function forestSkeleton(id,seed=forestHash(id.length,17,Object.keys(FORES
  }
  return {id,config:c,height:h,branches,sprigs,fineSprigs,seed};
 }
-const arrays=()=>({position:[],normal:[],color:[],uv:[],natureCluster:[],forestData:[],index:[]});
+const arrays=()=>({position:[],normal:[],color:[],uv:[],natureCluster:[],forestData:[],forestPrimary:[],forestSecondary:[],forestTwig:[],forestLeafRoot:[],forestLeafAxis:[],index:[]});
 function vert(a,p,n,col,uv,keep,height,flex,leaf){const i=a.position.length/3;a.position.push(...p.toArray());a.normal.push(...n.toArray());a.color.push(...col.toArray());a.uv.push(...uv);a.natureCluster.push(keep);a.forestData.push(height,flex,leaf);return i}
-function finish(a,name){const g=new THREE.BufferGeometry();g.name=name;g.setAttribute('position',new THREE.Float32BufferAttribute(a.position,3));g.setAttribute('normal',new THREE.Int16BufferAttribute(a.normal.map(v=>Math.round(v*32767)),3,true));g.setAttribute('color',new THREE.Uint8BufferAttribute(a.color.map(v=>Math.round(THREE.MathUtils.clamp(v,0,1)*255)),3,true));g.setAttribute('uv',new THREE.Float32BufferAttribute(a.uv,2));g.setAttribute('natureCluster',new THREE.Float32BufferAttribute(a.natureCluster,1));g.setAttribute('forestData',new THREE.Float32BufferAttribute(a.forestData,3));g.setIndex(a.index);g.computeBoundingBox();g.computeBoundingSphere();g.boundingSphere.radius+=1;return g}
+function motionVertex(a,tree,branch,root=null,axis=null){
+ const chain=[];let b=branch;while(b){chain.push(b);b=b.parent===null?null:tree.branches[b.parent]}
+ const encode=p=>p.toArray().map(v=>Math.round(THREE.MathUtils.clamp((v+32)/64,0,1)*65535));
+ for(const [order,key]of [[1,'forestPrimary'],[2,'forestSecondary'],[3,'forestTwig']]){const j=chain.find(b=>b.order===order);a[key].push(...encode(j?j.points[0]:V()),j?Math.round((.02+((j.id*.61803398875)%1)*.96)*65535):0)}
+ a.forestLeafRoot.push(...encode(root??V()));a.forestLeafAxis.push(...(axis??V(0,1,0)).toArray().map(v=>Math.round((v*.5+.5)*65535)));
+}
+function finish(a,name){const g=new THREE.BufferGeometry();g.name=name;g.setAttribute('position',new THREE.Float32BufferAttribute(a.position,3));g.setAttribute('normal',new THREE.Int16BufferAttribute(a.normal.map(v=>Math.round(v*32767)),3,true));g.setAttribute('color',new THREE.Uint8BufferAttribute(a.color.map(v=>Math.round(THREE.MathUtils.clamp(v,0,1)*255)),3,true));g.setAttribute('uv',new THREE.Float32BufferAttribute(a.uv,2));g.setAttribute('natureCluster',new THREE.Float32BufferAttribute(a.natureCluster,1));g.setAttribute('forestData',new THREE.Float32BufferAttribute(a.forestData,3));for(const key of ['forestPrimary','forestSecondary','forestTwig'])g.setAttribute(key,new THREE.Uint16BufferAttribute(a[key],4,true));for(const key of ['forestLeafRoot','forestLeafAxis'])g.setAttribute(key,new THREE.Uint16BufferAttribute(a[key],3,true));g.setIndex(a.index);g.computeBoundingBox();g.computeBoundingSphere();g.boundingSphere.radius+=1;return g}
 export function forestGeometry(tree,lod=0){
  const wood=arrays(),leaves=arrays(),c=tree.config;
  for(const b of tree.branches){if(lod===2&&(b.order>2||c.inner&&b.order===2&&b.sprayIndex===1)||lod===1&&b.order>3)continue;const sides=!b.order?(lod===0?10:lod===1?6:4):lod===0?(b.order===1?6:b.order===2?4:3):lod===1?3:2,steps=!b.order?(lod===0?9:3):lod===0?(b.order===1?4:2):1;
   for(let j=0;j<=steps;j++){
    const t=j/steps,p=forestPoint(b.points,t);if(!b.order&&j===0)p.y=-.7;
    const tangent=forestPoint(b.points,Math.min(1,t+.02)).sub(forestPoint(b.points,Math.max(0,t-.02))).normalize(),x=V(0,0,1).cross(tangent).normalize(),z=tangent.clone().cross(x).normalize(),radius=b.radius*(.13+.87*Math.pow(1-t,.9))*(!b.order?1+.25*Math.exp(-t*13):1);
-   for(let k=0;k<sides;k++){const a=k/sides*Math.PI*2,n=x.clone().multiplyScalar(Math.cos(a)).addScaledVector(z,Math.sin(a)),col=new THREE.Color(0x817969).multiplyScalar(.85+.15*Math.sin(k*2.7+b.id)**2),idx=vert(wood,p.clone().addScaledVector(n,radius),n,col,[0,0],-1,tree.height,c.flex,0);if(j<steps){const base=idx-k,next=(k+1)%sides;wood.index.push(idx,base+sides+k,base+sides+next,idx,base+sides+next,base+next)}}
+   for(let k=0;k<sides;k++){const a=k/sides*Math.PI*2,n=x.clone().multiplyScalar(Math.cos(a)).addScaledVector(z,Math.sin(a)),col=new THREE.Color(0x817969).multiplyScalar(.85+.15*Math.sin(k*2.7+b.id)**2),idx=vert(wood,p.clone().addScaledVector(n,radius),n,col,[0,0],-1,tree.height,c.flex,0);motionVertex(wood,tree,b);if(j<steps){const base=idx-k,next=(k+1)%sides;wood.index.push(idx,base+sides+k,base+sides+next,idx,base+sides+next,base+next)}}
   }
  }
- const sprays=lod===2?tree.branches.filter(b=>b.order===2&&!(c.inner&&b.sprayIndex===1)).map(b=>({attachment:forestPoint(b.points,.22),direction:b.points.at(-1).clone().sub(b.points[0]).normalize(),roll:b.id*2.4,length:tree.id==='young'?1.4:tree.id==='small'||tree.id==='orchard'?2.1:3.0,width:tree.id==='young'?1.35:c.leaf===2?2.7:3.3,keep:(b.id*.618)%1,shade:.95})):lod===0?tree.fineSprigs:tree.sprigs.filter((_,i)=>i%3!==1);
+ const sprays=lod===2?tree.branches.filter(b=>b.order===2&&!(c.inner&&b.sprayIndex===1)).map(b=>({branch:b.id,attachment:forestPoint(b.points,.22),direction:b.points.at(-1).clone().sub(b.points[0]).normalize(),roll:b.id*2.4,length:tree.id==='young'?1.4:tree.id==='small'||tree.id==='orchard'?2.1:3.0,width:tree.id==='young'?1.35:c.leaf===2?2.7:3.3,keep:(b.id*.618)%1,shade:.95})):lod===0?tree.fineSprigs:tree.sprigs.filter((_,i)=>i%3!==1);
  for(const s of sprays){
   const forward=s.direction.clone(),side=V(0,1,0).cross(forward).normalize().applyAxisAngle(forward,s.roll),length=s.length*(lod===1?1.17:1),width=s.width*(lod===1?1.12:1);
   // Two small planes give each branch-rooted shoot depth; far keeps the stem
@@ -72,7 +78,7 @@ export function forestGeometry(tree,lod=0){
   for(let plane=0;plane<2;plane++){
    const crossSide=side.clone().applyAxisAngle(forward,plane*Math.PI*.5),crossNormal=forward.clone().cross(crossSide).normalize(),base=leaves.position.length/3;
    const shape=lod<2?[[0,0,0],[.44,-.5,0],[1,0,0],[.44,.5,0],[.48,0,.10]]:[[0,0,0],[.5,-.5,0],[1,0,0],[.5,.5,0]];
-   for(const [u,v,fold]of shape){const p=s.attachment.clone().addScaledVector(forward,u*length).addScaledVector(crossSide,v*width).addScaledVector(crossNormal,fold*width),col=new THREE.Color(c.evergreen?0x66845c:c.leaf===2?0x9aab72:0x89a55c).multiplyScalar(s.shade*(.84+.16*Math.min(1,p.y/tree.height)));vert(leaves,p,crossNormal,col,[(c.leaf+(v+.5)*.91+.045)/4,(lod===2?.5:0)+(.045+u*.91)*.5],s.keep,tree.height,c.flex,1)}
+   for(const [u,v,fold]of shape){const p=s.attachment.clone().addScaledVector(forward,u*length).addScaledVector(crossSide,v*width).addScaledVector(crossNormal,fold*width),col=new THREE.Color(c.evergreen?0x66845c:c.leaf===2?0x9aab72:0x89a55c).multiplyScalar(s.shade*(.84+.16*Math.min(1,p.y/tree.height)));vert(leaves,p,crossNormal,col,[(c.leaf+(v+.5)*.91+.045)/4,(lod===2?.5:0)+(.045+u*.91)*.5],s.keep,tree.height,c.flex,1);motionVertex(leaves,tree,tree.branches[s.branch],s.attachment,forward)}
    for(const [a,b,d]of lod<2?[[0,1,4],[1,2,4],[2,3,4],[3,0,4]]:[[0,1,2],[0,2,3]])leaves.index.push(base+a,base+b,base+d);
   }
  }
@@ -103,10 +109,10 @@ export function forestAtlas(size=128){
  const data=new Uint8Array(size*4*size*8),width=size*4;
  for(let band=0;band<2;band++)for(let tile=0;tile<4;tile++){
   const r=rand(711+tile),leaves=[],stems=[];
-  for(let j=0;j<(band?5:3);j++){const mid=band?2:1,endX=.5+(j-mid)*(band?.15:.29),endY=.87-Math.abs(j-mid)*(band?.06:.12);stems.push([.5,.04,endX,endY]);for(let n=0;n<13;n++){const t=.18+n*.06,x=.5+(endX-.5)*t,y=.04+(endY-.04)*t,side=n%2?-1:1,angle=Math.atan2(endY-.04,endX-.5)+side*(.8+r()*.55),len=tile===3?.115:(band?.080:.065)+r()*.022,rx=tile===2?(band?.033:.025):tile===3?(band?.015:.011):(band?.048:.033);leaves.push({x:x+Math.cos(angle)*len*.6,y:y+Math.sin(angle)*len*.6,c:Math.cos(angle),s:Math.sin(angle),ry:len,rx,tone:.69+r()*.28})}}
-  for(let y=0;y<size;y++)for(let x=0;x<size;x++){const u=(x+.5)/size,v=(y+.5)/size;let alpha=0,tone=.8;for(const [ax,ay,bx,by]of stems){const dx=bx-ax,dy=by-ay,t=THREE.MathUtils.clamp(((u-ax)*dx+(v-ay)*dy)/(dx*dx+dy*dy),0,1);if(Math.hypot(u-ax-t*dx,v-ay-t*dy)<.008){alpha=255;tone=.47}}
-   for(const l of leaves){const dx=u-l.x,dy=v-l.y,along=(dx*l.c+dy*l.s)/l.ry,across=(-dx*l.s+dy*l.c)/l.rx,lobe=tile===0?1+.14*Math.sin(along*15):1;if(along*along+across*across/(lobe*lobe)<1){alpha=255;tone=l.tone*(.92+.08*Math.abs(along))}}
-   const i=((y+band*size)*width+tile*size+x)*4;data[i]=data[i+1]=data[i+2]=Math.round(tone*255);data[i+3]=alpha;
+  for(let j=0;j<(band?5:3);j++){const mid=band?2:1,endX=.5+(j-mid)*(band?.15:.29),endY=.87-Math.abs(j-mid)*(band?.06:.12);stems.push([.5,.04,endX,endY]);for(let n=0;n<13;n++){const t=.18+n*.06,x=.5+(endX-.5)*t,y=.04+(endY-.04)*t,side=n%2?-1:1,angle=Math.atan2(endY-.04,endX-.5)+side*(.8+r()*.55),len=tile===3?.115:(band?.080:.065)+r()*.022,rx=tile===2?(band?.033:.025):tile===3?(band?.015:.011):(band?.048:.033);leaves.push({x:x+Math.cos(angle)*len*.6,y:y+Math.sin(angle)*len*.6,c:Math.cos(angle),s:Math.sin(angle),ry:len,rx,tone:.69+r()*.28,rank:.05+((n*0.61803398875+j*.41421356237)%1)*.90})}}
+  for(let y=0;y<size;y++)for(let x=0;x<size;x++){const u=(x+.5)/size,v=(y+.5)/size;let alpha=0,tone=.8,rank=0,edge=1;for(const [ax,ay,bx,by]of stems){const dx=bx-ax,dy=by-ay,t=THREE.MathUtils.clamp(((u-ax)*dx+(v-ay)*dy)/(dx*dx+dy*dy),0,1);if(Math.hypot(u-ax-t*dx,v-ay-t*dy)<.008){alpha=255;tone=.47}}
+   for(const l of leaves){const dx=u-l.x,dy=v-l.y,along=(dx*l.c+dy*l.s)/l.ry,across=(-dx*l.s+dy*l.c)/l.rx,lobe=tile===0?1+.14*Math.sin(along*15):1;if(along*along+across*across/(lobe*lobe)<1){alpha=255;tone=l.tone*(.92+.08*Math.abs(along));rank=l.rank;edge=Math.min(1,along*along+across*across/(lobe*lobe))}}
+   const i=((y+band*size)*width+tile*size+x)*4;data[i]=Math.round(tone*255);data[i+1]=Math.round(rank*255);data[i+2]=Math.round(edge*255);data[i+3]=alpha;
   }
  }
  return {data,width,height:size*2};

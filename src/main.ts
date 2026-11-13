@@ -1,7 +1,7 @@
 import {disposeRiverFlow} from './earthlife/river-flow';
 import {initializeWorldMaterials,configureWorldFiltering,disposeWorldMaterials,worldMaterialStatus} from './materials/world';
 import {lifeSettings,setLifeProfile,readLifePreferences,saveLifePreferences,type LifeProfileName} from './earthlife/preferences';
-import {natureMemory} from './nature/render';
+import {natureMemory,updateForestLife} from './nature/render';
 import { updateArchitectureLOD, architectureMemory } from './architecture/render';
 // @ts-ignore Pure camera helpers.
 import {clampZoom,behind} from './controls/orbit.mjs';
@@ -331,7 +331,7 @@ if(transitionElapsed<.8){
   }
 }
 
-updateAtmosphere(dt,quality==='low',elapsed);
+updateAtmosphere(dt,quality==='low',elapsed);updateForestLife(scene);
 signs.update(elapsed,scene.userData.climate,avatar.position,geographyReady);
 camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);
 sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[],locomotion,signs.audioFlight,activeTerrain?avatar.position.y+(activeTerrain.sample(0,0)??0):null);
