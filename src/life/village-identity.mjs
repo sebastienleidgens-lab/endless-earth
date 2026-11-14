@@ -8,7 +8,7 @@ export function identity(id,age=null){const seed=hash(id),r=random(seed),a=age??
 export function wardrobe(person,context={}){const r=random(person.seed+hash('wardrobe')),winter=(context.temperatureC??16)<9,rain=(context.rain??0)>.15,summer=(context.temperatureC??16)>22;
  const styles=winter?['coat','jacket','jumper']:summer?['tee','shirt','dress','shorts']:['shirt','jumper','jacket','skirt'];
  const style=rain?'raincoat':styles[Math.floor(r()*styles.length)];return {style,top:[0x777f65,0x8e6255,0x5f737f,0xb1a184,0x52675d,0x8c7f91,0xc2b8a4][Math.floor(r()*7)],bottom:[0x4c5863,0x655e52,0x474c46,0x8b8272][Math.floor(r()*4)],hat:winter?r()<.45:r()<.12,scarf:winter&&r()<.5,pack:r()<.22,umbrella:rain&&r()<.38,shorts:style==='shorts'||summer&&style==='tee'&&r()<.55};}
-export const LIFE_BUDGETS=Object.freeze({eco:{people:3,animals:1,hz:12,detailM:23,perceptibleM:100},balanced:{people:6,animals:2,hz:20,detailM:35,perceptibleM:145},quality:{people:10,animals:3,hz:30,detailM:48,perceptibleM:180}});
+export const LIFE_BUDGETS=Object.freeze({eco:{people:3,animals:1,hz:12,detailM:23,perceptibleM:100},balanced:{people:4,animals:2,hz:20,detailM:35,perceptibleM:145},quality:{people:10,animals:3,hz:30,detailM:48,perceptibleM:180}});
 export function attendance(c={},zone='village'){
  const hour=c.hour??12,month=c.month??5,day=c.weekday??6;
  const rhythm=hour<5?.013:hour<7?.13:hour<10?.55:hour<12?.88:hour<14?.72:hour<18?1:hour<21?.45:.055;
