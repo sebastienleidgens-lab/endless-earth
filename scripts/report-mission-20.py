@@ -36,6 +36,12 @@ for r in p['rows']:
  b,c,e=r['before'],r['after'],r['adaptive72']
  bench+=f"| {r['view'][0]} | {r['profile']} | {b['medianMs']:.1f} | {c['medianMs']:.1f} | {(c['medianMs']/b['medianMs']-1)*100:+.1f} % | {c['p95Ms']:.1f} / {c['peakMs']:.1f} | {e['medianMs']:.1f} |\n"
 road=t['initial']['route']; accepted=[r for r in t['state']['traffic']['report'] if r['accepted']]
+components=read('components.json'); timers=read('software-timers.json')
+component_names={'brume':'Voiles locaux','berges':'Touffes de berge, shading initial','projections':'Projections au sol','pluie-et-projections':'Pluie complète et projections','insecte':'Insecte, inspection proche','oiseaux':'Oiseaux, inspection','voiture':'Voiture, inspection statique'}
+component_table='| Ablation logicielle | Activé, médiane ms | Retiré, médiane ms |\n| --- | ---: | ---: |\n'
+for r in components['rows']:
+ component_table+=f"| {component_names[r['kind']]} | {r['onMedianMs']:.1f} | {r['offMedianMs']:.1f} |\n"
+timer_values=[r['softwareQueueMs'] for r in timers['samples'] if r['ready'] and not r['disjoint']]
 report=f'''# Mission 20 — Le monde sensible et vivant
 
 **Livraison pour revue artistique dans la [PR brouillon #29](https://github.com/sebastienleidgens-lab/endless-earth/pull/29). Plusieurs objectifs restent partiels, notamment la qualité sur matériel physique, certains reflets et la faune.** Base : Mission 19 fusionnée, `8073e46` / PR #28. Code de la promenade finale : `d611636`. Aucune fusion, aucun déploiement, aucune modification de Living Paintings / LP-01. Dépense supplémentaire : **0 €**.
@@ -59,7 +65,7 @@ L’adaptation change uniquement la résolution interne : estimation lissée sur
 Les rendus fixes sont appariés par caméra, position, date et météo, avec douze échantillons chauds synchronisés et ordre alterné. Les trois cellules Équilibré gagnent dans cette campagne. Des régressions restent présentes, surtout Qualité en vallée. Les P95 de groupes de douze échantillons coïncident ici avec leurs pics ; ce n’est pas une distribution matérielle exhaustive.
 
 {bench}
-La dernière colonne modifie explicitement la résolution interne. Elle ne démontre pas que le même rendu serait plus rapide à définition identique. SwiftShader varie aussi entre campagnes : les deux candidats précédents sont conservés dans `performance-initial.json.gz` et `performance-fragment-candidate.json.gz`. Une brume ajoutée à tous les matériaux régressait même hors brume ; elle a été remplacée par deux voiles locaux et aucun changement des shaders forestiers. La campagne finale conserve ce chemin de rendu ; les corrections ultérieures portent sur un identifiant du voile rare, la forme des insectes et des gardes sans effet sur les cellules fixes sans événement.
+La dernière colonne modifie explicitement la résolution interne. Elle ne démontre pas que le même rendu serait plus rapide à définition identique. SwiftShader varie aussi entre campagnes : les deux candidats précédents sont conservés dans `performance-initial.json.gz` et `performance-fragment-candidate.json.gz`. Une brume ajoutée à tous les matériaux régressait même hors brume ; elle a été remplacée par deux voiles locaux et aucun changement des shaders forestiers. Cette matrice précède les corrections du voile rare et des insectes, puis les optimisations finales du shading des berges et de la préparation du masque de pluie. Ces deux dernières sont mesurées séparément ; la matrice n’est pas présentée comme une nouvelle campagne complète sur le dernier commit.
 
 ## 4. Brume géographique
 
@@ -151,6 +157,11 @@ Aucun asset acheté, API payante ou service permanent. IGN / ASP : Licence Ouver
 
 [Échantillons complets](mission-20-evidence/performance.json) : médiane, P95, pics, appels, triangles, géométries, textures, heap, installation et pose. Les coûts avec/sans effets sont des ablations déclarées lorsqu’elles sont disponibles ; ils se recouvrent et ne s’additionnent pas. Les mesures GL synchronisées incluent attentes logicielles : ce ne sont pas des temps CPU purs. Aucun GPU physique ni Android n’a été mesuré.
 
+{component_table}
+Huit rendus chauds alternés par état, à caméra, date et météo communes : [détails des ablations](mission-20-evidence/components.json). La variation négative des oiseaux reste du bruit de mesure, pas un gain revendiqué. Les berges ci-dessus utilisent encore le shading initial ; le contrôle final conserve leur géométrie et passe de 126,9 à 120,7 ms avec le shading simplifié. L’ablation diagnostique du nouveau reflet de nuages donne 119,9 ms activé contre 114,4 ms retiré, sans option de production ajoutée. [Berges](mission-20-evidence/banks-optimization.json) · [reflets](mission-20-evidence/reflections-cost.json) · [préparation du masque de pluie](mission-20-evidence/rain-field-cost.json).
+
+L’extension `EXT_disjoint_timer_query_webgl2` est réellement interrogée, avec attente asynchrone entre images : {len(timer_values)} résultats valides, médiane {statistics.median(timer_values):.1f} ms sur la file SwiftShader. Ces timestamps logiciels sont distincts du temps de soumission JavaScript et ne mesurent aucun GPU physique. [Requêtes et échantillons](mission-20-evidence/software-timers.json).
+
 | Traitement pendant la nouvelle séance | Pic mural observé ms |
 | --- | ---: |
 | Sélection forestière | {metrics['forestSelectionMs']:.1f} |
@@ -182,7 +193,9 @@ Voix simultanées observées : **{metrics['voices']}** ; cache audio maximal obs
 
 Huit films natifs séparés couvrent prairie, forêt, rivière, rue, mur, feuillages, pluie et nuit ; le film automobile couvre approche, passage et éloignement. La voix derrière un bâtiment est une inspection déclarée. Aucun habillage musical ni bande-son externe. Les tests de lecture et de format n’équivalent pas à l’appréciation acoustique du propriétaire.
 
-La correction finale de typage est effacée du JavaScript. Le placement permanent des berges est aussi indépendant de la graine des événements ; avec la graine 20 de la séance, sa géométrie reste identique. Une garde réattribue le quota d’un insecte actif lors des changements de profil ; elle est contrôlée par un test de cycle, et aucun insecte n’était actif pendant la séance ordinaire. La politique de shading des touffes de berge a ensuite été simplifiée et mesurée séparément, sans changement géographique. [Portée de compatibilité](mission-20-evidence/runtime-equivalence.json).
+Le build de livraison est ouvert sans interception de source : cinq mois sont sélectionnés sans déplacement du personnage ; mois et confort caméra persistent après rechargement ; le menu à 390 × 844 ne déborde pas horizontalement. La pluie est aussi rendue dans les trois profils. Aucune erreur JavaScript ou WebGL n’est détectée. La galerie décode 36 images et les métadonnées de 12 vidéos, vérifie les liens locaux et les curseurs en deux largeurs. Les séquences de paquets audio et vidéo des remux livrés sont identiques aux captations brutes. [Build compilé](mission-20-evidence/compiled.json) · [galerie](mission-20-evidence/evidence-check.json) · [médias](mission-20-evidence/media-check.json).
+
+La correction finale de typage est effacée du JavaScript. Le placement permanent des berges est aussi indépendant de la graine des événements ; avec la graine 20 de la séance, sa géométrie reste identique. Une garde réattribue le quota d’un insecte actif lors des changements de profil ; elle est contrôlée par un test de cycle, et aucun insecte n’était actif pendant la séance ordinaire. La politique de shading des touffes de berge et les requêtes du masque de pluie ont ensuite été optimisées et mesurées séparément, sans changement géographique. La preuve de trente minutes reste explicitement celle de `d611636`. [Portée de compatibilité](mission-20-evidence/runtime-equivalence.json).
 
 ## 26. Non-régressions
 
@@ -208,7 +221,11 @@ Priorité suivante : une campagne sur GPU physique et Android, aux mêmes statio
     MISSION20_PORT=5341 node scripts/record-mission-20-traffic.mjs
     MISSION20_PORT=5341 node scripts/audio-mission-20.mjs
     MISSION20_SOAK_PORT=5341 node scripts/soak-mission-20.mjs
+    MISSION20_PORT=5340 node scripts/timers-mission-20.mjs
+    npm run preview -- --port 5344 --strictPort
+    node scripts/compiled-mission-20.mjs
     python scripts/report-mission-20.py
+    MISSION20_PORT=5340 node scripts/check-mission-20-evidence.mjs
 
 La galerie se consulte sur le serveur local à `/endless-earth/docs/mission-20-evidence/index.html`. La publication de cette PR ne déploie pas le jeu. **Aucun test automatisé n’est présenté comme une approbation artistique du propriétaire.**
 
@@ -249,6 +266,7 @@ os.environ.setdefault('MPLCONFIGDIR',str(ROOT/'work/matplotlib-cache'))
 os.environ.setdefault('XDG_CACHE_HOME',str(ROOT/'work/font-cache'))
 import matplotlib
 matplotlib.use('Agg')
+matplotlib.rcParams['svg.hashsalt']='mission-20-native-timeline'
 import matplotlib.pyplot as plt
 start=frames[0]['t']; minutes=[(f['t']-start)/60000 for f in frames]; ms=[f['ms'] for f in frames]; distance=[];d=0
 for f in frames:d+=f['step'];distance.append(d)
@@ -260,7 +278,8 @@ for ax in axes:
  ax.grid(alpha=.2)
  for c in s['chapters'][1:]:ax.axvline(c['seconds']/60,color='#81928b',lw=.6,ls=':')
 fig.suptitle('Mission 20 — promenade native continue, Chromium / SwiftShader logiciel')
-fig.savefig(D/'soak-timeline.svg');plt.close(fig)
+fig.savefig(D/'soak-timeline.svg',metadata={'Date':None});plt.close(fig)
+svg=D/'soak-timeline.svg';svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n')
 print('Wrote final report and native timeline')
 
 def pair(before,after,title,note='',ratio='800/500',category='atmosphere'):
@@ -283,7 +302,7 @@ page=f'''<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewpo
 </style><header><div class="eyebrow">Endless Earth · Angles-sur-l’Anglin · Mission 20</div><h1>Le monde sensible et vivant.</h1><p>Une revue des images, des sons et des compromis de la version candidate. Toutes les captures et vidéos proviennent du véritable moteur.</p><p><a href="https://github.com/sebastienleidgens-lab/endless-earth/pull/29">PR #29 en brouillon</a> · <a href="../mission-20.md">Rapport détaillé et état des objectifs</a></p></header><nav><a href="#comparer">Comparer</a><a href="#ecouter">Voir et écouter</a><a href="#mesurer">Mesures</a><a href="#limites">Limites</a></nav><main>
 <section id="comparer"><div class="eyebrow">Même caméra, date et météo</div><h2>Des nuances à regarder.</h2><p>Déplacez le curseur pour comparer. Les fichiers d’origine restent accessibles sous chaque paire. Les lieux sont des stations de revue du moteur, pas de nouveaux belvédères revendiqués.</p><div class="grid">{gallery}</div><details><summary>Les trois profils et les scènes de mesure</summary><div class="grid">{profile_cards}</div></details><details><summary>Inspection du papillon</summary><p>Événement volontairement observé par avance du temps de simulation sur un poste admissible. Ce n’est pas une rencontre spontanée. Les formes sont génériques, sans espèce locale identifiée.</p><img class="macro" loading="lazy" src="inspection/butterfly.jpg" alt="Papillon générique observé dans le véritable moteur"><p>Aucun poste public humide admissible n’a été trouvé pour la libellule dans cet échantillon. Cette preuve n’est pas inventée.</p></details></section>
 <section id="ecouter"><div class="eyebrow">Images et son natifs</div><h2>Une promenade qui laisse du calme.</h2><p>Le film automobile est une inspection explicite. Les trois autres extraits viennent de la séance ordinaire continue de trente minutes. Le son est capturé après le limiteur du jeu ; aucun habillage externe n’est ajouté.</p><div class="grid">{movies}</div><details><summary>Huit stations acoustiques</summary><div class="grid">{audio_cards}</div></details></section>
-<section id="mesurer"><div class="eyebrow">Preuves et performance</div><h2>Les gains et leurs limites.</h2>{metrics_html}<p class="notice"><strong>Chromium / SwiftShader logiciel.</strong> Les résultats ne sont pas des FPS Android ou GPU physique. La résolution interne s’adapte pendant la promenade ; les valeurs fixes ci-dessous utilisent la même définition.</p><div class="table-wrap"><table><thead><tr><th>Scène</th><th>Profil</th><th>M19 médiane ms</th><th>M20 médiane ms</th><th>Écart</th></tr></thead><tbody>{perf_rows}</tbody></table></div><p>Douze rendus chauds synchronisés par cellule. Des régressions restent visibles ; les candidats écartés et les données brutes ne sont pas masqués.</p><img class="timeline" loading="lazy" src="soak-timeline.svg" alt="Chronologie réelle des temps d’image, de la distance et de la résolution interne"><p><a href="performance.json">Matrice et échantillons</a> · <a href="soak.json">Promenade native</a> · <a href="soak-analysis.json">Coûts et ressources</a> · <a href="preservation.json">Non-régressions</a> · <a href="inspection.json">Conditions des inspections</a> · <a href="traffic-native.json">Trajet automobile</a> · <a href="audio-native.json">Audio natif</a></p></section>
+<section id="mesurer"><div class="eyebrow">Preuves et performance</div><h2>Les gains et leurs limites.</h2>{metrics_html}<p class="notice"><strong>Chromium / SwiftShader logiciel.</strong> Les résultats ne sont pas des FPS Android ou GPU physique. La résolution interne s’adapte pendant la promenade ; les valeurs fixes ci-dessous utilisent la même définition.</p><div class="table-wrap"><table><thead><tr><th>Scène</th><th>Profil</th><th>M19 médiane ms</th><th>M20 médiane ms</th><th>Écart</th></tr></thead><tbody>{perf_rows}</tbody></table></div><p>Douze rendus chauds synchronisés par cellule. Des régressions restent visibles ; les candidats écartés et les données brutes ne sont pas masqués.</p><img class="timeline" loading="lazy" src="soak-timeline.svg" alt="Chronologie réelle des temps d’image, de la distance et de la résolution interne"><p><a href="performance.json">Matrice et échantillons</a> · <a href="soak.json">Promenade native</a> · <a href="soak-analysis.json">Coûts et ressources</a> · <a href="preservation.json">Non-régressions</a> · <a href="inspection.json">Conditions des inspections</a> · <a href="traffic-native.json">Trajet automobile</a> · <a href="audio-native.json">Audio natif</a> · <a href="components.json">Coûts par effet</a> · <a href="software-timers.json">Timers logiciels</a> · <a href="compiled.json">Build compilé</a> · <a href="media-check.json">Intégrité des médias</a></p></section>
 <section id="limites"><div class="eyebrow">À apprécier et à poursuivre</div><h2>Une livraison à examiner.</h2><p>La brume est un voile local, les reflets restent analytiques et les toits sont des enveloppes de protection approximatives. Les modèles d’animaux et de voiture restent stylisés. Une seule direction de la rue Blancoise est admise ; les voies incompatibles ne reçoivent aucune voiture. Les phares sont émissifs et ne projettent pas de lumière au sol.</p><p>Des optimisations et plusieurs détails demandés restent partiels. Le rapport énumère chaque objectif et sa réserve. La fluidité sur téléphone physique et l’appréciation artistique et acoustique du propriétaire restent ouvertes. Un test automatisé n’est pas une approbation artistique.</p><p>Aucune fusion, aucun déploiement et aucune modification de Living Paintings / LP-01. Aucun coût supplémentaire ni nouvelle ressource payante.</p></section></main><footer>Sources géographiques IGN / ASP et contributeurs OpenStreetMap. Interprétations naturalistes et circulation simulée, sans observation d’espèces ou mesure de trafic locale revendiquée. <a href="../../audio/credits.html">Crédits des sons</a> · <a href="../../materials/authentic/credits.html">Crédits des matières</a></footer></html>'''
 (D/'index.html').write_text(page)
 print('Wrote comparative evidence gallery')

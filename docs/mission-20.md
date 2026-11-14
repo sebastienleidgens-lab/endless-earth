@@ -32,7 +32,7 @@ Les rendus fixes sont appariés par caméra, position, date et météo, avec dou
 | vallee | balanced | 242.3 | 241.7 | -0.2 % | 277.9 / 277.9 | 181.7 |
 | vallee | quality | 225.2 | 241.7 | +7.3 % | 260.5 / 260.5 | 176.1 |
 
-La dernière colonne modifie explicitement la résolution interne. Elle ne démontre pas que le même rendu serait plus rapide à définition identique. SwiftShader varie aussi entre campagnes : les deux candidats précédents sont conservés dans `performance-initial.json.gz` et `performance-fragment-candidate.json.gz`. Une brume ajoutée à tous les matériaux régressait même hors brume ; elle a été remplacée par deux voiles locaux et aucun changement des shaders forestiers. La campagne finale conserve ce chemin de rendu ; les corrections ultérieures portent sur un identifiant du voile rare, la forme des insectes et des gardes sans effet sur les cellules fixes sans événement.
+La dernière colonne modifie explicitement la résolution interne. Elle ne démontre pas que le même rendu serait plus rapide à définition identique. SwiftShader varie aussi entre campagnes : les deux candidats précédents sont conservés dans `performance-initial.json.gz` et `performance-fragment-candidate.json.gz`. Une brume ajoutée à tous les matériaux régressait même hors brume ; elle a été remplacée par deux voiles locaux et aucun changement des shaders forestiers. Cette matrice précède les corrections du voile rare et des insectes, puis les optimisations finales du shading des berges et de la préparation du masque de pluie. Ces deux dernières sont mesurées séparément ; la matrice n’est pas présentée comme une nouvelle campagne complète sur le dernier commit.
 
 ## 4. Brume géographique
 
@@ -124,6 +124,20 @@ Aucun asset acheté, API payante ou service permanent. IGN / ASP : Licence Ouver
 
 [Échantillons complets](mission-20-evidence/performance.json) : médiane, P95, pics, appels, triangles, géométries, textures, heap, installation et pose. Les coûts avec/sans effets sont des ablations déclarées lorsqu’elles sont disponibles ; ils se recouvrent et ne s’additionnent pas. Les mesures GL synchronisées incluent attentes logicielles : ce ne sont pas des temps CPU purs. Aucun GPU physique ni Android n’a été mesuré.
 
+| Ablation logicielle | Activé, médiane ms | Retiré, médiane ms |
+| --- | ---: | ---: |
+| Voiles locaux | 103.1 | 102.9 |
+| Touffes de berge, shading initial | 132.1 | 115.8 |
+| Projections au sol | 333.6 | 328.3 |
+| Pluie complète et projections | 342.0 | 327.8 |
+| Insecte, inspection proche | 93.1 | 85.5 |
+| Oiseaux, inspection | 181.9 | 185.6 |
+| Voiture, inspection statique | 312.6 | 302.9 |
+
+Huit rendus chauds alternés par état, à caméra, date et météo communes : [détails des ablations](mission-20-evidence/components.json). La variation négative des oiseaux reste du bruit de mesure, pas un gain revendiqué. Les berges ci-dessus utilisent encore le shading initial ; le contrôle final conserve leur géométrie et passe de 126,9 à 120,7 ms avec le shading simplifié. L’ablation diagnostique du nouveau reflet de nuages donne 119,9 ms activé contre 114,4 ms retiré, sans option de production ajoutée. [Berges](mission-20-evidence/banks-optimization.json) · [reflets](mission-20-evidence/reflections-cost.json) · [préparation du masque de pluie](mission-20-evidence/rain-field-cost.json).
+
+L’extension `EXT_disjoint_timer_query_webgl2` est réellement interrogée, avec attente asynchrone entre images : 6 résultats valides, médiane 342.2 ms sur la file SwiftShader. Ces timestamps logiciels sont distincts du temps de soumission JavaScript et ne mesurent aucun GPU physique. [Requêtes et échantillons](mission-20-evidence/software-timers.json).
+
 | Traitement pendant la nouvelle séance | Pic mural observé ms |
 | --- | ---: |
 | Sélection forestière | 27.2 |
@@ -155,7 +169,9 @@ Voix simultanées observées : **6** ; cache audio maximal observé : **22.51 Mi
 
 Huit films natifs séparés couvrent prairie, forêt, rivière, rue, mur, feuillages, pluie et nuit ; le film automobile couvre approche, passage et éloignement. La voix derrière un bâtiment est une inspection déclarée. Aucun habillage musical ni bande-son externe. Les tests de lecture et de format n’équivalent pas à l’appréciation acoustique du propriétaire.
 
-La correction finale de typage est effacée du JavaScript. Le placement permanent des berges est aussi indépendant de la graine des événements ; avec la graine 20 de la séance, sa géométrie reste identique. Une garde réattribue le quota d’un insecte actif lors des changements de profil ; elle est contrôlée par un test de cycle, et aucun insecte n’était actif pendant la séance ordinaire. La politique de shading des touffes de berge a ensuite été simplifiée et mesurée séparément, sans changement géographique. [Portée de compatibilité](mission-20-evidence/runtime-equivalence.json).
+Le build de livraison est ouvert sans interception de source : cinq mois sont sélectionnés sans déplacement du personnage ; mois et confort caméra persistent après rechargement ; le menu à 390 × 844 ne déborde pas horizontalement. La pluie est aussi rendue dans les trois profils. Aucune erreur JavaScript ou WebGL n’est détectée. La galerie décode 36 images et les métadonnées de 12 vidéos, vérifie les liens locaux et les curseurs en deux largeurs. Les séquences de paquets audio et vidéo des remux livrés sont identiques aux captations brutes. [Build compilé](mission-20-evidence/compiled.json) · [galerie](mission-20-evidence/evidence-check.json) · [médias](mission-20-evidence/media-check.json).
+
+La correction finale de typage est effacée du JavaScript. Le placement permanent des berges est aussi indépendant de la graine des événements ; avec la graine 20 de la séance, sa géométrie reste identique. Une garde réattribue le quota d’un insecte actif lors des changements de profil ; elle est contrôlée par un test de cycle, et aucun insecte n’était actif pendant la séance ordinaire. La politique de shading des touffes de berge et les requêtes du masque de pluie ont ensuite été optimisées et mesurées séparément, sans changement géographique. La preuve de trente minutes reste explicitement celle de `d611636`. [Portée de compatibilité](mission-20-evidence/runtime-equivalence.json).
 
 ## 26. Non-régressions
 
@@ -181,7 +197,11 @@ Priorité suivante : une campagne sur GPU physique et Android, aux mêmes statio
     MISSION20_PORT=5341 node scripts/record-mission-20-traffic.mjs
     MISSION20_PORT=5341 node scripts/audio-mission-20.mjs
     MISSION20_SOAK_PORT=5341 node scripts/soak-mission-20.mjs
+    MISSION20_PORT=5340 node scripts/timers-mission-20.mjs
+    npm run preview -- --port 5344 --strictPort
+    node scripts/compiled-mission-20.mjs
     python scripts/report-mission-20.py
+    MISSION20_PORT=5340 node scripts/check-mission-20-evidence.mjs
 
 La galerie se consulte sur le serveur local à `/endless-earth/docs/mission-20-evidence/index.html`. La publication de cette PR ne déploie pas le jeu. **Aucun test automatisé n’est présenté comme une approbation artistique du propriétaire.**
 

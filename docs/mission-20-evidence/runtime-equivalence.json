@@ -23,10 +23,10 @@
   "bankShaderPolicy": {
     "change": "Use existing simplified common-wind and coarse-solar-receiver policy for optional bank plants only. Geometry, world seed, season, source terrain and plant count stay unchanged.",
     "nativeRunPolicy": "previous detailed bank shading; native thirty-minute proof is explicitly on d611636",
-    "postRunValidation": "banks-optimization.json, paired 126.9 to 120.7 ms SwiftShader; final render/build checks follow"
+    "postRunValidation": "banks-optimization.json, paired 126.9 to 120.7 ms SwiftShader; production build and compiled controls/render checks pass, compiled.json"
   },
   "rainFieldPolicy": {
     "change": "Remove redundant terrain queries from the local roof texture. Existing floor uniform and geometric depth testing retain ground occlusion; mapped roof envelopes are unchanged.",
-    "postRunValidation": "rain-field-cost.json: actual covered roof samples identical, CPU preparation measured separately; compiled/native render checks follow."
+    "postRunValidation": "rain-field-cost.json: actual covered roof samples identical, CPU preparation measured separately; production build and compiled controls/render checks pass, compiled.json"
   }
 }
