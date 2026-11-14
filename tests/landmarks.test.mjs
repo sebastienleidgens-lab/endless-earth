@@ -8,6 +8,7 @@ import {sampleGrid} from '../src/world/terrain-grid.mjs';
 import {barycentric,validateRefinement} from '../src/world/terrain-refinement.mjs';
 import {decodeSurface} from '../src/world/surface-mesh.mjs';
 import {cpuModules} from '../scripts/lib/cpu-modules.mjs';
+import {circleHitsPolygon} from '../src/controls/walking.mjs';
 import {createNavigation} from '../src/world/navigation.mjs';
 const loadJSON=async p=>JSON.parse(await readFile(p,'utf8')),raw=await loadJSON('public/data/angles-landmarks.json'),g=await loadJSON('public/data/angles-terrain.json'),osm=await loadJSON('public/data/angles-osm.geojson');g.refinement=validateRefinement(g,await loadJSON('public/data/angles-relief.json'));const zero=sampleGrid(g,0,0),lm=prepareLandmarks(raw,zero,raw.bindings);
 const load=await cpuModules(process.cwd(),'work/mission-14B/collision-tests'),collisions=await load('src/world/collisions.ts');
@@ -45,8 +46,8 @@ test('under-deck clipping preserves source heights outside the declared road-end
  const m=await loadJSON('public/data/angles-landmark-surface.json'),bytes=gunzipSync(await readFile('public/data/angles-landmark-surface.pack')),surface=decodeSurface(m,bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));let count=0;
  for(const tile of surface.tiles)for(const lod of ['fine','far']){const p=tile.attributes.position.array,ids=tile[lod].array;
   for(let i=0;i<ids.length;i+=3){const t=Array.from(ids.subarray(i,i+3)),x=t.reduce((s,v)=>s+p[v*3],0)/3,z=t.reduce((s,v)=>s+p[v*3+2],0)/3;if(x<-220||x>-150||z<110||z>205)continue;
-   const y=t.reduce((s,v)=>s+p[v*3+1],0)/3,approach=m.bridgeOcclusion.roadEndInfluence.some(triangle=>barycentric(triangle,x,z).every(w=>w>=-.0001));
-   if(approach&&tile.attributes.earthRoad.getX(t[0])>0){assert.ok(Math.abs(y-(sampleGrid(g,x,z)-zero))<=raw.mission221.maxRemovedCrossfallM+.01);}else assert.ok(Math.abs(y-(sampleGrid(g,x,z)-zero))<.001,JSON.stringify({x,z,y,error:y-(sampleGrid(g,x,z)-zero),road:tile.attributes.earthRoad.getX(t[0])}));count++;
+   const y=t.reduce((s,v)=>s+p[v*3+1],0)/3,approach=m.bridgeOcclusion.roadEndInfluence.some(triangle=>barycentric(triangle,x,z).every(w=>w>=-.0001)),rue=m.bridgeOcclusion.rueReconstruction,inRue=circleHitsPolygon(x,z,rue.footprint.map(([x,z])=>({x,z})),0),edgeDistance=Math.min(...rue.footprint.slice(1).map((b,i)=>{const a=rue.footprint[i],dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz||1)));return Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz)}));
+   if(edgeDistance<.002){const dx=rue.b.x-rue.a.x,dz=rue.b.z-rue.a.z,t=((x-rue.a.x)*dx+(z-rue.a.z)*dz)/(rue.length*rue.length),source=sampleGrid(g,x,z)-zero,target=rue.startM+(rue.endM-rue.startM)*t-zero;assert.ok(Math.min(Math.abs(y-source),Math.abs(y-target))<.05,'Float32 clipping boundary must belong to the original or reconstructed face');}else if(inRue){const dx=rue.b.x-rue.a.x,dz=rue.b.z-rue.a.z,t=((x-rue.a.x)*dx+(z-rue.a.z)*dz)/(rue.length*rue.length);assert.ok(Math.abs(y-(rue.startM+(rue.endM-rue.startM)*t-zero))<.05,JSON.stringify({x,z,y,target:rue.startM+(rue.endM-rue.startM)*t-zero,road:tile.attributes.earthRoad.getX(t[0])}));}else if(approach&&tile.attributes.earthRoad.getX(t[0])>0){assert.ok(Math.abs(y-(sampleGrid(g,x,z)-zero))<=raw.mission221.maxRemovedCrossfallM+.01);}else assert.ok(Math.abs(y-(sampleGrid(g,x,z)-zero))<.001,JSON.stringify({x,z,y,error:y-(sampleGrid(g,x,z)-zero),road:tile.attributes.earthRoad.getX(t[0])}));count++;
   }
  }
  assert.ok(count>100);assert.ok(m.bridgeOcclusion.roadEndInfluence.length<50);

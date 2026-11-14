@@ -9,6 +9,9 @@ import {VillageLifeDirector} from '../src/life/village-director.mjs';
 import {decodeSurface} from '../src/world/surface-mesh.mjs';
 import {surfaceSupport} from '../src/world/surface-support.mjs';
 import {publicRestGraph,restActivity} from '../src/life/public-rest.mjs';
+import * as THREE from 'three';
+import {createVillageRender} from '../src/life/village-render.mjs';
+import {identity,wardrobe} from '../src/life/village-identity.mjs';
 const json=async n=>JSON.parse(await readFile('public/data/'+n+'.json'));
 test('small seams work on ascending, descending and diagonal slopes, without ratcheting steep ramps or missing support',()=>{
  for(const sign of [-1,1])for(const diagonal of [false,true]){const height=(x,z)=>sign*(x*.35+(x>=.5?.07:0)),p={x:0,y:0,z:0};moveGrounded(p,{x:2,z:diagonal?2:0},()=>true,height,()=>.7,false);assert.ok(p.x>1.99);assert.equal(p.y,height(p.x,p.z));}
@@ -24,7 +27,11 @@ test('the bridge keeps exact centre elevations and a planar cross section; no ol
  const m=await json('angles-walk-surface'),bytes=gunzipSync(await readFile('public/data/angles-walk-surface.pack')),s=decodeSurface(m,bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)),support=surfaceSupport(s.tiles,[-220,115,-150,200]);
  const grid=await json('angles-terrain');const {sampleGrid}=await import('../src/world/terrain-grid.mjs');const baseline=sampleGrid(grid,0,0);
  for(let i=0;i<p.length;i+=15)for(const j of [4,7,10]){const ground=support.sample(p[i+j-1],p[i+j+1]);if(ground!==undefined)assert.ok(ground<p[i+j]-baseline+.015,`old terrain crosses deck at ${i},${j}`);}
- assert.ok(m.bridgeOcclusion.changedFaces>0);assert.ok(m.bridgeOcclusion.removedLandM2<250);
+ assert.ok(m.bridgeOcclusion.changedFaces>0);assert.ok(m.bridgeOcclusion.removedLandM2<350);
+});
+test('the complete Rue du Pont is traversable in both directions on its exact rendered support',async()=>{
+ const m=await json('angles-walk-surface'),bytes=gunzipSync(await readFile('public/data/angles-walk-surface.pack')),s=decodeSurface(m,bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)),support=surfaceSupport(s.tiles,m.walkCorrection.bounds),r=m.bridgeOcclusion.rueReconstruction,h=(x,z)=>support.sample(x,z)??null;
+ for(const [a,b]of [[r.a,r.b],[r.b,r.a]]){const p={...a,y:h(a.x,a.z)};moveGrounded(p,{x:b.x-a.x,z:b.z-a.z},()=>true,h,()=>.7,false);assert.ok(Math.hypot(p.x-b.x,p.z-b.z)<.001);}
 });
 test('albedo has no explicit distance blend in procedural, hybrid and photographic architecture',async()=>{
  const material=await readFile('src/architecture/material.ts','utf8'),world=await readFile('src/materials/world.ts','utf8'),authentic=await readFile('src/materials/authentic.ts','utf8');
@@ -48,4 +55,8 @@ test('completed daytime routines continue after a bounded end pause and retain i
 });
 test('village sound memory avoids immediate repeats, honours silence and stays bounded',()=>{
  const m=new VillageSoundMemory(),a=m.choose('conversation','a',['one','two'],0);assert.equal(m.choose('conversation','a',['one','two'],1),null);assert.notEqual(m.choose('conversation','a',['one','two'],30).asset,a.asset);assert.equal(m.choose('laugh','b',['laugh'],31),null);for(let i=0;i<500;i++)m.choose('step',String(i),['s'],i);assert.ok(m.actors.size<=128);m.clear();assert.equal(m.actors.size,0);
+});
+test('joint detail recedes without changing the core body transform or persistent identity',()=>{
+ const person=identity('joint-lod-person'),member={person,outfit:wardrobe(person),position:{x:0,y:0,z:0},yaw:0,speed:1,phase:0,distance:0},group={id:'joint-lod',members:[member],state:'walk',activity:'observe',stateTime:0,wait:60,kind:'solo'},original=structuredClone(member),r=createVillageRender(new THREE.Scene()),near=new THREE.Matrix4(),far=new THREE.Matrix4();
+ r.setObserver({x:0,z:0});r.draw([group],1,()=>0);r.batch.getMatrixAt(0,near);const closeCount=r.stats.instances;r.setObserver({x:10,z:0});r.draw([group],1,()=>0);r.batch.getMatrixAt(0,far);assert.ok(r.stats.instances<closeCount);assert.deepEqual(near.elements,far.elements);assert.deepEqual(member,original);r.dispose();
 });

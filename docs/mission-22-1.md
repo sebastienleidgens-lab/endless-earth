@@ -24,7 +24,7 @@ Les indices, le datum IGN69 et le winding ne sont pas établis comme la cause de
 
 `prepare-mission-22-1-geometry.mjs` repart des fichiers de la base Git précisée dans le script. Il conserve l’axe et les stations centrales du tablier, reconstruit sa section transversale plane, adapte garde-corps et plinthes, et découpe les anciennes terres dans son emprise. L’eau et les fichiers MNT/raffinement sont conservés.
 
-Les sommets des chaussées existantes raccordent le nouveau dévers sur trois mètres aux extrémités. Leur interpolation affecte également les faces existantes incidentes : ces triangles sont explicitement énumérés dans `roadEndInfluence`. Les tests vérifient cette emprise bornée et les hauteurs source en dehors d’elle. Cette transition est une **reconstruction de chaussée**, pas un nouveau levé. Aucun aplanissement global des berges ou falaises n’est pratiqué.
+La Rue du Pont est reconstruite en une chaussée continue de 0,5 m entre stations, sur les 22,964 m de son axe existant. Ses deux altitudes centrales conservées déterminent une pente d’environ 6 %, sans le pic court créé par un déplacement isolé des sommets de fin. Les autres sommets de raccordement raccordent le nouveau dévers sur trois mètres aux extrémités. Leur interpolation affecte également les faces existantes incidentes : ces triangles sont explicitement énumérés dans `roadEndInfluence`. Les tests vérifient cette emprise bornée et les hauteurs source en dehors d’elle. Cette transition est une **reconstruction de chaussée**, pas un nouveau levé. Aucun aplanissement global des berges ou falaises n’est pratiqué.
 
 ## 5. Vérification du pont
 
@@ -60,7 +60,7 @@ Les identités, proportions et tenues persistantes restent celles de Mission 22.
 
 ## 13. Animations
 
-Balancement du buste, respiration au repos, gestes asymétriques, regard discret et rotation amortie s’ajoutent aux jambes à deux segments et aux appuis existants. Le calcul évite une allocation vectorielle dans chaque segment. Les diagnostics de semelle sont limités aux personnes proches ; les groupes hors du champ continuent leur vie logique sans pose visible.
+Balancement du buste, respiration au repos, gestes asymétriques, regard discret et rotation amortie s’ajoutent aux jambes à deux segments et aux appuis existants. Le calcul évite une allocation vectorielle dans chaque segment. Les raccords géométriques supplémentaires des articulations sont complets à moins de quatre mètres et se résorbent progressivement dans les segments existants jusqu’à sept mètres ; corps, proportions et accessoires conservent leur identité. Les diagnostics de semelle sont limités aux personnes proches ; les groupes hors du champ continuent leur vie logique sans pose visible.
 
 ## 14. Routines complètes
 
