@@ -1,0 +1,815 @@
+{
+  "note": "Delivery inventory before commit; excludes this inventory itself and base-verification.json. Documentation/source only; no purchased asset or new runtime image/audio resource.",
+  "files": [
+    {
+      "file": "docs/mission-24-evidence/after-collisions.json",
+      "bytes": 16209,
+      "sha256": "1d731216e006440000d9bd81e02a5bd479d6c6f4c9e7b27ed89132b0eba57e48"
+    },
+    {
+      "file": "docs/mission-24-evidence/baseline-build.txt",
+      "bytes": 748,
+      "sha256": "0b721869774289d3077d9c10d3448e295e7e07496b8781dda36ff709395df752"
+    },
+    {
+      "file": "docs/mission-24-evidence/baseline-tests.txt",
+      "bytes": 35398,
+      "sha256": "158cb7e742593f63341a50124107d1f9620dd690f50e7b4fed99668829f874e3"
+    },
+    {
+      "file": "docs/mission-24-evidence/before-collisions.json",
+      "bytes": 16209,
+      "sha256": "1d731216e006440000d9bd81e02a5bd479d6c6f4c9e7b27ed89132b0eba57e48"
+    },
+    {
+      "file": "docs/mission-24-evidence/branch-calm-native.webm",
+      "bytes": 135169,
+      "sha256": "b0796260115d6f6d04db3578e9be0aedd4ec9bfc558bde276a2da9d2e5d9ee7b"
+    },
+    {
+      "file": "docs/mission-24-evidence/branch-raster.json",
+      "bytes": 5211,
+      "sha256": "541edf1be9897fff656c2913eebb65d3b4da64bd7bbd6da69e4856e3a62fadf2"
+    },
+    {
+      "file": "docs/mission-24-evidence/branch-wind-native.webm",
+      "bytes": 315984,
+      "sha256": "4c40886486efb4d2c53b9e21bef456a0c09104347eecabad9c8e3a2fdb6052a8"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-high-calm-above-bare.png",
+      "bytes": 17023,
+      "sha256": "92c90902ea4c1840172baa05dbf6e6ab0a5ab39d566ff807b9cf417c70dd473d"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-high-calm-above-snow.png",
+      "bytes": 21188,
+      "sha256": "9f9189a68c38bae3a29420b691450ef5f083579ff7858bac978aa4f72289fc19"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-high-calm-below-bare.png",
+      "bytes": 71221,
+      "sha256": "06e73abe937ff02eb612b348c724ae6a02caf689941de082b08d9247b78b775c"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-high-calm-below-snow.png",
+      "bytes": 85404,
+      "sha256": "e3d446ce47906af6be5de60f43f9e84ed88bc6e463508e1b8f73848dfecebfe6"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-high-wind-above-bare.png",
+      "bytes": 16925,
+      "sha256": "b02d97b3b7a9abe831b38459399a93bec0ad1929323da7cab632a100ef23f746"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-high-wind-above-snow.png",
+      "bytes": 21179,
+      "sha256": "c6bebceeeab8a068285f4fc953507e0ab483c4abb66d39be601d3f3e61ee829a"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-high-wind-below-bare.png",
+      "bytes": 68244,
+      "sha256": "70d2fba669ed97059325719af9ea5ef528b9c42197680e90b0edaec3f4f45b37"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-high-wind-below-snow.png",
+      "bytes": 54512,
+      "sha256": "e31d576cf1082f244ff6fbf100dd2d07b8cf274ce91ddc9872e4e24258c2d0a1"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-needle-calm-above-bare.png",
+      "bytes": 17044,
+      "sha256": "e87e698592611b8542e91b16aee4f4235d122a71ae5855d63e81e31c49441c5c"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-needle-calm-above-snow.png",
+      "bytes": 18096,
+      "sha256": "12913d22e0dce07835847f85f6d8ec847aa6d3cd00ea6ba56cfacabc2b6563af"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-needle-calm-below-bare.png",
+      "bytes": 77582,
+      "sha256": "d117ab6bd2723e1a253eba8f4f67bc1e67b2aa7674e0231295a005ecc9f0f0c4"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-needle-calm-below-snow.png",
+      "bytes": 42185,
+      "sha256": "9cb4c38a372cbc4ce35cb5d46529ed4406ac1b80f8bcc4da37fd4fded06ce6cb"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-needle-wind-above-bare.png",
+      "bytes": 16895,
+      "sha256": "4c3565414f3290f50a8d0e23a2aaf470d8a66736db359ab2f5b6ad9ea239059b"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-needle-wind-above-snow.png",
+      "bytes": 18135,
+      "sha256": "98e4115d87c1cd77fc0b95a80e7b27796a6b1f1f5e8b957902554fe73d66152c"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-needle-wind-below-bare.png",
+      "bytes": 28231,
+      "sha256": "a805bd8eb0442a004b6d4db65d5c99696465e64413497f39fcadcc4c2e7f8a39"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-needle-wind-below-snow.png",
+      "bytes": 71549,
+      "sha256": "d48550003ae0e5053d81fd56a4dceb125b73070ef23cc672c8aaf7b6f8cae474"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-pendant-calm-above-bare.png",
+      "bytes": 23903,
+      "sha256": "2a0cc5dcc0b5c5d4da9f975b04d532bbc1a64224ae0d859a3510da5190e7aaa0"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-pendant-calm-above-snow.png",
+      "bytes": 27964,
+      "sha256": "5275cb5bd71a516817562dbd28829e3800921b1b477413224dc25342cda78c3d"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-pendant-calm-below-bare.png",
+      "bytes": 47660,
+      "sha256": "4b50118df8059fe690dbcfb67cf006c81e0a2f46a015a8249743e428494866b4"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-pendant-calm-below-snow.png",
+      "bytes": 61988,
+      "sha256": "7eea20b995be2bf6a96c1b5a3616c932a154ef550fe2d0439802e468a84142cf"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-pendant-wind-above-bare.png",
+      "bytes": 24337,
+      "sha256": "8dc84a674d03be234957d0b3ab8808a622cd8cd02b2ddbb1466cbe7f029f0147"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-pendant-wind-above-snow.png",
+      "bytes": 27973,
+      "sha256": "082d0a5eb5e574c4bcf6aab0008ea5fd902282a060d38af5765f922395df322e"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-pendant-wind-below-bare.png",
+      "bytes": 84292,
+      "sha256": "e35cb1161effc02f7f3c3a816a2f0849b6ddbc9d39ec90e088c7f7353ecfeb06"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-pendant-wind-below-snow.png",
+      "bytes": 52568,
+      "sha256": "58344f88aae41d40637c5b796bdf463071dc6f781c98c9b7f037b4c25271a6f8"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-calm-above-bare.png",
+      "bytes": 19391,
+      "sha256": "b7a925003dd7b72cd11be5f70e2538e20968f25b55165d80f8833dac1cbde241"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-calm-above-snow.png",
+      "bytes": 23236,
+      "sha256": "57ccbd8cf4555a91c8eee7ee46f38d80325e71e6033c587cd891d3676f516fef"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-calm-below-bare.png",
+      "bytes": 71645,
+      "sha256": "983d943cdd732e4c46f65ce64544bff12fc4fe55bbe39ee00ab2cebd6d097d44"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-calm-below-snow.png",
+      "bytes": 70030,
+      "sha256": "4fbec87791948e9fee16caa1b76b2ac0a7d1be4ed63b12c4094bb9bc4bbd3a08"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-lod1-above.png",
+      "bytes": 22922,
+      "sha256": "3ecb3a6f44579796562832ca1aaf325fbd031e1358cc0b8cfe10b00ad196c209"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-lod1-below.png",
+      "bytes": 67125,
+      "sha256": "c67947b8830a59fef9e436197f4b329844f754dd539a75440a4af1d775cf27d6"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-lod2-above.png",
+      "bytes": 1907,
+      "sha256": "2054962d629e126e0669613e7c34e666b0d65b1aef98fdf7354039c1aeda09ef"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-lod2-below.png",
+      "bytes": 70774,
+      "sha256": "1fda09101b6fbf3b6ad7df59e6b1395137a287871af41cddac5f15883bad0cc4"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-lod3-above.png",
+      "bytes": 1907,
+      "sha256": "2054962d629e126e0669613e7c34e666b0d65b1aef98fdf7354039c1aeda09ef"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-lod3-below.png",
+      "bytes": 74746,
+      "sha256": "2a042a20011b03aca4e407bcf07398b0dd879cb98bf743d34e5f536ebc9a21c8"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-wind-above-bare.png",
+      "bytes": 19371,
+      "sha256": "61f9c8c6e9011675337ee2a85246c9e590d1abe5bbe2934ef307963ce75fa556"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-wind-above-snow.png",
+      "bytes": 23225,
+      "sha256": "b5204454eca532ed130cd8ad0f6296ca8594bbcc7bbece3a5fa2147f208b2485"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-wind-below-bare.png",
+      "bytes": 69381,
+      "sha256": "ba515ca0d32aad67affc086e1341e0a6e51951fe742c2fc17b720b5abb3382fb"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-spreading-wind-below-snow.png",
+      "bytes": 89416,
+      "sha256": "ece631c52d47b43bf35aac4fe9f58309e5ba516f7759c45bb1c1411cde109924"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-young-calm-above-bare.png",
+      "bytes": 5852,
+      "sha256": "b50d671a929b7c8d1afb432fd0602aea802593c88a34c3f893a1d6c1da575205"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-young-calm-above-snow.png",
+      "bytes": 7515,
+      "sha256": "96e6d1c0d9421639c51af765f9b39f7e0dc4c241051fba28e51da10b3a379f2a"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-young-calm-below-bare.png",
+      "bytes": 73361,
+      "sha256": "a72d50e20b8c2ccc9b6f4a6997c4b34ccb8ea9e08bbc86cfb839368a81f000a8"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-young-calm-below-snow.png",
+      "bytes": 71389,
+      "sha256": "9066d136907c6e7657074a4164a10a60b6bc15eba817ac4e50d81966266be4d3"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-young-wind-above-bare.png",
+      "bytes": 5924,
+      "sha256": "f5a153e39580ea3bc08252d99e83bc54a3020a437c5fdadec1b3f822ed1766e4"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-young-wind-above-snow.png",
+      "bytes": 7477,
+      "sha256": "b8af4aeb673a37e32fe57862b445b9459558df3915ae0aaa94f1bafed6726c29"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-young-wind-below-bare.png",
+      "bytes": 70037,
+      "sha256": "4e35d180850033dd3e71618fe6934ecfe336dc0a84d715511b8a7c7055f635c3"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/after-young-wind-below-snow.png",
+      "bytes": 71798,
+      "sha256": "ea76155dcbac1e44fdbe4c5aa324c89eb1336aa52e860e091a2d92a88135c02e"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-high-calm-above-bare.png",
+      "bytes": 16081,
+      "sha256": "155e4b48e83db473f92f64da401c802fd540fad5978266aab60970d9b0d060ef"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-high-calm-above-snow.png",
+      "bytes": 17048,
+      "sha256": "c33f064a9bf8c81d9be3b225e4fab505a3cf31dfb2da109c94ed0bbf3c4e63bc"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-high-calm-below-bare.png",
+      "bytes": 70986,
+      "sha256": "170c1f3e6183a6395bcd39f280d7d2b648b9c1a5ab76e3e0a94a31d1e5bee175"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-high-calm-below-snow.png",
+      "bytes": 90179,
+      "sha256": "0a040c7f3824483eab8289b6689ab1b76d02fd2a1fd9960265a8fa85f9f5d585"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-high-wind-above-bare.png",
+      "bytes": 16075,
+      "sha256": "d57d1d43ee1f15409cba2f9a92d15b132558fee44111b9bf3b7004019f4ab422"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-high-wind-above-snow.png",
+      "bytes": 17101,
+      "sha256": "b3320695c6a6378ea72965f6c40e45b7a4077c64b2cf73b414ed2e135f68ae29"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-high-wind-below-bare.png",
+      "bytes": 67964,
+      "sha256": "46ebd7dc1485511c0c0e1b08b306a639c34f61833bf25b73497be0ab9640cbdc"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-high-wind-below-snow.png",
+      "bytes": 59531,
+      "sha256": "e7aeee302c4454cb2d96fed2c119a4e139b8664f9d6a2d615cdfd85989096978"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-needle-calm-above-bare.png",
+      "bytes": 15744,
+      "sha256": "28b96bf68eaa70e5c8126549135321168f86e0ee8772eaf62579fdbb9a0b78ff"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-needle-calm-above-snow.png",
+      "bytes": 16095,
+      "sha256": "02907dbe9509b67c06c818130e5427ad4f9380029413f7ba83e58c739bb33750"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-needle-calm-below-bare.png",
+      "bytes": 79167,
+      "sha256": "6527ee816b6e050f98b5f554dd388649c45eeff3c5fd01a48d0a78d61efcc9e3"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-needle-calm-below-snow.png",
+      "bytes": 44317,
+      "sha256": "3e1ff268d60610ac64e5e0b66a227b72ef7bf8749db743030ea5e7f1078ef225"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-needle-wind-above-bare.png",
+      "bytes": 15642,
+      "sha256": "2f4952038e295d95a8b9f0832c89e2bb7176d16cb10d4ae18d5f875b9ae657b1"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-needle-wind-above-snow.png",
+      "bytes": 15991,
+      "sha256": "27326cc7159cc0160c6bc63c8eb2e94c443397078ac85149549baa52dbcf90a8"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-needle-wind-below-bare.png",
+      "bytes": 29889,
+      "sha256": "b4df2b4c1e9fbadec1e4f0980c37b166557a6b41f0c3c6e032d6487f7f38f2b2"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-needle-wind-below-snow.png",
+      "bytes": 73446,
+      "sha256": "c7631e97acd7bd7f56abe48d6c1bf7ec9eb5196c974b8f33ca56461f2bd2d7ae"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-pendant-calm-above-bare.png",
+      "bytes": 23077,
+      "sha256": "92ca3591efa1d2c6d1459c8ab5a0fabfe7f4ddc074d8aa86c59a19853f58e819"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-pendant-calm-above-snow.png",
+      "bytes": 24243,
+      "sha256": "89d425f0aaa19550073ad310d5c1f2e30a012b3423f4db1ca420f8a7dbcaf9f7"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-pendant-calm-below-bare.png",
+      "bytes": 49043,
+      "sha256": "6c144132e831ad067f59e88b23e29552678225feebbdf9761878aa50b0072d4f"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-pendant-calm-below-snow.png",
+      "bytes": 69233,
+      "sha256": "64df8ea2ce475fa433168c4415b54efaf3de0c4925c046fcbdfc146b17f235f8"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-pendant-wind-above-bare.png",
+      "bytes": 23218,
+      "sha256": "f032255a8c062dd7f01a9e5db6b78c2efa33906a657fbb15d494c74f75982847"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-pendant-wind-above-snow.png",
+      "bytes": 24343,
+      "sha256": "284363cdb93a0e51d7dbcb9dc9800869bd2d359325404aa4664bf33cf0638cf1"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-pendant-wind-below-bare.png",
+      "bytes": 85197,
+      "sha256": "ff48e25dd35e7bb70af45066c02eb872cad0109ae2e79cff35f831f8d592509c"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-pendant-wind-below-snow.png",
+      "bytes": 59917,
+      "sha256": "5c394e6980f16cd013a9b2b8975a712ffeb7c61006984d44b93da15e649e6b59"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-calm-above-bare.png",
+      "bytes": 18129,
+      "sha256": "bd08ff28ff4fa2dc0410b9b0aeecef9e03816f2c25b39b14579be3e32bbda38d"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-calm-above-snow.png",
+      "bytes": 19118,
+      "sha256": "7311465b45b901039cb5f14b05b05f8eeb7b364a145237fc1271db64c66d1e8d"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-calm-below-bare.png",
+      "bytes": 73532,
+      "sha256": "65943b28396e19bd9a327c9e704b4dd41c50edd91e9468d191a43fb202e7c651"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-calm-below-snow.png",
+      "bytes": 74258,
+      "sha256": "099aaf018fcae019c11c3117c89b375f53a7782cf0ae4aacda99ba0806770800"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-lod1-above.png",
+      "bytes": 15600,
+      "sha256": "ecfa31ce2a624771b5bb8e09be9e4d6bc1aba472f282104a4470ab1429c5194f"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-lod1-below.png",
+      "bytes": 76871,
+      "sha256": "6d695cea1cadfaac20fe81741206484d110c6cc6173753df4fcc41e0b67ddc22"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-lod2-above.png",
+      "bytes": 1907,
+      "sha256": "2054962d629e126e0669613e7c34e666b0d65b1aef98fdf7354039c1aeda09ef"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-lod2-below.png",
+      "bytes": 70774,
+      "sha256": "1fda09101b6fbf3b6ad7df59e6b1395137a287871af41cddac5f15883bad0cc4"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-lod3-above.png",
+      "bytes": 1907,
+      "sha256": "2054962d629e126e0669613e7c34e666b0d65b1aef98fdf7354039c1aeda09ef"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-lod3-below.png",
+      "bytes": 74746,
+      "sha256": "2a042a20011b03aca4e407bcf07398b0dd879cb98bf743d34e5f536ebc9a21c8"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-wind-above-bare.png",
+      "bytes": 18127,
+      "sha256": "ba8c640367561eabb9fce2769a80344978e76aa2f248b7377057f92aaa626efb"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-wind-above-snow.png",
+      "bytes": 19106,
+      "sha256": "b06866f1131d44b352857fbf41e6f421d0e99d4fc68e667d919791f2c57623ab"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-wind-below-bare.png",
+      "bytes": 71224,
+      "sha256": "27c5c3e87b13841dbde84a03589cc3eeb32e589610a237e593df8c926737acbe"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-spreading-wind-below-snow.png",
+      "bytes": 93137,
+      "sha256": "28662fed03b71684262f42d7de940df4c79f3a72f680a7a56d65ec83635eba3c"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-young-calm-above-bare.png",
+      "bytes": 5922,
+      "sha256": "819a7ceae4a3032e6b7973db7dda01441f827f0189753a5815cdc44a44751ea3"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-young-calm-above-snow.png",
+      "bytes": 6006,
+      "sha256": "eab14c7b55339f663c46a0457aac7e64b72a24e5d3fe354c26aad0f126f03065"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-young-calm-below-bare.png",
+      "bytes": 73224,
+      "sha256": "0850ad38e513e110d9a676eaa6233bf2fd4f73238d02a2b70fabb21cf3d8cd25"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-young-calm-below-snow.png",
+      "bytes": 73026,
+      "sha256": "8f87bf769ba1ad44f2f51a2f495f5658d9238932df04a9d568a6954c5d22b103"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-young-wind-above-bare.png",
+      "bytes": 5980,
+      "sha256": "6801e76518640244237060770468edc30cdb9eac9e23a3ff4462617fee43069b"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-young-wind-above-snow.png",
+      "bytes": 6065,
+      "sha256": "a980e5a0c0c43553cc3805d40cc7f8a23dcbcfade7724d701279e93d654b244b"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-young-wind-below-bare.png",
+      "bytes": 70022,
+      "sha256": "0ab8956057a25b189b160b326c444491eccf7f2cfffde5fe6778508302e1dc98"
+    },
+    {
+      "file": "docs/mission-24-evidence/branches/before-young-wind-below-snow.png",
+      "bytes": 73577,
+      "sha256": "d022fd668a0de55da224c892458eef1e5a1b1e4c514202e7a28784faa7ff58d3"
+    },
+    {
+      "file": "docs/mission-24-evidence/build.txt",
+      "bytes": 748,
+      "sha256": "63e49986a9bfdc637489fc0292c1f27378b46b92ab73a4487652ea94fabf7d61"
+    },
+    {
+      "file": "docs/mission-24-evidence/captures.json",
+      "bytes": 924428,
+      "sha256": "fe72f62934cb2eedaeeb25804c5d108f7cb02cd199d3855c8de6bee976e88494"
+    },
+    {
+      "file": "docs/mission-24-evidence/checks.json",
+      "bytes": 6097,
+      "sha256": "005f61163ae8eabc57e92ded156b08da049b73df72db9b06056cf6102c41441b"
+    },
+    {
+      "file": "docs/mission-24-evidence/controls-desktop.txt",
+      "bytes": 78054,
+      "sha256": "86e257d45f3129977a4191e7c22a562a5a2d20e7b02c7205c0225ebd6aa667a0"
+    },
+    {
+      "file": "docs/mission-24-evidence/gallery-1280.png",
+      "bytes": 128146,
+      "sha256": "d78d879cc58459d9a59345c1dac72feebb1774a58d9d8522baa0bd7d00144616"
+    },
+    {
+      "file": "docs/mission-24-evidence/gallery-390.png",
+      "bytes": 79568,
+      "sha256": "f710873acf57696dc57e1bbeb9727282d0974699db1873f44bfefe1086a70207"
+    },
+    {
+      "file": "docs/mission-24-evidence/index.html",
+      "bytes": 24933,
+      "sha256": "c3fabe501bed6ea53c1651734210a0c43a90110a0ec975960b812a5e83c24b93"
+    },
+    {
+      "file": "docs/mission-24-evidence/mobile-controls.json",
+      "bytes": 2576,
+      "sha256": "cd53a41b44f81f1da8f0d74006bbf3682255d100579fb28bdbca25656b1d3826"
+    },
+    {
+      "file": "docs/mission-24-evidence/mobile-touch-native.webm",
+      "bytes": 21187,
+      "sha256": "f3ad20e4bfb05324d4a2162e112817dc60d788f4326b479e71ba4694b232299b"
+    },
+    {
+      "file": "docs/mission-24-evidence/mobile.txt",
+      "bytes": 112,
+      "sha256": "1784404585352220b9f196367dac62816bc9a7ef0f56fd423abbb4582c7e476f"
+    },
+    {
+      "file": "docs/mission-24-evidence/performance.json",
+      "bytes": 277537,
+      "sha256": "c648ccf31ddeb6875ebeb03cbb79f5f472f3dd23f3379e971402fe60b8d69b13"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot-winter-native.webm",
+      "bytes": 54822,
+      "sha256": "d6eff7d86f577625f335e6836c62a04df1dd015e52fdcf5cee3ff7f62dfa6d08"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-forest.png",
+      "bytes": 276159,
+      "sha256": "2b68c602313ac392fb70b3e17b15b9af91ad49e0db6a111b52921cc182dfb34e"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-high-above.png",
+      "bytes": 357857,
+      "sha256": "81cbbcfbe5716f1d5813d0065f33fa959fed863d9629ee88166329dde7b49b86"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-high-below.png",
+      "bytes": 156398,
+      "sha256": "1fd1115854f9dfb4f4ad1bacfe0b6de1a78d1087675d7a03a774b4c55934b70f"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-needle-above.png",
+      "bytes": 262269,
+      "sha256": "5f307a1eea91a8ebf694eb6117310da3b58c8b54837b4f8cf7ea81356e85e933"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-needle-below.png",
+      "bytes": 250712,
+      "sha256": "d00747c1b1352aad32c39554529789ccd7d21ae5ab7a598eea2e691909747cd2"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-pendant-above.png",
+      "bytes": 359436,
+      "sha256": "53a4b4b237ad0fafd7f9f0dc866d7637ec65f888bbb3f000b804b1c24ef826ca"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-pendant-below.png",
+      "bytes": 231091,
+      "sha256": "9d6961ac6ee253932874655dd9ba9bd5428a5ee35de9044304f93933615d7aa1"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-pont-sec.png",
+      "bytes": 365564,
+      "sha256": "cc0b7f7e3c6db8a1366290380bdeae9bc522e88c7f3b85ca4c49d3c7ff326192"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-raccord-sec.png",
+      "bytes": 293820,
+      "sha256": "9034f92ebfbd8d52c98da1f0e9bc40549ebc709fee26360983caeb0347f31e7d"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-spreading-above.png",
+      "bytes": 388585,
+      "sha256": "d7b7b0b9f083a5666a4d2f624b14f0727ac1e59056a2d4c994db313f5811d35b"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-spreading-below.png",
+      "bytes": 196935,
+      "sha256": "21827d7d35f4e07e797ef708f7dbe91778a2bd0c1635d9b21d8176b9d56cb3f4"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-talus-sec.png",
+      "bytes": 355783,
+      "sha256": "454d58ff5f92ec7fc6f4b14f532ff0d9152e6b04e90e426a7d100783ce5fdcd1"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-young-above.png",
+      "bytes": 275978,
+      "sha256": "0ecc04613e2f9b1c34a1b67e0a02d3faa118718a87c724c7dee5db3ec183552f"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/after-young-below.png",
+      "bytes": 173843,
+      "sha256": "bd58b05693b757828139d35b9c6f308078128aa5de651872f90c548f31fc2a26"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-forest.png",
+      "bytes": 274211,
+      "sha256": "3c2617a53d1c014440533dc3be0746142dacd3b10bf98d494e00cf34da0d7738"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-high-above.png",
+      "bytes": 346627,
+      "sha256": "1dfa72a5968457ea8ac48a1e1e84df2c1a72ab37872b6b292ffbde503470d38d"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-high-below.png",
+      "bytes": 142310,
+      "sha256": "e0a1d70a23527e184c27b75c8093e82e535e4d87d522ddc6cc253b0685f1385c"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-needle-above.png",
+      "bytes": 259373,
+      "sha256": "46e4de36ca8f5c4767c0a16e8e6d4c70a672983788089e3a103ba69221c4324d"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-needle-below.png",
+      "bytes": 245650,
+      "sha256": "028b7ae437db7dc999d3dd39830bca400a48879125497c3fac1b25f4668e5df8"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-pendant-above.png",
+      "bytes": 360527,
+      "sha256": "11cd2f8e0e5e5f6413dc70448ef112864dc8a224b5b0ce4826501b64f4502b09"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-pendant-below.png",
+      "bytes": 231720,
+      "sha256": "731b685ea16342b0f815273e03c06b28933e7d8aba3cc78e621a9800e0db1d1e"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-pont-sec.png",
+      "bytes": 365335,
+      "sha256": "04d14a8140bdc955ab12c94b4f6a3f376529ce8776e8855efb9412fd3a7b276d"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-raccord-sec.png",
+      "bytes": 293820,
+      "sha256": "9034f92ebfbd8d52c98da1f0e9bc40549ebc709fee26360983caeb0347f31e7d"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-spreading-above.png",
+      "bytes": 365358,
+      "sha256": "4f930757267a14969684dc3e9fa4c4cd832bc7ec9037c692b8775c64501f8210"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-spreading-below.png",
+      "bytes": 201608,
+      "sha256": "bdf6092f3f6ed09de659aaeaae32bfc403fada991fc38f8a18f384cbbdffe605"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-talus-sec.png",
+      "bytes": 355695,
+      "sha256": "a397b83646c00e134460c6e2c58fa2f79a7aab2bb9aebd29d1357e03a608594d"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-young-above.png",
+      "bytes": 274835,
+      "sha256": "9612621a54f904e640a3f346fffb5c4af985037b8613ce8814ea4e7229d4d567"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/before-young-below.png",
+      "bytes": 171990,
+      "sha256": "5ec4ded1b8c12e96d42b97c986fcb4c404aacf9235c61524e35156c8082e7af3"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/mobile-compiled.png",
+      "bytes": 210259,
+      "sha256": "f3879ce326659390e5e52cc5cc9c6b0b95f862f007bb9ca889c7e6fc160b3f1d"
+    },
+    {
+      "file": "docs/mission-24-evidence/pilot/mobile-forest.png",
+      "bytes": 110805,
+      "sha256": "bde4c2529a5d1c5f5c75a03a96c94d1074e877aadd0e541f60e2c6174d0c6af1"
+    },
+    {
+      "file": "docs/mission-24-evidence/preservation.json",
+      "bytes": 119786,
+      "sha256": "2e1a571089ee3d13cbd46affaa02114529868190c32b24eb77b2d79fa43aa930"
+    },
+    {
+      "file": "docs/mission-24-evidence/raster.txt",
+      "bytes": 133,
+      "sha256": "30170c247e87e132ba157037d7c8b3eb94c976de55da080accafb9959b11f796"
+    },
+    {
+      "file": "docs/mission-24-evidence/regression.json",
+      "bytes": 193,
+      "sha256": "af0ad033437abac9fd4947fa3a16684b757a7d087f9e75e2b9ed524d108e07cf"
+    },
+    {
+      "file": "docs/mission-24-evidence/runtime-sources.json",
+      "bytes": 17223,
+      "sha256": "249ff730fa503e633ebc5b9a76abc65a83e77d03596158a1844dc7a5d206a1bd"
+    },
+    {
+      "file": "docs/mission-24-evidence/tests.txt",
+      "bytes": 35854,
+      "sha256": "5b916b2490c56a9e201f3ad3bd3a68659bb3f573fbc091ddf3327419d67c89a0"
+    },
+    {
+      "file": "docs/mission-24.md",
+      "bytes": 16579,
+      "sha256": "09615c3792f60357d5c3713fc29a4c4c0a43f92924ec6f20b1fbc19e206cf7cf"
+    },
+    {
+      "file": "package.json",
+      "bytes": 7419,
+      "sha256": "16ba97817bb3f8c188c3e8414849adc660a2e2a17e4764a887d3a7924b7bd76d"
+    },
+    {
+      "file": "public/data/angles-decorations/manifest.json",
+      "bytes": 540902,
+      "sha256": "fec4a1e64d46cabd2fa9a60f9ded46cef0acd70d8f50a8c2661b7d90b8dc4435"
+    },
+    {
+      "file": "public/data/angles-relief-decorations/manifest.json",
+      "bytes": 545197,
+      "sha256": "71b452c872a8e2113e9466e5d67e4d0670fd4aca3b1542816a1dfd4635d6789b"
+    },
+    {
+      "file": "scripts/benchmark-mission-24.mjs",
+      "bytes": 3574,
+      "sha256": "e15b479f5ec1023fc86aa1c30873c1e621c3e85cc59015213c0f1aa0bafad3d6"
+    },
+    {
+      "file": "scripts/capture-mission-24.mjs",
+      "bytes": 5930,
+      "sha256": "545858757bd746cfac545ab88725b69e271d302bd4dc8146156388170f57abec"
+    },
+    {
+      "file": "scripts/check-mission-24.mjs",
+      "bytes": 5704,
+      "sha256": "78917090d97993c1a420b1eb14ed3a998b9480ee78fadd7badba1edfdf46eec8"
+    },
+    {
+      "file": "scripts/controls-mission-24.mjs",
+      "bytes": 4002,
+      "sha256": "c5fff2f4e426c1a29d4ff445302e0f220e7e6984ea3c0ca76f9e5afb1b19cc14"
+    },
+    {
+      "file": "scripts/lib/mission-24-browser.mjs",
+      "bytes": 9003,
+      "sha256": "23a8684cb73c210d52b1f39f5bf0780e6aede02d498c74423fbada7856e0383f"
+    },
+    {
+      "file": "scripts/prepare-mission-24.mjs",
+      "bytes": 4775,
+      "sha256": "8f1aa02cbab1c49549fa45fb2d3a0acc730bd7bfd78106000dc603109d7eabf5"
+    },
+    {
+      "file": "scripts/regression-mission-24.mjs",
+      "bytes": 2124,
+      "sha256": "4773293ab8fcd332eb1e7ea965a0c92beabbe9449068e0caf488af916474ad4a"
+    },
+    {
+      "file": "scripts/report-mission-24.mjs",
+      "bytes": 13014,
+      "sha256": "1d76f129a02a835a3e26ee37b11b7871b1c9fd1c01a9f185f7888516ab05c524"
+    },
+    {
+      "file": "scripts/verify-mission-24-branches.mjs",
+      "bytes": 1666,
+      "sha256": "90fa0d328193a3998c53ccb3bd12ea02d3d3a2bedc89cdbfb291c7e7a03cc093"
+    },
+    {
+      "file": "src/nature/forest-model.mjs",
+      "bytes": 15813,
+      "sha256": "864b49669385c63565af5e5457b2f9cc9d11160e95b9962c8fe179c8f7231613"
+    },
+    {
+      "file": "src/nature/snow-state.mjs",
+      "bytes": 4609,
+      "sha256": "c8d3e4d914d407f63225fbe529ece6e7c3ea8dae540823c79bef5aae889d463f"
+    },
+    {
+      "file": "tests/mission-24.test.mjs",
+      "bytes": 4325,
+      "sha256": "c2d7bd862a8eaad8c81f4162e7d802e8622541100fe7f952aee009f6ad96732f"
+    }
+  ]
+}
