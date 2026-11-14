@@ -6,19 +6,37 @@ import { createNavigation } from './navigation.mjs';
 import { toLocal } from './geo';
 type Point = { x:number; z:number };
 let navigation:(x:number,z:number,explain?:boolean)=>{clear:boolean;cameraClear?:boolean;support:number|null;slope:number;reasons?:unknown[]}=()=>({clear:true,support:null,slope:.7});
-export const hasWalkingSupport=(x:number,z:number)=>navigation(x,z).support!==null;
+type GroundSupport={slope:(x:number,z:number)=>number|undefined;isWater:(x:number,z:number)=>boolean;walkable:(x:number,z:number,limit?:number)=>boolean};
+let groundSupport:GroundSupport|undefined;
+// Height, clearance and slope query the same immutable local topology several
+// times per substep. Cache exact coordinates only, reset with its owner; never
+// quantize a position across a narrow wall or a bridge edge.
+const accessX=new Float64Array(16).fill(NaN),accessZ=new Float64Array(16).fill(NaN),accessValues:Array<ReturnType<typeof navigation>|undefined>=new Array(16);let accessCursor=0;
+function accessAt(x:number,z:number){for(let i=0;i<16;i++)if(accessX[i]===x&&accessZ[i]===z)return accessValues[i]!;const value=navigation(x,z);accessX[accessCursor]=x;accessZ[accessCursor]=z;accessValues[accessCursor]=value;accessCursor=(accessCursor+1)%16;return value;}
+export const hasWalkingSupport=(x:number,z:number)=>accessAt(x,z).support!==null;
 let movementDiagnostic:Record<string,unknown>|null=null;
+const footprintSources=new WeakMap<Point[],{id:string;provenance:string}>();
 export const lastMovementDiagnostic=()=>movementDiagnostic;
 export function inspectCollision(x:number,z:number){
  const access=navigation(x,z,true);
  const building=(cells.get(cellKey(x,z))??[]).find(poly=>circleHitsPolygon(x,z,poly));
- return {surface:access.support!==null?'verified-bridge':'terrain/road',obstacle:Math.abs(x)>1000||Math.abs(z)>1000?'world-boundary':building?'building-footprint':!access.clear?'mapped-water/barrier/access':null,access,building:building??null};
+ const faceSlope=access.support===null?groundSupport?.slope(x,z):undefined,renderedWater=access.support===null&&groundSupport?.isWater(x,z),cliff=faceSlope!==undefined&&faceSlope>1.2&&!groundSupport!.walkable(x,z,access.slope);
+ const reason=(access.reasons as any[]|undefined)?.find(r=>r.rule!=='mapped-water')??(access.reasons as any[]|undefined)?.[0];
+ return {surface:access.support!==null?'verified-bridge':'terrain/road',obstacle:!Number.isFinite(x)||!Number.isFinite(z)?'numeric-error':Math.abs(x)>1000||Math.abs(z)>1000?'world-boundary':building?'building-footprint':!access.clear?reason?.rule??'geometric-collision':renderedWater?'rendered-water':cliff?'steep-rendered-surface':null,access,building:building??null,collider:building?{...footprintSources.get(building),shape:'polygon',points:building,radius:.3}:!access.clear?reason??null:renderedWater?{id:'rendered-water',shape:'surface',provenance:'Water class of exact rendered support'}:cliff?{id:'rendered-ground',shape:'surface',slope:faceSlope,normalSlopeTrigger:1.2,maxLocalSpanM:.18+.6*access.slope,provenance:'Exact rendered face normal and 0.6m transverse support span; independent of travel direction'}:null};
 }
-export const walkingHeight=(height:(x:number,z:number)=>number|null)=>(x:number,z:number)=>navigation(x,z).support??height(x,z);
+export const walkingHeight=(height:(x:number,z:number)=>number|null)=>(x:number,z:number)=>accessAt(x,z).support??height(x,z);
+export function canTraverse(a:Point,b:Point,height:(x:number,z:number)=>number|null){
+ const support=walkingHeight(height),p={x:a.x,z:a.z,y:support(a.x,a.z)},length=Math.hypot(b.x-a.x,b.z-a.z);
+ if(!Number.isFinite(p.y)||!canWalk(a.x,a.z))return false;
+ const chunks=Math.max(1,Math.ceil(length/20));
+ for(let i=1;i<=chunks;i++){const x=a.x+(b.x-a.x)*i/chunks,z=a.z+(b.z-a.z)*i/chunks;moveGrounded(p,{x:x-p.x,z:z-p.z},canWalk,support,(x:number,z:number)=>accessAt(x,z).slope,false);if(Math.hypot(p.x-x,p.z-z)>1e-5)return false}
+ return true;
+}
 let realFootprints: Point[][] | null = null;
 const cells=new Map<string,Point[][]>();
 const cellKey=(x:number,z:number)=>`${Math.floor(x/20)},${Math.floor(z/20)}`;
-export function setBuildingFootprints(features: Array<{geometry?:{type:string;coordinates:unknown};properties?:Record<string,unknown>}>, verifiedDeckHeight?:(feature:unknown,lon:number,lat:number)=>number|null,verifiedSupport?:(feature:unknown,x:number,z:number)=>number|null) {
+export function setBuildingFootprints(features: Array<{geometry?:{type:string;coordinates:unknown};properties?:Record<string,unknown>}>, verifiedDeckHeight?:(feature:unknown,lon:number,lat:number)=>number|null,verifiedSupport?:(feature:unknown,x:number,z:number)=>number|null,surfaceSupport?:GroundSupport) {
+  groundSupport=surfaceSupport;
   const localFeatures=features.flatMap(feature=>{
     const geometry=feature.geometry;
     if(!geometry||!Array.isArray(geometry.coordinates))return [];
@@ -31,9 +49,10 @@ export function setBuildingFootprints(features: Array<{geometry?:{type:string;co
     });
   });
   navigation=createNavigation(localFeatures);
+  accessX.fill(NaN);accessZ.fill(NaN);accessValues.fill(undefined);accessCursor=0;
   const polygons:Point[][]=[];
   for(const feature of localFeatures){
-    if(feature.tags.building&&feature.polygon&&feature.points.length>=3)polygons.push(feature.points);
+    if(feature.tags.building&&feature.polygon&&feature.points.length>=3){polygons.push(feature.points);footprintSources.set(feature.points,{id:`osm-building-${feature.tags.osm_id??polygons.length}`,provenance:'OSM building footprint; same metric geo.toLocal transform as rendered architecture; 0.3m body radius'});}
   }
   realFootprints=polygons;
   cells.clear();
@@ -46,9 +65,14 @@ export function setBuildingFootprints(features: Array<{geometry?:{type:string;co
   }
 }
 export function canWalk(x:number,z:number, camera=false):boolean {
+  if(!Number.isFinite(x)||!Number.isFinite(z))return false;
   if(Math.abs(x)>1000||Math.abs(z)>1000)return false;
-  const access=navigation(x,z);
+  const access=accessAt(x,z);
   if(camera?access.cameraClear===false:!access.clear)return false;
+  // Height along a contour is constant even on a near-vertical cliff. Bound
+  // the complete rendered face normal as well as the directional .7 grade;
+  // documented stairs retain 1.2, and verified decks own their own support.
+  if(!camera&&access.support===null&&groundSupport&&!groundSupport.walkable(x,z,access.slope))return false;
   if(realFootprints!==null){
     // Uniform grid broad phase; exact polygon and 30 cm body clearance.
     return !(cells.get(cellKey(x,z))??[]).some(poly=>circleHitsPolygon(x,z,poly));
@@ -61,9 +85,11 @@ export function canWalk(x:number,z:number, camera=false):boolean {
   }
   return true;
 }
-export function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null=()=>0,slide=true){
-  movementDiagnostic=null;
-  moveGrounded(position,displacement,canWalk,walkingHeight(height),(x:number,z:number)=>navigation(x,z).slope,slide,(d:any)=>{movementDiagnostic={...d,...inspectCollision(d.requested.x,d.requested.z)}});
+export function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null=()=>0,slide=true,seconds=0){
+  if(Math.hypot(displacement.x,displacement.z)<1e-12)return;
+  movementDiagnostic=null;const previous={x:position.x,y:position.y,z:position.z};let refusal:any=null;
+  moveGrounded(position,displacement,canWalk,walkingHeight(height),(x:number,z:number)=>accessAt(x,z).slope,slide,(d:any)=>{refusal??=d});
+  if(refusal)movementDiagnostic={...refusal,...inspectCollision(refusal.requested.x,refusal.requested.z),previous,displacement:{...displacement},direction:Math.atan2(displacement.x,displacement.z),speed:seconds>0?Math.hypot(displacement.x,displacement.z)/seconds:null,allowed:{x:position.x,y:position.y,z:position.z},actualSpeed:seconds>0?Math.hypot(position.x-previous.x,position.z-previous.z)/seconds:null};
 }
 
 export const cameraClear=(x:number,z:number)=>canWalk(x,z,true);

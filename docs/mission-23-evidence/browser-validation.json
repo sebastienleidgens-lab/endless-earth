@@ -1,0 +1,440 @@
+{
+  "sourceCommit": "8d9a5ccde1af18a8f124ce5b5b0929259701a7e4",
+  "diagnostic": {
+    "selected": {
+      "schema": "endless-earth-local-diagnostic-v1",
+      "surfaceHash": "cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+      "kind": "selected-triangle",
+      "mesh": "IGN ground and OSM roads",
+      "face": 15451,
+      "position": [
+        -160.19148085574355,
+        -29.471470585270666,
+        114.99471585887183
+      ],
+      "vertices": [
+        [
+          -159.0515899658203,
+          -29.460582733154297,
+          115.41729736328125
+        ],
+        [
+          -160.36000061035156,
+          -29.460582733154297,
+          114.6958999633789
+        ],
+        [
+          -160.54623413085938,
+          -29.49050521850586,
+          115.15908813476562
+        ]
+      ],
+      "normal": [
+        -0.02910195256349908,
+        0.9981818785418272,
+        0.052782702732059
+      ],
+      "ground": {
+        "x": -160.19148085574355,
+        "z": 114.99471585887183,
+        "visualHeight": -29.471470585271163,
+        "physicalHeight": -29.471470585270666,
+        "differenceM": 4.973799150320701e-13,
+        "slope": 0.060383637748054456,
+        "normal": [
+          -0.02910195256349908,
+          0.9981818785418272,
+          0.052782702732059
+        ],
+        "vertices": [
+          [
+            -159.0515899658203,
+            -29.460582733154297,
+            115.41729736328125
+          ],
+          [
+            -160.36000061035156,
+            -29.460582733154297,
+            114.6958999633789
+          ],
+          [
+            -160.54623413085938,
+            -29.49050521850586,
+            115.15908813476562
+          ]
+        ],
+        "support": "terrain/road",
+        "selectedSurface": {
+          "id": "surface:12:15451",
+          "tile": 12,
+          "face": 15451,
+          "height": -29.471470585270666,
+          "normal": {
+            "x": -0.029101952563499074,
+            "y": 0.9981818785418269,
+            "z": 0.052782702732058984
+          },
+          "slope": 0.06038363774805445,
+          "category": "road",
+          "road": 1,
+          "visible": true,
+          "walkable": true,
+          "restriction": null,
+          "priority": 20,
+          "confidence": "mesh-exact/source-resolution-limited",
+          "provenance": {
+            "surface": "cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+            "terrain": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1",
+            "refinement": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+            "repair": {
+              "schema": "endless-earth-ground-truth-v1",
+              "baseSurfaceSha256": "c6edf107c880c1c499d1b384ec2b5bfc2d1c122b31aafcd4504115b7094bdb61",
+              "repairsSha256": "a9f98ba4ae782a18e33f87ccc6599bf4fee49a7e423dc7660ed6076b3f3230b9",
+              "cells": 758,
+              "source": "IGN LiDAR HD MNT; pinned 0.5m source tiles, IGN69, Licence Ouverte 2.0",
+              "method": "Replace only source-confronted unprotected natural-ground cells; original roads, buildings, water and landmarks retained. Same indices for repaired fine/far tiles. Quantization-degenerate and tiny inverted faces removed; no slope threshold deletion."
+            },
+            "datum": "IGN69"
+          },
+          "vertices": [
+            {
+              "x": -159.0515899658203,
+              "y": -29.460582733154297,
+              "z": 115.41729736328125
+            },
+            {
+              "x": -160.36000061035156,
+              "y": -29.460582733154297,
+              "z": 114.6958999633789
+            },
+            {
+              "x": -160.54623413085938,
+              "y": -29.49050521850586,
+              "z": 115.15908813476562
+            }
+          ]
+        },
+        "material": 1,
+        "mesh": "IGN ground and OSM roads",
+        "face": 15451,
+        "lod": "fine",
+        "terrainCell": [
+          83,
+          111
+        ],
+        "provenance": {
+          "terrain": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1",
+          "refinement": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "surface": "cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+          "datum": "IGN69"
+        },
+        "obstacle": null,
+        "collider": null
+      },
+      "lastMovement": null
+    },
+    "overflow": false,
+    "errors": [],
+    "warnings": [],
+    "blockage": {
+      "schema": "endless-earth-local-diagnostic-v1",
+      "surfaceHash": "cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+      "kind": "movement",
+      "movement": {
+        "position": {
+          "x": -20.045529346486553,
+          "y": -1.6479673518740015,
+          "z": -12.278377724848252
+        },
+        "requested": {
+          "x": -20.103916127608713,
+          "z": -12.35913929347342
+        },
+        "currentHeight": -1.6479673518740015,
+        "nextHeight": -1.657397429597836,
+        "horizontalM": 0.09965664642463562,
+        "riseM": -0.009430077723834529,
+        "slope": -0.09462567788658165,
+        "limit": 0.7,
+        "rule": "obstacle",
+        "surface": "terrain/road",
+        "obstacle": "building-footprint",
+        "access": {
+          "cameraClear": true,
+          "clear": true,
+          "support": null,
+          "slope": 0.7,
+          "reasons": []
+        },
+        "building": [
+          {
+            "x": -24.447892643097557,
+            "z": -20.82797199977705
+          },
+          {
+            "x": -24.63877250445966,
+            "z": -20.705519999928015
+          },
+          {
+            "x": -27.753931841865125,
+            "z": -19.10251199938756
+          },
+          {
+            "x": -27.21183303559743,
+            "z": -18.41232800002274
+          },
+          {
+            "x": -25.26485844971583,
+            "z": -15.918759999357803
+          },
+          {
+            "x": -24.05086253146404,
+            "z": -14.349147999998593
+          },
+          {
+            "x": -21.829020945223395,
+            "z": -11.488223999786555
+          },
+          {
+            "x": -18.668050441090006,
+            "z": -13.759151999431651
+          },
+          {
+            "x": -24.447892643097557,
+            "z": -20.82797199977705
+          }
+        ],
+        "collider": {
+          "id": "osm-building-962757856",
+          "provenance": "OSM building footprint; same metric geo.toLocal transform as rendered architecture; 0.3m body radius",
+          "shape": "polygon",
+          "points": [
+            {
+              "x": -24.447892643097557,
+              "z": -20.82797199977705
+            },
+            {
+              "x": -24.63877250445966,
+              "z": -20.705519999928015
+            },
+            {
+              "x": -27.753931841865125,
+              "z": -19.10251199938756
+            },
+            {
+              "x": -27.21183303559743,
+              "z": -18.41232800002274
+            },
+            {
+              "x": -25.26485844971583,
+              "z": -15.918759999357803
+            },
+            {
+              "x": -24.05086253146404,
+              "z": -14.349147999998593
+            },
+            {
+              "x": -21.829020945223395,
+              "z": -11.488223999786555
+            },
+            {
+              "x": -18.668050441090006,
+              "z": -13.759151999431651
+            },
+            {
+              "x": -24.447892643097557,
+              "z": -20.82797199977705
+            }
+          ],
+          "radius": 0.3
+        },
+        "previous": {
+          "x": -11.345898959284794,
+          "y": -0.7824486243137727,
+          "z": -0.2449039996980673
+        },
+        "displacement": {
+          "x": -8.933177511690522,
+          "z": -12.356519999650857
+        },
+        "direction": -2.515627814674547,
+        "speed": 15.24746690296932,
+        "allowed": {
+          "x": -20.045529346486553,
+          "y": -1.6479673518740015,
+          "z": -12.278377724848252
+        },
+        "actualSpeed": 14.848840317270708
+      },
+      "ground": {
+        "x": -20.103916127608713,
+        "z": -12.35913929347342,
+        "visualHeight": -1.6573974295988592,
+        "physicalHeight": -1.657397429597836,
+        "differenceM": 1.0231815394945443e-12,
+        "slope": 0.2998266136128483,
+        "normal": [
+          -0.2739513834110837,
+          0.9578719837338288,
+          0.08620848163013521
+        ],
+        "vertices": [
+          [
+            -24.13587760925293,
+            -2.122860908508301,
+            -20
+          ],
+          [
+            -20,
+            -1.7152546644210815,
+            -11.386058807373047
+          ],
+          [
+            -20,
+            -1.449539065361023,
+            -14.338454246520996
+          ]
+        ],
+        "support": "terrain/road",
+        "selectedSurface": {
+          "id": "surface:12:3230",
+          "tile": 12,
+          "face": 3230,
+          "height": -1.6573974295978346,
+          "normal": {
+            "x": -0.27395138341108366,
+            "y": 0.9578719837338285,
+            "z": 0.08620848163013521
+          },
+          "slope": 0.2998266136128483,
+          "category": "road",
+          "road": 2,
+          "visible": true,
+          "walkable": false,
+          "restriction": "building-footprint",
+          "priority": 20,
+          "confidence": "mesh-exact/source-resolution-limited",
+          "provenance": {
+            "surface": "cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+            "terrain": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1",
+            "refinement": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+            "repair": {
+              "schema": "endless-earth-ground-truth-v1",
+              "baseSurfaceSha256": "c6edf107c880c1c499d1b384ec2b5bfc2d1c122b31aafcd4504115b7094bdb61",
+              "repairsSha256": "a9f98ba4ae782a18e33f87ccc6599bf4fee49a7e423dc7660ed6076b3f3230b9",
+              "cells": 758,
+              "source": "IGN LiDAR HD MNT; pinned 0.5m source tiles, IGN69, Licence Ouverte 2.0",
+              "method": "Replace only source-confronted unprotected natural-ground cells; original roads, buildings, water and landmarks retained. Same indices for repaired fine/far tiles. Quantization-degenerate and tiny inverted faces removed; no slope threshold deletion."
+            },
+            "datum": "IGN69"
+          },
+          "vertices": [
+            {
+              "x": -24.13587760925293,
+              "y": -2.122860908508301,
+              "z": -20
+            },
+            {
+              "x": -20,
+              "y": -1.7152546644210815,
+              "z": -11.386058807373047
+            },
+            {
+              "x": -20,
+              "y": -1.449539065361023,
+              "z": -14.338454246520996
+            }
+          ]
+        },
+        "material": 2,
+        "mesh": "IGN ground and OSM roads",
+        "face": 3230,
+        "lod": "fine",
+        "terrainCell": [
+          97,
+          98
+        ],
+        "provenance": {
+          "terrain": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1",
+          "refinement": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+          "surface": "cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+          "datum": "IGN69"
+        },
+        "obstacle": "building-footprint",
+        "collider": {
+          "id": "osm-building-962757856",
+          "provenance": "OSM building footprint; same metric geo.toLocal transform as rendered architecture; 0.3m body radius",
+          "shape": "polygon",
+          "points": [
+            {
+              "x": -24.447892643097557,
+              "z": -20.82797199977705
+            },
+            {
+              "x": -24.63877250445966,
+              "z": -20.705519999928015
+            },
+            {
+              "x": -27.753931841865125,
+              "z": -19.10251199938756
+            },
+            {
+              "x": -27.21183303559743,
+              "z": -18.41232800002274
+            },
+            {
+              "x": -25.26485844971583,
+              "z": -15.918759999357803
+            },
+            {
+              "x": -24.05086253146404,
+              "z": -14.349147999998593
+            },
+            {
+              "x": -21.829020945223395,
+              "z": -11.488223999786555
+            },
+            {
+              "x": -18.668050441090006,
+              "z": -13.759151999431651
+            },
+            {
+              "x": -24.447892643097557,
+              "z": -20.82797199977705
+            }
+          ],
+          "radius": 0.3
+        }
+      }
+    }
+  },
+  "ordinary": {
+    "diagnosticButtons": 0,
+    "diagnosticGlobal": "undefined",
+    "overflow": false,
+    "errors": []
+  },
+  "staleRepair": {
+    "terrain": {
+      "preparationMs": 8.400000000372529,
+      "tiles": 25,
+      "fineTriangles": 130673,
+      "farTriangles": 121761,
+      "farTiles": 0,
+      "maxFarErrorM": 0.25,
+      "surface": "integrated",
+      "water": "mapped-outline-dem-drape-v1",
+      "reliefCells": 330,
+      "supportTriangles": 130650,
+      "supportIndexBytes": 3919432,
+      "supportPreparationMs": 46.5,
+      "repairCells": 0
+    },
+    "warnings": [
+      "Terrain repair unavailable; complete validated surface retained Error: Stale terrain repair\n    at fetchTerrain (http://localhost:5373/endless-earth/src/world/terrain.ts:347:404)\n    at async http://localhost:5373/endless-earth/src/main.ts:157:17",
+      "Local lighting unavailable; Mission 14B lighting retained Error: Invalid or stale lighting\n    at decodeLighting (http://localhost:5373/endless-earth/src/lighting/model.mjs:3:339)\n    at Object.install (http://localhost:5373/endless-earth/src/lighting/runtime.ts:67:22)",
+      "Prepared walking graph unavailable; manual walking remains ready Error: Stale or invalid walking graph\n    at validateWalkGraph (http://localhost:5373/endless-earth/src/living/walk-graph-cache.mjs:4:202)\n    at readWalkGraph (http://localhost:5373/endless-earth/src/living/walk-graph-cache.mjs:10:914)\n    at async loadPreparedGraph (http://localhost:5373/endless-earth/src/living/geography.ts:91:13)\n    at async http://localhost:5373/endless-earth/src/main.ts:192:16"
+    ],
+    "errors": []
+  }
+}

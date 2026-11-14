@@ -1,0 +1,51 @@
+{
+  "runtimeCandidate": "8d9a5ccde1af18a8f124ce5b5b0929259701a7e4",
+  "node": "v24.22.1",
+  "tests": {
+    "command": "npm test",
+    "passed": 342,
+    "failed": 0,
+    "log": "tests-final.txt"
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "warning": "Vite main chunk exceeds 500kB, retained from the existing application.",
+    "log": "build-final.txt"
+  },
+  "logs": {
+    "tests-final.txt": "2d95beaa2d3422a7fd90a0e25bd85aef0032070fb114e24d659846e55a7af583",
+    "build-final.txt": "a3fe834edd7444efd6847fd0340b039d1f307479fb481204ebef6b8d4ae313f2"
+  },
+  "compiledBrowser": {
+    "command": "EARTHLIFE_WAIT_WORLD=1 node scripts/browser-build-identity.mjs",
+    "passed": true,
+    "layouts": 4,
+    "validation": "compiled-validation.json",
+    "log": "compiled-final.txt",
+    "environment": "Local Vite production-mode preview, no deployment"
+  },
+  "browser": {
+    "passed": true,
+    "validation": "browser-validation.json",
+    "checks": [
+      "selected triangle and JSON export",
+      "actual source building refusal and collider/trajectory inspection",
+      "ordinary UI without diagnostics",
+      "stale repair rejection and validated prior-surface fallback"
+    ]
+  },
+  "nativeWalk": {
+    "passed": true,
+    "wallSeconds": 1811.429,
+    "nativeSeconds": 1809.9612000000002,
+    "metres": 1390.8177454243869,
+    "traceAnalysis": "walk-analysis.json",
+    "sourceMatch": "runtime-source-match.json"
+  },
+  "nativeSupplementary": {
+    "bridge": "pont-native.json",
+    "routes": "routes-native.json",
+    "touch": "mobile.json"
+  }
+}

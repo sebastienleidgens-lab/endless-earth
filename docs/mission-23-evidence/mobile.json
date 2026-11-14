@@ -1,0 +1,931 @@
+{
+  "sourceCommit": "8d9a5ccde1af18a8f124ce5b5b0929259701a7e4",
+  "method": "Actual Chromium touch emulation and CDP touchStart/move/end on the native canvas; real movement controller and right-side look gesture, mobile menu and profile selection. Native capture, no frame synthesis. This verifies browser touch handling, not Android hardware performance.",
+  "viewport": [
+    390,
+    844
+  ],
+  "metres": 9.658316927234733,
+  "before": {
+    "position": [
+      -353.66215395553013,
+      -32.22696558738903,
+      -13.727512929741842
+    ],
+    "camera": {
+      "position": [
+        -353.66215395553013,
+        -29.11915622062693,
+        -8.943793645863272
+      ],
+      "quaternion": [
+        -0.1473630232228655,
+        0,
+        0,
+        0.9890824735008792
+      ],
+      "fov": 55
+    },
+    "spawn": {
+      "version": "verified-sector-start-v1",
+      "seed": "12345",
+      "revision": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1:930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615:cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+      "sector": "-2,-1",
+      "x": -353.66215395553013,
+      "y": -32.22696558738903,
+      "z": -13.727512929741842,
+      "yaw": 0,
+      "candidates": 1556,
+      "sectors": 80,
+      "fallback": false,
+      "preparationMs": 1201.9000000003725,
+      "provenance": "Initial selection from admitted OSM paths; actual loaded terrain and 30cm navigation capsule verified. Sector-balanced artistic start, not a surveyed viewpoint."
+    },
+    "walker": {
+      "version": "poitou-walker-rig-v3",
+      "bones": 16,
+      "triangles": 2248,
+      "drawCalls": 1,
+      "imageTextures": 0,
+      "boneTextureBytes": 1024,
+      "phase": 0.6,
+      "speed": 0,
+      "contacts": 0,
+      "soleError": 0.019884643882626563,
+      "plantError": 0,
+      "mode": "idle"
+    },
+    "navigation": {
+      "state": "ready",
+      "nodes": 916,
+      "edges": 893
+    },
+    "climate": {
+      "worldTimeMs": 1778932800000,
+      "solar": {
+        "altitude": 1.0862849672341237,
+        "azimuth": 3.207689032288274,
+        "month": 5
+      },
+      "weather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.24,
+        "rain": 0,
+        "snow": 0,
+        "electric": 0,
+        "temperatureC": 20.17740057079732
+      },
+      "acousticWeather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.1661853505642495,
+        "rain": 0,
+        "snow": 0,
+        "gust": 0.058153414242365135,
+        "electric": 0,
+        "temperatureC": 20.17740057079732,
+        "snowCover": 0
+      },
+      "wind": {
+        "x": 0.14080313887734341,
+        "z": -0.08901630102305558,
+        "speed": 0.1661853505642495,
+        "gust": 0.058153414242365135
+      },
+      "transition": {
+        "revision": 271,
+        "commandRevision": 2,
+        "manual": false
+      },
+      "simulation": true,
+      "metrics": {
+        "temperatureC": 20.17740057079732,
+        "humidityPct": 46.08,
+        "cloudCover": 0.16,
+        "cloudDensity": 0.11199999999999999,
+        "rainIntensity": 0,
+        "snowIntensity": 0,
+        "windDirectionRad": 1.0070334050153988,
+        "meanWindMps": 3.5999999999999996,
+        "gustWindMps": 3.5999999999999996,
+        "fog": 0,
+        "visibilityM": 18000,
+        "stormRisk": 0,
+        "electricalActivity": 0,
+        "groundWetness": 0,
+        "coldDegreeHours": 0,
+        "iceFraction": 0,
+        "sunshine": 0.8624,
+        "simulation": true,
+        "snowCover": 0
+      },
+      "stormPhase": "calm",
+      "naturalEvolution": false,
+      "reduceLightning": false,
+      "sensitive": {
+        "humidity": 0.4608,
+        "dew": 0,
+        "mist": 0.0009117299978912355,
+        "bankDistance": 20.55294955692726
+      },
+      "diffuseNight": {
+        "intensity": 1.451496,
+        "nightWeight": 0,
+        "moon": 0
+      },
+      "moon": {
+        "date": "2026-05-16T12:00:00.000Z",
+        "altitude": 1.1286563336057929,
+        "azimuth": 3.45403674702923,
+        "phase": 0.986708642492796,
+        "illumination": 0.0035435796667481756,
+        "brightLimbAngle": 2.0880539103289566,
+        "parallacticAngle": 0.23050660126181843,
+        "distanceKm": 358779.74469222646,
+        "angularRadius": 0.004921769330168628,
+        "geometricallyVisible": true,
+        "direction": [
+          -0.13152238436782482,
+          0.9038380846750896,
+          0.40715915696575916
+        ],
+        "visibility": 0.00013949018527124491,
+        "model": "Schlyter approximate topocentric orbit; shared M11 date"
+      },
+      "elapsedSeconds": 63.0015,
+      "targetWeather": "clear",
+      "lightning": {
+        "active": false,
+        "id": null,
+        "intensity": 0,
+        "maxIntensity": 0.32,
+        "events": [],
+        "nextSeconds": null
+      },
+      "moment": "real",
+      "mode": "real",
+      "date": "2026-05-16T12:00:00.000Z",
+      "localTime": "16 mai 2026, 14:00",
+      "localHour": 14,
+      "season": "spring",
+      "timeZone": "Europe/Paris",
+      "polar": null,
+      "calendar": {
+        "manual": false,
+        "month": 5,
+        "representativeDay": null,
+        "sunrise": 1778905285000.0103,
+        "sunset": 1778959420999.9878,
+        "solarNoon": 1778932353000.7144
+      },
+      "weatherTau": 5.5,
+      "effectiveMeanWind": 0.24,
+      "starVisibility": 0,
+      "rainDrops": 0,
+      "groundWetness": 0,
+      "snow": {
+        "cover": 0,
+        "temperature": 20.17740057079732,
+        "falling": 0,
+        "phase": "bare"
+      },
+      "cloudMotion": {
+        "drift": [
+          111.0453730910948,
+          -61.780256232232865
+        ],
+        "morph": [
+          0.06142175147285611,
+          0.03821350045501932,
+          0.05433831259876148
+        ],
+        "baseHeight": 230,
+        "upperHeight": 540
+      }
+    },
+    "lighting": {
+      "state": "ready",
+      "mode": "local",
+      "matchedGeometry": 287,
+      "ambientVertices": 536452,
+      "shadowSize": 0,
+      "shadowBytes": 0,
+      "staticTriangles": 0,
+      "treeInstances": 0,
+      "updates": 0,
+      "lastUpdateCpuMs": 0,
+      "maxUpdateCpuMs": 0,
+      "lastShadowCalls": 0,
+      "lastShadowTriangles": 0,
+      "extraPasses": 0,
+      "selectionBuilds": 0,
+      "shadowIndexBytes": 0,
+      "sourceBytes": 5495013,
+      "filter": "none",
+      "windTests": 0,
+      "windSkips": 0,
+      "windMotionBoundM": 0,
+      "maxWindMotionBoundM": 0,
+      "windThresholdM": 0,
+      "character": {
+        "updates": 0,
+        "size": 0,
+        "bytes": 0,
+        "proxies": 0,
+        "extraPasses": 0,
+        "poseAgeMs": 0,
+        "lastCpuMs": 0,
+        "maxCpuMs": 0,
+        "receiver": "landscape only; actor receives landscape map"
+      }
+    },
+    "stream": {
+      "requests": 2,
+      "completed": 0,
+      "cancelled": 12,
+      "stale": 0,
+      "failed": 0,
+      "installed": 0,
+      "evicted": 0,
+      "installsThisFrame": 0,
+      "installCpuMs": 0,
+      "prepareSlices": 0,
+      "maxPrepareSliceMs": 0,
+      "cacheHits": 0,
+      "bytes": 94121,
+      "maxDecodeCpuMs": 0,
+      "maxFetchDecodeWallMs": 0,
+      "maxInstallMs": 0,
+      "maxDisposeMs": 0,
+      "maxTickMs": 0.20000000018626451,
+      "active": 2,
+      "ready": 0
+    },
+    "audio": {
+      "aircraftEvents": 0,
+      "contextUpdates": 0,
+      "cpuMs": 0,
+      "maxCpuMs": 0,
+      "nearbyChecks": 0,
+      "memoryCells": 0,
+      "perches": 0,
+      "contact": {
+        "surface": null,
+        "material": "unknown",
+        "basis": "no reliable ground material",
+        "confidence": "unknown",
+        "wetness": 0
+      },
+      "context": null
+    },
+    "gpu": {
+      "geometries": 69,
+      "textures": 15,
+      "programs": 15
+    },
+    "heap": 258915905,
+    "profile": "eco",
+    "mode": "third",
+    "view": true
+  },
+  "moved": {
+    "position": [
+      -353.66215395553013,
+      -30.892186702265647,
+      -23.385829856976574
+    ],
+    "camera": {
+      "position": [
+        -353.66215395553013,
+        -27.749166226950774,
+        -18.485496967770366
+      ],
+      "quaternion": [
+        -0.1473630232228654,
+        0,
+        0,
+        0.9890824735008792
+      ],
+      "fov": 55
+    },
+    "spawn": {
+      "version": "verified-sector-start-v1",
+      "seed": "12345",
+      "revision": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1:930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615:cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+      "sector": "-2,-1",
+      "x": -353.66215395553013,
+      "y": -32.22696558738903,
+      "z": -13.727512929741842,
+      "yaw": 0,
+      "candidates": 1556,
+      "sectors": 80,
+      "fallback": false,
+      "preparationMs": 1201.9000000003725,
+      "provenance": "Initial selection from admitted OSM paths; actual loaded terrain and 30cm navigation capsule verified. Sector-balanced artistic start, not a surveyed viewpoint."
+    },
+    "walker": {
+      "version": "poitou-walker-rig-v3",
+      "bones": 16,
+      "triangles": 2248,
+      "drawCalls": 1,
+      "imageTextures": 0,
+      "boneTextureBytes": 1024,
+      "phase": 14.72797722221236,
+      "speed": 0.19912950809965313,
+      "contacts": 0,
+      "soleError": 1.4210854715202004e-14,
+      "plantError": 5.695433295429594e-14,
+      "mode": "walk"
+    },
+    "navigation": {
+      "state": "ready",
+      "nodes": 916,
+      "edges": 893
+    },
+    "climate": {
+      "worldTimeMs": 1778932800000,
+      "solar": {
+        "altitude": 1.0862849672341237,
+        "azimuth": 3.207689032288274,
+        "month": 5
+      },
+      "weather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.24,
+        "rain": 0,
+        "snow": 0,
+        "electric": 0,
+        "temperatureC": 20.17740057079732
+      },
+      "acousticWeather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.15559955094820266,
+        "rain": 0,
+        "snow": 0,
+        "gust": 0,
+        "electric": 0,
+        "temperatureC": 20.17740057079732,
+        "snowCover": 0
+      },
+      "wind": {
+        "x": 0.12725365085760854,
+        "z": -0.09183205933111759,
+        "speed": 0.15559955094820266,
+        "gust": 0
+      },
+      "transition": {
+        "revision": 307,
+        "commandRevision": 2,
+        "manual": false
+      },
+      "simulation": true,
+      "metrics": {
+        "temperatureC": 20.17740057079732,
+        "humidityPct": 46.08,
+        "cloudCover": 0.16,
+        "cloudDensity": 0.11199999999999999,
+        "rainIntensity": 0,
+        "snowIntensity": 0,
+        "windDirectionRad": 0.9456902326474399,
+        "meanWindMps": 3.5999999999999996,
+        "gustWindMps": 3.5999999999999996,
+        "fog": 0,
+        "visibilityM": 18000,
+        "stormRisk": 0,
+        "electricalActivity": 0,
+        "groundWetness": 0,
+        "coldDegreeHours": 0,
+        "iceFraction": 0,
+        "sunshine": 0.8624,
+        "simulation": true,
+        "snowCover": 0
+      },
+      "stormPhase": "calm",
+      "naturalEvolution": false,
+      "reduceLightning": false,
+      "sensitive": {
+        "humidity": 0.4608,
+        "dew": 0,
+        "mist": 0.00023420561985789515,
+        "bankDistance": 28.442380602260656
+      },
+      "diffuseNight": {
+        "intensity": 1.451496,
+        "nightWeight": 0,
+        "moon": 0
+      },
+      "moon": {
+        "date": "2026-05-16T12:00:00.000Z",
+        "altitude": 1.1286563336057929,
+        "azimuth": 3.45403674702923,
+        "phase": 0.986708642492796,
+        "illumination": 0.0035435796667481756,
+        "brightLimbAngle": 2.0880539103289566,
+        "parallacticAngle": 0.23050660126181843,
+        "distanceKm": 358779.74469222646,
+        "angularRadius": 0.004921769330168628,
+        "geometricallyVisible": true,
+        "direction": [
+          -0.13152238436782482,
+          0.9038380846750896,
+          0.40715915696575916
+        ],
+        "visibility": 0.00013949018527124491,
+        "model": "Schlyter approximate topocentric orbit; shared M11 date"
+      },
+      "elapsedSeconds": 75.23380000000071,
+      "targetWeather": "clear",
+      "lightning": {
+        "active": false,
+        "id": null,
+        "intensity": 0,
+        "maxIntensity": 0.32,
+        "events": [],
+        "nextSeconds": null
+      },
+      "moment": "real",
+      "mode": "real",
+      "date": "2026-05-16T12:00:00.000Z",
+      "localTime": "16 mai 2026, 14:00",
+      "localHour": 14,
+      "season": "spring",
+      "timeZone": "Europe/Paris",
+      "polar": null,
+      "calendar": {
+        "manual": false,
+        "month": 5,
+        "representativeDay": null,
+        "sunrise": 1778905285000.0103,
+        "sunset": 1778959420999.9878,
+        "solarNoon": 1778932353000.7144
+      },
+      "weatherTau": 5.5,
+      "effectiveMeanWind": 0.24,
+      "starVisibility": 0,
+      "rainDrops": 0,
+      "groundWetness": 0,
+      "snow": {
+        "cover": 0,
+        "temperature": 20.17740057079732,
+        "falling": 0,
+        "phase": "bare"
+      },
+      "cloudMotion": {
+        "drift": [
+          129.68263050402595,
+          -73.01779259986523
+        ],
+        "morph": [
+          0.07318503965159603,
+          0.04558653419618436,
+          0.06471253393328553
+        ],
+        "baseHeight": 230,
+        "upperHeight": 540
+      }
+    },
+    "lighting": {
+      "state": "ready",
+      "mode": "local",
+      "matchedGeometry": 287,
+      "ambientVertices": 536452,
+      "shadowSize": 0,
+      "shadowBytes": 0,
+      "staticTriangles": 0,
+      "treeInstances": 0,
+      "updates": 0,
+      "lastUpdateCpuMs": 0,
+      "maxUpdateCpuMs": 0,
+      "lastShadowCalls": 0,
+      "lastShadowTriangles": 0,
+      "extraPasses": 0,
+      "selectionBuilds": 0,
+      "shadowIndexBytes": 0,
+      "sourceBytes": 5495013,
+      "filter": "none",
+      "windTests": 0,
+      "windSkips": 0,
+      "windMotionBoundM": 0,
+      "maxWindMotionBoundM": 0,
+      "windThresholdM": 0,
+      "character": {
+        "updates": 0,
+        "size": 0,
+        "bytes": 0,
+        "proxies": 0,
+        "extraPasses": 0,
+        "poseAgeMs": 0,
+        "lastCpuMs": 0,
+        "maxCpuMs": 0,
+        "receiver": "landscape only; actor receives landscape map"
+      }
+    },
+    "stream": {
+      "requests": 7,
+      "completed": 4,
+      "cancelled": 20,
+      "stale": 0,
+      "failed": 0,
+      "installed": 2,
+      "evicted": 0,
+      "installsThisFrame": 0,
+      "installCpuMs": 0,
+      "prepareSlices": 51,
+      "maxPrepareSliceMs": 2.900000000372529,
+      "cacheHits": 0,
+      "bytes": 783058,
+      "maxDecodeCpuMs": 1.099999999627471,
+      "maxFetchDecodeWallMs": 707.2000000001863,
+      "maxInstallMs": 1,
+      "maxDisposeMs": 0,
+      "maxTickMs": 3.2999999998137355,
+      "active": 0,
+      "ready": 2
+    },
+    "audio": {
+      "aircraftEvents": 0,
+      "contextUpdates": 0,
+      "cpuMs": 0,
+      "maxCpuMs": 0,
+      "nearbyChecks": 0,
+      "memoryCells": 0,
+      "perches": 0,
+      "contact": {
+        "surface": null,
+        "material": "unknown",
+        "basis": "no reliable ground material",
+        "confidence": "unknown",
+        "wetness": 0
+      },
+      "context": null
+    },
+    "gpu": {
+      "geometries": 70,
+      "textures": 15,
+      "programs": 16
+    },
+    "heap": 237765646,
+    "profile": "eco",
+    "mode": "third",
+    "view": true
+  },
+  "looked": {
+    "position": [
+      -353.66215395553013,
+      -30.88901829514242,
+      -23.401995193312494
+    ],
+    "camera": {
+      "position": [
+        -354.85759644404914,
+        -27.45361709692301,
+        -18.72026301709004
+      ],
+      "quaternion": [
+        -0.17467391155777764,
+        -0.12272752276883087,
+        -0.02194867421290529,
+        0.9767012007141321
+      ],
+      "fov": 55
+    },
+    "spawn": {
+      "version": "verified-sector-start-v1",
+      "seed": "12345",
+      "revision": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1:930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615:cafa29e48d7e557900cc5987f9ffc8a6e3722303a422ac2c565f990d37666a1f",
+      "sector": "-2,-1",
+      "x": -353.66215395553013,
+      "y": -32.22696558738903,
+      "z": -13.727512929741842,
+      "yaw": 0,
+      "candidates": 1556,
+      "sectors": 80,
+      "fallback": false,
+      "preparationMs": 1201.9000000003725,
+      "provenance": "Initial selection from admitted OSM paths; actual loaded terrain and 30cm navigation capsule verified. Sector-balanced artistic start, not a surveyed viewpoint."
+    },
+    "walker": {
+      "version": "poitou-walker-rig-v3",
+      "bones": 16,
+      "triangles": 2248,
+      "drawCalls": 1,
+      "imageTextures": 0,
+      "boneTextureBytes": 1024,
+      "phase": 14.757712564786916,
+      "speed": 0,
+      "contacts": 0,
+      "soleError": 3.552713678800501e-15,
+      "plantError": 0,
+      "mode": "idle"
+    },
+    "navigation": {
+      "state": "ready",
+      "nodes": 916,
+      "edges": 893
+    },
+    "climate": {
+      "worldTimeMs": 1778932800000,
+      "solar": {
+        "altitude": 1.0862849672341237,
+        "azimuth": 3.207689032288274,
+        "month": 5
+      },
+      "weather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.24,
+        "rain": 0,
+        "snow": 0,
+        "electric": 0,
+        "temperatureC": 20.17740057079732
+      },
+      "acousticWeather": {
+        "cloud": 0.16,
+        "mist": 0,
+        "wind": 0.1585517517508661,
+        "rain": 0,
+        "snow": 0,
+        "gust": 0,
+        "electric": 0,
+        "temperatureC": 20.17740057079732,
+        "snowCover": 0
+      },
+      "wind": {
+        "x": 0.13045194804187923,
+        "z": -0.09212210793222349,
+        "speed": 0.1585517517508661,
+        "gust": 0
+      },
+      "transition": {
+        "revision": 318,
+        "commandRevision": 2,
+        "manual": false
+      },
+      "simulation": true,
+      "metrics": {
+        "temperatureC": 20.17740057079732,
+        "humidityPct": 46.08,
+        "cloudCover": 0.16,
+        "cloudDensity": 0.11199999999999999,
+        "rainIntensity": 0,
+        "snowIntensity": 0,
+        "windDirectionRad": 0.9559370374673568,
+        "meanWindMps": 3.5999999999999996,
+        "gustWindMps": 3.5999999999999996,
+        "fog": 0,
+        "visibilityM": 18000,
+        "stormRisk": 0,
+        "electricalActivity": 0,
+        "groundWetness": 0,
+        "coldDegreeHours": 0,
+        "iceFraction": 0,
+        "sunshine": 0.8624,
+        "simulation": true,
+        "snowCover": 0
+      },
+      "stormPhase": "calm",
+      "naturalEvolution": false,
+      "reduceLightning": false,
+      "sensitive": {
+        "humidity": 0.4608,
+        "dew": 0,
+        "mist": 0.00015178347556394378,
+        "bankDistance": 28.442380602260656
+      },
+      "diffuseNight": {
+        "intensity": 1.451496,
+        "nightWeight": 0,
+        "moon": 0
+      },
+      "moon": {
+        "date": "2026-05-16T12:00:00.000Z",
+        "altitude": 1.1286563336057929,
+        "azimuth": 3.45403674702923,
+        "phase": 0.986708642492796,
+        "illumination": 0.0035435796667481756,
+        "brightLimbAngle": 2.0880539103289566,
+        "parallacticAngle": 0.23050660126181843,
+        "distanceKm": 358779.74469222646,
+        "angularRadius": 0.004921769330168628,
+        "geometricallyVisible": true,
+        "direction": [
+          -0.13152238436782482,
+          0.9038380846750896,
+          0.40715915696575916
+        ],
+        "visibility": 0.00013949018527124491,
+        "model": "Schlyter approximate topocentric orbit; shared M11 date"
+      },
+      "elapsedSeconds": 79.13749999999996,
+      "targetWeather": "clear",
+      "lightning": {
+        "active": false,
+        "id": null,
+        "intensity": 0,
+        "maxIntensity": 0.32,
+        "events": [],
+        "nextSeconds": null
+      },
+      "moment": "real",
+      "mode": "real",
+      "date": "2026-05-16T12:00:00.000Z",
+      "localTime": "16 mai 2026, 14:00",
+      "localHour": 14,
+      "season": "spring",
+      "timeZone": "Europe/Paris",
+      "polar": null,
+      "calendar": {
+        "manual": false,
+        "month": 5,
+        "representativeDay": null,
+        "sunrise": 1778905285000.0103,
+        "sunset": 1778959420999.9878,
+        "solarNoon": 1778932353000.7144
+      },
+      "weatherTau": 5.5,
+      "effectiveMeanWind": 0.24,
+      "starVisibility": 0,
+      "rainDrops": 0,
+      "groundWetness": 0,
+      "snow": {
+        "cover": 0,
+        "temperature": 20.17740057079732,
+        "falling": 0,
+        "phase": "bare"
+      },
+      "cloudMotion": {
+        "drift": [
+          135.63173098446447,
+          -76.66960117383155
+        ],
+        "morph": [
+          0.0769216510193277,
+          0.047934501205369504,
+          0.06800438936941879
+        ],
+        "baseHeight": 230,
+        "upperHeight": 540
+      }
+    },
+    "lighting": {
+      "state": "ready",
+      "mode": "local",
+      "matchedGeometry": 287,
+      "ambientVertices": 536452,
+      "shadowSize": 0,
+      "shadowBytes": 0,
+      "staticTriangles": 0,
+      "treeInstances": 0,
+      "updates": 0,
+      "lastUpdateCpuMs": 0,
+      "maxUpdateCpuMs": 0,
+      "lastShadowCalls": 0,
+      "lastShadowTriangles": 0,
+      "extraPasses": 0,
+      "selectionBuilds": 0,
+      "shadowIndexBytes": 0,
+      "sourceBytes": 5495013,
+      "filter": "none",
+      "windTests": 0,
+      "windSkips": 0,
+      "windMotionBoundM": 0,
+      "maxWindMotionBoundM": 0,
+      "windThresholdM": 0,
+      "character": {
+        "updates": 0,
+        "size": 0,
+        "bytes": 0,
+        "proxies": 0,
+        "extraPasses": 0,
+        "poseAgeMs": 0,
+        "lastCpuMs": 0,
+        "maxCpuMs": 0,
+        "receiver": "landscape only; actor receives landscape map"
+      }
+    },
+    "stream": {
+      "requests": 8,
+      "completed": 5,
+      "cancelled": 20,
+      "stale": 0,
+      "failed": 0,
+      "installed": 3,
+      "evicted": 0,
+      "installsThisFrame": 0,
+      "installCpuMs": 0,
+      "prepareSlices": 62,
+      "maxPrepareSliceMs": 2.900000000372529,
+      "cacheHits": 0,
+      "bytes": 947549,
+      "maxDecodeCpuMs": 1.099999999627471,
+      "maxFetchDecodeWallMs": 707.2000000001863,
+      "maxInstallMs": 1,
+      "maxDisposeMs": 0,
+      "maxTickMs": 3.2999999998137355,
+      "active": 0,
+      "ready": 2
+    },
+    "audio": {
+      "aircraftEvents": 0,
+      "contextUpdates": 0,
+      "cpuMs": 0,
+      "maxCpuMs": 0,
+      "nearbyChecks": 0,
+      "memoryCells": 0,
+      "perches": 0,
+      "contact": {
+        "surface": null,
+        "material": "unknown",
+        "basis": "no reliable ground material",
+        "confidence": "unknown",
+        "wetness": 0
+      },
+      "context": null
+    },
+    "gpu": {
+      "geometries": 94,
+      "textures": 15,
+      "programs": 16
+    },
+    "heap": 244413453,
+    "profile": "eco",
+    "mode": "third",
+    "view": true
+  },
+  "menu": {
+    "open": true,
+    "overflow": false,
+    "controls": [
+      {
+        "label": "Fermer le menu",
+        "box": {
+          "width": 44,
+          "height": 44
+        }
+      },
+      {
+        "label": "Promenade automatique",
+        "box": {
+          "width": 324,
+          "height": 44
+        }
+      },
+      {
+        "label": "Activer le son",
+        "box": {
+          "width": 324,
+          "height": 44
+        }
+      },
+      {
+        "label": "Diagnostic : horloge ×72",
+        "box": {
+          "width": 185.703125,
+          "height": 44
+        }
+      },
+      {
+        "label": "Inspecter le terrain",
+        "box": {
+          "width": 151.203125,
+          "height": 44
+        }
+      },
+      {
+        "label": "Inspecter le dernier blocage",
+        "box": {
+          "width": 210.5,
+          "height": 44
+        }
+      },
+      {
+        "label": "Exporter le diagnostic",
+        "box": {
+          "width": 169.484375,
+          "height": 44
+        }
+      }
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "resolution": [
+      390,
+      844
+    ],
+    "dpr": 1
+  },
+  "media": {
+    "containerIndexed": true,
+    "codecCopy": true,
+    "packetPTSAndPayloadsIdentical": true,
+    "packets": 41,
+    "rawSha256": "b4e3a8dac250765c399c46a6e045ebc1e4d7ae84b4d99ca9ae90ea184712efaf",
+    "indexedSha256": "f1d03017c58dd143ddc9aaadecd9d87b9ff5b6983a5ccdd63b9d0a4f73aa080f"
+  }
+}

@@ -7,7 +7,7 @@ import {roadCategory} from '../world/road-category.mjs';
 // @ts-ignore Validated, source-bound derivative of this exact navigation graph.
 import {readWalkGraph} from './walk-graph-cache.mjs';
 import { toLocal } from '../world/geo';
-import { canWalk,walkingHeight } from '../world/collisions';
+import { canWalk,walkingHeight,canTraverse } from '../world/collisions';
 import type { Terrain } from '../world/terrain';
 // @ts-ignore Pure module also exercised directly by Node tests.
 import { allowed } from './walk.mjs';
@@ -61,9 +61,10 @@ export function validPoint(p:Point,terrain:Terrain|null){
 }
 let graph:ReturnType<typeof buildGraph>|null=null;
 export const navigationGraphStats={state:'idle',nodes:0,edges:0};
-export function walkingGraphBindings(terrain:Terrain){return {terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface?.manifest.binarySha256,osm:terrain.singleSurface?.manifest.osmSha256,policy:'capsule-0.3-grounded-0.7-sloped-landing0.18-v221'}}
-const makeTourGraph=(terrain:Terrain)=>buildGraph(acousticRoads.map(r=>({...r,name:r.tags.name??'Voie piétonne OSM',surface:r.tags.surface??''})),(q:Point)=>validPoint(q,terrain),tourAllowed);
-export function prepareGraphForDiagnostics(terrain:Terrain){if(new URLSearchParams(location.search).has('tourBuild'))tourGraph=makeTourGraph(terrain);graph=buildGraph(paths,(q:Point)=>validPoint(q,terrain));Object.assign(navigationGraphStats,{state:'prepared',nodes:graph.nodes.length,edges:graph.edges.length});return graph}
+export function walkingGraphBindings(terrain:Terrain){return {terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface?.manifest.binarySha256,osm:terrain.singleSurface?.manifest.osmSha256,policy:'capsule-0.3-grounded-0.7-local-span-clear-landing-step0.18-swept-v23'}}
+const sweep=(terrain:Terrain)=>(a:Point,b:Point)=>canTraverse(a,b,(x,z)=>terrain.relativeHeight(x,z));
+const makeTourGraph=(terrain:Terrain)=>buildGraph(acousticRoads.map(r=>({...r,name:r.tags.name??'Voie piétonne OSM',surface:r.tags.surface??''})),(q:Point)=>validPoint(q,terrain),tourAllowed,sweep(terrain));
+export function prepareGraphForDiagnostics(terrain:Terrain){if(new URLSearchParams(location.search).has('tourBuild'))tourGraph=makeTourGraph(terrain);graph=buildGraph(paths,(q:Point)=>validPoint(q,terrain),allowed,sweep(terrain));Object.assign(navigationGraphStats,{state:'prepared',nodes:graph.nodes.length,edges:graph.edges.length});return graph}
 export function exportNavigationGraph(){return graph}
 export function hasPreparedGraph(){return graph!==null}
 export async function loadPreparedGraph(terrain:Terrain){navigationGraphStats.state='loading';try{graph=await readWalkGraph(import.meta.env.BASE_URL+'data/',walkingGraphBindings(terrain));Object.assign(navigationGraphStats,{state:'ready',nodes:graph!.nodes.length,edges:graph!.edges.length});tourGraph=new URLSearchParams(location.search).has('tourBuild')?makeTourGraph(terrain):await readWalkGraph(import.meta.env.BASE_URL+'data/',walkingGraphBindings(terrain),'angles-tour-graph').catch(()=>graph)}catch(error){graph=null;navigationGraphStats.state='unavailable';console.warn('Prepared walking graph unavailable; manual walking remains ready',error)}}

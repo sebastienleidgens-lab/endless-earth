@@ -44,19 +44,35 @@ export function createWalker(){
   for(let i=0;i<2;i++){const f=legs[i],cycle=Math.floor(motion.phase*.5+i*.5),q=(motion.phase*.5+i*.5)%1,duty=.52-motion.run*.08,stance=q<duty;
    // Actual travel already eases with physics; damping swing progress again retracts the foot at a stop.
    if(motion.speed>.025){if(stance){if(!f.stance||f.cycle!==cycle){point(f.side,motion.stride*(.52-q*2),f.anchor);motion.footContacts.push({side:f.side,position:f.anchor.clone(),run:motion.run,energy:.65+motion.run*.55})}f.target.copy(f.anchor)}else{const t=(q-duty)/(1-duty),s=t*t*(3-2*t);point(f.side,motion.stride*(.52+2*(1-q)),world);f.target.lerpVectors(f.anchor,world,s);f.target.y=avatar.position.y+Math.sin(t*Math.PI)**1.35*(.075+motion.run*.12)}f.stance=stance;f.cycle=cycle}
-   const h=height(f.target.x,f.target.z)??avatar.position.y;if(motion.speed<.025){f.target.y=THREE.MathUtils.lerp(f.target.y,h,1-Math.exp(-dt*14));if(Math.abs(f.target.y-h)<.002){f.target.y=h;f.stance=true;f.anchor.copy(f.target)}}else if(f.stance)f.target.y=h;else f.target.y=Math.max(h,f.target.y);local.copy(f.target).sub(avatar.position).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);const available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));hip=Math.min(hip,available+local.y+.06);
+   // A stopped stride returns to a neutral stance in X/Z as well as Y. A
+   // stale planted foot must never pull the pelvis down towards a sitting pose.
+   if(motion.speed<.025){point(f.side,0,world);const a=1-Math.exp(-dt*10);f.target.x=THREE.MathUtils.lerp(f.target.x,world.x,a);f.target.z=THREE.MathUtils.lerp(f.target.z,world.z,a)}
+   let h=height(f.target.x,f.target.z);
+   if(!Number.isFinite(h)||Math.abs(h-avatar.position.y)>.32||Math.hypot(f.target.x-avatar.position.x,f.target.z-avatar.position.z)>.62){point(f.side,0,f.target);h=height(f.target.x,f.target.z);f.anchor.copy(f.target);f.stance=true}
+   if(!Number.isFinite(h)||Math.abs(h-avatar.position.y)>.32)h=avatar.position.y;
+   if(motion.speed<.025){f.target.y=THREE.MathUtils.lerp(f.target.y,h,1-Math.exp(-dt*14));if(Math.abs(f.target.y-h)<.002){f.target.y=h;f.stance=true;f.anchor.copy(f.target)}}else if(f.stance)f.target.y=h;else f.target.y=Math.max(h,f.target.y);
+   local.copy(f.target).sub(avatar.position).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);let available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));
+   // A long frame or a turn can leave an old contact outside leg reach. Move
+   // that contact back onto nearby support before solving; a pelvis clamp
+   // alone would leave the sole visibly short of its target.
+   for(let n=0;n<6&&available+local.y+.06<.72;n++){
+    point(f.side,n===5?0:local.z*.6,f.target);let contact=height(f.target.x,f.target.z);if(!Number.isFinite(contact)||Math.abs(contact-avatar.position.y)>.32)contact=avatar.position.y;f.target.y=contact;f.anchor.copy(f.target);f.stance=true;
+    local.copy(f.target).sub(avatar.position).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));
+   }
+   hip=Math.min(hip,available+local.y+.06);
   }
+  hip=THREE.MathUtils.clamp(hip,.72,.91);
   // Restrained pelvic twist, counter-rotating shoulders and turn inertia.
   hips.rotation.set(0,Math.sin(wave)*(.025+.018*motion.run)*motion.blend,-Math.sin(wave)*.012*motion.blend-turn*.012*motion.blend);
   hips.position.y=hip;inversePelvis.copy(hips.quaternion).invert();
-  const front=point(0,.35,world),hf=height(front.x,front.z),back=point(0,-.35,local),hb=height(back.x,back.z),slope=hf!==null&&hb!==null?THREE.MathUtils.clamp((hf-hb)/.7,-.5,.5):0;
+  const front=point(0,.35,world),hf=height(front.x,front.z),back=point(0,-.35,local),hb=height(back.x,back.z),slope=Number.isFinite(hf)&&Number.isFinite(hb)?THREE.MathUtils.clamp((hf-hb)/.7,-.5,.5):0;
   spine.rotation.x=(.025+motion.run*.10+slope*.15)*motion.blend;
   spine.rotation.z=Math.sin(wave+.35)*.012*motion.blend+turn*.025*motion.blend;
   spine.rotation.y=-Math.sin(wave+.15)*.025*motion.blend;
   chest.rotation.y=-Math.sin(wave+.22)*(.035+motion.run*.022)*motion.blend-turn*.035*motion.blend;
   spine.scale.y=1+Math.sin(motion.time*1.3)*.002*(1-motion.blend);
   head.rotation.x=-spine.rotation.x*.65;head.rotation.z=-spine.rotation.z*.7;
-  for(const f of legs){local.copy(f.target).sub(avatar.position).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);local.y+=.06-hip;local.applyQuaternion(inversePelvis);const dy=local.y,dx=local.x-f.side*.105,roll=Math.atan2(dx,-dy),ik=legIK(-Math.hypot(dy,dx),local.z);f.thigh.rotation.z=roll;f.thigh.rotation.x=ik.hip;f.shin.rotation.x=ik.knee;point(f.side,local.z+.12,world);const front=height(world.x,world.z);point(f.side,local.z-.12,world);const back=height(world.x,world.z);const slope=front!==null&&back!==null?THREE.MathUtils.clamp(-Math.atan((front-back)/.24),-.5,.5):0;const q=(motion.phase*.5+(f.side===1?.5:0))%1,duty=.52-motion.run*.08;
+  for(const f of legs){local.copy(f.target).sub(avatar.position).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);local.y+=.06-hip;local.applyQuaternion(inversePelvis);const dy=local.y,dx=local.x-f.side*.105,roll=Math.atan2(dx,-dy),ik=legIK(-Math.hypot(dy,dx),local.z);f.thigh.rotation.z=roll;f.thigh.rotation.x=ik.hip;f.shin.rotation.x=ik.knee;point(f.side,local.z+.12,world);const front=height(world.x,world.z);point(f.side,local.z-.12,world);const back=height(world.x,world.z);const slope=Number.isFinite(front)&&Number.isFinite(back)?THREE.MathUtils.clamp(-Math.atan((front-back)/.24),-.5,.5):0;const q=(motion.phase*.5+(f.side===1?.5:0))%1,duty=.52-motion.run*.08;
    const rollFoot=f.stance?THREE.MathUtils.smoothstep(q/duty,.65,1)*(.12+motion.run*.10):-.14*Math.sin((q-duty)/(1-duty)*Math.PI);
    f.foot.rotation.x=slope-ik.hip-ik.knee+rollFoot*motion.blend;f.foot.rotation.z=-roll;}
   for(let i=0;i<2;i++){const a=arms[i],v=Math.sin(wave+i*Math.PI+.23)+.07*Math.sin(wave*2+i*.9);a.upper.rotation.x=.055-v*(.25+motion.run*.27)*motion.blend+turn*a.side*.025;a.upper.rotation.z=a.side*(.065+motion.run*.025)+Math.sin(wave+i*Math.PI)*.015*motion.blend;a.lower.rotation.x=-.13-motion.run*.82+Math.sin(motion.phase*Math.PI+i*Math.PI+.65)*.08*motion.blend;a.hand.rotation.z=a.side*.035}
