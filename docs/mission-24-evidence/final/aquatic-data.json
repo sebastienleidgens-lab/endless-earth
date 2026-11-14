@@ -1,0 +1,39 @@
+{
+  "reviewDateUTC": "2026-11-14",
+  "pilot": "Angles-sur-l’Anglin",
+  "validBathymetricCorridors": 0,
+  "admission": "Closed: no invented riverbed; ordinary M23 water restrictions retained.",
+  "sources": [
+    {
+      "url": "https://www.ecologie.gouv.fr/sites/default/files/documents/Guide%20PPRI%20debordement%20de%20cours%20d%27eau%202024.pdf",
+      "authority": "Ministère de la Transition écologique, Guide PPRI 2024",
+      "finding": "Au niveau du lit mineur, les cotes LiDAR résultent de la triangulation entre berges et ne représentent pas la bathymétrie réelle."
+    },
+    {
+      "url": "https://www.data.gouv.fr/datasets/mnt-lidar-hd",
+      "authority": "IGN",
+      "finding": "MNT derived from ground/water/virtual points; no surveyed riverbed for the pilot established."
+    },
+    {
+      "url": "https://hydro.eaufrance.fr/stationhydro/L574192002/jaugeages",
+      "authority": "SC Vigicrues / HydroPortail, Pont d’Angles",
+      "finding": "Station stage and discharge are available; they are not a spatial riverbed, navigable corridor or verified exit."
+    },
+    {
+      "url": "https://www.hydro.eaufrance.fr/stationhydro/L574192002/jaugeage/292655/fiche",
+      "authority": "DREAL / HydroPortail",
+      "finding": "Gauge 166, 530–529 mm stage: gauge-relative height, not local depth across three entrances."
+    },
+    {
+      "url": "https://www.smabcac.fr/wp-content/uploads/2020/04/phase1_prediag_anglin.pdf",
+      "authority": "SMABCAC, hydromorphological prediagnosis",
+      "finding": "Regional morphology descriptions do not establish a georeferenced licensed bathymetric mesh and three validated corridors at the pilot."
+    }
+  ],
+  "requiredToOpen": [
+    "Licensed georeferenced bed measurements and water level in one datum.",
+    "Immutable corridor with allowed access, continuous bed and collision checks.",
+    "Connected route to a walkable shallow exit for every admitted position."
+  ],
+  "syntheticValidation": "Three controlled ramps, explicitly labeled synthetic, share production AquaticController, PlayerActivity, walker rig, InputController and water marks. They are not acceptance of swimming in the Anglin."
+}

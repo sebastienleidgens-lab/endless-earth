@@ -4,7 +4,7 @@ import {lifeUniforms,cloudReceiver} from '../earthlife/state.mjs';
 // @ts-ignore Same continuous weather field, no second simulation.
 import {windGLSL} from '../earthlife/wind.mjs';
 // @ts-ignore Shared life model and exact colour/caster leaf gates.
-import {forestSeasonGLSL,FOREST_COARSE_BEND} from './forest-life.mjs';
+import {forestSeasonGLSL,FOREST_COARSE_BEND,FOREST_BRANCH_FLEX_LIMIT} from './forest-life.mjs';
 // @ts-ignore Structural profile switches only.
 import {registerLifeMaterial} from '../earthlife/capabilities.mjs';
 
@@ -65,17 +65,17 @@ vec3 forestPose(vec3 raw,inout vec3 n,vec4 season){
  vec4 forestPrimary=forestJoint(0);vec2 lifeAnchor=(modelMatrix*instanceMatrix[3]).xz;
  float size=forestWindRect.w;vec2 q=clamp((lifeAnchor-forestWindRect.xy)/forestWindRect.z,0.,1.);vec2 uv=(q*(size-1.)+.5)/size;uv.y*=.5;
  vec4 bank=texture2D(forestWindField,uv);vec2 rootWind=forestLocal(bank.xy),branchWind=forestLocal(mix(bank.xy,bank.zw,clamp(.52+forestData.y*.20+forestPrimary.w*.12,0.,1.)));
- float gain=forestData.y*forestForm.w*lifeVegetation;
+ float gain=min(forestData.y,${FOREST_BRANCH_FLEX_LIMIT})*forestForm.w*lifeVegetation;
  #if LIFE_WIND_MODE == 2
  vec4 forestSecondary=forestJoint(1),forestTwig=forestJoint(2);
  vec4 fine=texture2D(forestWindField,uv+vec2(0.,.5));vec2 secondaryWind=forestLocal(mix(bank.zw,fine.xy,clamp(.60+forestData.y*.14+forestSecondary.w*.12,0.,1.))),twigWind=forestLocal(mix(bank.zw,fine.xy,clamp(.64+forestData.y*.14+forestTwig.w*.12,0.,1.)));
  if(forestData.z>.5){float phase=natureCluster*37.+natureTraits.x*19.,rate=(4.1+forestData.y)*(.88+natureTraits.x*.26);float wave=sin(lifeTime*rate+phase)+.38*sin(lifeTime*rate*1.618+phase*1.37);float angle=wave*min(.12,length(fine.zw)*.14*forestData.y)*lifeFine*forestForm.w*lifeVegetation;
   forestRotate(p,n,forestPivot(forestJoint(3).xyz),normalize(forestJoint(4).xyz*2.-1.),angle);
  }
- forestWindJoint(p,n,forestTwig,twigWind,.05*gain*(.91+.09*sin(lifeTime*2.4*(.88+natureTraits.x*.26)+forestTwig.w*29.)));
- forestWindJoint(p,n,forestSecondary,secondaryWind,.035*gain*(.92+.08*sin(lifeTime*1.3*(.88+natureTraits.x*.26)+forestSecondary.w*41.)));
+ forestWindJoint(p,n,forestTwig,twigWind,.060*gain*(.91+.09*sin(lifeTime*2.4*(.88+natureTraits.x*.26)+forestTwig.w*29.)));
+ forestWindJoint(p,n,forestSecondary,secondaryWind,.041*gain*(.92+.08*sin(lifeTime*1.3*(.88+natureTraits.x*.26)+forestSecondary.w*41.)));
  #endif
- forestWindJoint(p,n,forestPrimary,branchWind,.018*gain*(.86+forestPrimary.w*.14));
+ forestWindJoint(p,n,forestPrimary,branchWind,.027*gain*(.86+forestPrimary.w*.14));
  forestRotate(p,n,vec3(0.),vec3(rootWind.y,0.,-rootWind.x),.006*gain/(1.+forestData.x*.08+natureTraits.y*.3+forestForm.y*.4));
  #endif
  return forestShape(p,natureTraits,forestForm,forestData);

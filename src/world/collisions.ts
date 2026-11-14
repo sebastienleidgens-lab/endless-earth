@@ -93,3 +93,9 @@ export function moveWithCollision(position:THREE.Vector3,displacement:{x:number;
 }
 
 export const cameraClear=(x:number,z:number)=>canWalk(x,z,true);
+/** Only an admitted, verified aquatic corridor may call this narrower check.
+ * Ordinary canWalk and every M23 bridge/navigation rule remain unchanged. */
+export function aquaticClear(x:number,z:number){
+ const hit=inspectCollision(x,z);
+ return Number.isFinite(x)&&Number.isFinite(z)&&Math.abs(x)<=1000&&Math.abs(z)<=1000&&!hit.building&&hit.access.support===null&&!(hit.access.reasons as any[]|undefined)?.some(r=>r.rule!=='mapped-water');
+}

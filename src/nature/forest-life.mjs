@@ -1,5 +1,6 @@
 import {windAtWorld} from '../earthlife/wind.mjs';
 export const FOREST_COARSE_BEND=.00045;
+export const FOREST_BRANCH_FLEX_LIMIT=1.38;
 export const FOREST_LIFE_VERSION='hierarchical-shoot-life-v1';
 export const FOREST_MOTION_PADDING=3.8;
 // Generic interpreted phenology, not local species observations. Day on a 365-day year.
@@ -53,9 +54,9 @@ export function forestPosePoint(raw,{traits,form,data,joints,root=[0,0,0],axis=[
  let p=v;const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],rotate=(pivot,axis,gain)=>{const r=p.map((v,c)=>v-pivot[c]),c=cross(axis,r),d=cross(axis,c);p=pivot.map((v,i)=>v+r[i]+gain*c[i]+.5*gain*gain*d[i])};
  const joint=(j,w,g)=>{if(j)rotate(j.pivot,[w[1],0,-w[0]],g)};
  if(mode===1){const t=clamp(.52+flex*.20),w=bank.slice(0,2).map((v,i)=>v*(1-t)+bank[i+2]*t),g=FOREST_COARSE_BEND*p[1]*p[1]*flex*form[3];p[0]+=w[0]*g;p[2]+=w[1]*g;return shape(p)}
- if(mode>0){const gain=flex*form[3],a=joints[0]?.phase??0,b=joints[1]?.phase??0,c=joints[2]?.phase??0,mix=(a,b,t)=>a.map((v,i)=>v*(1-t)+b[i]*t),rootWind=bank.slice(0,2),branchWind=mix(rootWind,bank.slice(2,4),clamp(.52+flex*.20+a*.12));
+ if(mode>0){const gain=Math.min(flex,FOREST_BRANCH_FLEX_LIMIT)*form[3],a=joints[0]?.phase??0,b=joints[1]?.phase??0,c=joints[2]?.phase??0,mix=(a,b,t)=>a.map((v,i)=>v*(1-t)+b[i]*t),rootWind=bank.slice(0,2),branchWind=mix(rootWind,bank.slice(2,4),clamp(.52+flex*.20+a*.12));
   if(mode===2){const secondaryWind=mix(bank.slice(2,4),bank.slice(4,6),clamp(.60+flex*.14+b*.12)),twigWind=mix(bank.slice(2,4),bank.slice(4,6),clamp(.64+flex*.14+c*.12));if(leaf){const rate=(4.1+flex)*(.88+phase*.26),q=data[3]??.5,wave=Math.sin(time*rate+q*37+phase*19)+.38*Math.sin(time*rate*1.618+(q*37+phase*19)*1.37),angle=wave*Math.min(.12,Math.hypot(bank[6],bank[7])*.14*flex)*form[3];rotate(root,axis,angle)}
-   joint(joints[2],twigWind,.05*gain*(.91+.09*Math.sin(time*2.4*(.88+phase*.26)+c*29)));joint(joints[1],secondaryWind,.035*gain*(.92+.08*Math.sin(time*1.3*(.88+phase*.26)+b*41)));
-  }joint(joints[0],branchWind,.018*gain*(.86+a*.14));rotate([0,0,0],[rootWind[1],0,-rootWind[0]],.006*gain/(1+hRef*.08+age*.3+form[1]*.4));
+   joint(joints[2],twigWind,.060*gain*(.91+.09*Math.sin(time*2.4*(.88+phase*.26)+c*29)));joint(joints[1],secondaryWind,.041*gain*(.92+.08*Math.sin(time*1.3*(.88+phase*.26)+b*41)));
+  }joint(joints[0],branchWind,.027*gain*(.86+a*.14));rotate([0,0,0],[rootWind[1],0,-rootWind[0]],.006*gain/(1+hRef*.08+age*.3+form[1]*.4));
  }return shape(p);
 }

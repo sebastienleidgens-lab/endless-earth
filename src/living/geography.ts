@@ -23,7 +23,8 @@ export const waterLines:Point[][]=[];
 export const riverAreas:{rings:Point[][];tags:Record<string,string>}[]=[];
 export const riverLines:Point[][]=[];
 export const mappedWeirs:Point[][]=[];
-export const acousticBuildings:{ring:Point[];height:number}[]=[];
+export const acousticBuildings:{ring:Point[];height:number;id?:unknown;tags?:Record<string,string>}[]=[];
+export const restrictedAreas:Point[][]=[];
 export const acousticRoads:{points:Point[];tags:Record<string,string>}[]=[];
 let ready=false;const tourDestinations:any[]=[],tourHistory:string[]=[];let tourGraph:any=null;
 export function navigationReady(){return ready;}
@@ -35,7 +36,8 @@ export async function loadNavigation(){
   const t=f.properties??{},g=f.geometry;
   if(g?.type==='LineString'&&t.highway)roadInventory.push({id:t.osm_id,name:t.name??null,...roadCategory(t)});
   const local=(p:number[])=>toLocal({lon:p[0],lat:p[1]});
-  if(g?.type==='Polygon'&&t.building)acousticBuildings.push({ring:g.coordinates[0].map(local),height:Math.min(35,Math.max(3,Number.parseFloat(t.height)||Number(t['building:levels'])*3||8))});
+  if(g?.type==='Polygon'&&t.building)acousticBuildings.push({id:t.osm_id,tags:t,ring:g.coordinates[0].map(local),height:Math.min(35,Math.max(3,Number.parseFloat(t.height)||Number(t['building:levels'])*3||8))});
+  if(g?.type==='Polygon'&&(['private','no'].includes(t.access)||['private','no'].includes(t.foot)||t['access:conditional']))restrictedAreas.push(g.coordinates[0].map(local));
 
   const coords=g?.type==='Point'?[g.coordinates]:g?.type==='Polygon'?g.coordinates[0]:g?.type==='LineString'?g.coordinates:[];
   const kind=t.historic?'heritage':t.bridge==='yes'?'bridge':t.building==='church'||t.building==='chapel'?'heritage':null;

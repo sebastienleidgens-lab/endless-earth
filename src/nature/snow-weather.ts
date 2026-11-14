@@ -18,13 +18,13 @@ export function createSnowWeather(scene:THREE.Scene,latitude=46){
    exposureBytes=new Uint8Array(raw);exposureManifest=m;texture?.dispose();texture=new THREE.DataTexture(new Uint8Array(raw),m.size,m.size,THREE.RGFormat);texture.name='Source-bound snow upper envelope';texture.minFilter=texture.magFilter=THREE.NearestFilter;texture.needsUpdate=true;snowUniforms.earthSnowTop.value=texture;snowUniforms.earthSnowField.value.set(...m.origin,...m.extent);metrics.exposure='ready';fade=0;metrics.bytes=packed.byteLength;metrics.textureBytes=raw.byteLength;
   }catch(error){if(disposed||pending.signal.aborted||source!==assets)return;metrics.exposure='fallback';console.warn('Snow exposure unavailable; coating and flakes withheld, existing weather retained',error)}
  }
- const sample=(p:{x:number;y:number;z:number})=>{
+ const sample=(p:{x:number;y:number;z:number;normalY?:number})=>{
   if(metrics.exposure!=='ready'||!exposureBytes||!exposureManifest)return {cover:0,temperature:state.temperature,phase:state.phase};
   const top=exposureHeight(exposureBytes,exposureManifest,p.x,p.z);if(top===null)return {cover:0,temperature:state.temperature,phase:state.phase};
   const grain=snowUniforms.earthSnowGrain.value.image.data as Uint8Array,u=(p.x*.014+p.y*.001)*64-.5,v=(p.z*.014+p.y*.001)*64-.5,ix=Math.floor(u),iz=Math.floor(v),fx=u-ix,fz=v-iz,at=(x:number,z:number)=>grain[((z%64+64)%64)*64+(x%64+64)%64]/255;
   const pattern=THREE.MathUtils.lerp(THREE.MathUtils.lerp(at(ix,iz),at(ix+1,iz),fx),THREE.MathUtils.lerp(at(ix,iz+1),at(ix+1,iz+1),fx),fz);
-  const exposed=THREE.MathUtils.smoothstep(p.y,top-2.2,top-.7),coat=THREE.MathUtils.smoothstep(state.cover*1.8-(1-pattern)*.35,.025,.48)*exposed*snowUniforms.earthSnowReady.value;
-  return {cover:coat,temperature:state.temperature,phase:state.phase,basis:'same loaded exposure, coating and grain as rendered ground'};
+  const slope=THREE.MathUtils.smoothstep(Math.max(0,p.normalY??1),.18,.82),exposed=THREE.MathUtils.smoothstep(p.y,top-2.2,top-.7),coat=THREE.MathUtils.smoothstep(state.cover*1.8-(1-slope)*.42-(1-pattern)*.35,.025,.48)*slope*exposed*snowUniforms.earthSnowReady.value;
+  return {cover:coat,depthM:state.cover*.065*slope*exposed,temperature:state.temperature,phase:state.phase,basis:'same loaded exposure, slope, coating and grain as rendered ground; depth is an artistic compression scale, not measured snow'};
  };
  return {sample,update(camera:THREE.Vector3,player:THREE.Vector3,dt:number,wallDt:number,time:number,date:Date,weather:any,wind:THREE.Vector2,day:number,profile:string){
   if(disposed)return state;

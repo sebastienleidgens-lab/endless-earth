@@ -18,6 +18,8 @@ export class AcousticRenderer{
  readonly voices=new Set<Voice>();readonly beds=new Map<string,Bed>();readonly random:()=>number;
  private obstacles:any=null;private obstructionCursor=0;private nextVehicle=0;private vehicleId='';private lastUp:Vec3={x:0,y:1,z:0};
  obstructionChecks=0;obstructionUpdates=0;
+ private campPosition:Vec3|null=null;
+ camp(position:Vec3|null){this.campPosition=position?{x:position.x,y:position.y+.3,z:position.z}:null;if(!position)for(const v of this.voices)if(v.reason==='campfire')this.retire(v,.3);}
  profile='balanced';volume=.7;budget=AUDIO_BUDGETS.balanced;closed=false;peakVoices=0;dropped=0;steps=0;lastStepVariant=-1;lastStepSource='';lastStepAssets:string[]=[];lastListener:Vec3={x:0,y:0,z:0};lastForward:Vec3={x:0,y:0,z:-1};heardBirds=0;roadEvents=0;recentEvents:unknown[]=[];lastContext:SoundContext|null=null;
  constructor(readonly context:BaseAudioContext,base:string,seed=1){
  this.random=seededRandom(seed);this.master=context.createGain();this.master.gain.value=0;
@@ -94,6 +96,10 @@ export class AcousticRenderer{
  pump(){if(this.closed)return;const t=this.context.currentTime;
  // Offline rendering/tests can advance clocks without onended delivery yet.
  for(const v of this.voices)if(v.end<=t)this.release(v);
+ if(this.campPosition&&![...this.voices].some(v=>v.reason==='campfire')){
+  const id='campfire-fs-536935-m24',buffer=this.resources.get(id);
+  if(buffer)this.play(id,buffer,{gain:.18,position:this.campPosition,priority:76,refDistance:1.8,maxDistance:24,fade:.35,filter:7000,reason:'campfire'});else void this.resources.request(id);
+ }
  for(const [id,b] of this.beds){
  const active=[...this.voices].some(v=>v.bedId===b.id);
  if(b.retiring){if(!active){b.gain.disconnect();b.filter.disconnect();b.pan?.disconnect();this.beds.delete(id)}continue}
