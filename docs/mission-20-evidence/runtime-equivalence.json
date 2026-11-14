@@ -19,5 +19,10 @@
     "coveredBy": "tests/mission-20.test.mjs, profile lifecycle fixture"
   },
   "scope": "Type annotation emits identical JS; world seed 20 retains exactly the native bank layout. The additional event-budget lifecycle guard is covered separately; no insect was active during the native thirty-minute run.",
-  "finalRuntimeModuleSha256": "d7597a2cc588136318e2951c1d4f030e8eae062d0f08bd17b78d669aa162dfa5"
+  "finalRuntimeModuleSha256": "d7597a2cc588136318e2951c1d4f030e8eae062d0f08bd17b78d669aa162dfa5",
+  "bankShaderPolicy": {
+    "change": "Use existing simplified common-wind and coarse-solar-receiver policy for optional bank plants only. Geometry, world seed, season, source terrain and plant count stay unchanged.",
+    "nativeRunPolicy": "previous detailed bank shading; native thirty-minute proof is explicitly on d611636",
+    "postRunValidation": "banks-optimization.json, paired 126.9 to 120.7 ms SwiftShader; final render/build checks follow"
+  }
 }
