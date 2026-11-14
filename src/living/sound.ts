@@ -1,3 +1,5 @@
+// @ts-ignore Verified independent CC0 thunder takes, no synthesized replacement.
+import {AUDIO_GROUPS} from '../audio/catalog.mjs';
 // @ts-ignore Bounded polygon index, using the mapped building footprints.
 import {acousticObstacles} from '../audio/occlusion.mjs';
 import {navigationReady,riverAreas,riverLines,mappedWeirs,acousticRoads,acousticBuildings} from './geography';
@@ -22,6 +24,7 @@ export class Soundscape {
  private transition:Promise<boolean>=Promise.resolve(false);private disposed=false;private hidden=false;
  private timer:ReturnType<typeof setInterval>|null=null;private director=new SoundDirector({seed:crypto.getRandomValues(new Uint32Array(1))[0]});
  private emitterCache=new Map();private nextContext=0;private waterIndex:ReturnType<typeof riverAcousticIndex>|null=null;private roadsIndex:ReturnType<typeof proximityIndex>|null=null;private trafficIndex:ReturnType<typeof trafficRoadIndex>|null=null;
+ private stormIds=new Set<string>();private stormCursor=0;
  private heardFlight='';private flightAttempt=-Infinity;private aircraftEvents=0;
  private commandRevision=-1;private lastStep=-Infinity;private lastMove=0;private contact:ReturnType<typeof footContact>=footContact();private frameContext:SoundContext|null=null;
  private obstacles:ReturnType<typeof acousticObstacles>|null=null;
@@ -41,6 +44,17 @@ export class Soundscape {
  update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number;footContacts?:Array<{position:Vec3;side:number;run:number;energy:number}>},flight?:{id:string;position:Vec3;velocity:Vec3;eligible:boolean}|null,absoluteSupportAltitude:number|null=null){
  if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer){this.cpuMs=0;return;}
  const start=performance.now(),now=start/1000;
+ const stormEvents=climate?.lightning?.events??[],thunders=AUDIO_GROUPS.thunder??[];
+ if((climate?.metrics?.electricalActivity??0)>.08)for(const id of thunders)void this.renderer.resources.request(id);
+ for(const e of stormEvents){if(this.stormIds.has(e.id))continue;const age=(start-e.timestampMs)/1000;
+  if(age>e.thunderDelaySeconds+2){this.stormIds.add(e.id);e.audio='missed while silent or loading';continue}
+  const asset=thunders[this.stormCursor%Math.max(1,thunders.length)];if(!asset)continue;void this.renderer.resources.request(asset);
+  const delay=Math.max(.05,e.thunderDelaySeconds-age);
+  const position={x:e.position[0],y:e.position[1],z:e.position[2]};
+  if(this.renderer.event({asset,position,priority:85,gain:.48,refDistance:Math.min(900,e.distanceM*.5),maxDistance:7500,delay,reason:'Thunder for '+e.id+'; delay distance/343; independent recorded take'})){this.stormCursor++;this.stormIds.add(e.id);e.audio={asset,delaySeconds:delay,scheduledAtMs:start,expectedAtMs:e.timestampMs+e.thunderDelaySeconds*1000};}
+ }
+ if(this.stormIds.size>48){const recent=new Set(stormEvents.map((e:any)=>e.id));for(const id of this.stormIds)if(!recent.has(id))this.stormIds.delete(id)}
+
  if(profile!==this.renderer.profile)this.renderer.setProfile(profile);
  const commandRevision=climate?.transition?.commandRevision??-1,commandChanged=commandRevision!==this.commandRevision;
  syncEnvironment(this.frameContext,climate);if(this.frameContext&&(commandChanged||now>=this.nextContext))this.renderer.environmentGuard(this.frameContext);
@@ -60,6 +74,7 @@ export class Soundscape {
  const renderHeight=typeof altitudeM==='function'&&Number.isFinite(altitude)?(x:number,z:number)=>{const y=altitudeM(x,z);return y===null?null:p.y+y-altitude!}:null;
  this.frameContext!.traffic=[]; // Traffic is now owned by the visible, audited road vehicles.
  if(!this.obstacles&&acousticBuildings.length){this.obstacles=acousticObstacles(acousticBuildings.map(b=>{const y=renderHeight?.(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));this.renderer.setObstacles(this.obstacles);}
+ this.frameContext!.roof=this.obstacles?.nearestRoof(ear)??null;
  this.frameContext!.emitters=emitterCandidates(this.frameContext,habitatAt,typeof altitudeM==='function'?altitudeM:null,this.emitterCache);this.renderer.updateContext(this.frameContext);for(const id of this.director.preload(this.frameContext,now))void this.renderer.resources.request(id);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.renderer.updateObstructions();this.contextUpdates++;
  }
  if(travel>0&&travel<3){
@@ -79,5 +94,5 @@ export class Soundscape {
  listener(position:Vec3,forward:Vec3,up:Vec3){if(this.enabled&&!this.hidden)this.renderer?.listener(position,forward,up)}
  stats(){return {...this.renderer?.stats(),aircraftEvents:this.aircraftEvents,contextUpdates:this.contextUpdates,cpuMs:this.cpuMs,maxCpuMs:this.maxCpuMs,nearbyChecks:this.nearbyChecks,memoryCells:this.director.memory.size,perches:this.director.perches.size,contact:this.contact,context:this.frameContext}}
  vehicle(v:any){if(this.enabled&&!this.hidden&&this.context?.state==='running')this.renderer?.vehicle(v);else this.renderer?.vehicle(null)}
- async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.emitterCache.clear();this.waterIndex=this.roadsIndex=this.trafficIndex=null;this.frameContext=null;this.obstacles=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
+ async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.stormIds.clear();this.emitterCache.clear();this.waterIndex=this.roadsIndex=this.trafficIndex=null;this.frameContext=null;this.obstacles=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
 }

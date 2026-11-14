@@ -1,5 +1,5 @@
 export const WEATHER=Object.freeze({clear:{cloud:.16,mist:0,wind:.24,rain:0,snow:0},cloudy:{cloud:.49,mist:.06,wind:.43,rain:0,snow:0},overcast:{cloud:.9,mist:.22,wind:.52,rain:0,snow:0},mist:{cloud:.65,mist:1,wind:.12,rain:0,snow:0},rain:{cloud:.96,mist:.44,wind:.64,rain:.6,snow:0},storm:{cloud:1,mist:.56,wind:.95,rain:1,snow:0},snow:{cloud:.96,mist:.30,wind:.38,rain:0,snow:.72}});
-export const MOMENTS=Object.freeze({morning:'Matin',afternoon:'Après-midi',evening:'Soir',night:'Nuit',real:'Temps réel'});
+export const MOMENTS=Object.freeze({morning:'Matin',afternoon:'Après-midi',evening:'Soir',sunrise:'Lever du soleil',sunset:'Coucher du soleil',night:'Nuit',real:'Temps réel'});
 export const MONTHS=Object.freeze(['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre']);
 /** Site civil time, never the browser's timezone. Shared by the existing clock. */
 export function civilParts(reference,timeZone='UTC'){
@@ -18,12 +18,12 @@ export function representativeMonth(reference,month,site){
  return new Date(instant+ms);
 }
 export function solar(date,lat,lon){const d=new Date(date),day=(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-Date.UTC(d.getUTCFullYear(),0,0))/86400000,g=2*Math.PI/365*(day-1),decl=.006918-.399912*Math.cos(g)+.070257*Math.sin(g)-.006758*Math.cos(2*g)+.000907*Math.sin(2*g),eq=229.18*(.000075+.001868*Math.cos(g)-.032077*Math.sin(g)-.014615*Math.cos(2*g)-.040849*Math.sin(2*g)),hour=(d.getUTCHours()*60+d.getUTCMinutes()+d.getUTCSeconds()/60+eq+4*lon)/4-180,r=Math.PI/180,L=lat*r,H=hour*r;return {altitude:Math.asin(Math.sin(L)*Math.sin(decl)+Math.cos(L)*Math.cos(decl)*Math.cos(H)),azimuth:Math.atan2(Math.sin(H),Math.cos(H)*Math.sin(L)-Math.tan(decl)*Math.cos(L))+Math.PI,month:d.getUTCMonth()+1};}
-const WEATHER_KEYS=['cloud','mist','wind'];
-// Natural evolution keeps the historical 45 s time constant. A player command
-// uses 0.65 s: 98% of the change in 2.55 s, with no discontinuity.
+const WEATHER_KEYS=['cloud','mist','wind','electric'];
+// The owner chooses the transition constant: natural evolution 45 s, manual
+// M21 weather 5.5 s. The pure integrator also supports older faster callers.
 export function weatherStep(current,target,dt,out={},seconds=45){
  const a=1-Math.exp(-Math.max(0,Math.min(dt,1))/Math.max(.01,seconds)),rain=current.rain??0,snow=current.snow??0;
- for(const k of WEATHER_KEYS)out[k]=current[k]+(target[k]-current[k])*a;
+ for(const k of WEATHER_KEYS)out[k]=(current[k]??0)+((target[k]??0)-(current[k]??0))*a;
  // Finish the outgoing precipitation before starting the other phase. No
  // simultaneous pure-rain and pure-snow particles or rain bed under snowfall.
  out.rain=rain+(((target.rain??0)>0&&snow>.005?0:target.rain??0)-rain)*a;
@@ -50,6 +50,7 @@ export function momentDate(moment,reference,site){
  // At polar latitudes the requested names designate phases of the solar arc;
  // no invented sunrise/sunset or promise of darkness during midnight sun.
  const times=polar?{morning:noon-21600000,afternoon:noon,evening:noon+21600000,night:midnight}:{morning:rise+Math.min(5400000,(set-rise)*.16),afternoon:noon+Math.min(7200000,(set-rise)*.15),evening:set-Math.min(1500000,(set-rise)*.06),night:set+(86400000-(set-rise))*.4};
+ times.sunrise=rise??noon-21600000;times.sunset=set??noon+21600000;
  return {date:new Date(Math.round(times[moment])),polar,sunrise:rise,sunset:set,solarNoon:noon};
 }
 // Generic local passerine silhouette: a regional interpretation, not a sighting.

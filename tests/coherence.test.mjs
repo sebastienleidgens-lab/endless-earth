@@ -31,8 +31,8 @@ test('one gust drives local GPU wind, advected clouds and foliage gain in all pr
  assert.ok(outcomes[1].speed>outcomes[0].speed*1.3);assert.ok(outcomes[1].drift>outcomes[0].drift);assert.ok(outcomes[1].gain>outcomes[0].gain);updateLifeTime(0,.35);
 });
 
-test('recording that contains distant thunder is eligible only in storm-strength rain',()=>{
+test('unsynchronized thunder recording is excluded from all rain beds',()=>{
  const c={habitat:'wood',influences:{vegetation:1},season:'spring',weather:{wind:.5,rain:.6}};
  const rain=layerMix(c).find(l=>l.id==='rain');assert.ok(rain.assets.length>0);assert.ok(!rain.assets.includes('rain-fs-501243-1'));
- const storm=layerMix({...c,weather:{wind:.95,rain:1}}).find(l=>l.id==='rain');assert.ok(storm.assets.includes('rain-fs-501243-1'));
+ const storm=layerMix({...c,weather:{wind:.95,rain:1}}).find(l=>l.id==='rain');assert.ok(!storm.assets.includes('rain-fs-501243-1'));
 });

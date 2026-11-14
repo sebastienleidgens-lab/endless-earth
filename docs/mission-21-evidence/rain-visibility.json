@@ -1,0 +1,1780 @@
+{
+  "method": "Hold the actual scene/date/camera/time fixed, render only rain streak draw on/off, read every native pixel and require >0.1% changed pixels plus a visible channel difference in all profiles, day/night. This verifies real rasterization after correcting reversed triangle winding; checking draw counters alone was insufficient.",
+  "rows": [
+    {
+      "profile": "eco",
+      "night": false,
+      "changedPixels": 488,
+      "fraction": 0.0018154761904761905,
+      "maxChannelDelta": 133,
+      "meanChannelDelta": 0.04155877976190476,
+      "state": {
+        "climate": {
+          "worldTimeMs": 1784124000000,
+          "solar": {
+            "altitude": 0.9670125291510245,
+            "azimuth": 4.077157707759964,
+            "month": 7
+          },
+          "weather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.921141170540973,
+            "rain": 0.9974237397063294,
+            "snow": 0,
+            "electric": 0.5221127739249639,
+            "temperatureC": 17.119496372789506
+          },
+          "acousticWeather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.8234275422371797,
+            "rain": 0.9974237397063294,
+            "snow": 0,
+            "gust": 0.0011590161196001433,
+            "electric": 0.5221127739249639,
+            "temperatureC": 17.119496372789506,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.7040087364778592,
+            "z": -0.42930618910572543,
+            "speed": 0.8234275422371797,
+            "gust": 0.0011590161196001433
+          },
+          "transition": {
+            "revision": 650,
+            "commandRevision": 4,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 17.119496372789506,
+            "humidityPct": 85.72933356654751,
+            "cloudCover": 0.999999973525416,
+            "cloudDensity": 0.99922710337969,
+            "rainIntensity": 0.9974237397063294,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.023200367568995,
+            "meanWindMps": 13.817117558114594,
+            "gustWindMps": 13.817117558114594,
+            "fog": 0.5599999823502773,
+            "visibilityM": 2516.40069395887,
+            "stormRisk": 0.5221127739249639,
+            "electricalActivity": 0.5221127739249639,
+            "groundWetness": 0.9986610310581245,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.06319838232053782,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "active",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.857293335665475,
+            "dew": 0,
+            "mist": 4.8958652645860086e-17,
+            "bankDistance": 18.86019924798534
+          },
+          "moon": {
+            "date": "2026-07-15T14:00:00.683Z",
+            "altitude": 1.0605968847573044,
+            "azimuth": 3.557461369183875,
+            "phase": 0.04541129012310547,
+            "illumination": 0.02046293378069053,
+            "brightLimbAngle": -1.4081308860030763,
+            "parallacticAngle": 0.2986491740584129,
+            "distanceKm": 363048.81211024243,
+            "angularRadius": 0.004860292775865288,
+            "geometricallyVisible": true,
+            "direction": [
+              -0.19728647942246633,
+              0.872647127223938,
+              0.44672702670075476
+            ],
+            "visibility": 0,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 337.99999999999983,
+          "targetWeather": "storm",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [
+              {
+                "id": "storm:20649:1",
+                "timestampMs": 8379,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 287.49999999999983,
+                "durationSeconds": 0.78,
+                "intensity": 0.30235364769311857,
+                "direction": [
+                  0.7479526120335148,
+                  0.25063914498775175,
+                  0.6146111853457037
+                ],
+                "distanceM": 3698.598588531604,
+                "thunderDelaySeconds": 10.783086263940536,
+                "position": [
+                  2458.6764751556843,
+                  891.3402878824667,
+                  2367.500062615356
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              }
+            ],
+            "nextSeconds": 360.38434946570453
+          },
+          "moment": "real",
+          "mode": "real",
+          "date": "2026-07-15T14:00:00.000Z",
+          "localTime": "15 juil. 2026, 16:00",
+          "localHour": 16,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 7,
+            "representativeDay": null,
+            "sunrise": 1784089029000,
+            "sunset": 1784144840999.9888,
+            "solarNoon": 1784116935039.6733
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.921141170540973,
+          "starVisibility": 0,
+          "rainDrops": 260,
+          "groundWetness": 0.9986610310581245,
+          "snow": {
+            "cover": 0,
+            "temperature": 17.119496372789506,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              751.706578392774,
+              -411.3289409233002
+            ],
+            "morph": [
+              0.2839606627422914,
+              0.19166675372604794,
+              0.24257141188232909
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 5294684,
+          "filter": "none",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0,
+          "character": {
+            "updates": 0,
+            "size": 0,
+            "bytes": 0,
+            "proxies": 0,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 0,
+            "maxCpuMs": 0,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "rain": {
+          "updates": 1,
+          "maxCpuMs": 0.40000000037252903,
+          "resolutionM": 1,
+          "streaks": 260,
+          "impacts": 24,
+          "model": "mapped roof upper envelope and loaded ground; roof slopes and leaf interception approximate"
+        },
+        "gpu": {
+          "geometries": 187,
+          "textures": 14,
+          "programs": 14
+        },
+        "position": [
+          -307.7,
+          -35.6733,
+          94.3
+        ],
+        "camera": [
+          -307.7,
+          -34.0233,
+          94.3
+        ],
+        "lanterns": {
+          "installed": 6,
+          "visible": 0,
+          "draws": 0,
+          "provenance": "Sparse original artistic fixtures at interpreted procedural doors; not documented lamps, occupancy or surveyed lighting. One-sided prepared ground patches, no dynamic lights."
+        }
+      }
+    },
+    {
+      "profile": "eco",
+      "night": true,
+      "changedPixels": 1015,
+      "fraction": 0.0037760416666666667,
+      "maxChannelDelta": 121,
+      "meanChannelDelta": 0.17638392857142857,
+      "state": {
+        "climate": {
+          "worldTimeMs": 1767470400000,
+          "solar": {
+            "altitude": -0.6398045673621819,
+            "azimuth": 4.799381494002867,
+            "month": 1
+          },
+          "weather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.9174337139799902,
+            "rain": 0.9981210490204436,
+            "snow": 0,
+            "electric": 0.5429732322212409,
+            "temperatureC": 7.309947712936209
+          },
+          "acousticWeather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.6872335529224467,
+            "rain": 0.9981210490204436,
+            "snow": 0,
+            "gust": 6.257410398061065e-12,
+            "electric": 0.5429732322212409,
+            "temperatureC": 7.309947712936209,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.5830886437238708,
+            "z": -0.3665952153352916,
+            "speed": 0.6872335529224467,
+            "gust": 6.257410398061065e-12
+          },
+          "transition": {
+            "revision": 1300,
+            "commandRevision": 8,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 7.309947712936209,
+            "humidityPct": 97.78244624638194,
+            "cloudCover": 0.999999973525416,
+            "cloudDensity": 0.9994362961739243,
+            "rainIntensity": 0.9981210490204436,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.0095316833461272,
+            "meanWindMps": 13.761505709699852,
+            "gustWindMps": 13.761505709699852,
+            "fog": 0.5599999823502773,
+            "visibilityM": 2511.9182779747007,
+            "stormRisk": 0.5429732322212409,
+            "electricalActivity": 0.5429732322212409,
+            "groundWetness": 0.9988939183112607,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "active",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.9778244624638194,
+            "dew": 0,
+            "mist": 0.00205387900998531,
+            "bankDistance": 18.86019924798534
+          },
+          "moon": {
+            "date": "2026-01-03T20:00:00.000Z",
+            "altitude": 0.5790119985986688,
+            "azimuth": 1.5159276530571368,
+            "phase": 0.5158711472199269,
+            "illumination": 0.9963223598129796,
+            "brightLimbAngle": 1.1113685435888219,
+            "parallacticAngle": -0.8662735190125685,
+            "distanceKm": 363953.86018688785,
+            "angularRadius": 0.004820444297492852,
+            "geometricallyVisible": true,
+            "direction": [
+              0.835744076382414,
+              0.5471972431801725,
+              -0.04590224229517597
+            ],
+            "visibility": 0,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 676.0000000000005,
+          "targetWeather": "storm",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [
+              {
+                "id": "storm:20649:1",
+                "timestampMs": 8379,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 287.49999999999983,
+                "durationSeconds": 0.78,
+                "intensity": 0.30235364769311857,
+                "direction": [
+                  0.7479526120335148,
+                  0.25063914498775175,
+                  0.6146111853457037
+                ],
+                "distanceM": 3698.598588531604,
+                "thunderDelaySeconds": 10.783086263940536,
+                "position": [
+                  2458.6764751556843,
+                  891.3402878824667,
+                  2367.500062615356
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:2",
+                "timestampMs": 19952.799999999814,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 628.7500000000005,
+                "durationSeconds": 0.78,
+                "intensity": 0.241055840273737,
+                "direction": [
+                  0.025131231586937003,
+                  0.23374000166043832,
+                  -0.971974296379643
+                ],
+                "distanceM": 4874.482211537543,
+                "thunderDelaySeconds": 14.211318400984089,
+                "position": [
+                  -185.19825867544517,
+                  1103.6881802185624,
+                  -4643.571417774289
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              }
+            ],
+            "nextSeconds": 685.307886319598
+          },
+          "moment": "real",
+          "mode": "real",
+          "date": "2026-01-03T20:00:00.000Z",
+          "localTime": "3 janv. 2026, 21:00",
+          "localHour": 21,
+          "season": "winter",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 1,
+            "representativeDay": null,
+            "sunrise": 1767426005000.0037,
+            "sunset": 1767457226999.9827,
+            "solarNoon": 1767441615026.6196
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.9174337139799902,
+          "starVisibility": 0,
+          "rainDrops": 260,
+          "groundWetness": 0.9988939183112607,
+          "snow": {
+            "cover": 0,
+            "temperature": 7.309947712936209,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1528.0585969749454,
+              -858.8504732600478
+            ],
+            "morph": [
+              0.33201112856288106,
+              0.3069658014599847,
+              0.24231825141676952
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 5294684,
+          "filter": "none",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0,
+          "character": {
+            "updates": 0,
+            "size": 0,
+            "bytes": 0,
+            "proxies": 0,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 0,
+            "maxCpuMs": 0,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "rain": {
+          "updates": 1,
+          "maxCpuMs": 0.40000000037252903,
+          "resolutionM": 1,
+          "streaks": 260,
+          "impacts": 24,
+          "model": "mapped roof upper envelope and loaded ground; roof slopes and leaf interception approximate"
+        },
+        "gpu": {
+          "geometries": 190,
+          "textures": 14,
+          "programs": 17
+        },
+        "position": [
+          -307.7,
+          -35.6733,
+          94.3
+        ],
+        "camera": [
+          -307.7,
+          -34.0233,
+          94.3
+        ],
+        "lanterns": {
+          "installed": 6,
+          "visible": 0,
+          "draws": 0,
+          "provenance": "Sparse original artistic fixtures at interpreted procedural doors; not documented lamps, occupancy or surveyed lighting. One-sided prepared ground patches, no dynamic lights."
+        }
+      }
+    },
+    {
+      "profile": "balanced",
+      "night": false,
+      "changedPixels": 1176,
+      "fraction": 0.004375,
+      "maxChannelDelta": 130,
+      "meanChannelDelta": 0.12405505952380952,
+      "state": {
+        "climate": {
+          "worldTimeMs": 1784124000000,
+          "solar": {
+            "altitude": 0.9670125291510245,
+            "azimuth": 4.077157707759964,
+            "month": 7
+          },
+          "weather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.921141170540973,
+            "rain": 0.9974237397063294,
+            "snow": 0,
+            "electric": 0.5221127739249639,
+            "temperatureC": 17.119496372789506
+          },
+          "acousticWeather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.852481562706766,
+            "rain": 0.9974237397063294,
+            "snow": 0,
+            "gust": 0,
+            "electric": 0.5221127739249639,
+            "temperatureC": 17.119496372789506,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.7716562054330831,
+            "z": -0.3651482399257274,
+            "speed": 0.852481562706766,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 1950,
+            "commandRevision": 12,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 17.119496372789506,
+            "humidityPct": 85.72933356654751,
+            "cloudCover": 0.999999973525416,
+            "cloudDensity": 0.99922710337969,
+            "rainIntensity": 0.9974237397063294,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.1288170986991695,
+            "meanWindMps": 13.817117558114594,
+            "gustWindMps": 13.817117558114594,
+            "fog": 0.5599999823502773,
+            "visibilityM": 2516.40069395887,
+            "stormRisk": 0.5221127739249639,
+            "electricalActivity": 0.5221127739249639,
+            "groundWetness": 0.9986610310581245,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.06319838232053782,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "active",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.857293335665475,
+            "dew": 0,
+            "mist": 1.0055514902649372e-19,
+            "bankDistance": 18.86019924798534
+          },
+          "moon": {
+            "date": "2026-07-15T14:00:00.683Z",
+            "altitude": 1.0605968847573044,
+            "azimuth": 3.557461369183875,
+            "phase": 0.04541129012310547,
+            "illumination": 0.02046293378069053,
+            "brightLimbAngle": -1.4081308860030763,
+            "parallacticAngle": 0.2986491740584129,
+            "distanceKm": 363048.81211024243,
+            "angularRadius": 0.004860292775865288,
+            "geometricallyVisible": true,
+            "direction": [
+              -0.19728647942246633,
+              0.872647127223938,
+              0.44672702670075476
+            ],
+            "visibility": 0,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 1014.0000000000011,
+          "targetWeather": "storm",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [
+              {
+                "id": "storm:20649:1",
+                "timestampMs": 8379,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 287.49999999999983,
+                "durationSeconds": 0.78,
+                "intensity": 0.30235364769311857,
+                "direction": [
+                  0.7479526120335148,
+                  0.25063914498775175,
+                  0.6146111853457037
+                ],
+                "distanceM": 3698.598588531604,
+                "thunderDelaySeconds": 10.783086263940536,
+                "position": [
+                  2458.6764751556843,
+                  891.3402878824667,
+                  2367.500062615356
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:2",
+                "timestampMs": 19952.799999999814,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 628.7500000000005,
+                "durationSeconds": 0.78,
+                "intensity": 0.241055840273737,
+                "direction": [
+                  0.025131231586937003,
+                  0.23374000166043832,
+                  -0.971974296379643
+                ],
+                "distanceM": 4874.482211537543,
+                "thunderDelaySeconds": 14.211318400984089,
+                "position": [
+                  -185.19825867544517,
+                  1103.6881802185624,
+                  -4643.571417774289
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20649:3",
+                "timestampMs": 30641.19999999972,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 958.5000000000011,
+                "durationSeconds": 0.78,
+                "intensity": 0.28568969931475297,
+                "direction": [
+                  -0.18589335646643892,
+                  0.15650416309910145,
+                  0.9700258279830963
+                ],
+                "distanceM": 3296.88886886579,
+                "thunderDelaySeconds": 9.611920900483351,
+                "position": [
+                  -920.5697377303029,
+                  480.3035332525837,
+                  3292.367354789792
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              }
+            ],
+            "nextSeconds": 1155.8274439725026
+          },
+          "moment": "real",
+          "mode": "real",
+          "date": "2026-07-15T14:00:00.000Z",
+          "localTime": "15 juil. 2026, 16:00",
+          "localHour": 16,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 7,
+            "representativeDay": null,
+            "sunrise": 1784089029000,
+            "sunset": 1784144840999.9888,
+            "solarNoon": 1784116935039.6733
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.921141170540973,
+          "starVisibility": 0,
+          "rainDrops": 519,
+          "groundWetness": 0.9986610310581245,
+          "snow": {
+            "cover": 0,
+            "temperature": 17.119496372789506,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              2344.039418976353,
+              -1294.9184544197522
+            ],
+            "morph": [
+              0.10423180175282837,
+              0.29995738783296255,
+              -0.0005060567193529125
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 14082,
+          "treeInstances": 61,
+          "updates": 1,
+          "lastUpdateCpuMs": 23.40000000037253,
+          "maxUpdateCpuMs": 23.40000000037253,
+          "lastShadowCalls": 8,
+          "lastShadowTriangles": 25526,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 262144,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0.060937500000000006,
+          "character": {
+            "updates": 1,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 11.399999999906868,
+            "maxCpuMs": 11.399999999906868,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "rain": {
+          "updates": 1,
+          "maxCpuMs": 0.40000000037252903,
+          "resolutionM": 1,
+          "streaks": 519,
+          "impacts": 56,
+          "model": "mapped roof upper envelope and loaded ground; roof slopes and leaf interception approximate"
+        },
+        "gpu": {
+          "geometries": 207,
+          "textures": 19,
+          "programs": 30
+        },
+        "position": [
+          -307.7,
+          -35.6733,
+          94.3
+        ],
+        "camera": [
+          -307.7,
+          -34.0233,
+          94.3
+        ],
+        "lanterns": {
+          "installed": 6,
+          "visible": 0,
+          "draws": 0,
+          "provenance": "Sparse original artistic fixtures at interpreted procedural doors; not documented lamps, occupancy or surveyed lighting. One-sided prepared ground patches, no dynamic lights."
+        }
+      }
+    },
+    {
+      "profile": "balanced",
+      "night": true,
+      "changedPixels": 941,
+      "fraction": 0.0035007440476190477,
+      "maxChannelDelta": 120,
+      "meanChannelDelta": 0.14485119047619047,
+      "state": {
+        "climate": {
+          "worldTimeMs": 1767470400000,
+          "solar": {
+            "altitude": -0.6398045673621819,
+            "azimuth": 4.799381494002867,
+            "month": 1
+          },
+          "weather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.9174337139799902,
+            "rain": 0.9981210490204436,
+            "snow": 0,
+            "electric": 0.5429732322212409,
+            "temperatureC": 7.309947712936209
+          },
+          "acousticWeather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.84096697196753,
+            "rain": 0.9981210490204436,
+            "snow": 0,
+            "gust": 0,
+            "electric": 0.5429732322212409,
+            "temperatureC": 7.309947712936209,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.7799868092297672,
+            "z": -0.3254728505676508,
+            "speed": 0.84096697196753,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 2600,
+            "commandRevision": 16,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 7.309947712936209,
+            "humidityPct": 97.78244624638194,
+            "cloudCover": 0.999999973525416,
+            "cloudDensity": 0.9994362961739243,
+            "rainIntensity": 0.9981210490204436,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.1754827667076748,
+            "meanWindMps": 13.761505709699852,
+            "gustWindMps": 13.761505709699852,
+            "fog": 0.5599999823502773,
+            "visibilityM": 2511.9182779747007,
+            "stormRisk": 0.5429732322212409,
+            "electricalActivity": 0.5429732322212409,
+            "groundWetness": 0.9988939183112607,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "active",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.9778244624638194,
+            "dew": 0,
+            "mist": 0.0005134053106145757,
+            "bankDistance": 18.86019924798534
+          },
+          "moon": {
+            "date": "2026-01-03T20:00:00.000Z",
+            "altitude": 0.5790119985986688,
+            "azimuth": 1.5159276530571368,
+            "phase": 0.5158711472199269,
+            "illumination": 0.9963223598129796,
+            "brightLimbAngle": 1.1113685435888219,
+            "parallacticAngle": -0.8662735190125685,
+            "distanceKm": 363953.86018688785,
+            "angularRadius": 0.004820444297492852,
+            "geometricallyVisible": true,
+            "direction": [
+              0.835744076382414,
+              0.5471972431801725,
+              -0.04590224229517597
+            ],
+            "visibility": 0,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 1351.9999999999984,
+          "targetWeather": "storm",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [
+              {
+                "id": "storm:20649:1",
+                "timestampMs": 8379,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 287.49999999999983,
+                "durationSeconds": 0.78,
+                "intensity": 0.30235364769311857,
+                "direction": [
+                  0.7479526120335148,
+                  0.25063914498775175,
+                  0.6146111853457037
+                ],
+                "distanceM": 3698.598588531604,
+                "thunderDelaySeconds": 10.783086263940536,
+                "position": [
+                  2458.6764751556843,
+                  891.3402878824667,
+                  2367.500062615356
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:2",
+                "timestampMs": 19952.799999999814,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 628.7500000000005,
+                "durationSeconds": 0.78,
+                "intensity": 0.241055840273737,
+                "direction": [
+                  0.025131231586937003,
+                  0.23374000166043832,
+                  -0.971974296379643
+                ],
+                "distanceM": 4874.482211537543,
+                "thunderDelaySeconds": 14.211318400984089,
+                "position": [
+                  -185.19825867544517,
+                  1103.6881802185624,
+                  -4643.571417774289
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20649:3",
+                "timestampMs": 30641.19999999972,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 958.5000000000011,
+                "durationSeconds": 0.78,
+                "intensity": 0.28568969931475297,
+                "direction": [
+                  -0.18589335646643892,
+                  0.15650416309910145,
+                  0.9700258279830963
+                ],
+                "distanceM": 3296.88886886579,
+                "thunderDelaySeconds": 9.611920900483351,
+                "position": [
+                  -920.5697377303029,
+                  480.3035332525837,
+                  3292.367354789792
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:4",
+                "timestampMs": 41620,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 1310.4999999999984,
+                "durationSeconds": 0.78,
+                "intensity": 0.27167160013166725,
+                "direction": [
+                  -0.8685413583661211,
+                  0.2899658025745289,
+                  -0.40193997331049675
+                ],
+                "distanceM": 1470.695492925006,
+                "thunderDelaySeconds": 4.287741961880484,
+                "position": [
+                  -1585.0598611680168,
+                  390.7780989487418,
+                  -496.8313071741448
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              }
+            ],
+            "nextSeconds": 1359.5503792025063
+          },
+          "moment": "real",
+          "mode": "real",
+          "date": "2026-01-03T20:00:00.000Z",
+          "localTime": "3 janv. 2026, 21:00",
+          "localHour": 21,
+          "season": "winter",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 1,
+            "representativeDay": null,
+            "sunrise": 1767426005000.0037,
+            "sunset": 1767457226999.9827,
+            "solarNoon": 1767441615026.6196
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.9174337139799902,
+          "starVisibility": 0,
+          "rainDrops": 519,
+          "groundWetness": 0.9988939183112607,
+          "snow": {
+            "cover": 0,
+            "temperature": 7.309947712936209,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              3134.4367175923962,
+              -1697.3005172569312
+            ],
+            "morph": [
+              -0.21014171961764813,
+              0.1734339453401072,
+              -0.2428237799883328
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 512,
+          "shadowBytes": 1310720,
+          "staticTriangles": 14082,
+          "treeInstances": 61,
+          "updates": 1,
+          "lastUpdateCpuMs": 23.40000000037253,
+          "maxUpdateCpuMs": 23.40000000037253,
+          "lastShadowCalls": 8,
+          "lastShadowTriangles": 25526,
+          "extraPasses": 0,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 262144,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0.060937500000000006,
+          "character": {
+            "updates": 1,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 11.399999999906868,
+            "maxCpuMs": 11.399999999906868,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "rain": {
+          "updates": 1,
+          "maxCpuMs": 0.40000000037252903,
+          "resolutionM": 1,
+          "streaks": 519,
+          "impacts": 56,
+          "model": "mapped roof upper envelope and loaded ground; roof slopes and leaf interception approximate"
+        },
+        "gpu": {
+          "geometries": 207,
+          "textures": 19,
+          "programs": 40
+        },
+        "position": [
+          -307.7,
+          -35.6733,
+          94.3
+        ],
+        "camera": [
+          -307.7,
+          -34.0233,
+          94.3
+        ],
+        "lanterns": {
+          "installed": 6,
+          "visible": 0,
+          "draws": 0,
+          "provenance": "Sparse original artistic fixtures at interpreted procedural doors; not documented lamps, occupancy or surveyed lighting. One-sided prepared ground patches, no dynamic lights."
+        }
+      }
+    },
+    {
+      "profile": "quality",
+      "night": false,
+      "changedPixels": 4407,
+      "fraction": 0.016395089285714287,
+      "maxChannelDelta": 140,
+      "meanChannelDelta": 0.6345610119047619,
+      "state": {
+        "climate": {
+          "worldTimeMs": 1784124000000,
+          "solar": {
+            "altitude": 0.9670125291510245,
+            "azimuth": 4.077157707759964,
+            "month": 7
+          },
+          "weather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.921141170540973,
+            "rain": 0.9974237397063294,
+            "snow": 0,
+            "electric": 0.5221127739249639,
+            "temperatureC": 17.119496372789506
+          },
+          "acousticWeather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.6204329239103649,
+            "rain": 0.9974237397063294,
+            "snow": 0,
+            "gust": 0,
+            "electric": 0.5221127739249639,
+            "temperatureC": 17.119496372789506,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.5257880288943507,
+            "z": -0.33211572485565044,
+            "speed": 0.6204329239103649,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 3250,
+            "commandRevision": 20,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 17.119496372789506,
+            "humidityPct": 85.72933356654751,
+            "cloudCover": 0.999999973525416,
+            "cloudDensity": 0.99922710337969,
+            "rainIntensity": 0.9974237397063294,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.007426941415015,
+            "meanWindMps": 13.817117558114594,
+            "gustWindMps": 13.817117558114594,
+            "fog": 0.5599999823502773,
+            "visibilityM": 2516.40069395887,
+            "stormRisk": 0.5221127739249639,
+            "electricalActivity": 0.5221127739249639,
+            "groundWetness": 0.9986610310581245,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.06319838232053782,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "active",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.857293335665475,
+            "dew": 0,
+            "mist": 2.5135632268918877e-20,
+            "bankDistance": 18.86019924798534
+          },
+          "moon": {
+            "date": "2026-07-15T14:00:00.683Z",
+            "altitude": 1.0605968847573044,
+            "azimuth": 3.557461369183875,
+            "phase": 0.04541129012310547,
+            "illumination": 0.02046293378069053,
+            "brightLimbAngle": -1.4081308860030763,
+            "parallacticAngle": 0.2986491740584129,
+            "distanceKm": 363048.81211024243,
+            "angularRadius": 0.004860292775865288,
+            "geometricallyVisible": true,
+            "direction": [
+              -0.19728647942246633,
+              0.872647127223938,
+              0.44672702670075476
+            ],
+            "visibility": 0,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 1689.9999999999957,
+          "targetWeather": "storm",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [
+              {
+                "id": "storm:20649:1",
+                "timestampMs": 8379,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 287.49999999999983,
+                "durationSeconds": 0.78,
+                "intensity": 0.30235364769311857,
+                "direction": [
+                  0.7479526120335148,
+                  0.25063914498775175,
+                  0.6146111853457037
+                ],
+                "distanceM": 3698.598588531604,
+                "thunderDelaySeconds": 10.783086263940536,
+                "position": [
+                  2458.6764751556843,
+                  891.3402878824667,
+                  2367.500062615356
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:2",
+                "timestampMs": 19952.799999999814,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 628.7500000000005,
+                "durationSeconds": 0.78,
+                "intensity": 0.241055840273737,
+                "direction": [
+                  0.025131231586937003,
+                  0.23374000166043832,
+                  -0.971974296379643
+                ],
+                "distanceM": 4874.482211537543,
+                "thunderDelaySeconds": 14.211318400984089,
+                "position": [
+                  -185.19825867544517,
+                  1103.6881802185624,
+                  -4643.571417774289
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20649:3",
+                "timestampMs": 30641.19999999972,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 958.5000000000011,
+                "durationSeconds": 0.78,
+                "intensity": 0.28568969931475297,
+                "direction": [
+                  -0.18589335646643892,
+                  0.15650416309910145,
+                  0.9700258279830963
+                ],
+                "distanceM": 3296.88886886579,
+                "thunderDelaySeconds": 9.611920900483351,
+                "position": [
+                  -920.5697377303029,
+                  480.3035332525837,
+                  3292.367354789792
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:4",
+                "timestampMs": 41620,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 1310.4999999999984,
+                "durationSeconds": 0.78,
+                "intensity": 0.27167160013166725,
+                "direction": [
+                  -0.8685413583661211,
+                  0.2899658025745289,
+                  -0.40193997331049675
+                ],
+                "distanceM": 1470.695492925006,
+                "thunderDelaySeconds": 4.287741961880484,
+                "position": [
+                  -1585.0598611680168,
+                  390.7780989487418,
+                  -496.8313071741448
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20649:5",
+                "timestampMs": 51436.799999999814,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 1649.4999999999957,
+                "durationSeconds": 0.78,
+                "intensity": 0.24826113544643158,
+                "direction": [
+                  0.521655171518435,
+                  0.2168601005967674,
+                  0.8251348852140673
+                ],
+                "distanceM": 3408.913803753967,
+                "thunderDelaySeconds": 9.938524209195238,
+                "position": [
+                  1470.5775149888361,
+                  703.5840904077943,
+                  2907.113700165179
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              }
+            ],
+            "nextSeconds": 1705.4240715559815
+          },
+          "moment": "real",
+          "mode": "real",
+          "date": "2026-07-15T14:00:00.000Z",
+          "localTime": "15 juil. 2026, 16:00",
+          "localHour": 16,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 7,
+            "representativeDay": null,
+            "sunrise": 1784089029000,
+            "sunset": 1784144840999.9888,
+            "solarNoon": 1784116935039.6733
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.921141170540973,
+          "starVisibility": 0,
+          "rainDrops": 898,
+          "groundWetness": 0.9986610310581245,
+          "snow": {
+            "cover": 0,
+            "temperature": 17.119496372789506,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              3921.932315733914,
+              -2117.0843538263975
+            ],
+            "morph": [
+              -0.3499326985411973,
+              -0.02219252253040936,
+              -0.24206429941860585
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 15050,
+          "treeInstances": 76,
+          "updates": 2,
+          "lastUpdateCpuMs": 1.7000000001862645,
+          "maxUpdateCpuMs": 23.40000000037253,
+          "lastShadowCalls": 8,
+          "lastShadowTriangles": 29674,
+          "extraPasses": 0,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 262144,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf",
+          "windTests": 1,
+          "windSkips": 0,
+          "windMotionBoundM": 0.5702114342444912,
+          "maxWindMotionBoundM": 0.5702114342444912,
+          "windThresholdM": 0.040625,
+          "character": {
+            "updates": 2,
+            "size": 256,
+            "bytes": 327680,
+            "proxies": 1,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 1,
+            "maxCpuMs": 11.399999999906868,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "rain": {
+          "updates": 1,
+          "maxCpuMs": 0.40000000037252903,
+          "resolutionM": 1,
+          "streaks": 898,
+          "impacts": 96,
+          "model": "mapped roof upper envelope and loaded ground; roof slopes and leaf interception approximate"
+        },
+        "gpu": {
+          "geometries": 217,
+          "textures": 19,
+          "programs": 42
+        },
+        "position": [
+          -307.7,
+          -35.6733,
+          94.3
+        ],
+        "camera": [
+          -307.7,
+          -34.0233,
+          94.3
+        ],
+        "lanterns": {
+          "installed": 6,
+          "visible": 0,
+          "draws": 0,
+          "provenance": "Sparse original artistic fixtures at interpreted procedural doors; not documented lamps, occupancy or surveyed lighting. One-sided prepared ground patches, no dynamic lights."
+        }
+      }
+    },
+    {
+      "profile": "quality",
+      "night": true,
+      "changedPixels": 2687,
+      "fraction": 0.009996279761904762,
+      "maxChannelDelta": 121,
+      "meanChannelDelta": 0.45274925595238097,
+      "state": {
+        "climate": {
+          "worldTimeMs": 1767470400000,
+          "solar": {
+            "altitude": -0.6398045673621819,
+            "azimuth": 4.799381494002867,
+            "month": 1
+          },
+          "weather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.9174337139799902,
+            "rain": 0.9981210490204436,
+            "snow": 0,
+            "electric": 0.5429732322212409,
+            "temperatureC": 7.309947712936209
+          },
+          "acousticWeather": {
+            "cloud": 0.999999973525416,
+            "mist": 0.5599999823502773,
+            "wind": 0.7400894802913706,
+            "rain": 0.9981210490204436,
+            "snow": 0,
+            "gust": 0,
+            "electric": 0.5429732322212409,
+            "temperatureC": 7.309947712936209,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.6125043220853297,
+            "z": -0.4233772191437636,
+            "speed": 0.7400894802913706,
+            "gust": 0
+          },
+          "transition": {
+            "revision": 3900,
+            "commandRevision": 24,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 7.309947712936209,
+            "humidityPct": 97.78244624638194,
+            "cloudCover": 0.999999973525416,
+            "cloudDensity": 0.9994362961739243,
+            "rainIntensity": 0.9981210490204436,
+            "snowIntensity": 0,
+            "windDirectionRad": 0.9659851282518002,
+            "meanWindMps": 13.761505709699852,
+            "gustWindMps": 13.761505709699852,
+            "fog": 0.5599999823502773,
+            "visibilityM": 2511.9182779747007,
+            "stormRisk": 0.5429732322212409,
+            "electricalActivity": 0.5429732322212409,
+            "groundWetness": 0.9988939183112607,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "active",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.9778244624638194,
+            "dew": 0,
+            "mist": 0.00004634291578327597,
+            "bankDistance": 18.86019924798534
+          },
+          "moon": {
+            "date": "2026-01-03T20:00:00.000Z",
+            "altitude": 0.5790119985986688,
+            "azimuth": 1.5159276530571368,
+            "phase": 0.5158711472199269,
+            "illumination": 0.9963223598129796,
+            "brightLimbAngle": 1.1113685435888219,
+            "parallacticAngle": -0.8662735190125685,
+            "distanceKm": 363953.86018688785,
+            "angularRadius": 0.004820444297492852,
+            "geometricallyVisible": true,
+            "direction": [
+              0.835744076382414,
+              0.5471972431801725,
+              -0.04590224229517597
+            ],
+            "visibility": 0,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 2027.999999999993,
+          "targetWeather": "storm",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [
+              {
+                "id": "storm:20649:1",
+                "timestampMs": 8379,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 287.49999999999983,
+                "durationSeconds": 0.78,
+                "intensity": 0.30235364769311857,
+                "direction": [
+                  0.7479526120335148,
+                  0.25063914498775175,
+                  0.6146111853457037
+                ],
+                "distanceM": 3698.598588531604,
+                "thunderDelaySeconds": 10.783086263940536,
+                "position": [
+                  2458.6764751556843,
+                  891.3402878824667,
+                  2367.500062615356
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:2",
+                "timestampMs": 19952.799999999814,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 628.7500000000005,
+                "durationSeconds": 0.78,
+                "intensity": 0.241055840273737,
+                "direction": [
+                  0.025131231586937003,
+                  0.23374000166043832,
+                  -0.971974296379643
+                ],
+                "distanceM": 4874.482211537543,
+                "thunderDelaySeconds": 14.211318400984089,
+                "position": [
+                  -185.19825867544517,
+                  1103.6881802185624,
+                  -4643.571417774289
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20649:3",
+                "timestampMs": 30641.19999999972,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 958.5000000000011,
+                "durationSeconds": 0.78,
+                "intensity": 0.28568969931475297,
+                "direction": [
+                  -0.18589335646643892,
+                  0.15650416309910145,
+                  0.9700258279830963
+                ],
+                "distanceM": 3296.88886886579,
+                "thunderDelaySeconds": 9.611920900483351,
+                "position": [
+                  -920.5697377303029,
+                  480.3035332525837,
+                  3292.367354789792
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:4",
+                "timestampMs": 41620,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 1310.4999999999984,
+                "durationSeconds": 0.78,
+                "intensity": 0.27167160013166725,
+                "direction": [
+                  -0.8685413583661211,
+                  0.2899658025745289,
+                  -0.40193997331049675
+                ],
+                "distanceM": 1470.695492925006,
+                "thunderDelaySeconds": 4.287741961880484,
+                "position": [
+                  -1585.0598611680168,
+                  390.7780989487418,
+                  -496.8313071741448
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20649:5",
+                "timestampMs": 51436.799999999814,
+                "worldTimeMs": 1784124000000,
+                "startSeconds": 1649.4999999999957,
+                "durationSeconds": 0.78,
+                "intensity": 0.24826113544643158,
+                "direction": [
+                  0.521655171518435,
+                  0.2168601005967674,
+                  0.8251348852140673
+                ],
+                "distanceM": 3408.913803753967,
+                "thunderDelaySeconds": 9.938524209195238,
+                "position": [
+                  1470.5775149888361,
+                  703.5840904077943,
+                  2907.113700165179
+                ],
+                "source": "shared simulated storm",
+                "kind": "in-cloud",
+                "audio": "pending"
+              },
+              {
+                "id": "storm:20456:6",
+                "timestampMs": 61084.10000000009,
+                "worldTimeMs": 1767470400000,
+                "startSeconds": 1996.249999999993,
+                "durationSeconds": 0.78,
+                "intensity": 0.20846078718814537,
+                "direction": [
+                  0.6624698132772608,
+                  0.22927805153109698,
+                  -0.7131376596299588
+                ],
+                "distanceM": 3258.0011797341285,
+                "thunderDelaySeconds": 9.498545713510579,
+                "position": [
+                  1850.6274331955635,
+                  711.3148623754562,
+                  -2229.103336387241
+                ],
+                "source": "shared simulated storm",
+                "kind": "branched",
+                "audio": "pending"
+              }
+            ],
+            "nextSeconds": 2077.163258301469
+          },
+          "moment": "real",
+          "mode": "real",
+          "date": "2026-01-03T20:00:00.000Z",
+          "localTime": "3 janv. 2026, 21:00",
+          "localHour": 21,
+          "season": "winter",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 1,
+            "representativeDay": null,
+            "sunrise": 1767426005000.0037,
+            "sunset": 1767457226999.9827,
+            "solarNoon": 1767441615026.6196
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.9174337139799902,
+          "starVisibility": 0,
+          "rainDrops": 899,
+          "groundWetness": 0.9988939183112607,
+          "snow": {
+            "cover": 0,
+            "temperature": 7.309947712936209,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              4718.166875981992,
+              -2576.0166152039797
+            ],
+            "morph": [
+              -0.19900491725000558,
+              -0.20897660118694678,
+              0.0010121117856635134
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 529724,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 15050,
+          "treeInstances": 76,
+          "updates": 2,
+          "lastUpdateCpuMs": 1.7000000001862645,
+          "maxUpdateCpuMs": 23.40000000037253,
+          "lastShadowCalls": 8,
+          "lastShadowTriangles": 29674,
+          "extraPasses": 0,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 262144,
+          "sourceBytes": 5294684,
+          "filter": "receiver-plane-pcf",
+          "windTests": 1,
+          "windSkips": 0,
+          "windMotionBoundM": 0.5702114342444912,
+          "maxWindMotionBoundM": 0.5702114342444912,
+          "windThresholdM": 0.040625,
+          "character": {
+            "updates": 2,
+            "size": 256,
+            "bytes": 327680,
+            "proxies": 1,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 1,
+            "maxCpuMs": 11.399999999906868,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "rain": {
+          "updates": 1,
+          "maxCpuMs": 0.40000000037252903,
+          "resolutionM": 1,
+          "streaks": 899,
+          "impacts": 96,
+          "model": "mapped roof upper envelope and loaded ground; roof slopes and leaf interception approximate"
+        },
+        "gpu": {
+          "geometries": 217,
+          "textures": 19,
+          "programs": 44
+        },
+        "position": [
+          -307.7,
+          -35.6733,
+          94.3
+        ],
+        "camera": [
+          -307.7,
+          -34.0233,
+          94.3
+        ],
+        "lanterns": {
+          "installed": 6,
+          "visible": 0,
+          "draws": 0,
+          "provenance": "Sparse original artistic fixtures at interpreted procedural doors; not documented lamps, occupancy or surveyed lighting. One-sided prepared ground patches, no dynamic lights."
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

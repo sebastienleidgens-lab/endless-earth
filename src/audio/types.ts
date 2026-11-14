@@ -1,5 +1,6 @@
 export type Vec3={x:number;y:number;z:number};
 export interface SoundContext {
+ roof?:{point:Vec3;distanceM:number;provenance:string}|null;
  environment?:{revision:number;commandRevision:number;manual:boolean};mixRevision?:number;
  version:1;geo:{lat:number;lon:number}|null;key:string;worldTimeMs:number|null;
  altitudeM:number|null;habitat:string;solarAltitude:number|null;

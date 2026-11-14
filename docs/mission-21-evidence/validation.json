@@ -1,0 +1,142 @@
+{
+  "base": "1251c734626171659383bf70495a44855c4dbd02",
+  "runtimeCommit": "083d2b92b6d3ee89207a3bc992d69fc044b668fd",
+  "unitTests": {
+    "command": "npm test",
+    "tests": 308,
+    "passed": 308,
+    "failed": 0,
+    "log": "unit-tests.log.gz"
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "log": "build.log",
+    "existingBundleWarning": true
+  },
+  "browser": {
+    "weatherProfileCases": 21,
+    "calendarCases": 4,
+    "collisionsEqual": true,
+    "collisionPoints": 2898,
+    "movementComparisons": 20
+  },
+  "nativeWalk": {
+    "wallSeconds": 1808.9,
+    "nativeSeconds": 1807.7117999999998,
+    "frames": 4986,
+    "metres": 1553.0945275079857,
+    "habitats": {
+      "scrub": 673,
+      "built": 3076,
+      "wood": 1100,
+      "unknown": 69,
+      "open": 68
+    },
+    "minRiverDistanceM": 55.512202611918525,
+    "nearRiverFrames": 0,
+    "maxGroundErrorM": 0,
+    "maxStepM": 0.7975056235059194,
+    "invalidCollisionFrames": 0,
+    "frameMs": {
+      "median": 306.5,
+      "p95": 783.5,
+      "peak": 2067.2999999998137
+    }
+  },
+  "whiteFlash": {
+    "reproducedPresentationClearCorrected": true,
+    "exactWhiteSymptomReproduced": false,
+    "finalFrameCandidates": 0,
+    "fifteenMinuteControlledRun": "presentation-fixed-flash.json"
+  },
+  "audio": {
+    "nativeFilms": 13,
+    "acousticInspections": 10,
+    "allNativeAudioVideoPacketsIdenticalAfterIndexing": true,
+    "maxSamplePeak": 0.10411829501390457,
+    "clippedSamples": 0,
+    "peakVoices": 7,
+    "cachePeakBytes": 25146136,
+    "cacheBudgetBytes": 25165824,
+    "closedNodes": 0
+  },
+  "gallery": {
+    "controlledStills": 39,
+    "comparisons": 6,
+    "validatedViewports": [
+      [
+        1280,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "validation": "gallery-validation.json"
+  },
+  "preservation": {
+    "geometry": [
+      {
+        "name": "angles-decorations",
+        "packs": 318,
+        "treeSha256": "f9f15fcc5457d9e4661ea56959d580440b7e6f3a273167dee391625713c9f69d",
+        "doorSha256": "e9b4bc89d2c623bad550240b5e18d5de28b3307e2cc97136c2ec313dc38889d2"
+      },
+      {
+        "name": "angles-relief-decorations",
+        "packs": 318,
+        "treeSha256": "ee016060d3c3d932632f19bc4f5e3e84bda49a19dab2f93bf5bac3fcdcd6e97e",
+        "doorSha256": "8cd51182a22a082f15cb1e0ed4f7ed46ca858e4d89cf346c8a33ab10ead485f1"
+      }
+    ],
+    "physicsSourceHashes": [
+      {
+        "file": "src/world/collisions.ts",
+        "sha256": "383bba25b5513b319db5cd82e95bd7572bc2902ecd00f8224054756135bfc49d"
+      },
+      {
+        "file": "src/living/graph.mjs",
+        "sha256": "4f7c95b19f50f3b9e66d2e46614f481f293c6f35f50329ad74ef41a90a4a906d"
+      },
+      {
+        "file": "src/living/tour.mjs",
+        "sha256": "f73d57b751297d89cf720584e1a7abb7d79ad4e9f132412d17ac3b146f857e34"
+      },
+      {
+        "file": "public/data/angles-osm.geojson",
+        "sha256": "06b79e259d8cca94ed6619d90a058e650d1a9bb5e245802f0dd141b679587aac"
+      },
+      {
+        "file": "public/data/angles-terrain.json",
+        "sha256": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1"
+      },
+      {
+        "file": "public/data/angles-walk-graph.json",
+        "sha256": "89f3301362be8137c9ebeaa79747fdaf32f0bb5414b93ae56b36dedac85ff24c"
+      },
+      {
+        "file": "public/data/angles-river-flow.pack",
+        "sha256": "fc8a3782ebaecdcc7e2d3f35ed4dd61140dbea232ee532935898220f30a2c630"
+      }
+    ]
+  },
+  "scope": {
+    "draftPullRequestRequired": true,
+    "merge": false,
+    "deployment": false,
+    "livingPaintingsChanges": false,
+    "extraEuros": 0,
+    "paidAssets": false,
+    "paidWeatherAPI": false,
+    "externalTelemetry": false
+  },
+  "limits": [
+    "Exact owner white flash not reproduced, only the resize-discarded frame mechanism.",
+    "Software SwiftShader; no physical GPU or Android performance certified.",
+    "River distance in uninterrupted walk reaches 55.5m; closer river inspections are separate declared stations.",
+    "Partial ice and entry lighting are artistic visual proxies; water collisions unchanged.",
+    "Artistic and perceptual sound approval belongs to owner."
+  ]
+}
