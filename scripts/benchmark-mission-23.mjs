@@ -1,5 +1,6 @@
 import {writeFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
 import {launch,open221} from './lib/mission-22-1-browser.mjs';
 import {installGPUAllocationProbe} from './lib/webgl-allocation-probe.mjs';
 const probe=`import {lifeUniforms as benchLife} from '/endless-earth/src/earthlife/state.mjs';
@@ -20,7 +21,7 @@ try{
   for(let i=0;i<4;i++)for(const game of [before,after])await game.page.evaluate(()=>window.bench23.sample());const samples={before:[],after:[]},cpu={before:[],after:[]};
   for(let i=0;i<16;i++)for(const version of i%2?['after','before']:['before','after'])samples[version].push(await (version==='before'?before:after).page.evaluate(()=>window.bench23.sample()));
   for(let i=0;i<5;i++)for(const version of i%2?['after','before']:['before','after'])cpu[version].push(await (version==='before'?before:after).page.evaluate(()=>window.bench23.cpu()));
-  const a=summary(samples.after),b=summary(samples.before);rows.push({station:station[0],profile,camera,before:b,after:a,regressionPercent:(a.medianMs/b.medianMs-1)*100,cpu,samples});await writeFile('docs/mission-23-evidence/performance.json',JSON.stringify({baseline:'6b17ce324319716cb15859d2195bd5362f603fbe',method:'Isolated Chromium SwiftShader software; 480×320 DPR1; 16 alternating paired gl.finish samples after warm-up per version/case, same absolute camera/time/weather/profile/light uniforms and frozen ordinary life. CPU support/clearance/movement batches measured separately, not summed into GPU time. Eight views × three profiles. Allocations are logical instrumented WebGL storage, not physical VRAM; no Android hardware measurement.',rows,startupMs:{before:before.startupMs,after:after.startupMs},environment:after.environment,errors:[...before.errors,...after.errors]},null,2)+'\n');console.log(station[0],profile,b.medianMs.toFixed(1),a.medianMs.toFixed(1),rows.at(-1).regressionPercent.toFixed(2));
+  const a=summary(samples.after),b=summary(samples.before);rows.push({station:station[0],profile,camera,before:b,after:a,regressionPercent:(a.medianMs/b.medianMs-1)*100,cpu,samples});await writeFile('docs/mission-23-evidence/performance.json',JSON.stringify({baseline:'6b17ce324319716cb15859d2195bd5362f603fbe',candidate:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),method:'Isolated Chromium SwiftShader software; 480×320 DPR1; 16 alternating paired gl.finish samples after warm-up per version/case, same absolute camera/time/weather/profile/light uniforms and frozen ordinary life. CPU support/clearance/movement batches measured separately, not summed into GPU time. Eight views × three profiles. Allocations are logical instrumented WebGL storage, not physical VRAM; no Android hardware measurement.',rows,startupMs:{before:before.startupMs,after:after.startupMs},environment:after.environment,errors:[...before.errors,...after.errors]},null,2)+'\n');console.log(station[0],profile,b.medianMs.toFixed(1),a.medianMs.toFixed(1),rows.at(-1).regressionPercent.toFixed(2));
  }
  assert.deepEqual([...before.errors,...after.errors],[]);
 }finally{await browser.close()}

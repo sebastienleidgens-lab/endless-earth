@@ -1,3 +1,4 @@
+import {execFileSync} from 'node:child_process';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {launch,open221} from './lib/mission-22-1-browser.mjs';
 export const stations=[
@@ -21,6 +22,6 @@ if(process.argv[1]?.endsWith('capture-mission-23.mjs')){
    await p.evaluate(()=>window.c15.render());await p.screenshot({path:out+'/'+version+'/'+name+'.png'});
    rows.push({name,station,snow,state:await p.evaluate(()=>window.c15.snapshot()),ground:await p.evaluate(([x,z])=>window.endlessDiagnostics.inspectGround(x,z),station.slice(1,3))});console.log(version,name);
   }
-  await writeFile(out+'/'+version+'.json',JSON.stringify({version,method:'Native engine control scenes derived from geographic data; these are not the missing owner screenshot locations. Matched January camera/time/profile/resolution, snow off/on. No image retouching.',rows,errors:g.errors,warnings:g.warnings,environment:g.environment},null,2)+'\n');
+  await writeFile(out+'/'+version+'.json',JSON.stringify({version,sourceCommit:version==='before'?'6b17ce324319716cb15859d2195bd5362f603fbe':execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),method:'Native engine control scenes derived from geographic data; these are not the missing owner screenshot locations. Matched January camera/time/profile/resolution, snow off/on. No image retouching.',rows,errors:g.errors,warnings:g.warnings,environment:g.environment},null,2)+'\n');
  }finally{await browser.close()}
 }

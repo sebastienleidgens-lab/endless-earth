@@ -54,7 +54,7 @@ export function surfaceSupport(tiles,bounds,cellSize=10){
  }
  function isWater(x,z){return find(x,z)!==undefined&&!!tiles[hitTile].attributes.earthWater?.array[tiles[hitTile].fine.array[hitFace]]}
  function walkable(x,z,limit=.7){
-  if(find(x,z)===undefined)return true; // Missing height is refused by the movement kernel.
+  const center=find(x,z);if(center===undefined)return true; // Missing height is refused by the movement kernel.
   if(isWater(x,z))return false;
   // Mapped road/stair corridors keep their explicit directional/step policy.
   // A coarse DEM crossfall alone cannot establish that a documented stair is
@@ -65,8 +65,10 @@ export function surfaceSupport(tiles,bounds,cellSize=10){
   // A bevelled kerb can have a very steep face while its total height is a
   // small, safe ledge. A true cliff cannot be traversed sideways just because
   // height along its contour happens to be constant.
-  const left=find(x-dx,z-dz),right=find(x+dx,z+dz);
-  return Number.isFinite(left)&&Number.isFinite(right)&&Math.abs(right-left)<=.18+.6*limit+.001;
+  const left=find(x-dx,z-dz),right=find(x+dx,z+dz),outerLeft=find(x-2*dx,z-2*dz),outerRight=find(x+2*dx,z+2*dz);
+  if(![left,right,outerLeft,outerRight].every(Number.isFinite))return false;
+  const leftGrade=(left-outerLeft)/.3,rightGrade=(outerRight-right)/.3;
+  return Math.max(Math.abs(leftGrade),Math.abs(rightGrade))<=limit+.001&&Math.abs(center-(left+right)/2)<=.181&&Math.abs(right-left-(leftGrade+rightGrade)*.3)<=.181;
  }
  return {triangles,cells:buckets.size,indexBytes:bytes,bounds:[...bounds],sample:(x,z)=>find(x,z),slope,isWater,walkable,inspect:(x,z)=>find(x,z,true)};
 }

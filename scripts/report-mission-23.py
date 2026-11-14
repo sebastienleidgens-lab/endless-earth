@@ -1,4 +1,4 @@
-import pathlib,json
+import pathlib,json,statistics
 root=pathlib.Path('docs/mission-23-evidence')
 def load(name):
  p=root/(name+'.json');return json.loads(p.read_text()) if p.exists() else None
@@ -7,8 +7,12 @@ def walk_text():
  if not walk:return 'Mesure native prolongée en cours ; aucune durée validée à ce stade.'
  return f"**{walk['wallSeconds']:.3f} s réelles, {walk['nativeSeconds']:.3f} s natives, {walk['metres']:.2f} m, {walk['frames']} frames**. Trois profils et trois vues ; montées/descentes, arrêts/reprises, course au clavier, AutoWalk, forêt, terrains ouverts, pluie, neige et nuit. Erreurs JS : {len(walk['errors'])}, erreurs GL : {len(walk['glErrors'])}, frames de collision invalide : {walk['invalidCollisionFrames']}, écart maximal au support : {walk['maxGroundErrorM']:.6f} m. Cadence instrumentée SwiftShader, médiane / P95 / pic : {walk['frameMs']['median']:.1f} / {walk['frameMs']['p95']:.1f} / {walk['frameMs']['peak']:.1f} ms. Les travaux de validation concurrents et la lecture des pixels font partie de cette mesure ; elle n’est pas le benchmark isolé. Les sources sont vérifiées inchangées : {len(walk['changed'])} différence(s)."
 perf_table='Campagne appariée en cours.'
+perf_summary='Mesure non terminée.'
+perf_attained=False
 if performance:
- rows=performance['rows'];perf_table='| Scène | Profil | M22.1 médiane ms | M23 médiane ms | Écart | P95 M23 ms |\n| --- | --- | ---: | ---: | ---: | ---: |\n'+'\n'.join(f"| {r['station']} | {r['profile']} | {r['before']['medianMs']:.1f} | {r['after']['medianMs']:.1f} | {r['regressionPercent']:+.2f} % | {r['after']['p95Ms']:.1f} |" for r in rows)
+ rows=performance['rows'];balanced=[r['regressionPercent'] for r in rows if r['profile']=='balanced'];perf_attained=all(x<=5 for x in balanced)
+ perf_summary=f"Objectif de +5 % en Équilibré : **{'atteint' if perf_attained else 'non atteint'}**. {sum(x>5 for x in balanced)}/{len(balanced)} scènes dépassent ce seuil ; médiane des écarts {statistics.median(balanced):+.2f} %, pire cas {max(balanced):+.2f} %. Ces rendus logiciels ne permettent pas de conclure sur Android. Le relief fin ajoute des triangles et le support exact ajoute du travail CPU ; la simplification des arêtes a déjà réduit de 22 606 faces le premier candidat. Les résultats initiaux restent archivés séparément."
+ perf_table='| Scène | Profil | M22.1 médiane ms | M23 médiane ms | Écart | P95 M23 ms |\n| --- | --- | ---: | ---: | ---: | ---: |\n'+'\n'.join(f"| {r['station']} | {r['profile']} | {r['before']['medianMs']:.1f} | {r['after']['medianMs']:.1f} | {r['regressionPercent']:+.2f} % | {r['after']['p95Ms']:.1f} |" for r in rows)
 native_text='Contrôles natifs complémentaires en cours.'
 if native:native_text='\n'.join(f"- **{r['name']}** : {r.get('wallSeconds',0):.2f} s, fin atteinte : {r.get('finished')}, frames invalides : {r.get('invalid')}, écart support : {r.get('maxSupportErrorM',0):.6f} m." for r in native['reports'])
 bridge_text='Traversée native complémentaire en cours.' if not bridge else f"Traversée native aller/retour : **{bridge['wallSeconds']:.3f} s**, fin atteinte : {bridge['finished']}, {bridge['invalidFrames']} frame(s) invalide(s), écart support maximal {bridge['maxSupportErrorM']:.6f} m. Un seul placement initial sur l’axe source ; le script règle le cap, les déplacements utilisent W puis Shift+W. [Film](mission-23-evidence/pont-native.webm) et [trace](mission-23-evidence/pont-native.json)."
@@ -280,6 +284,8 @@ développement ne sont pas un débit Internet ou une mesure Android.
 
 {perf_table}
 
+{perf_summary}
+
 ## 21. Parcours physiques et films complémentaires
 
 Matrice des axes : pont, rue, chemin étroit, raccord, pentes et escaliers
@@ -318,7 +324,7 @@ runtime. Les contrôles finaux et journaux sont archivés avec la livraison.
 Les nouveaux tests couvrent chaque centre de triangle actif, orientation,
 LOD, sources, trous, eau, superpositions, types, marches selon la cadence,
 refus légitimes, navigation bidirectionnelle et repos du rig. Les tests
-historiques restent présents, y compris appuis à cadence très basse.
+historiques restent présents, y compris appuis à cadence très basse. Une assertion M16 qui imposait précisément l’arrêt anticipé erroné devant une bordure est corrigée pour exiger la progression jusqu’à la vraie limite ; les cas de mur, falaise et pente restent bloquants et testés.
 
 Les fichiers IGN/OSM, raffinement antérieur, ouvrages et assets audio historiques
 restent inchangés. Les anciens packs de décor restent disponibles ; seuls leurs
@@ -374,7 +380,7 @@ de chaque objet fusionné et la beauté sur appareil physique restent à vérifi
 | Raccords et triangles blancs des images | **Partiellement atteint** | Topologie invalide nettoyée ; cause des pixels des originaux inconnue. |
 | Neige sans nouvelle géométrie et comparaisons natives | **Atteint** | 24 paires appariées, exposition réellement recalculée. |
 | Navigation et habitants | **Atteint** | Graphes physiques régénérés, comptes conservés, support commun et noyau partagé. |
-| Performance et objectif de +5 % Équilibré | **Partiellement atteint** | Matrice logicielle détaillée ; les dépassements éventuels restent visibles, aucun GPU physique. |
+| Objectif de +5 % Équilibré | **{'Atteint' if perf_attained else 'Non atteint'}** | Matrice logicielle détaillée ; dépassements mesurés et expliqués, aucun GPU physique. |
 | Parcours natifs et promenade de trente minutes | **{'Atteint' if walk and walk.get('passedMinimumThirtyMinutes') else 'Non atteint'}** | Durées et couvertures réelles dans les traces ; pont complémentaire distingué. |
 | Tactile et Android physique | **Partiellement atteint** | Flux Chromium tactile ; matériel Android indisponible. |
 | Compilation, tests et sources protégées | **Atteint** | 342 tests, build, contrats et dérivés reproductibles ; aucune fusion ou production. |
