@@ -1,0 +1,130 @@
+{
+  "kind": "family",
+  "initial": {
+    "id": "life:0",
+    "anchor": {
+      "id": "jardin-communal",
+      "lat": 46.69503,
+      "lon": 0.88196,
+      "name": "Jardin communal / Champ de Foire",
+      "source": "https://www.cirkwi.com/fr/point-interet/5786185-aire-de-pique-nique-du-jardin-communal-d-angles-sur-l-anglin",
+      "updated": "2026-09-26",
+      "point": {
+        "x": -186.2987446881928,
+        "z": 29.306400000048598
+      },
+      "node": 1103,
+      "origin": 436,
+      "length": 18.10856402230471,
+      "offsetM": 0.75,
+      "seating": "ground only; exact furniture location unknown"
+    },
+    "ids": [
+      "angles:visitor:22022:life:0:0",
+      "angles:visitor:22022:life:0:1"
+    ]
+  },
+  "final": {
+    "state": "walk",
+    "activity": "conversation",
+    "stateTime": 7.128400000000373,
+    "progress": 7.545843945612145,
+    "events": [
+      {
+        "time": 0,
+        "type": "departure",
+        "group": "life:0",
+        "kind": "family"
+      },
+      {
+        "time": 6.660200000000186,
+        "type": "regroup",
+        "group": "life:0"
+      },
+      {
+        "time": 26.950100000000557,
+        "type": "rest-install",
+        "group": "life:0",
+        "activity": "picnic",
+        "site": "jardin-communal"
+      },
+      {
+        "time": 26.950100000000557,
+        "type": "arrival",
+        "group": "life:0"
+      },
+      {
+        "time": 79.18530000000077,
+        "type": "routine-complete",
+        "group": "life:0"
+      },
+      {
+        "time": 79.18530000000077,
+        "type": "return-to-origin",
+        "group": "life:0"
+      },
+      {
+        "time": 96.9131000000006,
+        "type": "arrival",
+        "group": "life:0"
+      },
+      {
+        "time": 148.34420000000023,
+        "type": "routine-complete",
+        "group": "life:0"
+      },
+      {
+        "time": 148.34420000000023,
+        "type": "finite-end-pause",
+        "group": "life:0"
+      },
+      {
+        "time": 177.84490000000042,
+        "type": "next-intention",
+        "group": "life:0"
+      }
+    ],
+    "members": [
+      "angles:visitor:22022:life:0:0",
+      "angles:visitor:22022:life:0:1"
+    ]
+  },
+  "wallSeconds": 186.338,
+  "nativeSeconds": 186.73269999999926,
+  "frames": 207,
+  "seenSeat": true,
+  "completed": true,
+  "states": [
+    "depart",
+    "walk",
+    "pause",
+    "activity",
+    "rest"
+  ],
+  "activities": [
+    "photo",
+    "picnic",
+    "observe",
+    "conversation"
+  ],
+  "invalidPositions": 0,
+  "errors": [],
+  "warnings": [],
+  "environment": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "resolution": [
+      640,
+      420
+    ],
+    "dpr": 1
+  },
+  "method": "Explicit deterministic admission on the real public rest route, followed by native RAF, the production director, renderer and AudioContext. Camera tracks the leader; no group member is repositioned, time is not accelerated, no precomputed animation or replacement soundtrack. Ordinary probabilistic walk remains separate.",
+  "media": {
+    "containerIndexed": true,
+    "codecCopy": true,
+    "packetPTSAndPayloadsIdentical": true,
+    "packets": 185,
+    "rawSha256": "a7a57ee5341a7f148a70e500bfb7b78c347fe4b223422ddfba0f00722036d1eb",
+    "indexedSha256": "c54f70f56932f0eb894f4564a2c13bc5f4ab114766584f4180d5e219ee46f182"
+  }
+}
