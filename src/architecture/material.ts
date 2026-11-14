@@ -46,12 +46,12 @@ export function architectureMaterial(heritage=false){
   s.fragmentShader=s.fragmentShader.replace('#include <map_pars_fragment>','#include <map_pars_fragment>\n'+prelude+worldMaterialPrelude+windowFragment+(heritage?'varying vec2 vHeritageUV;':''));
   s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`
    float architectureHeight=0.;float architectureSource=floor(vArchitectureMaterial+.5);float architectureKind=architectureSource>7.5?0.:architectureSource;
-   float architectureFade=1.-smoothstep(${glsl(art.detailM[0])},${glsl(art.detailM[1])},length(vViewPosition));
+   // Albedo follows filtered metric textures. Only normal relief fades with distance.
    vec2 m13ArchitectureUV=${heritage?'vHeritageUV':'vMapUv'};
    ${worldArchitectureColor}
-   if(architectureKind<5.5&&architectureFade>.001){
+   if(architectureKind<5.5){
     vec4 art=architectureSample(${heritage?'vHeritageUV':'vMapUv'},architectureKind);
-    diffuseColor.rgb*=mix(vec3(${glsl(art.meanTone)}),vec3(${glsl(art.toneFloor)}+art.r*${glsl(art.toneRange)}),architectureFade)*(vec3(1.)+vec3(.06,0.,-.045)*(art.b-.5));
+    diffuseColor.rgb*=vec3(${glsl(art.toneFloor)}+art.r*${glsl(art.toneRange)})*(vec3(1.)+vec3(.06,0.,-.045)*(art.b-.5));
     #if LIFE_ARCH_DETAIL == 1
     float relief=architectureKind<.5?${glsl(art.stoneRelief)}:architectureKind<1.5?${glsl(art.plasterRelief)}:architectureKind<2.5?${glsl(art.tileRelief)}:architectureKind<3.5?${glsl(art.slateRelief)}:${glsl(art.woodRelief)};
     architectureHeight=(art.g-.5)*relief*(1.-smoothstep(12.,85.,length(vViewPosition)));
@@ -62,13 +62,13 @@ export function architectureMaterial(heritage=false){
    float wallBase=1.-smoothstep(.03,.22,abs(sin(m13WallUV.y*.17+m13WallUV.x*.09)));
    float wetSurface=worldWet*(architectureKind<1.5?.10:architectureKind<3.5?.16:.04);
    diffuseColor.rgb*=1.-wetSurface-worldDew*.035;
-   if(architectureKind<1.5&&architectureFade>.01){float patina=sin(m13WallUV.x*1.7+sin(m13WallUV.y*3.1))*sin(m13WallUV.y*2.3);diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(.84,.91,.80),wallBase*max(0.,patina)*(.12+worldWet*.12)*architectureFade);}
+   if(architectureKind<1.5){float patina=sin(m13WallUV.x*1.7+sin(m13WallUV.y*3.1))*sin(m13WallUV.y*2.3);diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(.84,.91,.80),wallBase*max(0.,patina)*(.12+worldWet*.12));}
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n#if LIFE_ARCH_DETAIL == 1\nif(architectureKind<5.5)normal=architectureBump(normal,-vViewPosition,architectureHeight);\n#endif');
   s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35)+mix(vec3(.85,.36,.10),vec3(.74,.47,.21),fract(vWindowSeed*39.1))*warmWindow();}\n#include <opaque_fragment>`);
  };
  m.userData.snowGlass=true;
- m.customProgramCacheKey=()=> 'regional-architecture-weather-v20-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;
+ m.customProgramCacheKey=()=> 'regional-architecture-stable-v221-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;
 }
 export const architectureMaterials={stone:architectureMaterial(),plaster:architectureMaterial(),tile:architectureMaterial(),plain:architectureMaterial()};
 export const heritageMaterial=architectureMaterial(true);

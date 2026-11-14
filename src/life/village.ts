@@ -4,9 +4,11 @@ import {VillageLifeDirector,PERSISTENCE_KEY} from './village-director.mjs';
 // @ts-ignore Shared source restrictions; no graph reconstruction.
 import {annotateGraph} from './village-navigation.mjs';
 // @ts-ignore Fixed representation budgets and calendar adapter.
-import {LIFE_BUDGETS,contextFromClimate} from './village-identity.mjs';
+import {LIFE_BUDGETS,contextFromClimate,hash} from './village-identity.mjs';
 // @ts-ignore Original bounded, texture-free instanced model library.
 import {createVillageRender} from './village-render.mjs';
+// @ts-ignore Documented public POIs, with conservative local support validation.
+import {publicRestGraph} from './public-rest.mjs';
 export function createVillageLife(scene:THREE.Scene,camera:THREE.Camera){
  const renderer=createVillageRender(scene),leases=new Map<string,any>(),director=new VillageLifeDirector();
  let height:(x:number,z:number)=>number|null=()=>null,clear:(x:number,z:number)=>boolean=()=>false,ready=false,poseAge=0,saveAge=0,renderProfile='balanced';
@@ -16,7 +18,7 @@ export function createVillageLife(scene:THREE.Scene,camera:THREE.Camera){
  function visible(g:any){return g.members.some((m:any)=>{vector.set(m.position.x,m.position.y+.9,m.position.z);sphere.set(vector,2);return frustum.intersectsSphere(sphere)})}
  function save(){try{const data=JSON.stringify(director.snapshot());if(data.length<=180000){localStorage.setItem(PERSISTENCE_KEY,data);metrics.persistenceBytes=data.length;metrics.persistence='local only'}}catch{metrics.persistence='unavailable; session continues'}}
  return {director,renderer,metrics,get groups(){return [...leases.values()]},
- prepare(graph:any,roads:any[],ground:typeof height,valid:typeof clear,habitat:(x:number,z:number)=>string){if(ready||!graph)return;const start=performance.now();height=ground;clear=valid;director.graph=annotateGraph(graph,roads,habitat);try{const text=localStorage.getItem(PERSISTENCE_KEY);if(text){metrics.persistence=director.restore(JSON.parse(text))?'restored':'invalid or obsolete snapshot ignored';metrics.persistenceBytes=text.length}}catch{metrics.persistence='unavailable; session only'}ready=metrics.ready=true;metrics.installMs=performance.now()-start},
+ prepare(graph:any,roads:any[],ground:typeof height,valid:typeof clear,habitat:(x:number,z:number)=>string){if(ready||!graph)return;const start=performance.now();height=ground;clear=valid;const rest=publicRestGraph(annotateGraph(graph,roads,habitat),ground,valid);director.graph=rest.graph;scene.userData.publicRestAudit=rest.audit;try{const text=localStorage.getItem(PERSISTENCE_KEY);if(text){metrics.persistence=director.restore(JSON.parse(text))?'restored':'invalid or obsolete snapshot ignored';metrics.persistenceBytes=text.length}}catch{metrics.persistence='unavailable; session only'}ready=metrics.ready=true;metrics.installMs=performance.now()-start},
  drainAudio(){return audio.splice(0,audio.length)},
  update(dt:number,climate:any,player:THREE.Vector3,profile:string,vehicle:any=null){if(!ready||!Number.isFinite(dt)||dt<0)return;const start=performance.now(),budget=LIFE_BUDGETS[profile]??LIFE_BUDGETS.balanced;renderProfile=profile;director.update(dt,contextFromClimate(climate),{height,clear,vehicle});metrics.simulationMs=performance.now()-start;metrics.maxSimulationMs=Math.max(metrics.maxSimulationMs,metrics.simulationMs);
  camera.updateMatrixWorld();frustum.setFromProjectionMatrix(matrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse));
@@ -25,10 +27,15 @@ export function createVillageLife(scene:THREE.Scene,camera:THREE.Camera){
  // Poses and footsteps are driven by distance, with no catch-up sound burst.
  for(const [id,a] of animalLeases)if(Math.hypot(a.position.x-player.x,a.position.z-player.z)>budget.perceptibleM+30)animalLeases.delete(id);
  for(const a of director.critters){const d=Math.hypot(a.position.x-player.x,a.position.z-player.z);if(!animalLeases.has(a.id)&&d>65&&d<budget.perceptibleM&&animals+animalLeases.size<budget.animals)animalLeases.set(a.id,a);}
- poseAge+=dt;if(poseAge>=1/budget.hz||dt===0){renderer.draw([...leases.values(),...[...animalLeases.values()].map(a=>({id:a.id,members:[],animal:a,state:a.state}))],director.clock,height,(m:any)=>Math.hypot(m.position.x-player.x,m.position.z-player.z)<budget.detailM);poseAge=0;}
+ poseAge+=dt;if(poseAge>=1/budget.hz||dt===0){renderer.draw([...[...leases.values()].filter(visible),...[...animalLeases.values()].map(a=>({id:a.id,members:[],animal:a,state:a.state}))],director.clock,height,(m:any)=>Math.hypot(m.position.x-player.x,m.position.z-player.z)<budget.detailM);poseAge=0;}
  for(const g of leases.values())for(const m of g.members){const step=Math.floor(m.phase/Math.PI),old=lastSteps.get(m.person.id);lastSteps.set(m.person.id,step);if(m.person.age!=='baby'&&g.kind!=='cycle'&&old!==undefined&&old!==step&&m.speed>.05&&dt<2&&Math.hypot(m.position.x-player.x,m.position.z-player.z)<42){const e=director.graph.edges[g.route.points.find((p:any)=>p.s>=m.s)?.edge??g.route.points.at(-1).edge];audio.push({kind:'step',id:m.person.id,position:{...m.position},surface:e?.surface,speed:m.speed,time:performance.now()});}}
  for(const g of leases.values())if(['cycle','stroller'].includes(g.kind)&&g.state==='walk'&&director.clock-(g.lastWheelSound??-99)>11){g.lastWheelSound=director.clock;audio.push({kind:'cycle',id:g.id,position:{...g.members[0].position},time:performance.now()});}
  for(const e of director.events){if(e.time<=lastEvent)continue;const g=leases.get(e.group);if(g&&dt<2&&['regroup','encounter','arrival'].includes(e.type)&&g.activity==='conversation')audio.push({kind:'conversation',id:g.id,position:{...g.members[0].position},time:performance.now()});if(g&&dt<2&&e.type==='sniff')audio.push({kind:'dog',id:g.id,position:{...g.animal.position},time:performance.now()});}lastEvent=director.clock;
+ for(const g of leases.values())if(dt>0&&dt<2&&['pause','activity','rest','depart'].includes(g.state)&&director.clock>=(g.nextHumanSound??0)){
+  g.nextHumanSound=director.clock+55+hash(g.id+':'+Math.floor(director.clock/60))%85;
+  const adult=g.members.find((m:any)=>!['baby','young-child','child'].includes(m.person.age));
+  if(adult&&Math.hypot(adult.position.x-player.x,adult.position.z-player.z)<28){const k=hash(adult.person.id+':'+Math.floor(director.clock/70))%10,kind=g.state==='depart'||g.activity==='picnic'?'cloth':g.activity==='conversation'&&k<3?'laugh':k===9?'cough':null;if(kind)audio.push({kind,id:adult.person.id,position:{...adult.position},time:performance.now()});}
+ }
  if(audio.length>24)audio.splice(0,audio.length-24);metrics.virtualPeople=director.groups.reduce((a:number,g:any)=>a+g.members.length,0);metrics.visiblePeople=people;metrics.animals=animals+animalLeases.size;metrics.leases=leases.size;saveAge+=dt;if(saveAge>=30){saveAge=0;save();}
  },save,dispose(){save();leases.clear();animalLeases.clear();audio.length=0;renderer.dispose();lastSteps.clear()}};
 }

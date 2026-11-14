@@ -5,7 +5,7 @@ import {gunzipSync} from 'node:zlib';
 import * as THREE from 'three';
 import {prepareLandmarks} from '../src/world/landmark-model.mjs';
 import {sampleGrid} from '../src/world/terrain-grid.mjs';
-import {validateRefinement} from '../src/world/terrain-refinement.mjs';
+import {barycentric,validateRefinement} from '../src/world/terrain-refinement.mjs';
 import {decodeSurface} from '../src/world/surface-mesh.mjs';
 import {cpuModules} from '../scripts/lib/cpu-modules.mjs';
 import {createNavigation} from '../src/world/navigation.mjs';
@@ -41,14 +41,16 @@ test('bridge parapets block lateral movement and unknown bridge heights still bl
  const verified=createNavigation([{tags:{highway:'footway',bridge:'yes',width:5.5},points:[{x:0,z:0},{x:10,z:0}],support:(x)=>x>=0&&x<=10?4:null}]);
  assert.equal(verified(-.2,0).clear,true);assert.equal(verified(0,0).support,4);
 });
-test('under-deck clipping retains all source surface heights, near and far',async()=>{
+test('under-deck clipping preserves source heights outside the declared road-end crossfall transitions, near and far',async()=>{
  const m=await loadJSON('public/data/angles-landmark-surface.json'),bytes=gunzipSync(await readFile('public/data/angles-landmark-surface.pack')),surface=decodeSurface(m,bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));let count=0;
  for(const tile of surface.tiles)for(const lod of ['fine','far']){const p=tile.attributes.position.array,ids=tile[lod].array;
   for(let i=0;i<ids.length;i+=3){const t=Array.from(ids.subarray(i,i+3)),x=t.reduce((s,v)=>s+p[v*3],0)/3,z=t.reduce((s,v)=>s+p[v*3+2],0)/3;if(x<-220||x>-150||z<110||z>205)continue;
-   const y=t.reduce((s,v)=>s+p[v*3+1],0)/3;assert.ok(Math.abs(y-(sampleGrid(g,x,z)-zero))<.001);count++;
+   const y=t.reduce((s,v)=>s+p[v*3+1],0)/3,approach=m.bridgeOcclusion.roadEndInfluence.some(triangle=>barycentric(triangle,x,z).every(w=>w>=-.0001));
+   if(approach&&tile.attributes.earthRoad.getX(t[0])>0){assert.ok(Math.abs(y-(sampleGrid(g,x,z)-zero))<=raw.mission221.maxRemovedCrossfallM+.01);}else assert.ok(Math.abs(y-(sampleGrid(g,x,z)-zero))<.001,JSON.stringify({x,z,y,error:y-(sampleGrid(g,x,z)-zero),road:tile.attributes.earthRoad.getX(t[0])}));count++;
   }
  }
- assert.ok(count>100);
+ assert.ok(count>100);assert.ok(m.bridgeOcclusion.roadEndInfluence.length<50);
+ for(const tri of m.bridgeOcclusion.roadEndInfluence)for(const p of tri){const deck=raw.objects.find(o=>o.id==='pont').parts[1].position;assert.ok(Math.min(...[0,deck.length-15].map(i=>Math.hypot(p.x-deck[i+6],p.z-deck[i+8])))<12)};
 });
 test('invalid source bindings, mesh ranges, normals and collision payloads fail before activation',()=>{
  for(const change of [r=>r.bindings.terrain='stale',r=>r.objects[0].parts[0].index[0]=-1,r=>r.objects[0].parts[0].normal[0]=40000,r=>r.collisionFeatures[0].geometry.coordinates[0][0]=NaN]){

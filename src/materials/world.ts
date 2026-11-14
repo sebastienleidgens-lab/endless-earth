@@ -90,14 +90,14 @@ export const worldArchitectureColor=`
     #endif
     vec2 metricUV=architectureKind<1.5?m13WallUV:m13ArchitectureUV*4.;
     vec2 uv=metricUV/metres;
-    vec4 packed=vec4(.5,.5,.5,1.);if(architectureFade>.001)packed=m13Sample(m13Data,uv,slot);
+    vec4 packed=m13Sample(m13Data,uv,slot);
     if(m13Mode<1.5){
      vec3 tone=vec3(.88+(packed.r-.5)*.36)*(vec3(1.)+vec3(.06,0.,-.045)*(packed.b-.5));
      float macro=sin(metricUV.x*.19+metricUV.y*.071)*sin(metricUV.y*.14+.7)*.035;
-     diffuseColor.rgb*=mix(vec3(.88),tone,architectureFade)*(1.+macro);
+     diffuseColor.rgb*=tone*(1.+macro);
      architectureHeight=(packed.g-.5)*relief;
     }else{
-     diffuseColor.rgb=mix(diffuseColor.rgb*.88,m13Sample(m13Photo,uv,slot).rgb,architectureFade);
+     diffuseColor.rgb=m13Sample(m13Photo,uv,slot).rgb;
      architectureHeight=(packed.r-.5)*relief;
     }
     architectureHeight*=1.-smoothstep(12.,85.,length(vViewPosition));

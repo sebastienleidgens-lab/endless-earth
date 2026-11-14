@@ -49,9 +49,9 @@ export async function loadAuthenticLibrary(approach:AuthenticApproach,options:{s
     vec2 authenticUV=vMapUv/authenticMetres${hybrid?'+authenticOffset':''};
     float authenticFade=1.-smoothstep(${detail[0]}.,${detail[1]}.,length(vViewPosition));
     vec4 authenticPack=vec4(.5,.5,.5,.9);float authenticHeight=0.;
-    ${hybrid?`if(authenticFade>.001)authenticPack=authenticSample(map,authenticUV);
+    ${hybrid?`authenticPack=authenticSample(map,authenticUV);
     vec3 authenticTone=vec3(${ART_DNA.architecture.toneFloor}+authenticPack.r*${ART_DNA.architecture.toneRange})*(vec3(1.)+vec3(.06,0.,-.045)*(authenticPack.b-.5));
-    diffuseColor.rgb*=mix(vec3(${ART_DNA.architecture.meanTone}),authenticTone,authenticFade)*(1.+authenticMacro(authenticWorld)*.045);
+    diffuseColor.rgb*=authenticTone*(1.+authenticMacro(authenticWorld)*.045);
     authenticHeight=(authenticPack.g-.5)*authenticRelief*authenticFade;`:`
     vec4 authenticColor=authenticSample(map,authenticUV);diffuseColor*=authenticColor;
     authenticPack=authenticSample(authenticData,authenticUV);
@@ -61,7 +61,7 @@ export async function loadAuthenticLibrary(approach:AuthenticApproach,options:{s
    if(!hybrid)s.fragmentShader=s.fragmentShader.replace('#include <roughnessmap_fragment>','float roughnessFactor=clamp(authenticPack.g-lifeRain*.10,.45,.98);');
    s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n#if LIFE_ARCH_DETAIL == 1\nnormal=authenticBump(normal,-vViewPosition,authenticHeight);\n#endif');
   };
-  m.customProgramCacheKey=()=>`authentic-13B-${approach}`;
+  m.customProgramCacheKey=()=>`authentic-stable-221-${approach}`;
   cloudReceiver(m,{architecture:true});materials.add(m);
   m.userData.authentic={id:entry.id,objectId,identity,metres:entry.metres,approach};return m;
  }};

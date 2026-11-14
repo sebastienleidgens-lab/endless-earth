@@ -1,4 +1,6 @@
 // @ts-ignore Verified independent CC0 thunder takes, no synthesized replacement.
+import {VillageSoundMemory} from '../audio/village-memory.mjs';
+// @ts-ignore Runtime catalogue.
 import {AUDIO_GROUPS} from '../audio/catalog.mjs';
 // @ts-ignore Shared explicit ground mapping.
 import {MATERIALS} from '../audio/profiles.mjs';
@@ -26,6 +28,7 @@ export class Soundscape {
  private transition:Promise<boolean>=Promise.resolve(false);private disposed=false;private hidden=false;
  private timer:ReturnType<typeof setInterval>|null=null;private director=new SoundDirector({seed:crypto.getRandomValues(new Uint32Array(1))[0]});
  private emitterCache=new Map();private nextContext=0;private waterIndex:ReturnType<typeof riverAcousticIndex>|null=null;private roadsIndex:ReturnType<typeof proximityIndex>|null=null;private trafficIndex:ReturnType<typeof trafficRoadIndex>|null=null;
+ private villageMemory=new VillageSoundMemory();
  private stormIds=new Set<string>();private stormCursor=0;
  private heardFlight='';private flightAttempt=-Infinity;private aircraftEvents=0;
  private commandRevision=-1;private lastStep=-Infinity;private lastMove=0;private contact:ReturnType<typeof footContact>=footContact();private frameContext:SoundContext|null=null;
@@ -96,6 +99,10 @@ export class Soundscape {
  listener(position:Vec3,forward:Vec3,up:Vec3){if(this.enabled&&!this.hidden)this.renderer?.listener(position,forward,up)}
  stats(){return {...this.renderer?.stats(),aircraftEvents:this.aircraftEvents,contextUpdates:this.contextUpdates,cpuMs:this.cpuMs,maxCpuMs:this.maxCpuMs,nearbyChecks:this.nearbyChecks,memoryCells:this.director.memory.size,perches:this.director.perches.size,contact:this.contact,context:this.frameContext}}
  vehicle(v:any){if(this.enabled&&!this.hidden&&this.context?.state==='running')this.renderer?.vehicle(v);else this.renderer?.vehicle(null)}
- village(events:any[]){if(!this.enabled||this.hidden||!this.renderer||this.context?.state!=='running')return;for(const e of events){if(performance.now()-e.time>700)continue;const contact=footContact({surface:e.surface,onRoad:true}),group=e.kind==='step'?MATERIALS[contact.material]?.assets:e.kind==='dog'?AUDIO_GROUPS['village-dog']:e.kind==='cycle'?AUDIO_GROUPS['village-cycle']:AUDIO_GROUPS['village-conversation'];if(!group?.length)continue;const asset=group[Math.floor(this.renderer.random()*group.length)];void this.renderer.resources.request(asset);this.renderer.event({asset,position:e.position,priority:e.kind==='step'?54:47,gain:e.kind==='step'?.13:e.kind==='dog'?.17:.13,refDistance:2,maxDistance:e.kind==='step'?35:65,reason:'Simulated village '+e.kind+' from '+e.id+'; source-matched native event'});}}
- async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.stormIds.clear();this.emitterCache.clear();this.waterIndex=this.roadsIndex=this.trafficIndex=null;this.frameContext=null;this.obstacles=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
+ village(events:any[]){if(!this.enabled||this.hidden||!this.renderer||this.context?.state!=='running')return;for(const e of events){
+ const now=performance.now();if(now-e.time>700)continue;const contact=footContact({surface:e.surface,onRoad:true}),group=e.kind==='step'?MATERIALS[contact.material]?.assets:AUDIO_GROUPS['village-'+e.kind];
+ const choice=this.villageMemory.choose(e.kind,e.id,group,now/1000);if(!choice)continue;const renderer=this.renderer,play=()=>{if(!this.enabled||this.hidden||this.disposed||performance.now()-e.time>700||this.context?.state!=='running')return;renderer.event({asset:choice.asset,rate:choice.rate,position:e.position,priority:e.kind==='step'?54:47,gain:e.kind==='step'?.13:e.kind==='dog'?.17:e.kind==='cloth'?.07:.11,refDistance:e.kind==='cloth'?1:2,maxDistance:e.kind==='step'?35:e.kind==='cloth'?12:e.kind==='cough'?22:55,reason:'Simulated village '+e.kind+' from '+e.id+'; recorded, bounded non-repeating event'});};
+ if(renderer.resources.get(choice.asset))play();else void renderer.resources.request(choice.asset).then(buffer=>{if(buffer)play()});
+ }}
+ async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.villageMemory.clear();this.stormIds.clear();this.emitterCache.clear();this.waterIndex=this.roadsIndex=this.trafficIndex=null;this.frameContext=null;this.obstacles=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
 }
