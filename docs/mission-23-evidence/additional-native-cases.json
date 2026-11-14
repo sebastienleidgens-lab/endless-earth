@@ -1,0 +1,110 @@
+{
+  "method": "Deterministic extra native test locations selected from unchanged mapped axes and the active rendered terrain; no edits to geography, access, collisions or route graph.",
+  "cases": [
+    {
+      "name": "berge-admissible",
+      "category": "bank",
+      "case": {
+        "id": "osm-way-58717596",
+        "tags": {
+          "osm_id": 58717596,
+          "source": "OpenStreetMap",
+          "cycleway:both": "no",
+          "highway": "residential",
+          "lane_markings": "no",
+          "name": "Quai du Premier Président Pérevier",
+          "sidewalk": "no",
+          "surface": "asphalt"
+        },
+        "direction": "forward",
+        "from": {
+          "x": -206.66944349262397,
+          "z": 123.26463600011493
+        },
+        "to": {
+          "x": -184.07690310195215,
+          "z": 131.6136360003921
+        },
+        "length": 24.085860630435555,
+        "before": {
+          "passed": true,
+          "position": {
+            "x": -184.0769031019527,
+            "y": -33.9205078248624,
+            "z": 131.6136360003921
+          }
+        },
+        "after": {
+          "passed": true,
+          "position": {
+            "x": -184.0769031019527,
+            "y": -33.9205078248624,
+            "z": 131.6136360003921
+          }
+        }
+      },
+      "bankDistanceM": 3.05518409617834,
+      "provenance": "Existing mapped pedestrian axis beside a mapped water polygon; actual production sweep remains clear in both directions."
+    },
+    {
+      "name": "foret-aller-retour",
+      "category": "forest",
+      "case": {
+        "id": "osm-way-504286650",
+        "tags": {
+          "osm_id": 504286650,
+          "source": "OpenStreetMap",
+          "highway": "footway"
+        },
+        "direction": "forward",
+        "from": {
+          "x": -635.9506164987226,
+          "z": -98.77423599946013
+        },
+        "to": {
+          "x": -657.8712597774019,
+          "z": -114.98242799982734
+        },
+        "length": 27.262063195434642,
+        "before": {
+          "passed": true,
+          "position": {
+            "x": -657.8712597774089,
+            "y": -31.90363486714284,
+            "z": -114.9824279998277
+          }
+        },
+        "after": {
+          "passed": true,
+          "position": {
+            "x": -657.8712597774089,
+            "y": -31.90363503937167,
+            "z": -114.9824279998277
+          }
+        }
+      },
+      "provenance": "Existing admitted OSM axis inside an OSM forest polygon; no new path or tree placement."
+    },
+    {
+      "name": "terrain-naturel-repare",
+      "category": "natural",
+      "case": {
+        "id": "ign-repair-cell-77-105",
+        "from": {
+          "x": -228.3,
+          "z": 55
+        },
+        "to": {
+          "x": -221.7,
+          "z": 55
+        },
+        "length": 6.6,
+        "tags": {
+          "source": "IGN LiDAR HD MNT",
+          "surface": "natural terrain; no mapped route added"
+        }
+      },
+      "provenance": "Free movement test inside one source-refined natural cell, with rendered support and unchanged access/collision rules. This test segment is not an invented public path or a graph edge."
+    }
+  ]
+}

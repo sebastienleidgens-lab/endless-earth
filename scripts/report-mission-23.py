@@ -2,17 +2,29 @@ import pathlib,json,statistics
 root=pathlib.Path('docs/mission-23-evidence')
 def load(name):
  p=root/(name+'.json');return json.loads(p.read_text()) if p.exists() else None
-source=load('source-audit');prep=load('surface-preparation');network=load('network-audit');geometry=load('geometry-after')['reports'][0];performance=load('performance');walk=load('walk');native=load('routes-native');bridge=load('pont-native');mobile=load('mobile');inspection=load('inspection');preservation=load('preservation');determinism=load('determinism')
+source=load('source-audit');prep=load('surface-preparation');network=load('network-audit');geometry=load('geometry-after')['reports'][0];performance=load('performance');walk=load('walk');native=load('routes-native');bridge=load('pont-native');mobile=load('mobile');inspection=load('inspection');preservation=load('preservation');determinism=load('determinism');seams=load('seam-audit');walk_analysis=load('walk-analysis')
+walk_attained=bool(walk and walk.get('passedMinimumThirtyMinutes') and not walk.get('stalls') and not walk.get('changed') and not walk.get('errors') and not walk.get('glErrors') and not walk.get('invalidCollisionFrames') and not walk.get('suspects'))
 def walk_text():
  if not walk:return 'Mesure native prolongée en cours ; aucune durée validée à ce stade.'
- return f"**{walk['wallSeconds']:.3f} s réelles, {walk['nativeSeconds']:.3f} s natives, {walk['metres']:.2f} m, {walk['frames']} frames**. Trois profils et trois vues ; montées/descentes, arrêts/reprises, course au clavier, AutoWalk, forêt, terrains ouverts, pluie, neige et nuit. Erreurs JS : {len(walk['errors'])}, erreurs GL : {len(walk['glErrors'])}, frames de collision invalide : {walk['invalidCollisionFrames']}, écart maximal au support : {walk['maxGroundErrorM']:.6f} m. Cadence instrumentée SwiftShader, médiane / P95 / pic : {walk['frameMs']['median']:.1f} / {walk['frameMs']['p95']:.1f} / {walk['frameMs']['peak']:.1f} ms. Les travaux de validation concurrents et la lecture des pixels font partie de cette mesure ; elle n’est pas le benchmark isolé. Les sources sont vérifiées inchangées : {len(walk['changed'])} différence(s)."
+ return f"**{walk['wallSeconds']:.3f} s réelles, {walk['nativeSeconds']:.3f} s natives, {walk['metres']:.2f} m, {walk['frames']} frames**. Trois profils et trois vues ; montées/descentes, arrêts/reprises, course au clavier, AutoWalk, forêt, terrains ouverts, pluie, neige et nuit. Erreurs JS : {len(walk['errors'])}, erreurs GL : {len(walk['glErrors'])}, frames de collision invalide : {walk['invalidCollisionFrames']}, écart maximal au support : {walk['maxGroundErrorM']:.6f} m. Cadence instrumentée SwiftShader, médiane / P95 / pic : {walk['frameMs']['median']:.1f} / {walk['frameMs']['p95']:.1f} / {walk['frameMs']['peak']:.1f} ms. Les travaux de validation concurrents et la lecture des pixels font partie de cette mesure ; elle n’est pas le benchmark isolé. Les sources sont vérifiées inchangées : {len(walk['changed'])} différence(s), candidat `{walk['sourceCommit']}`. Immobilisations demandées d’au moins vingt secondes : {len(walk.get('stalls',[]))}. Le bassin reste entre {walk['pose']['minHipY']:.3f} et {walk['pose']['maxHipY']:.3f} m ; ces mesures du rig ne prouvent pas la disparition de la posture de l’image absente."
 perf_table='Campagne appariée en cours.'
 perf_summary='Mesure non terminée.'
 perf_attained=False
+perf_resources=''
+perf_cpu=''
 if performance:
  rows=performance['rows'];balanced=[r['regressionPercent'] for r in rows if r['profile']=='balanced'];perf_attained=all(x<=5 for x in balanced)
  perf_summary=f"Objectif de +5 % en Équilibré : **{'atteint' if perf_attained else 'non atteint'}**. {sum(x>5 for x in balanced)}/{len(balanced)} scènes dépassent ce seuil ; médiane des écarts {statistics.median(balanced):+.2f} %, pire cas {max(balanced):+.2f} %. Ces rendus logiciels ne permettent pas de conclure sur Android. Le relief fin ajoute des triangles et le support exact ajoute du travail CPU ; la simplification des arêtes a déjà réduit de 22 606 faces le premier candidat. Les résultats initiaux restent archivés séparément."
  perf_table='| Scène | Profil | M22.1 médiane ms | M23 médiane ms | Écart | P95 M23 ms |\n| --- | --- | ---: | ---: | ---: | ---: |\n'+'\n'.join(f"| {r['station']} | {r['profile']} | {r['before']['medianMs']:.1f} | {r['after']['medianMs']:.1f} | {r['regressionPercent']:+.2f} % | {r['after']['p95Ms']:.1f} |" for r in rows)
+if performance:
+ balanced_rows=[r for r in performance['rows'] if r['profile']=='balanced']
+ perf_resources='| Scène Équilibré | Appels avant → après | Triangles avant → après | Buffers Mio avant → après | Textures Mio avant → après | Tas Mio après |\n| --- | ---: | ---: | ---: | ---: | ---: |\n'+'\n'.join(f"| {r['station']} | {r['before']['calls']} → {r['after']['calls']} | {r['before']['triangles']} → {r['after']['triangles']} | {r['before']['alloc']['bufferBytes']/1048576:.2f} → {r['after']['alloc']['bufferBytes']/1048576:.2f} | {r['before']['alloc']['textureBytesEstimate']/1048576:.2f} → {r['after']['alloc']['textureBytesEstimate']/1048576:.2f} | {r['after']['heap']/1048576:.1f} |" for r in balanced_rows)
+ def cpu_median(row,version,key,count):return statistics.median(c[key]/c[count]*1000 for c in row['cpu'][version])
+ perf_cpu='| Scène Équilibré | Support µs/requête avant → après | Collision µs/requête avant → après | Déplacement µs/essai avant → après |\n| --- | ---: | ---: | ---: |\n'+'\n'.join(f"| {r['station']} | {cpu_median(r,'before','supportMs','supportQueries'):.2f} → {cpu_median(r,'after','supportMs','supportQueries'):.2f} | {cpu_median(r,'before','collisionMs','collisionQueries'):.2f} → {cpu_median(r,'after','collisionMs','collisionQueries'):.2f} | {cpu_median(r,'before','movementMs','movementQueries'):.2f} → {cpu_median(r,'after','movementMs','movementQueries'):.2f} |" for r in balanced_rows)
+walk_metrics=''
+if walk_analysis:
+ a=walk_analysis;hs=[s['heapAfterGCMiB'] for s in a['samples']];bs=[s['bufferMiB'] for s in a['samples']]
+ walk_metrics=f"Analyse indépendante de la trace : **{a['ascentM']:.2f} m de montée cumulée, {a['descentM']:.2f} m de descente**, {len(walk['arrivals'])} arrivées, {a['nearRiverFrames']} frames à moins de 40 m de la rivière, distance minimale {a['minRiverDistanceM']:.2f} m. Demandes manuelles : {a['manualRequestedFrames']} frames, dont {walk['runFrames']} de course ; cette brève séquence complète les films de pente et de pont, plus longs. Aucun blocage demandé de vingt secondes. Tas après GC : {hs[0]:.1f} → {hs[-1]:.1f} Mio, plage {min(hs):.1f}–{max(hs):.1f} ; buffers WebGL logiques : {bs[0]:.1f} → {bs[-1]:.1f} Mio, maximum échantillonné {max(bs):.1f} Mio. Streaming, profils et populations évoluent pendant la marche ; cette hausse ne suffit pas à démontrer une fuite ou son absence. Les événements LOD individuels ne sont pas exportés par ce journal : leur invariance est vérifiée par les tests et stations, sans inventer un compteur de bascules. [Analyse complète](mission-23-evidence/walk-analysis.json)."
 native_text='Contrôles natifs complémentaires en cours.'
 if native:native_text='\n'.join(f"- **{r['name']}** : {r.get('wallSeconds',0):.2f} s, fin atteinte : {r.get('finished')}, frames invalides : {r.get('invalid')}, écart support : {r.get('maxSupportErrorM',0):.6f} m." for r in native['reports'])
 bridge_text='Traversée native complémentaire en cours.' if not bridge else f"Traversée native aller/retour : **{bridge['wallSeconds']:.3f} s**, fin atteinte : {bridge['finished']}, {bridge['invalidFrames']} frame(s) invalide(s), écart support maximal {bridge['maxSupportErrorM']:.6f} m. Un seul placement initial sur l’axe source ; le script règle le cap, les déplacements utilisent W puis Shift+W. [Film](mission-23-evidence/pont-native.webm) et [trace](mission-23-evidence/pont-native.json)."
@@ -28,6 +40,10 @@ changement de Living Paintings / LP-01. Un seul jalon autonome.
 **La validation complète des sept captures n’est pas atteinte : leurs originaux
 ne sont pas joints.** Les réparations et preuves ci-dessous concernent des
 zones effectivement auditées, sans prétendre retrouver ces sept caméras.
+**L’acceptation globale reste partielle** : les bords de la chaussée inférée
+Rue du Pont conservent des discontinuités proches d’un mètre ; les talus bâtis
+restent approximatifs ; l’objectif de +5 % en Équilibré est dépassé dans cinq
+scènes sur huit. Les succès de tests et de parcours ne ferment pas ces réserves.
 [Galerie native](mission-23-evidence/index.html).
 
 ## 1. Les sept captures du propriétaire
@@ -89,6 +105,29 @@ référentiel sont conservés. Une face de 20–30 m de dénivelé issue de la g
 grossière n’est pas automatiquement une erreur : certaines falaises sont réelles.
 Les suspicions sont classées et gardées dans les JSON, sans filtre de pente destructeur.
 
+L’[audit complémentaire des raccords](mission-23-evidence/seam-audit.json) examine
+toutes les arêtes fines, les doublons projetés, les catégories de matériau et les
+normales quantifiées. Les normales nulles/non unitaires passent de 1 825/2 815
+à 0/0 après compaction et recalcul ; certains zéros antérieurs appartenaient à
+des sommets inutilisés, donc ils ne prouvent pas à eux seuls un défaut visible.
+Les arêtes exactes non manifold passent de 10 à 0 ; aucun triangle projeté
+strictement dupliqué n’est trouvé. Une arête isolée n’est pas nécessairement
+un trou : des partitions avec sommets intermédiaires sont continues.
+
+**Le maillage n’est pas déclaré étanche ni tous ses raccords corrigés.** Les
+sondes bilatérales conservent 112 arêtes avec un côté sans support terrain,
+150 arêtes dont les plans voisins diffèrent de plus de 2 cm, et 12 paires
+coïncidentes avec des hauteurs différentes. 271 des 274 suspicions sont dans
+l’emprise héritée pont/approche ; une partie du sous-sol y est volontairement
+découpée et le tablier reste un propriétaire distinct. Les bords de la chaussée
+inférée de Rue du Pont conservent des discontinuités approchant **0,996 m**.
+Les trois autres arêtes entourent un micro-vide préexistant d’environ 3 mm près
+de X=-37, Z=194. Ces nombres sont des arêtes suspectes, pas un nombre de trous
+ou de défauts tous confirmés. Les collisions refusent un support inconnu ; aucun
+ancien MNT invisible n’est ajouté pour remplir ce micro-vide. Une reconstruction
+transversale et les niveaux des accotements exigent une référence suffisante ;
+ils ne sont pas inventés pour valider les tests de l’axe.
+
 Les points hauts/bas du MNT à 10 m peuvent produire de grands plans artificiels
 entre échantillons ; l’absence de résolution fine autour d’une rupture demeure
 une limite. Les résidus inversés observés sont confirmés comme défauts de
@@ -109,7 +148,7 @@ intérieurs sont confrontés au MNT ; les coins ne changent que si leurs quatre
 cellules incidentes participent. Les limites extérieures restent raccordées.
 Les arêtes partagées sont déterministes et simplifiées à 0,25 m de résidu.
 
-Sur des points réservés à la validation, distincts des nœuds de construction :
+Dans les cellules sélectionnées, sur des points réservés à la validation et distincts des nœuds de construction :
 erreur moyenne **{source['before']['meanAbsoluteM']:.3f} → {source['after']['meanAbsoluteM']:.3f} m**,
 P95 **{source['before']['p95AbsoluteM']:.3f} → {source['after']['p95AbsoluteM']:.3f} m**,
 maximum **{source['before']['maxAbsoluteM']:.3f} → {source['after']['maxAbsoluteM']:.3f} m**.
@@ -248,7 +287,15 @@ pour empêcher une neige résiduelle de fausser le cas « sans neige ».
 La neige ne déplace aucun sommet ou collider. Exposition et éclairage sont
 recalculés sur le vrai nouveau maillage ; les anciens dérivés incompatibles
 ne sont pas simplement réétiquetés. Les scènes manquantes du propriétaire
-ne sont pas remplacées par ces stations.
+ne sont pas remplacées par ces stations. La galerie statique peut aussi être
+ouverte directement depuis `docs/mission-23-evidence/index.html` après récupération
+du dépôt, sans hébergement ni déploiement.
+
+| Station de contrôle | Avant M22.1 | Après M23 |
+| --- | --- | --- |
+| Relief nord-ouest, confrontation au MNT | ![Relief avant](mission-23-evidence/before/relief-nord-ouest-sec.png) | ![Relief après](mission-23-evidence/after/relief-nord-ouest-sec.png) |
+| Forêt sous neige | ![Forêt avant](mission-23-evidence/before/foret-neige.png) | ![Forêt après](mission-23-evidence/after/foret-neige.png) |
+| Raccord, occlusion conservée | ![Raccord avant](mission-23-evidence/before/raccord-sec.png) | ![Raccord après](mission-23-evidence/after/raccord-sec.png) |
 
 ## 18. Audit géographique général et navigation
 
@@ -286,10 +333,25 @@ développement ne sont pas un débit Internet ou une mesure Android.
 
 {perf_summary}
 
+![Écarts de temps de rendu logiciel Équilibré](mission-23-evidence/performance-balanced.png)
+
+{perf_resources}
+
+{perf_cpu}
+
+Les lots CPU utilisent cinq répétitions de 2 000 requêtes de support/collision et
+200 essais de déplacement au même point initial. Les petits déplacements répétés
+bénéficient fortement du cache exact ; ils ne représentent pas un coût CPU par
+frame de promenade et n’établissent pas une hausse de vitesse du joueur.
+Le temps `gl.finish` inclut le rendu logiciel ; aucun compteur GPU matériel
+indépendant n’est disponible. P95 et pic coïncident pour ce quantile sur seize
+échantillons ; les échantillons bruts sont conservés.
+Démarrage local de développement apparié : {performance['startupMs']['before']:.0f} → {performance['startupMs']['after']:.0f} ms, une seule ouverture par version, sans extrapolation à un chargement réseau.
+
 ## 21. Parcours physiques et films complémentaires
 
 Matrice des axes : pont, rue, chemin étroit, raccord, pentes et escaliers
-documentés, dans les deux sens. Les autres traversées du territoire se trouvent
+documentés, dans les deux sens. Trois compléments ciblent aussi une berge sur un axe OSM existant, une forêt OSM et une cellule naturelle réellement réparée. Le dernier est un segment de déplacement libre, sans création d’un chemin public ou d’une arête de graphe. Les autres traversées du territoire se trouvent
 dans la promenade et les stations visuelles ; aucune caméra fixe n’est présentée
 comme un parcours physiquement accompli.
 
@@ -303,7 +365,9 @@ création d’images ni accélération. Les sources brutes restent dans `work/`.
 
 {walk_text()}
 
-Un premier lancement de scénario est resté immobile après une course manuelle au cap constant, puis a été écarté ; il ne sert pas de preuve de trente minutes. Le scénario final suit les sommets source pendant cette séquence au clavier. Un lancement exploratoire ultérieur a été interrompu volontairement avant la correction finale de capsule ; aucune de ses minutes n’est ajoutée à la session finale.
+{walk_metrics}
+
+Un [premier lancement de scénario](mission-23-evidence/initial-off-corridor.webm) est resté immobile après une course manuelle au cap constant, puis a été écarté ; il ne sert pas de preuve de trente minutes. Le scénario final suit les sommets source pendant cette séquence au clavier. Un lancement exploratoire ultérieur a été interrompu volontairement avant la correction finale de capsule ; aucune de ses minutes n’est ajoutée à la session finale.
 
 La couverture réelle est vérifiable dans [walk.json](mission-23-evidence/walk.json)
 et sa trace. La traversée du pont est une session complémentaire explicitement
@@ -320,14 +384,14 @@ pour rechercher des arrêts prolongés.
 ## 24. Tests, préservation et reproduction
 
 **342 tests Node réussis, zéro échec**, TypeScript/Vite réussis sur le candidat
-runtime. Les contrôles finaux et journaux sont archivés avec la livraison.
+runtime. La galerie, ses liens, ses 24 paires et les 13 vidéos sont vérifiés dans [evidence-validation.json](mission-23-evidence/evidence-validation.json) ; les paquets vidéo et leurs timestamps sont identiques aux captures natives brutes. Le bundle de production est testé localement sur quatre formats dans [compiled-validation.json](mission-23-evidence/compiled-validation.json), sans déploiement. Les contrôles finaux et journaux sont archivés avec la livraison dans [checks.json](mission-23-evidence/checks.json), [tests](mission-23-evidence/tests-final.txt) et [build](mission-23-evidence/build-final.txt).
 Les nouveaux tests couvrent chaque centre de triangle actif, orientation,
 LOD, sources, trous, eau, superpositions, types, marches selon la cadence,
 refus légitimes, navigation bidirectionnelle et repos du rig. Les tests
 historiques restent présents, y compris appuis à cadence très basse. Une assertion M16 qui imposait précisément l’arrêt anticipé erroné devant une bordure est corrigée pour exiger la progression jusqu’à la vraie limite ; les cas de mur, falaise et pente restent bloquants et testés.
 
 Les fichiers IGN/OSM, raffinement antérieur, ouvrages et assets audio historiques
-restent inchangés. Les anciens packs de décor restent disponibles ; seuls leurs
+restent inchangés. La vérification indépendante inspecte 605 fichiers publics historiques, dont 599 strictement protégés ; les graphes décodés restent identiques et les trois fichiers de terrain régénérés sont identiques octet pour octet. Voir [préservation](mission-23-evidence/preservation.json) et [déterminisme](mission-23-evidence/determinism.json). Les anciens packs de décor restent disponibles ; seuls leurs
 contrats de transformation runtime et les caches effectivement régénérés évoluent.
 L’éclairage, soleil, Lune, météo, familles, voitures, son, profils adaptatifs et
 commandes gardent leurs propriétaires. Aucune nouvelle fonctionnalité artistique.
@@ -359,10 +423,10 @@ empreintes sont vérifiées avant/après. Les scripts ne fusionnent ni ne déplo
 
 ## 25. Limites et tableau d’acceptation
 
-Les sept originaux manquent. Certains raccords conservent plus de onze mètres
+Les sept originaux manquent. Les bords de Rue du Pont conservent des discontinuités géométriques héritées approchant un mètre, même si son axe est praticable. Certains raccords de relief conservent plus de onze mètres
 d’erreur locale au raster natif ; les zones bâties/protégées et les formes
 2,5D sans surplomb ne deviennent pas un relevé fidèle par un succès numérique.
-La scène du talus protégé reste clairement visible et n’est pas déclarée corrigée.
+La scène du talus protégé reste clairement visible et n’est pas déclarée corrigée. La station fixe de raccord conserve aussi une forte occlusion du bas du personnage par la chaussée au premier plan ; l’accord de hauteur au centre de l’avatar ne démontre pas la correction de cette vue ni de toute la caméra. Les deux images restent dans la galerie.
 L’audit des axes ne prouve pas l’absence de tout obstacle hors réseau. Le contact
 de chaque objet fusionné et la beauté sur appareil physique restent à vérifier.
 
@@ -377,11 +441,11 @@ de chaque objet fusionné et la beauté sur appareil physique restent à vérifi
 | Locomotion pentes/marches et protections légitimes | **Atteint** | Cadences, diagonales, descentes, ruptures, murs/eau et marches ; seuils conservés. |
 | Suppression de la posture anormale de la capture | **Partiellement atteint** | Cause de rig reproduite et corrigée en tests ; lien avec cette capture non établi. |
 | Arbres et objets ancrés | **Partiellement atteint** | 3 889 identités conservées et supports adaptés ; contact exhaustif des détails fusionnés non démontré. |
-| Raccords et triangles blancs des images | **Partiellement atteint** | Topologie invalide nettoyée ; cause des pixels des originaux inconnue. |
+| Raccords et triangles blancs des images | **Partiellement atteint** | Topologie invalide nettoyée ; bords hérités jusqu’à 0,996 m et micro-vide conservés ; pixels des originaux inconnus. |
 | Neige sans nouvelle géométrie et comparaisons natives | **Atteint** | 24 paires appariées, exposition réellement recalculée. |
 | Navigation et habitants | **Atteint** | Graphes physiques régénérés, comptes conservés, support commun et noyau partagé. |
 | Objectif de +5 % Équilibré | **{'Atteint' if perf_attained else 'Non atteint'}** | Matrice logicielle détaillée ; dépassements mesurés et expliqués, aucun GPU physique. |
-| Parcours natifs et promenade de trente minutes | **{'Atteint' if walk and walk.get('passedMinimumThirtyMinutes') else 'Non atteint'}** | Durées et couvertures réelles dans les traces ; pont complémentaire distingué. |
+| Parcours natifs et promenade de trente minutes | **{'Atteint' if walk_attained else 'Non atteint'}** | Durées et couvertures réelles dans les traces ; pont complémentaire distingué. |
 | Tactile et Android physique | **Partiellement atteint** | Flux Chromium tactile ; matériel Android indisponible. |
 | Compilation, tests et sources protégées | **Atteint** | 342 tests, build, contrats et dérivés reproductibles ; aucune fusion ou production. |
 | Confiance globale et agrément artistique | **Partiellement atteint** | Réparation vérifiable, mais originaux manquants, raccords incertains et validation humaine restante. |
