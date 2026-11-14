@@ -207,6 +207,7 @@ export function renderGeoFeatures(scene:THREE.Object3D, features:Feature[], terr
   }
   batchLinearFeatures(scene);
   if(prepared)installPreparedArchitecture(scene,prepared);else architecture!.finish();
+  if(terrain?.walkSupport){const zero=sampleGrid(terrain.grid,0,0)??terrain.grid.elevations_m[0];scene.traverse(o=>{if(o.userData.natureCell)o.userData.natureCell.sourceHeight=(x:number,z:number)=>{const h=sampleGrid(terrain.grid,x,z);return h===null?null:h-zero}});}
   if(terrain?.walkSupport){const zero=sampleGrid(terrain.grid,0,0)??terrain.grid.elevations_m[0];scene.userData.foundationRepairs=repairFoundationFeet(scene,features,(x,z)=>{const h=sampleGrid(terrain.grid,x,z);return h===null?null:h-zero},(x,z)=>terrain.relativeHeight(x,z));}
   addLandmarks(scene,terrain?.landmarks);
   return count;

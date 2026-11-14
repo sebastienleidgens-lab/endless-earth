@@ -17,11 +17,13 @@ export function circleHitsPolygon(x,z,poly,radius=.3) {
   return inside;
 }
 export function moveGrounded(position, displacement, clear, height, slope=()=>.7,slide=true,diagnostic=null) {
+  if(![position.x,position.z,displacement.x,displacement.z].every(Number.isFinite)||Math.hypot(displacement.x,displacement.z)>100){diagnostic?.({position:{...position},requested:{...displacement},rule:'numeric-error'});return position}
   const steps=Math.max(1,Math.ceil(Math.hypot(displacement.x,displacement.z)/.1));
   const dx=displacement.x/steps,dz=displacement.z/steps;
   const attempt=(x,z)=>{
     const h=height(x,z),old=height(position.x,position.z),distance=Math.hypot(x-position.x,z-position.z);
     const report=rule=>{diagnostic?.({position:{x:position.x,y:position.y,z:position.z},requested:{x,z},currentHeight:old,nextHeight:h,horizontalM:distance,riseM:h===null||old===null?null:h-old,slope:distance&&h!==null&&old!==null?(h-old)/distance:null,limit:Math.min(slope(x,z),slope(position.x,position.z)),rule});return false};
+    if(distance<1e-12)return true;
     if(!clear(x,z))return report('obstacle');
     // Both ascent and descent are bounded: no snapping down cliffs, no unknown DEM.
     if(!Number.isFinite(h)||!Number.isFinite(old))return report('unknown-support');
@@ -29,10 +31,14 @@ export function moveGrounded(position, displacement, clear, height, slope=()=>.7
       // A step can land on a slope or another stair tread. Inspect the complete
       // 30 cm landing instead of requiring a horizontal plane. A sustained
       // steep ramp still exceeds the same slope limit across that landing.
-      if(distance<1e-9||Math.abs(h-old)>.18)return report('slope');
       const ux=(x-position.x)/distance,uz=(z-position.z)/distance;let previous=h,limit=Math.min(slope(x,z),slope(position.x,position.z)),landing=h;
-      for(const d of [.05,.10,.15,.20,.25,.30]){const xx=x+ux*d,zz=z+uz*d;landing=height(xx,zz);if(!clear(xx,zz)||!Number.isFinite(landing))return report('unknown-or-obstructed-landing');limit=Math.min(limit,slope(xx,zz));if(Math.abs(landing-previous)>.18)return report('landing-ledge');previous=landing;}
-      if(Math.abs(landing-h)>.30*limit+.001)return report('landing-slope');
+      for(const d of [.05,.10,.15,.20,.25,.30]){const xx=x+ux*d,zz=z+uz*d;landing=height(xx,zz);if(!clear(xx,zz))return report('obstructed-landing');if(!Number.isFinite(landing))return report('unknown-landing');limit=Math.min(limit,slope(xx,zz));if(Math.abs(landing-previous)>.18+.05*limit+.001)return report('landing-ledge');previous=landing;}
+      const grade=(landing-h)/.30;
+      if(Math.abs(grade)>limit+.001)return report('landing-slope');
+      // Separate a ledge from the distance already travelled up the landing
+      // grade. Measuring total rise against 18cm made the same kerb pass at
+      // 120Hz and fail at 30Hz or on a diagonal sloped approach.
+      if(Math.abs(h-old-grade*distance)>.18+.001)return report('vertical-break');
     }
     position.x=x;position.z=z;position.y=h;return true;
   };

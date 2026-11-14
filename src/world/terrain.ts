@@ -60,7 +60,14 @@ export class Terrain {
   sample(x:number,z:number):number|null {
     const corrected=this.walkSupport?.sample(x,z);
     if(corrected!==undefined)return corrected+(sampleGrid(this.grid,0,0)??this.grid.elevations_m[0]);
+    // An active rendered surface owns its holes as well as its heights. A
+    // missing triangle must not acquire an invisible old DEM floor.
+    if(this.singleSurface&&this.walkSupport)return null;
     return sampleGrid(this.grid,x,z);
+  }
+  supportAt(x:number,z:number){
+    const surface=this.walkSupport?.inspect(x,z);
+    return surface?{...surface,provenance:{surface:this.singleSurface?.manifest.binarySha256,terrain:this.sourceSha256,refinement:this.relief?.sha256,repair:this.singleSurface?.manifest.groundTruth??null,datum:this.grid.vertical_datum}}:null;
   }
   createMesh():THREE.Object3D {
     const started=performance.now();
@@ -162,7 +169,7 @@ export class Terrain {
     return {overlay,cells};
   }
   relativeHeight(x:number,z:number):number|null {
-    const h=this.sample(x,z),baseline=this.sample(0,0)??this.grid.elevations_m[0];
+    const h=this.sample(x,z),baseline=sampleGrid(this.grid,0,0)??this.grid.elevations_m[0];
     return h===null?null:h-baseline;
   }
 }
@@ -255,6 +262,18 @@ export async function fetchTerrain():Promise<Terrain|null>{
     if(await sha256(buffer)!==m.binarySha256)throw new Error('Unified surface checksum mismatch');terrain.singleSurface=decodeSurface(m,buffer);
     }
   }catch(error){console.warn('Road surfaces unavailable; exact source ground retained without overlapping fallback roads',error);}
+  if(terrain.singleSurface){
+    const original=terrain.singleSurface.manifest;
+    try{
+      const r=await fetch(base+'angles-ground-truth.json');if(!r.ok)throw Error('Terrain repair unavailable');const m=await r.json();
+      if(m.groundTruth?.schema!=='endless-earth-ground-truth-v1'||m.groundTruth.baseSurfaceSha256!==original.binarySha256||['terrainSha256','osmSha256','refinementSha256','landmarksSha256','sourceSpacingM'].some(k=>m[k]!==original[k])||m.tiles.length!==original.tiles.length||m.tiles.some((t:any,i:number)=>['x','z','size','cover'].some(k=>t[k]!==original.tiles[i][k])))throw Error('Stale terrain repair');
+      const packed=await fetch(base+'angles-ground-truth.pack');if(!packed.ok)throw Error('Terrain repair missing');const bytes=await new Response(packed.body!.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      if(await sha256(bytes)!==m.binarySha256)throw Error('Terrain repair checksum mismatch');terrain.singleSurface=decodeSurface(m,bytes);
+    }catch(error){console.warn('Terrain repair unavailable; complete validated surface retained',error)}
+    const g=terrain.grid,start=performance.now();
+    terrain.walkSupport=surfaceSupport(terrain.singleSurface.tiles,[g.origin_x_m,g.origin_z_m,g.origin_x_m+(g.width-1)*g.step_m,g.origin_z_m+(g.height-1)*g.step_m]);
+    Object.assign(terrain.metrics,{supportTriangles:terrain.walkSupport.triangles,supportIndexBytes:terrain.walkSupport.indexBytes,supportPreparationMs:performance.now()-start,repairCells:terrain.singleSurface.manifest.groundTruth?.cells??0});
+  }
   if(terrain.singleSurface)try{
     const response=await fetch(base+'angles-road-edge.json');if(!response.ok)throw new Error('Road edge field missing');const m=await response.json();
     const g=terrain.grid,source=terrain.singleSurface.manifest;

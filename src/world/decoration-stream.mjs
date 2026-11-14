@@ -1,5 +1,6 @@
 import {decodeDecoration,DECORATION_VERSION} from './decoration-pack.mjs';import {workBudget} from './render-budgets.mjs';
 import {loadForestLayer} from '../nature/forest-pack.mjs';
+import {sampleGrid} from './terrain-grid.mjs';
 const digest=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b))).map(n=>n.toString(16).padStart(2,'0')).join('');
 export async function fetchDecoration(base,entry,signal){
  const r=await fetch(base+(entry.shared?'../angles-decorations/':'')+entry.file,{signal});if(!r.ok)throw Error('Decoration unavailable: '+entry.file);const packed=await r.arrayBuffer();if(await digest(packed)!==entry.sha256)throw Error('Decoration checksum mismatch');const data=await new Response(new Blob([packed]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();if(data.byteLength!==entry.rawBytes)throw Error('Decoration size mismatch');const t=performance.now(),decoded=decodeDecoration(data);decoded.decodeCpuMs=performance.now()-t;return decoded;
@@ -21,11 +22,17 @@ export async function loadDecorations(terrain,osmText){
  if(terrain.relief){
   try{const r=await fetch(baseline+'manifest.json');if(!r.ok)throw Error('Original anchors missing');const m=await r.json();
    if(m.sources.terrain!==terrain.sourceSha256||!Array.isArray(m.trees)||m.trees.length!==2500||m.trees.some(p=>!['x','y','z','scale'].every(k=>Number.isFinite(p[k]))))throw Error('Invalid original anchors');
-   terrain.treeAnchors=m.trees.map(p=>({...p,y:terrain.relativeHeight(p.x,p.z)}));
+   const sourceZero=sampleGrid(terrain.grid,0,0)??terrain.grid.elevations_m[0];
+   terrain.treeAnchors=m.trees.map(p=>({...p,y:sampleGrid(terrain.grid,p.x,p.z)-sourceZero}));
   }catch(error){console.warn('Original terrain anchors unavailable',error);return null;}
  }
  try{const r=await fetch(base+'manifest.json');if(!r.ok)throw Error('Prepared decoration manifest unavailable');const m=await r.json();if(m.visualDNAVersion!=='endless-earth-art-dna-v1'||m.natureArtVersion!=='temperate-nature-v1'||m.architectureMaterialVersion!=='regional-materials-v2'||m.schema!==DECORATION_VERSION||m.sources.terrain!==terrain.sourceSha256||m.sources.environment!==terrain.environmentSha256||m.sources.osm!==await digest(new TextEncoder().encode(osmText))||m.trees.length!==2500||m.trees.some(p=>!['x','y','z','scale'].every(k=>typeof p[k]==='number'&&Number.isFinite(p[k]))||p.scale<=0)||m.entries.length>512||m.entries.some(e=>!/^(nature|architecture)\/-?\d+_-?\d+\.pack$/.test(e.file)||!/^\w{64}$/.test(e.sha256)))throw Error('Stale or invalid prepared decorations');
  if(terrain.relief&&(m.sources.refinement!==terrain.relief.sha256||m.trees.some((p,i)=>['x','y','z','scale','kind','leaf','mapped'].some(k=>p[k]!==terrain.treeAnchors[i][k]))))throw Error('Stale refined anchors');
- const [data,forest]=await Promise.all([fetchDecoration(base,m.static),loadForestLayer(terrain,osmText,m.trees)]);return {manifest:m,static:data,forest,stream:new DecorationStream(base,m.entries)};
+ const [data,forest]=await Promise.all([fetchDecoration(base,m.static),loadForestLayer(terrain,osmText,m.trees)]);
+ // Validate source identities and hashes before adapting only their altitude
+ // to the active visible owner. No tree is removed or regenerated for a fix.
+ const anchor=p=>{const y=terrain.relativeHeight(p.x,p.z);return Number.isFinite(y)?{...p,y}:p};
+ terrain.treeAnchors=terrain.treeAnchors?.map(anchor);
+ return {manifest:{...m,trees:m.trees.map(anchor)},static:data,forest:forest?{...forest,added:forest.added.map(anchor)}:null,stream:new DecorationStream(base,m.entries)};
  }catch(error){console.warn('Prepared decorations unavailable; deterministic source builders retained',error);return null;}
 }
