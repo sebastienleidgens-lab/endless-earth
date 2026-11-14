@@ -45,6 +45,10 @@ export function waterColor(position,shore='16.'){return `
  float fresnel=.025+.66*pow(1.-max(0.,dot(waterN,waterV)),5.);
  vec3 reflected=reflect(-waterV,waterN);
  vec3 skyReflection=mix(lifeHorizon,lifeZenith,smoothstep(0.,.8,reflected.y));
+ // Reflect the common moving cloud carrier; no second sky or render target.
+ float reflectedCloud=lifeCloudField(waterP+reflected.xz*230./max(.12,reflected.y),lifeTime);
+ float cloudAmount=smoothstep(.84-lifeCloudCover*.53,1.-lifeCloudCover*.53,reflectedCloud);
+ skyReflection=mix(skyReflection,lifeHorizon*(.84+lifeDay*.12),cloudAmount*.48);
  float shoreTint=1.-smoothstep(.5,3.,${shore});
  float variation=sin(waterP.x*.037+sin(waterP.y*.019))*.035;
  vec3 body=mix(vec3(.054,.112,.096),vec3(.12,.145,.102),shoreTint*.42)*(1.+variation);

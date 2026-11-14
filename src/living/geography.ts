@@ -23,6 +23,7 @@ export const waterLines:Point[][]=[];
 export const riverAreas:{rings:Point[][];tags:Record<string,string>}[]=[];
 export const riverLines:Point[][]=[];
 export const mappedWeirs:Point[][]=[];
+export const acousticBuildings:{ring:Point[];height:number}[]=[];
 export const acousticRoads:{points:Point[];tags:Record<string,string>}[]=[];
 let ready=false;const tourDestinations:any[]=[],tourHistory:string[]=[];let tourGraph:any=null;
 export function navigationReady(){return ready;}
@@ -34,6 +35,8 @@ export async function loadNavigation(){
   const t=f.properties??{},g=f.geometry;
   if(g?.type==='LineString'&&t.highway)roadInventory.push({id:t.osm_id,name:t.name??null,...roadCategory(t)});
   const local=(p:number[])=>toLocal({lon:p[0],lat:p[1]});
+  if(g?.type==='Polygon'&&t.building)acousticBuildings.push({ring:g.coordinates[0].map(local),height:Math.min(35,Math.max(3,Number.parseFloat(t.height)||Number(t['building:levels'])*3||8))});
+
   const coords=g?.type==='Point'?[g.coordinates]:g?.type==='Polygon'?g.coordinates[0]:g?.type==='LineString'?g.coordinates:[];
   const kind=t.historic?'heritage':t.bridge==='yes'?'bridge':t.building==='church'||t.building==='chapel'?'heritage':null;
   if(kind&&coords.length){const points=coords.map(local),point=points.reduce((a:any,p:any)=>({x:a.x+p.x/points.length,z:a.z+p.z/points.length}),{x:0,z:0});tourDestinations.push({id:'osm:'+t.osm_id,point,kind,name:kind==='bridge'?'les abords du pont':t.name?'les abords de '+t.name:'le patrimoine cartographié',radius:kind==='heritage'?85:55,source:'OSM '+t.osm_id})}

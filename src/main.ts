@@ -1,3 +1,10 @@
+// @ts-ignore Shared mapped footprint index for conservative rain shelter.
+import {acousticObstacles} from './audio/occlusion.mjs';
+import {createTraffic} from './life/traffic';
+import {createSensitiveWorld} from './earthlife/sensitive-world';
+import {acousticRoads,acousticBuildings,riverAreas} from './living/geography';
+// @ts-ignore Stable conservative resolution controller.
+import {AdaptiveResolution} from './world/adaptive-resolution.mjs';
 import {disposeRiverFlow} from './earthlife/river-flow';
 import {initializeWorldMaterials,configureWorldFiltering,disposeWorldMaterials,worldMaterialStatus} from './materials/world';
 import {lifeSettings,setLifeProfile,readLifePreferences,saveLifePreferences,type LifeProfileName} from './earthlife/preferences';
@@ -54,6 +61,11 @@ const hemisphere=new THREE.HemisphereLight(0xffffff,0x738465,2);scene.add(hemisp
 const sun=new THREE.DirectionalLight(0xffe5bc,2.3); sun.position.set(-60,100,55); sun.castShadow=true;
 sun.shadow.mapSize.set(1024,1024); sun.shadow.camera.left=-65; sun.shadow.camera.right=65; sun.shadow.camera.top=65; sun.shadow.camera.bottom=-65; scene.add(sun); scene.add(sun.target);
 const landscapeLighting=createLandscapeLighting(scene,renderer,sun,()=>avatar,{manifestUrl:import.meta.env.BASE_URL+'data/angles-lighting.json',packUrl:import.meta.env.BASE_URL+'data/angles-lighting.pack'});
+const adaptiveResolution=new AdaptiveResolution();
+const sensorySeed=new URLSearchParams(location.search).has('perf')?20:crypto.getRandomValues(new Uint32Array(1))[0];
+const traffic=createTraffic(scene,camera,sensorySeed);
+const sensitiveWorld=createSensitiveWorld(scene,sensorySeed);
+let worldSensoryReady=false;
 const signs=createSignsOfLife(scene,camera,renderer,{diagnostic:new URLSearchParams(location.search).get('perf')==='1'});
 // Render a complete fallback synchronously: network requests must never block first paint.
 const demo = new THREE.Group();
@@ -215,8 +227,8 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-if(import.meta.hot)import.meta.hot.dispose(()=>{landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
-addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
+if(import.meta.hot)import.meta.hot.dispose(()=>{traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
+addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
 const audioForward=new THREE.Vector3(),audioUp=new THREE.Vector3(),worldUp=new THREE.Vector3(0,1,0);
 const canvas=renderer.domElement;canvas.style.touchAction='none';
@@ -260,21 +272,23 @@ walkMenu=createWalkMenu(root,()=>{input.clear();velocity.x=velocity.z=0;walker.s
 walkMenu.mount('.menu-weather',document.querySelector<HTMLElement>('.nature-controls')!);document.querySelector<HTMLDetailsElement>('.nature-controls')!.open=true;
 walkMenu.mount('.menu-walk',viewLabel);walkMenu.mount('.menu-walk',panel);walkMenu.mount('.menu-sound',soundButton);walkMenu.mount('.menu-sound',volumeLabel);
 const runToggle=document.createElement('input');runToggle.type='checkbox';runToggle.setAttribute('aria-label','Course au toucher');runToggle.onchange=()=>{input.touchRunning=runToggle.checked};const runLabel=document.createElement('label');runLabel.className='run-toggle';runLabel.append(runToggle,'Course au toucher');walkMenu.mount('.menu-walk',runLabel);
+let cameraComfort=false;try{cameraComfort=localStorage.getItem('endless-earth-camera-comfort')==='true'}catch{}const comfort=document.createElement('input');comfort.type='checkbox';comfort.checked=cameraComfort;comfort.setAttribute('aria-label','Caméra à mouvement réduit');comfort.onchange=()=>{cameraComfort=comfort.checked;try{localStorage.setItem('endless-earth-camera-comfort',String(cameraComfort))}catch{}};const comfortLabel=document.createElement('label');comfortLabel.append(comfort,'Caméra à mouvement réduit');walkMenu.mount('.menu-walk',comfortLabel);
 walkMenu.mount('.menu-quality',qualityButton);qualityButton.open=true;
-const lifeCredit=document.createElement('p');lifeCredit.textContent='Avions et fumées simulés artistiquement. Cheminées interprétées sur les toitures générées ; aucune observation de trafic ou d’occupation réelle.';walkMenu.mount('.menu-sources',lifeCredit);
+const lifeCredit=document.createElement('p');lifeCredit.textContent='Faune, brume et rares voitures sont des interprétations artistiques. Avions et fumées simulés artistiquement. Cheminées interprétées sur les toitures générées ; aucune observation de trafic ou d’occupation réelle.';walkMenu.mount('.menu-sources',lifeCredit);
 walkMenu.mount('.menu-sources',credits);walkMenu.mount('.menu-version',document.querySelector<HTMLElement>('.hud')!);
 if(perfPanel){walkMenu.mount('.menu-diagnostics',perfPanel);walkMenu.dialog.querySelector<HTMLElement>('.menu-diagnostics')!.hidden=false;perfPanel.setAttribute('aria-live','off');for(const button of Array.from(document.querySelectorAll<HTMLButtonElement>('.nature-controls button')))walkMenu.mount('.menu-diagnostics',button)}
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({authentic:worldMaterialStatus(),lighting:scene.userData.landscapeLighting??null,snow:scene.userData.snow??null,decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,navigation:navigationGraphStats,spawn:scene.userData.spawn??null,walker:walkerModel.metrics,movement:lastMovementDiagnostic(),roads:roadInventory,signs:signs.metrics,menuOpen:walkMenu?.open??false,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({traffic:traffic.metrics,sensitiveWorld:sensitiveWorld.stats,adaptiveResolution:scene.userData.adaptiveResolution,authentic:worldMaterialStatus(),lighting:scene.userData.landscapeLighting??null,snow:scene.userData.snow??null,decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,navigation:navigationGraphStats,spawn:scene.userData.spawn??null,walker:walkerModel.metrics,movement:lastMovementDiagnostic(),roads:roadInventory,signs:signs.metrics,menuOpen:walkMenu?.open??false,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
+function prepareWorldSenses(){if(!activeTerrain||worldSensoryReady)return;const groundHeight=walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z));worldSensoryReady=true;const roofs=acousticObstacles(acousticBuildings.map(b=>{const y=groundHeight(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));scene.userData.weatherFloorAt=(x:number,z:number)=>roofs.roofAt(x,z,-10000);traffic.prepare(acousticRoads,groundHeight,canWalk);sensitiveWorld.configure(riverAreas.flatMap(a=>a.rings),groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));}
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
 const previous=avatar.position.clone();
 if(controls.forward||controls.strafe){tourContinue=false;if(walker.active){walker.stop('Contrôle manuel repris');velocity.x=velocity.z=0;}}
-if(tourContinue&&!walker.active){if(walker.message.startsWith('Destination atteinte')){if(tourWait===0&&walker.route?.destination)rememberTour(walker.route.destination.id);tourWait+=dt;if(tourWait>=3){walker.start(routeAt(avatar.position,activeTerrain));tourContinue=walker.active;tourWait=0}}else tourContinue=false;}
+if(tourContinue&&!walker.active){if(walker.message.startsWith('Destination atteinte')){if(tourWait===0&&walker.route?.destination)rememberTour(walker.route.destination.id);tourWait+=dt;if(tourWait>=6){walker.start(routeAt(avatar.position,activeTerrain));tourContinue=walker.active;tourWait=0}}else tourContinue=false;}
 const autoStep=walker.active;
 if(autoStep){
  const delta=walker.update(avatar.position,dt,(p:{x:number;z:number})=>validPoint(p,activeTerrain));
@@ -286,6 +300,7 @@ if(walkStatus.textContent!==walker.message)walkStatus.textContent=walker.message
 const terrainHeight=(x:number,z:number)=>activeTerrain?activeTerrain.relativeHeight(x,z):0;
 const groundHeight=walkingHeight(terrainHeight);
 // Wait for the real dataset before allowing walking in geography mode.
+traffic.constrain(avatar.position,displacement);
 if(geographyReady&&!walkMenu?.open)moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep);
 const moved=avatar.position.distanceTo(previous);
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
@@ -298,7 +313,7 @@ if(activeTerrain){const h=groundHeight(avatar.position.x,avatar.position.z);if(h
 const locomotion=walkerModel.update(moved,dt,groundHeight);
 smoothZoom=THREE.MathUtils.lerp(smoothZoom,zoom,1-Math.exp(-dt*10));
 const desiredEye=avatar.position.y+1.65;
-eyeHeight=eyeHeight===undefined?desiredEye:THREE.MathUtils.lerp(eyeHeight,desiredEye,1-Math.exp(-dt*14));
+eyeHeight=cameraComfort||eyeHeight===undefined?desiredEye:THREE.MathUtils.lerp(eyeHeight,desiredEye,1-Math.exp(-dt*14));
 if(Math.abs(eyeHeight-desiredEye)<.0001)eyeHeight=desiredEye;
 // Bound vertical lag on ramps; never let smoothing sink the eyes into the ground.
 eyeHeight=THREE.MathUtils.clamp(eyeHeight,desiredEye-.15,desiredEye+.15);
@@ -334,16 +349,19 @@ if(transitionElapsed<.8){
 
 updateAtmosphere(dt,quality==='low',elapsed);updateForestLife(scene,camera);
 signs.update(elapsed,scene.userData.climate,avatar.position,geographyReady);
+if(geographyReady)prepareWorldSenses();
+traffic.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettings.name);
+sensitiveWorld.update(elapsed,scene.userData.climate??{},avatar.position,camera,lifeSettings.name);
+const motor=traffic.vehicle,mp=traffic.metrics.position;sound.vehicle(motor&&mp?{id:motor.id,position:{x:mp[0],y:mp[1]+.7,z:mp[2]},speed:traffic.metrics.speed,rain:scene.userData.climate?.weather?.rain??0}:null);
+
 camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);
 sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[],locomotion,signs.audioFlight,activeTerrain?avatar.position.y+(activeTerrain.sample(0,0)??0):null);
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateTerrainLOD(scene,camera.position,avatar.position,quality==='low');updateVegetationLOD(scene,camera,quality==='low');updateArchitectureLOD(scene,camera,quality==='low')}
 scene.userData.decorationStream?.tick(quality==='low',elapsed*1000,dt>0?moved/dt:0);
 renderer.render(scene,camera);
-if(qualityAuto&&geographyReady&&!document.hidden){
-  qualitySeconds+=elapsed;qualityFrames++;
-  if(qualitySeconds>=6){const fps=qualityFrames/qualitySeconds;applyQuality(fps<45?'low':'high');qualityAuto=false;}
-}
+if(geographyReady&&!document.hidden){const scale=adaptiveResolution.update(elapsed*1000,elapsed,lifeSettings.name),ratio=Math.min(devicePixelRatio,quality==='low'?1:1.6)*scale;if(Math.abs(renderer.getPixelRatio()-ratio)>.01){renderer.setPixelRatio(ratio);renderer.setSize(innerWidth,innerHeight);}scene.userData.adaptiveResolution={scale,filteredMs:adaptiveResolution.filtered,changes:adaptiveResolution.changes};}
+
 if(perfPanel){
   perfElapsed+=elapsed;perfFrames++;
   if(perfElapsed>=1){

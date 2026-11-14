@@ -1,3 +1,5 @@
+// @ts-ignore Shared dew and wetness, derived from the existing calendar.
+import {sensitiveUniforms} from '../earthlife/sensitive-state.mjs';
 import {riverUniforms} from '../earthlife/river-flow';
 import {worldMaterialUniforms,registerWorldMaterial} from '../materials/world';
 // @ts-ignore Shared artistic contract.
@@ -27,7 +29,7 @@ const soilTexture=new THREE.DataTexture(pixels,64,64);soilTexture.wrapS=soilText
 export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edges:RoadEdges|null=null,water=false,appearance:SurfaceAppearance|null=null,groundArt=ART_DNA.surfaces){
  const art=roads&&!!appearance;
  material.onBeforeCompile=s=>{
-  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,riverUniforms,lifeUniforms,worldMaterialUniforms,groundAppearance);
+  s.uniforms.natureSoil={value:soilTexture};Object.assign(s.uniforms,sensitiveUniforms,riverUniforms,lifeUniforms,worldMaterialUniforms,groundAppearance);
   if(water){s.uniforms.natureTime=environmentalTime;s.uniforms.natureWind=environmentalWind;}
   if(roads){Object.assign(s.uniforms,roadUniforms);if(edges){
    s.uniforms.roadEdges={value:edges.texture};s.uniforms.roadEdgeOrigin={value:new THREE.Vector2(...edges.manifest.origin)};
@@ -38,7 +40,7 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
   s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nnaturePosition=position;'+(roads?'earthRoadType=earthRoad;':''));
   if(art){s.vertexShader='varying vec3 surfaceNormal;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('naturePosition=position;','naturePosition=position;surfaceNormal=normalize(mat3(modelMatrix)*normal);');}
   if(water){s.vertexShader='attribute float earthWater;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('earthRoadType=earthRoad;','earthRoadType=earthWater>.5?7.:earthRoad;');}
-  s.fragmentShader='uniform vec4 earthGroundSeason;uniform float earthWetness;\n'+(roads?'varying float earthRoadType;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
+  s.fragmentShader='uniform float worldDew;uniform vec4 earthGroundSeason;uniform float earthWetness;\n'+(roads?'varying float earthRoadType;\n'+roadShaderPrelude+(edges?'#define ROAD_EDGES\nuniform sampler2D roadEdges;uniform vec2 roadEdgeOrigin;uniform vec2 roadEdgeExtent;uniform float roadEdgeRange;\n':''):'')+'uniform sampler2D natureSoil; varying vec3 naturePosition;\n'+s.fragmentShader;
   if(water)s.fragmentShader=waterPrelude+s.fragmentShader;
   if(art)s.fragmentShader=surfacePrelude+s.fragmentShader;
   s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
@@ -67,7 +69,7 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
    ${art?surfaceColorFor(groundArt):''}
    ${roads?(water?roadColorShader.replace('float mineralHeight=0.;','').replace('float mineralDetail=0.;',''):roadColorShader):''}
    // One rain owner; darkening is strongest on porous earth, restrained on stone.
-   float wetPatch=clamp(earthWetness*(.82+groundPatch*.5),0.,1.);
+   float wetPatch=clamp((earthWetness+worldDew*.16)*(.82+groundPatch*.5),0.,1.);
    diffuseColor.rgb*=1.-wetPatch*${roads?'(earthRoadType<.5?.20:earthRoadType<1.5?.28:.16)':'.18'};
    ${water?'}':''}`);
   if(roads)s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n'+roadNormalShader+(art?surfaceNormalShader:''));
@@ -83,7 +85,7 @@ export function groundDetail(material:THREE.MeshLambertMaterial,roads=false,edge
    #endif
    #include <opaque_fragment>`);
  };
- material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v18-'+!!edges+'-'+water+'-'+art+'-'+groundArt.id:'nature-ground-atlas-v18';
+ material.customProgramCacheKey=()=> roads?'nature-ground-landscape-v20-'+!!edges+'-'+water+'-'+art+'-'+groundArt.id:'nature-ground-atlas-v18';
  material.userData.snowIntegratedWater=roads&&water;
  if(roads)registerWorldMaterial(material);cloudReceiver(material,{water,surface:art});
 }

@@ -1,3 +1,5 @@
+// @ts-ignore Shared persistent rain/dew state.
+import {sensitiveUniforms} from '../earthlife/sensitive-state.mjs';
 // @ts-ignore Shared deterministic window schedule.
 import {windowFragment} from './windows.mjs';
 import {worldMaterialUniforms,worldMaterialPrelude,worldArchitectureColor,registerWorldMaterial} from '../materials/world';
@@ -28,7 +30,7 @@ export function loadArchitectureAtlas(){
   return true;
  }catch(error){console.warn('Architecture atlas unavailable; deterministic compact material fallback retained',error);return false}})();
 }
-const prelude=`uniform vec2 architectureAtlasSize,architectureTile;varying float vArchitectureMaterial;varying vec2 m13WallUV;
+const prelude=`uniform float worldWet,worldDew;uniform vec2 architectureAtlasSize,architectureTile;varying float vArchitectureMaterial;varying vec2 m13WallUV;
 vec4 architectureSample(vec2 uv,float kind){vec2 cell=vec2(mod(kind,3.),floor(kind/3.));vec2 scale=architectureTile.xx/architectureAtlasSize;return textureGrad(map,(cell*(architectureTile.x+architectureTile.y*2.)+fract(uv)*architectureTile.x+architectureTile.y)/architectureAtlasSize,dFdx(uv)*scale,dFdy(uv)*scale);}
 vec3 architectureBump(vec3 n,vec3 eye,float h){vec3 dx=dFdx(eye),dy=dFdy(eye),a=cross(dy,n),b=cross(n,dx);float d=dot(dx,a);return normalize(abs(d)*n-sign(d)*(dFdx(h)*a+dFdy(h)*b));}
 `;
@@ -36,7 +38,7 @@ export function architectureMaterial(heritage=false){
  const art=ART_DNA.architecture;
  const m=new THREE.MeshLambertMaterial({vertexColors:!heritage,color:heritage?0xc7bda5:0xffffff,map:architectureAtlas,side:heritage?THREE.FrontSide:THREE.DoubleSide});m.userData.architectureShared=true;(m as any).defaultAttributeValues={...(m as any).defaultAttributeValues,windowSeed:[1]};
  m.onBeforeCompile=s=>{
-  Object.assign(s.uniforms,worldMaterialUniforms,lifeUniforms,{architectureAtlasSize:size,architectureTile:tile});
+  Object.assign(s.uniforms,sensitiveUniforms,worldMaterialUniforms,lifeUniforms,{architectureAtlasSize:size,architectureTile:tile});
   s.vertexShader='attribute float windowSeed;varying float vWindowSeed;\n'+s.vertexShader;
   s.vertexShader=(heritage?'varying vec2 vHeritageUV;':'attribute float architectureMaterial;')+'varying float vArchitectureMaterial;varying vec2 m13WallUV;\n'+s.vertexShader;
   s.vertexShader=s.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>\nvWindowSeed=windowSeed;vec3 m13P=(modelMatrix*vec4(position,1.)).xyz;vec3 m13N=normalize(mat3(modelMatrix)*normal);m13WallUV=vec2(dot(m13P.xz,normalize(vec2(m13N.z,-m13N.x)+vec2(1e-8))),m13P.y);\n${heritage?'vArchitectureMaterial=0.;vec3 heritageP=(modelMatrix*vec4(position,1.)).xyz;vHeritageUV=vec2(abs(normal.x)>abs(normal.z)?heritageP.z:heritageP.x,heritageP.y)/vec2(4.,2.4);':'vArchitectureMaterial=architectureMaterial;'}`);
@@ -56,13 +58,17 @@ export function architectureMaterial(heritage=false){
     #endif
    }
    else if(architectureKind<5.5)diffuseColor.rgb*=${glsl(art.meanTone)};
-   diffuseColor.rgb*=1.-lifeRain*.035;
+   // Porous materials remain damp after showers; roofs dry with the shared state.
+   float wallBase=1.-smoothstep(.03,.22,abs(sin(m13WallUV.y*.17+m13WallUV.x*.09)));
+   float wetSurface=worldWet*(architectureKind<1.5?.10:architectureKind<3.5?.16:.04);
+   diffuseColor.rgb*=1.-wetSurface-worldDew*.035;
+   if(architectureKind<1.5&&architectureFade>.01){float patina=sin(m13WallUV.x*1.7+sin(m13WallUV.y*3.1))*sin(m13WallUV.y*2.3);diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(.84,.91,.80),wallBase*max(0.,patina)*(.12+worldWet*.12)*architectureFade);}
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n#if LIFE_ARCH_DETAIL == 1\nif(architectureKind<5.5)normal=architectureBump(normal,-vViewPosition,architectureHeight);\n#endif');
   s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35)+vec3(.85,.39,.115)*warmWindow();}\n#include <opaque_fragment>`);
  };
  m.userData.snowGlass=true;
- m.customProgramCacheKey=()=> 'regional-architecture-stable-v16-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;
+ m.customProgramCacheKey=()=> 'regional-architecture-weather-v20-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;
 }
 export const architectureMaterials={stone:architectureMaterial(),plaster:architectureMaterial(),tile:architectureMaterial(),plain:architectureMaterial()};
 export const heritageMaterial=architectureMaterial(true);
