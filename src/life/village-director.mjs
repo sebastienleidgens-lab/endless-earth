@@ -46,6 +46,7 @@ export class VillageLifeDirector{
  if((c.storm>.25||c.rain>.65||c.snow>.5)&&!g.returning){g.returning=true;g.wait=Math.min(g.wait,8);this.stats.weatherReturns++;this.event('weather-return',g)}
  if(g.state==='depart'&&g.stateTime>=1.8){g.state='walk';g.stateTime=0;}
  if(g.state==='off-duty'&&this.clock<g.wakeAt){g.members.forEach(m=>m.speed=0);continue;}
+ if(g.state==='off-duty'&&((['family','stroller'].includes(g.kind)&&(c.hour<7||c.hour>21||c.storm>.25))||this.rng()>attendance(c,g.route.zone)*.65)){g.wakeAt=this.clock+180+this.rng()*900;continue;}
  if(g.state==='off-duty'){g.state='rest';g.stateTime=90;g.homebound=false;g.returning=false;}
  if(g.state==='pause'||g.state==='activity'||g.state==='rest'){
   const duration=g.state==='rest'?90:g.state==='activity'?g.wait:g.activity==='sniff'?7:9;
@@ -74,7 +75,7 @@ export class VillageLifeDirector{
  if(blocked){this.stats.recoveries++;g.members.forEach(m=>m.blocked=0);if(g.blocked>40){g.state='activity';g.stateTime=0;g.wait=8;g.blocked=0;this.event('blocked-safe-stop',g)}}
  if(g.progress>=g.route.length&&g.members.every(m=>m.s>=g.route.length-(g.members.length*1.2))){g.goal=g.route.goal;g.state='activity';g.stateTime=0;g.members.forEach(m=>m.speed=0);this.event('arrival',g);}
  }
- for(const a of this.critters){a.age+=dt;if(a.state==='rest'&&a.age>=a.wait){a.state='walk';a.age=0;}if(a.state==='walk'){a.s=Math.min(a.route.length,a.s+dt*(a.kind==='cat'?.55:.9));const p=pathPose(a.route,a.s),y=physical.height?.(p.x,p.z);if((!physical.clear||physical.clear(p.x,p.z))&&y!==null){a.position={x:p.x,y:y??0,z:p.z};a.yaw=Math.atan2(p.dx,p.dz);a.distance=a.s;}if(a.s===a.route.length){a.state='rest';a.wait=120+this.rng()*240;a.age=0;}}}
+ for(const a of this.critters){a.age+=dt;if(a.state==='rest'&&a.age>=a.wait){const next=lifeRoute(this.graph,a.route.goal,this.rng,{min:20,max:100});if(next){a.route=next;a.s=0;a.state='walk';}a.age=0;}if(a.state==='walk'){a.s=Math.min(a.route.length,a.s+dt*(a.kind==='cat'?.55:.9));const p=pathPose(a.route,a.s),y=physical.height?.(p.x,p.z);if((!physical.clear||physical.clear(p.x,p.z))&&y!==null){a.position={x:p.x,y:y??0,z:p.z};a.yaw=Math.atan2(p.dx,p.dz);a.distance=a.s;}if(a.s===a.route.length){a.state='rest';a.wait=120+this.rng()*240;a.age=0;}}}
  if(this.clock>=this.encounterAt){this.encounterAt=this.clock+5;const solos=this.groups.filter(g=>g.kind==='solo'&&g.state==='walk'&&this.clock-(g.lastEncounter??-900)>180);for(let i=0;i<solos.length;i++)for(let j=i+1;j<solos.length;j++){const a=solos[i],b=solos[j];if(distance(a.members[0].position,b.members[0].position)<2.2&&this.rng()<.12){for(const g of [a,b]){g.state='pause';g.stateTime=0;g.activity='conversation';g.lastEncounter=this.clock;this.event('encounter',g)}}}}
  // Ended routines retain their endpoint while observable. The adapter may drop
  // a representation, but only the simulation retires dormant logical visitors.
