@@ -15,7 +15,7 @@ export function createSensitiveWorld(scene:THREE.Scene,seed:number){
  const mistPlane=new THREE.Mesh(mistGeometry,mistMaterial),mistFloor=new THREE.Mesh(mistGeometry,mistMaterial);mistFloor.rotation.x=-Math.PI/2;mistFloor.scale.y=5;root.add(mistPlane,mistFloor);mistPlane.visible=mistFloor.visible=false;
  // Original rounded fore/hind wings: generic morphology, no claimed local species.
  const wingShape=new THREE.Shape();wingShape.moveTo(0,-.013);wingShape.quadraticCurveTo(.012,-.036,.035,-.033);wingShape.quadraticCurveTo(.050,-.020,.030,-.004);wingShape.lineTo(.011,.003);wingShape.quadraticCurveTo(.039,-.002,.035,.021);wingShape.quadraticCurveTo(.020,.038,.005,.016);wingShape.lineTo(0,.012);wingShape.closePath();
- const wingG=new THREE.ShapeGeometry(wingShape,8);wingG.rotateX(Math.PI/2);wingG.computeVertexNormals();
+ const wingG:THREE.BufferGeometry=new THREE.ShapeGeometry(wingShape,8);wingG.rotateX(Math.PI/2);wingG.computeVertexNormals();
  const dragonG=new THREE.BufferGeometry();dragonG.setAttribute('position',new THREE.Float32BufferAttribute([0,0,-.012,.058,0,-.024,.048,0,-.008,0,0,-.005,.048,0,-.008,0,0,.003,0,0,.005,.052,0,.008,.047,0,.020,0,0,.005,.047,0,.020,0,0,.014],3));dragonG.computeVertexNormals();
  const butterflyM=new THREE.MeshLambertMaterial({color:0xc5b77d,side:THREE.DoubleSide}),dragonM=new THREE.MeshLambertMaterial({color:0x8eaca2,side:THREE.DoubleSide}),bodyM=new THREE.MeshLambertMaterial({color:0x403e30});
  const insect=new THREE.Group(),left=new THREE.Mesh(wingG,butterflyM),right=new THREE.Mesh(wingG,butterflyM);right.scale.x=-1;insect.add(left,right);
@@ -23,12 +23,12 @@ export function createSensitiveWorld(scene:THREE.Scene,seed:number){
  const antennaG=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-.001,0,-.016),new THREE.Vector3(-.005,.003,-.025),new THREE.Vector3(.001,0,-.016),new THREE.Vector3(.005,.003,-.025)]),antennaM=new THREE.LineBasicMaterial({color:0x403e30}),antennae=new THREE.LineSegments(antennaG,antennaM);insect.add(antennae);root.add(insect);insect.visible=false;
  const splashesG=new THREE.BufferGeometry(),splashes=new Float32Array(28*6);splashesG.setAttribute('position',new THREE.BufferAttribute(splashes,3));
  const splashM=new THREE.LineBasicMaterial({color:0xbcc6bf,transparent:true,opacity:.22}),splashMesh=new THREE.LineSegments(splashesG,splashM);splashMesh.frustumCulled=false;splashMesh.visible=false;root.add(splashMesh);
- let configured=false,clock=0,epoch=-1,active=false,bankMesh:THREE.Mesh|null=null,bankMaterial:THREE.Material|null=null,anchor=new THREE.Vector3(),budgetKey='';
+ let configured=false,clock=0,epoch=-1,eventBudgetRevision=-1,active=false,bankMesh:THREE.Mesh|null=null,bankMaterial:THREE.Material|null=null,anchor=new THREE.Vector3(),budgetKey='';
  let support:(x:number,z:number)=>number|null=()=>null,clear:(x:number,z:number)=>boolean=()=>false,habitat:(x:number,z:number)=>string=()=> 'unknown';
  return {stats,configure(rings:any[],height:typeof support,allowed:typeof clear,habitatAt:typeof habitat){if(configured)return;configured=true;support=height;clear=allowed;habitat=habitatAt;
    const p:number[]=[],colors:number[]=[],bend:number[]=[],kinds:number[]=[];let count=0;
    for(const ring of rings)for(let i=1;i<ring.length&&count<96;i++){const a=ring[i-1],b=ring[i],distance=Math.hypot(b.x-a.x,b.z-a.z);if(distance<3)continue;
-    for(let d=2;d<distance&&count<96;d+=14+noise(i+seed)*12){const t=d/distance,nx=-(b.z-a.z)/distance,nz=(b.x-a.x)/distance;
+    for(let d=2;d<distance&&count<96;d+=14+noise(i+20)*12){const t=d/distance,nx=-(b.z-a.z)/distance,nz=(b.x-a.x)/distance;
      for(const side of [-1,1]){const x=a.x+(b.x-a.x)*t+nx*side*1.3,z=a.z+(b.z-a.z)*t+nz*side*1.3,y=height(x,z),h=habitatAt(x,z);if(y===null||!allowed(x,z)||!['riparian','grass','meadow','scrub'].includes(h)||noise(x+z)<.38)continue;
       const tall=noise(x*3-z)>.65;for(let blade=0;blade<5;blade++){const phase=blade*2.4+x,dx=Math.cos(phase)*.15,dz=Math.sin(phase)*.15,H=(tall?.65:.22)+noise(blade+x)*.22;for(const [xx,yy,zz]of [[x+dx-.018,y+.02,z+dz],[x+dx+.018,y+.02,z+dz],[x+dx+.1,y+H,z+dz+.06]]){p.push(xx,yy,zz);colors.push(tall?.25:.30,tall?.34:.39,.20);bend.push(yy-y);kinds.push(tall?7:0)}}count++;break;
      }
@@ -38,6 +38,7 @@ export function createSensitiveWorld(scene:THREE.Scene,seed:number){
   },update(dt:number,climate:any,player:THREE.Vector3,camera:THREE.Camera,profile:string){const start=performance.now();clock=lifeUniforms.lifeTime.value;const fog=sensitiveUniforms.valleyMist.value;mistPlane.visible=mistFloor.visible=fog.w>.002;
    if(mistPlane.visible){mistPlane.position.set(fog.x,fog.z+2.7,fog.y);mistPlane.rotation.y=Math.atan2(camera.position.x-fog.x,camera.position.z-fog.y);mistFloor.position.set(fog.x,fog.z+1.2,fog.y)}
    const c={habitat:habitat(player.x,player.z),month:climate.calendar?.month??1,day:lifeUniforms.lifeDay.value,rain:climate.weather?.rain??0,wind:climate.wind?.speed??1},event=insectEvent(clock,seed,c),budget=scene.userData.lifeBudget;
+   if(budget&&budget.revision!==eventBudgetRevision){eventBudgetRevision=budget.revision;if(active){budget.release(budgetKey);active=budget.claim(budgetKey,'events',1)}}
    if(epoch!==event.epoch){epoch=event.epoch;active=false;budget?.release(budgetKey)}
    if(!active&&event.active&&event.age<1.5&&profile!=='eco'&&(budget?.allocated.events??0)===0){budgetKey='sensitive-insect:'+epoch;if(budget?.claim(budgetKey,'events',1)){active=true;anchor.copy(player);anchor.x+=6+noise(seed+epoch)*8;anchor.z+=noise(seed-epoch)*12-6;anchor.y=(support(anchor.x,anchor.z)??player.y)+.8}}
    if(active&&(!event.active||player.distanceTo(anchor)>55)){active=false;budget?.release(budgetKey)}

@@ -1,0 +1,23 @@
+{
+  "nativeSource": "d611636",
+  "file": "src/earthlife/sensitive-world.ts",
+  "typeAnnotation": {
+    "emittedJavaScriptIdentical": true,
+    "sha256": "1d04d1392266775bc02fc4fc4cfb8ea0779ad6396b825e0c7c7a074f50efd0d1"
+  },
+  "bankLayout": {
+    "change": "Persistent bank layout uses a fixed world seed, independently of ephemeral session-event seed.",
+    "nativeDiagnosticSeed": 20,
+    "emittedJavaScriptEqualsOriginalSpecializedToSeed20": true,
+    "sha256": "96c9752d426abe1946c2965f809b2d26e13e8b57ce1e5cc54f02ad61f169e3eb",
+    "otherRuntimeChanges": true,
+    "equalityScope": "Equality verified at the type/layout stage, before the separately described event-budget lifecycle guard."
+  },
+  "eventBudgetLifecycle": {
+    "fix": "Reclaim an active insect event allowance after the shared profile owner resets its budget. A disabled event budget retires the insect.",
+    "nativeRunInsectFrames": 0,
+    "coveredBy": "tests/mission-20.test.mjs, profile lifecycle fixture"
+  },
+  "scope": "Type annotation emits identical JS; world seed 20 retains exactly the native bank layout. The additional event-budget lifecycle guard is covered separately; no insect was active during the native thirty-minute run.",
+  "finalRuntimeModuleSha256": "d7597a2cc588136318e2951c1d4f030e8eae062d0f08bd17b78d669aa162dfa5"
+}
