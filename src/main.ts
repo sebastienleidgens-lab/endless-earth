@@ -1,5 +1,6 @@
 // @ts-ignore On-demand metric inspection, hidden from the ordinary interface.
 import {inspectGround} from './world/ground-inspection.mjs';
+import {createTerrainInspector} from './world/terrain-inspector';
 import {createLanterns} from './architecture/lanterns';
 // @ts-ignore Shared mapped footprint index for conservative rain shelter.
 import {acousticObstacles} from './audio/occlusion.mjs';
@@ -159,8 +160,9 @@ if(tilesPreview && !terrainPreview){
     }
     try{
       const count=await loadAnglesGeography(realWorld,terrain??undefined);
-      void landscapeLighting.install(realWorld,terrain,terrain?.walkSupport?{manifestUrl:import.meta.env.BASE_URL+'data/angles-walk-lighting.json',packUrl:import.meta.env.BASE_URL+'data/angles-walk-lighting.pack'}:undefined);
-      if(terrain?.singleSurface&&realWorld.userData.decorationManifest)scene.userData.snowExposureSource={manifestUrl:import.meta.env.BASE_URL+'data/'+(terrain.walkSupport?'angles-walk-snow-exposure.json':'angles-snow-exposure.json'),packUrl:import.meta.env.BASE_URL+'data/'+(terrain.walkSupport?'angles-walk-snow-exposure.pack':'angles-snow-exposure.pack'),bindings:{terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface.manifest.binarySha256,landmarks:terrain.singleSurface.manifest.landmarksSha256,static:realWorld.userData.decorationManifest.static.sha256}};
+      const surfaceAssets=terrain?.singleSurface?.manifest.groundTruth?'angles-ground-truth':terrain?.singleSurface?.manifest.walkCorrection?'angles-walk':'angles';
+      void landscapeLighting.install(realWorld,terrain,{manifestUrl:import.meta.env.BASE_URL+'data/'+surfaceAssets+'-lighting.json',packUrl:import.meta.env.BASE_URL+'data/'+surfaceAssets+'-lighting.pack'});
+      if(terrain?.singleSurface&&realWorld.userData.decorationManifest)scene.userData.snowExposureSource={manifestUrl:import.meta.env.BASE_URL+'data/'+surfaceAssets+'-snow-exposure.json',packUrl:import.meta.env.BASE_URL+'data/'+surfaceAssets+'-snow-exposure.pack',bindings:{terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface.manifest.binarySha256,landmarks:terrain.singleSurface.manifest.landmarksSha256,static:realWorld.userData.decorationManifest.static.sha256}};
       scene.userData.decorationStream=realWorld.userData.decorationStream;
       scene.userData.lifeHabitat=realWorld.userData.lifeHabitat;
       scene.userData.lifeCeiling=new THREE.Box3().setFromObject(realWorld).max.y+12;
@@ -283,6 +285,8 @@ walkMenu.mount('.menu-quality',qualityButton);qualityButton.open=true;
 const lifeCredit=document.createElement('p');lifeCredit.textContent='Faune, brume et rares voitures sont des interprétations artistiques. Avions et fumées simulés artistiquement. Cheminées interprétées sur les toitures générées ; aucune observation de trafic ou d’occupation réelle.';walkMenu.mount('.menu-sources',lifeCredit);
 walkMenu.mount('.menu-sources',credits);walkMenu.mount('.menu-version',document.querySelector<HTMLElement>('.hud')!);
 if(perfPanel){walkMenu.mount('.menu-diagnostics',perfPanel);walkMenu.dialog.querySelector<HTMLElement>('.menu-diagnostics')!.hidden=false;perfPanel.setAttribute('aria-live','off');for(const button of Array.from(document.querySelectorAll<HTMLButtonElement>('.nature-controls button')))walkMenu.mount('.menu-diagnostics',button)}
+const terrainInspector=perfPreview?createTerrainInspector(scene,camera,renderer.domElement,walkMenu.dialog.querySelector<HTMLElement>('.menu-diagnostics')!,()=>activeTerrain,(x,z)=>activeTerrain?inspectGround(scene,x,z,walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z)),inspectCollision,activeTerrain):null,lastMovementDiagnostic):null;
+if(import.meta.hot)import.meta.hot.dispose(()=>terrainInspector?.dispose());
 const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0;
@@ -307,7 +311,7 @@ const terrainHeight=(x:number,z:number)=>activeTerrain?activeTerrain.relativeHei
 const groundHeight=walkingHeight(terrainHeight);
 // Wait for the real dataset before allowing walking in geography mode.
 traffic.constrain(avatar.position,displacement);
-if(geographyReady&&!walkMenu?.open)moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep);
+if(geographyReady&&!walkMenu?.open)moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep,dt);
 const moved=avatar.position.distanceTo(previous);
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
 

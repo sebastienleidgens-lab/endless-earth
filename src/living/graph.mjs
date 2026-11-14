@@ -1,10 +1,10 @@
 import {distance,clearSegment,allowed} from './walk.mjs';
 // Only coincident source vertices connect; never infer crossings or repair gaps.
-export function buildGraph(lines,valid,admit=allowed){
+export function buildGraph(lines,valid,admit=allowed,sweep=null){
  const nodes=[],edges=[],cells=new Map();
  function node(p,layer){const key=`${Math.round(p.x*100)},${Math.round(p.z*100)},${layer}`,old=cells.get(key);if(old!==undefined&&distance(nodes[old].point,p)<.01)return old;const id=nodes.length;nodes.push({point:p,edges:[]});cells.set(key,id);return id;}
  for(const line of lines){if(line.tags&&!admit(line.tags))continue;
-  for(let i=1;i<line.points.length;i++){const a=line.points[i-1],b=line.points[i];if(distance(a,b)<.01||!clearSegment(a,b,valid))continue;
+  for(let i=1;i<line.points.length;i++){const a=line.points[i-1],b=line.points[i];if(distance(a,b)<.01||!clearSegment(a,b,valid)||sweep&&(!sweep(a,b)||!sweep(b,a)))continue;
    const from=node(a,line.tags?.layer??'0'),to=node(b,line.tags?.layer??'0'),id=edges.length;
    const direction=line.tags?.['oneway:foot'],forward=direction!=='-1'&&line.tags?.['foot:forward']!=='no',backward=!['yes','1','true'].includes(direction)&&line.tags?.['foot:backward']!=='no';
    edges.push({from,to,forward,backward,length:distance(a,b),name:line.name,surface:line.surface});if(forward)nodes[from].edges.push(id);if(backward)nodes[to].edges.push(id);

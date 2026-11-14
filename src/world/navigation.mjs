@@ -43,10 +43,10 @@ export function createNavigation(features) {
       const {tags,points,polygon,width,historicWall}=item,n=nearest(x,z,points,polygon);
       const hits=historicWall?n.distance<width/2+.3:polygon?circleHitsPolygon(x,z,points,.3):n.distance<width/2+.3;
       if(!hits)continue;
-      const block=(rule,camera=false)=>{blocked=true;if(camera)cameraBlocked=true;reasons?.push({rule,id:tags.osm_id??null,name:tags.name??null,barrier:tags.barrier??null,highway:tags.highway??null})};
+      const block=(rule,camera=false)=>{blocked=true;if(camera)cameraBlocked=true;reasons?.push({rule,id:tags.osm_id??null,name:tags.name??null,barrier:tags.barrier??null,highway:tags.highway??null,shape:polygon?'polygon':'polyline',points,width,provenance:'OSM/local documented collision; metric source transform shared with renderer'})};
       // Same 1.25 m footprint as the rendered ruin walls; keep courtyards free.
       if(historicWall&&n.distance<width/2+.3)block('historic-masonry',true);
-      if(tags.natural==='water'||tags.waterway){water=true;reasons?.push({rule:'mapped-water',id:tags.osm_id??null,name:tags.name??null})}
+      if(tags.natural==='water'||tags.waterway){water=true;reasons?.push({rule:'mapped-water',id:tags.osm_id??null,name:tags.name??null,shape:polygon?'polygon':'polyline',points,width,provenance:'OSM water outline; walking forbidden without verified deck'})}
       if(tags.barrier&&!['entrance','gate','lift_gate','bollard'].includes(tags.barrier))block('barrier',true);
       if(tags.barrier&&!pedestrianAccess(tags))block('barrier-access');
       if(tags.highway){

@@ -4,6 +4,8 @@ An exploratory Three.js walking simulation, piloting **Angles-sur-l’Anglin (Vi
 
 Mission 18 ajoute le choix des douze mois dans le menu de promenade, des sols saisonniers et humides et l’ombre du randonneur, en conservant le calendrier solaire et les arbres de Mission 17. [Rapport, contrôles et limites](docs/mission-18.md) · [Galerie locale des douze mois](docs/mission-18-evidence/index.html). La neige reste une météo volontaire, y compris en été.
 
+Mission 23 réconcilie le support avec le maillage rendu, affine 758 cellules naturelles à partir du MNT LiDAR HD IGN et corrige les bordures et la pose au repos. **Validation globale partielle** : sept captures originales absentes, raccords hérités encore discontinus et objectif de performance dépassé dans certaines scènes. [Rapport, preuves et limites](docs/mission-23.md) · [Galerie locale avant/après](docs/mission-23-evidence/index.html).
+
 ## Run
 
 Node.js 20.19+ or 22.12+:
@@ -23,11 +25,11 @@ Building footprints, water, walls, access restrictions, slopes and unknown-heigh
 
 ## Geography and provenance
 
-- `public/data/angles-terrain.json`: real IGN RGE ALTI elevations; 2 km local extent, 201² samples, extracted 8 November 2026. Acquisition date is not supplied. **No LiDAR HD is currently imported.**
+- `public/data/angles-terrain.json`: real IGN RGE ALTI elevations; 2 km local extent, 201² samples, extracted 8 November 2026. Acquisition date is not supplied. The original grid is unchanged. Mission 23 adds a source-bound derivative of 758 natural cells from nine pinned IGN LiDAR HD 0.5 m MNT tiles; this is not a full-pilot centimetric survey.
 - `public/data/angles-osm.geojson`: OSM extract from 8 November 2026; roads, buildings, water, two forest polygons and the castle perimeter. Incomplete land-use tags do not justify inventing agricultural parcels.
 - `npm run geo:prepare`: rebuilds checked, deterministic terrain LOD indices, mapped land-cover atlas and SHA-256 manifest offline. Source files remain unchanged. The browser falls back to the exact IGN grid if prepared assets are stale or missing.
 - `npm run geo:roads`: rebuilds the unified OSM road/IGN ground partition offline. It replaces overlapping road ribbons without a depth offset. Missing/stale road derivatives omit visible roads with an explicit status; navigation still uses the source paths.
-- `scripts/import-mnt.py`: future, explicit MNT GeoTIFF import with projected coordinates, checksums, datum and nodata validation. Tested with a synthetic raster; real local LiDAR availability is unverified because download access was blocked in Mission 07.
+- `scripts/import-mnt.py`: future, explicit MNT GeoTIFF import with projected coordinates, checksums, datum and nodata validation. Tested with a synthetic raster; download access was blocked during Mission 07; Mission 23 separately reacquires the nine official pinned tiles with `scripts/fetch-mission-23-mnt.py`.
 - [Data licences and attribution](public/data/LICENSE.md) · [Mission 07.1 road correction and evidence](docs/mission-07-1.md) · [Mission 07](docs/mission-07.md) · [Mission 06](docs/mission-06.md).
 
 The local rendering frame is metric but approximate (under 0.2% axis scale error around the pilot). Source coordinates are retained in GeoJSON. A future projection migration must transform terrain, buildings, navigation and vegetation together.
