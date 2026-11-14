@@ -31,7 +31,7 @@ export function createCloudLayer(scene:THREE.Scene){
   float thickness=smoothstep(edge,edge+.27,field);
   float shading=thickness*.7;if(cloudEco<.5)shading=clamp(shading+(n-detail(uv+lifeSun.xz*.7))*.9,0.,1.);
   vec3 color=mix(cloudLit,cloudBase,shading)+rim;
-  color+=vec3(.18,.22,.31)*lifeLightning*pow(max(0.,dot(d,lifeLightningDirection)),8.);
+  if(lifeLightning>.001)color+=vec3(.18,.22,.31)*lifeLightning*pow(max(0.,dot(d,lifeLightningDirection)),8.);
   gl_FragColor=vec4(color,alpha*.96);
   #include <colorspace_fragment>
  }`});

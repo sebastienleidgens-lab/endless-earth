@@ -2,7 +2,7 @@ import * as THREE from 'three';
 /** Two depth ranges in ONE bounded instanced draw. Streak width is metric,
  * not a browser-dependent GL line width; all motion remains on the GPU. */
 export function createPrecipitation(scene:THREE.Scene){
- const geometry=new THREE.InstancedBufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute([-.5,0,0,.5,0,0,-.5,1,0,.5,0,0,.5,1,0,-.5,1,0],3));
+ const geometry=new THREE.InstancedBufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute([-.5,0,0,-.5,1,0,.5,0,0,.5,0,0,-.5,1,0,.5,1,0],3));
  const seeds=new Float32Array(900*4);const noise=(i:number)=>{const x=Math.sin(i*127.1)*43758.5453;return x-Math.floor(x)};
  for(let i=0;i<900;i++)seeds.set([noise(i+1),noise(i+711),noise(i+981),noise(i+1245)],i*4);geometry.setAttribute('rainSeed',new THREE.InstancedBufferAttribute(seeds,4));
  const floorPixels=new Float32Array(32*32).fill(-10000),floorTexture=new THREE.DataTexture(floorPixels,32,32,THREE.RedFormat,THREE.FloatType);floorTexture.minFilter=floorTexture.magFilter=THREE.NearestFilter;floorTexture.needsUpdate=true;
@@ -15,7 +15,7 @@ export function createPrecipitation(scene:THREE.Scene){
  void main(){float extent=mix(32.,78.,step(.50,rainSeed.w));vec3 p=vec3((rainSeed.x-.5)*extent,rainSeed.y*38.,(rainSeed.z-.5)*extent);p.xz=mod(p.xz+drift.xz+extent*.5,extent)-extent*.5;p.y=mod(p.y+drift.y,38.)-10.;
  float lengthM=(.45+rain*.85)*mix(.7,1.3,rainSeed.w);p.y-=position.y*lengthM;p.xz-=wind*position.y*(.25+rain*.25);
  vec4 w=modelMatrix*vec4(p,1.);vec2 roofUV=(w.xz-roofRect.xy)/32.;float shelterY=all(greaterThanEqual(roofUV,vec2(0.)))&&all(lessThanEqual(roofUV,vec2(1.)))?texture2D(roofField,roofUV).r:-10000.;fade=smoothstep(max(floorY-.5,shelterY),max(floorY+.6,shelterY+.25),w.y)*(1.-smoothstep(extent*.30,extent*.52,length(p.xz)));
- vec4 v=viewMatrix*w;v.x+=position.x*(.014+rain*.019)*mix(1.,1.4,step(.5,rainSeed.w));streak=position.xy;gl_Position=projectionMatrix*v;}`,
+ vec4 v=viewMatrix*w;v.x+=position.x*(.028+rain*.030)*mix(1.,1.4,step(.5,rainSeed.w));streak=position.xy;gl_Position=projectionMatrix*v;}`,
  fragmentShader:`uniform float rain,day;varying float fade;varying vec2 streak;void main(){float edge=1.-smoothstep(.18,.5,abs(streak.x));float end=smoothstep(0.,.20,streak.y)*(1.-smoothstep(.72,1.,streak.y));gl_FragColor=vec4(mix(vec3(.24,.31,.42),vec3(.62,.70,.75),day),fade*edge*end*(.30+rain*.40)*rain);\n#include <colorspace_fragment>\n}`});
  const mesh=new THREE.Mesh(geometry,material);mesh.name='weather-rain';mesh.frustumCulled=false;mesh.renderOrder=4;scene.add(mesh);
  const impactGeometry=new THREE.InstancedBufferGeometry();impactGeometry.setAttribute('position',new THREE.Float32BufferAttribute([-.5,0,-.5,.5,0,-.5,-.5,0,.5,.5,0,-.5,.5,0,.5,-.5,0,.5],3));const anchors=new Float32Array(96*4);impactGeometry.setAttribute('impactAnchor',new THREE.InstancedBufferAttribute(anchors,4));

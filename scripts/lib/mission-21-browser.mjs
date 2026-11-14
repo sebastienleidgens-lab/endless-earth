@@ -11,7 +11,7 @@ window.m21={
  evolution(value){const e=document.querySelector('input[aria-label="Évolution naturelle"]');e.checked=value;e.dispatchEvent(new Event('change'))},
  pixels(){window.c15.render();const gl=renderer.getContext(),p=new Uint8Array(gl.drawingBufferWidth*gl.drawingBufferHeight*4);gl.readPixels(0,0,gl.drawingBufferWidth,gl.drawingBufferHeight,gl.RGBA,gl.UNSIGNED_BYTE,p);let mean=0,white=0;for(let i=0;i<p.length;i+=4){const y=(p[i]*.2126+p[i+1]*.7152+p[i+2]*.0722)/255;mean+=y;white+=Number(y>.94)}return {mean:mean/(p.length/4),white:white/(p.length/4),glError:gl.getError()}},
  resume(){clock.getDelta();window.cHold=false},pause(){window.cHold=true},
- route(){const r=routeAt(avatar.position,activeTerrain);if(r)walker.start(r);return r},
+ route(){if(!walker.active){tourContinue=false;autoButton.click()}return walker.route},
  nativeSettings(a){const p=avatar.position.toArray();for(const [l,v]of [['Profil graphique',a.profile],['Vue du personnage',a.view],['Météo simulée',a.weather],['Moment de la journée',a.moment]])if(v)window.m18.choose(l,v);if(a.month)window.m18.month(a.month);return {before:p,after:avatar.position.toArray()}},
  heading(){const p=walker.route?.points[walker.index];if(p)yaw=Math.atan2(avatar.position.x-p.x,avatar.position.z-p.z)},
  rotate(a){yaw+=a;lastCameraInteraction=performance.now()},
