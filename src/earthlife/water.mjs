@@ -25,14 +25,16 @@ export function waterColor(position,shore='16.'){return `
  #endif
  vec3 skyReflection=mix(lifeHorizon,lifeZenith,smoothstep(0.,.8,abs(waterV.y)+ripple));
  vec3 body=vec3(.054,.112,.096)*(.12+lifeDay*.84);
- waterRadiance=mix(body,skyReflection,clamp(fresnel+ripple,0.,1.));waterMask=1.;diffuseColor.rgb=body;
+ float moonGlint=pow(max(0.,dot(vec3(0.,1.,0.),normalize(waterV+lifeMoon))),180.);
+ waterRadiance=mix(body,skyReflection,clamp(fresnel+ripple,0.,1.))+vec3(.30,.40,.58)*lifeMoonlight*moonGlint*.65;
+ float iceMask=lifeIce*(1.-smoothstep(.35,3.,${shore}))*(1.-turbulence);waterRadiance=mix(waterRadiance,vec3(.12,.19,.23)*(.15+lifeDay*.6),iceMask);waterMask=1.;diffuseColor.rgb=body;
  #else
  float distanceFade=1.-smoothstep(35.,200.,length(vViewPosition));
  vec2 rippleSlope=vec2(0.);
  #if LIFE_WATER_MODE > 0
  float waveA=carrier*1.8+sin(crossing*.7)*.7-lifeTime*.9;
  float waveB=carrier*3.4+sin(crossing*1.3)*1.3-lifeTime*1.7;
- float amplitude=(.012+lifeMeanWind*.020+turbulence*.026)*lifeWater*(.55+.45*pow(sin(waterP.x*.14+waterP.y*.07),2.));
+ float amplitude=(1.-lifeIce*.75)*(.012+lifeMeanWind*.020+turbulence*.026)*lifeWater*(.55+.45*pow(sin(waterP.x*.14+waterP.y*.07),2.));
  rippleSlope=(downstream*1.8*cos(waveA)+vec2(-downstream.y,downstream.x)*cos(waveB)*.55)*amplitude;
  #if LIFE_WATER_MODE == 2
  float waveC=dot(waterP,vec2(6.1,-4.3))+sin(waterP.x*.13)*1.2+lifeTime*1.7;
@@ -61,6 +63,13 @@ export function waterColor(position,shore='16.'){return `
  }
  #endif
  waterRadiance=mix(body,skyReflection,fresnel)+lifeSunColor*lifeSunIntensity*sunGlint*${glsl(ART_DNA.water.sunGlint)}*(1.-lifeRain*.45);
+ float moonRoughness=mix(250.,60.,clamp(lifeMeanWind*.5+lifeRain*.5,0.,1.));
+ float moonGlint=pow(max(0.,dot(waterN,normalize(waterV+lifeMoon))),moonRoughness);
+ waterRadiance+=vec3(.36,.46,.66)*lifeMoonlight*moonGlint*(.48+.52*sin(carrier*3.1-lifeTime*.7)*sin(carrier*3.1-lifeTime*.7));
+ float iceGrain=.5+.5*sin(waterP.x*.61+sin(waterP.y*.43))*sin(waterP.y*.79-waterP.x*.21);
+ float iceMask=smoothstep(.18,.72,lifeIce*2.6-iceGrain*.20)*(1.-smoothstep(.25,3.2,${shore}))*(1.-turbulence*.95);
+ waterRadiance=mix(waterRadiance,vec3(.18,.26,.29)*(.13+lifeDay*.70)+skyReflection*.16,iceMask*.78);
+ waterRadiance+=vec3(.16,.20,.28)*lifeLightning*pow(max(0.,dot(waterN,normalize(waterV+lifeLightningDirection))),55.);
  float foam=turbulence*turbulence*smoothstep(.90,.995,sin(carrier*5.-lifeTime*1.3)*sin(crossing*3.7+sin(carrier*.5)))*.14*lifeDay;
  waterRadiance=mix(waterRadiance,vec3(.65,.70,.65),foam);
  waterMask=1.;diffuseColor.rgb=body;

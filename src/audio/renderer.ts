@@ -82,8 +82,9 @@ export class AcousticRenderer{
    b.reason=layer.reason;b.weight=layer.weight;
    b.gain.gain.setTargetAtTime(layer.weight,t,manual?.32:['wind','foliage'].includes(layer.id)?.45:1.2);
    b.filter.frequency.setTargetAtTime(layer.filter*(1-.3*(c.weather?.rain??0))*(1-.22*(c.weather?.snowCover??0)),t,manual?.32:1);
-   if(b.pan&&c.water){
-    const dx=c.water.point.x-this.lastListener.x,dz=c.water.point.z-this.lastListener.z,f=this.lastForward;
+   const source=layer.id==='roof-rain'?c.roof:c.water;
+   if(b.pan&&source){
+    const dx=source.point.x-this.lastListener.x,dz=source.point.z-this.lastListener.z,f=this.lastForward;
     b.pan.pan.setTargetAtTime(.7*(dx*-f.z+dz*f.x)/(Math.hypot(dx,dz)*Math.hypot(f.x,f.z)||1),t,.3);
    }
    void this.resources.request(layer.asset);
@@ -102,7 +103,7 @@ export class AcousticRenderer{
  }
  for(const v of this.voices)if(v.panner&&v.position&&v.velocity){const age=t-v.started;v.panner.positionX.setTargetAtTime(v.position.x+v.velocity.x*age,t,.15);v.panner.positionY.setTargetAtTime(v.position.y+v.velocity.y*age,t,.15);v.panner.positionZ.setTargetAtTime(v.position.z+v.velocity.z*age,t,.15)}
  }
- event(event:{asset:string;position:Vec3;velocity?:Vec3;priority:number;gain:number;refDistance?:number;maxDistance?:number;reason?:string;emitterId?:string;roadEvent?:boolean}){const b=this.resources.get(event.asset);if(!b){void this.resources.request(event.asset);return false}if(Math.hypot(event.position.x-this.lastListener.x,event.position.z-this.lastListener.z)>(event.maxDistance??110))return false;const result=this.play(event.asset,b,{gain:event.gain,priority:event.priority,position:event.position,velocity:event.velocity,refDistance:event.refDistance,maxDistance:event.maxDistance,reason:event.reason});if(result){result.roadEvent=event.roadEvent;if(event.roadEvent)this.roadEvents++;if(event.asset.startsWith('bird-'))this.heardBirds++;this.recentEvents.push({asset:event.asset,emitterId:event.emitterId,position:event.position,reason:event.reason,time:this.context.currentTime});if(this.recentEvents.length>16)this.recentEvents.shift()}return !!result}
+ event(event:{asset:string;position:Vec3;velocity?:Vec3;priority:number;gain:number;refDistance?:number;maxDistance?:number;reason?:string;emitterId?:string;roadEvent?:boolean;delay?:number}){const b=this.resources.get(event.asset);if(!b){void this.resources.request(event.asset);return false}if(Math.hypot(event.position.x-this.lastListener.x,event.position.z-this.lastListener.z)>(event.maxDistance??110))return false;const result=this.play(event.asset,b,{gain:event.gain,priority:event.priority,position:event.position,velocity:event.velocity,refDistance:event.refDistance,maxDistance:event.maxDistance,reason:event.reason,delay:event.delay});if(result){result.roadEvent=event.roadEvent;if(event.roadEvent)this.roadEvents++;if(event.asset.startsWith('bird-'))this.heardBirds++;this.recentEvents.push({asset:event.asset,emitterId:event.emitterId,position:event.position,reason:event.reason,time:this.context.currentTime});if(this.recentEvents.length>16)this.recentEvents.shift()}return !!result}
  preloadSteps(kind:string){const m=MATERIALS[kind];if(!m)return;const seen=new Set<string>();for(const id of m.assets){const source=ASSETS[id].source;if(seen.has(source))continue;seen.add(source);void this.resources.request(id);if(seen.size>=2)break}}
  footstep(kind:string,speed=1.35,contact?:{side?:number;run?:number;energy?:number;wetness?:number}){
  const m=MATERIALS[kind];if(!m)return false;const ready=m.assets.filter((id:string)=>this.resources.cache.has(id)),fresh=ready.filter((id:string)=>!this.lastStepAssets.includes(id)),different=(fresh.length?fresh:ready.filter((id:string)=>id!==this.lastStepAssets.at(-1))).filter((id:string)=>ASSETS[id].source!==this.lastStepSource),pool=different.length?different:fresh.length?fresh:ready.filter((id:string)=>id!==this.lastStepAssets.at(-1));

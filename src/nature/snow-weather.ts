@@ -28,7 +28,7 @@ export function createSnowWeather(scene:THREE.Scene,latitude=46){
  };
  return {sample,update(camera:THREE.Vector3,player:THREE.Vector3,dt:number,wallDt:number,time:number,date:Date,weather:any,wind:THREE.Vector2,day:number,profile:string){
   if(disposed)return state;
-  const snow=weather.snow??0,temperature=snowTemperature(date,day,snow,latitude);snowStep(state,wallDt,{snow,rain:weather.rain,temperature,day});if(fixed!==null&&Number.isFinite(fixed))state.cover=Math.max(0,Math.min(1,fixed));
+  const snow=weather.snow??0,temperature=Number.isFinite(weather.temperatureC)?weather.temperatureC:snowTemperature(date,day,snow,latitude);snowStep(state,wallDt,{snow,rain:weather.rain,temperature,day});if(fixed!==null&&Number.isFinite(fixed))state.cover=Math.max(0,Math.min(1,fixed));
   if(snow>.005||state.cover>.0005)void load();const ready=metrics.exposure==='ready';fade=Math.min(1,fade+Math.max(0,wallDt)/1.2);snowUniforms.earthSnowCover.value=state.cover;snowUniforms.earthSnowReady.value=ready?fade:0;snowUniforms.earthSnowDetail.value=profile==='eco'?0:1;setSnowAppearance(ready&&state.cover>.0005);
   particles.update(camera,player,dt,time,snow,wind,day,profile,ready);Object.assign(metrics,state,{flakes:particles.count});return state;
  },dispose(){disposed=true;controller.abort();request?.abort();particles.dispose();texture?.dispose();texture=null;source=null;metrics.textureBytes=0;resetSnowAppearance();if(scene.userData.snow===metrics)delete scene.userData.snow}};

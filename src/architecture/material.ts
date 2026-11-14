@@ -65,7 +65,7 @@ export function architectureMaterial(heritage=false){
    if(architectureKind<1.5&&architectureFade>.01){float patina=sin(m13WallUV.x*1.7+sin(m13WallUV.y*3.1))*sin(m13WallUV.y*2.3);diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(.84,.91,.80),wallBase*max(0.,patina)*(.12+worldWet*.12)*architectureFade);}
   `);
   s.fragmentShader=s.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n#if LIFE_ARCH_DETAIL == 1\nif(architectureKind<5.5)normal=architectureBump(normal,-vViewPosition,architectureHeight);\n#endif');
-  s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35)+vec3(.85,.39,.115)*warmWindow();}\n#include <opaque_fragment>`);
+  s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>',`if(architectureKind>6.5){float viewAngle=1.-abs(dot(normal,normalize(vViewPosition)));outgoingLight=mix(outgoingLight,lifeHorizon*.28+diffuseColor.rgb*.15,.35+viewAngle*.35)+mix(vec3(.85,.36,.10),vec3(.74,.47,.21),fract(vWindowSeed*39.1))*warmWindow();}\n#include <opaque_fragment>`);
  };
  m.userData.snowGlass=true;
  m.customProgramCacheKey=()=> 'regional-architecture-weather-v20-'+heritage;registerWorldMaterial(m);cloudReceiver(m,{architecture:true});return m;

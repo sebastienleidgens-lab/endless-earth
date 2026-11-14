@@ -1,3 +1,4 @@
+import {createLanterns} from './architecture/lanterns';
 // @ts-ignore Shared mapped footprint index for conservative rain shelter.
 import {acousticObstacles} from './audio/occlusion.mjs';
 import {createTraffic} from './life/traffic';
@@ -65,6 +66,7 @@ const adaptiveResolution=new AdaptiveResolution();
 const sensorySeed=new URLSearchParams(location.search).has('perf')?20:crypto.getRandomValues(new Uint32Array(1))[0];
 const traffic=createTraffic(scene,camera,sensorySeed);
 const sensitiveWorld=createSensitiveWorld(scene,sensorySeed);
+const lanterns=createLanterns(scene);
 let worldSensoryReady=false;
 const signs=createSignsOfLife(scene,camera,renderer,{diagnostic:new URLSearchParams(location.search).get('perf')==='1'});
 // Render a complete fallback synchronously: network requests must never block first paint.
@@ -227,8 +229,8 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-if(import.meta.hot)import.meta.hot.dispose(()=>{traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
-addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
+if(import.meta.hot)import.meta.hot.dispose(()=>{lanterns.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
+addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){lanterns.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
 const audioForward=new THREE.Vector3(),audioUp=new THREE.Vector3(),worldUp=new THREE.Vector3(0,1,0);
 const canvas=renderer.domElement;canvas.style.touchAction='none';
@@ -352,6 +354,7 @@ signs.update(elapsed,scene.userData.climate,avatar.position,geographyReady);
 if(geographyReady)prepareWorldSenses();
 traffic.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettings.name);
 sensitiveWorld.update(elapsed,scene.userData.climate??{},avatar.position,camera,lifeSettings.name);
+if(activeTerrain)lanterns.update(scene.userData.climate,avatar.position,(x,z)=>activeTerrain!.relativeHeight(x,z),lifeSettings.name);
 const motor=traffic.vehicle,mp=traffic.metrics.position;sound.vehicle(motor&&mp?{id:motor.id,position:{x:mp[0],y:mp[1]+.7,z:mp[2]},speed:traffic.metrics.speed,rain:scene.userData.climate?.weather?.rain??0}:null);
 
 camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);

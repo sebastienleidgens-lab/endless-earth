@@ -6,6 +6,7 @@ export const LAYERS=Object.freeze([
  {id:'water-detail',assets:AUDIO_GROUPS['water-turbulence']??[],priority:42,filter:8000},
  {id:'foliage',assets:[...(AUDIO_GROUPS.foliage??[]),...(AUDIO_GROUPS['foliage-dry']??[])],priority:40,filter:9000},
  {id:'wind',assets:AUDIO_GROUPS['wind-open']??[],priority:30,filter:7000},
+ {id:'roof-rain',assets:AUDIO_GROUPS['rain-roof']??[],priority:72,filter:7800},
  {id:'rain',assets:AUDIO_GROUPS.rain??[],priority:55,filter:9000}
 ]);
 // Calibrated by family. Calm/unknown places have no permanent air/filler bed.
@@ -15,12 +16,12 @@ export function layerMix(c){
  const exposure=Math.max(c.influences.exposure??0,({rock:1,water:1,meadow:.9,farmland:1,built:.24,garden:.35,orchard:.35,scrub:.65,riparian:.5,wood:.25,forest:.25})[c.habitat]??0)*(1-(c.influences.forest??0)*.65);
  const water=c.water&&Number.isFinite(c.water.distanceM)?(c.water.kind==='stream'?.22*(1-smooth(4,55,c.water.distanceM)):riverGain(c.water.distanceM)):0;
  const turbulence=c.water&&Number.isFinite(c.water.weirDistanceM)?.20*(1-smooth(6,38,c.water.weirDistanceM))*water/.56:0;
- const weights={foliage:v*.28*smooth(.08,.55,wind)*(.8+.2*gust),water,'water-detail':turbulence,wind:exposure*.36*smooth(.20,.70,wind),rain:.24*smooth(.05,.55,rain)};
+ const weights={'roof-rain':c.roof?.distanceM<18?.36*rain*(1-smooth(3,18,c.roof.distanceM)):0,foliage:v*.28*smooth(.08,.55,wind)*(.8+.2*gust),water,'water-detail':turbulence,wind:exposure*.36*smooth(.20,.70,wind),rain:(.16+.24*rain)*smooth(.02,.55,rain)};
  for(const k of ['foliage','water','water-detail'])weights[k]*=1-snowCover*.28;
- const reasons={foliage:`mapped vegetation ${v.toFixed(2)} × shared wind ${wind.toFixed(2)}, gust ${gust.toFixed(2)}`,water:c.water?`${c.water.provenance}; physical proximity ${c.water.distanceM.toFixed(1)} m`:'no mapped river evidence','water-detail':c.water?`mapped weir proximity ${c.water.weirDistanceM?.toFixed(1)??'unknown'} m; turbulence is an artistic interpretation, discharge unknown`:'no mapped weir',wind:`mapped exposure ${exposure.toFixed(2)} × shared wind ${wind.toFixed(2)}; silent in calm`,rain:`EarthLife simulated rain ${rain.toFixed(2)}`};
- // Source fs-501243 explicitly contains distant thunder. Admit it only in
- // storm-strength rain; ordinary showers use the verified thunder-free source.
- return LAYERS.map(l=>{const assets=l.id==='water'&&c.water?.kind==='stream'?(AUDIO_GROUPS.water??[]):l.id==='foliage'&&!['autumn','winter'].includes(c.season)?(AUDIO_GROUPS.foliage??[]):l.id==='rain'&&rain<=.8?l.assets.filter(id=>id!=='rain-fs-501243-1'):l.assets;return {...l,assets,asset:assets[0],weight:weights[l.id],reason:reasons[l.id],diffuse:!l.id.startsWith('water')}}).filter(l=>l.asset&&l.weight>.001).sort((a,b)=>b.weight*b.priority-a.weight*a.priority);
+ const reasons={'roof-rain':'Recorded rain on tiles; mapped nearby roof envelope; shared rainfall intensity',foliage:`mapped vegetation ${v.toFixed(2)} × shared wind ${wind.toFixed(2)}, gust ${gust.toFixed(2)}`,water:c.water?`${c.water.provenance}; physical proximity ${c.water.distanceM.toFixed(1)} m`:'no mapped river evidence','water-detail':c.water?`mapped weir proximity ${c.water.weirDistanceM?.toFixed(1)??'unknown'} m; turbulence is an artistic interpretation, discharge unknown`:'no mapped weir',wind:`mapped exposure ${exposure.toFixed(2)} × shared wind ${wind.toFixed(2)}; silent in calm`,rain:`EarthLife simulated rain ${rain.toFixed(2)}`};
+ // Every peal is now scheduled by the visual storm event. The legacy rain
+ // recording containing unsynchronized thunder is excluded from all rain beds.
+ return LAYERS.map(l=>{const assets=l.id==='water'&&c.water?.kind==='stream'?(AUDIO_GROUPS.water??[]):l.id==='foliage'&&!['autumn','winter'].includes(c.season)?(AUDIO_GROUPS.foliage??[]):l.id==='rain'?l.assets.filter(id=>id!=='rain-fs-501243-1'):l.assets;return {...l,assets,asset:assets[0],weight:weights[l.id],reason:reasons[l.id],diffuse:!l.id.startsWith('water')&&l.id!=='roof-rain'}}).filter(l=>l.asset&&l.weight>.001).sort((a,b)=>b.weight*b.priority-a.weight*a.priority);
 }
 // Species are plausible regional interpretations, never confirmed sightings.
 export const BIRD_PROFILES=Object.freeze([

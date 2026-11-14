@@ -31,18 +31,19 @@ export function createCloudLayer(scene:THREE.Scene){
   float thickness=smoothstep(edge,edge+.27,field);
   float shading=thickness*.7;if(cloudEco<.5)shading=clamp(shading+(n-detail(uv+lifeSun.xz*.7))*.9,0.,1.);
   vec3 color=mix(cloudLit,cloudBase,shading)+rim;
+  color+=vec3(.18,.22,.31)*lifeLightning*pow(max(0.,dot(d,lifeLightningDirection)),8.);
   gl_FragColor=vec4(color,alpha*.96);
   #include <colorspace_fragment>
  }`});
  const mesh=new THREE.Mesh(geometry,material);mesh.name='earthlife-cloud-layer';mesh.frustumCulled=false;mesh.renderOrder=-10;scene.add(mesh);
  const warmTint=new THREE.Vector3(.84,.68,.53);
  return {update(p:THREE.Vector3,day:number,enabled:number,eco=false,warm=0,rain=0){
-  mesh.visible=enabled>.001;mesh.position.copy(p);const u=material.uniforms,attenuation=1-rain*.38,cover=lifeUniforms.lifeCloudCover.value;
+  mesh.visible=enabled>.001;mesh.position.copy(p);const u=material.uniforms,attenuation=1-rain*.42,cover=lifeUniforms.lifeCloudCover.value;
   u.cloudOrigin.value.copy(p);u.lifeCloudEnabled.value=Math.min(1,enabled/.7);u.cloudEco.value=Number(eco);
   // Uniform-only color/coverage work once per frame; all noise, layers,
   // lighting detail and opacity remain at the original full resolution.
-  u.cloudBase.value.set(.025+day*.455,.035+day*.495,.055+day*.515).multiplyScalar(attenuation);
+  u.cloudBase.value.set(.012+day*(.455-rain*.25),.022+day*(.495-rain*.25),.042+day*(.515-rain*.24)).multiplyScalar(attenuation);
   u.cloudLit.value.set(.05+day*.89,.065+day*.875,.095+day*.815).lerp(warmTint,warm*.45*day).multiplyScalar(attenuation);
-  u.cloudShape.value.set(.72-cover*.38,THREE.MathUtils.smoothstep(cover,.78,1)*.46,(1-cover)*.25*day*attenuation);
+  u.cloudShape.value.set(.72-cover*.43,THREE.MathUtils.smoothstep(cover,.78,1)*.28,(1-cover)*.25*day*attenuation);
  },dispose(){scene.remove(mesh);geometry.dispose();material.dispose()}};
 }
