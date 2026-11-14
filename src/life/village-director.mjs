@@ -36,7 +36,7 @@ export class VillageLifeDirector{
  const old={...m.position};if(dt>0){const step=distance(old,{x,z}),limit=m.person.speed*1.35*dt;if(step>limit){const t=limit/step;x=old.x+(x-old.x)*t;z=old.z+(z-old.z)*t;}if(physical.clear){const n=Math.max(1,Math.ceil(distance(old,{x,z})/.25));let safe=true;for(let k=1;k<=n;k++)if(!physical.clear(old.x+(x-old.x)*k/n,old.z+(z-old.z)*k/n)){safe=false;break}if(!safe){m.speed=0;m.blocked+=dt;continue}}}const travel=distance(old,{x,z});m.position={x,y:physical.height?.(x,z)??y??m.position.y??0,z};m.yaw=Math.atan2(p.dx,p.dz);m.speed=dt>0?travel/dt:0;
  if(dt>0){m.distance+=travel;m.phase=m.distance/(m.person.height*m.person.stride)*Math.PI;}
  }
- if(g.animal){const a=g.animal,previous=a.position,p=pathPose(g.route,Math.max(0,g.progress-1.3)),offset=g.state==='pause'&&g.activity==='sniff'?.48:0;a.position={x:p.x-p.dz*offset,y:physical.height?.(p.x-p.dz*offset,p.z+p.dx*offset)??g.members[0].position.y,z:p.z+p.dx*offset};if(a.position.y===null)a.position={...previous};a.distance+=dt>0?distance(a.position,previous):0;a.yaw=Math.atan2(p.dx,p.dz);}
+ if(g.animal){const a=g.animal,previous=a.position,p=pathPose(g.route,Math.max(0,g.progress-1.3)),offset=g.state==='pause'&&g.activity==='sniff'?.48:0;const safeOffset=(!physical.clear||physical.clear(p.x-p.dz*offset,p.z+p.dx*offset))?offset:0;a.position={x:p.x-p.dz*safeOffset,y:physical.height?.(p.x-p.dz*safeOffset,p.z+p.dx*safeOffset)??g.members[0].position.y,z:p.z+p.dx*safeOffset};if(a.position.y===null)a.position={...previous};a.distance+=dt>0?distance(a.position,previous):0;a.yaw=Math.atan2(p.dx,p.dz);}
  }
  update(dt,c={},physical={}){
  if(!Number.isFinite(dt)||dt<=0)return;this.clock+=dt;this.physical=physical;
@@ -66,7 +66,9 @@ export class VillageLifeDirector{
  const blocked=g.members.some(m=>m.blocked>0),tail=Math.min(...g.members.filter(m=>m.person.age!=='baby').map(m=>m.s)),cohesion=g.progress-tail>6;
  const stopping=Math.max(0,(g.paused||g.returning?g.route.length:g.pauseAt)-g.progress),targetSpeed=Math.min(g.speed*(g.returning?1.10:1),Math.sqrt(2*.9*stopping));g.currentSpeed=Math.max(0,(g.currentSpeed??0)+Math.max(-1.1*dt,Math.min(.7*dt,targetSpeed-(g.currentSpeed??0))));
  let step=blocked||cohesion?0:g.currentSpeed*dt;const car=physical.vehicle;
- if(car){const cp=car.position,lead=pathPose(g.route,Math.min(g.route.length,g.progress+2));if(distance(lead,cp)<6&&Math.abs((g.members[0].position.y??0)-cp.y)<2.5)step=0;}
+ if(car){const cp=car.position,lead=pathPose(g.route,Math.min(g.route.length,g.progress+2));if(distance(lead,cp)<6&&Math.abs((g.members[0].position.y??0)-cp.y)<2.5){step=0;g.vehicleWait=(g.vehicleWait??0)+dt;
+     if(g.vehicleWait>14){const passed=g.route.points.filter(p=>p.s<=g.members[0].s).at(-1);const retreat=lifeRoute(this.graph,passed.node,this.rng,{mode:g.mode,min:2,max:900,goal:g.route.origin});if(retreat){g.route=retreat;g.goal=retreat.goal;g.progress=0;g.members.forEach(m=>m.s=0);g.homebound=true;g.returning=true;g.state='depart';g.stateTime=0;g.currentSpeed=0;g.vehicleWait=0;this.stats.recoveries++;this.event('vehicle-wait-retreat',g);}else{g.state='activity';g.stateTime=0;g.wait=8;g.vehicleWait=0;this.stats.recoveries++;this.event('vehicle-wait-safe-stop',g);}continue;}
+    }else g.vehicleWait=0;}else g.vehicleWait=0;
  g.progress=Math.min(g.paused||g.returning?g.route.length:g.pauseAt,g.progress+step);
  if(!g.paused&&g.progress>=g.pauseAt&&!g.returning){g.paused=true;g.state='pause';g.stateTime=0;this.event(g.activity==='sniff'?'sniff':'regroup',g);}
  for(let i=0;i<g.members.length;i++){const m=g.members[i],e=this.graph.edges[pathPose(g.route,g.progress).edge],wide=(e?.width??0)>=3.2,lag=wide&&['child','young-child'].includes(m.person.age)?-.60*Math.max(0,Math.sin(g.age*.045)):wide?Math.floor(i/2)*1.1:i*1.05,target=Math.max(0,g.progress-lag),pace=g.speed*(1.10+(m.person.age==='child'?.10:0));m.previousS=m.s;m.s=Math.min(target,m.s+pace*dt);if(m.person.age==='baby')m.s=g.members[0].s;}

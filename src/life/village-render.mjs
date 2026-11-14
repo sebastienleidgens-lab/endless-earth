@@ -2,7 +2,7 @@ import * as THREE from 'three';
 /** One bounded instanced draw, shared metric rounded primitive and material.
  * No textures, skinning, shadow-map pass or per-frame geometry allocation. */
 export function createVillageRender(scene,capacity=1200){
- const profile=[[0,.55],[.045,.85],[.16,.98],[.84,.98],[.955,.85],[1,.55]],points=profile.map(([y,r])=>new THREE.Vector2(r*.5,y-.5));
+ const profile=[[0,0],[0,.55],[.045,.85],[.16,.98],[.84,.98],[.955,.85],[1,.55],[1,0]],points=profile.map(([y,r])=>new THREE.Vector2(r*.5,y-.5));
  const geometry=new THREE.LatheGeometry(points,10),material=new THREE.MeshLambertMaterial({color:0xffffff,transparent:true,depthWrite:true});
  const fades=new Float32Array(capacity);geometry.setAttribute('lifeFade',new THREE.InstancedBufferAttribute(fades,1));material.onBeforeCompile=shader=>{shader.vertexShader='attribute float lifeFade;varying float vLifeFade;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvLifeFade=lifeFade;');shader.fragmentShader='varying float vLifeFade;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>','diffuseColor.a*=vLifeFade;\n#include <opaque_fragment>');};
  const batch=new THREE.InstancedMesh(geometry,material,capacity);batch.name='village-life-silhouettes';batch.instanceMatrix.setUsage(THREE.DynamicDrawUsage);batch.frustumCulled=false;batch.count=0;batch.castShadow=false;batch.receiveShadow=false;scene.add(batch);
