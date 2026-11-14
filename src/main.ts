@@ -359,8 +359,10 @@ sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateTerrainLOD(scene,camera.position,avatar.position,quality==='low');updateVegetationLOD(scene,camera,quality==='low');updateArchitectureLOD(scene,camera,quality==='low')}
 scene.userData.decorationStream?.tick(quality==='low',elapsed*1000,dt>0?moved/dt:0);
-renderer.render(scene,camera);
+// Resize BEFORE drawing: assigning canvas width/height discards its drawing buffer.
+// Resizing after render used to present an uninitialized frame at each adaptive step.
 if(geographyReady&&!document.hidden){const scale=adaptiveResolution.update(elapsed*1000,elapsed,lifeSettings.name),ratio=Math.min(devicePixelRatio,quality==='low'?1:1.6)*scale;if(Math.abs(renderer.getPixelRatio()-ratio)>.01){renderer.setPixelRatio(ratio);renderer.setSize(innerWidth,innerHeight);}scene.userData.adaptiveResolution={scale,filteredMs:adaptiveResolution.filtered,changes:adaptiveResolution.changes};}
+renderer.render(scene,camera);
 
 if(perfPanel){
   perfElapsed+=elapsed;perfFrames++;
