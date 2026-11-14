@@ -1,0 +1,205 @@
+{
+  "method": "Instrumented real WebGL2 bufferData/deleteBuffer in the native model fixture. Three create/render/dispose cycles; logical buffer storage, not physical VRAM. Manual InstancedMesh disposal is an explicit diagnostic comparison.",
+  "stable": true,
+  "manualCorrectiveDisposalStable": true,
+  "rows": [
+    {
+      "before": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 99796,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "during": {
+        "bufferBytes": 199452,
+        "textureBytesEstimate": 28,
+        "buffers": 18,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "after": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      }
+    },
+    {
+      "before": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "during": {
+        "bufferBytes": 199452,
+        "textureBytesEstimate": 28,
+        "buffers": 18,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "after": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      }
+    },
+    {
+      "before": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "during": {
+        "bufferBytes": 199452,
+        "textureBytesEstimate": 28,
+        "buffers": 18,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "after": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      }
+    }
+  ],
+  "manual": [
+    {
+      "before": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "during": {
+        "bufferBytes": 199452,
+        "textureBytesEstimate": 28,
+        "buffers": 18,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "after": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      }
+    },
+    {
+      "before": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "during": {
+        "bufferBytes": 199452,
+        "textureBytesEstimate": 28,
+        "buffers": 18,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "after": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      }
+    },
+    {
+      "before": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "during": {
+        "bufferBytes": 199452,
+        "textureBytesEstimate": 28,
+        "buffers": 18,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      },
+      "after": {
+        "bufferBytes": 99796,
+        "textureBytesEstimate": 28,
+        "buffers": 11,
+        "textures": 4,
+        "peakBufferBytes": 199452,
+        "peakTextureBytesEstimate": 28,
+        "unknownFormats": [],
+        "method": "Instrumented WebGL2 bufferData/deleteBuffer and texture storage/mipmap/delete calls. Logical storage, texture estimate with depth24 conservatively counted as 4 B/texel. Excludes driver/compression/framebuffer defaults; not physical VRAM."
+      }
+    }
+  ],
+  "priorLeak": {
+    "extraBufferBytesPerCycle": 91200,
+    "extraBuffersPerCycle": 2
+  }
+}

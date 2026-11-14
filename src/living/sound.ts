@@ -1,5 +1,7 @@
 // @ts-ignore Verified independent CC0 thunder takes, no synthesized replacement.
 import {AUDIO_GROUPS} from '../audio/catalog.mjs';
+// @ts-ignore Shared explicit ground mapping.
+import {MATERIALS} from '../audio/profiles.mjs';
 // @ts-ignore Bounded polygon index, using the mapped building footprints.
 import {acousticObstacles} from '../audio/occlusion.mjs';
 import {navigationReady,riverAreas,riverLines,mappedWeirs,acousticRoads,acousticBuildings} from './geography';
@@ -94,5 +96,6 @@ export class Soundscape {
  listener(position:Vec3,forward:Vec3,up:Vec3){if(this.enabled&&!this.hidden)this.renderer?.listener(position,forward,up)}
  stats(){return {...this.renderer?.stats(),aircraftEvents:this.aircraftEvents,contextUpdates:this.contextUpdates,cpuMs:this.cpuMs,maxCpuMs:this.maxCpuMs,nearbyChecks:this.nearbyChecks,memoryCells:this.director.memory.size,perches:this.director.perches.size,contact:this.contact,context:this.frameContext}}
  vehicle(v:any){if(this.enabled&&!this.hidden&&this.context?.state==='running')this.renderer?.vehicle(v);else this.renderer?.vehicle(null)}
+ village(events:any[]){if(!this.enabled||this.hidden||!this.renderer||this.context?.state!=='running')return;for(const e of events){if(performance.now()-e.time>700)continue;const contact=footContact({surface:e.surface,onRoad:true}),group=e.kind==='step'?MATERIALS[contact.material]?.assets:e.kind==='dog'?AUDIO_GROUPS['village-dog']:e.kind==='cycle'?AUDIO_GROUPS['village-cycle']:AUDIO_GROUPS['village-conversation'];if(!group?.length)continue;const asset=group[Math.floor(this.renderer.random()*group.length)];void this.renderer.resources.request(asset);this.renderer.event({asset,position:e.position,priority:e.kind==='step'?54:47,gain:e.kind==='step'?.13:e.kind==='dog'?.17:.13,refDistance:2,maxDistance:e.kind==='step'?35:65,reason:'Simulated village '+e.kind+' from '+e.id+'; source-matched native event'});}}
  async dispose(){if(this.disposed)return;this.disposed=true;this.enabled=false;if(this.timer)clearInterval(this.timer);this.timer=null;this.renderer?.dispose();this.director.clear();this.stormIds.clear();this.emitterCache.clear();this.waterIndex=this.roadsIndex=this.trafficIndex=null;this.frameContext=null;this.obstacles=null;if(this.context&&this.context.state!=='closed')await this.context.close()}
 }

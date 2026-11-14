@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "independentRecordings": 47,
+  "independentRecordings": 50,
   "review": "No human listening claimed; owner perceptual approval pending",
   "assets": {
     "bird-blackbird-fs-811988-1": {
@@ -2823,6 +2823,78 @@
         "exitFadeSeconds": 1,
         "sourceFormat": "Provider HQ MP3 preview; not original WAV",
         "outputFormat": "FLAC PCM16 mono 32000 Hz"
+      }
+    },
+    "village-dog-fs-850823-1": {
+      "file": "village-dog-fs-850823-1.flac",
+      "source": "fs-850823",
+      "group": "village-dog",
+      "duration": 0.54,
+      "bytes": 33166,
+      "sampleRate": 32000,
+      "channels": 1,
+      "provisional": false,
+      "sha256": "6feb8f1f56fcfc7e567d064160c675d2e03c98cde08c440bbbec15c6f7972e37",
+      "transformations": {
+        "source": "provider HQ MP3 preview",
+        "offset": 0,
+        "duration": 0.54,
+        "ffmpegFilters": "highpass=f=100,lowpass=f=6000,volume=0.5,afade=t=in:st=0:d=0.03,afade=t=out:st=0.46:d=0.08",
+        "channelPolicy": "mono 32000 Hz; no intelligible dialogue intended"
+      }
+    },
+    "village-conversation-fs-389993-1": {
+      "file": "village-conversation-fs-389993-1.flac",
+      "source": "fs-389993",
+      "group": "village-conversation",
+      "duration": 3.2,
+      "bytes": 155135,
+      "sampleRate": 32000,
+      "channels": 1,
+      "provisional": false,
+      "sha256": "b0fbe0d5d66e99fd29546988b5ca1986eb0eff4354d4d249db6b6b141d1f47f1",
+      "transformations": {
+        "source": "provider HQ MP3 preview",
+        "offset": 1,
+        "duration": 3.2,
+        "ffmpegFilters": "highpass=f=180,lowpass=f=1700,volume=0.32,afade=t=in:st=0:d=0.03,afade=t=out:st=3.12:d=0.08",
+        "channelPolicy": "mono 32000 Hz; no intelligible dialogue intended"
+      }
+    },
+    "village-conversation-fs-389993-2": {
+      "file": "village-conversation-fs-389993-2.flac",
+      "source": "fs-389993",
+      "group": "village-conversation",
+      "duration": 3.2,
+      "bytes": 152349,
+      "sampleRate": 32000,
+      "channels": 1,
+      "provisional": false,
+      "sha256": "1ec81594ebcb7c44d729729e794c1fe1722dfffe3057608bf8438a837e7a78a0",
+      "transformations": {
+        "source": "provider HQ MP3 preview",
+        "offset": 5,
+        "duration": 3.2,
+        "ffmpegFilters": "highpass=f=180,lowpass=f=1700,volume=0.32,afade=t=in:st=0:d=0.03,afade=t=out:st=3.12:d=0.08",
+        "channelPolicy": "mono 32000 Hz; no intelligible dialogue intended"
+      }
+    },
+    "village-cycle-fs-719482-1": {
+      "file": "village-cycle-fs-719482-1.flac",
+      "source": "fs-719482",
+      "group": "village-cycle",
+      "duration": 2.8,
+      "bytes": 190723,
+      "sampleRate": 32000,
+      "channels": 1,
+      "provisional": false,
+      "sha256": "7387e1367a4a40d4544c4e21aa0eceaae1a280d5f478a1272e7ed3beba298844",
+      "transformations": {
+        "source": "provider HQ MP3 preview",
+        "offset": 1,
+        "duration": 2.8,
+        "ffmpegFilters": "highpass=f=100,lowpass=f=6000,volume=0.5,afade=t=in:st=0:d=0.03,afade=t=out:st=2.7199999999999998:d=0.08",
+        "channelPolicy": "mono 32000 Hz; no intelligible dialogue intended"
       }
     }
   }

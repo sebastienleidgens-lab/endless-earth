@@ -2,6 +2,7 @@ import {createLanterns} from './architecture/lanterns';
 // @ts-ignore Shared mapped footprint index for conservative rain shelter.
 import {acousticObstacles} from './audio/occlusion.mjs';
 import {createTraffic} from './life/traffic';
+import {createVillageLife} from './life/village';
 import {createSensitiveWorld} from './earthlife/sensitive-world';
 import {acousticRoads,acousticBuildings,riverAreas} from './living/geography';
 // @ts-ignore Stable conservative resolution controller.
@@ -15,7 +16,7 @@ import { updateArchitectureLOD, architectureMemory } from './architecture/render
 import {clampZoom,behind} from './controls/orbit.mjs';
 import {naturalSky} from './nature/sky';
 import { Soundscape } from './living/sound';
-import { loadNavigation, navigationReady, nature, paths, routeAt, rememberTour, validPoint, loadPreparedGraph, hasPreparedGraph, prepareGraphForDiagnostics, exportNavigationGraph, walkingGraphBindings, navigationGraphStats, roadInventory } from './living/geography';
+import { loadNavigation, navigationReady, nature, paths, routeAt, rememberTour, validPoint, loadPreparedGraph, hasPreparedGraph, prepareGraphForDiagnostics, exportNavigationGraph, walkingGraphBindings, navigationGraphStats, roadInventory, exportTourGraph } from './living/geography';
 // @ts-ignore Shared controller tested directly in Node.
 import { AutoWalk } from './living/walk.mjs';
 import * as THREE from 'three';
@@ -65,6 +66,7 @@ const landscapeLighting=createLandscapeLighting(scene,renderer,sun,()=>avatar,{m
 const adaptiveResolution=new AdaptiveResolution();
 const sensorySeed=new URLSearchParams(location.search).has('perf')?20:crypto.getRandomValues(new Uint32Array(1))[0];
 const traffic=createTraffic(scene,camera,sensorySeed);
+const villageLife=createVillageLife(scene,camera);
 const sensitiveWorld=createSensitiveWorld(scene,sensorySeed);
 const lanterns=createLanterns(scene);
 let worldSensoryReady=false;
@@ -229,8 +231,8 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-if(import.meta.hot)import.meta.hot.dispose(()=>{lanterns.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
-addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){lanterns.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
+if(import.meta.hot)import.meta.hot.dispose(()=>{lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
+addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
 const audioForward=new THREE.Vector3(),audioUp=new THREE.Vector3(),worldUp=new THREE.Vector3(0,1,0);
 const canvas=renderer.domElement;canvas.style.touchAction='none';
@@ -283,8 +285,8 @@ const clock=new THREE.Clock();
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
-if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({traffic:traffic.metrics,sensitiveWorld:sensitiveWorld.stats,adaptiveResolution:scene.userData.adaptiveResolution,authentic:worldMaterialStatus(),lighting:scene.userData.landscapeLighting??null,snow:scene.userData.snow??null,decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,navigation:navigationGraphStats,spawn:scene.userData.spawn??null,walker:walkerModel.metrics,movement:lastMovementDiagnostic(),roads:roadInventory,signs:signs.metrics,menuOpen:walkMenu?.open??false,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
-function prepareWorldSenses(){if(!activeTerrain||worldSensoryReady)return;const groundHeight=walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z));worldSensoryReady=true;const roofs=acousticObstacles(acousticBuildings.map(b=>{const y=groundHeight(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));scene.userData.weatherFloorAt=(x:number,z:number)=>roofs.roofAt(x,z,-10000);traffic.prepare(acousticRoads,groundHeight,canWalk);sensitiveWorld.configure(riverAreas.flatMap(a=>a.rings),groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));}
+if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({villageLife:villageLife.metrics,traffic:traffic.metrics,sensitiveWorld:sensitiveWorld.stats,adaptiveResolution:scene.userData.adaptiveResolution,authentic:worldMaterialStatus(),lighting:scene.userData.landscapeLighting??null,snow:scene.userData.snow??null,decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,navigation:navigationGraphStats,spawn:scene.userData.spawn??null,walker:walkerModel.metrics,movement:lastMovementDiagnostic(),roads:roadInventory,signs:signs.metrics,menuOpen:walkMenu?.open??false,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
+function prepareWorldSenses(){if(!activeTerrain||worldSensoryReady)return;const groundHeight=walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z));worldSensoryReady=true;const roofs=acousticObstacles(acousticBuildings.map(b=>{const y=groundHeight(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));scene.userData.weatherFloorAt=(x:number,z:number)=>roofs.roofAt(x,z,-10000);traffic.prepare(acousticRoads,groundHeight,canWalk);villageLife.prepare(exportTourGraph(),acousticRoads,groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));sensitiveWorld.configure(riverAreas.flatMap(a=>a.rings),groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));}
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
 const controls=input.getVector();
 const displacement=smoothMovement(velocity,movement(yaw,controls.forward,controls.strafe,1,input.running),dt);
@@ -352,13 +354,15 @@ if(transitionElapsed<.8){
 updateAtmosphere(dt,quality==='low',elapsed);updateForestLife(scene,camera);
 signs.update(elapsed,scene.userData.climate,avatar.position,geographyReady);
 if(geographyReady)prepareWorldSenses();
-traffic.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettings.name);
+villageLife.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettings.name,traffic.metrics.position?{position:{x:traffic.metrics.position[0],y:traffic.metrics.position[1],z:traffic.metrics.position[2]},speed:traffic.metrics.speed}:null);
+traffic.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettings.name,villageLife.director.groups.flatMap((g:any)=>g.members.map((m:any)=>m.position)));
 sensitiveWorld.update(elapsed,scene.userData.climate??{},avatar.position,camera,lifeSettings.name);
 if(activeTerrain)lanterns.update(scene.userData.climate,avatar.position,(x,z)=>activeTerrain!.relativeHeight(x,z),lifeSettings.name);
 const motor=traffic.vehicle,mp=traffic.metrics.position;sound.vehicle(motor&&mp?{id:motor.id,position:{x:mp[0],y:mp[1]+.7,z:mp[2]},speed:traffic.metrics.speed,rain:scene.userData.climate?.weather?.rain??0}:null);
 
 camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);
 sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[],locomotion,signs.audioFlight,activeTerrain?avatar.position.y+(activeTerrain.sample(0,0)??0):null);
+sound.village(villageLife.drainAudio());
 vegetationLodElapsed+=dt;
 if(vegetationLodElapsed>=.25){vegetationLodElapsed=0;updateTerrainLOD(scene,camera.position,avatar.position,quality==='low');updateVegetationLOD(scene,camera,quality==='low');updateArchitectureLOD(scene,camera,quality==='low')}
 scene.userData.decorationStream?.tick(quality==='low',elapsed*1000,dt>0?moved/dt:0);
