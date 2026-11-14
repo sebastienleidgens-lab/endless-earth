@@ -24,13 +24,15 @@ export function moveGrounded(position, displacement, clear, height, slope=()=>.7
     const report=rule=>{diagnostic?.({position:{x:position.x,y:position.y,z:position.z},requested:{x,z},currentHeight:old,nextHeight:h,horizontalM:distance,riseM:h===null||old===null?null:h-old,slope:distance&&h!==null&&old!==null?(h-old)/distance:null,limit:Math.min(slope(x,z),slope(position.x,position.z)),rule});return false};
     if(!clear(x,z))return report('obstacle');
     // Both ascent and descent are bounded: no snapping down cliffs, no unknown DEM.
-    if(h===null||old===null)return report('unknown-support');
+    if(!Number.isFinite(h)||!Number.isFinite(old))return report('unknown-support');
     if(Math.abs(h-old)>distance*Math.min(slope(x,z),slope(position.x,position.z))+.001){
-      // A small ledge is distinct from a sustained steep slope. Require a clear,
-      // nearly level landing beyond it; this cannot ratchet up a cliff/ramp.
+      // A step can land on a slope or another stair tread. Inspect the complete
+      // 30 cm landing instead of requiring a horizontal plane. A sustained
+      // steep ramp still exceeds the same slope limit across that landing.
       if(distance<1e-9||Math.abs(h-old)>.18)return report('slope');
-      const ux=(x-position.x)/distance,uz=(z-position.z)/distance;
-      for(const d of [.10,.20,.30]){const xx=x+ux*d,zz=z+uz*d,landing=height(xx,zz);if(!clear(xx,zz)||landing===null||Math.abs(landing-h)>.025)return report('slope');}
+      const ux=(x-position.x)/distance,uz=(z-position.z)/distance;let previous=h,limit=Math.min(slope(x,z),slope(position.x,position.z)),landing=h;
+      for(const d of [.05,.10,.15,.20,.25,.30]){const xx=x+ux*d,zz=z+uz*d;landing=height(xx,zz);if(!clear(xx,zz)||!Number.isFinite(landing))return report('unknown-or-obstructed-landing');limit=Math.min(limit,slope(xx,zz));if(Math.abs(landing-previous)>.18)return report('landing-ledge');previous=landing;}
+      if(Math.abs(landing-h)>.30*limit+.001)return report('landing-slope');
     }
     position.x=x;position.z=z;position.y=h;return true;
   };

@@ -1,0 +1,39 @@
+RIVER 0 {
+  a: { x: -385.18792503174933, z: 91.05976000027027 },
+  b: { x: -393.6706260706195, z: 80.4620960006082 },
+  tags: { osm_id: 504286650, source: 'OpenStreetMap', highway: 'footway' },
+  length: 13.574487068194612,
+  distanceToPublishedPOIM: 17.855058617041546
+}
+RIVER 1 {
+  a: { x: -385.18792503174933, z: 91.05976000027027 },
+  b: { x: -393.6706260706195, z: 80.4620960006082 },
+  tags: { osm_id: 504286650, source: 'OpenStreetMap', highway: 'footway' },
+  length: 13.574487068194612,
+  distanceToPublishedPOIM: 17.855058617041546
+}
+RIVER 2 {
+  a: { x: -385.18792503174933, z: 91.05976000027027 },
+  b: { x: -393.6706260706195, z: 80.4620960006082 },
+  tags: { osm_id: 504286650, source: 'OpenStreetMap', highway: 'footway' },
+  length: 13.574487068194612,
+  distanceToPublishedPOIM: 17.855058617041546
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(report.maxGroundErrorM<.001&&report.metres>20&&report.minRiverDistanceM<25)
+
+    at file:///workspace/endless-earth/scripts/record-mission-22-1-river.mjs:13:318 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

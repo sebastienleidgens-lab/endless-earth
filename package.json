@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-22.md"
+    "missionReport": "docs/mission-22-1.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -84,7 +84,10 @@
     "test:mission-22": "node --test tests/mission-22.test.mjs",
     "test:mission-22:browser": "node scripts/browser-mission-22.mjs",
     "test:mission-22:soak": "node scripts/soak-mission-22.mjs",
-    "bench:mission-22": "node scripts/benchmark-mission-22.mjs"
+    "bench:mission-22": "node scripts/benchmark-mission-22.mjs",
+    "test:mission-22-1": "node --test tests/mission-22-1.test.mjs tests/walking.test.mjs tests/mission-22.test.mjs",
+    "test:mission-22-1:soak": "node scripts/soak-mission-22-1.mjs",
+    "bench:mission-22-1": "node scripts/benchmark-mission-22-1.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

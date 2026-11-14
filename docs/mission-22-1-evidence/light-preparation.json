@@ -1,0 +1,27 @@
+{
+  "staticMeshes": 287,
+  "aoVertices": 530955,
+  "uniqueContactSamples": 432921,
+  "staticTriangles": 331922,
+  "shadowVertices": 203748,
+  "shadowCells": 1024,
+  "bytes": 5302648,
+  "compressedBytes": 2039699,
+  "provenance": {
+    "geometry": "Mission 22.1: corrected bridge transverse section and clipped terrain underlay; unchanged MNT, OSM, architecture and all forest anchors; water excluded.",
+    "ambient": "8 cosine hemisphere rays, 4 m range, 0.055 m normal offset; visibility bounded to avoid black creases. Spatial interpolation on unchanged source vertices.",
+    "canopy": "Analytic attenuation tied to existing crown instance bounds and tree anchors; separate deciduous/evergreen density, not measured forest irradiance.",
+    "shadow": "Exact static triangles spatially grouped in 64 m cells; runtime local sun map, no raw LiDAR."
+  },
+  "seconds": 32.540975727,
+  "bindings": {
+    "terrain": "f5118fb6b9110fbf2f13a102b149216860994db1a71555085cd3898eecdec4a1",
+    "osm": "06b79e259d8cca94ed6619d90a058e650d1a9bb5e245802f0dd141b679587aac",
+    "refinement": "930c6ac0bbca57f423dc55c42aeb068f75886d474c599d590f9c56fba5c89615",
+    "landmarks": "bf219909e888110781833f42d2cb2cf020c50c3e77d6df6a74d3cf60f627e91a",
+    "surface": "c6edf107c880c1c499d1b384ec2b5bfc2d1c122b31aafcd4504115b7094bdb61",
+    "static": "5a24943b20d1b37aadf878f94b6b10057355329b51006eaa4ac78ab52cbf9636",
+    "trees": "b1b73d2ec2aa842cbaab550ec9d7c6b7f03a8cf7b1f69f5bb8342a1be7d48dfa",
+    "canopy": "branch-attached-forest-v3"
+  }
+}

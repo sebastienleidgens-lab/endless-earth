@@ -30,6 +30,8 @@ import {seasonAt} from './climate.mjs';
 import {environmentalTime,environmentalWind,groundAppearance,updateGroundAppearance} from './surfaces';
 // @ts-ignore Approximate topocentric orbit, driven by this one calendar.
 import {lunar,lunarVisibility} from './moon.mjs';
+// @ts-ignore Pure, testable diffuse night adaptation.
+import {nightLight} from './night-light.mjs';
 
 export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(x:number,z:number)=>number|null,site:{lat:number;lon:number;timeZone?:string},hemisphere:THREE.HemisphereLight,player:THREE.Object3D,camera:THREE.Object3D=player){
  const params=new URLSearchParams(location.search),lifecycle=new AbortController(),storageKey=`endless-earth-atmosphere-v1:${site.lat}:${site.lon}`;
@@ -72,6 +74,7 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
  const hourFormat=new Intl.DateTimeFormat('en-GB',{timeZone:site.timeZone??'UTC',hourCycle:'h23',hour:'2-digit',minute:'2-digit',second:'2-digit'});
  const dateFormat=new Intl.DateTimeFormat('fr-FR',{timeZone:site.timeZone??'UTC',hour:'2-digit',minute:'2-digit',day:'numeric',month:'short',year:'numeric'}),horizon=new THREE.Color(),zenith=new THREE.Color();
  let solarSecond=NaN,solarState=solar(effectiveTime,site.lat,site.lon),moonState=lunar(effectiveTime,site.lat,site.lon),localTime='',localHour=0;
+ const nightSky=new THREE.Color(0xc4cfdf),nightGround=new THREE.Color(0xa7b4c6);
  const palette={dayHorizon:new THREE.Color(0xc2d0d4),warm:new THREE.Color(0xd4b19b),cloudHorizon:new THREE.Color(0x89979f),dayZenith:new THREE.Color(0x719bb9),cloudZenith:new THREE.Color(0x75848e),sunWarm:new THREE.Color(0xffd3a3),white:new THREE.Color(0xffffff)};
  const previousAcousticClimate=scene.userData.acousticClimate,environment:any={worldTimeMs:0,solar:{altitude:0},weather:state,acousticWeather:{...state,gust:0},wind:localWind,transition:{revision:0,commandRevision:0,manual:false},simulation:true};
  scene.userData.acousticClimate=environment;
@@ -115,7 +118,11 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   const mist=sensitiveUniforms.valleyMist.value;mist.w+=(sensitive.mist-mist.w)*(1-Math.exp(-transitionDt/9));if(bank)mist.set(bank.x,bank.z,bankHeight??0,mist.w);environment.sensitive={...sensitive,mist:mist.w,bankDistance:bankQuery?.distance??null};
   sun.intensity=Math.pow(Math.max(0,Math.sin(s.altitude)),.72)*2.5*(1-state.cloud*.83)*(1-state.rain*.32);sun.color.set(0xfff4e4).lerp(palette.sunWarm,warm*.82);
   const moonlight=lunarVisibility(moonState,state,day)*moonState.illumination*Math.max(0,Math.sin(moonState.altitude));
-  hemisphere.intensity=(.035+moonlight*.065+lightDay*1.5)*(1-state.cloud*.34)*(1-state.rain*.20);hemisphere.color.copy(zenith).lerp(palette.white,.65);hemisphere.groundColor.set(0x65705d).multiplyScalar(.4+lightDay*.6);
+  const diffuseNight=nightLight({lightDay,moonlight,cloud:state.cloud,rain:state.rain});
+  hemisphere.intensity=diffuseNight.intensity;
+  hemisphere.color.copy(zenith).lerp(palette.white,.65).lerp(nightSky,diffuseNight.nightWeight);
+  hemisphere.groundColor.set(0x65705d).lerp(nightGround,diffuseNight.nightWeight);
+  environment.diffuseNight=diffuseNight;
   sunDirection.set(Math.sin(s.azimuth)*Math.cos(s.altitude),Math.sin(s.altitude),-Math.cos(s.azimuth)*Math.cos(s.altitude));sun.position.copy(player.position).addScaledVector(sunDirection,150);sun.target.position.copy(player.position);sun.target.updateMatrixWorld();
   atmosphere.update(camera.position,sunDirection,day,state.cloud,state.mist,horizon,zenith);
   const moonVisibility=lunarVisibility(moonState,state,day);atmosphere.moon(moonState,moonVisibility,sunDirection);environment.moon={...moonState,visibility:moonVisibility,model:'Schlyter approximate topocentric orbit; shared M11 date'};
