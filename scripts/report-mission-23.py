@@ -125,7 +125,9 @@ la représentation fine ; la physique reste indépendante des changements de pro
 
 Le test exhaustif des centres de triangles vérifie l’accord du support avec le
 maillage à moins d’un millimètre numérique. Cette concordance ne mesure pas
-l’exactitude absolue du paysage. Les trous et surfaces non admises restent des refus.
+l’exactitude absolue du paysage. Les trous et surfaces non admises restent des refus. Les falaises naturelles sont aussi contrôlées transversalement, avec leur normale exacte et l’amplitude locale sur 60 cm ; une petite bordure biseautée reste franchissable. Les classes de route et d’escalier cartographiées gardent leur politique directionnelle documentée : une forte normale du MNT grossier ne suffit pas à annuler un escalier.
+
+Hors des cellules réparées, les anciens LOD lointains conservent leur tolérance annoncée de 0,35 m. Cette approximation n’est pas une concordance centimétrique à distance ; le retour au maillage fin intervient autour de la caméra et du joueur avant tout contact.
 
 ## 7. Audit des collisions invisibles
 
@@ -147,7 +149,9 @@ Le balayage garde ses sous-pas de 10 cm, sa capsule de 30 cm et ses limites de
 pente **0,7**, ou **1,2** sur les escaliers documentés. La marche maximale reste
 **18 cm** : le contrôleur distingue le dénivelé du raccord de la progression
 déjà effectuée sur la pente du palier. Cette séparation corrige un refus qui
-variait avec la cadence ou la diagonale. Une rampe durablement trop raide,
+variait avec la cadence ou la diagonale. La régression de la capsule future est également corrigée : un cas synthétique s’arrêtait à 0,40 m avant une marche alors que la capsule pouvait atteindre 0,60 m ; la marche est maintenant atteinte sans traverser le mur. La pente du palier est estimée seulement dans la partie libre, sans ajouter une seconde capsule au-delà de la cible. Le test M16 correspondant, qui imposait l’ancien arrêt anticipé, conserve ses cas mur/falaise et vérifie désormais la vraie limite du corps.
+
+Une rampe durablement trop raide,
 un mur, une grande rupture et un support inconnu restent bloquants.
 
 Un petit cache de seize coordonnées exactes réutilise accès/support/pente
@@ -203,7 +207,7 @@ Les **2 500 identités initiales et 1 389 ajouts forestiers** sont conservés,
 avec X/Z, échelle et catégories d’origine. Les packs sont validés avant toute
 adaptation d’altitude. Arbres et sous-bois interrogent le sol actif ; changer
 de LOD, de mois ou de neige ne change pas leurs coordonnées physiques.
-Les racines restent une géométrie artistique simplifiée, pas une fouille du sol.
+L’inspection native trouve **165 altitudes adaptées**, zéro support inconnu et **0 m** d’écart aux 3 889 points d’ancrage. Les racines restent une géométrie artistique simplifiée, pas une fouille du sol.
 
 ## 14. Routes
 
@@ -293,6 +297,8 @@ création d’images ni accélération. Les sources brutes restent dans `work/`.
 
 {walk_text()}
 
+Un premier lancement de scénario est resté immobile après une course manuelle au cap constant, puis a été écarté ; il ne sert pas de preuve de trente minutes. Le scénario final suit les sommets source pendant cette séquence au clavier. Un lancement exploratoire ultérieur a été interrompu volontairement avant la correction finale de capsule ; aucune de ses minutes n’est ajoutée à la session finale.
+
 La couverture réelle est vérifiable dans [walk.json](mission-23-evidence/walk.json)
 et sa trace. La traversée du pont est une session complémentaire explicitement
 séparée : elle n’est pas revendiquée dans les trente minutes si la trace ne la
@@ -307,7 +313,7 @@ pour rechercher des arrêts prolongés.
 
 ## 24. Tests, préservation et reproduction
 
-**340 tests Node réussis, zéro échec**, TypeScript/Vite réussis sur le candidat
+**342 tests Node réussis, zéro échec**, TypeScript/Vite réussis sur le candidat
 runtime. Les contrôles finaux et journaux sont archivés avec la livraison.
 Les nouveaux tests couvrent chaque centre de triangle actif, orientation,
 LOD, sources, trous, eau, superpositions, types, marches selon la cadence,
@@ -371,7 +377,7 @@ de chaque objet fusionné et la beauté sur appareil physique restent à vérifi
 | Performance et objectif de +5 % Équilibré | **Partiellement atteint** | Matrice logicielle détaillée ; les dépassements éventuels restent visibles, aucun GPU physique. |
 | Parcours natifs et promenade de trente minutes | **{'Atteint' if walk and walk.get('passedMinimumThirtyMinutes') else 'Non atteint'}** | Durées et couvertures réelles dans les traces ; pont complémentaire distingué. |
 | Tactile et Android physique | **Partiellement atteint** | Flux Chromium tactile ; matériel Android indisponible. |
-| Compilation, tests et sources protégées | **Atteint** | 340 tests, build, contrats et dérivés reproductibles ; aucune fusion ou production. |
+| Compilation, tests et sources protégées | **Atteint** | 342 tests, build, contrats et dérivés reproductibles ; aucune fusion ou production. |
 | Confiance globale et agrément artistique | **Partiellement atteint** | Réparation vérifiable, mais originaux manquants, raccords incertains et validation humaine restante. |
 '''
 pathlib.Path('docs/mission-23.md').write_text(text)

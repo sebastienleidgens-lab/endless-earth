@@ -65,9 +65,10 @@ export class Terrain {
     if(this.singleSurface&&this.walkSupport)return null;
     return sampleGrid(this.grid,x,z);
   }
-  supportAt(x:number,z:number){
+  supportAt(x:number,z:number,limit=.7){
     const surface=this.walkSupport?.inspect(x,z);
-    return surface?{...surface,provenance:{surface:this.singleSurface?.manifest.binarySha256,terrain:this.sourceSha256,refinement:this.relief?.sha256,repair:this.singleSurface?.manifest.groundTruth??null,datum:this.grid.vertical_datum}}:null;
+    const admissible=surface&&this.walkSupport.walkable(x,z,limit);
+    return surface?{...surface,walkable:surface.walkable&&admissible,restriction:surface.restriction??(!admissible?'steep-rendered-surface':null),provenance:{surface:this.singleSurface?.manifest.binarySha256,terrain:this.sourceSha256,refinement:this.relief?.sha256,repair:this.singleSurface?.manifest.groundTruth??null,datum:this.grid.vertical_datum}}:null;
   }
   createMesh():THREE.Object3D {
     const started=performance.now();

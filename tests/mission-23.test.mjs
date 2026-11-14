@@ -47,6 +47,16 @@ test('walls, unsupported drops, sustained steep ramps and numeric errors remain 
  for(const h of [x=>x*.95,x=>-x*.95,x=>x>=.5?1:0,x=>x>=.5?-1:0,x=>x>=.5?NaN:0]){const p={x:0,y:0,z:0},events=[];moveGrounded(p,{x:3,z:0},()=>true,h,()=>.7,false,d=>events.push(d));assert.ok(p.x<.51);assert.ok(events.length&&events[0].rule);}
  const p={x:0,y:0,z:0},events=[];moveGrounded(p,{x:NaN,z:0},()=>true,()=>0,()=>.7,false,d=>events.push(d));assert.equal(p.x,0);assert.equal(events[0].rule,'numeric-error');
 });
+test('a kerb may land beside a wall or water without a second future capsule blocking it early',()=>{
+ const height=x=>x>=.5?.12:0,clear=x=>x<=.65,p={x:0,y:0,z:0};
+ moveGrounded(p,{x:1,z:0},clear,height,()=>.7,false);
+ assert.ok(p.x>=.59&&p.x<=.65,`Body should stop at actual clearance after climbing the kerb, x=${p.x}`);assert.equal(p.y,.12);
+});
+test('exact support normals stop sideways cliff walking while a short bevel remains a walkable kerb',()=>{
+ const strip=(xs,heights)=>{const p=[],ids=[];for(let i=0;i<xs.length;i++)p.push(xs[i],heights[i],-1,xs[i],heights[i],1);for(let i=1;i<xs.length;i++){const a=(i-1)*2,b=i*2;ids.push(a,a+1,b,b,a+1,b+1)}return surfaceSupport([{attributes:{position:{array:Float32Array.from(p)},earthRoad:{array:new Uint8Array(p.length/3)},earthWater:{array:new Uint8Array(p.length/3)}},fine:{array:Uint16Array.from(ids)}}],[-1,-1,1,1])};
+ const cliff=strip([-1,1],[-3,3]),p={x:0,y:0,z:-.5};assert.ok(cliff.slope(0,0)>2.99);moveGrounded(p,{x:0,z:1},(x,z)=>cliff.walkable(x,z),(x,z)=>cliff.sample(x,z)??null,()=>.7,false);assert.equal(p.z,-.5);
+ const kerb=strip([-1,0,.02,1],[0,0,.12,.12]);assert.ok(kerb.slope(.01,0)>5);assert.equal(kerb.walkable(.01,0),true);const q={x:-.2,y:0,z:0};moveGrounded(q,{x:.6,z:0},(x,z)=>kerb.walkable(x,z),(x,z)=>kerb.sample(x,z)??null,()=>.7,false);assert.ok(q.x>.39);assert.ok(Math.abs(q.y-.12)<1e-8);
+});
 test('navigation rejects an apparently clear segment if either physical direction fails',()=>{
  const line={points:[{x:0,z:0},{x:10,z:0}],tags:{highway:'path'}};
  assert.equal(buildGraph([line],()=>true,()=>true,()=>false).edges.length,0);assert.equal(buildGraph([line],()=>true,()=>true,(a,b)=>a.x<b.x).edges.length,0);assert.equal(buildGraph([line],()=>true,()=>true,()=>true).edges.length,1);

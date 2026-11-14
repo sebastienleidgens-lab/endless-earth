@@ -11,7 +11,7 @@ export const stations=[
 if(process.argv[1]?.endsWith('capture-mission-23.mjs')){
  const version=process.argv[2]??'after',out='docs/mission-23-evidence',rows=[],browser=await launch();await mkdir(out+'/'+version,{recursive:true});
  try{
-  const g=await open221(browser,{port:version==='before'?5371:5373,viewport:{width:960,height:600},query:version==='after'?'&graphBuild=1&tourBuild=1':''}),p=g.page;
+  const g=await open221(browser,{port:version==='before'?5371:5373,viewport:{width:960,height:600},query:''}),p=g.page;
   const ref=version==='after'?JSON.parse(await readFile(out+'/before.json')).rows:[];
   for(const station of stations)for(const snow of [false,true]){
    const name=station[0]+(snow?'-neige':'-sec');

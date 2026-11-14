@@ -61,7 +61,7 @@ export function validPoint(p:Point,terrain:Terrain|null){
 }
 let graph:ReturnType<typeof buildGraph>|null=null;
 export const navigationGraphStats={state:'idle',nodes:0,edges:0};
-export function walkingGraphBindings(terrain:Terrain){return {terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface?.manifest.binarySha256,osm:terrain.singleSurface?.manifest.osmSha256,policy:'capsule-0.3-grounded-0.7-grade-separated-step0.18-swept-v23'}}
+export function walkingGraphBindings(terrain:Terrain){return {terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface?.manifest.binarySha256,osm:terrain.singleSurface?.manifest.osmSha256,policy:'capsule-0.3-grounded-0.7-local-span-clear-landing-step0.18-swept-v23'}}
 const sweep=(terrain:Terrain)=>(a:Point,b:Point)=>canTraverse(a,b,(x,z)=>terrain.relativeHeight(x,z));
 const makeTourGraph=(terrain:Terrain)=>buildGraph(acousticRoads.map(r=>({...r,name:r.tags.name??'Voie piétonne OSM',surface:r.tags.surface??''})),(q:Point)=>validPoint(q,terrain),tourAllowed,sweep(terrain));
 export function prepareGraphForDiagnostics(terrain:Terrain){if(new URLSearchParams(location.search).has('tourBuild'))tourGraph=makeTourGraph(terrain);graph=buildGraph(paths,(q:Point)=>validPoint(q,terrain),allowed,sweep(terrain));Object.assign(navigationGraphStats,{state:'prepared',nodes:graph.nodes.length,edges:graph.edges.length});return graph}

@@ -26,11 +26,13 @@ export function surfaceSupport(tiles,bounds,cellSize=10){
   }
   buckets.set(key,{sub:sub.map(list=>{const packed=Uint32Array.from(list);bytes+=packed.byteLength;return packed})});
  }
+ let cachedX=NaN,cachedZ=NaN,cachedHeight,hitTile=-1,hitFace=-1;
  function find(x,z,details=false){
+  if(!details&&x===cachedX&&z===cachedZ)return cachedHeight;
   if(!Number.isFinite(x)||!Number.isFinite(z)||x<bounds[0]||x>bounds[2]||z<bounds[1]||z>bounds[3])return undefined;
   const bx=column(x),bz=row(z),bucket=buckets.get(bz*width+bx);if(!bucket)return undefined;
   const list=bucket.sub?bucket.sub[Math.min(4,Math.max(0,Math.floor(((z-bounds[1])/cellSize-bz)*5)))*5+Math.min(4,Math.max(0,Math.floor(((x-bounds[0])/cellSize-bx)*5)))]:bucket;
-  let result;
+  let result;if(!details){hitTile=-1;hitFace=-1}
   for(let j=0;j<list.length;j+=2){
    const ti=list[j],face=list[j+1],tile=tiles[ti],ids=tile.fine.array,p=tile.attributes.position.array,ai=ids[face],bi=ids[face+1],ci=ids[face+2],a=ai*3,b=bi*3,c=ci*3;
    const d=(p[b+2]-p[c+2])*(p[a]-p[c])+(p[c]-p[b])*(p[a+2]-p[c+2]);
@@ -38,11 +40,33 @@ export function surfaceSupport(tiles,bounds,cellSize=10){
    if(u< -1e-7||v< -1e-7||w< -1e-7)continue;
    const height=u*p[a+1]+v*p[b+1]+w*p[c+1];
    if(result!==undefined&&(details?result.height:result)>=height)continue;
-   if(!details){result=height;continue}
+   if(!details){result=height;hitTile=ti;hitFace=face;continue}
    const ux=p[b]-p[a],uy=p[b+1]-p[a+1],uz=p[b+2]-p[a+2],vx=p[c]-p[a],vy=p[c+1]-p[a+1],vz=p[c+2]-p[a+2],nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx,length=Math.hypot(nx,ny,nz),wet=!!tile.attributes.earthWater?.array[ai],road=tile.attributes.earthRoad?.array[ai]??0;
    result={id:`surface:${ti}:${face/3}`,tile:ti,face:face/3,height,normal:{x:nx/length,y:ny/length,z:nz/length},slope:Math.hypot(nx,nz)/ny,category:wet?'water':road?'road':'terrain',road,visible:true,walkable:!wet,restriction:wet?'mapped-water':null,priority:road?20:10,confidence:'mesh-exact/source-resolution-limited',provenance:tile.descriptor?.provenance??null,vertices:[a,b,c].map(k=>({x:p[k],y:p[k+1],z:p[k+2]}))};
   }
+  if(!details){cachedX=x;cachedZ=z;cachedHeight=result}
   return result;
  }
- return {triangles,cells:buckets.size,indexBytes:bytes,bounds:[...bounds],sample:(x,z)=>find(x,z),inspect:(x,z)=>find(x,z,true)};
+ function slope(x,z){
+  if(find(x,z)===undefined||hitTile<0)return undefined;
+  const t=tiles[hitTile],p=t.attributes.position.array,ids=t.fine.array,a=ids[hitFace]*3,b=ids[hitFace+1]*3,c=ids[hitFace+2]*3,ux=p[b]-p[a],uy=p[b+1]-p[a+1],uz=p[b+2]-p[a+2],vx=p[c]-p[a],vy=p[c+1]-p[a+1],vz=p[c+2]-p[a+2];
+  return Math.hypot(uy*vz-uz*vy,ux*vy-uy*vx)/(uz*vx-ux*vz);
+ }
+ function isWater(x,z){return find(x,z)!==undefined&&!!tiles[hitTile].attributes.earthWater?.array[tiles[hitTile].fine.array[hitFace]]}
+ function walkable(x,z,limit=.7){
+  if(find(x,z)===undefined)return true; // Missing height is refused by the movement kernel.
+  if(isWater(x,z))return false;
+  // Mapped road/stair corridors keep their explicit directional/step policy.
+  // A coarse DEM crossfall alone cannot establish that a documented stair is
+  // a cliff. No road class or source outline is changed to obtain this rule.
+  if(tiles[hitTile].attributes.earthRoad?.array[tiles[hitTile].fine.array[hitFace]])return true;
+  if(slope(x,z)<=1.2)return true;
+  const t=tiles[hitTile],p=t.attributes.position.array,ids=t.fine.array,a=ids[hitFace]*3,b=ids[hitFace+1]*3,c=ids[hitFace+2]*3,ux=p[b]-p[a],uy=p[b+1]-p[a+1],uz=p[b+2]-p[a+2],vx=p[c]-p[a],vy=p[c+1]-p[a+1],vz=p[c+2]-p[a+2],nx=uy*vz-uz*vy,nz=ux*vy-uy*vx,length=Math.hypot(nx,nz),dx=nx/length*.3,dz=nz/length*.3;
+  // A bevelled kerb can have a very steep face while its total height is a
+  // small, safe ledge. A true cliff cannot be traversed sideways just because
+  // height along its contour happens to be constant.
+  const left=find(x-dx,z-dz),right=find(x+dx,z+dz);
+  return Number.isFinite(left)&&Number.isFinite(right)&&Math.abs(right-left)<=.18+.6*limit+.001;
+ }
+ return {triangles,cells:buckets.size,indexBytes:bytes,bounds:[...bounds],sample:(x,z)=>find(x,z),slope,isWater,walkable,inspect:(x,z)=>find(x,z,true)};
 }
