@@ -54,7 +54,8 @@ export function trafficDelay(seed,sequence,hour,snow=0){
 }
 export function advanceVehicle(v,dt,player,weather={},out={}){
  const current=routePose(v.route,v.s),ahead=routePose(v.route,Math.min(v.route.length,v.s+5)),dx=player.x-current.x,dz=player.z-current.z,along=dx*current.dx+dz*current.dz,across=Math.abs(dx*current.dz-dz*current.dx),nearHeight=Math.abs(player.y-current.y)<2.8;
- const clearance=nearHeight&&across<2.4&&along>-3?Math.max(0,along-5):Infinity;
+ let clearance=nearHeight&&across<2.4&&along>-3?Math.max(0,along-5):Infinity;
+ for(const p of weather.pedestrians??[]){const x=p.x-current.x,z=p.z-current.z,a=x*current.dx+z*current.dz,b=Math.abs(x*current.dz-z*current.dx);if(Math.abs(p.y-current.y)<2.8&&b<2.4&&a>-3)clearance=Math.min(clearance,Math.max(0,a-5));}
  const curve=Math.acos(Math.max(-1,Math.min(1,current.dx*ahead.dx+current.dz*ahead.dz))),snow=weather.snowCover??0;
  const target=snow>.5?0:Math.min(v.route.speed*(1-(weather.rain??0)*.28),Math.sqrt(1.1*5/Math.max(.03,curve)),Math.sqrt(2*1.8*clearance));
  v.speed=Math.max(0,v.speed+Math.max(-2.4*dt,Math.min(.8*dt,target-v.speed)));
