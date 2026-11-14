@@ -74,7 +74,7 @@ Les silhouettes d’oiseaux reçoivent des battements individuels irréguliers e
 
 ## 13. Réactions à la pluie
 
-Les matériaux poreux et toitures gardent l’humidité du propriétaire commun après l’averse. Des projections réutilisent au plus 16 segments en Équilibré, 28 en Qualité, aucun en Éco. Un champ local 32 × 32, à un mètre par texel, masque la pluie sous une enveloppe conservative des toits cartographiés. Les hauteurs inférées et la résolution limitent ce masque ; il ne garantit pas chaque avant-toit. Les gouttes d’égout et un système de ruissellement ne sont pas livrés.
+Les matériaux poreux et toitures gardent l’humidité du propriétaire commun après l’averse. Des projections réutilisent au plus 16 segments en Équilibré, 28 en Qualité, aucun en Éco. Un champ local 32 × 32, à un mètre par texel, masque la pluie sous une enveloppe conservative des toits cartographiés. Les hauteurs inférées et la résolution limitent ce masque ; il ne garantit pas chaque avant-toit. Une mesure CPU finale retire 1 024 interrogations redondantes du relief par grille : le tampon de profondeur et le plancher existant gèrent le terrain exposé. Le masque des toits échantillonnés reste identique ; préparation médiane 18,9 → 0,1 ms sur le banc local, sans prétendre à un gain GPU équivalent. Les gouttes d’égout et un système de ruissellement ne sont pas livrés.
 
 ## 14. Rosée et séchage
 
