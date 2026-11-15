@@ -1,11 +1,13 @@
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 const smooth=t=>t*t*(3-2*t),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const HULL_SAMPLES=Object.freeze([[0,0],[.52,0],[-.52,0],[0,.95],[0,-.95]]);
 /** One reusable boat, one transactional activity owner. No inventory spawning. */
 export class PackraftController{
  constructor(activity){this.activity=activity;this.position={x:0,y:0,z:0};this.heading=0;this.speed=0;this.stroke=0;this.yawRate=0;this.visible=false;this.scale=0;this.cycles=0;this.recovery=false;this.reason='';}
  get active(){return this.activity.state==='boating'}
  clearAt(provider,clear,x,z,heading=this.heading){
-  for(const [a,b]of [[0,0],[.52,0],[-.52,0],[0,.95],[0,-.95]]){const xx=x+Math.cos(heading)*a+Math.sin(heading)*b,zz=z-Math.sin(heading)*a+Math.cos(heading)*b,s=provider.sample(xx,zz);if(!provider.contains(xx,zz)||!s?.reliable||s.depth<.18||!clear(xx,zz))return false;}
+  const c=Math.cos(heading),sine=Math.sin(heading);
+  for(const [a,b]of HULL_SAMPLES){const xx=x+c*a+sine*b,zz=z-sine*a+c*b,s=provider.sample(xx,zz);if(!provider.contains(xx,zz)||!s?.reliable||s.depth<.18||!clear(xx,zz))return false;}
   return true;
  }
  site(p,provider,clear){const a=provider?.nearby(p,2.1);if(!a)return null;const h=Math.atan2(a.water.x-a.dry.x,a.water.z-a.dry.z);return this.clearAt(provider,clear,a.water.x,a.water.z,h)?a:null;}
@@ -34,7 +36,16 @@ export class PackraftController{
   if(!this.active)return false;
   if(dt>.026){const count=Math.ceil(dt/.025);for(let i=0;i<count;i++){if(!this.active)break;this.update(dt/count,p,controls,provider,clear);}return true;}
   let forward=controls.forward,turn=controls.strafe;
-  if(this.recovery){if(this.dock(p,provider,clear).ok)return true;const route=provider.routeToExit(p.x,p.z),q=route?.find(q=>distance(q,p)>.7);if(!q){this.recovery=false;}else{const target=Math.atan2(q.x-p.x,q.z-p.z),error=Math.atan2(Math.sin(target-this.heading),Math.cos(target-this.heading));turn=clamp(error*2,-1,1);forward=Math.abs(error)<1.1?.65:0;}}
+  if(this.recovery){
+   if(this.dock(p,provider,clear).ok)return true;
+   if(!this.recoveryRoute||!this.wasRecovering){this.recoveryRoute=provider.routeToBank?.(p.x,p.z)??provider.routeToExit(p.x,p.z);this.routeCursor=0;}
+   const route=this.recoveryRoute;
+   while(route&&this.routeCursor<route.length-1&&distance(route[this.routeCursor],p)<1.1)this.routeCursor++;
+   const q=route?.[this.routeCursor];
+   if(!q){this.recovery=false;this.reason='no-connected-bank';}
+   else{const target=Math.atan2(q.x-p.x,q.z-p.z),error=Math.atan2(Math.sin(target-this.heading),Math.cos(target-this.heading));turn=clamp(error*2,-1,1);forward=Math.abs(error)<.85?.75:0;}
+  }else this.recoveryRoute=null;
+  this.wasRecovering=this.recovery;
   const effort=Math.min(1,Math.hypot(forward,turn));this.stroke+=dt*(effort>.01?3.8:0);const catchWater=Math.max(0,(Math.abs(Math.sin(this.stroke))-.78)/.22),thrust=forward*catchWater*1.9;
   this.speed=(this.speed+thrust*dt)*Math.exp(-dt*(forward<0?1.6:.52));this.speed=clamp(this.speed,-.65,1.8);
   this.yawRate+=(turn*catchWater*1.3-this.yawRate)*(1-Math.exp(-dt*3));const heading=this.heading+this.yawRate*dt;
@@ -44,5 +55,5 @@ export class PackraftController{
   const level=provider.sample(p.x,p.z)?.surfaceY;if(Number.isFinite(level)){p.y=level+.1;this.position.x=p.x;this.position.z=p.z;this.position.y=level;}
   this.effort=effort;this.pose=1;this.scale=1;return true;
  }
- reset(){this.visible=false;this.scale=0;this.speed=this.yawRate=0;this.pose=0;this.recovery=false;}
+ reset(){this.visible=false;this.scale=0;this.speed=this.yawRate=0;this.pose=0;this.recovery=false;this.recoveryRoute=null;this.wasRecovering=false;}
 }

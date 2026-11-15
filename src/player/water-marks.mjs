@@ -8,7 +8,7 @@ export function createWaterMarks(scene){
  const mesh=new THREE.Mesh(geometry,material);mesh.name='player-water-rings';mesh.frustumCulled=false;mesh.visible=false;scene.add(mesh);let cursor=0,lastStroke=-1;const metrics={capacity:16,emitted:0,drawCalls:0};
  function emit(p,t,profile){const cap=profile==='eco'?4:16,i=cursor++%cap;origins.set([p.x,p.y+.008,p.z],i*3);births[i]=t;geometry.attributes.origin.needsUpdate=geometry.attributes.birth.needsUpdate=true;geometry.instanceCount=cap;metrics.emitted++;}
  return {metrics,emit,update(climate,player,motion,aquatic,profile){const t=climate?.elapsedSeconds??0;uniforms.time.value=t;uniforms.light.value=Math.max(.2,Math.sin(climate?.solar?.altitude??1));const stroke=Math.floor((motion.time??0)*2.5/(Math.PI*2)),contacts=motion.footContacts??[];
-  if(aquatic.active&&aquatic.last&&(aquatic.activity.state==='swimming'?stroke!==lastStroke:contacts.length>0)){lastStroke=stroke;const cap=profile==='eco'?4:16,i=cursor++%cap,c=contacts[0]?.position??player;origins.set([c.x,aquatic.last.surfaceY+.008,c.z],i*3);births[i]=t;geometry.attributes.origin.needsUpdate=geometry.attributes.birth.needsUpdate=true;geometry.instanceCount=cap;metrics.emitted++;}
+  // Emission belongs to WaterContacts: the same verified event drives sound.
   mesh.visible=births.some(b=>t-b>=0&&t-b<1.7);metrics.drawCalls=Number(mesh.visible);
  },dispose(){scene.remove(mesh);geometry.dispose();material.dispose();}};
 }

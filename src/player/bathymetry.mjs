@@ -1,4 +1,5 @@
 import {circleHitsPolygon} from '../controls/walking.mjs';
+import {createWaterNetwork} from './water-network.mjs';
 
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
@@ -44,14 +45,17 @@ export function createEstimatedBathymetry({areas,lines=[],support,landClear,clea
  // Immutable-world route admission is cached per exact metre cell, bounded.
  // Actual swept collision remains checked at each movement substep.
  const routes=new Map();
+ const network=createWaterNetwork({areas,sample,contains,clear,accesses});
+ network.prepare();
  function routeToExit(x,z){
+  if(network.metrics.ready){const route=network.route({x,z},true);if(route)return route;}
   const candidates=accesses.map(a=>({a,d:distance({x,z},a.entry)})).filter(r=>r.d<110).sort((a,b)=>a.d-b.d).slice(0,16);
   for(const {a,d}of candidates){const count=Math.max(1,Math.ceil(d/.5)),route=[];let valid=true;
    for(let i=0;i<=count;i++){const q={x:x+(a.entry.x-x)*i/count,z:z+(a.entry.z-z)*i/count},s=sample(q.x,q.z);if(!s?.reliable||!contains(q.x,q.z)||!clear(q.x,q.z)){valid=false;break;}route.push(q);}
    if(valid)return route;
-  }return null;
+  }return network.route({x,z},true);
  }
- function returnRouteVerified(x,z){const key=Math.floor(x)+','+Math.floor(z);if(!routes.has(key)){if(routes.size>=2048)routes.clear();routes.set(key,!!routeToExit(x,z));}return routes.get(key);}
+ function returnRouteVerified(x,z){const key=Math.floor(x)+','+Math.floor(z);if(!routes.has(key)){if(routes.size>=2048)routes.clear();const ok=network.metrics.ready?network.connected(x,z)||!!routeToExit(x,z):!!routeToExit(x,z);if(ok||network.metrics.ready)routes.set(key,ok);return ok;}return routes.get(key);}
  function nearby(p,max=2.4){let best=null,d=max;for(const a of accesses){const n=distance(p,a.dry);if(n<d){d=n;best=a;}}return best;}
- return {contains,sample,routeToExit,returnRouteVerified,exitWalkable:(x,z)=>{const a=nearby({x,z},1.5);return !!a&&landClear(a.dry.x,a.dry.z);},nearby,accesses,rejected,metrics:{source:'estimated',confidence:'low',version:1,accesses:accesses.length,rejected:rejected.length,renderedBed:false,water:'opaque immutable source surface',realDepthClaim:false}};
+ return {contains,sample,routeToExit,returnRouteVerified,network,routeToBank:(x,z)=>network.route({x,z}),exitWalkable:(x,z)=>{const a=nearby({x,z},1.5);return !!a&&landClear(a.dry.x,a.dry.z);},nearby,accesses,rejected,metrics:{source:'estimated',confidence:'low',version:2,accesses:accesses.length,rejected:rejected.length,renderedBed:false,water:'opaque source surface; analytic reflection',realDepthClaim:false}};
 }

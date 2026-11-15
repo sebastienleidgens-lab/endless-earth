@@ -34,8 +34,9 @@ export function waterColor(position,shore='16.'){return `
  #if LIFE_WATER_MODE > 0
  float waveA=carrier*1.8+sin(crossing*.7)*.7-lifeTime*.9;
  float waveB=carrier*3.4+sin(crossing*1.3)*1.3-lifeTime*1.7;
- float amplitude=(1.-lifeIce*.75)*(.012+lifeMeanWind*.020+turbulence*.026)*lifeWater*(.55+.45*pow(sin(waterP.x*.14+waterP.y*.07),2.));
- rippleSlope=(downstream*1.8*cos(waveA)+vec2(-downstream.y,downstream.x)*cos(waveB)*.55)*amplitude;
+ vec2 surfaceWind=lifeWind(waterP,lifeTime,lifeMeanWind);
+ float amplitude=(1.-lifeIce*.75)*(.008+length(surfaceWind)*.032+turbulence*.026)*lifeWater*(.55+.45*pow(sin(waterP.x*.14+waterP.y*.07),2.));
+ rippleSlope=(downstream*1.8*cos(waveA)+vec2(-downstream.y,downstream.x)*cos(waveB)*.55+surfaceWind*sin(crossing*2.1-lifeTime*.8)) * amplitude;
  #if LIFE_WATER_MODE == 2
  float waveC=dot(waterP,vec2(6.1,-4.3))+sin(waterP.x*.13)*1.2+lifeTime*1.7;
  rippleSlope+=vec2(1.,-.7)*cos(waveC)*(.009+lifeRain*.027)*lifeWater;

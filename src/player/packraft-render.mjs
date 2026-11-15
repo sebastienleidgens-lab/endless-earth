@@ -4,12 +4,13 @@ import {lightingReceiver} from '../lighting/state.mjs';
 /** Original low-cost hull, inflated side tubes, floor, seat and one paddle. */
 export function createPackraft(scene){
  const group=new THREE.Group(),paddle=new THREE.Group(),hull=new THREE.Group(),geometries=[],materials=[];group.name='original-packraft';group.visible=false;scene.add(group);group.add(hull,paddle);
- function material(c){const m=new THREE.MeshStandardMaterial({color:c,roughness:.78});lightingReceiver(m);materials.push(m);return m;}
+ const shared=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.78});lightingReceiver(shared);materials.push(shared);
+ function material(c){return new THREE.Color(c);}
  const tube=material(0x937548),floor=material(0x454c41),shaft=material(0xaaa18a),blade=material(0x617b79);
- function part(g,m,parent,x,y,z){geometries.push(g);const o=new THREE.Mesh(g,m);o.position.set(x,y,z);parent.add(o);return o;}
+ function part(g,m,parent,x,y,z){geometries.push(g);const c=new Float32Array(g.attributes.position.count*3);for(let i=0;i<c.length;i+=3){c[i]=m.r;c[i+1]=m.g;c[i+2]=m.b;}g.setAttribute('color',new THREE.BufferAttribute(c,3));const o=new THREE.Mesh(g,shared);o.position.set(x,y,z);parent.add(o);return o;}
  // One closed elliptical tube follows a rounded hull path, with an open cockpit.
  const path=new THREE.CatmullRomCurve3(Array.from({length:16},(_,i)=>{const a=i/16*Math.PI*2;return new THREE.Vector3(Math.cos(a)*.51,.12,Math.sin(a)*.94)}),true);
- part(new THREE.TubeGeometry(path,40,.18,8,true),tube,hull,0,0,0);
+ part(new THREE.TubeGeometry(path,32,.18,6,true),tube,hull,0,0,0);
  part(new THREE.BoxGeometry(.74,.08,1.5),floor,hull,0,.04,0);
  part(new THREE.BoxGeometry(.5,.15,.34),floor,hull,0,.18,-.1);
  const back=part(new THREE.BoxGeometry(.47,.3,.08),floor,hull,0,.31,-.29);back.rotation.x=-.2;

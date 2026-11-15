@@ -26,7 +26,8 @@ import {riverAcousticIndex,trafficRoadIndex,trafficCandidates,footRoadIndex} fro
 export class Soundscape {
  context:AudioContext|null=null;renderer:AcousticRenderer|null=null;enabled=false;volume=.7;distance=0;
  private transition:Promise<boolean>=Promise.resolve(false);private disposed=false;private hidden=false;
- private timer:ReturnType<typeof setInterval>|null=null;private director=new SoundDirector({seed:crypto.getRandomValues(new Uint32Array(1))[0]});
+ private timer:ReturnType<typeof setInterval>|null=null;private director:SoundDirector;
+ constructor(private seed=1){this.director=new SoundDirector({seed});}
  private emitterCache=new Map();private nextContext=0;private waterIndex:ReturnType<typeof riverAcousticIndex>|null=null;private roadsIndex:ReturnType<typeof proximityIndex>|null=null;private trafficIndex:ReturnType<typeof trafficRoadIndex>|null=null;
  private villageMemory=new VillageSoundMemory();
  private stormIds=new Set<string>();private stormCursor=0;
@@ -39,7 +40,7 @@ export class Soundscape {
  toggle(){const p=this.transition.then(()=>this.applyToggle(),()=>this.applyToggle());this.transition=p;return p}
  private async applyToggle(){
  if(this.disposed)return false;
- if(!this.context){const c=new AudioContext({sampleRate:32000,latencyHint:'interactive'});this.context=c;this.renderer=new AcousticRenderer(c,`${import.meta.env.BASE_URL}audio/`);this.timer=setInterval(()=>{if(this.enabled&&!this.hidden&&c.state==='running')this.renderer?.pump()},100)}
+ if(!this.context){const c=new AudioContext({sampleRate:32000,latencyHint:'interactive'});this.context=c;this.renderer=new AcousticRenderer(c,`${import.meta.env.BASE_URL}audio/`,this.seed);this.timer=setInterval(()=>{if(this.enabled&&!this.hidden&&c.state==='running')this.renderer?.pump()},100)}
  const on=!this.enabled;
  if(on){await this.context.resume();if(this.disposed)return false;this.enabled=true;this.nextContext=0;this.distance=0;this.director.resetClock();this.renderer!.setVolume(this.volume,!this.hidden);if(this.hidden)await this.context.suspend()}
  else{this.enabled=false;this.renderer!.setVolume(this.volume,false);this.renderer!.silence();await new Promise(r=>setTimeout(r,220));if(!this.disposed)await this.context.suspend();this.distance=0;this.director.resetClock()}
@@ -48,7 +49,8 @@ export class Soundscape {
  setHidden(hidden:boolean){this.hidden=hidden;const p=this.transition.then(async()=>{if(this.disposed||!this.context)return this.enabled;this.renderer?.setVolume(this.volume,this.enabled&&!this.hidden);if(this.hidden){await this.context.suspend();this.distance=0;this.director.resetClock()}else if(this.enabled){await this.context.resume();this.nextContext=0;this.director.resetClock()}return this.enabled});this.transition=p;return p}
  update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number;footContacts?:Array<{position:Vec3;side:number;run:number;energy:number}>},flight?:{id:string;position:Vec3;velocity:Vec3;eligible:boolean}|null,absoluteSupportAltitude:number|null=null){
  if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer){this.cpuMs=0;return;}
- const start=performance.now(),now=start/1000;
+ const start=performance.now(),now=climate?.elapsedSeconds??start/1000;
+ this.renderer.followBirds(sources);
  const stormEvents=climate?.lightning?.events??[],thunders=AUDIO_GROUPS.thunder??[];
  if((climate?.metrics?.electricalActivity??0)>.08)for(const id of thunders)void this.renderer.resources.request(id);
  for(const e of stormEvents){if(this.stormIds.has(e.id))continue;const age=(start-e.timestampMs)/1000;
@@ -77,6 +79,7 @@ export class Soundscape {
  syncEnvironment(this.frameContext,climate);this.frameContext!.mixRevision=climate?.transition?.revision;
  this.frameContext!.listener=listener;
  const renderHeight=typeof altitudeM==='function'&&Number.isFinite(altitude)?(x:number,z:number)=>{const y=altitudeM(x,z);return y===null?null:p.y+y-altitude!}:null;
+ if(this.frameContext!.water&&renderHeight){const q=this.frameContext!.water.point;q.y=renderHeight(q.x,q.z)??p.y;}
  this.frameContext!.traffic=[]; // Traffic is now owned by the visible, audited road vehicles.
  if(!this.obstacles&&acousticBuildings.length){this.obstacles=acousticObstacles(acousticBuildings.map(b=>{const y=renderHeight?.(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));this.renderer.setObstacles(this.obstacles);}
  this.frameContext!.roof=this.obstacles?.nearestRoof(ear)??null;
@@ -98,6 +101,7 @@ export class Soundscape {
  }
  listener(position:Vec3,forward:Vec3,up:Vec3){if(this.enabled&&!this.hidden)this.renderer?.listener(position,forward,up)}
  camp(position:Vec3|null){this.renderer?.camp(this.enabled&&!this.hidden?position:null)}
+ water(events:Array<{id:number;kind:string;position:Vec3}>){if(this.enabled&&!this.hidden&&this.context?.state==='running')for(const event of events)this.renderer?.waterContact(event)}
  stats(){return {...this.renderer?.stats(),aircraftEvents:this.aircraftEvents,contextUpdates:this.contextUpdates,cpuMs:this.cpuMs,maxCpuMs:this.maxCpuMs,nearbyChecks:this.nearbyChecks,memoryCells:this.director.memory.size,perches:this.director.perches.size,contact:this.contact,context:this.frameContext}}
  vehicle(v:any){if(this.enabled&&!this.hidden&&this.context?.state==='running')this.renderer?.vehicle(v);else this.renderer?.vehicle(null)}
  village(events:any[]){if(!this.enabled||this.hidden||!this.renderer||this.context?.state!=='running')return;for(const e of events){

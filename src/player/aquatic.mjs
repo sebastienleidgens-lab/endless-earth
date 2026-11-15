@@ -6,7 +6,7 @@ export class AquaticController{
  get active(){return ['wading','swimming'].includes(this.activity.state)}
  record(type,p){this.history.push({type,state:this.activity.state,position:{...p},reason:this.reason});if(this.history.length>64)this.history.shift()}
  valid(s){return s?.reliable===true&&!!s.provenance&&Number.isFinite(s.surfaceY)&&Number.isFinite(s.bedY)&&s.surfaceY>=s.bedY&&s.allowed===true}
- route(provider,p,clear){const route=provider.routeToExit?.(p.x,p.z);if(!Array.isArray(route)||route.length<2||route.length>512)return false;
+ route(provider,p,clear){const route=provider.routeToExit?.(p.x,p.z);if(!Array.isArray(route)||route.length<2||route.length>8192)return false;
   let previous={...p};for(const q of route){if(!Number.isFinite(q.x)||!Number.isFinite(q.z)||Math.hypot(q.x-previous.x,q.z-previous.z)>1)return false;const s=provider.sample(q.x,q.z);if(!this.valid(s)||!clear(q.x,q.z)||Math.abs(s.bedY-previous.y)>.7*Math.max(.2,Math.hypot(q.x-previous.x,q.z-previous.z))+.06)return false;previous={...q,y:s.bedY};}
   const end=route.at(-1),s=provider.sample(end.x,end.z);return s.surfaceY-s.bedY<.08&&provider.exitWalkable?.(end.x,end.z)===true;
  }
