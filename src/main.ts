@@ -384,7 +384,7 @@ const contacts=waterContacts.update(activity.state,avatar.position,walkerModel.w
 for(const contact of contacts)waterMarks.emit(contact.position,scene.userData.climate?.elapsedSeconds??0,lifeSettings.name);
 sound.water(contacts);
 if(aquatic.active)locomotion.footContacts=[];
-contextAge+=dt;if(playerWorld&&contextAge>=.3){contextAge=0;const provider=scene.userData.aquaticProvider;actionContext={bank:boat.site(avatar.position,provider,playerWaterClear),dock:boat.active&&provider?.accesses.some((a:any)=>Math.hypot(a.water.x-avatar.position.x,a.water.z-avatar.position.z)<3),seat:groundActions.seatAt(avatar.position,playerWorld),stepOver:playerWorld.interactions.stepOver(avatar.position,avatar.rotation.y,playerWorld)?.ok};}
+contextAge+=dt;if(playerWorld&&contextAge>=.3){contextAge=0;const provider=scene.userData.aquaticProvider;actionContext={bank:boat.site(avatar.position,provider,playerWaterClear),dock:boat.active&&provider?.accesses.some((a:any)=>Math.hypot(a.water.x-avatar.position.x,a.water.z-avatar.position.z)<3),seat:['walking','running'].includes(activity.state)?groundActions.seatAt(avatar.position,playerWorld):groundActions.seat,stepOver:['walking','running'].includes(activity.state)&&playerWorld.interactions.stepOver(avatar.position,avatar.rotation.y,playerWorld)?.ok};}
 actions.update(activity,geographyReady,!!walkMenu?.open,actionContext);
 smoothZoom=THREE.MathUtils.lerp(smoothZoom,zoom,1-Math.exp(-dt*10));
 const desiredEye=avatar.position.y+(camp.metrics.active?.95:activity.state==='swimming'?1.5:boatHandled?1.65-(boat.pose??0)*.6:groundActions.sit>0?1.65-groundActions.sit*.68:1.65);
