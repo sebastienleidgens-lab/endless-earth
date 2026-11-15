@@ -15,7 +15,7 @@ Les lectures GitHub et Git ont établi :
 - Base choisie : `5fe6e792f34369926854b649a5b631426b7037c4`, conservant M25.1 et M25.2 ; ancêtre commun avec `main` : `ffbbd765ec75bdcddd0bdb3b58933e46d585b7db`.
 - Branche unique `mission/26-vienne-planet-engine`. La PR vers `main` contient par conséquent aussi les acquis M25.2 absents de cette base distante.
 
-La référence M25.2 a été archivée avant modification. **384 tests** et compilation stricts réussis après restauration des dépendances par `npm ci` ; le premier essai sans `polygon-clipping` était une erreur d’environnement, pas une régression du candidat. Le candidat passe **403 tests** et le build TypeScript/Vite. Les journaux finaux et empreintes accompagnent la galerie.
+La référence M25.2 a été archivée avant modification. **384 tests** et compilation stricts réussis après restauration des dépendances par `npm ci` ; le premier essai sans `polygon-clipping` était une erreur d’environnement, pas une régression du candidat. Le candidat passe **404 tests** et le build TypeScript/Vite. Les journaux finaux et empreintes accompagnent la galerie.
 
 Les données et paquets historiques d’Angles sont conservés. Deux manifestes de décoration déclarent une transformation d’apparence et une empreinte actualisée du matériau ; leurs paquets binaires et ancrages ne changent pas. Les défauts M23, le graphe aquatique coûteux et les ouvrages non vérifiés ne sont pas effacés du bilan.
 
@@ -49,6 +49,15 @@ Les données et paquets historiques d’Angles sont conservés. Deux manifestes 
 | E — suivre la rivière / pagaie / sillage | Partiel | Bouton contextuel, itinéraire sur graphe chargé, commandes du contrôleur existant, arrêt/reprise manuelle et refus conservés. Pose de pagaie partagée avec la poussée, un journal de contacts pour effets/sons, deux sillons discrets et pools bornés. Longues navigations départementales, reprise sauvegardée et filmage complet de tous les cas restent ouverts. |
 
 Les diagnostics numériques [avant](mission-26-evidence/quality-fixes/before-motion-summary.json) / [après](mission-26-evidence/quality-fixes/after-motion-summary.json) et les traces gzip distinguent départ/arrêt, régime établi, appui, vitesse et pose. Un seuil numérique d’angle ou d’appui ne certifie pas un mouvement naturel. Les faibles cadences logicielles ne sont jamais qualifiées de fluides.
+
+Sur le diagnostic **synthétique plat, 60 Hz, 12 s**, après exclusion des deux premières secondes :
+
+| Cas | Pic articulaire avant → après | Dépassements du seuil diagnostique de 12 rad/s avant → après |
+| --- | --- | --- |
+| Marche 1,45 m/s | 13,15 → 8,98 rad/s | 5 → 0 |
+| Course 3,2 m/s | 21,97 → 11,40 rad/s | 207 → 0 |
+
+Ce seuil sert à repérer des discontinuités dans ce test, pas à définir une démarche biologiquement naturelle. Le démarrage de course conserve six dépassements dans les deux premières secondes ; ils ne sont pas effacés du maximum global ni assimilés à un régime établi corrigé sur tous les terrains.
 
 ## Géographie réellement préparée
 
