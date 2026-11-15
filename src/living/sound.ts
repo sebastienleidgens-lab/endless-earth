@@ -54,7 +54,7 @@ export class Soundscape {
  update(p:Vec3,travel:number,_wind:number,_yaw:number,climate:any,life?:any,habitatAt?:((x:number,z:number)=>string),profile='balanced',altitudeM:number|null|((x:number,z:number)=>number|null)=null,sources:SoundContext['sources']=[],locomotion?:{contacts:number;speed:number;footContacts?:Array<{position:Vec3;side:number;run:number;energy:number}>},flight?:{id:string;position:Vec3;velocity:Vec3;eligible:boolean}|null,absoluteSupportAltitude:number|null=null){
  if(!this.enabled||this.hidden||!this.context||this.context.state!=='running'||!this.renderer){this.cpuMs=0;return;}
  const start=performance.now(),now=climate?.elapsedSeconds??start/1000;
- this.renderer.followBirds(sources);
+ this.renderer.followBirds(sources,now);
  const stormEvents=climate?.lightning?.events??[],thunders=AUDIO_GROUPS.thunder??[];
  if((climate?.metrics?.electricalActivity??0)>.08)for(const id of thunders)void this.renderer.resources.request(id);
  for(const e of stormEvents){if(this.stormIds.has(e.id))continue;const age=(start-e.timestampMs)/1000;

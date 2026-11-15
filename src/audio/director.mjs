@@ -33,7 +33,7 @@ export class SoundDirector{
  const asset=bird.assets[memory.assetIndex%bird.assets.length];
  const candidates=bird.assets.map((id,index)=>({id,index})).filter(a=>!memory.heard.slice(-2).includes(a.id)&&AUDIO_ASSETS[a.id]?.source!==AUDIO_ASSETS[asset]?.source);
  memory.assetIndex=candidates.length?candidates[Math.floor(this.random()*candidates.length)].index:(memory.assetIndex+1)%bird.assets.length;memory.last=now;memory.heard.push(asset);if(memory.heard.length>3)memory.heard.shift();this.lastCategory=now;
- out.push({id:bird.id,asset,position:{...emitter.position},emitterId:emitter.id,interpreted:true,priority:60,gain:bird.gain*(.65+this.random()*.65),refDistance:bird.refDistance,maxDistance:bird.range,distance,sequence:++this.sequence,reason:`plausible ${bird.id}, ${emitter.habitat}, ${c.season}, local ${c.localHour.toFixed(1)}h; fixed WGS84 perch`});break;
+ out.push({id:bird.id,asset,position:{...emitter.position},emitterId:emitter.id,interpreted:true,priority:60,gain:bird.gain*(.65+this.random()*.65),refDistance:bird.refDistance,maxDistance:bird.range,distance,sequence:++this.sequence,reason:`plausible ${bird.id}, ${emitter.habitat}, ${c.season}, local ${c.localHour.toFixed(1)}h; ${emitter.kind==='bird'?'loaded visible individual, position follows flight':'fixed WGS84 perch'}`});break;
  }
  }}
  if(trafficActivity(c)>0&&TRAFFIC.assets.length){
