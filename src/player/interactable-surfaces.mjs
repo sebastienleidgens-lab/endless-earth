@@ -16,7 +16,7 @@ export class InteractableSurfaces {
     this.lastReason='unidentified-surface';
     for(const s of this.items.values()){
       if(!['bench','rock'].includes(s.kind)||!s.actions?.includes('sit')||!s.validate())continue;
-      if(s.width<.52||s.depth<.42||Math.hypot(p.x-s.position.x,p.z-s.position.z)>.65)continue;
+      if(s.width<.52||s.depth<.42||Math.hypot(p.x-s.position.x,p.z-s.position.z)>1.2)continue;
       // An existing 3D body sweep must prove approach, legs, head and pack.
       // No collider is disabled to make the animation pass.
       if(typeof world.sweepBody!=='function'){this.lastReason='unknown-body-clearance';continue;}
@@ -25,7 +25,7 @@ export class InteractableSurfaces {
       if(!support.ok||s.height-support.height<.3||s.height-support.height>.62)continue;
       const target={x:s.position.x,y:s.height,z:s.position.z};
       if(!world.sweepBody(p,target,{kind:'seat',colliderId:s.colliderId,heading:s.heading}))continue;
-      return {kind:s.kind,id:s.id,position:target,heading:s.heading,provenance:s.provenance,revision:this.revision,validate:()=>this.items.get(s.id)===s&&s.validate()};
+      return {kind:s.kind,id:s.id,position:target,groundY:support.height,heading:s.heading,provenance:s.provenance,revision:this.revision,validate:()=>this.items.get(s.id)===s&&s.validate()};
     }
     return null;
   }
@@ -39,7 +39,7 @@ export class InteractableSurfaces {
       const end={x:s.position.x+dx*(s.depth/2+.6),z:s.position.z+dz*(s.depth/2+.6)},landing=world.query(end.x,end.z);
       if(!landing.ok||Math.abs(landing.height-p.y)>.15||landing.slope>.2)continue;
       const target={...end,y:landing.height};
-      if(!world.sweepBody(p,target,{kind:'step-over',colliderId:s.colliderId,height:s.height+.12}))continue;
+      if(!world.sweepBody(p,target,{kind:'step-over',colliderId:s.colliderId,height:s.height+.12,heading}))continue;
       return {ok:true,id:s.id,start:{...p},end:target,top:s.height,provenance:s.provenance,validate:()=>this.items.get(s.id)===s&&s.validate()};
     }
     return {ok:false,reason:'unidentified-surface'};

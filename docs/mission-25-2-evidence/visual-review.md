@@ -1,0 +1,11 @@
+# Revue visuelle de l’agent — non indépendante
+
+Cette lecture d’images par l’agent n’est ni une revue artistique humaine ni une validation de réalisme. Le propriétaire doit encore juger le personnage en mouvement et écouter le mix au casque et sur haut-parleurs.
+
+Les prises finales exécutent le code figé `f56ab29`, les comparaisons « avant » la base `ffbbd76`. Le photogramme à 90 s de la nouvelle course et celui du groupe d’oies sont extraits directement de ces WebM natifs. Les oies sont visibles en groupe ; elles ne sont pas une observation ornithologique du lieu réel.
+
+Constats sur les prises compilées : les yeux, sourcils, nez, bouche et barbe sont plus lisibles qu’à la base M25.1 ; le sac, les poches et les attaches ont des volumes distincts. Les mains posées sur les genoux rendent l’assise plus cohérente. Le banc et le rocher portent réellement le bassin et le relevé ramène le joueur sur son approche. Le tronc interrompt la marche libre avant le volume du pied ; son enjambement est une action distincte.
+
+Réserves : le style demeure sculpté et simplifié, avec symétrie et volumes de vêtements encore rigides. Les captures Éco rendent les ombres de contact peu lisibles ; cela peut donner une impression de flottement malgré les contacts mesurés. La peau et les expressions restent limitées. Les cadences natives faibles compliquent l’évaluation du poids et de la continuité ; le photogramme de course ne suffit pas à les valider. La course longue dépasse le seuil d’appui de 3,5 cm (3,86 cm d’erreur, 4,07 cm de glissement) et comprend de brefs retours à la marche : 185,7 s de course cumulées ne prouvent pas 180 s ininterrompues. Les petits oiseaux gardent des pattes et morphologies simplifiées ; leur contact fin sur les branches n’est pas validé. Une identité sonore vérifiée n’atteste pas une observation réelle de l’espèce.
+
+La métrique d’appui mesure le point de contact animé contre le support, ainsi que son déplacement monde pendant le soutien. Elle ne constitue pas un jugement de beauté, de poids perceptif ou d’anatomie. Les limites du relief M23 restent visibles et ouvertes. Les films natifs sur SwiftShader ne prouvent pas une expérience fluide sur un GPU ou un téléphone physique.

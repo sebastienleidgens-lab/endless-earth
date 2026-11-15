@@ -8,7 +8,7 @@ export class WaterContacts {
     const water=['wading','swimming','boating'].includes(state);
     if(state!==this.state){
       const s=provider?.sample(position.x,position.z);
-      if(s?.reliable&&water&&this.state==='walking')add('entry',{...position,y:s.surfaceY});
+      if(s?.reliable&&water&&['walking','running'].includes(this.state))add('entry',{...position,y:s.surfaceY});
       if(!water&&['wading','swimming'].includes(this.state))add('exit',position);
       this.previous.clear();this.state=state;this.travel=0;this.last=null;
     }
@@ -18,6 +18,7 @@ export class WaterContacts {
       if(wet&&this.previous.get(id)===false)add(kind,{x:p.x,y:s.surfaceY,z:p.z});
       this.previous.set(id,wet);
     };
+    if(state==='swimming'&&hands.head){const s=provider?.sample(hands.head.x,hands.head.z);if(hands.breath>.75&&!this.breathing&&s?.reliable&&hands.head.y>s.surfaceY+.025){add('breath',hands.head);this.breathing=true;}if(hands.breath<.2)this.breathing=false;}
     if(state==='swimming')for(const h of hands)observe('hand'+h.side,'stroke',h.position);
     if(state==='boating'&&tip)observe('paddle','paddle',tip);
     if(state==='wading')for(const f of feet){const s=provider.sample(f.position.x,f.position.z);if(s?.reliable)add('wade',{...f.position,y:s.surfaceY});}
