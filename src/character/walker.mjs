@@ -3,23 +3,25 @@ import {lightingReceiver} from '../lighting/state.mjs';
 import {snowReceiver} from '../nature/snow-state.mjs';
 import {DistanceGait,legIK} from './gait.mjs';
 import {sampleLocomotion} from './clips.mjs';
-export const WALKER_VERSION='original-traveler-rig-v6-clips';
+import {travelerDetails} from './traveler-details.mjs';
+import {sampleJointPose} from './joint-clips.mjs';
+export const WALKER_VERSION='original-traveler-rig-v7-articulated-clips';
 /** Original lofted silhouette, one skinned mesh and vertex-colour material. */
 export function createWalker(){
  const avatar=new THREE.Group(),bones=[],at=[],position=[],color=[],skinIndex=[],skinWeight=[],index=[],lowIndex=[];
  const bone=(name,parent,x,y,z=0)=>{const b=new THREE.Bone();b.name=name;b.position.set(x,y,z);if(parent)parent.add(b);bones.push(b);return b};
  const hips=bone('hips',null,0,.87),spine=bone('spine',hips,0,.25),chest=bone('chest',spine,0,.20),neck=bone('neck',chest,0,.14),head=bone('head',neck,0,.09);
- const legs=[],arms=[];for(const side of [-1,1]){const thigh=bone('thigh'+side,hips,side*.105,0),shin=bone('shin'+side,thigh,0,-.43),foot=bone('foot'+side,shin,0,-.43),toe=bone('toe'+side,foot,0,-.035,.075);thigh.rotation.order='ZXY';legs.push({thigh,shin,foot,toe,side,anchor:new THREE.Vector3(),target:new THREE.Vector3(),previous:new THREE.Vector3(),stance:true,cycle:0,clip:{},scratch:{}});const clavicle=bone('clavicle'+side,chest,side*.12,.015),upper=bone('arm'+side,clavicle,side*.115,0),lower=bone('forearm'+side,upper,0,-.29),hand=bone('hand'+side,lower,0,-.255),fingers=bone('fingers'+side,hand,0,-.04,.014),tips=bone('fingertips'+side,fingers,0,-.035,0),thumb=bone('thumb'+side,hand,-side*.027,-.015,.035),thumbTip=bone('thumb-tip'+side,thumb,0,-.025,.007);arms.push({clavicle,upper,lower,hand,fingers,tips,thumb,thumbTip,side})}
+ const legs=[],arms=[];for(const side of [-1,1]){const thigh=bone('thigh'+side,hips,side*.105,0),shin=bone('shin'+side,thigh,0,-.43),foot=bone('foot'+side,shin,0,-.43),toe=bone('toe'+side,foot,0,-.035,.075);thigh.rotation.order='ZXY';legs.push({thigh,shin,foot,toe,side,anchor:new THREE.Vector3(),target:new THREE.Vector3(),previous:new THREE.Vector3(),stance:true,cycle:0,clip:{},scratch:{},joints:{},jointScratch:{},ankle:new THREE.Vector3(),contact:new THREE.Vector3(),measured:false,plantHeading:0,stopAge:0});const clavicle=bone('clavicle'+side,chest,side*.12,.015),upper=bone('arm'+side,clavicle,side*.115,0),lower=bone('forearm'+side,upper,0,-.29),hand=bone('hand'+side,lower,0,-.255),fingers=bone('fingers'+side,hand,0,-.04,.014),tips=bone('fingertips'+side,fingers,0,-.035,0),thumb=bone('thumb'+side,hand,-side*.027,-.015,.035),thumbTip=bone('thumb-tip'+side,thumb,0,-.025,.007);arms.push({clavicle,upper,lower,hand,fingers,tips,thumb,thumbTip,side})}
  const pack=bone('travel-pack',chest,0,.03,-.15),packLid=bone('pack-lid',pack,0,.13,-.08);
  const rig=new THREE.Skeleton(bones);avatar.add(hips);avatar.updateMatrixWorld(true);for(const b of bones)at.push(b.getWorldPosition(new THREE.Vector3()));
- const palette={coat:0x687b68,pants:0x63594c,skin:0xc99b7b,hair:0x453c33,boots:0x383c38,trim:0xaaa28b,eye:0x38352e};
+ const palette={coat:0x436c73,pants:0x6c5b46,skin:0xd0a183,hair:0x403129,boots:0x443d34,trim:0xaaa28b,eye:0x38352e};
  function vertex(x,y,z,c,weights){const i=position.length/3;position.push(x,y,z);const col=new THREE.Color(c);color.push(col.r,col.g,col.b);const ids=[0,0,0,0],ws=[0,0,0,0];weights.forEach(([b,w],j)=>{ids[j]=bones.indexOf(b);ws[j]=w});skinIndex.push(...ids);skinWeight.push(...ws);return i}
  const fixed=b=>()=>[[b,1]],mix=(a,b,t)=>[[a,1-t],[b,t]];
  function loft(rings,c,weights,sides=12){const start=position.length/3;for(const r of rings)for(let j=0;j<=sides;j++){const angle=j/sides*Math.PI*2;vertex((r[3]??0)+Math.cos(angle)*r[1],r[0],(r[4]??0)+Math.sin(angle)*r[2],c,weights(r[0]))}for(let k=0;k<rings.length-1;k++)for(let j=0;j<sides;j++){const a=start+k*(sides+1)+j,b=a+sides+1;index.push(a,a+1,b,b,a+1,b+1);if(j%2===0){const n=Math.min(2,sides-j);lowIndex.push(a,a+n,b,b,a+n,b+n)}}for(const k of [0,rings.length-1]){const r=rings[k],mid=vertex(r[3]??0,r[0],r[4]??0,c,weights(r[0]));for(let j=0;j<sides;j++){const a=start+k*(sides+1)+j;index.push(...(k?[mid,a,a+1]:[mid,a+1,a]));if(j%2===0){const n=Math.min(2,sides-j);lowIndex.push(...(k?[mid,a,a+n]:[mid,a+n,a]))}}}}
  loft([[.83,.14,.105],[.94,.155,.115],[1.08,.175,.125],[1.29,.213,.13],[1.37,.22,.11],[1.42,.14,.09],[1.44,.075,.07]],palette.coat,y=>y<1.06?mix(hips,spine,Math.max(0,(y-.86)/.20)):mix(spine,chest,Math.min(1,(y-1.06)/.23)),16);
  loft([[1.41,.061,.057],[1.48,.059,.055],[1.50,.066,.061]],palette.skin,y=>mix(neck,head,THREE.MathUtils.clamp((y-1.44)/.06,0,1)));
  loft([[1.47,.065,.064,0,.008],[1.51,.094,.086,0,.012],[1.59,.12,.102,0,.008],[1.68,.115,.101],[1.74,.085,.079,0,-.008],[1.77,.025,.029,0,-.012]],palette.skin,fixed(head),16);
- loft([[1.65,.114,.094,0,-.025],[1.72,.104,.087,0,-.018],[1.775,.055,.052,0,-.02],[1.785,.012,.015,0,-.02]],palette.hair,fixed(head),16);
+ loft([[1.67,.109,.086,0,-.028],[1.735,.093,.076,0,-.025],[1.78,.04,.042,0,-.02]],palette.hair,fixed(head),16);
  // Original full-size travel pack. One restrained secondary bone, still one draw.
  const packStart=index.length;
  loft([[.86,.14,.075,0,-.25],[.94,.185,.13,0,-.30],[1.26,.19,.145,0,-.31],[1.45,.165,.12,0,-.28],[1.50,.11,.075,0,-.24]],0x716c51,fixed(pack),10);
@@ -30,6 +32,7 @@ export function createWalker(){
   loft([[.94,.014,.01,side*.115,-.476],[1.28,.014,.01,side*.115,-.46],[1.46,.012,.009,side*.11,-.415]],0xb8a789,fixed(pack),4);
  }
  loft([[.82,.19,.065,0,-.32],[.87,.23,.09,0,-.32],[.93,.19,.065,0,-.32]],0x647276,fixed(pack),8);
+ travelerDetails('pack',{loft,fixed,mix,palette,head,chest,spine,hips,pack,packLid,arms,legs});
  const packEnd=index.length;
  // Bring the padded panel against the back. The rear shoulder straps below
  // join that panel instead of leaving an unconnected silhouette in profile.
@@ -37,11 +40,12 @@ export function createWalker(){
  loft([[1.395,.084,.073],[1.43,.09,.078],[1.455,.07,.065]],palette.trim,fixed(chest),12);
  for(const side of [-1,1])loft([[.95,.021,.012,side*.135,.11],[1.21,.026,.015,side*.16,.133],[1.39,.028,.017,side*.15,.09],[1.445,.02,.014,side*.13,-.04],[1.36,.02,.015,side*.13,-.16],[1.10,.018,.012,side*.13,-.155]],0xa09473,fixed(chest),6);
  loft([[1.21,.145,.012,0,.13],[1.235,.15,.012,0,.13]],0x8e876d,fixed(chest),8);
- loft([[1.49,.065,.061,0,.011],[1.53,.092,.086,0,.012],[1.565,.104,.093,0,.003]],0x68584b,fixed(head),10);
+ 
  loft([[1.549,.025,.003,0,.093],[1.555,.031,.004,0,.095],[1.558,.024,.003,0,.094]],0x986e5a,fixed(head),8);
  // Small nose, ears, brows and eyes stay part of the same draw.
  loft([[1.568,.016,.015,0,.106],[1.59,.021,.029,0,.115],[1.63,.012,.014,0,.106]],palette.skin,fixed(head),8);
- for(const s of [-1,1]){loft([[1.575,.016,.018,s*.119,0],[1.624,.019,.021,s*.12,0],[1.646,.01,.012,s*.115,0]],palette.skin,fixed(head),8);loft([[1.626,.009,.005,s*.044,.099],[1.637,.011,.006,s*.044,.10],[1.645,.008,.005,s*.044,.098]],palette.eye,fixed(head),8)}
+ for(const s of [-1,1]){loft([[1.575,.016,.018,s*.119,0],[1.624,.019,.021,s*.12,0],[1.646,.01,.012,s*.115,0]],palette.skin,fixed(head),8);loft([[1.626,.009,.005,s*.044,.099],[1.637,.011,.006,s*.044,.10],[1.645,.008,.005,s*.044,.098]],palette.skin,fixed(head),8)}
+ travelerDetails('head',{loft,fixed,mix,palette,head,chest,spine,hips,pack,packLid,arms,legs});
  for(let i=0;i<2;i++){const l=legs[i],a=arms[i],s=l.side,x=s*.105;const lw=y=>y>.53?fixed(l.thigh)():y<.36?fixed(l.shin)():mix(l.thigh,l.shin,(.53-y)/.17);
   loft([[.07,.055,.058,x],[.16,.059,.067,x],[.28,.068,.073,x,-.008],[.38,.073,.075,x],[.46,.075,.079,x,.016],[.53,.08,.081,x],[.68,.09,.092,x,-.006],[.82,.091,.096,x],[.90,.087,.099,x]],palette.pants,lw);
   loft([[-.045,.065,.137,x,.045],[.005,.066,.143,x,.047],[.045,.055,.095,x,.018],[.07,.052,.062,x,-.005]],palette.boots,fixed(l.foot),12);
@@ -52,9 +56,9 @@ export function createWalker(){
   loft([[.79,.046,.045,ax+s*.035],[.91,.048,.05,ax+s*.025],[1.02,.054,.058,ax+s*.016],[1.10,.058,.06,ax+s*.012],[1.24,.071,.073,ax+s*.004],[1.34,.073,.074,ax],[1.39,.055,.06,ax]],palette.coat,aw);
   loft([[.785,.047,.048,ax+s*.035],[.805,.05,.049,ax+s*.035],[.82,.047,.048,ax+s*.035]],palette.trim,fixed(a.lower));
   loft([[.73,.032,.035,ax+s*.037,.014],[.76,.036,.037,ax+s*.036,.012],[.79,.033,.033,ax+s*.035]],palette.skin,fixed(a.hand),10);
-  for(const offset of [-.022,0,.022])loft([[.674,.008,.012,ax+s*.037+offset,.014],[.70,.010,.014,ax+s*.037+offset,.014],[.744,.010,.015,ax+s*.037+offset,.014]],palette.skin,y=>y<.71?fixed(a.tips)():mix(a.tips,a.fingers,THREE.MathUtils.clamp((y-.71)/.03,0,1)),6);
   loft([[.724,.011,.014,ax+s*.008,.05],[.748,.014,.018,ax+s*.008,.046],[.775,.017,.021,ax+s*.006,.042]],palette.skin,y=>y<.745?fixed(a.thumbTip)():fixed(a.thumb)(),6);
  }
+ travelerDetails('clothes',{loft,fixed,mix,palette,head,chest,spine,hips,pack,packLid,arms,legs});
  for(let i=0;i<lowIndex.length;i+=3){const v=lowIndex[i+1];lowIndex[i+1]=lowIndex[i+2];lowIndex[i+2]=v}
  for(let i=0;i<index.length;i+=3){const swap=index[i+1];index[i+1]=index[i+2];index[i+2]=swap}
  for(let i=0;i<position.length/3;i++)if(position[i*3+1]<.035&&position[i*3+2]>.08){const foot=bones[skinIndex[i*4]],leg=legs.find(l=>l.foot===foot);if(leg){const weight=THREE.MathUtils.clamp((position[i*3+2]-.08)*6,0,.7);skinIndex[i*4+1]=bones.indexOf(leg.toe);skinWeight[i*4]=1-weight;skinWeight[i*4+1]=weight;}}
@@ -62,7 +66,7 @@ export function createWalker(){
  const coarse=new THREE.BufferGeometry();for(const [name,attribute]of Object.entries(geometry.attributes))coarse.setAttribute(name,attribute);coarse.setIndex(lowIndex);coarse.boundingSphere=geometry.boundingSphere;
  const wetUniform={value:0};
  const material=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.93,metalness:0});material.userData.excludeWalkerShadow=true;lightingReceiver(material);snowReceiver(material);const priorCompile=material.onBeforeCompile,priorKey=material.customProgramCacheKey();material.onBeforeCompile=(shader,r)=>{priorCompile.call(material,shader,r);shader.uniforms.travelerWet=wetUniform;shader.vertexShader='varying float travelerCloth;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\ntravelerCloth=step(.08,position.y)*step(position.y,1.46);');shader.fragmentShader='uniform float travelerWet;varying float travelerCloth;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\ndiffuseColor.rgb*=1.-travelerWet*.24*travelerCloth;');shader.fragmentShader=shader.fragmentShader.replace('#include <roughnessmap_fragment>','#include <roughnessmap_fragment>\nroughnessFactor=mix(roughnessFactor,.56,travelerWet*travelerCloth);');};material.customProgramCacheKey=()=>priorKey+'-traveler-exposure-v1';const mesh=new THREE.SkinnedMesh(geometry,material);mesh.name='promeneur-articule';mesh.add(hips);mesh.bind(rig);mesh.frustumCulled=false;mesh.castShadow=true;mesh.receiveShadow=true;avatar.add(mesh);avatar.name='promeneur';
- const motion=new DistanceGait(),last=new THREE.Vector3(Infinity,0,0),local=new THREE.Vector3(),world=new THREE.Vector3(),metrics=avatar.userData.walker={version:WALKER_VERSION,bones:bones.length,triangles:index.length/3,drawCalls:1,imageTextures:0,boneTextureBytes:bones.length*64,lod:0,lodTriangles:[index.length/3,lowIndex.length/3],phase:0,speed:0,contacts:0,soleError:0,plantError:0,mode:'idle'};let initialized=false,lastFacing=0,turn=0,contactSequence=0,poseBlend=0,packPitch=0,packRoll=0,packVX=0,packVZ=0,previousSpeed=0,aquaticLean=0;const inversePelvis=new THREE.Quaternion();
+ const motion=new DistanceGait(),last=new THREE.Vector3(Infinity,0,0),local=new THREE.Vector3(),world=new THREE.Vector3(),metrics=avatar.userData.walker={version:WALKER_VERSION,bones:bones.length,triangles:index.length/3,drawCalls:1,imageTextures:0,boneTextureBytes:bones.length*64,lod:0,lodTriangles:[index.length/3,lowIndex.length/3],phase:0,speed:0,contacts:0,soleError:0,plantError:0,mode:'idle'};let initialized=false,lastFacing=0,turn=0,contactSequence=0,poseBlend=0,packPitch=0,packRoll=0,packVX=0,packVZ=0,previousSpeed=0,aquaticLean=0;const inversePelvis=new THREE.Quaternion(),footOrientation=new THREE.Quaternion(),parentOrientation=new THREE.Quaternion(),pitchOrientation=new THREE.Quaternion();const upAxis=new THREE.Vector3(0,1,0),sideAxis=new THREE.Vector3(1,0,0),ball=new THREE.Vector3(0,-.06,.12),heel=new THREE.Vector3(0,-.06,-.04),offsetFoot=new THREE.Vector3();
  const posePositions=bones.map(b=>b.position.clone()),poseRotations=bones.map(b=>b.quaternion.clone());let poseKind='walking',poseAge=1;
  const waterContacts=[{side:-1,position:new THREE.Vector3()},{side:1,position:new THREE.Vector3()}];
  function secondary(swim,boat,time,blend=1){
@@ -73,7 +77,7 @@ export function createWalker(){
  function blendPose(kind,dt){if(kind!==poseKind){poseKind=kind;poseAge=0;}poseAge=Math.min(.4,poseAge+dt);const a=1-Math.exp(-Math.max(0,dt)*12);for(let i=0;i<bones.length;i++){const b=bones[i];if(poseAge<.4){b.position.lerpVectors(posePositions[i],b.position,a);b.quaternion.slerpQuaternions(poseRotations[i],b.quaternion,a);}posePositions[i].copy(b.position);poseRotations[i].copy(b.quaternion);}}
 
  function point(side,z,out){out.set(side*.105,0,z).applyAxisAngle(THREE.Object3D.DEFAULT_UP,avatar.rotation.y).add(avatar.position);return out}
- const armV=new THREE.Vector3(),armDir=new THREE.Vector3(),armBend=new THREE.Vector3(),elbow=new THREE.Vector3(),down=new THREE.Vector3(0,-1,0),armQ=new THREE.Quaternion();
+ const seatedHands=[new THREE.Vector3(),new THREE.Vector3()];const armV=new THREE.Vector3(),armDir=new THREE.Vector3(),armBend=new THREE.Vector3(),elbow=new THREE.Vector3(),down=new THREE.Vector3(0,-1,0),armQ=new THREE.Quaternion();
  function grip(targets){chest.updateWorldMatrix(true,true);for(let i=0;i<2;i++){const a=arms[i];armV.copy(targets[i]);a.clavicle.worldToLocal(armV).sub(a.upper.position);const d=THREE.MathUtils.clamp(armV.length(),.05,.54);armDir.copy(armV).normalize();armBend.set(a.side*.65,-.15,-.6).addScaledVector(armDir,-armBend.dot(armDir)).normalize();const along=(.29*.29+d*d-.255*.255)/(2*d),height=Math.sqrt(Math.max(0,.29*.29-along*along));elbow.copy(armDir).multiplyScalar(along).addScaledVector(armBend,height);a.upper.quaternion.setFromUnitVectors(down,armDir.copy(elbow).normalize());armV.sub(elbow).applyQuaternion(armQ.copy(a.upper.quaternion).invert()).normalize();a.lower.quaternion.setFromUnitVectors(down,armV);}}
  function reset(){for(let i=0;i<legs.length;i++){const f=legs[i];f.cycle=Math.floor(motion.phase*.5+i*.5);point(f.side,0,f.anchor);f.target.copy(f.anchor);f.stance=true}initialized=true}
  return {avatar,motion,metrics,feet:legs,hips,waterContacts,
@@ -85,61 +89,78 @@ export function createWalker(){
    motion.footContacts.length=0;motion.contacts=0;pack.scale.setScalar(activity.kind==='camping'||boat&&seat>.55?.001:1);pack.position.set(0,swim?-.34:.03,swim?-.06:-.15);pack.rotation.set(swim?-.25:0,0,0);hips.rotation.set(0,0,0);spine.rotation.set(.08,0,Math.sin(motion.time*.7)*.008);chest.rotation.set(0,0,0);head.rotation.set(-.04,Math.sin(motion.time*.23)*.04,0);spine.scale.y=1;
    // Root in swimming is surface-.85. Horizontal body at surface-.12,
    // with face above water and separate alternating recovery/catch/kick phases.
-   hips.position.y=swim?.73:jump?.82:.87-seat*(activity.kind==='sitting'?.78:.66);hips.rotation.x=swim?Math.PI*.40:0;
+   hips.position.y=swim?.73:jump?.82:.87-seat*(activity.kind==='sitting'?.78-(activity.seatHeight??0):.66);hips.rotation.x=swim?Math.PI*.40:0;
    const stroke=boat?(activity.stroke??0):motion.time*2.5;
-   for(let i=0;i<2;i++){const f=legs[i],a=arms[i],phase=stroke+i*Math.PI,ik=legIK(activity.kind==='sitting'?.06-hips.position.y:-.13,activity.kind==='sitting'?.48*seat:.48);
+   for(let i=0;i<2;i++){const f=legs[i],a=arms[i],phase=stroke+i*Math.PI,ik=legIK(activity.kind==='sitting'?.06-hips.position.y:-.13,activity.kind==='sitting'?(activity.seatHeight>0?.53:.48)*seat:.48);
     f.thigh.rotation.set(swim?Math.sin(motion.time*5.2+i*Math.PI)*.18:jump?-.38:activity.kind==='sitting'?ik.hip:ik.hip*seat,0,0);f.shin.rotation.x=swim?.12:jump?.75:activity.kind==='sitting'?ik.knee:ik.knee*seat;f.foot.rotation.x=swim?-.22:jump?-.3:activity.kind==='sitting'?-ik.hip-ik.knee:(-ik.hip-ik.knee)*seat;f.toe.rotation.x=0;
     a.upper.rotation.set(swim?-1.45+Math.sin(phase)*1.2:boat?(-.95+Math.cos(stroke)*.18)*seat:jump?-.5:-.9*seat,swim?Math.cos(phase)*.23:boat?Math.sin(stroke)*.16:0,a.side*(swim?.30:boat?.32*seat:.08));a.lower.rotation.x=swim?-.35-Math.max(0,Math.cos(phase))*.8:boat?-1.0:jump?-.9:.4*seat;a.hand.rotation.z=a.side*.05;
    }
-   secondary(swim,boat,motion.time);if(boat){chest.rotation.y=Math.sin(stroke)*.13;spine.rotation.z=Math.sin(stroke)*.025;head.rotation.y=-chest.rotation.y*.7;if(seat>.85&&activity.handTargets)grip(activity.handTargets);}
+   secondary(swim,boat,motion.time);if(activity.kind==='sitting'&&seat>.8&&activity.seatHeight>0){hips.updateWorldMatrix(true,true);for(let i=0;i<2;i++){legs[i].shin.getWorldPosition(seatedHands[i]);seatedHands[i].y+=.08;}grip(seatedHands);}if(swim){const breath=Math.pow(Math.max(0,Math.sin(stroke*.5)),6);hips.rotation.z=Math.sin(stroke)*.055;chest.rotation.z=Math.sin(stroke)*.10;head.rotation.y=-breath*.65;head.rotation.x=-.12-breath*.12;metrics.breath=breath;}if(boat){chest.rotation.y=Math.sin(stroke)*.13;spine.rotation.z=Math.sin(stroke)*.025;head.rotation.y=-chest.rotation.y*.7;if(seat>.85&&activity.handTargets)grip(activity.handTargets);}
    blendPose(activity.kind,dt);aquaticLean=swim?hips.rotation.x:0;avatar.updateWorldMatrix(true,true);rig.update();for(let i=0;i<2;i++)arms[i].hand.getWorldPosition(waterContacts[i].position);last.copy(avatar.position);initialized=false;lastFacing=avatar.rotation.y;Object.assign(metrics,{mode:activity.kind,contacts:0,speed:0,soleError:0,plantError:0});return motion;
   }
   poseKind='walking';poseAge=1;pack.scale.setScalar(1);pack.position.set(0,.03,-.15);
   const jumped=initialized&&last.distanceTo(avatar.position)>3;
   if(!jumped&&initialized&&dt>.08&&distance>0){const end=avatar.position.clone(),start=last.clone(),facing=avatar.rotation.y,from=lastFacing,steps=Math.ceil(dt/.08),contacts=[];for(let i=1;i<=steps;i++){avatar.position.lerpVectors(start,end,i/steps);avatar.rotation.y=from+Math.atan2(Math.sin(facing-from),Math.cos(facing-from))*i/steps;const m=this.update(distance/steps,dt/steps,height,activity);contacts.push(...m.footContacts);}avatar.position.copy(end);avatar.rotation.y=facing;motion.footContacts.splice(0,motion.footContacts.length,...contacts);motion.contacts=contacts.length;metrics.contacts=contacts.length;return motion;}
   if(motion.idleTime>.3&&distance>0){local.copy(legs[0].target).sub(legs[1].target).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);motion.restartOffset=local.z<0?1.6:.6}motion.update(jumped?0:distance,dt);if(!initialized||jumped)reset();last.copy(avatar.position);const wave=motion.phase*Math.PI,turnRate=dt>0?Math.atan2(Math.sin(avatar.rotation.y-lastFacing),Math.cos(avatar.rotation.y-lastFacing))/dt:0;lastFacing=avatar.rotation.y;turn+=(THREE.MathUtils.clamp(turnRate,-2,2)-turn)*(1-Math.exp(-dt*5));
-  let hip=.87+(-Math.cos(wave*2)*(.014+motion.run*.028)+Math.sin(wave*.37)*.002)*motion.blend;metrics.soleError=0;metrics.plantError=0;
-  for(let i=0;i<2;i++){const f=legs[i],cycle=Math.floor(motion.phase*.5+i*.5),q=(motion.phase*.5+i*.5)%1,clip=sampleLocomotion(q,motion.run,f.clip,f.scratch),duty=clip.duty,stance=clip.stance;
-   // Actual travel already eases with physics; damping swing progress again retracts the foot at a stop.
-   if(motion.speed>.025){if(stance){if(!f.stance||f.cycle!==cycle){point(f.side,motion.stride*clip.back,f.anchor);motion.footContacts.push({side:f.side,position:f.anchor.clone(),run:motion.run,energy:.65+motion.run*.55})}f.target.copy(f.anchor)}else{const t=(q-duty)/(1-duty),s=t*t*(3-2*t);point(f.side,motion.stride*clip.back,world);f.target.lerpVectors(f.anchor,world,s);f.target.y=avatar.position.y+clip.lift}f.stance=stance;f.cycle=cycle}
-   // A stopped stride returns to a neutral stance in X/Z as well as Y. A
-   // stale planted foot must never pull the pelvis down towards a sitting pose.
-   if(motion.speed<.025){point(f.side,0,world);const a=1-Math.exp(-dt*10);f.target.x=THREE.MathUtils.lerp(f.target.x,world.x,a);f.target.z=THREE.MathUtils.lerp(f.target.z,world.z,a)}
-   let h=height(f.target.x,f.target.z);
-   if(!Number.isFinite(h)||Math.abs(h-avatar.position.y)>.32||Math.hypot(f.target.x-avatar.position.x,f.target.z-avatar.position.z)>.62){point(f.side,0,f.target);h=height(f.target.x,f.target.z);f.anchor.copy(f.target);f.stance=true}
-   if(!Number.isFinite(h)||Math.abs(h-avatar.position.y)>.32)h=avatar.position.y;
-   if(motion.speed<.025){f.target.y=THREE.MathUtils.lerp(f.target.y,h,1-Math.exp(-dt*14));if(Math.abs(f.target.y-h)<.002){f.target.y=h;f.stance=true;f.anchor.copy(f.target)}}else if(f.stance)f.target.y=h;else f.target.y=Math.max(h,f.target.y);
-   local.copy(f.target).sub(avatar.position).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);let available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));
-   // A long frame or a turn can leave an old contact outside leg reach. Move
-   // that contact back onto nearby support before solving; a pelvis clamp
-   // alone would leave the sole visibly short of its target.
-   for(let n=0;n<6&&available+local.y+.06<.72;n++){
-    point(f.side,n===5?0:local.z*.6,f.target);let contact=height(f.target.x,f.target.z);if(!Number.isFinite(contact)||Math.abs(contact-avatar.position.y)>.32)contact=avatar.position.y;f.target.y=contact;f.anchor.copy(f.target);f.stance=true;
-    local.copy(f.target).sub(avatar.position).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));
+  let hip=.87+motion.run*.025*Math.sin(wave*2-.3)*motion.blend;
+  metrics.soleError=metrics.plantError=metrics.plantSlideM=0;metrics.swingIK=0;
+  for(let i=0;i<2;i++){
+   const f=legs[i],q=(motion.phase*.5+i*.5)%1,cycle=Math.floor(motion.phase*.5+i*.5),clip=sampleLocomotion(q,motion.run,f.clip,f.scratch);
+   sampleJointPose(q,motion.run,f.joints,f.jointScratch);
+   const wasStance=f.stance;
+   if(motion.speed>.025){
+    f.stopAge=0;f.stance=clip.stance;
+    if(f.stance&&(!wasStance||f.cycle!==cycle)){
+     point(f.side,motion.stride*(.44-.02*motion.run)+.12,f.anchor);f.plantHeading=avatar.rotation.y;f.measured=false;
+     motion.footContacts.push({side:f.side,position:f.anchor.clone(),run:motion.run,energy:.65+motion.run*.55});
+    }
+   }else{
+    f.stopAge+=dt;
+    point(f.side,0,world);if(!f.settle&&(f.anchor.distanceTo(world)>.12||Math.abs(Math.atan2(Math.sin(avatar.rotation.y-f.plantHeading),Math.cos(avatar.rotation.y-f.plantHeading)))>.4||!f.stance)&&f.stopAge>.3+(f.side>0?.2:0)){f.settle={from:f.contact.clone(),age:0};f.measured=false;}if(f.settle){f.stance=false;f.settle.age+=dt;const t=Math.min(1,f.settle.age/.32),u=t*t*(3-2*t);f.target.lerpVectors(f.settle.from,world,u);const h=height(f.target.x,f.target.z);f.target.y=(Number.isFinite(h)?h:avatar.position.y)+Math.sin(Math.PI*t)*.065;f.pitch=0;offsetFoot.copy(ball).applyAxisAngle(upAxis,avatar.rotation.y);f.ankle.copy(f.target).sub(offsetFoot);if(t===1){f.anchor.copy(f.target);f.stance=true;f.plantHeading=avatar.rotation.y;f.settle=null;}}
    }
-   hip=Math.min(hip,available+local.y+.06);
+   f.cycle=cycle;
+   if(f.stance){
+    const qn=clip.phase/clip.duty,t=THREE.MathUtils.smoothstep(qn,.55,1);f.pitch=t*(.90-motion.run*.08);
+    if(motion.speed<.025)f.pitch*=Math.exp(-f.stopAge*12);
+    let h=height(f.anchor.x,f.anchor.z);
+    if(!Number.isFinite(h)||Math.abs(h-avatar.position.y)>.32||Math.hypot(f.anchor.x-avatar.position.x,f.anchor.z-avatar.position.z)>.7){point(f.side,.12,f.anchor);h=height(f.anchor.x,f.anchor.z);f.plantHeading=avatar.rotation.y;f.measured=false;}
+    f.anchor.y=Number.isFinite(h)?h:avatar.position.y;
+    f.target.copy(f.anchor);
+    offsetFoot.copy(ball).applyAxisAngle(sideAxis,f.pitch).applyAxisAngle(upAxis,f.plantHeading);f.ankle.copy(f.anchor).sub(offsetFoot);
+    local.copy(f.ankle).sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);
+    const available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));
+    hip=Math.min(hip,available+local.y);
+   }
   }
-  hip=THREE.MathUtils.clamp(hip,.72,.91);
-  // Restrained pelvic twist, counter-rotating shoulders and turn inertia.
-  aquaticLean*=Math.exp(-dt*8);hips.rotation.set(aquaticLean,Math.sin(wave)*(.025+.018*motion.run)*motion.blend,-Math.sin(wave)*.012*motion.blend-turn*.012*motion.blend);
-  hips.position.y=hip;inversePelvis.copy(hips.quaternion).invert();
+  hip=THREE.MathUtils.clamp(hip,.74,.94);hips.position.y=hip;
+  aquaticLean*=Math.exp(-dt*8);hips.rotation.set(aquaticLean,Math.sin(wave)*(.025+.018*motion.run)*motion.blend,-Math.sin(wave)*.014*motion.blend-turn*.018*motion.blend);
+  inversePelvis.copy(hips.quaternion).invert();
   const front=point(0,.35,world),hf=height(front.x,front.z),back=point(0,-.35,local),hb=height(back.x,back.z),slope=Number.isFinite(hf)&&Number.isFinite(hb)?THREE.MathUtils.clamp((hf-hb)/.7,-.5,.5):0;
-  spine.rotation.x=(legs[0].clip.pitch+slope*.22)*motion.blend;
-  spine.rotation.z=Math.sin(wave+.35)*.012*motion.blend+turn*.025*motion.blend;
-  spine.rotation.y=-Math.sin(wave+.15)*.025*motion.blend;
-  chest.rotation.y=-legs[0].clip.twist*motion.blend-turn*.035*motion.blend;
-  const acceleration=dt>0?THREE.MathUtils.clamp((motion.speed-previousSpeed)/dt,-5,5):0;previousSpeed=motion.speed;const targetPitch=Math.sin(wave+.7)*.018*motion.blend-acceleration*.006,targetRoll=-Math.sin(wave)*.016*motion.blend-turn*.012;for(let t=0;t<dt;){const h=Math.min(.016,dt-t);packVX+=((targetPitch-packPitch)*95-packVX*18)*h;packVZ+=((targetRoll-packRoll)*95-packVZ*18)*h;packPitch+=packVX*h;packRoll+=packVZ*h;t+=h;}pack.rotation.set(packPitch,0,packRoll);
-  spine.scale.y=1+Math.sin(motion.time*1.3)*.002*(1-motion.blend);
-  head.rotation.x=-spine.rotation.x*.65;head.rotation.z=-spine.rotation.z*.7;
-  for(const f of legs){local.copy(f.target).sub(avatar.position).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);local.y+=.06-hip;local.applyQuaternion(inversePelvis);const dy=local.y,dx=local.x-f.side*.105,roll=Math.atan2(dx,-dy),ik=legIK(-Math.hypot(dy,dx),local.z);f.thigh.rotation.z=roll;f.thigh.rotation.x=ik.hip;f.shin.rotation.x=ik.knee;point(f.side,local.z+.12,world);const front=height(world.x,world.z);point(f.side,local.z-.12,world);const back=height(world.x,world.z);const slope=Number.isFinite(front)&&Number.isFinite(back)?THREE.MathUtils.clamp(-Math.atan((front-back)/.24),-.5,.5):0;const q=(motion.phase*.5+(f.side===1?.5:0))%1,duty=.61-motion.run*.25;
-   const rollFoot=f.stance?THREE.MathUtils.smoothstep(q/duty,.65,1)*(.12+motion.run*.10):-.14*Math.sin((q-duty)/(1-duty)*Math.PI);
-   f.foot.rotation.x=slope-ik.hip-ik.knee-hips.rotation.x+rollFoot*motion.blend;f.foot.rotation.z=-roll;f.toe.rotation.x=f.stance?-Math.max(0,rollFoot)*.4:0;}
-  for(let i=0;i<2;i++){const a=arms[i],clip=legs[i].clip;a.upper.rotation.x=.055+clip.arm*motion.blend+turn*a.side*.025;a.upper.rotation.z=a.side*(.065+motion.run*.025)+clip.roll*motion.blend;a.lower.rotation.x=-.13+(clip.elbow+.13)*motion.blend;a.hand.rotation.z=a.side*.035}
+  const acceleration=dt>0?THREE.MathUtils.clamp((motion.speed-previousSpeed)/dt,-5,5):0;previousSpeed=motion.speed;
+  spine.rotation.set((legs[0].clip.pitch+slope*.24+acceleration*.012)*motion.blend,-Math.sin(wave+.15)*.035*motion.blend,Math.sin(wave+.35)*.012*motion.blend+turn*.045*motion.blend);
+  chest.rotation.set(0,-legs[0].clip.twist*motion.blend-turn*.055*motion.blend,0);
+  const targetPitch=Math.sin(wave+.7)*.025*motion.blend-acceleration*.01,targetRoll=-Math.sin(wave)*.022*motion.blend-turn*.02;
+  for(let t=0;t<dt;){const h=Math.min(.016,dt-t);packVX+=((targetPitch-packPitch)*95-packVX*18)*h;packVZ+=((targetRoll-packRoll)*95-packVZ*18)*h;packPitch+=packVX*h;packRoll+=packVZ*h;t+=h;}pack.rotation.set(packPitch,0,packRoll);
+  spine.scale.y=1+Math.sin(motion.time*1.3)*.003*(1-motion.blend);head.rotation.set(-spine.rotation.x*.65,Math.sin(motion.time*.37)*.018*(1-motion.blend)+turn*.045,-spine.rotation.z*.7);
+  function solveLeg(f,target){local.copy(target).sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);local.y-=hip;local.applyQuaternion(inversePelvis);const dy=local.y,dx=local.x-f.side*.105,roll=Math.atan2(dx,-dy),ik=legIK(-Math.hypot(dy,dx),local.z);f.thigh.rotation.set(ik.hip,0,roll);f.shin.rotation.set(ik.knee,0,0);}
+  function orientFoot(f,pitch,heading){f.shin.updateWorldMatrix(true,false);f.shin.getWorldQuaternion(parentOrientation);footOrientation.setFromAxisAngle(upAxis,heading).multiply(pitchOrientation.setFromAxisAngle(sideAxis,pitch));f.foot.quaternion.copy(parentOrientation).invert().multiply(footOrientation);f.toe.rotation.x=-Math.max(0,pitch)*.22;}
+  for(const f of legs){
+   if(f.stance||f.settle)solveLeg(f,f.ankle);
+   else{f.thigh.rotation.set(f.joints.thigh,0,0);f.shin.rotation.set(f.joints.shin,0,0);}
+   orientFoot(f,f.stance?f.pitch:f.joints.footPitch,f.stance?f.plantHeading:avatar.rotation.y);
+   if(!f.stance&&!f.settle){
+    f.foot.updateWorldMatrix(true,true);f.foot.localToWorld(world.copy(ball));const h=height(world.x,world.z);f.foot.localToWorld(local.copy(heel));const hh=height(local.x,local.z);
+    const correction=Math.max(0,Number.isFinite(h)?h+.003-world.y:0,Number.isFinite(hh)?hh+.003-local.y:0);
+    if(correction>0){f.foot.getWorldPosition(f.ankle);f.ankle.y+=correction;solveLeg(f,f.ankle);orientFoot(f,f.joints.footPitch,avatar.rotation.y);metrics.swingIK++;}
+   }
+  }
+  for(let i=0;i<2;i++){const a=arms[i],clip=legs[i].clip;a.upper.rotation.set(.055+clip.arm*motion.blend+turn*a.side*.025,0,a.side*(.065+motion.run*.025)+clip.roll*motion.blend);a.lower.rotation.set(-.13+(clip.elbow+.13)*motion.blend,0,0);a.hand.rotation.z=a.side*.035;}
   secondary(false,false,motion.time,motion.blend);
   for(let i=0;i<bones.length;i++){posePositions[i].copy(bones[i].position);poseRotations[i].copy(bones[i].quaternion);}
   head.rotation.y=Math.sin(motion.time*.37)*.018*(1-motion.blend)+turn*.035;avatar.updateWorldMatrix(true,true);rig.update();
-  // Publish contacts only after terrain correction, reach clamping and the IK.
-  for(const contact of motion.footContacts){const f=legs.find(f=>f.side===contact.side);f.foot.getWorldPosition(world);contact.position.set(world.x+Math.sin(avatar.rotation.y)*.045,0,world.z+Math.cos(avatar.rotation.y)*.045);const h=height(contact.position.x,contact.position.z);contact.position.y=h??avatar.position.y;contact.heading=avatar.rotation.y;contact.id=++contactSequence;contact.confirmed=f.stance&&Number.isFinite(h)&&Math.abs(world.y-.06-h)<.045;}
-  motion.contacts=motion.footContacts.length;for(const f of legs){if(!f.stance)continue;f.foot.getWorldPosition(world);metrics.plantError=Math.max(metrics.plantError,Math.hypot(world.x-f.target.x,world.z-f.target.z));const h=height(world.x,world.z);if(h!==null)metrics.soleError=Math.max(metrics.soleError,Math.abs(world.y-.06-h))}Object.assign(metrics,{phase:motion.phase,speed:motion.speed,contacts:motion.contacts,mode:motion.blend<.02?'idle':motion.run>.5?'run':'walk'});return motion;
+  // Actual ball-of-foot world positions, not an error against a moving target.
+  for(const f of legs){f.foot.localToWorld(f.contact.copy(ball));if(f.stance){const h=height(f.contact.x,f.contact.z);if(Number.isFinite(h))metrics.soleError=Math.max(metrics.soleError,Math.abs(f.contact.y-h));metrics.plantError=Math.max(metrics.plantError,Math.hypot(f.contact.x-f.anchor.x,f.contact.z-f.anchor.z));if(f.measured)metrics.plantSlideM=Math.max(metrics.plantSlideM,Math.hypot(f.contact.x-f.previous.x,f.contact.z-f.previous.z));f.measured=true;}else f.measured=false;f.previous.copy(f.contact);}
+  for(const contact of motion.footContacts){const f=legs.find(f=>f.side===contact.side);contact.position.copy(f.contact);const h=height(contact.position.x,contact.position.z);contact.position.y=h??avatar.position.y;contact.heading=f.plantHeading;contact.id=++contactSequence;contact.confirmed=f.stance&&Number.isFinite(h)&&Math.abs(f.contact.y-h)<.035;}
+  motion.contacts=motion.footContacts.length;Object.assign(metrics,{phase:motion.phase,speed:motion.speed,contacts:motion.contacts,pelvisY:hip,mode:motion.blend<.02?'idle':motion.run>.5?'run':'walk'});return motion;
  },dispose(){coarse.dispose();geometry.dispose();material.dispose();rig.dispose()}};
 }
