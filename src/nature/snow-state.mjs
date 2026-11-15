@@ -39,7 +39,10 @@ export function snowReceiver(material){
  if(!(${water})&&earthSnowCover>.0005){
   vec3 snowNormal=normalize(vSnowNormal);
   #ifdef DOUBLE_SIDED
-  snowNormal*=gl_FrontFacing?1.:-1.;
+  // Wood carries outward radial normals, including the open far-LOD ribbons.
+  // Camera-facing Lambert normals must not turn an underside into a receiver.
+  // Leaves are thin two-sided blades: only their actual upper face is coated.
+  ${forest?'if(vForestPart>.5)':''}snowNormal*=gl_FrontFacing?1.:-1.;
   #endif
   float up=max(0.,snowNormal.y);
   float slope=smoothstep(.18,.82,up);
@@ -53,6 +56,6 @@ export function snowReceiver(material){
   diffuseColor.rgb=mix(diffuseColor.rgb,snowColor,coat);
  }
  #endif`);
- };material.customProgramCacheKey=()=>key+'-surface-snow-v1';
+ };material.customProgramCacheKey=()=>key+'-surface-snow-v2';
 }
 export function snowReceiverCount(){return receivers.size}

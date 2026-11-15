@@ -60,15 +60,29 @@ function motionVertex(a,tree,branch,root=null,axis=null){
  for(const [order,key]of [[1,'forestPrimary'],[2,'forestSecondary'],[3,'forestTwig']]){const j=chain.find(b=>b.order===order);a[key].push(...encode(j?j.points[0]:V()),j?Math.round((.02+((j.id*.61803398875)%1)*.96)*65535):0)}
  a.forestLeafRoot.push(...encode(root??V()));a.forestLeafAxis.push(...(axis??V(0,1,0)).toArray().map(v=>Math.round((v*.5+.5)*65535)));
 }
+// The radial branch normals describe the outside. Ring tangents can turn at
+// forks, so establish winding from each actual triangle, not from one assumed
+// ring order. Positions, attachments, smooth normals and index counts stay fixed.
+// Far two-sided ribbons have no enclosed outside; keep their two faces/order.
+function orientBranchWood(a,start,end){
+ for(let i=start;i<end;i+=3){
+  const ia=a.index[i]*3,ib=a.index[i+1]*3,ic=a.index[i+2]*3,p=a.position,n=a.normal;
+  const ux=p[ib]-p[ia],uy=p[ib+1]-p[ia+1],uz=p[ib+2]-p[ia+2],vx=p[ic]-p[ia],vy=p[ic+1]-p[ia+1],vz=p[ic+2]-p[ia+2];
+  const dot=(uy*vz-uz*vy)*(n[ia]+n[ib]+n[ic])+(uz*vx-ux*vz)*(n[ia+1]+n[ib+1]+n[ic+1])+(ux*vy-uy*vx)*(n[ia+2]+n[ib+2]+n[ic+2]);
+  if(dot<0)[a.index[i+1],a.index[i+2]]=[a.index[i+2],a.index[i+1]];
+ }
+}
 function finish(a,name){const g=new THREE.BufferGeometry();g.name=name;g.setAttribute('position',new THREE.Float32BufferAttribute(a.position,3));g.setAttribute('normal',new THREE.Int16BufferAttribute(a.normal.map(v=>Math.round(v*32767)),3,true));g.setAttribute('color',new THREE.Uint8BufferAttribute(a.color.map(v=>Math.round(THREE.MathUtils.clamp(v,0,1)*255)),3,true));g.setAttribute('uv',new THREE.Float32BufferAttribute(a.uv,2));g.setAttribute('natureCluster',new THREE.Float32BufferAttribute(a.natureCluster,1));g.setAttribute('forestData',new THREE.Float32BufferAttribute(a.forestData,3));for(const key of ['forestPrimary','forestSecondary','forestTwig'])g.setAttribute(key,new THREE.Uint16BufferAttribute(a[key],4,true));for(const key of ['forestLeafRoot','forestLeafAxis'])g.setAttribute(key,new THREE.Uint16BufferAttribute(a[key],3,true));g.setIndex(a.index);g.computeBoundingBox();g.computeBoundingSphere();g.boundingSphere.radius+=1;return g}
 export function forestGeometry(tree,lod=0){
  const wood=arrays(),leaves=arrays(),c=tree.config;
  for(const b of tree.branches){if(lod===2&&(b.order>2||c.inner&&b.order===2&&b.sprayIndex===1)||lod===1&&b.order>3)continue;const sides=!b.order?(lod===0?10:lod===1?6:4):lod===0?(b.order===1?6:b.order===2?4:3):lod===1?3:2,steps=!b.order?(lod===0?9:3):lod===0?(b.order===1?4:2):1;
+  const startIndex=wood.index.length;
   for(let j=0;j<=steps;j++){
    const t=j/steps,p=forestPoint(b.points,t);if(!b.order&&j===0)p.y=-.7;
    const tangent=forestPoint(b.points,Math.min(1,t+.02)).sub(forestPoint(b.points,Math.max(0,t-.02))).normalize(),x=V(0,0,1).cross(tangent).normalize(),z=tangent.clone().cross(x).normalize(),radius=b.radius*(.13+.87*Math.pow(1-t,.9))*(!b.order?1+.25*Math.exp(-t*13):1);
    for(let k=0;k<sides;k++){const a=k/sides*Math.PI*2,n=x.clone().multiplyScalar(Math.cos(a)).addScaledVector(z,Math.sin(a)),col=new THREE.Color(0x817969).multiplyScalar(.85+.15*Math.sin(k*2.7+b.id)**2),idx=vert(wood,p.clone().addScaledVector(n,radius),n,col,[0,0],-1,tree.height,c.flex,0);motionVertex(wood,tree,b);if(j<steps){const base=idx-k,next=(k+1)%sides;wood.index.push(idx,base+sides+k,base+sides+next,idx,base+sides+next,base+next)}}
   }
+  if(sides>2)orientBranchWood(wood,startIndex,wood.index.length);
  }
  const sprays=lod===2?tree.branches.filter(b=>b.order===2&&!(c.inner&&b.sprayIndex===1)).map(b=>({branch:b.id,attachment:forestPoint(b.points,.22),direction:b.points.at(-1).clone().sub(b.points[0]).normalize(),roll:b.id*2.4,length:tree.id==='young'?1.4:tree.id==='small'||tree.id==='orchard'?2.1:3.0,width:tree.id==='young'?1.35:c.leaf===2?2.7:3.3,keep:(b.id*.618)%1,shade:.95})):lod===0?tree.fineSprigs:tree.sprigs.filter((_,i)=>i%3!==1);
  for(const s of sprays){

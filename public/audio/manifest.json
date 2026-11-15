@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "independentRecordings": 53,
+  "independentRecordings": 54,
   "review": "No human listening claimed; owner perceptual approval pending",
   "assets": {
     "bird-blackbird-fs-811988-1": {
@@ -2968,6 +2968,25 @@
         "ffmpegFilters": "highpass=f=150,lowpass=f=3000,alimiter=limit=0.75,volume=0.24,afade=t=in:d=0.03,afade=t=out:st=1.42:d=0.08",
         "channelPolicy": "mono 32000 Hz; nonverbal, no fabricated speech"
       }
+    },
+    "campfire-fs-536935-m24": {
+      "file": "campfire-fs-536935-m24.flac",
+      "source": "fs-536935",
+      "group": "camp-fire",
+      "duration": 18.0,
+      "bytes": 438737,
+      "sampleRate": 32000,
+      "channels": 1,
+      "provisional": false,
+      "license": "CC0-1.0",
+      "sha256": "0998e4af1c165ff67099c696a8956ac4299d946829bfb58f204d517af9f39a34",
+      "transformations": {
+        "startSeconds": 3,
+        "durationSeconds": 18,
+        "ffmpegFilters": "highpass=f=90,lowpass=f=9000,volume=0.8,afade=t=in:d=0.12,afade=t=out:st=17.88:d=0.12",
+        "codec": "mono 32kHz FLAC PCM16 from lossy publisher HQ MP3; no synthesized fire"
+      },
+      "review": "Rights/metadata checked; owner listening pending"
     }
   }
 }

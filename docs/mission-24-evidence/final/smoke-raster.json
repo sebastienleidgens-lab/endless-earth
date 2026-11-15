@@ -1,0 +1,38 @@
+{
+  "max": 25,
+  "pixels": 6421,
+  "sum": 68901,
+  "calls": [
+    131,
+    130
+  ],
+  "data": [
+    3.247361421585083,
+    1.0450769662857056,
+    0.14457274973392487,
+    0.24853408336639404,
+    3.366957187652588,
+    1.088972568511963,
+    0.06683701276779175,
+    0.31497618556022644,
+    2.8020520210266113,
+    0.8816335201263428,
+    0.1704748570919037,
+    0.0011400401126593351,
+    2.9722390174865723,
+    0.9440978169441223,
+    0.15819191932678223,
+    0.0956883579492569,
+    3.0196311473846436,
+    0.9614923000335693,
+    0.14227840304374695,
+    0.12201730906963348,
+    3.0637707710266113,
+    0.9776930212974548,
+    0.1344645917415619,
+    0.14653931558132172
+  ],
+  "count": 6,
+  "shader": "uniform float time,day;varying vec2 vUv;varying vec2 vPlume;\n void main(){float h=vUv.y,x=(vUv.x-.5)*2.;float turbulence=.82+.18*sin(x*9.+h*18.-time*.65+vPlume.y*49.)*sin(x*17.-h*9.+time*.36);float edge=1.-smoothstep(.25,.95,abs(x));float fade=smoothstep(0.,.08,h)*(1.-smoothstep(.35,1.,h));float a=edge*fade*turbulence*vPlume.x;if(a<.002)discard;gl_FragColor=vec4(mix(vec3(.30,.33,.35),vec3(.88,.89,.90),day),a);\n #include <tonemapping_fragment>\n #include <colorspace_fragment>\n }",
+  "errors": 0
+}
