@@ -1,0 +1,146 @@
+{
+  "method": "Chromium SwiftShader, emulated touch input through CDP. No physical phone, GPU or long-traversal claim.",
+  "errors": [],
+  "checks": [
+    {
+      "name": "native-touch-pan-and-pinch",
+      "passed": true,
+      "rect": {
+        "x": 4.890625,
+        "y": 242.875,
+        "width": 382.1875,
+        "height": 539.234375
+      },
+      "hashes": {
+        "before": "56e9aa0586a5e5a675afabb07ac697985674f419e77a9910d93bc7ee495c8c77",
+        "afterPan": "0f661e4a7baba19ed3acd986606358f0d6a37477969e4a03b5006e688121634e",
+        "afterPinch": "e3545b513ac94a455a222002bd1c891119c3aada02546b131746b99e63c68f7b"
+      },
+      "followDisabled": true
+    },
+    {
+      "name": "already-loaded-local-map-interaction-offline",
+      "passed": true,
+      "scope": "Map data already loaded in memory; does not claim a fresh offline installation or a service-worker cache."
+    },
+    {
+      "name": "canonical-save-resume-after-diagnostic-relocation",
+      "passed": true,
+      "saved": [
+        -17982.84475560309,
+        2.316872109397636,
+        13859.785522367156
+      ],
+      "away": [
+        -961.1333949935126,
+        0.004952343730252551,
+        29919.47663806919
+      ],
+      "restored": [
+        -17982.84475560309,
+        2.316872109397636,
+        13859.785522367156
+      ],
+      "errorM": 0,
+      "savedStatus": "Voyage sauvegardé.",
+      "status": "Voyage repris au lieu sauvegardé.",
+      "scope": "Two diagnostic placements are outside any film. Reprise uses the public control and real streamed support, no fallback relocation."
+    },
+    {
+      "name": "same-providers-in-another-frame",
+      "passed": true,
+      "state": {
+        "projection": {
+          "type": "local-tangent",
+          "code": "local-tangent",
+          "origin": {
+            "lat": 47,
+            "lon": -71
+          }
+        },
+        "tiles": 4,
+        "failures": 0,
+        "render": {
+          "tiles": 4,
+          "features": 1,
+          "triangles": 2048,
+          "trees": 1565,
+          "disposed": 0,
+          "batches": 1,
+          "maxBatchMs": 4.100000001490116
+        },
+        "probes": [
+          {
+            "position": {
+              "x": 1024,
+              "y": 1024
+            },
+            "sample": {
+              "height": 138.63,
+              "normal": {
+                "x": -0.01999537898239991,
+                "y": 0.9997689491199946,
+                "z": 0.007888801864149886
+              },
+              "slope": 0.02150027820495876,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid"
+            }
+          },
+          {
+            "position": {
+              "x": 3072,
+              "y": 1024
+            },
+            "sample": {
+              "height": 179.59,
+              "normal": {
+                "x": -0.01999537898239991,
+                "y": 0.9997689491199946,
+                "z": 0.007888801864149886
+              },
+              "slope": 0.02150027820495876,
+              "tile": "1:0",
+              "datum": "WGS84-ellipsoid"
+            }
+          },
+          {
+            "position": {
+              "x": 1024,
+              "y": 3072
+            },
+            "sample": {
+              "height": 115.11,
+              "normal": {
+                "x": -0.019991654091718145,
+                "y": 0.9995827045859064,
+                "z": -0.020850670478471653
+              },
+              "slope": 0.028898330840908894,
+              "tile": "0:1",
+              "datum": "WGS84-ellipsoid"
+            }
+          },
+          {
+            "position": {
+              "x": 3072,
+              "y": 3072
+            },
+            "sample": {
+              "height": 156.07,
+              "normal": {
+                "x": -0.019991654091718145,
+                "y": 0.9995827045859064,
+                "z": -0.020850670478471542
+              },
+              "slope": 0.028898330840908815,
+              "tile": "1:1",
+              "datum": "WGS84-ellipsoid"
+            }
+          }
+        ]
+      },
+      "scope": "Explicitly synthetic four-tile local frame near 47 N, 71 W; not a reconstruction of Quebec."
+    }
+  ]
+}

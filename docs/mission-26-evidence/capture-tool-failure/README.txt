@@ -1,0 +1,1 @@
+Failed diagnostic attempt, retained for transparency. A missing Node logging label interrupted the car recording after 10 seconds; the subsequent boat placements inherited the still-active car. These are capture-tool failures, not successful journeys. The final script resets diagnostic controls/vehicle before placement. No simulation collision or physics bypass was introduced.

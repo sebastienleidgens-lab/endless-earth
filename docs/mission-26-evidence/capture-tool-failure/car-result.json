@@ -1,0 +1,374 @@
+{
+  "mode": "car",
+  "failure": "ReferenceError: mode is not defined",
+  "details": {
+    "route": {
+      "sourceId": "osm:way:306417557",
+      "tags": {
+        "highway": "unclassified"
+      },
+      "sourceLengthM": 1202.882109570384,
+      "start": {
+        "lon": 0.746675336062212,
+        "lat": 46.673630649493795
+      },
+      "projectedPoints": [
+        [
+          527766.7399494032,
+          6621740.617073507
+        ],
+        [
+          527218.532,
+          6621832.636
+        ],
+        [
+          526844.407,
+          6621896.969
+        ],
+        [
+          526635.52,
+          6621932.577
+        ],
+        [
+          526631.898,
+          6621933.203
+        ]
+      ],
+      "localPoints": [
+        {
+          "x": -10515.545903366039,
+          "z": 2412.232098351099
+        },
+        {
+          "x": -11065.488971878432,
+          "z": 2335.7385696769957
+        },
+        {
+          "x": -11440.85005546764,
+          "z": 2282.0268323985483
+        },
+        {
+          "x": -11650.4211711961,
+          "z": 2252.359860135729
+        },
+        {
+          "x": -11654.05529753548,
+          "z": 2251.836922623725
+        }
+      ],
+      "provenance": "Actual imported OSM road, selected for a long gentle corridor; eligibility is not a guarantee that the native car completes it.",
+      "sourceProjectedPoints": [
+        [
+          527817.649,
+          6621731.004
+        ],
+        [
+          527815.998,
+          6621731.328
+        ],
+        [
+          527781.533,
+          6621738.134
+        ],
+        [
+          527218.532,
+          6621832.636
+        ],
+        [
+          526844.407,
+          6621896.969
+        ],
+        [
+          526635.52,
+          6621932.577
+        ],
+        [
+          526631.898,
+          6621933.203
+        ]
+      ],
+      "diagnosticOffset": "Start is 15 m beyond source node 2, on the mapped way; heading follows the same way. First blocked attempt retained separately."
+    },
+    "diagnostic": "Placement before recording on a source road; all movement during the film is input-driven.",
+    "placement": {
+      "x": -10515.545903365903,
+      "z": 2412.232098351099,
+      "y": 36.3763456364387,
+      "heading": -1.7090031237777545,
+      "source": "osm:way:306417557",
+      "position": {
+        "lat": 46.673630649493795,
+        "lon": 0.7466753360622138
+      }
+    },
+    "car": {
+      "clear": {
+        "ok": true
+      },
+      "car": {
+        "position": {
+          "x": -10515.545903365903,
+          "y": 36.3763456364387,
+          "z": 2412.232098351099
+        },
+        "heading": -1.7090031237777545,
+        "speed": 0,
+        "steering": 0,
+        "active": false,
+        "reason": "",
+        "odometer": 0,
+        "braking": false,
+        "metrics": {
+          "steps": 0,
+          "refusals": 0,
+          "maxSpeed": 0
+        },
+        "placed": true
+      }
+    },
+    "failureState": {
+      "state": {
+        "commit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "profile": "eco",
+        "position": [
+          -10593.856933135812,
+          36.50212338738403,
+          2401.339539931542
+        ],
+        "camera": {
+          "position": [
+            -10587.933152117834,
+            38.6019275446735,
+            2402.1634996100497
+          ],
+          "quaternion": [
+            -0.06115128278656388,
+            0.654432959345879,
+            0.05323424783651707,
+            0.7517606914388602
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+          "bones": 31,
+          "triangles": 3940,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 1,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 0,
+          "mode": "sitting",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "driving",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 0,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 2516.000000008382,
+          "maxSliceMs": 21.40000000037253,
+          "slices": 635
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 24.03919999999926,
+          "wind": {
+            "x": 0.08745597382610744,
+            "z": -0.04571526001216457,
+            "speed": 0.09867353863428686,
+            "gust": 0,
+            "slow": 0.4111397443095286,
+            "turn": 0.018708947338184876,
+            "water": 0.20591503857214802
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "world": {
+        "position": [
+          -10593.856933135812,
+          36.50212338738403,
+          2401.339539931542
+        ],
+        "heading": -1.709003123777754,
+        "birds": {
+          "individuals": 0,
+          "drawCalls": 0,
+          "triangles": 0,
+          "perches": 0,
+          "families": [],
+          "sources": [],
+          "renderSamples": 120,
+          "cpuMs": 0,
+          "maxCpuMs": 2.3999999994412065,
+          "clock": 24.03919999999926,
+          "trajectory": "analytic-per-render-frame"
+        },
+        "shadow": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 5495013,
+          "filter": "none",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0,
+          "character": {
+            "updates": 0,
+            "size": 0,
+            "bytes": 0,
+            "proxies": 0,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 0,
+            "maxCpuMs": 0,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "boat": {
+          "active": false,
+          "heading": 0,
+          "following": false,
+          "metrics": {
+            "plans": 0,
+            "lateralError": 0,
+            "maxLateralError": 0,
+            "stops": 1
+          }
+        },
+        "planet": {
+          "state": "ready",
+          "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+          "stream": {
+            "loaded": 3,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 965191,
+            "active": 0,
+            "queued": 0
+          },
+          "render": {
+            "tiles": 3,
+            "features": 1153,
+            "triangles": 6144,
+            "trees": 1184,
+            "disposed": 0,
+            "batches": 165,
+            "maxBatchMs": 68.70000000018626
+          },
+          "graph": {
+            "foot": {
+              "features": 262,
+              "nodes": 2541,
+              "edges": 5176,
+              "refused": 108,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 262,
+              "nodes": 1724,
+              "edges": 3468,
+              "refused": 180,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 262,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 262,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 616,
+            "refusals": 0,
+            "maxSpeed": 10.370039761636859
+          },
+          "maxInstallMs": 244.5,
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0,
+            "maxCpuMs": 8.599999999627471
+          }
+        }
+      }
+    }
+  },
+  "errors": []
+}
