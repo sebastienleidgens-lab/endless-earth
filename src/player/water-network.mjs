@@ -8,7 +8,7 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
   let nodes = null,iterator=null,scheduled=false,closed=false;
   const metrics = {builds: 0, nodes: 0, edges: 0, components: 0, ready: false,
     step, bounds: [-limit, -limit, limit, limit], source: 'loaded OSM surface / estimated game bed',
-    confidence: 'low', bridgePolicy: 'existing clearance refusals preserved', buildMs: 0};
+    confidence: 'low', bridgePolicy: 'existing clearance refusals preserved', buildMs: 0,cpuMs:0,maxSliceMs:0,slices:0};
   const key = (x, z) => `${x},${z}`;
   function valid(x, z) {
     if (!contains(x, z) || !clear(x, z)) return false;
@@ -36,7 +36,7 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
       const maxZ = Math.min(limit, Math.max(...ring.map(p => p.z)));
       for (let z = Math.ceil(minZ / step) * step; z <= maxZ; z += step) {
         for (let x = Math.ceil(minX / step) * step; x <= maxX; x += step) {
-          if (nodes.has(key(x, z)) || !valid(x, z)) continue;
+          yield;if (nodes.has(key(x, z)) || !valid(x, z)) continue;
           if (![[1.12,0],[-1.12,0],[0,1.12],[0,-1.12]].every(([dx,dz]) => valid(x+dx,z+dz))) continue;
           nodes.set(key(x,z), {x,z,links:[],parent:null,exit:null,component:-1});
         }
@@ -46,7 +46,7 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
     for (const node of nodes.values()) {
       for (const [dx,dz] of [[step,0],[0,step],[step,step],[-step,step]]) {
         const other = nodes.get(key(node.x+dx,node.z+dz));
-        if (!other || !corridor(node,other)) continue;
+        yield;if (!other || !corridor(node,other)) continue;
         node.links.push(other); other.links.push(node); metrics.edges++;
       }
       yield;
@@ -61,14 +61,14 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
       yield;
     }
     for (let i=0;i<queue.length;i++) {
-      const node=queue[i];
+      yield;const node=queue[i];
       for (const other of node.links) if (!other.exit) {
         other.exit=node.exit;other.parent=node;queue.push(other);
       }
     }
     for (const node of nodes.values()) if (node.component<0) {
       const group=[node], id=metrics.components++;node.component=id;
-      for(let i=0;i<group.length;i++)for(const other of group[i].links)if(other.component<0){other.component=id;group.push(other);}
+      for(let i=0;i<group.length;i++){yield;for(const other of group[i].links)if(other.component<0){other.component=id;group.push(other);}}
     }
     metrics.nodes=nodes.size;metrics.builds++;metrics.ready=true;metrics.buildMs=performance.now()-start;
   }
@@ -76,7 +76,7 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
   function prepare(){
     if(metrics.ready||scheduled||closed)return;
     iterator??=buildSteps();scheduled=true;
-    const advance=()=>{if(closed||metrics.ready){scheduled=false;return;}const start=performance.now();while(performance.now()-start<3){if(iterator.next().done){scheduled=false;return;}}setTimeout(advance,16);};
+    const advance=()=>{if(closed||metrics.ready){scheduled=false;return;}const start=performance.now();while(performance.now()-start<3){if(iterator.next().done){scheduled=false;break;}}const slice=performance.now()-start;metrics.cpuMs+=slice;metrics.maxSliceMs=Math.max(metrics.maxSliceMs,slice);metrics.slices++;if(!metrics.ready)setTimeout(advance,8);};
     setTimeout(advance,0);
   }
   function nearby(p, radius=step*2, connected=true) {

@@ -19,6 +19,8 @@ import {PackraftController} from './player/packraft.mjs';
 // @ts-ignore Original procedural asset, no external resources.
 import {createPackraft} from './player/packraft-render.mjs';
 // @ts-ignore Ground-confirmed limited interactions.
+import {createInteractionDecor} from './player/interaction-decor.mjs';
+// @ts-ignore Ground-confirmed limited interactions.
 import {GroundInteractions} from './player/traversal.mjs';
 // @ts-ignore Shared climate appearance.
 import {TravelerExposure} from './player/exposure.mjs';
@@ -214,7 +216,7 @@ if(tilesPreview && !terrainPreview){
 }
 
 const walkerModel=createWalker(),avatar=walkerModel.avatar;avatar.visible=false;scene.add(avatar);
-const activity=new PlayerActivity(),aquatic=new AquaticController(activity),waterMarks=createWaterMarks(scene),waterContacts=new WaterContacts(),footprints=createFootprints(scene),camp=createCamp(scene,()=>walkerModel.packGeometry());const boat=new PackraftController(activity),boatRender=createPackraft(scene),groundActions=new GroundInteractions(activity),exposure=new TravelerExposure(),groundMarks=createGroundMarks(scene);let footIndex:any=null,waterObstacles:any=null;let playerWorld:any=null,campValidationAge=0,contextAge=1,actionContext:any={};
+const activity=new PlayerActivity(),aquatic=new AquaticController(activity),waterMarks=createWaterMarks(scene),waterContacts=new WaterContacts(),footprints=createFootprints(scene),camp=createCamp(scene,()=>walkerModel.packGeometry());const boat=new PackraftController(activity),boatRender=createPackraft(scene,()=>walkerModel.packGeometry()),groundActions=new GroundInteractions(activity),exposure=new TravelerExposure(),groundMarks=createGroundMarks(scene);let footIndex:any=null,waterObstacles:any=null;let interactionDecor:any=null;let playerWorld:any=null,campValidationAge=0,contextAge=1,actionContext:any={};
 
 let yaw=.65, pitch=.2, zoom=5, smoothZoom=zoom, dragging=false;
 type ViewMode='aerial'|'first'|'third';
@@ -272,7 +274,7 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-let playerDisposed=false;function disposePlayer(){if(playerDisposed)return;playerDisposed=true;scene.userData.aquaticProvider?.network?.dispose();playerWorld?.interactions?.clear();activity.reset();boat.reset();boatRender.dispose();groundMarks.dispose();waterMarks.dispose();footprints.dispose();camp.dispose();actions.dispose();}
+let playerDisposed=false;function disposePlayer(){if(playerDisposed)return;playerDisposed=true;scene.userData.aquaticProvider?.dispose();interactionDecor?.dispose();playerWorld?.interactions?.clear();activity.reset();boat.reset();boatRender.dispose();groundMarks.dispose();waterMarks.dispose();footprints.dispose();camp.dispose();actions.dispose();}
 if(import.meta.hot)import.meta.hot.dispose(()=>{disposePlayer();lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
 addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){disposePlayer();lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
@@ -320,7 +322,7 @@ walkMenu.mount('.menu-walk',viewLabel);walkMenu.mount('.menu-walk',panel);walkMe
 const runToggle=document.createElement('input');runToggle.type='checkbox';runToggle.setAttribute('aria-label','Course au toucher');runToggle.onchange=()=>{input.touchRunning=runToggle.checked};const runLabel=document.createElement('label');runLabel.className='run-toggle';runLabel.append(runToggle,'Course au toucher');walkMenu.mount('.menu-walk',runLabel);
 let cameraComfort=false;try{cameraComfort=localStorage.getItem('endless-earth-camera-comfort')==='true'}catch{}const comfort=document.createElement('input');comfort.type='checkbox';comfort.checked=cameraComfort;comfort.setAttribute('aria-label','Caméra à mouvement réduit');comfort.onchange=()=>{cameraComfort=comfort.checked;try{localStorage.setItem('endless-earth-camera-comfort',String(cameraComfort))}catch{}};const comfortLabel=document.createElement('label');comfortLabel.append(comfort,'Caméra à mouvement réduit');walkMenu.mount('.menu-walk',comfortLabel);
 walkMenu.mount('.menu-quality',qualityButton);qualityButton.open=true;
-const lifeCredit=document.createElement('p');lifeCredit.textContent='Faune, brume et rares voitures sont des interprétations artistiques. Avions et fumées simulés artistiquement. Cheminées interprétées sur les toitures générées ; aucune observation de trafic ou d’occupation réelle.';walkMenu.mount('.menu-sources',lifeCredit);
+const lifeCredit=document.createElement('p');lifeCredit.textContent='Banc, roche et tronc interactifs : décors artistiques originaux, sans attestation géographique. Faune, brume et rares voitures sont des interprétations artistiques. Avions et fumées simulés artistiquement. Cheminées interprétées sur les toitures générées ; aucune observation de trafic ou d’occupation réelle.';walkMenu.mount('.menu-sources',lifeCredit);
 walkMenu.mount('.menu-sources',credits);walkMenu.mount('.menu-version',document.querySelector<HTMLElement>('.hud')!);
 if(perfPanel){walkMenu.mount('.menu-diagnostics',perfPanel);walkMenu.dialog.querySelector<HTMLElement>('.menu-diagnostics')!.hidden=false;perfPanel.setAttribute('aria-live','off');for(const button of Array.from(document.querySelectorAll<HTMLButtonElement>('.nature-controls button')))walkMenu.mount('.menu-diagnostics',button)}
 const terrainInspector=perfPreview?createTerrainInspector(scene,camera,renderer.domElement,walkMenu.dialog.querySelector<HTMLElement>('.menu-diagnostics')!,()=>activeTerrain,(x,z)=>activeTerrain?inspectGround(scene,x,z,walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z)),inspectCollision,activeTerrain):null,lastMovementDiagnostic):null;
@@ -332,10 +334,12 @@ let perfElapsed=0,perfFrames=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
 if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({inspectGround:(x:number,z:number)=>activeTerrain?inspectGround(scene,x,z,walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z)),inspectCollision,activeTerrain):null,publicRest:scene.userData.publicRestAudit,villageLife:villageLife.metrics,traffic:traffic.metrics,sensitiveWorld:sensitiveWorld.stats,adaptiveResolution:scene.userData.adaptiveResolution,authentic:worldMaterialStatus(),lighting:scene.userData.landscapeLighting??null,snow:scene.userData.snow??null,decorations:scene.userData.decorationStream?.metrics??null,terrain:activeTerrain?.metrics,nature:natureMemory(scene),climate:scene.userData.climate,earthLife:scene.userData.earthLife,render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries},architecture:architectureStats(),architectureMemory:architectureMemory(scene),mode:viewMode,ready:geographyReady,navigation:navigationGraphStats,spawn:scene.userData.spawn??null,walker:walkerModel.metrics,movement:lastMovementDiagnostic(),roads:roadInventory,signs:signs.metrics,menuOpen:walkMenu?.open??false,position:avatar.position.toArray(),camera:camera.position.toArray(),zoom,smoothZoom,yaw,routeLength:walker.route?.length,routePoints:walker.route?.points,routeIndex:walker.index,quality,natureAnchors:nature.length,autoWalk:walker.active,walkMessage:walker.message,sound:sound.enabled,soundState:sound.context?.state??'uninitialized',audio:sound.stats(),avatarVisible:avatar.visible})});
 function prepareWorldSenses(){if(!activeTerrain||worldSensoryReady)return;const groundHeight=walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z));worldSensoryReady=true;const roofs=acousticObstacles(acousticBuildings.map(b=>{const y=groundHeight(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));scene.userData.weatherFloorAt=(x:number,z:number)=>roofs.roofAt(x,z,-10000);traffic.prepare(acousticRoads,groundHeight,canWalk);villageLife.prepare(exportTourGraph(),acousticRoads,groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));sensitiveWorld.configure(riverAreas.flatMap(a=>a.rings),groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));
+ const foliageAnchors:any[]=[];scene.traverse(o=>{if(o.userData.forest)for(const t of o.userData.forest.items){const b=t.model.tree.branches.find((b:any)=>b.order===1);if(b){const p=b.points.at(-1).clone().applyMatrix4(t.worldMatrix);foliageAnchors.push({id:t.id,x:p.x,y:p.y,z:p.z});}}});sound.foliage(foliageAnchors);
  const trees:any[]=[];scene.traverse(o=>{if(o.userData.forest)trees.push(...o.userData.forest.items.map((t:any)=>({x:t.anchor[0],z:t.anchor[1]})))});
  playerWorld=createPlayerWorld({support:(x:number,z:number)=>hasWalkingSupport(x,z)?{id:'verified-deck',height:groundHeight(x,z),category:'bridge',visible:true,walkable:true,normal:{x:0,y:1,z:0},slope:0}:activeTerrain!.supportAt(x,z),clear:canWalk,collision:inspectCollision,roads:acousticRoads,banks:riverAreas.flatMap(a=>a.rings.map(r=>[...r,r[0]])),trees,restricted:restrictedAreas});
+ interactionDecor=createInteractionDecor(scene,playerWorld);playerWorld.clearPose=interactionDecor.clearPose;
  footIndex=footRoadIndex(acousticRoads);waterObstacles=proximityIndex(mappedWeirs);
- scene.userData.aquaticProvider=createEstimatedBathymetry({areas:riverAreas,lines:riverLines,support:(x:number,z:number)=>activeTerrain!.supportAt(x,z),landClear:canWalk,clear:playerWaterClear});
+ scene.userData.aquaticProvider=createEstimatedBathymetry({incremental:true,origin:avatar.position,areas:riverAreas,lines:riverLines,support:(x:number,z:number)=>activeTerrain!.supportAt(x,z),landClear:canWalk,clear:playerWaterClear});
  scene.userData.playerInteractions={query:(x:number,z:number)=>playerWorld.query(x,z),camp:(x:number,z:number,heading=0)=>playerWorld.camp({x,z},heading),activity,campMetrics:camp.metrics,footprints:footprints.metrics};
 }
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
@@ -360,12 +364,12 @@ const boatHandled=geographyReady&&!walkMenu?.open&&boat.update(dt,avatar.positio
 const groundHandled=geographyReady&&!walkMenu?.open&&!boatHandled&&groundActions.update(dt,avatar.position,playerWorld);
 if(geographyReady&&!walkMenu?.open&&!activity.locked&&!boatHandled&&!groundHandled){
  const water=aquatic.move(avatar.position,displacement,dt,{provider:scene.userData.aquaticProvider,clear:playerWaterClear,auto:autoStep,landHeight:groundHeight,landClear:canWalk});
- if(!water.handled){moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep,dt);if(Math.hypot(displacement.x,displacement.z)>.001&&['mapped-water','rendered-water'].includes(String(lastMovementDiagnostic()?.obstacle)))activity.message='unknown-depth';}
+ if(!water.handled){if(interactionDecor&&!interactionDecor.walkingClear({x:avatar.position.x+displacement.x,y:avatar.position.y,z:avatar.position.z+displacement.z})){displacement.x=displacement.z=0;}moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep,dt);if(Math.hypot(displacement.x,displacement.z)>.001&&['mapped-water','rendered-water'].includes(String(lastMovementDiagnostic()?.obstacle)))activity.message='unknown-depth';}
 }
 const moved=avatar.position.distanceTo(previous);
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
 
-if(boatHandled){avatar.rotation.y=boat.heading;}else if(moved>.0001){
+if(groundHandled&&groundActions.sit>0&&groundActions.seat?.kind!=='ground'){avatar.rotation.y=groundActions.heading??avatar.rotation.y;}else if(boatHandled){avatar.rotation.y=boat.heading;}else if(moved>.0001){
   const facing=Math.atan2(avatar.position.x-previous.x,avatar.position.z-previous.z);
   avatar.rotation.y+=Math.atan2(Math.sin(facing-avatar.rotation.y),Math.cos(facing-avatar.rotation.y))*(1-Math.exp(-dt*12));
 }
@@ -374,13 +378,13 @@ campValidationAge+=elapsed;
 activity.update(dt,(site:any)=>{if(!playerWorld||!site)return {ok:false,reason:'unknown-support'};if(activity.state==='camping'&&campValidationAge<1)return {ok:true};campValidationAge=0;return playerWorld.camp(site.origin,site.heading)},(state:string,site:any)=>{if(state==='camping')camp.install(site,playerWorld.query);else camp.clear();});
 activity.grounded(dt>0?moved/dt:0);
 exposure.update(dt,scene.userData.climate,aquatic.active);boatRender.update(boat,scene.userData.climate?.elapsedSeconds??0);
-const locomotion=walkerModel.update(Math.hypot(avatar.position.x-previous.x,avatar.position.z-previous.z),dt,aquatic.active?(x:number,z:number)=>aquatic.provider?.sample(x,z)?.bedY??null:groundHeight,{kind:camp.metrics.active?'camping':boatHandled?'boating':groundActions.sit>0?'sitting':activity.state==='swimming'?'swimming':activity.state==='jumping'?'jumping':'walking',sit:groundActions.sit,boatPose:boat.pose??0,stroke:boat.stroke,jump:groundActions.jump,wetness:exposure.wetness,profile:lifeSettings.name,cameraDistance:zoom,handTargets:boatRender.hands});
+const locomotion=walkerModel.update(Math.hypot(avatar.position.x-previous.x,avatar.position.z-previous.z),dt,aquatic.active?(x:number,z:number)=>aquatic.provider?.sample(x,z)?.bedY??null:groundHeight,{kind:camp.metrics.active?'camping':boatHandled?'boating':groundActions.sit>0?'sitting':activity.state==='swimming'?'swimming':activity.state==='jumping'?'jumping':'walking',sit:groundActions.sit,seatHeight:groundActions.seatHeight??0,stepOver:activity.kind==='step-over',boatPose:boat.pose??0,stroke:boat.stroke,jump:groundActions.jump,wetness:exposure.wetness,profile:lifeSettings.name,cameraDistance:zoom,handTargets:boatRender.hands});
 waterMarks.update(scene.userData.climate,avatar.position,locomotion,aquatic,lifeSettings.name);
 const contacts=waterContacts.update(activity.state,avatar.position,walkerModel.waterContacts,boat.active?boatRender.tip:null,scene.userData.aquaticProvider,locomotion.footContacts);
 for(const contact of contacts)waterMarks.emit(contact.position,scene.userData.climate?.elapsedSeconds??0,lifeSettings.name);
 sound.water(contacts);
 if(aquatic.active)locomotion.footContacts=[];
-contextAge+=dt;if(playerWorld&&contextAge>=.3){contextAge=0;const provider=scene.userData.aquaticProvider;actionContext={bank:boat.site(avatar.position,provider,playerWaterClear),dock:boat.active&&provider?.accesses.some((a:any)=>Math.hypot(a.water.x-avatar.position.x,a.water.z-avatar.position.z)<3),seat:groundActions.seatAt(avatar.position,playerWorld)};}
+contextAge+=dt;if(playerWorld&&contextAge>=.3){contextAge=0;const provider=scene.userData.aquaticProvider;actionContext={bank:boat.site(avatar.position,provider,playerWaterClear),dock:boat.active&&provider?.accesses.some((a:any)=>Math.hypot(a.water.x-avatar.position.x,a.water.z-avatar.position.z)<3),seat:groundActions.seatAt(avatar.position,playerWorld),stepOver:playerWorld.interactions.stepOver(avatar.position,avatar.rotation.y,playerWorld)?.ok};}
 actions.update(activity,geographyReady,!!walkMenu?.open,actionContext);
 smoothZoom=THREE.MathUtils.lerp(smoothZoom,zoom,1-Math.exp(-dt*10));
 const desiredEye=avatar.position.y+(camp.metrics.active?.95:activity.state==='swimming'?1.5:boatHandled?1.65-(boat.pose??0)*.6:groundActions.sit>0?1.65-groundActions.sit*.68:1.65);

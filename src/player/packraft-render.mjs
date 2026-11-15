@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import {lightingReceiver} from '../lighting/state.mjs';
 /** Original low-cost hull, inflated side tubes, floor, seat and one paddle. */
-export function createPackraft(scene){
+export function createPackraft(scene,packGeometry){
  const group=new THREE.Group(),paddle=new THREE.Group(),hull=new THREE.Group(),geometries=[],materials=[];group.name='original-packraft';group.visible=false;scene.add(group);group.add(hull,paddle);
  const shared=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.78});lightingReceiver(shared);materials.push(shared);
  function material(c){return new THREE.Color(c);}
@@ -14,7 +14,7 @@ export function createPackraft(scene){
  part(new THREE.BoxGeometry(.74,.08,1.5),floor,hull,0,.04,0);
  part(new THREE.BoxGeometry(.5,.15,.34),floor,hull,0,.18,-.1);
  const back=part(new THREE.BoxGeometry(.47,.3,.08),floor,hull,0,.31,-.29);back.rotation.x=-.2;
- const bag=part(new THREE.BoxGeometry(.39,.25,.32),floor,hull,0,.32,-.66);bag.rotation.x=.1;
+ const storedPack=packGeometry?.();if(storedPack){storedPack.setAttribute('uv',new THREE.Float32BufferAttribute(new Float32Array(storedPack.attributes.position.count*2),2));geometries.push(storedPack);storedPack.translate(0,-.83,.28);const bag=new THREE.Mesh(storedPack,shared);bag.rotation.x=-Math.PI/2;bag.position.set(0,.36,-.52);hull.add(bag);}else part(new THREE.BoxGeometry(.39,.25,.32),floor,hull,0,.32,-.66);
  const pole=part(new THREE.CylinderGeometry(.016,.016,2.15,8),shaft,paddle,0,0,0);pole.rotation.z=Math.PI/2;
  for(const side of [-1,1])part(new THREE.BoxGeometry(.38,.035,.16),blade,paddle,side*1.05,0,0);
  for(const parent of [hull,paddle]){const byMaterial=new Map();for(const o of [...parent.children]){o.updateMatrix();const g=o.geometry.clone().applyMatrix4(o.matrix);if(!byMaterial.has(o.material))byMaterial.set(o.material,[]);byMaterial.get(o.material).push(g);parent.remove(o);}for(const [m,parts]of byMaterial){const g=mergeGeometries(parts);for(const p of parts)p.dispose();geometries.push(g);parent.add(new THREE.Mesh(g,m));}}

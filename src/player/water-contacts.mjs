@@ -8,7 +8,7 @@ export class WaterContacts {
     const water=['wading','swimming','boating'].includes(state);
     if(state!==this.state){
       const s=provider?.sample(position.x,position.z);
-      if(s?.reliable&&water&&this.state==='walking')add('entry',{...position,y:s.surfaceY});
+      if(s?.reliable&&water&&['walking','running'].includes(this.state))add('entry',{...position,y:s.surfaceY});
       if(!water&&['wading','swimming'].includes(this.state))add('exit',position);
       this.previous.clear();this.state=state;this.travel=0;this.last=null;
     }
