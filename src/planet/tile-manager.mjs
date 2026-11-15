@@ -31,4 +31,11 @@ export class WorldTileManager {
  retry(){this.failed.clear();this.pump();}
  dispose(){this.closed=true;for(const p of this.pending.values())p.abort();for(const r of this.resident.values())this.onUnload(r.tile);this.pending.clear();this.resident.clear();this.wanted.clear();this.failed.clear();this.metrics.residentBytes=0;}
 }
-export function tileDemand(manifest,p,velocity={x:0,y:0},radius=1){const s=manifest.tileSize,cx=Math.floor(p.x/s),cy=Math.floor(p.y/s),wanted=[];for(const t of manifest.tiles){const dx=t.x-cx,dy=t.y-cy;if(Math.abs(dx)>radius+1||Math.abs(dy)>radius+1)continue;const forward=(dx*velocity.x+dy*velocity.y)/Math.max(1,Math.hypot(velocity.x,velocity.y));if(Math.abs(dx)>radius||Math.abs(dy)>radius){if(forward<.5)continue;}wanted.push({id:t.id,priority:Math.hypot(dx,dy)-Math.max(0,forward)*.3})}return wanted;}
+export function tileDemand(manifest,p,velocity={x:0,y:0},radius=1){
+ // Select by metric distance to each tile, rather than loading a 3x3/5x5
+ // square of 4 km tiles for a player whose horizon is under 1.5 km. A short
+ // velocity look-ahead prepares driving without rebuilding on every turn.
+ const range=Math.max(1,radius)*1600,ahead={x:p.x+velocity.x*20,y:p.y+velocity.y*20},wanted=[];
+ const distance=(point,b)=>Math.hypot(Math.max(b[0]-point.x,0,point.x-b[2]),Math.max(b[1]-point.y,0,point.y-b[3]));
+ for(const t of manifest.tiles){const current=distance(p,t.bounds),future=distance(ahead,t.bounds);if(Math.min(current,future)>range)continue;wanted.push({id:t.id,priority:Math.min(current,future)+Math.hypot((t.bounds[0]+t.bounds[2])/2-p.x,(t.bounds[1]+t.bounds[3])/2-p.y)*.0001});}return wanted;
+}

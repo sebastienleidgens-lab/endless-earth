@@ -46,7 +46,7 @@ export function addForest(scene:THREE.Object3D,anchors:any[],features:any[],heig
  }
  // A stable canonical caster never changes geometry with camera/visible LOD.
  // It uses the same authored branches, leaf alpha and fine wind as near colour.
- const casterGroups=()=>batches.filter(b=>b.lod===0).map(b=>({source:b.full,forest:true,atlas,life,trees:b.points.map((p:any)=>({matrix:p.worldMatrix,x:p.anchor[0],z:p.anchor[1],traits:p.traits,form:p.form,dates:p.dates,life:p.life,basis:p.basis,anchor:p.anchor}))}));
+ const casterGroups=()=>batches.filter(b=>b.lod===1).map(b=>({source:b.full,forest:true,atlas,life,trees:b.points.map((p:any)=>({matrix:p.worldMatrix,x:p.anchor[0],z:p.anchor[1],traits:p.traits,form:p.form,dates:p.dates,life:p.life,basis:p.basis,anchor:p.anchor}))}));
  const stats=scene.userData.forest={version:FOREST_VERSION,lodVersion:FOREST_LOD_VERSION,...plan.stats,forms:Object.keys(FOREST_LIBRARY),visible:0,levels:[0,0,0,0],submittedTriangles:0,selectionUpdates:0,selectionCpuMs:0,maxSelectionCpuMs:0,transitioning:0,pendingTransitions:0,maxTransitions:FOREST_FADE_LIMIT,appearances:0,disappearances:0,lodChanges:0,batchRebuilds:0,geometryChanges:0,windCacheCpuMs:0,maxWindCacheCpuMs:0,windCacheUpdates:0,source:prepared?.forest?'source-bound prepared infill':'deterministic runtime fallback',items,models,atlas,batches,casterGroups,trees:plan.trees};
  const lastPosition=new THREE.Vector3(Infinity,0,0),lastQuaternion=new THREE.Quaternion(),lastCullingPosition=new THREE.Vector3(Infinity,0,0),frustum=new THREE.Frustum(),clip=new THREE.Matrix4(),sphere=new THREE.Sphere();let lastProfile='',lastFov=-1,lastAspect=-1,initialized=false,lastSeason=-1;
  const decodedWind=new Float32Array(life.field.size*life.field.size*4);let decodedStamp=-Infinity;

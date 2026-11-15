@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {lambert93,inverseLambert93,createProjection,FloatingOrigin,legacyAdapter,requireSameDatum} from '../src/planet/coordinates.mjs';
-import {WorldTileManager,tileLoader,sha256,validateTile} from '../src/planet/tile-manager.mjs';
+import {WorldTileManager,tileLoader,sha256,validateTile,tileDemand} from '../src/planet/tile-manager.mjs';
 import {sampleTile,PlanetSurface} from '../src/planet/surface.mjs';
 import {TiledNetwork,admitFeature} from '../src/planet/network.mjs';
 import {CarController} from '../src/planet/car.mjs';
@@ -50,6 +50,7 @@ test('tile streaming bounds concurrency/residency, survives cancellation and nev
 test('demand selection fits the declared byte budget without evicting and reloading demanded tiles forever',async()=>{
  const tiles=[grid('a'),grid('b',10),grid('c',20)];let loads=0;const manager=new WorldTileManager({tiles:tiles.map(entry)},{capacity:3,byteBudget:150,load:async e=>{loads++;return tiles.find(t=>t.id===e.id)}});manager.demand(tiles.map((t,i)=>({id:t.id,priority:i})));for(let i=0;i<5;i++)await tick();assert.equal(manager.resident.size,1);assert.equal(loads,1);manager.dispose();
 });
+test('metric tile demand covers the horizon and preloads the direction of travel without fetching a distant square',()=>{const tiles=[];for(let y=-2;y<=2;y++)for(let x=-2;x<=2;x++)tiles.push({id:`${x}:${y}`,x,y,bounds:[x*4096,y*4096,(x+1)*4096,(y+1)*4096]});const m={tileSize:4096,tiles},p={x:2048,y:2048},walking=tileDemand(m,p,{x:0,y:0}),driving=tileDemand(m,p,{x:40,y:0});assert.deepEqual(walking.map(t=>t.id),['0:0']);assert.ok(driving.some(t=>t.id==='1:0'));assert.ok(driving.every(t=>!t.id.startsWith('-2:')));const border=tileDemand(m,{x:4050,y:2048},{x:0,y:0});assert.ok(border.some(t=>t.id==='0:0')&&border.some(t=>t.id==='1:0'));});
 const road=(id,nodes,points,tags={})=>({id,kind:'road',nodes,points,tags:{highway:'residential',...tags}});
 test('directed source topology crosses tiles once, retains shared owners and never connects grade-separated crossings',()=>{
  const network=new TiledNetwork('car'),a=road('a',['1','2'],[[0,0],[10,0]],{oneway:'yes'}),b=road('b',['2','3'],[[10,0],[20,0]]),flyover=road('flyover',['4','5'],[[10,-10],[10,10]],{bridge:'yes',layer:'1'});
