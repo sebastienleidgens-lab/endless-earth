@@ -6,7 +6,7 @@ const intersect=(p,r,b)=>{const x=Math.max(b.min.x,Math.min(b.max.x,p.x)),y=Math
  * Every animated crossing is swept against the SAME boxes used by free walking.
  */
 export function createInteractionDecor(scene,world){
- const group=new THREE.Group();group.name='Décors artistiques interactifs';group.userData.provenance=provenance;scene.add(group);
+ const originalCamp=world.camp;const group=new THREE.Group();group.name='Décors artistiques interactifs';group.userData.provenance=provenance;scene.add(group);
  const colliders=[],items=[],materials=[],geometries=[];const metrics={provenance,objects:0,colliders:0,sweeps:0,rejected:0,last:null};
  const mat=c=>{const m=new THREE.MeshStandardMaterial({color:c,roughness:.94});materials.push(m);return m;},wood=mat(0x716047),iron=mat(0x464b45),stone=mat(0x85857a),bark=mat(0x504332),cut=mat(0xaa9270);
  function mesh(g,m,x,y,z){geometries.push(g);const o=new THREE.Mesh(g,m);o.position.set(x,y,z);o.castShadow=o.receiveShadow=true;group.add(o);return o;}
@@ -24,6 +24,7 @@ export function createInteractionDecor(scene,world){
  function clearPose(p,heading,sit=0,jump=0){return bodyAt(p,heading,sit,jump).every(v=>colliders.every(b=>!intersect(v,v.r,b)));}
  function sweepBody(from,to,options={}){metrics.sweeps++;const d=Math.hypot(to.x-from.x,to.z-from.z),n=Math.max(30,Math.ceil(d/.035));for(let i=0;i<=n;i++){const t=i/n,progress=options.kind==='step-over'?t:smooth(t),seat=options.kind==='seat'?smooth(t):0,p={x:from.x+(to.x-from.x)*progress,z:from.z+(to.z-from.z)*progress};const q=world.query(p.x,p.z);if(!q.ok||Math.abs(q.height-from.y)>.15||!clearPose({...p,y:q.height},options.heading??0,seat,options.kind==='step-over'?Math.sin(Math.PI*t)*.56:0)){metrics.rejected++;metrics.last={ok:false,kind:options.kind,t};return false;}}metrics.last={ok:true,kind:options.kind};return true;}
  function walkingClear(p){if(items.every(s=>Math.hypot(s.position.x-p.x,s.position.z-p.z)>2.3))return true;for(const b of colliders){if(b.max.y<p.y+.03||b.min.y>p.y+1.8)continue;const x=Math.max(b.min.x,Math.min(b.max.x,p.x)),z=Math.max(b.min.z,Math.min(b.max.z,p.z));if((p.x-x)**2+(p.z-z)**2<.3**2)return false;}return clearPose(p,0);}
+ world.camp=(p,heading)=>{const r=originalCamp(p,heading);if(!r.ok)return r;for(const b of colliders){const x=Math.max(b.min.x,Math.min(b.max.x,p.x)),z=Math.max(b.min.z,Math.min(b.max.z,p.z));if(Math.hypot(p.x-x,p.z-z)<world.rules.siteRadius)return {ok:false,reason:'obstacle'};}return r;};
  world.sweepBody=sweepBody;metrics.objects=items.length;metrics.colliders=colliders.length;
- return {metrics,walkingClear,clearPose,inventory:()=>items.map(({validate,...s})=>s),dispose(){for(const s of items)world.interactions.remove(s.id);group.removeFromParent();for(const g of geometries)g.dispose();for(const m of materials)m.dispose();}};
+ return {metrics,walkingClear,clearPose,cameraClear:(x,y,z)=>colliders.every(b=>!intersect({x,y,z},.12,b)),inventory:()=>items.map(({validate,...s})=>s),dispose(){world.camp=originalCamp;for(const s of items)world.interactions.remove(s.id);group.removeFromParent();for(const g of geometries)g.dispose();for(const m of materials)m.dispose();}};
 }
