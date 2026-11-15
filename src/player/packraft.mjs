@@ -1,7 +1,9 @@
 import {paddlePose} from './paddle-motion.mjs';
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 const smooth=t=>t*t*(3-2*t),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-const HULL_SAMPLES=Object.freeze([[0,0],[.52,0],[-.52,0],[0,.95],[0,-.95]]);
+// Outer silhouette of the rendered elliptical tube: centreline .51/.94 m
+// plus the .18 m tube radius, sampled around its outward normal.
+const HULL_SAMPLES=Object.freeze([[0,0],...Array.from({length:16},(_,i)=>{const a=i/16*Math.PI*2,c=Math.cos(a),s=Math.sin(a),n=Math.hypot(.94*c,.51*s);return [.51*c+.18*.94*c/n,.94*s+.18*.51*s/n];})]);
 /** One reusable boat, one transactional activity owner. No inventory spawning. */
 export class PackraftController{
  constructor(activity){this.activity=activity;this.position={x:0,y:0,z:0};this.heading=0;this.speed=0;this.stroke=0;this.yawRate=0;this.visible=false;this.scale=0;this.cycles=0;this.recovery=false;this.reason='';this.following=false;this.followMetrics={plans:0,lateralError:0,maxLateralError:0,stops:0};this.paddleState={};}
@@ -65,7 +67,8 @@ export class PackraftController{
    else{const target=Math.atan2(q.x-p.x,q.z-p.z),error=Math.atan2(Math.sin(target-this.heading),Math.cos(target-this.heading));turn=clamp(error*2,-1,1);forward=Math.abs(error)<.85?.75:0;}
   }else this.recoveryRoute=null;
   this.wasRecovering=this.recovery;
-  const effort=Math.min(1,Math.hypot(forward,turn));this.stroke+=dt*(effort>.01?3.8:0);const catchWater=paddlePose(this.stroke,this.paddleState).contact,thrust=forward*catchWater*2.4;
+  const effort=Math.min(1,Math.hypot(forward,turn));this.stroke+=dt*(effort>.01?3.8:0);const pose=paddlePose(this.stroke,this.paddleState),c=Math.cos(this.heading),sn=Math.sin(this.heading),bladeX=p.x+c*pose.tipX+sn*pose.tipZ,bladeZ=p.z-sn*pose.tipX+c*pose.tipZ,bladeWater=provider.sample(bladeX,bladeZ),centerWater=provider.sample(p.x,p.z),bladeY=(centerWater?.surfaceY??this.position.y)+pose.tipY;
+  const catchWater=bladeWater?.reliable?clamp((bladeWater.surfaceY-bladeY)/.08,0,1):0,thrust=forward*catchWater*2.4;this.paddleState.waterContact=catchWater;this.paddleState.thrust=thrust;
   this.speed=(this.speed+thrust*dt)*Math.exp(-dt*(forward<0?1.6:.52));this.speed=clamp(this.speed,-.65,1.8);
   this.yawRate+=(turn*catchWater*1.3-this.yawRate)*(1-Math.exp(-dt*3));const heading=this.heading+this.yawRate*dt;
   if(this.clearAt(provider,clear,p.x,p.z,heading))this.heading=heading;
