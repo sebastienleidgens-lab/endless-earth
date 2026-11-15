@@ -1,0 +1,45 @@
+{
+  "method": "One fresh browser page per version, local Vite development server, same readiness and lighting condition as the benchmark. Dependencies/server caches may be warm. Not an Internet bandwidth, first-paint, physical-device or cold-install measurement. Bundle bytes from each compiled build, gzip of actual JS.",
+  "rows": [
+    {
+      "version": "before",
+      "localDataReadyMs": 7004.650061,
+      "environment": {
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "resolution": [
+          480,
+          320
+        ],
+        "dpr": 1
+      },
+      "bundle": [
+        {
+          "name": "index-tKUkSINz.js",
+          "bytes": 1065374,
+          "gzipBytes": 329768
+        }
+      ],
+      "errors": []
+    },
+    {
+      "version": "after",
+      "localDataReadyMs": 6828.858217000001,
+      "environment": {
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "resolution": [
+          480,
+          320
+        ],
+        "dpr": 1
+      },
+      "bundle": [
+        {
+          "name": "index-iwYHm4_k.js",
+          "bytes": 1091551,
+          "gzipBytes": 339480
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

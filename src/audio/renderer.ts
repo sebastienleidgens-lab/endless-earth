@@ -98,7 +98,7 @@ export class AcousticRenderer{
  for(const v of this.voices)if(v.end<=t)this.release(v);
  if(this.campPosition&&![...this.voices].some(v=>v.reason==='campfire')){
   const id='campfire-fs-536935-m24',buffer=this.resources.get(id);
-  if(buffer)this.play(id,buffer,{gain:.18,position:this.campPosition,priority:76,refDistance:1.8,maxDistance:24,fade:.35,filter:7000,reason:'campfire'});else void this.resources.request(id);
+  if(buffer)this.play(id,buffer,{gain:.62,position:this.campPosition,priority:76,refDistance:3,maxDistance:24,fade:.35,filter:7000,reason:'campfire'});else void this.resources.request(id);
  }
  for(const [id,b] of this.beds){
  const active=[...this.voices].some(v=>v.bedId===b.id);

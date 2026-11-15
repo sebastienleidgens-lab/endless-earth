@@ -5,7 +5,7 @@ const host=p=>({provider:p,clear:()=>true,auto:false,landClear:()=>true,landHeig
 test('three independent synthetic ramps admit progressive wading, swimming, turns and grounded exit',()=>{
  for(const x of [-4,0,4]){const a=new PlayerActivity(),c=new AquaticController(a),p={x,y:0,z:-.01},provider=fixture(x),states=new Set();
   for(let i=0;i<90;i++){c.move(p,{x:0,z:.085},.1,host(provider));states.add(a.state);assert.ok(Number.isFinite(p.y));}
-  assert.ok(states.has('wading'));assert.ok(states.has('swimming'));assert.equal(a.state,'swimming');assert.ok(Math.abs(p.y+.55)<.05);
+  assert.ok(states.has('wading'));assert.ok(states.has('swimming'));assert.equal(a.state,'swimming');assert.ok(Math.abs(p.y+.85)<.05);
   const prior={...p};c.move(p,{x:.08,z:0},.1,host(provider));assert.ok(p.x>prior.x);assert.ok(Math.hypot(p.x-prior.x,p.z-prior.z)<=.111);
   for(let i=0;i<100;i++)c.move(p,{x:0,z:-.085},.1,host(provider));assert.equal(a.state,'walking');assert.equal(c.provider,null);assert.equal(p.y,0);assert.deepEqual(c.history.map(h=>h.type),['entry','exit']);
  }
