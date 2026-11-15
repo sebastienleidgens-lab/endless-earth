@@ -21,7 +21,7 @@ export function createEstimatedBathymetry({areas,lines=[],support,landClear,clea
   for(const seg of segments)check(seg);return best;
  }
  const cache=new Map();
- function sample(x,z){metrics.samples++;const k=x+','+z;if(cache.has(k)){metrics.cacheHits++;return cache.get(k);}const v=sampleUncached(x,z);if(cache.size>=120000)cache.delete(cache.keys().next().value);cache.set(k,v);return v;}
+ function sample(x,z){metrics.samples++;const k=x+','+z;if(cache.has(k)){metrics.cacheHits++;return cache.get(k);}const v=sampleUncached(x,z);if(cache.size>=32768)cache.clear();cache.set(k,v);return v;}
  function contains(x,z){if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>998||Math.abs(z)>998)return false;if(wet(x,z))return true;return (shore(x,z)?.distance??Infinity)<.85;}
  function sampleUncached(x,z){
   const edge=shore(x,z),inside=wet(x,z);if(!edge||!inside&&edge.distance>.85)return null;
