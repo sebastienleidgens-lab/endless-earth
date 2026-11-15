@@ -1,4 +1,6 @@
 // @ts-ignore Verified independent CC0 thunder takes, no synthesized replacement.
+import {FoliageSources} from '../audio/foliage.mjs';
+// @ts-ignore Shared bounded source index.
 import {VillageSoundMemory} from '../audio/village-memory.mjs';
 // @ts-ignore Runtime catalogue.
 import {AUDIO_GROUPS} from '../audio/catalog.mjs';
@@ -28,6 +30,8 @@ export class Soundscape {
  private transition:Promise<boolean>=Promise.resolve(false);private disposed=false;private hidden=false;
  private timer:ReturnType<typeof setInterval>|null=null;private director:SoundDirector;
  constructor(private seed=1){this.director=new SoundDirector({seed});}
+ private foliageSources=new FoliageSources();
+ foliage(points:any[]){this.foliageSources=new FoliageSources(points)}
  private emitterCache=new Map();private nextContext=0;private waterIndex:ReturnType<typeof riverAcousticIndex>|null=null;private roadsIndex:ReturnType<typeof proximityIndex>|null=null;private trafficIndex:ReturnType<typeof trafficRoadIndex>|null=null;
  private villageMemory=new VillageSoundMemory();
  private stormIds=new Set<string>();private stormCursor=0;
@@ -83,7 +87,7 @@ export class Soundscape {
  this.frameContext!.traffic=[]; // Traffic is now owned by the visible, audited road vehicles.
  if(!this.obstacles&&acousticBuildings.length){this.obstacles=acousticObstacles(acousticBuildings.map(b=>{const y=renderHeight?.(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));this.renderer.setObstacles(this.obstacles);}
  this.frameContext!.roof=this.obstacles?.nearestRoof(ear)??null;
- this.frameContext!.emitters=emitterCandidates(this.frameContext,habitatAt,typeof altitudeM==='function'?altitudeM:null,this.emitterCache);this.renderer.updateContext(this.frameContext);for(const id of this.director.preload(this.frameContext,now))void this.renderer.resources.request(id);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.renderer.updateObstructions();this.contextUpdates++;
+ this.frameContext!.emitters=emitterCandidates(this.frameContext,habitatAt,typeof altitudeM==='function'?altitudeM:null,this.emitterCache);this.renderer.updateContext(this.frameContext);this.renderer.foliage(this.foliageSources.near(this.renderer.lastListener,now,climate?.weather?.wind??0),this.frameContext?.season??null);for(const id of this.director.preload(this.frameContext,now))void this.renderer.resources.request(id);for(const event of this.director.tick(this.frameContext,now))this.renderer.event(event);this.renderer.updateObstructions();this.contextUpdates++;
  }
  if(travel>0&&travel<3){
   const dt=this.lastMove?Math.max(.01,Math.min(.5,now-this.lastMove)):.1,speed=locomotion?.speed??Math.min(6,travel/dt);this.lastMove=now;this.distance+=travel;

@@ -20,6 +20,8 @@ export class AcousticRenderer{
  readonly voices=new Set<Voice>();readonly beds=new Map<string,Bed>();readonly random:()=>number;
  private obstacles:any=null;private obstructionCursor=0;private nextVehicle=0;private vehicleId='';private lastUp:Vec3={x:0,y:1,z:0};
  obstructionChecks=0;obstructionUpdates=0;
+ private nextFoliage=0;
+ foliage(sources:any[],season:string|null){const t=this.context.currentTime;if(t<this.nextFoliage)return;this.nextFoliage=t+1.8+this.random()*2.5;for(const s of sources){if(s.wind<.055)continue;const ids=AUDIO_GROUPS[['autumn','winter'].includes(season??'')?'foliage-dry':'foliage']??[],id=ids[Math.floor(this.random()*ids.length)];if(!id)continue;const b=this.resources.get(id);if(!b){void this.resources.request(id);continue;}const v=this.play(id,b,{position:s.position,gain:.10*Math.min(1,s.wind*1.8)*(1+s.gust*.15),priority:35,refDistance:3,maxDistance:34,duration:1.4+this.random()*2,offset:this.random()*Math.max(0,b.duration-4),filter:6500,fade:.5,reason:'localized foliage: loaded branch '+s.id+'; shared wind '+s.wind.toFixed(3)});if(v){const high=this.context.createBiquadFilter();high.type='highpass';high.frequency.value=380;v.source.disconnect();v.source.connect(high).connect(v.nodes[0]);v.nodes.push(high);}}}
  private campPosition:Vec3|null=null;
  private waterBuffers:Map<string,AudioBuffer>|null=null;private lastWaterContact=-1;waterContacts=0;
  waterContact(event:{id:number;kind:string;position:Vec3}){

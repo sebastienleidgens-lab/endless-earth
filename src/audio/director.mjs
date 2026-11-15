@@ -10,7 +10,7 @@ export class SoundDirector{
  const out=[];
  const visible=(c.sources??[]).filter(s=>s.kind==='bird').map(s=>({...s,habitat:s.habitat??c.habitat}));
  for(const emitter of [...visible,...(c.emitters??[])]){
- const choices=BIRD_PROFILES.filter(b=>b.habitats.includes(emitter.habitat)&&b.assets.length);if(!choices.length)continue;
+ const identified=emitter.family&&['blackbird','robin','tit'].includes(emitter.family)?emitter.family:null;const choices=BIRD_PROFILES.filter(b=>(!identified||b.id===identified)&&b.habitats.includes(emitter.habitat)&&b.assets.length);if(!choices.length)continue;
  const h=hash(emitter.id);if(h%100>42)continue; // Sparse, stable distribution, not a player-centred chorus.
  let memory=this.perches.get(emitter.id);if(!memory){const bird=choices[h%choices.length];memory={bird:bird.id,last:-Infinity,assetIndex:0,heard:[],firstSeen:now};}
  const bird=BIRD_PROFILES.find(b=>b.id===memory.bird);if(!bird)continue;
