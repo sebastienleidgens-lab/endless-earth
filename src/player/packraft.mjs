@@ -22,6 +22,10 @@ export class PackraftController{
   if(!this.active)return {ok:false,reason:'busy'};
   const sites=provider.accesses.filter(a=>distance(p,a.water)<3.2).sort((a,b)=>distance(p,a.water)-distance(p,b.water));
   for(const site of sites){let valid=true;const n=Math.max(1,Math.ceil(distance(p,site.water)/.1));for(let i=0;i<=n;i++){const x=p.x+(site.water.x-p.x)*i/n,z=p.z+(site.water.z-p.z)*i/n;if(!this.clearAt(provider,clear,x,z)){valid=false;break;}}if(!valid)continue;
+   // The return must use the already inspected bank corridor. A diagonal
+   // shortcut from an off-axis boat to dry ground could cut an unchecked bank.
+   for(let i=0;i<=34;i++){const t=i/34;if(!clear(site.water.x+(site.dry.x-site.water.x)*t,site.water.z+(site.dry.z-site.water.z)*t)){valid=false;break;}}
+   if(!valid||provider.exitWalkable?.(site.dry.x,site.dry.z)===false)continue;
    this.siteData=site;this.start={...p};this.speed=0;this.recovery=false;this.activity.begin('dock','walking',4.8);this.reason='';return {ok:true};
   }this.reason='shore-required';return {ok:false,reason:this.reason};
  }
@@ -30,7 +34,7 @@ export class PackraftController{
   if(a.state==='transition'&&a.owner==='traveler'&&['launch','dock'].includes(a.kind)){
    a.advance(dt);const t=clamp(a.phase/a.duration,0,1),site=this.siteData,launch=a.kind==='launch',water=site.water,level=provider.sample(water.x,water.z).surfaceY;
    if(launch){const lower=smooth(clamp((t-.2)/.35,0,1));this.scale=.02+.98*smooth(clamp(t/.35,0,1));this.position.x=site.entry.x+(water.x-site.entry.x)*lower;this.position.z=site.entry.z+(water.z-site.entry.z)*lower;this.position.y=level+.18*(1-lower);const board=smooth(clamp((t-.52)/.48,0,1));p.x=this.start.x+(water.x-this.start.x)*board;p.z=this.start.z+(water.z-this.start.z)*board;p.y=this.start.y+(level+.1-this.start.y)*board;this.pose=board;}
-   else{const land=smooth(clamp((t-.1)/.5,0,1));p.x=this.start.x+(site.dry.x-this.start.x)*land;p.z=this.start.z+(site.dry.z-this.start.z)*land;p.y=this.start.y+(site.dry.y-this.start.y)*land;this.pose=1-land;this.scale=1-.98*smooth(clamp((t-.65)/.35,0,1));this.position.x=this.start.x+(site.entry.x-this.start.x)*land;this.position.z=this.start.z+(site.entry.z-this.start.z)*land;this.position.y=level;}
+   else{const approach=smooth(clamp(t/.23,0,1)),land=smooth(clamp((t-.23)/.42,0,1));p.x=this.start.x+(water.x-this.start.x)*approach+(site.dry.x-water.x)*land;p.z=this.start.z+(water.z-this.start.z)*approach+(site.dry.z-water.z)*land;p.y=this.start.y+(level+.1-this.start.y)*approach+(site.dry.y-level-.1)*land;this.pose=1-land;this.scale=1-.98*smooth(clamp((t-.65)/.35,0,1));this.position.x=this.start.x+(water.x-this.start.x)*approach+(site.entry.x-water.x)*land;this.position.z=this.start.z+(water.z-this.start.z)*approach+(site.entry.z-water.z)*land;this.position.y=level;}
    if(t===1){if(launch){this.pose=1;this.scale=1;}else{this.visible=false;this.scale=0;this.cycles++;this.pose=0;}}return true;
   }
   if(!this.active)return false;

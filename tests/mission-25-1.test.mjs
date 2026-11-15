@@ -9,6 +9,18 @@ import {sampleLocomotion} from '../src/character/clips.mjs';
 import {createWalker} from '../src/character/walker.mjs';
 import {createPackraft} from '../src/player/packraft-render.mjs';
 import {perchedBirdAt} from '../src/earthlife/fauna.mjs';
+import {PlayerActivity} from '../src/player/activity.mjs';
+import {PackraftController} from '../src/player/packraft.mjs';
+
+test('off-axis docking follows the inspected water then bank corridor instead of cutting an obstructed diagonal',()=>{
+ const activity=new PlayerActivity();activity.state='boating';const boat=new PackraftController(activity),position={x:9.8,y:.1,z:20.5};
+ const clear=(x,z)=>!(x>11.1&&x<11.7&&z>18.8&&z<19.5);
+ const site={water:{x:9.8,z:18},entry:{x:12.7,z:18},dry:{x:13.05,y:0,z:18}};
+ const provider={accesses:[site],contains:(x,z)=>x<=12,sample:()=>({reliable:true,surfaceY:0,depth:2}),exitWalkable:()=>true};
+ assert.ok(boat.dock(position,provider,clear).ok);
+ for(let i=0;i<60;i++){boat.update(.1,position,{forward:0,strafe:0},provider,clear);assert.ok(clear(position.x,position.z));}
+ assert.equal(activity.state,'walking');assert.deepEqual(position,site.dry);
+});
 
 test('water network follows a bent corridor, preserves a hole and refuses disconnected water without an exit',()=>{
  const areas=[{rings:[[{x:0,z:0},{x:100,z:0},{x:100,z:100},{x:0,z:100}]]}];
