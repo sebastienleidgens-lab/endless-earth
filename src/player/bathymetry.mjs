@@ -15,14 +15,14 @@ export function createEstimatedBathymetry({areas,lines=[],support,landClear,clea
  const wet=(x,z)=>areas.some(a=>x>=bounds.get(a).minX&&x<=bounds.get(a).maxX&&z>=bounds.get(a).minZ&&z<=bounds.get(a).maxZ&&circleHitsPolygon(x,z,a.rings[0],0)&&!a.rings.slice(1).some(r=>circleHitsPolygon(x,z,r,0)));
  const cells=new Map(),cellSize=32;
  for(const seg of segments)for(let z=Math.floor(Math.min(seg.a.z,seg.b.z)/cellSize);z<=Math.floor(Math.max(seg.a.z,seg.b.z)/cellSize);z++)for(let x=Math.floor(Math.min(seg.a.x,seg.b.x)/cellSize);x<=Math.floor(Math.max(seg.a.x,seg.b.x)/cellSize);x++){const k=x+','+z;if(!cells.has(k))cells.set(k,[]);cells.get(k).push(seg);}
- function shore(x,z){let best=null,d2=Infinity;const cx=Math.floor(x/cellSize),cz=Math.floor(z/cellSize),seen=new Set();
+ function shore(x,z,maximum=Infinity){let best=null,d2=Infinity;const cx=Math.floor(x/cellSize),cz=Math.floor(z/cellSize),seen=new Set();
   function check(s){if(seen.has(s))return;seen.add(s);const dx=s.b.x-s.a.x,dz=s.b.z-s.a.z,t=clamp(((x-s.a.x)*dx+(z-s.a.z)*dz)/(s.length*s.length),0,1),px=s.a.x+t*dx,pz=s.a.z+t*dz,dd=(x-px)**2+(z-pz)**2;if(dd<d2){d2=dd;best={x:px,z:pz,distance:Math.sqrt(dd),segment:s};}}
-  for(let r=0;r<5;r++){for(let j=cz-r;j<=cz+r;j++)for(let i=cx-r;i<=cx+r;i++){if(r&&i!==cx-r&&i!==cx+r&&j!==cz-r&&j!==cz+r)continue;for(const seg of cells.get(i+','+j)??[])check(seg);}const bound=Math.min(x-(cx-r)*cellSize,(cx+r+1)*cellSize-x,z-(cz-r)*cellSize,(cz+r+1)*cellSize-z);if(d2<=bound*bound)return best;}
-  for(const seg of segments)check(seg);return best;
+  for(let r=0;r<(Number.isFinite(maximum)?2:5);r++){for(let j=cz-r;j<=cz+r;j++)for(let i=cx-r;i<=cx+r;i++){if(r&&i!==cx-r&&i!==cx+r&&j!==cz-r&&j!==cz+r)continue;for(const seg of cells.get(i+','+j)??[])check(seg);}const bound=Math.min(x-(cx-r)*cellSize,(cx+r+1)*cellSize-x,z-(cz-r)*cellSize,(cz+r+1)*cellSize-z);if(d2<=bound*bound)return best;}
+  if(Number.isFinite(maximum))return best&&best.distance<=maximum?best:null;for(const seg of segments)check(seg);return best;
  }
  const cache=new Map();
  function sample(x,z){metrics.samples++;const k=x+','+z;if(cache.has(k)){metrics.cacheHits++;return cache.get(k);}const v=sampleUncached(x,z);if(cache.size>=32768)cache.clear();cache.set(k,v);return v;}
- function contains(x,z){if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>998||Math.abs(z)>998)return false;if(wet(x,z))return true;return (shore(x,z)?.distance??Infinity)<.85;}
+ function contains(x,z){if(!Number.isFinite(x)||!Number.isFinite(z)||Math.abs(x)>998||Math.abs(z)>998)return false;if(wet(x,z))return true;return (shore(x,z,.85)?.distance??Infinity)<.85;}
  function sampleUncached(x,z){
   const edge=shore(x,z),inside=wet(x,z);if(!edge||!inside&&edge.distance>.85)return null;
   let s=support(x,z),level=s?.height;
