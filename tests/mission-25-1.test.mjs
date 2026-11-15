@@ -12,6 +12,16 @@ import {perchedBirdAt} from '../src/earthlife/fauna.mjs';
 import {PlayerActivity} from '../src/player/activity.mjs';
 import {PackraftController} from '../src/player/packraft.mjs';
 
+test('paddle grips solve in the clavicle frame after shoulder extension, with translated and rotated avatars',()=>{
+ const scene=new THREE.Scene(),boat=createPackraft(scene),w=createWalker();scene.add(w.avatar);w.avatar.position.set(4,.3,-3);w.avatar.rotation.y=.6;
+ for(const stroke of [0,.7,1.4,3.4]){
+  boat.update({visible:true,scale:1,position:{x:4,y:.2,z:-3},heading:.6,stroke,pose:1},2);
+  for(let i=0;i<60;i++)w.update(0,1/60,()=>0,{kind:'boating',boatPose:1,stroke,handTargets:boat.hands});
+  for(let i=0;i<2;i++){const hand=w.avatar.getObjectByName('hand'+(i===0?-1:1));const error=hand.getWorldPosition(new THREE.Vector3()).distanceTo(boat.hands[i]);assert.ok(error<.035,JSON.stringify({stroke,i,error}));}
+ }
+ w.dispose();boat.dispose();
+});
+
 test('off-axis docking follows the inspected water then bank corridor instead of cutting an obstructed diagonal',()=>{
  const activity=new PlayerActivity();activity.state='boating';const boat=new PackraftController(activity),position={x:9.8,y:.1,z:20.5};
  const clear=(x,z)=>!(x>11.1&&x<11.7&&z>18.8&&z<19.5);
