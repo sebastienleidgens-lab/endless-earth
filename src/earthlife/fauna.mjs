@@ -13,3 +13,8 @@ export function birdPosition(flock,index,anchor,ceiling,out={}){
  out.z=anchor.z+(flock.sinAngle??Math.sin(flock.angle))*along+(flock.cosAngle??Math.cos(flock.angle))*across;
  out.y=ceiling+12+(flock.lift??Math.sin(t*Math.PI))*8+index*.65;return out;
 }
+export function perchedBirdAt(time,id,conditions,playerDistance,out={}){
+ const clock=time+random(id*17.13)*140,epoch=Math.floor(clock/180),age=clock-epoch*180,start=10+random(id*71+epoch*13)*90;
+ out.age=age-start;out.visible=conditions.day>.2&&conditions.rain<.2&&conditions.wind<.85&&out.age>=0&&out.age<48;
+ out.flying=out.age>30||playerDistance<7;out.progress=Math.max(0,Math.min(1,(out.age-30)/18));out.fade=out.visible?Math.max(0,Math.min(1,out.age/3,(48-out.age)/4)):0;return out;
+}

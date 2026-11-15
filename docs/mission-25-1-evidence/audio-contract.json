@@ -1,0 +1,162 @@
+{
+  "method": "OfflineAudioContext technical fixture using the production AcousticRenderer, explicitly synthetic positions. Proves bounded HRTF/equalpower fallback, unique contacts, audible stereo samples and disposal; not native pilot evidence.",
+  "result": {
+    "a": true,
+    "b": true,
+    "duplicate": false,
+    "stats": {
+      "layers": [],
+      "activeSources": [
+        {
+          "asset": "original-water-stroke:1",
+          "position": {
+            "x": -3,
+            "y": 0,
+            "z": -2
+          },
+          "diffuse": false,
+          "gain": 0,
+          "retirementGain": 1,
+          "masterGain": 0,
+          "distance": 3.6055512754639896,
+          "refDistance": 2,
+          "panningModel": "HRTF",
+          "reason": "Original synthesized stroke at verified animated water contact",
+          "occlusion": 0,
+          "transition": "scheduled"
+        },
+        {
+          "asset": "original-water-paddle:2",
+          "position": {
+            "x": 3,
+            "y": 0,
+            "z": -2
+          },
+          "diffuse": false,
+          "gain": 0,
+          "retirementGain": 1,
+          "masterGain": 0,
+          "distance": 3.6055512754639896,
+          "refDistance": 2,
+          "panningModel": "equalpower",
+          "reason": "Original synthesized paddle at verified animated water contact",
+          "occlusion": 0,
+          "transition": "scheduled"
+        }
+      ],
+      "recentEvents": [
+        {
+          "asset": "original-water-stroke:1",
+          "position": {
+            "x": -3,
+            "y": 0,
+            "z": -2
+          },
+          "contactId": 1,
+          "time": 0
+        },
+        {
+          "asset": "original-water-paddle:2",
+          "position": {
+            "x": 3,
+            "y": 0,
+            "z": -2
+          },
+          "contactId": 2,
+          "time": 0
+        }
+      ],
+      "nodes": 15,
+      "voices": 2,
+      "peakVoices": 2,
+      "hrtf": 1,
+      "beds": 0,
+      "budget": {
+        "voices": 8,
+        "hrtf": 1,
+        "beds": 2,
+        "hz": 2
+      },
+      "dropped": 0,
+      "steps": 0,
+      "lastStepAssets": [],
+      "heardBirds": 0,
+      "waterContacts": 2,
+      "waterBufferBytes": 729600,
+      "roadEvents": 0,
+      "profile": "eco",
+      "obstructionChecks": 0,
+      "obstructionUpdates": 0,
+      "cacheBytes": 0,
+      "peakBytes": 0,
+      "cached": 0,
+      "pending": 0,
+      "activeLoads": 0,
+      "loads": 0,
+      "decodes": 0,
+      "deferred": 0,
+      "deniedDecodes": 0,
+      "failures": {}
+    },
+    "models": [
+      "HRTF",
+      "equalpower"
+    ],
+    "positions": [
+      {
+        "x": -3,
+        "y": 0,
+        "z": -2
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "z": -2
+      }
+    ],
+    "levels": {
+      "rms": [
+        0.000263718691684826,
+        0.0003189660348866569
+      ],
+      "differenceRms": 0.0003563285760563175,
+      "peak": 0.005510799121111631
+    },
+    "after": {
+      "layers": [],
+      "activeSources": [],
+      "recentEvents": [],
+      "nodes": 0,
+      "voices": 0,
+      "peakVoices": 2,
+      "hrtf": 0,
+      "beds": 0,
+      "budget": {
+        "voices": 8,
+        "hrtf": 1,
+        "beds": 2,
+        "hz": 2
+      },
+      "dropped": 0,
+      "steps": 0,
+      "lastStepAssets": [],
+      "heardBirds": 0,
+      "waterContacts": 2,
+      "waterBufferBytes": 0,
+      "roadEvents": 0,
+      "profile": "eco",
+      "obstructionChecks": 0,
+      "obstructionUpdates": 0,
+      "cacheBytes": 0,
+      "peakBytes": 0,
+      "cached": 0,
+      "pending": 0,
+      "activeLoads": 0,
+      "loads": 0,
+      "decodes": 0,
+      "deferred": 0,
+      "deniedDecodes": 0,
+      "failures": {}
+    }
+  }
+}

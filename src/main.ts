@@ -34,6 +34,8 @@ import {proximityIndex} from './audio/context.mjs';
 import {AquaticController} from './player/aquatic.mjs';
 // @ts-ignore Bounded marks on a verified water surface.
 import {createWaterMarks} from './player/water-marks.mjs';
+// @ts-ignore Joint/surface contacts shared by the visual and acoustic owners.
+import {WaterContacts} from './player/water-contacts.mjs';
 // @ts-ignore Original projected impressions and camp props.
 import {createFootprints} from './player/footprints.mjs';
 // @ts-ignore Original procedural camp, no external model.
@@ -212,7 +214,7 @@ if(tilesPreview && !terrainPreview){
 }
 
 const walkerModel=createWalker(),avatar=walkerModel.avatar;avatar.visible=false;scene.add(avatar);
-const activity=new PlayerActivity(),aquatic=new AquaticController(activity),waterMarks=createWaterMarks(scene),footprints=createFootprints(scene),camp=createCamp(scene,()=>walkerModel.packGeometry());const boat=new PackraftController(activity),boatRender=createPackraft(scene),groundActions=new GroundInteractions(activity),exposure=new TravelerExposure(),groundMarks=createGroundMarks(scene);let footIndex:any=null,waterObstacles:any=null;let playerWorld:any=null,campValidationAge=0,contextAge=1,actionContext:any={},lastPaddleMark=-1;
+const activity=new PlayerActivity(),aquatic=new AquaticController(activity),waterMarks=createWaterMarks(scene),waterContacts=new WaterContacts(),footprints=createFootprints(scene),camp=createCamp(scene,()=>walkerModel.packGeometry());const boat=new PackraftController(activity),boatRender=createPackraft(scene),groundActions=new GroundInteractions(activity),exposure=new TravelerExposure(),groundMarks=createGroundMarks(scene);let footIndex:any=null,waterObstacles:any=null;let playerWorld:any=null,campValidationAge=0,contextAge=1,actionContext:any={};
 
 let yaw=.65, pitch=.2, zoom=5, smoothZoom=zoom, dragging=false;
 type ViewMode='aerial'|'first'|'third';
@@ -237,7 +239,7 @@ addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat&&!walkM
 let walkMenu:ReturnType<typeof createWalkMenu>|null=null;
 setViewMode('third');
 const input = new InputController(renderer.domElement,()=>!geographyReady||!!walkMenu?.open||activity.locked);
-const walker=new AutoWalk(), sound=new Soundscape();let tourContinue=false,tourWait=0;
+const walker=new AutoWalk(), sound=new Soundscape(sensorySeed);let tourContinue=false,tourWait=0;
 const actions=createActions(root,()=>{if(!playerWorld||!geographyReady)return;const result=activity.toggleCamp(()=>playerWorld.camp(avatar.position,avatar.rotation.y));if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause · campement');}},{boat:()=>playerAction('boat'),seat:()=>playerAction('seat'),jump:()=>playerAction('jump'),recover:()=>{boat.recovery=!boat.recovery;}});
 function playerWaterClear(x:number,z:number){return aquaticClear(x,z)&&!restrictedAreas.some(r=>circleHitsPolygon(x,z,r,.6))&&!waterObstacles?.query({x,z},1.1).point;}
 function playerAction(kind:string){if(!playerWorld||!geographyReady||walkMenu?.open)return;const provider=scene.userData.aquaticProvider;const result=kind==='boat'?(boat.active?boat.dock(avatar.position,provider,playerWaterClear):boat.launch(avatar.position,avatar.rotation.y,provider,playerWaterClear)):kind==='seat'?groundActions.toggleSeat(avatar.position,playerWorld):groundActions.requestJump(avatar.position,avatar.rotation.y,playerWorld);if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause');}else activity.message=result.reason;contextAge=1;}
@@ -270,7 +272,7 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-let playerDisposed=false;function disposePlayer(){if(playerDisposed)return;playerDisposed=true;activity.reset();boat.reset();boatRender.dispose();groundMarks.dispose();waterMarks.dispose();footprints.dispose();camp.dispose();actions.dispose();}
+let playerDisposed=false;function disposePlayer(){if(playerDisposed)return;playerDisposed=true;scene.userData.aquaticProvider?.network?.dispose();playerWorld?.interactions?.clear();activity.reset();boat.reset();boatRender.dispose();groundMarks.dispose();waterMarks.dispose();footprints.dispose();camp.dispose();actions.dispose();}
 if(import.meta.hot)import.meta.hot.dispose(()=>{disposePlayer();lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
 addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){disposePlayer();lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
@@ -355,7 +357,7 @@ const groundHeight=walkingHeight(terrainHeight);
 // Wait for the real dataset before allowing walking in geography mode.
 traffic.constrain(avatar.position,displacement);
 const boatHandled=geographyReady&&!walkMenu?.open&&boat.update(dt,avatar.position,controls,scene.userData.aquaticProvider,playerWaterClear);
-const groundHandled=geographyReady&&!walkMenu?.open&&!boatHandled&&groundActions.update(dt,avatar.position);
+const groundHandled=geographyReady&&!walkMenu?.open&&!boatHandled&&groundActions.update(dt,avatar.position,playerWorld);
 if(geographyReady&&!walkMenu?.open&&!activity.locked&&!boatHandled&&!groundHandled){
  const water=aquatic.move(avatar.position,displacement,dt,{provider:scene.userData.aquaticProvider,clear:playerWaterClear,auto:autoStep,landHeight:groundHeight,landClear:canWalk});
  if(!water.handled){moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep,dt);if(Math.hypot(displacement.x,displacement.z)>.001&&['mapped-water','rendered-water'].includes(String(lastMovementDiagnostic()?.obstacle)))activity.message='unknown-depth';}
@@ -374,7 +376,9 @@ activity.grounded(dt>0?moved/dt:0);
 exposure.update(dt,scene.userData.climate,aquatic.active);boatRender.update(boat,scene.userData.climate?.elapsedSeconds??0);
 const locomotion=walkerModel.update(Math.hypot(avatar.position.x-previous.x,avatar.position.z-previous.z),dt,aquatic.active?(x:number,z:number)=>aquatic.provider?.sample(x,z)?.bedY??null:groundHeight,{kind:camp.metrics.active?'camping':boatHandled?'boating':groundActions.sit>0?'sitting':activity.state==='swimming'?'swimming':activity.state==='jumping'?'jumping':'walking',sit:groundActions.sit,boatPose:boat.pose??0,stroke:boat.stroke,jump:groundActions.jump,wetness:exposure.wetness,profile:lifeSettings.name,cameraDistance:zoom,handTargets:boatRender.hands});
 waterMarks.update(scene.userData.climate,avatar.position,locomotion,aquatic,lifeSettings.name);
-if(boat.active){const stroke=Math.floor(boat.stroke/Math.PI),tip=boatRender.tip,s=scene.userData.aquaticProvider?.sample(tip.x,tip.z);if(stroke!==lastPaddleMark&&s&&tip.y<s.surfaceY+.08){lastPaddleMark=stroke;waterMarks.emit({x:tip.x,y:s.surfaceY,z:tip.z},scene.userData.climate?.elapsedSeconds??0,lifeSettings.name);}}
+const contacts=waterContacts.update(activity.state,avatar.position,walkerModel.waterContacts,boat.active?boatRender.tip:null,scene.userData.aquaticProvider,locomotion.footContacts);
+for(const contact of contacts)waterMarks.emit(contact.position,scene.userData.climate?.elapsedSeconds??0,lifeSettings.name);
+sound.water(contacts);
 if(aquatic.active)locomotion.footContacts=[];
 contextAge+=dt;if(playerWorld&&contextAge>=.3){contextAge=0;const provider=scene.userData.aquaticProvider;actionContext={bank:boat.site(avatar.position,provider,playerWaterClear),dock:boat.active&&provider?.accesses.some((a:any)=>Math.hypot(a.water.x-avatar.position.x,a.water.z-avatar.position.z)<3),seat:groundActions.seatAt(avatar.position,playerWorld)};}
 actions.update(activity,geographyReady,!!walkMenu?.open,actionContext);

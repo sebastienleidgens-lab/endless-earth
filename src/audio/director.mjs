@@ -8,7 +8,8 @@ export class SoundDirector{
  variant(id,assets,key,now){const m=this.visit(key,now),previous=this.lastVariant.get(id);let i=Math.floor(((this.random()+m.seed/4294967296)%1)*assets.length);if(assets.length>1&&i===previous)i=(i+1)%assets.length;this.lastVariant.set(id,i);m.variants[id]=i;return assets[i]}
  residents(c,now){
  const out=[];
- for(const emitter of c.emitters??[]){
+ const visible=(c.sources??[]).filter(s=>s.kind==='bird').map(s=>({...s,habitat:s.habitat??c.habitat}));
+ for(const emitter of [...visible,...(c.emitters??[])]){
  const choices=BIRD_PROFILES.filter(b=>b.habitats.includes(emitter.habitat)&&b.assets.length);if(!choices.length)continue;
  const h=hash(emitter.id);if(h%100>42)continue; // Sparse, stable distribution, not a player-centred chorus.
  let memory=this.perches.get(emitter.id);if(!memory){const bird=choices[h%choices.length];memory={bird:bird.id,last:-Infinity,assetIndex:0,heard:[],firstSeen:now};}
@@ -23,7 +24,9 @@ export class SoundDirector{
  preload(c,now){const ids=[],species=new Set();for(const {bird,memory} of this.residents(c,now).sort((a,b)=>a.distance-b.distance)){if(species.has(bird.id))continue;species.add(bird.id);ids.push(bird.assets[memory.assetIndex%bird.assets.length]);if(ids.length===2)break}if(trafficActivity(c)>0&&TRAFFIC.assets.length)ids.push(TRAFFIC.assets[0]);return ids}
  tick(c,now){this.visit(c.key,now);const previous=this.lastTick;this.lastTick=now;if(previous===null||now-previous>2||now<previous)return [];
  const dt=Math.max(0,Math.min(1.5,now-previous)),out=[];
- if(now-this.lastCategory>20){for(const {emitter,bird,memory,distance} of this.residents(c,now)){
+ const quietSlot=Math.floor(now/120),quiet=hash(this.seed+':quiet:'+quietSlot)%5===0;
+ if(!quiet&&now-this.lastCategory>12+hash(this.seed+':gap:'+this.sequence)%13){for(const {emitter,bird,memory,distance} of this.residents(c,now)){
+ if(distance<3.5){memory.last=now;continue;}
  if(now-memory.firstSeen<6||now-memory.last<bird.cooldown)continue;
  const rate=bird.perMinute*birdActivity(bird,c,emitter.habitat);
  if(this.random()<1-Math.exp(-rate*dt/60)){

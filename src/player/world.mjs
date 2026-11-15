@@ -1,6 +1,7 @@
 import {proximityIndex} from '../audio/context.mjs';
 import {roadWidth} from '../world/road-style.mjs';
 import {circleHitsPolygon} from '../controls/walking.mjs';
+import {InteractableSurfaces} from './interactable-surfaces.mjs';
 const finite=p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.z);
 export const CAMP_RULES=Object.freeze({maxSlope:.14,bankMargin:10,treeMargin:2.4,roadMargin:2.2,siteRadius:3.1});
 export function localPoint(origin,heading,x,z){const c=Math.cos(heading),s=Math.sin(heading);return {x:origin.x+c*x+s*z,z:origin.z-s*x+c*z};}
@@ -48,5 +49,5 @@ export function createPlayerWorld({support,clear,collision,roads=[],banks=[],tre
   layout.pegs=[];for(const [x,z]of [[-.85,-1.05],[.85,-1.05],[-.85,1.05],[.85,1.05]]){const p=localPoint(layout.tent,heading,x,z),s=query(p.x,p.z);if(!s.ok||s.category!=='terrain'||s.slope>CAMP_RULES.maxSlope||Math.abs(s.height-center.height)>.35)return {ok:false,reason:s.reason??'slope'};layout.pegs.push({...p,y:s.height,normal:s.normal});}
   return {ok:true,layout,support:center};
  }
- return {query,footprint,camp,rules:CAMP_RULES};
+ return {query,footprint,camp,rules:CAMP_RULES,interactions:new InteractableSurfaces()};
 }
