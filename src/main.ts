@@ -7,12 +7,30 @@ import {acousticObstacles} from './audio/occlusion.mjs';
 import {createTraffic} from './life/traffic';
 import {createVillageLife} from './life/village';
 import {createSensitiveWorld} from './earthlife/sensitive-world';
-import {acousticRoads,acousticBuildings,riverAreas,restrictedAreas} from './living/geography';
+import {acousticRoads,acousticBuildings,riverAreas,riverLines,mappedWeirs,restrictedAreas} from './living/geography';
 // @ts-ignore Shared read-only interaction support and bounded native effects.
 import {createPlayerWorld} from './player/world.mjs';
 // @ts-ignore Pure transactional player state owner.
 import {PlayerActivity} from './player/activity.mjs';
-// @ts-ignore Provenance-gated aquatic movement; no invented pilot bathymetry.
+// @ts-ignore Explicitly estimated, immutable-world gameplay depth.
+import {createEstimatedBathymetry} from './player/bathymetry.mjs';
+// @ts-ignore Single-instance boat simulation and original procedural rendering.
+import {PackraftController} from './player/packraft.mjs';
+// @ts-ignore Original procedural asset, no external resources.
+import {createPackraft} from './player/packraft-render.mjs';
+// @ts-ignore Ground-confirmed limited interactions.
+import {GroundInteractions} from './player/traversal.mjs';
+// @ts-ignore Shared climate appearance.
+import {TravelerExposure} from './player/exposure.mjs';
+// @ts-ignore Pooled confirmed contact appearance.
+import {createGroundMarks} from './player/ground-marks.mjs';
+// @ts-ignore Same mapped contact classification as the sound renderer.
+import {footContact} from './audio/materials.mjs';
+// @ts-ignore Shared mapped road contact index.
+import {footRoadIndex} from './audio/geography.mjs';
+// @ts-ignore Shared read-only obstacle proximity index.
+import {proximityIndex} from './audio/context.mjs';
+// @ts-ignore Provenance-gated aquatic movement; estimated gameplay depths stay explicit.
 import {AquaticController} from './player/aquatic.mjs';
 // @ts-ignore Bounded marks on a verified water surface.
 import {createWaterMarks} from './player/water-marks.mjs';
@@ -50,7 +68,7 @@ import {createWalker} from './character/walker.mjs';
 import {prepareStarts,chooseStart,inspectStart} from './controls/spawn.mjs';
 import { canWalk, moveWithCollision, walkingHeight, cameraClear, hasWalkingSupport, lastMovementDiagnostic, inspectCollision, aquaticClear } from './world/collisions';
 // @ts-ignore shared deterministic runtime
-import { movement, nextView, cameraFraction, smoothMovement, transitionWeight } from './controls/walking.mjs';
+import { circleHitsPolygon, movement, nextView, cameraFraction, smoothMovement, transitionWeight } from './controls/walking.mjs';
 
 import './style.css';
 import {buildIdentity} from 'virtual:build-identity';
@@ -194,7 +212,7 @@ if(tilesPreview && !terrainPreview){
 }
 
 const walkerModel=createWalker(),avatar=walkerModel.avatar;avatar.visible=false;scene.add(avatar);
-const activity=new PlayerActivity(),aquatic=new AquaticController(activity),waterMarks=createWaterMarks(scene),footprints=createFootprints(scene),camp=createCamp(scene,()=>walkerModel.packGeometry());let playerWorld:any=null,campValidationAge=0;
+const activity=new PlayerActivity(),aquatic=new AquaticController(activity),waterMarks=createWaterMarks(scene),footprints=createFootprints(scene),camp=createCamp(scene,()=>walkerModel.packGeometry());const boat=new PackraftController(activity),boatRender=createPackraft(scene),groundActions=new GroundInteractions(activity),exposure=new TravelerExposure(),groundMarks=createGroundMarks(scene);let footIndex:any=null,waterObstacles:any=null;let playerWorld:any=null,campValidationAge=0,contextAge=1,actionContext:any={},lastPaddleMark=-1;
 
 let yaw=.65, pitch=.2, zoom=5, smoothZoom=zoom, dragging=false;
 type ViewMode='aerial'|'first'|'third';
@@ -220,7 +238,9 @@ let walkMenu:ReturnType<typeof createWalkMenu>|null=null;
 setViewMode('third');
 const input = new InputController(renderer.domElement,()=>!geographyReady||!!walkMenu?.open||activity.locked);
 const walker=new AutoWalk(), sound=new Soundscape();let tourContinue=false,tourWait=0;
-const actions=createActions(root,()=>{if(!playerWorld||!geographyReady)return;const result=activity.toggleCamp(()=>playerWorld.camp(avatar.position,avatar.rotation.y));if(result.ok){input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause · campement');}});
+const actions=createActions(root,()=>{if(!playerWorld||!geographyReady)return;const result=activity.toggleCamp(()=>playerWorld.camp(avatar.position,avatar.rotation.y));if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause · campement');}},{boat:()=>playerAction('boat'),seat:()=>playerAction('seat'),jump:()=>playerAction('jump'),recover:()=>{boat.recovery=!boat.recovery;}});
+function playerWaterClear(x:number,z:number){return aquaticClear(x,z)&&!restrictedAreas.some(r=>circleHitsPolygon(x,z,r,.6))&&!waterObstacles?.query({x,z},1.1).point;}
+function playerAction(kind:string){if(!playerWorld||!geographyReady||walkMenu?.open)return;const provider=scene.userData.aquaticProvider;const result=kind==='boat'?(boat.active?boat.dock(avatar.position,provider,playerWaterClear):boat.launch(avatar.position,avatar.rotation.y,provider,playerWaterClear)):kind==='seat'?groundActions.toggleSeat(avatar.position,playerWorld):groundActions.requestJump(avatar.position,avatar.rotation.y,playerWorld);if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause');}else activity.message=result.reason;contextAge=1;}
 const updateAtmosphere=naturalSky(scene,sun,(x,z)=>activeTerrain?.relativeHeight(x,z)??0,ANGLES,hemisphere,avatar,camera);
 const panel=document.createElement('div');panel.className='living-panel';
 panel.innerHTML='<button id="auto-walk" disabled>Promenade automatique</button><button id="sound">Activer le son</button><span id="walk-status" role="status">Chargement des voies OSM…</span>';
@@ -229,7 +249,7 @@ const autoButton=panel.querySelector<HTMLButtonElement>('#auto-walk')!;
 const soundButton=panel.querySelector<HTMLButtonElement>('#sound')!;
 const walkStatus=panel.querySelector<HTMLElement>('#walk-status')!;
 const volume=document.createElement('input');volume.type='range';volume.min='0';volume.max='100';volume.value='70';volume.setAttribute('aria-label',"Volume de l’ambiance");volume.oninput=()=>sound.setVolume(Number(volume.value)/100);const volumeLabel=document.createElement('label');volumeLabel.className='ambience-volume';volumeLabel.append('Ambiance ',volume,audioCredit);audioCredit.style.cssText='color:inherit;font-size:10px';panel.append(volumeLabel);
-autoButton.onclick=()=>{if(activity.locked)return;if(walker.active||tourContinue){tourContinue=false;walker.stop()}else{walker.start(routeAt(avatar.position,activeTerrain));tourContinue=walker.active;tourWait=0;if(walker.active)walkMenu?.dialog.close()}};
+autoButton.onclick=()=>{if(!['walking','running'].includes(activity.state))return;if(walker.active||tourContinue){tourContinue=false;walker.stop()}else{walker.start(routeAt(avatar.position,activeTerrain));tourContinue=walker.active;tourWait=0;if(walker.active)walkMenu?.dialog.close()}};
 soundButton.onclick=async()=>{try{const on=await sound.toggle();soundButton.textContent=on?'Désactiver le son':'Activer le son';soundButton.setAttribute('aria-pressed',String(on));}catch{walkStatus.textContent='Son indisponible dans ce navigateur';}};
 let worldReady=false;
 const navigationPromise=loadNavigation().then(()=>{autoButton.disabled=!worldReady;}).catch(()=>{walkStatus.textContent='Navigation OSM indisponible';});
@@ -250,7 +270,7 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-let playerDisposed=false;function disposePlayer(){if(playerDisposed)return;playerDisposed=true;activity.reset();waterMarks.dispose();footprints.dispose();camp.dispose();actions.dispose();}
+let playerDisposed=false;function disposePlayer(){if(playerDisposed)return;playerDisposed=true;activity.reset();boat.reset();boatRender.dispose();groundMarks.dispose();waterMarks.dispose();footprints.dispose();camp.dispose();actions.dispose();}
 if(import.meta.hot)import.meta.hot.dispose(()=>{disposePlayer();lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
 addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){disposePlayer();lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
@@ -304,7 +324,7 @@ if(perfPanel){walkMenu.mount('.menu-diagnostics',perfPanel);walkMenu.dialog.quer
 const terrainInspector=perfPreview?createTerrainInspector(scene,camera,renderer.domElement,walkMenu.dialog.querySelector<HTMLElement>('.menu-diagnostics')!,()=>activeTerrain,(x,z)=>activeTerrain?inspectGround(scene,x,z,walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z)),inspectCollision,activeTerrain):null,lastMovementDiagnostic):null;
 if(import.meta.hot)import.meta.hot.dispose(()=>terrainInspector?.dispose());
 const clock=new THREE.Clock();
-if(perfPreview)Object.defineProperty(window,'endlessPlayerDiagnostics',{get:()=>({state:activity.state,aquatic:{active:aquatic.active,reason:aquatic.reason,history:aquatic.history,provider:!!scene.userData.aquaticProvider},message:activity.message,fade:activity.fade,history:activity.history,camp:camp.metrics,footprints:footprints.metrics,query:(x:number,z:number)=>playerWorld?.query(x,z),campAt:(x:number,z:number,heading=0)=>playerWorld?.camp({x,z},heading)})});
+if(perfPreview)Object.defineProperty(window,'endlessPlayerDiagnostics',{get:()=>({state:activity.state,aquatic:{active:aquatic.active,reason:aquatic.reason,history:aquatic.history,provider:!!scene.userData.aquaticProvider},message:activity.message,fade:activity.fade,history:activity.history,boat:{active:boat.active,visible:boat.visible,scale:boat.scale,speed:boat.speed,stroke:boat.stroke,cycles:boat.cycles,reason:boat.reason,recovery:boat.recovery,render:boatRender.metrics},depth:scene.userData.aquaticProvider?.metrics,accesses:scene.userData.aquaticProvider?.accesses,exposure:{...exposure},groundMarks:groundMarks.metrics,camp:camp.metrics,footprints:footprints.metrics,query:(x:number,z:number)=>playerWorld?.query(x,z),campAt:(x:number,z:number,heading=0)=>playerWorld?.camp({x,z},heading)})});
 let vegetationLodElapsed=0;
 let perfElapsed=0,perfFrames=0;
 function architectureStats(){const stats:unknown[]=[];scene.traverse(o=>{if(o.userData.architecture)stats.push(o.userData.architecture)});return stats;}
@@ -312,6 +332,8 @@ if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({insp
 function prepareWorldSenses(){if(!activeTerrain||worldSensoryReady)return;const groundHeight=walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z));worldSensoryReady=true;const roofs=acousticObstacles(acousticBuildings.map(b=>{const y=groundHeight(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));scene.userData.weatherFloorAt=(x:number,z:number)=>roofs.roofAt(x,z,-10000);traffic.prepare(acousticRoads,groundHeight,canWalk);villageLife.prepare(exportTourGraph(),acousticRoads,groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));sensitiveWorld.configure(riverAreas.flatMap(a=>a.rings),groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));
  const trees:any[]=[];scene.traverse(o=>{if(o.userData.forest)trees.push(...o.userData.forest.items.map((t:any)=>({x:t.anchor[0],z:t.anchor[1]})))});
  playerWorld=createPlayerWorld({support:(x:number,z:number)=>hasWalkingSupport(x,z)?{id:'verified-deck',height:groundHeight(x,z),category:'bridge',visible:true,walkable:true,normal:{x:0,y:1,z:0},slope:0}:activeTerrain!.supportAt(x,z),clear:canWalk,collision:inspectCollision,roads:acousticRoads,banks:riverAreas.flatMap(a=>a.rings.map(r=>[...r,r[0]])),trees,restricted:restrictedAreas});
+ footIndex=footRoadIndex(acousticRoads);waterObstacles=proximityIndex(mappedWeirs);
+ scene.userData.aquaticProvider=createEstimatedBathymetry({areas:riverAreas,lines:riverLines,support:(x:number,z:number)=>activeTerrain!.supportAt(x,z),landClear:canWalk,clear:playerWaterClear});
  scene.userData.playerInteractions={query:(x:number,z:number)=>playerWorld.query(x,z),camp:(x:number,z:number,heading=0)=>playerWorld.camp({x,z},heading),activity,campMetrics:camp.metrics,footprints:footprints.metrics};
 }
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
@@ -332,26 +354,32 @@ const terrainHeight=(x:number,z:number)=>activeTerrain?activeTerrain.relativeHei
 const groundHeight=walkingHeight(terrainHeight);
 // Wait for the real dataset before allowing walking in geography mode.
 traffic.constrain(avatar.position,displacement);
-if(geographyReady&&!walkMenu?.open&&!activity.locked){
- const water=aquatic.move(avatar.position,displacement,dt,{provider:scene.userData.aquaticProvider,clear:aquaticClear,auto:autoStep,landHeight:groundHeight,landClear:canWalk});
+const boatHandled=geographyReady&&!walkMenu?.open&&boat.update(dt,avatar.position,controls,scene.userData.aquaticProvider,playerWaterClear);
+const groundHandled=geographyReady&&!walkMenu?.open&&!boatHandled&&groundActions.update(dt,avatar.position);
+if(geographyReady&&!walkMenu?.open&&!activity.locked&&!boatHandled&&!groundHandled){
+ const water=aquatic.move(avatar.position,displacement,dt,{provider:scene.userData.aquaticProvider,clear:playerWaterClear,auto:autoStep,landHeight:groundHeight,landClear:canWalk});
  if(!water.handled){moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep,dt);if(Math.hypot(displacement.x,displacement.z)>.001&&['mapped-water','rendered-water'].includes(String(lastMovementDiagnostic()?.obstacle)))activity.message='unknown-depth';}
 }
 const moved=avatar.position.distanceTo(previous);
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
 
-if(moved>.0001){
+if(boatHandled){avatar.rotation.y=boat.heading;}else if(moved>.0001){
   const facing=Math.atan2(avatar.position.x-previous.x,avatar.position.z-previous.z);
   avatar.rotation.y+=Math.atan2(Math.sin(facing-avatar.rotation.y),Math.cos(facing-avatar.rotation.y))*(1-Math.exp(-dt*12));
 }
-if(activeTerrain&&!aquatic.active){const h=groundHeight(avatar.position.x,avatar.position.z);if(h!==null)avatar.position.y=h;}
+if(activeTerrain&&!aquatic.active&&!boatHandled&&!groundHandled){const h=groundHeight(avatar.position.x,avatar.position.z);if(h!==null)avatar.position.y=h;}
 campValidationAge+=elapsed;
 activity.update(dt,(site:any)=>{if(!playerWorld||!site)return {ok:false,reason:'unknown-support'};if(activity.state==='camping'&&campValidationAge<1)return {ok:true};campValidationAge=0;return playerWorld.camp(site.origin,site.heading)},(state:string,site:any)=>{if(state==='camping')camp.install(site,playerWorld.query);else camp.clear();});
-const locomotion=walkerModel.update(moved,dt,aquatic.active?(x:number,z:number)=>aquatic.provider?.sample(x,z)?.bedY??null:groundHeight,{kind:camp.metrics.active?'camping':activity.state==='swimming'?'swimming':'walking'});
+activity.grounded(dt>0?moved/dt:0);
+exposure.update(dt,scene.userData.climate,aquatic.active);boatRender.update(boat,scene.userData.climate?.elapsedSeconds??0);
+const locomotion=walkerModel.update(Math.hypot(avatar.position.x-previous.x,avatar.position.z-previous.z),dt,aquatic.active?(x:number,z:number)=>aquatic.provider?.sample(x,z)?.bedY??null:groundHeight,{kind:camp.metrics.active?'camping':boatHandled?'boating':groundActions.sit>0?'sitting':activity.state==='swimming'?'swimming':activity.state==='jumping'?'jumping':'walking',sit:groundActions.sit,boatPose:boat.pose??0,stroke:boat.stroke,jump:groundActions.jump,wetness:exposure.wetness,profile:lifeSettings.name,cameraDistance:zoom,handTargets:boatRender.hands});
 waterMarks.update(scene.userData.climate,avatar.position,locomotion,aquatic,lifeSettings.name);
+if(boat.active){const stroke=Math.floor(boat.stroke/Math.PI),tip=boatRender.tip,s=scene.userData.aquaticProvider?.sample(tip.x,tip.z);if(stroke!==lastPaddleMark&&s&&tip.y<s.surfaceY+.08){lastPaddleMark=stroke;waterMarks.emit({x:tip.x,y:s.surfaceY,z:tip.z},scene.userData.climate?.elapsedSeconds??0,lifeSettings.name);}}
 if(aquatic.active)locomotion.footContacts=[];
-actions.update(activity,geographyReady,!!walkMenu?.open);
+contextAge+=dt;if(playerWorld&&contextAge>=.3){contextAge=0;const provider=scene.userData.aquaticProvider;actionContext={bank:boat.site(avatar.position,provider,playerWaterClear),dock:boat.active&&provider?.accesses.some((a:any)=>Math.hypot(a.water.x-avatar.position.x,a.water.z-avatar.position.z)<3),seat:groundActions.seatAt(avatar.position,playerWorld)};}
+actions.update(activity,geographyReady,!!walkMenu?.open,actionContext);
 smoothZoom=THREE.MathUtils.lerp(smoothZoom,zoom,1-Math.exp(-dt*10));
-const desiredEye=avatar.position.y+(camp.metrics.active?.95:activity.state==='swimming'?.92:1.65);
+const desiredEye=avatar.position.y+(camp.metrics.active?.95:activity.state==='swimming'?1.5:boatHandled?1.65-(boat.pose??0)*.6:groundActions.sit>0?1.65-groundActions.sit*.68:1.65);
 eyeHeight=cameraComfort||eyeHeight===undefined?desiredEye:THREE.MathUtils.lerp(eyeHeight,desiredEye,1-Math.exp(-dt*14));
 if(Math.abs(eyeHeight-desiredEye)<.0001)eyeHeight=desiredEye;
 // Bound vertical lag on ramps; never let smoothing sink the eyes into the ground.
@@ -389,7 +417,8 @@ if(transitionElapsed<.8){
 updateAtmosphere(dt,quality==='low',elapsed);updateForestLife(scene,camera);
 signs.update(elapsed,scene.userData.climate,avatar.position,geographyReady);
 if(geographyReady)prepareWorldSenses();
-if(playerWorld)footprints.update(elapsed,avatar.position,scene.userData.climate,locomotion.footContacts,playerWorld,lifeSettings.name,activity.state==='walking');
+if(playerWorld)footprints.update(elapsed,avatar.position,scene.userData.climate,locomotion.footContacts,playerWorld,lifeSettings.name,['walking','running'].includes(activity.state));
+if(playerWorld)groundMarks.update(dt,locomotion.footContacts,playerWorld,(p:any)=>{const road=footIndex?.query(p,8),onRoad=!!road?.point&&road.distance<=(road.width??5.5)/2;return footContact({surface:onRoad?road.surface:null,onRoad,habitat:scene.userData.lifeHabitat?.(p.x,p.z)??'unknown',season:scene.userData.climate?.season,wetness:scene.userData.climate?.groundWetness??0,snow:scene.userData.climate?.groundSnowAt?.(p)}).material;},lifeSettings.name);
 camp.update(scene.userData.climate,lifeSettings.name);
 sound.camp(camp.metrics.active?activity.camp?.fire??null:null);
 villageLife.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettings.name,traffic.metrics.position?{position:{x:traffic.metrics.position[0],y:traffic.metrics.position[1],z:traffic.metrics.position[2]},speed:traffic.metrics.speed}:null);

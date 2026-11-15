@@ -1,0 +1,13 @@
+import * as THREE from 'three';
+/** Single instanced pool; consumes the same confirmed IK events as sound/snow.
+ * Wet ground is simulated. No puddle is claimed without mapped ground evidence. */
+export function createGroundMarks(scene){
+ const pixels=new Uint8Array(32*64*4);for(let y=0;y<64;y++)for(let x=0;x<32;x++){const r=((x-15.5)/15)**2+((y-31.5)/30)**2,i=(y*32+x)*4;pixels[i]=pixels[i+1]=pixels[i+2]=255;pixels[i+3]=Math.round(Math.max(0,Math.min(1,(1-r)*4))*(y%9<3?.58:1)*255);}const texture=new THREE.DataTexture(pixels,32,64,THREE.RGBAFormat);texture.needsUpdate=true;
+ const capacity=96,geometry=new THREE.PlaneGeometry(1,1),material=new THREE.MeshBasicMaterial({transparent:true,map:texture,depthWrite:false,vertexColors:false,opacity:.3,side:THREE.DoubleSide}),mesh=new THREE.InstancedMesh(geometry,material,capacity),dummy=new THREE.Object3D(),color=new THREE.Color(),pool=Array.from({length:capacity},()=>({born:-1,life:1,kind:'',position:{x:0,y:0,z:0},heading:0}));
+ mesh.name='confirmed-ground-contact-pool';mesh.frustumCulled=false;mesh.visible=false;scene.add(mesh);let cursor=0,time=0,lastId=-1;const metrics={capacity,active:0,emitted:0,dust:0,mud:0,grass:0,duplicates:0};
+ return {metrics,update(dt,contacts,world,classify,profile){time+=Math.max(0,Math.min(dt,.25));const cap=profile==='eco'?24:profile==='quality'?96:64;
+  for(const c of contacts){if(!c.confirmed||c.id<=lastId){if(c.id===lastId)metrics.duplicates++;continue;}lastId=c.id;const s=world.query(c.position.x,c.position.z);if(!s.ok||Math.abs(s.height-c.position.y)>.06)continue;const m=classify(c.position),kind=m==='dry-earth'?'dust':m==='wet-earth'?'mud':m==='grass'?'grass':null;if(!kind)continue;const r=pool[cursor++%cap];r.born=time;r.life=kind==='mud'?35:kind==='grass'?.9:1.5;r.kind=kind;r.heading=c.heading;r.position={...c.position};metrics.emitted++;metrics[kind]++;}
+  metrics.active=0;for(let i=0;i<capacity;i++){const r=pool[i],age=time-r.born,live=i<cap&&r.born>=0&&age<r.life;if(live){const t=age/r.life,fade=Math.min(1,(1-t)*5);dummy.position.set(r.position.x,r.position.y+.009+(r.kind==='dust'?t*.18:0),r.position.z);dummy.rotation.set(-Math.PI/2,0,-r.heading);const size=r.kind==='dust'?.12+t*.45:r.kind==='grass'?.25:.15;dummy.scale.set(size*fade,(r.kind==='mud'?.29:size)*fade,.001);color.set(r.kind==='mud'?0x51473a:r.kind==='grass'?0x73805a:0xb6a183);metrics.active++;}else{dummy.position.set(0,-10000,0);dummy.scale.setScalar(0);color.set(0);}dummy.updateMatrix();mesh.setMatrixAt(i,dummy.matrix);mesh.setColorAt(i,color);}
+  mesh.visible=metrics.active>0;mesh.instanceMatrix.needsUpdate=true;if(mesh.instanceColor)mesh.instanceColor.needsUpdate=true;
+ },dispose(){scene.remove(mesh);geometry.dispose();texture.dispose();material.dispose();}};
+}
