@@ -43,9 +43,9 @@ export function createFauna(scene:THREE.Scene,budget:InstanceType<typeof WorldLi
    if(count>=max)return;dummy.position.set(q.x,q.y,q.z);dummy.rotation.set(0,heading,0);dummy.scale.setScalar(scale);dummy.updateMatrix();mesh.setMatrixAt(count,dummy.matrix);params.setXYZ(count,family,count*2.31,flap);
    const source=pool[count];source.id=id;source.position.copy(dummy.position);source.habitat=habitat;source.family=family===2?'geese':family===1?'long-wing':'passerine';families.add(source.family);if(family===0)sources.push(source);count++;
   };
-  for(const perch of perches){if(count>=Math.min(2,max))break;const distance=perch.position.distanceTo(p),state=perchedBirdAt(t,perch.number,c,distance,localState);if(!state.visible)continue;
+  for(const perch of perches){if(count>=Math.min(2,max))break;const distance=perch.position.distanceTo(p),state=perchedBirdAt(t,perch.number,c,distance,localState);if(!state.visible){perch.flightStart=null;continue;}
    point.x=perch.position.x;point.y=perch.position.y;point.z=perch.position.z;
-   if(!state.visible){perch.flightStart=null;continue;}if(distance<7&&perch.flightStart===null)perch.flightStart=t;
+   if(distance<7&&perch.flightStart===null)perch.flightStart=t;
    if(state.flying||perch.flightStart!==null){const f=Math.min(1,Math.max(state.progress,perch.flightStart===null?0:(t-perch.flightStart)/18));point.x+=Math.sin(perch.number)*f*65;point.z+=Math.cos(perch.number)*f*65;point.y+=Math.sin(f*Math.PI/2)*12;}
    draw(point,perch.number,0,state.flying||perch.flightStart!==null?1:0,perch.id,perch.habitat,.65*state.fade);
   }
