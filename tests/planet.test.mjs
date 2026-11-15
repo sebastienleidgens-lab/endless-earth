@@ -13,9 +13,17 @@ import {PlayerActivity} from '../src/player/activity.mjs';
 import {WaterContacts} from '../src/player/water-contacts.mjs';
 import {gzipSync} from 'node:zlib';
 import {RailMotion,airportCircuit} from '../src/planet/transport-motion.mjs';
+import {excludeIndexedTriangles} from '../src/planet/pilot-clip.mjs';
 const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 const grid=(id,x=0)=>({schema:'planet-tile-v1',id,bounds:[x,0,x+10,10],grid:{size:2,datum:'IGN69',heights:[x,10+x,20+x,30+x]},features:[]});
 const entry=t=>({id:t.id,bounds:t.bounds,url:t.id+'.json',decodedBytes:100,bytes:100,sha256:'0'.repeat(64)});
+test('a department river crossing the pilot preserves its historical water owner and interpolates only the exterior mesh',()=>{
+ const vertices=[[-2,-2],[2,-2],[2,2],[-2,2]].map(([x,z])=>({x,y:3+2*x-z,z})),indices=new Uint16Array([0,1,2,0,2,3]),before=structuredClone(vertices),clipped=excludeIndexedTriangles(vertices,indices,[-1,-1,1,1]);
+ let area=0;for(let i=0;i<clipped.length;i+=3){const [a,b,c]=clipped.slice(i,i+3),cross=(b.x-a.x)*(c.z-a.z)-(b.z-a.z)*(c.x-a.x);area+=Math.abs(cross)/2;if(Math.abs(cross)<1e-12)continue;
+  for(let x=-.9;x<1;x+=.3)for(let z=-.9;z<1;z+=.3){const u=((x-a.x)*(c.z-a.z)-(z-a.z)*(c.x-a.x))/cross,v=((b.x-a.x)*(z-a.z)-(b.z-a.z)*(x-a.x))/cross;assert.ok(u<0||v<0||u+v>1,'no new water triangle may cover the protected interior');}
+ }
+ assert.ok(Math.abs(area-12)<1e-10,'16 square metres minus the 4 square metre pilot');for(const p of clipped)assert.ok(Math.abs(p.y-(3+2*p.x-p.z))<1e-10);assert.deepEqual(vertices,before);assert.equal(excludeIndexedTriangles(vertices,indices,[-3,-3,3,3]).length,0);assert.deepEqual(excludeIndexedTriangles(vertices,indices,[100,100,101,101]),[vertices[0],vertices[1],vertices[2],vertices[0],vertices[2],vertices[3]]);
+});
 test('Lambert93 agrees with its official false origin and round trips department-scale positions without converting heights',()=>{
  const origin=lambert93({lat:46.5,lon:3});assert.ok(Math.abs(origin.x-700000)<1e-6&&Math.abs(origin.y-6600000)<.001);
  for(const lat of [46,46.6953,47.2])for(const lon of [-.1,.8844,1.2]){const result=inverseLambert93(lambert93({lat,lon}));assert.ok(Math.abs(result.lat-lat)<1e-9&&Math.abs(result.lon-lon)<1e-9);}
