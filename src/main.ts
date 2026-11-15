@@ -70,9 +70,19 @@ import {createWalkMenu} from './ui/menu';
 import {createWalker} from './character/walker.mjs';
 // @ts-ignore Source-bound, physically verified starts.
 import {prepareStarts,chooseStart,inspectStart} from './controls/spawn.mjs';
-import { canWalk, moveWithCollision, walkingHeight, cameraClear, hasWalkingSupport, lastMovementDiagnostic, inspectCollision, aquaticClear } from './world/collisions';
+import { canWalk as pilotCanWalk, moveWithCollision as pilotMoveWithCollision, walkingHeight as pilotWalkingHeight, cameraClear as pilotCameraClear, hasWalkingSupport as pilotHasWalkingSupport, lastMovementDiagnostic, inspectCollision as pilotInspectCollision, aquaticClear } from './world/collisions';
+import {createPlanetRuntime} from './planet/runtime';
 // @ts-ignore shared deterministic runtime
-import { circleHitsPolygon, movement, nextView, cameraFraction, smoothMovement, transitionWeight } from './controls/walking.mjs';
+import { circleHitsPolygon, movement, nextView, cameraFraction, smoothMovement, transitionWeight,moveGrounded } from './controls/walking.mjs';
+
+let planet:ReturnType<typeof createPlanetRuntime>|null=null;
+const inPilot=(x:number,z:number)=>Math.abs(x)<=1000&&Math.abs(z)<=1000;
+function canWalk(x:number,z:number,camera=false):boolean{return inPilot(x,z)?pilotCanWalk(x,z,camera)&&(camera||!planet?.ready||planet.canWalk(x,z)):camera?planet?.height(x,z)!==null&&!!planet?.ready:!!planet?.canWalk(x,z);}
+const cameraClear=(x:number,z:number)=>inPilot(x,z)?pilotCameraClear(x,z):!!planet?.ready&&planet.height(x,z)!==null;
+const hasWalkingSupport=(x:number,z:number)=>inPilot(x,z)&&pilotHasWalkingSupport(x,z);
+function walkingHeight(height:(x:number,z:number)=>number|null){const pilot=pilotWalkingHeight(height);return (x:number,z:number)=>inPilot(x,z)?pilot(x,z):planet?.height(x,z)??null;}
+function inspectCollision(x:number,z:number){if(inPilot(x,z))return pilotInspectCollision(x,z);const a=planet?.admission(x,z);return {surface:'planet-terrain',obstacle:a?.ok?null:a?.reason??'tile-loading',access:{clear:!!a?.ok,support:null,slope:.7,reasons:[]},building:null,collider:null};}
+function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null,slide=true,seconds=0){if(inPilot(position.x,position.z)&&inPilot(position.x+displacement.x,position.z+displacement.z)){if(planet?.car.placed&&!planet.canWalk(position.x+displacement.x,position.z+displacement.z))return;pilotMoveWithCollision(position,displacement,height,slide,seconds);return;}moveGrounded(position,displacement,canWalk,walkingHeight(height),()=>.7,slide);}
 
 import './style.css';
 import {buildIdentity} from 'virtual:build-identity';
@@ -114,6 +124,7 @@ const demo = new THREE.Group();
 createDemoWorld(demo);
 scene.add(demo);
 let activeTerrain: Terrain | null = null;
+let pilotWorld:THREE.Group|null=null;
 let geographyReady=false;
 const hint = document.querySelector<HTMLElement>('.hud small');
 const params = new URLSearchParams(location.search);
@@ -170,6 +181,7 @@ if (terrainPreview) {
 if(tilesPreview && !terrainPreview){
   demo.visible=false;
   const realWorld=new THREE.Group();
+  pilotWorld=realWorld;
   scene.add(realWorld);
   if(hint)hint.textContent='OSM réel : recherche du relief et des bâtiments…';
   (async()=>{
@@ -199,7 +211,7 @@ if(tilesPreview && !terrainPreview){
       void landscapeLighting.install(realWorld,terrain,{manifestUrl:import.meta.env.BASE_URL+'data/'+surfaceAssets+'-lighting.json',packUrl:import.meta.env.BASE_URL+'data/'+surfaceAssets+'-lighting.pack'});
       if(terrain?.singleSurface&&realWorld.userData.decorationManifest)scene.userData.snowExposureSource={manifestUrl:import.meta.env.BASE_URL+'data/'+surfaceAssets+'-snow-exposure.json',packUrl:import.meta.env.BASE_URL+'data/'+surfaceAssets+'-snow-exposure.pack',bindings:{terrain:terrain.sourceSha256,refinement:terrain.relief?.sha256,surface:terrain.singleSurface.manifest.binarySha256,landmarks:terrain.singleSurface.manifest.landmarksSha256,static:realWorld.userData.decorationManifest.static.sha256}};
       scene.userData.decorationStream=realWorld.userData.decorationStream;
-      scene.userData.lifeHabitat=realWorld.userData.lifeHabitat;
+      scene.userData.lifeHabitat=(x:number,z:number)=>inPilot(x,z)?realWorld.userData.lifeHabitat?.(x,z)??'unknown':planet?.habitat(x,z)??'unknown';
       scene.userData.lifeCeiling=new THREE.Box3().setFromObject(realWorld).max.y+12;
       await navigationLoaded();
       signs.install(realWorld,acousticBuildings);
@@ -241,11 +253,14 @@ addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat&&!walkM
 let walkMenu:ReturnType<typeof createWalkMenu>|null=null;
 setViewMode('third');
 const input = new InputController(renderer.domElement,()=>!geographyReady||!!walkMenu?.open||activity.locked);
+planet=createPlanetRuntime({scene,root,player:avatar,activity,origin:ANGLES,manifestUrl:import.meta.env.BASE_URL+'planet/fr-86/manifest.json',verticalDatum:'IGN69',pilotBounds:[-1000,-1000,1000,1000],heightBase:()=>activeTerrain?.sample(0,0)??0,pilotHeight:(x,z)=>activeTerrain?pilotWalkingHeight((a,b)=>activeTerrain!.relativeHeight(a,b))(x,z):null,pilotClear:pilotCanWalk,clearInput:()=>{input.clear();walker.stop('Promenade en pause · voiture');tourContinue=false;},climate:()=>scene.userData.climate});
+scene.userData.planet=planet;
+if(perfPreview)Object.defineProperty(window,'endlessPlanetDiagnostics',{get:()=>({metrics:planet?.metrics,ready:planet?.ready,region:planet?.region?.id,position:planet?.geo(avatar.position),car:planet?.car,mapOpen:planet?.mapOpen})});
 const walker=new AutoWalk(), sound=new Soundscape(sensorySeed);let tourContinue=false,tourWait=0;
-const actions=createActions(root,()=>{if(!playerWorld||!geographyReady)return;const result=activity.toggleCamp(()=>playerWorld.camp(avatar.position,avatar.rotation.y));if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause · campement');}},{boat:()=>playerAction('boat'),seat:()=>playerAction('seat'),jump:()=>playerAction('jump'),recover:()=>{boat.recovery=!boat.recovery;}});
+const actions=createActions(root,()=>{if(!playerWorld||!geographyReady)return;const result=activity.toggleCamp(()=>playerWorld.camp(avatar.position,avatar.rotation.y));if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause · campement');}},{boat:()=>playerAction('boat'),seat:()=>playerAction('seat'),jump:()=>playerAction('jump'),recover:()=>{boat.stopFollow();boat.recovery=!boat.recovery;},follow:()=>{boat.toggleFollow(scene.userData.aquaticProvider);}});
 function playerWaterClear(x:number,z:number){return aquaticClear(x,z)&&!restrictedAreas.some(r=>circleHitsPolygon(x,z,r,.6))&&!waterObstacles?.query({x,z},1.1).point;}
 function playerAction(kind:string){if(!playerWorld||!geographyReady||walkMenu?.open)return;const provider=scene.userData.aquaticProvider;const result=kind==='boat'?(boat.active?boat.dock(avatar.position,provider,playerWaterClear):boat.launch(avatar.position,avatar.rotation.y,provider,playerWaterClear)):kind==='seat'?groundActions.toggleSeat(avatar.position,playerWorld):groundActions.requestJump(avatar.position,avatar.rotation.y,playerWorld);if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause');}else activity.message=result.reason;contextAge=1;}
-const updateAtmosphere=naturalSky(scene,sun,(x,z)=>activeTerrain?.relativeHeight(x,z)??0,ANGLES,hemisphere,avatar,camera);
+const updateAtmosphere=naturalSky(scene,sun,(x,z)=>inPilot(x,z)?activeTerrain?.relativeHeight(x,z)??0:planet?.height(x,z)??0,ANGLES,hemisphere,avatar,camera);
 const panel=document.createElement('div');panel.className='living-panel';
 panel.innerHTML='<button id="auto-walk" disabled>Promenade automatique</button><button id="sound">Activer le son</button><span id="walk-status" role="status">Chargement des voies OSM…</span>';
 root.append(panel);
@@ -274,7 +289,7 @@ addEventListener('blur',()=>walker.stop('Promenade en pause · fenêtre inactive
 document.addEventListener('visibilitychange',()=>{if(document.hidden)walker.stop('Promenade en pause');});
 
 document.addEventListener('visibilitychange',()=>{void sound.setHidden(document.hidden).catch(()=>{walkStatus.textContent='Reprendre le son avec son bouton';})});
-let playerDisposed=false;function disposePlayer(){if(playerDisposed)return;playerDisposed=true;scene.userData.aquaticProvider?.dispose();interactionDecor?.dispose();playerWorld?.interactions?.clear();activity.reset();boat.reset();boatRender.dispose();groundMarks.dispose();waterMarks.dispose();footprints.dispose();camp.dispose();actions.dispose();}
+let playerDisposed=false;function disposePlayer(){if(playerDisposed)return;playerDisposed=true;planet?.dispose();scene.userData.aquaticProvider?.dispose();interactionDecor?.dispose();playerWorld?.interactions?.clear();activity.reset();boat.reset();boatRender.dispose();groundMarks.dispose();waterMarks.dispose();footprints.dispose();camp.dispose();actions.dispose();}
 if(import.meta.hot)import.meta.hot.dispose(()=>{disposePlayer();lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()});
 addEventListener('pagehide',event=>{if(!(event as PageTransitionEvent).persisted){disposePlayer();lanterns.dispose();villageLife.dispose();traffic.dispose();sensitiveWorld.dispose();landscapeLighting.dispose();disposeWorldMaterials();disposeRiverFlow();updateAtmosphere.dispose();signs.dispose();walkerModel.dispose();input.dispose();void sound.dispose()}});
 const acousticAltitude=(x:number,z:number)=>activeTerrain?.sample(x,z)??null;
@@ -336,7 +351,8 @@ if(perfPreview)Object.defineProperty(window,'endlessDiagnostics',{get:()=>({insp
 function prepareWorldSenses(){if(!activeTerrain||worldSensoryReady)return;const groundHeight=walkingHeight((x:number,z:number)=>activeTerrain!.relativeHeight(x,z));worldSensoryReady=true;const roofs=acousticObstacles(acousticBuildings.map(b=>{const y=groundHeight(b.ring[0].x,b.ring[0].z)??0;return {ring:b.ring,base:y,top:y+b.height}}));scene.userData.weatherFloorAt=(x:number,z:number)=>roofs.roofAt(x,z,-10000);traffic.prepare(acousticRoads,groundHeight,canWalk);villageLife.prepare(exportTourGraph(),acousticRoads,groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));sensitiveWorld.configure(riverAreas.flatMap(a=>a.rings),groundHeight,canWalk,scene.userData.lifeHabitat??(()=> 'unknown'));
  const foliageAnchors:any[]=[];scene.traverse(o=>{if(o.userData.forest)for(const t of o.userData.forest.items){const b=t.model.tree.branches.find((b:any)=>b.order===1);if(b){const p=b.points.at(-1).clone().applyMatrix4(t.worldMatrix);foliageAnchors.push({id:t.id,x:p.x,y:p.y,z:p.z});}}});sound.foliage(foliageAnchors);
  const trees:any[]=[];scene.traverse(o=>{if(o.userData.forest)trees.push(...o.userData.forest.items.map((t:any)=>({x:t.anchor[0],z:t.anchor[1]})))});
- playerWorld=createPlayerWorld({support:(x:number,z:number)=>hasWalkingSupport(x,z)?{id:'verified-deck',height:groundHeight(x,z),category:'bridge',visible:true,walkable:true,normal:{x:0,y:1,z:0},slope:0}:activeTerrain!.supportAt(x,z),clear:canWalk,collision:inspectCollision,roads:acousticRoads,banks:riverAreas.flatMap(a=>a.rings.map(r=>[...r,r[0]])),trees,restricted:restrictedAreas});
+ playerWorld=createPlayerWorld({support:(x:number,z:number)=>!inPilot(x,z)?(()=>{const a=planet?.admission(x,z);return a?.ok?{id:a.tile,height:a.height,category:'road',visible:true,walkable:true,normal:a.normal,slope:a.slope,provenance:a.provenance}:null;})():hasWalkingSupport(x,z)?{id:'verified-deck',height:groundHeight(x,z),category:'bridge',visible:true,walkable:true,normal:{x:0,y:1,z:0},slope:0}:activeTerrain!.supportAt(x,z),clear:canWalk,collision:inspectCollision,roads:acousticRoads,banks:riverAreas.flatMap(a=>a.rings.map(r=>[...r,r[0]])),trees,restricted:restrictedAreas});
+ const pilotCamp=playerWorld.camp;playerWorld.camp=(p:any,heading:number)=>inPilot(p.x,p.z)?pilotCamp(p,heading):{ok:false,reason:'road'};
  interactionDecor=createInteractionDecor(scene,playerWorld);playerWorld.clearPose=interactionDecor.clearPose;
  footIndex=footRoadIndex(acousticRoads);waterObstacles=proximityIndex(mappedWeirs);
  scene.userData.aquaticProvider=createEstimatedBathymetry({incremental:true,origin:avatar.position,areas:riverAreas,lines:riverLines,support:(x:number,z:number)=>activeTerrain!.supportAt(x,z),landClear:canWalk,clear:playerWaterClear});
@@ -360,34 +376,37 @@ const terrainHeight=(x:number,z:number)=>activeTerrain?activeTerrain.relativeHei
 const groundHeight=walkingHeight(terrainHeight);
 // Wait for the real dataset before allowing walking in geography mode.
 traffic.constrain(avatar.position,displacement);
-const boatHandled=geographyReady&&!walkMenu?.open&&boat.update(dt,avatar.position,controls,scene.userData.aquaticProvider,playerWaterClear);
-const groundHandled=geographyReady&&!walkMenu?.open&&!boatHandled&&groundActions.update(dt,avatar.position,playerWorld);
-if(geographyReady&&!walkMenu?.open&&!activity.locked&&!boatHandled&&!groundHandled){
+const carHandled=planet?.update(dt,avatar,camera,controls,geographyReady,!!walkMenu?.open,lifeSettings.name)??false;
+if(pilotWorld)pilotWorld.visible=Math.hypot(Math.max(0,Math.abs(avatar.position.x)-1000),Math.max(0,Math.abs(avatar.position.z)-1000))<1800;
+const boatHandled=!carHandled&&geographyReady&&!walkMenu?.open&&boat.update(dt,avatar.position,controls,scene.userData.aquaticProvider,playerWaterClear);
+const groundHandled=geographyReady&&!walkMenu?.open&&!boatHandled&&!carHandled&&groundActions.update(dt,avatar.position,playerWorld);
+if(geographyReady&&!walkMenu?.open&&!activity.locked&&!boatHandled&&!groundHandled&&!carHandled){
  const water=aquatic.move(avatar.position,displacement,dt,{provider:scene.userData.aquaticProvider,clear:playerWaterClear,auto:autoStep,landHeight:groundHeight,landClear:canWalk});
  if(!water.handled){if(interactionDecor&&!interactionDecor.walkingClear({x:avatar.position.x+displacement.x,y:avatar.position.y,z:avatar.position.z+displacement.z})){displacement.x=displacement.z=0;}moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep,dt);if(Math.hypot(displacement.x,displacement.z)>.001&&['mapped-water','rendered-water'].includes(String(lastMovementDiagnostic()?.obstacle)))activity.message='unknown-depth';}
 }
 const moved=avatar.position.distanceTo(previous);
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
 
-if(groundHandled&&groundActions.sit>0&&groundActions.seat?.kind!=='ground'){avatar.rotation.y=groundActions.heading??avatar.rotation.y;}else if(boatHandled){avatar.rotation.y=boat.heading;}else if(moved>.0001){
+if(carHandled){avatar.rotation.y=planet!.car.heading;if(!dragging&&performance.now()-lastCameraInteraction>3500)yaw=behind(yaw,planet!.car.heading+Math.PI,dt);}else if(groundHandled&&groundActions.sit>0&&groundActions.seat?.kind!=='ground'){avatar.rotation.y=groundActions.heading??avatar.rotation.y;}else if(boatHandled){avatar.rotation.y=boat.heading;}else if(moved>.0001){
   const facing=Math.atan2(avatar.position.x-previous.x,avatar.position.z-previous.z);
   avatar.rotation.y+=Math.atan2(Math.sin(facing-avatar.rotation.y),Math.cos(facing-avatar.rotation.y))*(1-Math.exp(-dt*12));
 }
-if(activeTerrain&&!aquatic.active&&!boatHandled&&!groundHandled){const h=groundHeight(avatar.position.x,avatar.position.z);if(h!==null)avatar.position.y=h;}
+if(activeTerrain&&!aquatic.active&&!boatHandled&&!groundHandled&&!carHandled){const h=groundHeight(avatar.position.x,avatar.position.z);if(h!==null)avatar.position.y=h;}
 campValidationAge+=elapsed;
 activity.update(dt,(site:any)=>{if(!playerWorld||!site)return {ok:false,reason:'unknown-support'};if(activity.state==='camping'&&campValidationAge<1)return {ok:true};campValidationAge=0;return playerWorld.camp(site.origin,site.heading)},(state:string,site:any)=>{if(state==='camping')camp.install(site,playerWorld.query);else camp.clear();});
 activity.grounded(dt>0?moved/dt:0);
 exposure.update(dt,scene.userData.climate,aquatic.active);boatRender.update(boat,scene.userData.climate?.elapsedSeconds??0);
-const locomotion=walkerModel.update(Math.hypot(avatar.position.x-previous.x,avatar.position.z-previous.z),dt,aquatic.active?(x:number,z:number)=>aquatic.provider?.sample(x,z)?.bedY??null:groundHeight,{kind:camp.metrics.active?'camping':boatHandled?'boating':groundActions.sit>0?'sitting':activity.state==='swimming'?'swimming':activity.state==='jumping'?'jumping':'walking',sit:groundActions.sit,seatHeight:groundActions.seatHeight??0,stepOver:activity.kind==='step-over',stepPhase:groundActions.flight?groundActions.flight.time/groundActions.flight.duration:1,boatPose:boat.pose??0,stroke:boat.stroke,jump:groundActions.jump,wetness:exposure.wetness,profile:lifeSettings.name,cameraDistance:zoom,handTargets:boatRender.hands});
+const locomotion=walkerModel.update(Math.hypot(avatar.position.x-previous.x,avatar.position.z-previous.z),dt,aquatic.active?(x:number,z:number)=>aquatic.provider?.sample(x,z)?.bedY??null:groundHeight,{kind:carHandled?'sitting':camp.metrics.active?'camping':boatHandled?'boating':groundActions.sit>0?'sitting':activity.state==='swimming'?'swimming':activity.state==='jumping'?'jumping':'walking',sit:carHandled?1:groundActions.sit,seatHeight:carHandled?.28:groundActions.seatHeight??0,stepOver:activity.kind==='step-over',stepPhase:groundActions.flight?groundActions.flight.time/groundActions.flight.duration:1,boatPose:boat.pose??0,stroke:boat.stroke,jump:groundActions.jump,wetness:exposure.wetness,profile:lifeSettings.name,cameraDistance:zoom,handTargets:boatRender.hands});
 waterMarks.update(scene.userData.climate,avatar.position,locomotion,aquatic,lifeSettings.name);
-const contacts=waterContacts.update(activity.state,avatar.position,walkerModel.waterContacts,boat.active?boatRender.tip:null,scene.userData.aquaticProvider,locomotion.footContacts);
-for(const contact of contacts)waterMarks.emit(contact.position,scene.userData.climate?.elapsedSeconds??0,lifeSettings.name);
+const contacts=waterContacts.update(activity.state,avatar.position,walkerModel.waterContacts,boat.active?boatRender.tip:null,scene.userData.aquaticProvider,locomotion.footContacts,boat);
+for(const contact of contacts)waterMarks.emit(contact.position,scene.userData.climate?.elapsedSeconds??0,lifeSettings.name,contact);
 sound.water(contacts);
 if(aquatic.active)locomotion.footContacts=[];
 contextAge+=dt;if(playerWorld&&contextAge>=.3){contextAge=0;const provider=scene.userData.aquaticProvider;actionContext={bank:boat.site(avatar.position,provider,playerWaterClear),dock:boat.active&&provider?.accesses.some((a:any)=>Math.hypot(a.water.x-avatar.position.x,a.water.z-avatar.position.z)<3),seat:['walking','running'].includes(activity.state)?groundActions.seatAt(avatar.position,playerWorld):groundActions.seat,stepOver:['walking','running'].includes(activity.state)&&playerWorld.interactions.stepOver(avatar.position,avatar.rotation.y,playerWorld)?.ok};}
+actionContext.canFollow=boat.active&&!!scene.userData.aquaticProvider?.network?.metrics.ready;actionContext.following=boat.following;
 actions.update(activity,geographyReady,!!walkMenu?.open,actionContext);
 smoothZoom=THREE.MathUtils.lerp(smoothZoom,zoom,1-Math.exp(-dt*10));
-const desiredEye=avatar.position.y+(camp.metrics.active?.95:activity.state==='swimming'?1.5:boatHandled?1.65-(boat.pose??0)*.6:groundActions.sit>0?1.65-groundActions.sit*.68:1.65);
+const desiredEye=avatar.position.y+(carHandled?1.12:camp.metrics.active?.95:activity.state==='swimming'?1.5:boatHandled?1.65-(boat.pose??0)*.6:groundActions.sit>0?1.65-groundActions.sit*.68:1.65);
 eyeHeight=cameraComfort||eyeHeight===undefined?desiredEye:THREE.MathUtils.lerp(eyeHeight,desiredEye,1-Math.exp(-dt*14));
 if(Math.abs(eyeHeight-desiredEye)<.0001)eyeHeight=desiredEye;
 // Bound vertical lag on ramps; never let smoothing sink the eyes into the ground.
@@ -423,6 +442,13 @@ if(transitionElapsed<.8){
 }
 
 updateAtmosphere(dt,quality==='low',elapsed);updateForestLife(scene,camera);
+// The source-bound pilot keeps its established lighting path. New tiles use
+// the same sun and wind; snap its local shadow plane to world texels.
+if(!inPilot(avatar.position.x,avatar.position.z)){
+ renderer.shadowMap.enabled=lifeSettings.name!=='eco';const size=lifeSettings.name==='quality'?1536:1024;
+ if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}
+ const sc=sun.shadow.camera;sc.position.copy(sun.position);sc.lookAt(sun.target.position);sc.updateMatrixWorld(true);sc.updateProjectionMatrix();const extent=(sc.right-sc.left)/2,texel=extent*2/size,plane=avatar.position.clone().applyMatrix4(new THREE.Matrix4().makeRotationFromQuaternion(sc.quaternion).invert());sc.projectionMatrix.elements[12]-=(Math.round(plane.x/texel)*texel-plane.x)/extent;sc.projectionMatrix.elements[13]-=(Math.round(plane.y/texel)*texel-plane.y)/extent;
+}else renderer.shadowMap.enabled=!tilesPreview&&quality==='high';
 signs.update(elapsed,scene.userData.climate,avatar.position,geographyReady);
 if(geographyReady)prepareWorldSenses();
 if(playerWorld)footprints.update(elapsed,avatar.position,scene.userData.climate,locomotion.footContacts,playerWorld,lifeSettings.name,['walking','running'].includes(activity.state));
@@ -433,7 +459,7 @@ villageLife.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettin
 traffic.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettings.name,villageLife.director.groups.flatMap((g:any)=>g.members.map((m:any)=>m.position)));
 sensitiveWorld.update(elapsed,scene.userData.climate??{},avatar.position,camera,lifeSettings.name);
 if(activeTerrain)lanterns.update(scene.userData.climate,avatar.position,(x,z)=>activeTerrain!.relativeHeight(x,z),lifeSettings.name);
-const motor=traffic.vehicle,mp=traffic.metrics.position;sound.vehicle(motor&&mp?{id:motor.id,position:{x:mp[0],y:mp[1]+.7,z:mp[2]},speed:traffic.metrics.speed,rain:scene.userData.climate?.weather?.rain??0}:null);
+const motor=traffic.vehicle,mp=traffic.metrics.position,driven=planet?.car;sound.vehicle(driven?.active?{id:'player-travel-car',position:{x:driven.position.x,y:driven.position.y+.7,z:driven.position.z},speed:Math.abs(driven.speed),rain:scene.userData.climate?.weather?.rain??0}:motor&&mp?{id:motor.id,position:{x:mp[0],y:mp[1]+.7,z:mp[2]},speed:traffic.metrics.speed,rain:scene.userData.climate?.weather?.rain??0}:null);
 
 camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);
 sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[],locomotion,signs.audioFlight,activeTerrain?avatar.position.y+(activeTerrain.sample(0,0)??0):null);

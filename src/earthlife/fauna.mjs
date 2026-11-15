@@ -8,11 +8,20 @@ export function flockAt(time,cell,conditions,seed=9,out={}){
 }
 export function birdPosition(flock,index,anchor,ceiling,out={}){
  const t=flock.progress,speed=flock.fast?420:260,turn=(flock.lift??Math.sin(t*Math.PI))*35;
- const along=(t-.5)*speed-index*3,across=turn+Math.sin(index*4)*4;
+ // Analytic sampling at render time: no tick/extrapolation seam. Individuals
+ // retain their phase and steer around the same broad curve independently.
+ const age=flock.age??t*flock.duration,phase=index*2.399963;
+ const along=(t-.5)*speed-index*3+Math.sin(age*.37+phase)*.65;
+ const across=turn+Math.sin(index*4)*4+Math.sin(age*.29+phase)*1.05;
  out.x=anchor.x+(flock.cosAngle??Math.cos(flock.angle))*along-(flock.sinAngle??Math.sin(flock.angle))*across;
  out.z=anchor.z+(flock.sinAngle??Math.sin(flock.angle))*along+(flock.cosAngle??Math.cos(flock.angle))*across;
- out.y=ceiling+12+(flock.lift??Math.sin(t*Math.PI))*8+index*.65;return out;
+ out.y=ceiling+12+(flock.lift??Math.sin(t*Math.PI))*8+index*.65+.08*(1+Math.sin(age*.43+phase));
+ const alongV=speed/flock.duration+Math.cos(age*.37+phase)*.65*.37,acrossV=Math.cos(t*Math.PI)*35*Math.PI/flock.duration+Math.cos(age*.29+phase)*1.05*.29;
+ out.vx=(flock.cosAngle??Math.cos(flock.angle))*alongV-(flock.sinAngle??Math.sin(flock.angle))*acrossV;
+ out.vz=(flock.sinAngle??Math.sin(flock.angle))*alongV+(flock.cosAngle??Math.cos(flock.angle))*acrossV;
+ out.heading=Math.atan2(out.vx,out.vz);return out;
 }
+export function birdPhase(id){let h=2166136261;for(const c of String(id)){h=Math.imul(h^c.charCodeAt(0),16777619)}return (h>>>0)/4294967296*Math.PI*2;}
 export function perchedBirdAt(time,id,conditions,playerDistance,out={}){
  const clock=time+random(id*17.13)*140,epoch=Math.floor(clock/180),age=clock-epoch*180,start=10+random(id*71+epoch*13)*90;
  out.age=age-start;out.visible=conditions.day>.2&&conditions.rain<.2&&conditions.wind<.85&&out.age>=0&&out.age<48;

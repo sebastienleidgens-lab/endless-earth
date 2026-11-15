@@ -7,7 +7,7 @@ export function decodeLighting(raw,buffer,bindings){
  return {raw,geometry,position,cells};
 }
 export function lightingPolicy(profile='balanced'){
- return profile==='eco'?{radius:0,size:0,hz:0,trees:0}:profile==='quality'?{radius:64,size:1024,hz:4,trees:256}:{radius:48,size:512,hz:2,trees:160};
+ return profile==='eco'?{radius:0,size:0,hz:0,trees:0}:profile==='quality'?{radius:64,size:1536,hz:60,trees:256}:{radius:48,size:1024,hz:30,trees:160};
 }
 // Lossless, cell-local index coding; position buffers are never quantized.
 export function encodeLightingIndices(indices){const bytes=[];let previous=0;for(const index of indices){let n=((index-previous)<<1)^((index-previous)>>31);n>>>=0;previous=index;while(n>127){bytes.push((n&127)|128);n>>>=7}bytes.push(n)}return Uint8Array.from(bytes)}

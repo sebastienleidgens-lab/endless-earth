@@ -2,7 +2,7 @@ import * as THREE from 'three';
 // @ts-ignore Shared render clock, including frames between fauna updates.
 import {lifeUniforms} from './state.mjs';
 // @ts-ignore Shared deterministic trajectories, not real observations.
-import {flockAt,birdPosition,perchedBirdAt} from './fauna.mjs';
+import {flockAt,birdPosition,perchedBirdAt,birdPhase} from './fauna.mjs';
 // @ts-ignore Global world allowance.
 import {WorldLifeBudget} from './budget.mjs';
 
@@ -22,20 +22,19 @@ function birdGeometry(){
 }
 export function createFauna(scene:THREE.Scene,budget:InstanceType<typeof WorldLifeBudget>,height:(x:number,z:number)=>number|null){
  const geometry=birdGeometry(),params=new THREE.InstancedBufferAttribute(new Float32Array(9*3),3);geometry.setAttribute('birdParams',params);
- const time=lifeUniforms.lifeTime,motion=new THREE.InstancedBufferAttribute(new Float32Array(9*4),4);geometry.setAttribute('birdMotion',motion);const material=new THREE.MeshStandardMaterial({color:0x4b5146,roughness:.9,side:THREE.DoubleSide});
- material.onBeforeCompile=shader=>{shader.uniforms.birdTime=time;shader.vertexShader='attribute float wing;attribute float birdPart;attribute vec3 birdParams;attribute vec4 birdMotion;uniform float birdTime;varying float birdFamily;varying float birdRegion;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
+ const time=lifeUniforms.lifeTime;const material=new THREE.MeshStandardMaterial({color:0x4b5146,roughness:.9,side:THREE.DoubleSide});
+ material.onBeforeCompile=shader=>{shader.uniforms.birdTime=time;shader.vertexShader='attribute float wing;attribute float birdPart;attribute vec3 birdParams;uniform float birdTime;varying float birdFamily;varying float birdRegion;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
  float family=birdParams.x;birdFamily=family;birdRegion=birdPart;
  float goose=1.-step(.1,abs(family-2.));float broad=1.-step(.1,abs(family-1.));
  transformed.x*=1.+broad*.65+goose*.6;transformed.z*=1.+goose*.65;
  if(birdPart>1.5&&birdPart<2.5){transformed*=goose;}
- float flap=sin(birdTime*mix(10.,5.,goose)+birdParams.y);transformed.y+=wing*flap*.22*birdParams.z;transformed.x*=1.-wing*abs(flap)*.16*birdParams.z;
- transformed+=birdMotion.xyz*clamp(birdTime-birdMotion.w,0.,.3);
+ float flap=sin(birdTime*mix(10.,5.,goose)*(.95+.1*fract(birdParams.y*1.618))+birdParams.y);transformed.y+=wing*flap*.22*birdParams.z;transformed.x*=1.-wing*abs(flap)*.16*birdParams.z;
 `);shader.fragmentShader='varying float birdFamily;varying float birdRegion;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
  vec3 feather=vec3(.21,.19,.15);if(abs(birdFamily-1.)<.1)feather=vec3(.48,.50,.47);if(abs(birdFamily-2.)<.1)feather=birdRegion>1.5?vec3(.10,.11,.10):vec3(.43,.38,.30);if(abs(birdFamily-3.)<.1)feather=birdRegion<.5?vec3(.56,.24,.12):vec3(.31,.28,.21);if(abs(birdFamily-4.)<.1)feather=birdRegion<.5?vec3(.58,.52,.24):vec3(.12,.15,.16);if(birdRegion>2.5&&birdRegion<3.5)feather=vec3(.65,.44,.15);if(birdRegion>3.5&&birdRegion<4.5)feather=vec3(.012);diffuseColor.rgb=feather;`);};
  const mesh=new THREE.InstancedMesh(geometry,material,9);mesh.name='living-birds';mesh.frustumCulled=false;mesh.count=0;scene.add(mesh);
  const previous=scene.userData.lifeSoundSources,sources:any[]=[],pool=Array.from({length:9},()=>({id:'',kind:'bird',habitat:'wood',position:new THREE.Vector3(),velocity:new THREE.Vector3(),family:'passerine',updatedAt:0}));scene.userData.lifeSoundSources=sources;
  const previousBirds=new Map<string,any>();const dummy=new THREE.Object3D(),flockState:any={},localState:any={},anchor={x:0,z:0},point={x:0,y:0,z:0};
- const metrics={individuals:0,drawCalls:0,triangles:0,perches:0,families:[]as string[],sources:[]as any[]};scene.userData.birdMetrics=metrics;
+ const metrics={individuals:0,drawCalls:0,triangles:0,perches:0,families:[]as string[],sources:[]as any[],renderSamples:0,cpuMs:0,maxCpuMs:0,clock:0,trajectory:'analytic-per-render-frame'};scene.userData.birdMetrics=metrics;
  let cell='',ownerX=NaN,ownerZ=NaN,ceiling=0,perches:any[]=[],nextPerches=0;
  function discover(p:THREE.Vector3){
   const old=new Map(perches.map(p=>[p.id,p]));perches=[];scene.traverse(o=>{if(!o.userData.forest)return;for(const t of o.userData.forest.items){
@@ -46,12 +45,13 @@ export function createFauna(scene:THREE.Scene,budget:InstanceType<typeof WorldLi
   }});perches.sort((a,b)=>a.position.distanceToSquared(p)-b.position.distanceToSquared(p));perches.length=Math.min(24,perches.length);metrics.perches=perches.length;
  }
  return {metrics,update(t:number,p:THREE.Vector3,c:any){
+  const started=performance.now();metrics.renderSamples++;metrics.clock=t;
   sources.length=0;budget.release(cell);cell='birds:shared';const max=Math.min(9,budget.profile.birds);let count=0;
   if(!max){mesh.count=0;metrics.individuals=0;metrics.drawCalls=0;return 0;}
   if(t>=nextPerches){discover(p);nextPerches=t+8;}
   const families=new Set<string>();
   const draw=(q:any,heading:number,family:number,flap:number,id:string,habitat:string,scale=1)=>{
-   if(count>=max)return;dummy.position.set(q.x,q.y,q.z);dummy.rotation.set(0,heading,0);dummy.scale.setScalar(scale);dummy.updateMatrix();mesh.setMatrixAt(count,dummy.matrix);params.setXYZ(count,family,count*2.31,flap);const old=previousBirds.get(id),dt=old?t-old.t:0,v=old&&dt>0&&dt<1?new THREE.Vector3(q.x-old.x,q.y-old.y,q.z-old.z).divideScalar(dt):new THREE.Vector3();const localV=v.clone().applyQuaternion(dummy.quaternion.clone().invert()).divideScalar(Math.max(.001,scale));motion.setXYZW(count,localV.x,localV.y,localV.z,t);previousBirds.set(id,{x:q.x,y:q.y,z:q.z,t});
+   if(count>=max)return;dummy.position.set(q.x,q.y,q.z);dummy.rotation.set(0,heading,0);dummy.scale.setScalar(scale);dummy.updateMatrix();mesh.setMatrixAt(count,dummy.matrix);params.setXYZ(count,family,birdPhase(id),flap);const old=previousBirds.get(id),dt=old?t-old.t:0,v=old&&dt>0&&dt<1?new THREE.Vector3(q.x-old.x,q.y-old.y,q.z-old.z).divideScalar(dt):new THREE.Vector3();previousBirds.set(id,{x:q.x,y:q.y,z:q.z,t});
    const source=pool[count];source.id=id;source.position.copy(dummy.position);source.velocity.copy(v);source.updatedAt=t;source.habitat=habitat;source.family=family===2?'geese':family===1?'long-wing':family===3?'robin':family===4?'tit':'blackbird';families.add(source.family);if(family!==1&&family!==2)sources.push(source);count++;
   };
   for(const perch of perches){if(count>=Math.min(2,max))break;const distance=perch.position.distanceTo(p),state=perchedBirdAt(t,perch.number,c,distance,localState);if(!state.visible){perch.flightStart=null;continue;}
@@ -61,12 +61,12 @@ export function createFauna(scene:THREE.Scene,budget:InstanceType<typeof WorldLi
 
    draw(point,perch.flightStart!==null?Math.atan2((perch.destination?.x??point.x)-perch.position.x,(perch.destination?.z??point.z)-perch.position.z):perch.number,[0,3,4][Math.floor(perch.number)%3],flying?1:0,perch.id,perch.habitat,.65*state.fade);
   }
-  if(!Number.isFinite(ownerX)||Math.hypot(p.x-anchor.x,p.z-anchor.z)>360){ownerX=Math.floor(p.x/256);ownerZ=Math.floor(p.z/256);anchor.x=(ownerX+.5)*256;anchor.z=(ownerZ+.5)*256;ceiling=scene.userData.lifeCeiling??Infinity;if(!Number.isFinite(ceiling))ceiling=(height(anchor.x,anchor.z)??0)+85;}
+  if(!Number.isFinite(ownerX)||flockState.epoch!==Math.floor(t/180)&&Math.hypot(p.x-anchor.x,p.z-anchor.z)>360){ownerX=Math.floor(p.x/256);ownerZ=Math.floor(p.z/256);anchor.x=(ownerX+.5)*256;anchor.z=(ownerZ+.5)*256;ceiling=scene.userData.lifeCeiling??Infinity;if(!Number.isFinite(ceiling))ceiling=(height(anchor.x,anchor.z)??0)+85;}
   const flock=flockAt(t,ownerX*73856093+ownerZ*19349663,c,9,flockState);
   if(flock.active){const migration=['water','riparian','meadow'].includes(c.habitat)&&[3,10,11].includes(c.month),family=migration?2:1,wanted=Math.min(max-count,migration?6:flock.count);
-   for(let i=0;i<wanted;i++){birdPosition(flock,i,anchor,ceiling,point);if(migration){point.x+=(i%2===0?1:-1)*Math.ceil(i/2)*4;point.z-=Math.ceil(i/2)*5;}draw(point,-flock.angle+Math.PI/2,family,flock.gliding?.15:1,'flock:'+flock.id+':'+i,c.habitat,flock.fade*(migration?1.5:.9));}
+   for(let i=0;i<wanted;i++){const sample=birdPosition(flock,i,anchor,ceiling,point);if(migration){const spread=(i%2===0?1:-1)*Math.ceil(i/2)*4,trail=Math.ceil(i/2)*5;point.x-=flock.cosAngle*trail+flock.sinAngle*spread;point.z+=-flock.sinAngle*trail+flock.cosAngle*spread;}draw(point,sample.heading,family,flock.gliding?.15:1,'flock:'+flock.id+':'+i,c.habitat,flock.fade*(migration?1.5:.9));}
   }
-  if(count&&!budget.claim(cell,'birds',count))count=0;mesh.count=count;mesh.visible=count>0;mesh.instanceMatrix.needsUpdate=true;params.needsUpdate=true;motion.needsUpdate=true;if(previousBirds.size>128)for(const [id,s]of previousBirds)if(t-s.t>10)previousBirds.delete(id);
-  metrics.individuals=count;metrics.drawCalls=Number(count>0);metrics.triangles=count*geometry.attributes.position.count/3;metrics.families=[...families];metrics.sources=sources.map(s=>({id:s.id,position:s.position.toArray(),family:s.family}));return count;
+  if(count&&!budget.claim(cell,'birds',count))count=0;mesh.count=count;mesh.visible=count>0;mesh.instanceMatrix.needsUpdate=true;params.needsUpdate=true;if(previousBirds.size>128)for(const [id,s]of previousBirds)if(t-s.t>10)previousBirds.delete(id);
+  metrics.individuals=count;metrics.drawCalls=Number(count>0);metrics.triangles=count*geometry.attributes.position.count/3;metrics.families=[...families];metrics.sources=sources.map(s=>({id:s.id,position:s.position.toArray(),family:s.family}));metrics.cpuMs=performance.now()-started;metrics.maxCpuMs=Math.max(metrics.maxCpuMs,metrics.cpuMs);return count;
  },dispose(){if(scene.userData.lifeSoundSources===sources)scene.userData.lifeSoundSources=previous;delete scene.userData.birdMetrics;budget.release(cell);scene.remove(mesh);geometry.dispose();material.dispose();mesh.dispose();sources.length=0;perches.length=0;}};
 }

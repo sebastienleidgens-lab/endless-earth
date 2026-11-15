@@ -54,6 +54,6 @@ export function natureArtMaterial(season:{value:THREE.Vector4},texture:THREE.Tex
  };
  // Far cells keep cloud illumination and keep casting solar shadows, but
  // bypass fine local-map reception outside their useful detail range.
- m.userData.coarseSolarReceiver=far;
+ m.userData.coarseSolarReceiver=false;
  m.customProgramCacheKey=()=>`nature-art-v2-${grounded}-${far}-${!!texture}-${perforated}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,stationary:far});return m;
 }

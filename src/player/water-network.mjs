@@ -101,7 +101,26 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
     }
     return result;
   }
-  return {metrics,build,prepare,corridor,attach,route,connected:(x,z)=>!!attach({x,z}),
+  function follow(p,heading,maxDistance=2000){
+    if(!metrics.ready){prepare();return {ok:false,reason:'river-loading'};}
+    const start=attach(p);if(!start)return {ok:false,reason:'no-safe-river'};
+    const forward={x:Math.sin(heading),z:Math.cos(heading)},cost=new Map([[start,0]]),parent=new Map(),queue=[start],visited=new Set();let best=start,bestDistance=0;
+    // This is a loaded, checked component. No global graph completion, no
+    // invented flow direction, and a single plan per user request.
+    for(let cursor=0;cursor<queue.length&&cursor<12000;cursor++){
+      const n=queue[cursor];if(visited.has(n))continue;visited.add(n);const d=cost.get(n);if(d>maxDistance)continue;
+      if(d>bestDistance){best=n;bestDistance=d;}
+      for(const other of n.links){if(!other.exit||visited.has(other))continue;
+        const edge=distance(n,other);if(n===start&&((other.x-n.x)*forward.x+(other.z-n.z)*forward.z)/edge<.35)continue;
+        const next=d+edge;if(next>=(cost.get(other)??Infinity))continue;cost.set(other,next);parent.set(other,n);queue.push(other);
+      }
+    }
+    if(bestDistance<12)return {ok:false,reason:'river-direction-required'};
+    const points=[];let node=best;while(node){points.push({x:node.x,z:node.z});node=parent.get(node);}points.reverse();points.unshift({x:p.x,z:p.z});
+    const simplified=[points[0]];for(let i=0;i<points.length-1;){let end=i+1;for(let j=i+2;j<Math.min(points.length,i+10);j++){if(!corridor(points[i],points[j]))break;end=j;}simplified.push(points[end]);i=end;}
+    return {ok:true,points:simplified,distance:bestDistance,source:metrics.source,confidence:'low',flow:'unknown; chosen heading, no upstream/downstream assertion'};
+  }
+  return {metrics,build,prepare,corridor,attach,route,follow,connected:(x,z)=>!!attach({x,z}),
     snapshot(){build();return [...nodes.values()].map(n=>({x:n.x,z:n.z,component:n.component,exit:n.exit?.id??null,links:n.links.map(o=>[o.x,o.z])}));},
     dispose(){closed=true;nodes?.clear();nodes=null;iterator=null;metrics.ready=false;}};
 }

@@ -5,7 +5,7 @@ import {DistanceGait,legIK} from './gait.mjs';
 import {sampleLocomotion} from './clips.mjs';
 import {travelerDetails} from './traveler-details.mjs';
 import {sampleJointPose,sampleStepOver} from './joint-clips.mjs';
-export const WALKER_VERSION='original-traveler-rig-v7-articulated-clips';
+export const WALKER_VERSION='original-traveler-rig-v8-continuous-contact-pipeline';
 /** Original lofted silhouette, one skinned mesh and vertex-colour material. */
 export function createWalker(){
  const avatar=new THREE.Group(),bones=[],at=[],position=[],color=[],skinIndex=[],skinWeight=[],index=[],lowIndex=[];
@@ -79,7 +79,7 @@ export function createWalker(){
  function point(side,z,out){out.set(side*.105,0,z).applyAxisAngle(THREE.Object3D.DEFAULT_UP,avatar.rotation.y).add(avatar.position);return out}
  const seatedHands=[new THREE.Vector3(),new THREE.Vector3()];const armV=new THREE.Vector3(),armDir=new THREE.Vector3(),armBend=new THREE.Vector3(),elbow=new THREE.Vector3(),down=new THREE.Vector3(0,-1,0),armQ=new THREE.Quaternion();
  function grip(targets){chest.updateWorldMatrix(true,true);for(let i=0;i<2;i++){const a=arms[i];armV.copy(targets[i]);a.clavicle.worldToLocal(armV).sub(a.upper.position);const d=THREE.MathUtils.clamp(armV.length(),.05,.54);armDir.copy(armV).normalize();armBend.set(a.side*.65,-.15,-.6).addScaledVector(armDir,-armBend.dot(armDir)).normalize();const along=(.29*.29+d*d-.255*.255)/(2*d),height=Math.sqrt(Math.max(0,.29*.29-along*along));elbow.copy(armDir).multiplyScalar(along).addScaledVector(armBend,height);a.upper.quaternion.setFromUnitVectors(down,armDir.copy(elbow).normalize());armV.sub(elbow).applyQuaternion(armQ.copy(a.upper.quaternion).invert()).normalize();a.lower.quaternion.setFromUnitVectors(down,armV);}}
- function reset(){for(let i=0;i<legs.length;i++){const f=legs[i];f.cycle=Math.floor(motion.phase*.5+i*.5);point(f.side,0,f.anchor);f.target.copy(f.anchor);f.stance=true}initialized=true}
+ function reset(){for(let i=0;i<legs.length;i++){const f=legs[i];f.cycle=Math.floor(motion.phase*.5+i*.5);point(f.side,0,f.anchor);f.target.copy(f.anchor);f.stance=true;f.swingFrom=null;f.duty=null;f.settle=null;f.liftedCycle=null;}initialized=true}
  return {avatar,motion,metrics,feet:legs,hips,waterContacts,
   packGeometry(){const g=new THREE.BufferGeometry();for(const key of ['position','normal','color'])g.setAttribute(key,geometry.attributes[key].clone());g.setIndex(Array.from(geometry.index.array.slice(packStart,packEnd)));return g},
   update(distance,dt,height,activity={kind:'walking'}){
@@ -109,10 +109,31 @@ export function createWalker(){
    sampleJointPose(q,motion.run,f.joints,f.jointScratch);
    const wasStance=f.stance;
    if(motion.speed>.025){
-    f.stopAge=0;f.stance=clip.stance;
+    // A contact interval belongs to one cycle. Blending walk/run must not
+    // repeatedly replant the same foot as the duty factor crosses its phase.
+    f.duty=clip.duty;
+    f.stopAge=0;f.stance=q<f.duty&&f.liftedCycle!==cycle;
     if(f.stance&&(!wasStance||f.cycle!==cycle)){
-     point(f.side,motion.stride*(.44-.02*motion.run)+.12,f.anchor);f.plantHeading=avatar.rotation.y;f.measured=false;
+     // Account for the fraction of the frame after touchdown. This keeps the
+     // world contact independent of 30/60/120 Hz sampling.
+     point(f.side,motion.stride*(.44-.16*motion.run)+.10-q*2*motion.stride,f.anchor);f.plantHeading=avatar.rotation.y;f.measured=false;
      motion.footContacts.push({side:f.side,position:f.anchor.clone(),run:motion.run,energy:.65+motion.run*.55});
+    }
+    if(!f.stance){
+     if(wasStance||!f.swingFrom){f.swingFrom=f.anchor.clone();f.swingPitch=f.pitch??0;f.swingDuty=f.duty;f.liftedCycle=cycle;f.swingLocal=f.anchor.clone().sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);f.swingLocal.z+=Math.max(0,q-f.duty)*2*motion.stride;}
+     const phase=THREE.MathUtils.clamp((q-f.swingDuty)/(1-f.swingDuty),0,1),u=phase*phase*phase*(10+phase*(-15+phase*6));
+     const p2=phase*phase,p3=p2*phase,travel=2*motion.stride*(1-f.swingDuty),front=motion.stride*(.44-.16*motion.run)+.10;
+     // Hermite tangents cancel root travel at both endpoints. The old
+     // world-space lerp overreached the leg before landing and collapsed the
+     // pelvis every stride, even on a mathematically flat floor.
+     const reach=(2*p3-3*p2+1)*f.swingLocal.z+(p3-2*p2+phase)*(-travel)+(-2*p3+3*p2)*front+(p3-p2)*(-travel);
+     point(f.side,reach,f.target);const endHeight=height(f.target.x,f.target.z);
+     f.target.y=f.swingFrom.y+((Number.isFinite(endHeight)?endHeight:avatar.position.y)-f.swingFrom.y)*u;
+     // The original clip supplies clearance; quintic endpoint correction
+     // joins toe-off and touchdown without replacing the rig with a filter.
+     f.target.y+=Math.sin(Math.PI*phase)**2*(.10+.18*motion.run);
+     f.pitch=(f.swingPitch??0)*(1-u)+f.joints.footPitch*Math.sin(Math.PI*phase)**2;
+     offsetFoot.copy(ball).applyAxisAngle(sideAxis,f.pitch).applyAxisAngle(upAxis,avatar.rotation.y);f.ankle.copy(f.target).sub(offsetFoot);
     }
    }else{
     f.stopAge+=dt;
@@ -120,17 +141,19 @@ export function createWalker(){
    }
    f.cycle=cycle;
    if(f.stance){
-    const qn=clip.phase/clip.duty,t=THREE.MathUtils.smoothstep(qn,.55,1);f.pitch=t*(.90-motion.run*.08);
+    const qn=clip.phase/(f.duty??clip.duty),t=THREE.MathUtils.smoothstep(qn,.55,1);f.pitch=t*(.90-motion.run*.08);
     if(motion.speed<.025)f.pitch*=Math.exp(-f.stopAge*12);
     let h=height(f.anchor.x,f.anchor.z);
     if(!Number.isFinite(h)||Math.abs(h-avatar.position.y)>.32||Math.hypot(f.anchor.x-avatar.position.x,f.anchor.z-avatar.position.z)>.7){point(f.side,.12,f.anchor);h=height(f.anchor.x,f.anchor.z);f.plantHeading=avatar.rotation.y;f.measured=false;}
     f.anchor.y=Number.isFinite(h)?h:avatar.position.y;
     f.target.copy(f.anchor);
     offsetFoot.copy(ball).applyAxisAngle(sideAxis,f.pitch).applyAxisAngle(upAxis,f.plantHeading);f.ankle.copy(f.anchor).sub(offsetFoot);
-    local.copy(f.ankle).sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);
-    const available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));
-    hip=Math.min(hip,available+local.y);
    }
+   // The same reach envelope applies on BOTH sides of toe-off/touchdown.
+   // Dropping it during flight used to snap the pelvis up once per footfall.
+   local.copy(f.ankle).sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);
+   const available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));
+   hip=Math.min(hip,available+local.y);
   }
   hip=THREE.MathUtils.clamp(hip,.74,.94);hips.position.y=hip;
   aquaticLean*=Math.exp(-dt*8);hips.rotation.set(aquaticLean,Math.sin(wave)*(.025+.018*motion.run)*motion.blend,-Math.sin(wave)*.014*motion.blend-turn*.018*motion.blend);
@@ -145,13 +168,12 @@ export function createWalker(){
   function solveLeg(f,target){local.copy(target).sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);local.y-=hip;local.applyQuaternion(inversePelvis);const dy=local.y,dx=local.x-f.side*.105,roll=Math.atan2(dx,-dy),ik=legIK(-Math.hypot(dy,dx),local.z);f.thigh.rotation.set(ik.hip,0,roll);f.shin.rotation.set(ik.knee,0,0);}
   function orientFoot(f,pitch,heading){f.shin.updateWorldMatrix(true,false);f.shin.getWorldQuaternion(parentOrientation);footOrientation.setFromAxisAngle(upAxis,heading).multiply(pitchOrientation.setFromAxisAngle(sideAxis,pitch));f.foot.quaternion.copy(parentOrientation).invert().multiply(footOrientation);f.toe.rotation.x=-Math.max(0,pitch)*.22;}
   for(const f of legs){
-   if(f.stance||f.settle)solveLeg(f,f.ankle);
-   else{f.thigh.rotation.set(f.joints.thigh,0,0);f.shin.rotation.set(f.joints.shin,0,0);}
-   orientFoot(f,f.stance?f.pitch:f.joints.footPitch,f.stance?f.plantHeading:avatar.rotation.y);
+   solveLeg(f,f.ankle);
+   orientFoot(f,f.pitch??0,f.stance?f.plantHeading:avatar.rotation.y);
    if(!f.stance&&!f.settle){
     f.foot.updateWorldMatrix(true,true);f.foot.localToWorld(world.copy(ball));const h=height(world.x,world.z);f.foot.localToWorld(local.copy(heel));const hh=height(local.x,local.z);
     const correction=Math.max(0,Number.isFinite(h)?h+.003-world.y:0,Number.isFinite(hh)?hh+.003-local.y:0);
-    if(correction>0){f.foot.getWorldPosition(f.ankle);f.ankle.y+=correction;solveLeg(f,f.ankle);orientFoot(f,f.joints.footPitch,avatar.rotation.y);metrics.swingIK++;}
+    if(correction>0){f.foot.getWorldPosition(f.ankle);f.ankle.y+=correction;solveLeg(f,f.ankle);orientFoot(f,f.pitch??0,avatar.rotation.y);metrics.swingIK++;}
    }
   }
   for(let i=0;i<2;i++){const a=arms[i],clip=legs[i].clip;a.upper.rotation.set(.055+clip.arm*motion.blend+turn*a.side*.025,0,a.side*(.065+motion.run*.025)+clip.roll*motion.blend);a.lower.rotation.set(-.13+(clip.elbow+.13)*motion.blend,0,0);a.hand.rotation.z=a.side*.035;}

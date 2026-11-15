@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-25-2.md"
+    "missionReport": "docs/mission-26.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -92,7 +92,9 @@
     "audit:mission-23": "node scripts/audit-mission-23.mjs && node scripts/audit-mission-23-traversal.mjs",
     "bench:mission-23": "node scripts/benchmark-mission-23.mjs",
     "test:mission-23:soak": "node scripts/soak-mission-23.mjs",
-    "test:mission-25-1": "node --test tests/mission-25-1.test.mjs tests/mission-25.test.mjs tests/player-life.test.mjs tests/walker-spawn.test.mjs"
+    "test:mission-25-1": "node --test tests/mission-25-1.test.mjs tests/mission-25.test.mjs tests/player-life.test.mjs tests/walker-spawn.test.mjs",
+    "test:planet": "node --test tests/planet.test.mjs",
+    "geo:planet:audit": "node scripts/audit-planet.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

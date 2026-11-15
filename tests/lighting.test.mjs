@@ -15,7 +15,7 @@ test('contact visibility responds to actual nearby triangles and leaves open or 
  assert.ok(Math.abs(bvh.nearest([2,1,0],[0,-1,0],4)-1)<1e-9);assert.equal(bvh.nearest([2,1,0],[0,1,0],4),4);assert.ok(contactVisibility(bvh,[.1,0,0],[0,1,0])<contactVisibility(bvh,[8,0,0],[0,1,0]));assert.equal(contactVisibility(bvh,[8,0,0],[0,0,0]),1);
 });
 test('profile budgets disable the solar target in Eco and keep higher modes within one bounded map and 256 crowns',()=>{
- assert.equal(lightingPolicy('eco').size,0);for(const name of ['balanced','quality','custom']){const p=lightingPolicy(name);assert.ok(p.size*p.size*5<=6*1024*1024);assert.ok(p.trees<=256&&p.hz<=4&&p.radius<=80)}
+ assert.equal(lightingPolicy('eco').size,0);for(const name of ['balanced','quality','custom']){const p=lightingPolicy(name);assert.ok(p.size*p.size*5<=12*1024*1024);assert.ok(p.trees<=256&&p.hz<=60&&p.hz>=30&&p.radius<=80)}
 });
 
 test('local shadow index capacity grows within source limits and decoded cells do not retain duplicate arrays',()=>{

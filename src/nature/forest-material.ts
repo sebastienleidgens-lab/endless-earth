@@ -124,5 +124,8 @@ export function forestMaterial(calendar:{value:THREE.Vector4},atlas:THREE.Textur
    ${!leaf||merged?`if(vForestPart<.5){float grain=sin(vForestPosition.y*3.+sin(vForestPosition.x*43.+vForestPosition.z*39.)*1.8);diffuseColor.rgb*=.93+.07*grain;}`:''}`);
   if(leaf)s.fragmentShader=s.fragmentShader.replace('#include <opaque_fragment>','if(vForestPart>.5)outgoingLight+=diffuseColor.rgb*lifeDay*.12;\n#include <opaque_fragment>');
  };
- m.userData.coarseSolarReceiver=far;m.customProgramCacheKey=()=>`forest-19-${leaf}-${far}-${merged}-${cachedWind}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,forest:true,far});return m;
+ // Wood and foliage share one receiver policy through every visible LOD.
+ // Disabling the receiver on coarse mixed meshes made trunk shadows appear
+ // abruptly at the near-detail threshold.
+ m.userData.coarseSolarReceiver=false;m.customProgramCacheKey=()=>`forest-26-${leaf}-${far}-${merged}-${cachedWind}`;cloudReceiver(m);registerLifeMaterial(m,{foliage:true,forest:true,far});return m;
 }

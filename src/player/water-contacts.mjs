@@ -2,7 +2,7 @@
  * animated joints/paddle against the actual loaded surface, never a timer. */
 export class WaterContacts {
   constructor(){this.previous=new Map();this.events=[];this.sequence=0;this.state='walking';this.travel=0;this.last=null;}
-  update(state,position,hands,tip,provider,feet=[]){
+  update(state,position,hands,tip,provider,feet=[],boat=null){
     this.events.length=0;
     const add=(kind,p)=>this.events.push({id:++this.sequence,kind,position:{x:p.x,y:p.y,z:p.z}});
     const water=['wading','swimming','boating'].includes(state);
@@ -23,7 +23,7 @@ export class WaterContacts {
     if(state==='boating'&&tip)observe('paddle','paddle',tip);
     if(state==='wading')for(const f of feet){const s=provider.sample(f.position.x,f.position.z);if(s?.reliable)add('wade',{...f.position,y:s.surfaceY});}
     if(this.last)this.travel+=Math.hypot(position.x-this.last.x,position.z-this.last.z);
-    if(state==='boating'&&this.travel>.65){const s=provider.sample(position.x,position.z);if(s?.reliable)add('wake',{...position,y:s.surfaceY});this.travel%=.65;}
+    if(state==='boating'&&this.travel>.4){const s=provider.sample(position.x,position.z);if(s?.reliable){const heading=boat?.heading??(this.last?Math.atan2(position.x-this.last.x,position.z-this.last.z):0),c=Math.cos(heading),sn=Math.sin(heading);for(const side of [-1,1]){const p={x:position.x+c*side*.32-sn*.9,y:s.surfaceY,z:position.z-sn*side*.32-c*.9};add('wake',p);Object.assign(this.events.at(-1),{heading,side,speed:Math.abs(boat?.speed??.8)});}}this.travel%=.4;}
     this.last={x:position.x,z:position.z};return this.events;
   }
 }
