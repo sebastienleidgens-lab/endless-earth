@@ -2,6 +2,16 @@
 export function carRouteInput(points,position,heading,speed,cursor,width=4.8){
  const angle=a=>Math.atan2(Math.sin(a),Math.cos(a));
  while(cursor<points.length-1){const a=points[Math.max(0,cursor-1)],b=points[cursor],dx=b.x-a.x,dz=b.z-a.z,l2=dx*dx+dz*dz,projection=l2?((position.x-a.x)*dx+(position.z-a.z)*dz)/l2:1;const passed=projection>=1&&Math.abs((position.x-b.x)*dz-(position.z-b.z)*dx)/Math.sqrt(l2||1)<Math.max(2,width/2);if(Math.hypot(b.x-position.x,b.z-position.z)>=2.2&&!passed)break;cursor++;}
+ // Progress follows the closest forward source segment, not a tiny vertex
+ // capsule: a physically valid rounded turn need not hit its exact OSM node.
+ let bestIndex=cursor,bestScore=Infinity,arc=0;
+ for(let j=cursor;j<Math.min(points.length,cursor+9);j++){
+  const a=points[j-1]??points[0],b=points[j],dx=b.x-a.x,dz=b.z-a.z,l2=dx*dx+dz*dz;
+  if(!l2)continue;const length=Math.sqrt(l2);if(j>cursor)arc+=length;if(arc>35)break;
+  const t=Math.max(0,Math.min(1,((position.x-a.x)*dx+(position.z-a.z)*dz)/l2)),d=Math.hypot(position.x-a.x-t*dx,position.z-a.z-t*dz),alignment=Math.abs(angle(Math.atan2(dx,dz)-heading));
+  const score=d+.08*(j-cursor);if(alignment<1.5&&d<Math.max(3,width/2)&&score<bestScore){bestScore=score;bestIndex=j;}
+ }
+ cursor=bestIndex;
  const a=points[Math.max(0,cursor-1)],b=points[cursor],dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz)||1;
  const fraction=Math.max(0,Math.min(1,((position.x-a.x)*dx+(position.z-a.z)*dz)/(length*length)));
  let remaining=Math.max(6,Math.min(16,5+Math.abs(speed)*.6)),i=cursor,target={x:a.x+dx*fraction,z:a.z+dz*fraction};
