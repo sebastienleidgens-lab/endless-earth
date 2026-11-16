@@ -1,5 +1,7 @@
 import {admitFeature} from '../src/planet/network.mjs';
 import {terrainLayout} from '../src/planet/terrain-lod.mjs';
+import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -10,6 +12,13 @@ import {cyclicCurve} from '../src/character/cyclic-curve.mjs';
 import {perchFlightAt} from '../src/earthlife/fauna.mjs';
 import {createWalker} from '../src/character/walker.mjs';
 const finish=g=>{let s;do{s=g.next();}while(!s.done);return s.value;};
+test('outside-France fixture declares its actual tile hash and the runtime elevation/optional-source contract',async()=>{
+ const manifest=JSON.parse(await readFile('public/planet/validation-other-frame/manifest.json'));
+ assert.equal(manifest.projection.origin.lon,-71);assert.equal(manifest.verticalDatum,'WGS84-ellipsoid');
+ assert.ok(manifest.sources.elevation.source.includes('synthetic'));assert.equal(manifest.sources.elevation.inferred,true);
+ assert.equal(manifest.sources.elevation.sha256,createHash('sha256').update(manifest.tiles.map(t=>t.sha256).join('')).digest('hex'));
+ assert.equal(manifest.navigation,null);assert.equal(manifest.stations,null);assert.equal(manifest.overview,null);
+});
 test('LOD identity stays stable at rest, skips distant rebuilds and includes remote parked support',()=>{
  const tile={bounds:[0,0,4096,4096],grid:{size:33},contact:{step:2}},local=(x,y)=>({x,z:-y});
  const at=focus=>terrainLayout(tile,{local,focus,profile:'eco'});
