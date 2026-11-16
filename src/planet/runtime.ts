@@ -42,7 +42,7 @@ export function createPlanetRuntime(o:Options){
  function local(x:number,y:number){return legacy.fromGeo(projection.unproject({x,y}));}
  function roadHeading(road:any){const i=Math.max(1,road.index),a=road.feature.points[i-1],b=road.feature.points[i],p=local(a[0],a[1]),q=local(b[0],b[1]);return Math.atan2(q.x-p.x,q.z-p.z);}
  function inPilot(x:number,z:number){const b=o.pilotBounds;return x>=b[0]&&x<=b[2]&&z>=b[1]&&z<=b[3];}
- function heightUncached(x:number,z:number){if(inPilot(x,z))return o.pilotHeight(x,z);if(!projection||!surface||!manager||!view)return null;const p=projected({x,z}),sample=surface?.sample(p);if(!sample||!manager?.resident.has(sample.tile)||sample.resolutionM===2&&!view?.fineAt(sample.tile,p.x,p.y))return null;return view?.sample(x,z,surface.nearestRoad(p,'foot',25)?.feature.id)?.height??null;}
+ function heightUncached(x:number,z:number){if(inPilot(x,z))return o.pilotHeight(x,z);if(!projection||!surface||!manager||!view)return null;const p=projected({x,z}),sample=surface?.sample(p);if(!sample||!manager?.resident.has(sample.tile))return null;const hit=view?.sample(x,z,surface.nearestRoad(p,'foot',25,.3)?.feature.id);if(hit?.surface==='road')return hit.height;if(sample.resolutionM===2&&!view?.fineAt(sample.tile,p.x,p.y))return null;return hit?.height??null;}
  function admissionUncached(x:number,z:number,mode='foot'){
   if(!surface)return {ok:false,reason:'tile-loading'};const p=projected({x,z}),h=height(x,z),q=surface.admission(p,mode,(road:string)=>inPilot(x,z)?o.pilotSupport(x,z):view?.sample(x,z,road));if(!q.ok)return q;if(h===null)return {ok:false,reason:'tile-loading'};if(inPilot(x,z)&&!o.pilotClear(x,z))return {ok:false,reason:'pilot-collision'};return {...q,height:inPilot(x,z)?h:q.height??h,drivable:mode==='car'};
  }

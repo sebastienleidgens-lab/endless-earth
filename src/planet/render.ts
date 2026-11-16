@@ -26,6 +26,8 @@ import {clipPolygon,clipSegment} from './feature-clip.mjs';
 import {prepareGeometry} from './geometry-preparation.mjs';
 // @ts-ignore Do not depict mapped dismantled alignments as physical tracks.
 import {removedRail} from './rail-state.mjs';
+// @ts-ignore Shared source-centreline ribbon, including continuous joins.
+import {roadRibbonSteps} from './road-ribbon.mjs';
 export function createPlanetRenderer(scene:THREE.Scene,local:(x:number,y:number)=>{x:number;z:number},heightBase:()=>number,surface:any,pilotBounds:number[],providedQueue?:any,pilotHeight?:(x:number,z:number)=>number|null,pilotBreaks?:number[][]){
  const queue=providedQueue??new PreparationQueue();
  const exterior=(p:Position[])=>clipExterior(p,pilotBounds);
@@ -70,9 +72,8 @@ export function createPlanetRenderer(scene:THREE.Scene,local:(x:number,y:number)
   const group=new THREE.Group();group.name=f.id+':'+tile.id;group.userData.provenance={source:'OSM',id:f.id,owner:tile.id,vertical:'IGN69 MNT sampled support; water level and structure appearance inferred',simulation:false};
   const triangle=(coordinates:number[][],extra:number,vertices:Position[],pin=true)=>{const polygon=clipPolygon(coordinates,tile.bounds);if(polygon.length<3)return;for(let i=1;i<polygon.length-1;i++){const selected=[polygon[0],polygon[i],polygon[i+1]];if(selected.some(p=>!surface.sample({x:p[0],y:p[1]})))continue;const p=selected.map(p=>point(p,extra));if((p[1].z-p[0].z)*(p[2].x-p[0].x)-(p[1].x-p[0].x)*(p[2].z-p[0].z)<0)[p[1],p[2]]=[p[2],p[1]];for(const tri of protectedTriangles(p,pilotBounds,pin?pilotHeight:undefined,pin?pilotBreaks:undefined))vertices.push(...tri);}};
   if(f.kind==='road'||f.kind==='aviation'&&!f.polygon){if(f.tags.tunnel==='yes')return null;const width=f.kind==='aviation'?(Number.parseFloat(f.tags.width)||18):roadWidth(f.tags),vertices:Position[]=[];
-   for(let i=1;i<f.points.length;i++){yield;const segment=clipSegment(f.points[i-1],f.points[i],tile.bounds.map((v:number,k:number)=>v+(k<2?-width:width)));if(!segment)continue;const [a,b]=segment,dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy);if(d<.05)continue;const n=Math.ceil(d/8),nx=-dy/d*width/2,ny=dx/d*width/2;
-    for(let j=0;j<n;j++){yield;const ta=j/n,tb=(j+1)/n,c=[[a[0]+dx*ta+nx,a[1]+dy*ta+ny],[a[0]+dx*ta-nx,a[1]+dy*ta-ny],[a[0]+dx*tb+nx,a[1]+dy*tb+ny],[a[0]+dx*tb-nx,a[1]+dy*tb-ny]];triangle([c[0],c[2],c[1]],.025,vertices);triangle([c[1],c[2],c[3]],.025,vertices);}
-   }if(!vertices.length)return null;const mesh=localObject(new THREE.Mesh(meshGeometry(vertices),['footway','path','track'].includes(f.tags.highway)?pathMaterial:roadMaterial));mesh.receiveShadow=true;group.add(mesh);return group;
+   for(const coordinates of roadRibbonSteps(f.points,width,tile.bounds)){yield;if(coordinates)triangle(coordinates,.025,vertices);}
+if(!vertices.length)return null;const mesh=localObject(new THREE.Mesh(meshGeometry(vertices),['footway','path','track'].includes(f.tags.highway)?pathMaterial:roadMaterial));mesh.receiveShadow=true;group.add(mesh);return group;
   }
   if(f.kind==='hydro'&&f.polygon){
    const center=[(tile.bounds[0]+tile.bounds[2])/2,(tile.bounds[1]+tile.bounds[3])/2],shape=new THREE.Shape(f.points.map((p:number[])=>new THREE.Vector2(p[0]-center[0],p[1]-center[1])));for(const hole of f.holes??[])shape.holes.push(new THREE.Path(hole.map((p:number[])=>new THREE.Vector2(p[0]-center[0],p[1]-center[1]))));const geometry=new THREE.ShapeGeometry(shape),p=geometry.attributes.position,ids=geometry.index?.array??Uint32Array.from({length:p.count},(_,i)=>i),vertices:Position[]=[];
@@ -97,7 +98,7 @@ export function createPlanetRenderer(scene:THREE.Scene,local:(x:number,y:number)
  function refine(){for(const [id,r]of terrainRecords){if(r.epoch===terrainEpoch||terrainTasks.has(id))continue;const layout=terrainLayout(r.tile,{local,focus:{x:focus.x,z:focus.z},goal,profile:focusProfile});if(layout.key===r.layoutKey){r.epoch=terrainEpoch;continue;}const task=queue.run(terrainSteps(r.tile,r.group,terrainEpoch),undefined,"terrain-refine:"+id).catch((e:any)=>{if(!disposed)metrics.failures.push(String(e));}).finally(()=>{terrainTasks.delete(id);});terrainTasks.set(id,task);}}
  function sample(x:number,z:number){let best:any=null;for(const r of terrainRecords.values()){const v=r.support.sample(x,z);if(v&&(!best||v.height>best.height))best=v;}return best;}
  function featureSupport(map:Map<string,any>,id:string,x:number,z:number){let best:any=null;for(const support of map.get(id)?.values()??[]){const hit=support.sample(x,z);if(hit&&(!best||hit.height>best.height))best=hit;}return best;}
- function contact(x:number,z:number,road?:string){return (road?featureSupport(roadSupport,road,x,z):null)??sample(x,z);}
+ function contact(x:number,z:number,road?:string){const hit=road?featureSupport(roadSupport,road,x,z):null;return hit?{...hit,surface:'road',road,supportOwner:road}:sample(x,z);}
  function add(tile:any){for(const _ of addSteps(tile)){} }
  function* addSteps(tile:any){
   const group=new THREE.Group();group.name='planet-tile-'+tile.id;root.add(group);tiles.set(tile.id,group);const [x0,y0,x1,y1]=tile.bounds;yield* terrainSteps(tile,group,terrainEpoch);

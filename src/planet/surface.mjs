@@ -48,10 +48,14 @@ export class PlanetSurface {
   // displayed contact triangle, which can differ from the raw raster at a road
   // edge or the exact protected-pilot transition. Never flatten either owner.
   const contact=(typeof physicalSupport==='function'?physicalSupport(road?.feature.id):physicalSupport)??support;
-  if(contact.slope>(mode==='car'?.45:.7))return {ok:false,reason:'steep-support',...support,...contact};
+  // The pilot already gives mapped roads the directional/step policy of the
+  // movement kernel. A crossfall cannot by itself close every travel direction.
+  // Off-road ground and cars retain their existing normal limits; source
+  // access, water, rail and barriers above remain unconditional.
+  if((mode==='car'||!road)&&contact.slope>(mode==='car'?.45:.7))return {ok:false,reason:'steep-support',...support,...contact};
   if(area)return {...support,...contact,ok:true,drivable:false,surface:'terrain',access:'known-allowed',area:area.id,provenance:areaAccess(area).provenance};
   const speed=Number.parseFloat(road.feature.tags.maxspeed),speedLimit=Number.isFinite(speed)?speed/3.6:['motorway','trunk'].includes(road.feature.tags.highway)?30.5:['primary','secondary','tertiary','unclassified'].includes(road.feature.tags.highway)?22.2:13.9;
-  return {...support,...contact,ok:true,drivable:mode==='car',road:road.feature.id,width:road.width,speedLimit,provenance:'OSM road corridor + declared regional access policy; inferred width when absent'};
+  return {...support,...contact,ok:true,drivable:mode==='car',road:road.feature.id,width:road.width,speedLimit,directionalGradeLimit:mode==='foot'?.7:null,provenance:'OSM road corridor + declared regional access policy; inferred width when absent'};
  }
  clear(){this.tiles.clear();this.features.clear();this.cells.clear();}
 }
