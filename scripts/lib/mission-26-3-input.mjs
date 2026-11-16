@@ -4,7 +4,10 @@ export function carRouteInput(points,position,heading,speed,cursor,width=4.8,lan
  while(cursor<points.length-1){const a=points[Math.max(0,cursor-1)],b=points[cursor],dx=b.x-a.x,dz=b.z-a.z,l2=dx*dx+dz*dz,projection=l2?((position.x-a.x)*dx+(position.z-a.z)*dz)/l2:1;const passed=projection>=1&&Math.abs((position.x-b.x)*dz-(position.z-b.z)*dx)/Math.sqrt(l2||1)<Math.max(2,width/2);if(Math.hypot(b.x-position.x,b.z-position.z)>=2.2&&!passed)break;cursor++;}
  // Progress follows the closest forward source segment, not a tiny vertex
  // capsule: a physically valid rounded turn need not hit its exact OSM node.
- let bestIndex=cursor,bestScore=Infinity,arc=0,previousLength=0;
+ // Bound forward arc from the actual projection to segment STARTS: charging
+ // the next edge in full hides a valid long road just beyond a short connector.
+ const firstA=points[Math.max(0,cursor-1)],firstB=points[cursor],firstX=firstB.x-firstA.x,firstZ=firstB.z-firstA.z,firstLength=Math.hypot(firstX,firstZ),advanced=firstLength?Math.max(0,Math.min(firstLength,((position.x-firstA.x)*firstX+(position.z-firstA.z)*firstZ)/firstLength)):0;
+ let bestIndex=cursor,bestScore=Infinity,arc=-advanced,previousLength=0;
  for(let j=cursor;j<Math.min(points.length,cursor+9);j++){
   const a=points[j-1]??points[0],b=points[j],dx=b.x-a.x,dz=b.z-a.z,l2=dx*dx+dz*dz;
   if(!l2)continue;const length=Math.sqrt(l2);arc+=previousLength;if(arc>35)break;previousLength=length;
