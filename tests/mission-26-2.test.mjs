@@ -4,7 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {ContactQueryCache} from '../src/planet/query-cache.mjs';
 import {vehiclesOverlap,pedestrianNearVehicle} from '../src/planet/vehicle-space.mjs';
-import {trafficLanePoint} from '../src/planet/traffic.mjs';
+import {trafficLanePoint,trafficRenderHeight} from '../src/planet/traffic.mjs';
 import {measureLine} from '../src/planet/transport-motion.mjs';
 import {RouteIndex} from '../src/planet/route-index.mjs';
 test('source-route avoidance finds a real alternative without editing coordinates or opening a forbidden edge',()=>{
@@ -22,6 +22,11 @@ import {cyclicCurve} from '../src/character/cyclic-curve.mjs';
 import {perchFlightAt} from '../src/earthlife/fauna.mjs';
 import {createWalker} from '../src/character/walker.mjs';
 const finish=g=>{let s;do{s=g.next();}while(!s.done);return s.value;};
+test('traffic uses an actual rendered support even while access waits; missing support never becomes NaN or a zero floor',()=>{
+ assert.equal(trafficRenderHeight({ok:false,renderHeightRelative:true,renderedHeight:5,height:106},100),5);
+ assert.equal(trafficRenderHeight({ok:false,renderHeightRelative:true,height:106},100),null);
+ assert.equal(trafficRenderHeight({height:106},100),6);assert.equal(trafficRenderHeight(null,100),null);
+});
 test('contact caching cannot carry an unloaded floor or an old LOD across ownership revisions',()=>{
  const cache=new ContactQueryCache(2);let support=null;
  assert.equal(cache.get('p','loading',()=>support),null);support={height:10,face:2};

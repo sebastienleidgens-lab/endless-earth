@@ -1,5 +1,9 @@
 import {linePosition,measureLine} from './transport-motion.mjs';
 import {vehiclesOverlap,pedestrianNearVehicle} from './vehicle-space.mjs';
+export function trafficRenderHeight(s,baseline=0){
+ if(s?.renderHeightRelative){if(Number.isFinite(s.renderedHeight))return s.renderedHeight;return s.ok!==false&&Number.isFinite(s.height)?s.height:null;}
+ return Number.isFinite(s?.height)?s.height-baseline:null;
+}
 /** Offset is simulated lane use, not a claim of surveyed lane markings. */
 export function trafficLanePoint(line,distance,width=4.8){
  const q=linePosition(line,distance),a=linePosition(line,Math.max(0,distance-2)),b=linePosition(line,Math.min(line.length,distance+2)),heading=Math.atan2(b.x-a.x,-(b.y-a.y)),offset=width>=4.4?Math.min(1.4,width/4):0;
