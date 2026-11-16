@@ -4,7 +4,7 @@ const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
  * depth is manufactured here. Rebuild only when the surface owner changes.
  * The conservative lattice carries a checked corridor, not a flow direction.
  */
-export function createWaterNetwork({areas, sample, contains, clear, accesses, step = 4, limit = 998, bounds=[-limit,-limit,limit,limit], deferred = false}) {
+export function createWaterNetwork({areas, sample, contains, clear, accesses, step = 4, limit = 998, bounds=[-limit,-limit,limit,limit], deferred = false, accessesReady=()=>true}) {
   let nodes = null,iterator=null,scheduled=false,closed=false;
   const metrics = {builds: 0, nodes: 0, edges: 0, components: 0, ready: false,
     step, bounds: [...bounds], source: 'loaded OSM surface / estimated game bed',
@@ -28,6 +28,9 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
   function* buildSteps() {
     const start = performance.now();
     nodes = new Map();
+    // A component with no verified return bank cannot admit any activity.
+    // Wait for bank discovery first, then avoid indexing unreachable water.
+    if(!accesses.length){metrics.reason='no-verified-bank-access';metrics.builds++;metrics.ready=true;metrics.buildMs=performance.now()-start;return;}
     for (const area of areas) {
       const ring = area.rings[0];
       const minX = Math.max(bounds[0], Math.min(...ring.map(p => p.x)));
@@ -81,9 +84,9 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
     const verified=new Set();for(const node of next.values()){yield;const chain=new Set();let n=node;while(n?.parent&&!verified.has(n)){if(chain.has(n))throw Error('Cyclic cached bank route');chain.add(n);n=n.parent;}for(const n of chain)verified.add(n);}
     nodes=next;deferred=false;metrics.nodes=next.size;metrics.edges=edges/2;metrics.components=new Set([...next.values()].map(n=>n.component)).size;metrics.ready=true;metrics.builds++;metrics.cache=true;
   }
-  function build(){if(metrics.ready||closed)return;if(deferred)throw Error('Water cache is still preparing');iterator??=buildSteps();while(!iterator.next().done){};}
+  function build(){if(metrics.ready||closed||!accessesReady())return;if(deferred)throw Error('Water cache is still preparing');iterator??=buildSteps();while(!iterator.next().done){};}
   function prepare(){
-    if(metrics.ready||scheduled||closed||deferred)return;
+    if(metrics.ready||scheduled||closed||deferred||!accessesReady())return;
     iterator??=buildSteps();scheduled=true;
     const advance=()=>{if(closed||metrics.ready){scheduled=false;return;}const start=performance.now();while(performance.now()-start<3){if(iterator.next().done){scheduled=false;break;}}const slice=performance.now()-start;metrics.cpuMs+=slice;metrics.maxSliceMs=Math.max(metrics.maxSliceMs,slice);metrics.slices++;if(!metrics.ready)setTimeout(advance,8);};
     setTimeout(advance,0);

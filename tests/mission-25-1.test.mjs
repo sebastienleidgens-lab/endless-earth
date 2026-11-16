@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {createWaterNetwork} from '../src/player/water-network.mjs';
+test('water graph waits for bank discovery and does not scan a finished sector without any return bank',()=>{let ready=false,samples=0;const network=createWaterNetwork({areas:[{rings:[[{x:0,z:0},{x:100000,z:0},{x:100000,z:100000},{x:0,z:100000}]]}],contains:()=>true,clear:()=>true,sample:()=>{samples++;return {reliable:true,allowed:true,depth:2}},accesses:[],accessesReady:()=>ready});network.build();assert.equal(network.metrics.ready,false);ready=true;network.build();assert.equal(network.metrics.ready,true);assert.equal(network.metrics.nodes,0);assert.equal(network.metrics.reason,'no-verified-bank-access');assert.equal(samples,0);assert.equal(network.route({x:8,z:8}),null);network.dispose();});
 import {WaterContacts} from '../src/player/water-contacts.mjs';
 import {InteractableSurfaces} from '../src/player/interactable-surfaces.mjs';
 import {windAtWorld,windTemporal} from '../src/earthlife/wind.mjs';

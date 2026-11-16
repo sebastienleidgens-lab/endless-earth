@@ -58,7 +58,7 @@ export function createEstimatedBathymetry({areas,lines=[],support,landClear,clea
  // Immutable-world route admission is cached per exact metre cell, bounded.
  // Actual swept collision remains checked at each movement substep.
  const routes=new Map();
- const network=createWaterNetwork({areas,sample,contains,clear,accesses,bounds:playBounds,deferred:!!prepared});
+ const network=createWaterNetwork({areas,sample,contains,clear,accesses,bounds:playBounds,deferred:!!prepared,accessesReady:()=>!metrics.preparing});
  let closed=false;const steps=accessSteps();
  function advance(){if(closed)return;const t=performance.now();let done=false;do{done=steps.next().done;if(accesses.length&&metrics.firstAccessMs===null)metrics.firstAccessMs=performance.now()-started;}while(!done&&(!incremental||performance.now()-t<4));metrics.maxSliceMs=Math.max(metrics.maxSliceMs,performance.now()-t);metrics.accesses=accesses.length;metrics.rejected=rejected.length;metrics.prepareMs=performance.now()-started;metrics.preparing=!done;if(!done)setTimeout(advance,8);else network.prepare();}
  const cacheQueue=new PreparationQueue();
