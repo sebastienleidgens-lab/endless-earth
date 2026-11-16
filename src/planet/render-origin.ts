@@ -1,17 +1,9 @@
 import * as THREE from 'three';
 // @ts-ignore Shared presentation origin; all physical coordinates remain Float64 canonical.
 import {presentationOrigin,onOriginChange,setPresentationOrigin} from './origin-state.mjs';
-/** Reconstruct canonical coordinates only for explicit owner shader code.
- * Three's native #include shadow/view code stays in the local render frame. */
-export function canonicalShader(source:string,fragment=false){
- let prelude='uniform vec3 eeRenderOrigin;\n';
- const model=/\bmodelMatrix\b/.test(source),view=/\bviewMatrix\b/.test(source),camera=/\bcameraPosition\b/.test(source);
- source=source.replace(/\bmodelMatrix\b/g,'eeCanonicalModel()').replace(/\bviewMatrix\b/g,'eeCanonicalView()').replace(/\bcameraPosition\b/g,'eeCanonicalCamera()');
- if(model)prelude+=(fragment?'uniform mat4 modelMatrix;\n':'')+'mat4 eeCanonicalModel(){mat4 m=modelMatrix;m[3].xyz+=eeRenderOrigin;return m;}\n';
- if(view)prelude+='mat4 eeCanonicalView(){mat4 m=viewMatrix;m[3]-=m*vec4(eeRenderOrigin,0.);return m;}\n';
- if(camera)prelude+='vec3 eeCanonicalCamera(){return cameraPosition+eeRenderOrigin;}\n';
- return prelude+source;
-}
+// @ts-ignore Canonical appearance shader composition, shared with Node tests.
+import {canonicalShader} from './origin-shader.mjs';
+export {canonicalShader};
 export function floatingRenderOrigin(renderer:THREE.WebGLRenderer,scene:THREE.Scene,camera:THREE.Camera,position:()=>THREE.Vector3){
  const uniform={value:new THREE.Vector3()},materials=new WeakSet<THREE.Material>(),observed=new WeakSet<THREE.Object3D>(),skeletons=new Set<THREE.Skeleton>(),hemispheres=new Map<THREE.HemisphereLight,THREE.Vector3>(),stop=onOriginChange((p:any)=>uniform.value.set(p.x,p.y,p.z));
  let automatic=true,drawing=false;const original=renderer.render.bind(renderer),savedScene=new THREE.Vector3(),savedCamera=new THREE.Vector3();

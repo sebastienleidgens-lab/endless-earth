@@ -11,7 +11,7 @@ export function tileLoader(base,fetcher=fetch){return async(entry,signal)=>{
 };}
 /** Bounded asynchronous residency. Failed/absent tiles have NO physical floor. */
 export class WorldTileManager {
- constructor(manifest,{load,onLoad=()=>{},onUnload=()=>{},capacity=16,concurrency=2,byteBudget=32*1024*1024}={}){this.entries=new Map(manifest.tiles.map(t=>[t.id,t]));this.load=load;this.onLoad=onLoad;this.onUnload=onUnload;this.capacity=capacity;this.concurrency=concurrency;this.byteBudget=byteBudget;this.resident=new Map();this.pending=new Map();this.failed=new Map();this.wanted=new Map();this.clock=0;this.closed=false;this.installTail=Promise.resolve();this.metrics={loaded:0,unloaded:0,failures:0,residentBytes:0,active:0,queued:0};}
+ constructor(manifest,{load,onLoad=()=>{},onUnload=()=>{},capacity=16,concurrency=2,byteBudget=32*1024*1024}={}){this.entries=new Map(manifest.tiles.map(t=>[t.id,t]));this.load=load;this.onLoad=onLoad;this.onUnload=onUnload;this.capacity=capacity;this.concurrency=concurrency;this.byteBudget=byteBudget;this.resident=new Map();this.pending=new Map();this.failed=new Map();this.wanted=new Map();this.clock=0;this.closed=false;this.installTail=Promise.resolve();this.metrics={loaded:0,unloaded:0,failures:0,residentBytes:0,active:0,queued:0,errors:{}};}
  demand(items){if(this.closed)return;let bytes=0;const admitted=[];for(const i of items.filter(i=>this.entries.has(i.id)).sort((a,b)=>a.priority-b.priority||a.id.localeCompare(b.id))){const size=this.entries.get(i.id).residentBytes??this.entries.get(i.id).decodedBytes;if(admitted.length>=this.capacity||bytes+size>this.byteBudget)continue;admitted.push([i.id,i.priority]);bytes+=size;}this.wanted=new Map(admitted);this.clock++;
   for(const [id,record]of this.resident)if(this.wanted.has(id))record.used=this.clock;
   for(const [id,controller]of this.pending)if(!this.wanted.has(id))controller.abort();this.evict();this.pump();
@@ -26,10 +26,10 @@ export class WorldTileManager {
     for(const [old,r]of [...this.resident].sort((a,b)=>a[1].used-b[1].used)){if(this.resident.size<this.capacity&&this.metrics.residentBytes+(entry.residentBytes??entry.decodedBytes)<=this.byteBudget)break;if(old===id)continue;this.resident.delete(old);this.metrics.residentBytes-=r.bytes;await this.onUnload(r.tile);this.metrics.unloaded++;}
     if(this.metrics.residentBytes+(entry.residentBytes??entry.decodedBytes)>this.byteBudget)throw Error('Resident budget exhausted');
     await this.onLoad(tile,controller.signal);if(this.closed||controller.signal.aborted||!this.wanted.has(id)){await this.onUnload(tile);return;}this.resident.set(id,{tile,bytes:entry.residentBytes??entry.decodedBytes,used:this.clock});this.metrics.residentBytes+=entry.residentBytes??entry.decodedBytes;this.metrics.loaded++;
-   };this.installTail=this.installTail.then(install,install);return this.installTail;}).catch(e=>{if(!controller.signal.aborted&&!this.closed){this.failed.set(id,String(e));this.metrics.failures++;}}).finally(()=>{this.pending.delete(id);this.metrics.active=this.pending.size;this.pump()});
+   };this.installTail=this.installTail.then(install,install);return this.installTail;}).catch(e=>{if(!controller.signal.aborted&&!this.closed){this.failed.set(id,String(e));this.metrics.errors[id]=String(e);this.metrics.failures++;}}).finally(()=>{this.pending.delete(id);this.metrics.active=this.pending.size;this.pump()});
   }
  }
- retry(){this.failed.clear();this.pump();}
+ retry(){this.failed.clear();this.metrics.errors={};this.pump();}
  dispose(){this.closed=true;for(const p of this.pending.values())p.abort();for(const r of this.resident.values())Promise.resolve(this.onUnload(r.tile)).catch(()=>{});this.pending.clear();this.resident.clear();this.wanted.clear();this.failed.clear();this.metrics.residentBytes=0;}
 }
 export function tileDemand(manifest,p,velocity={x:0,y:0},radius=1){
