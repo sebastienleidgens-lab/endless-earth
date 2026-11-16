@@ -19,7 +19,18 @@ export function birdPosition(flock,index,anchor,ceiling,out={}){
  const alongV=speed/flock.duration+Math.cos(age*.37+phase)*.65*.37,acrossV=Math.cos(t*Math.PI)*35*Math.PI/flock.duration+Math.cos(age*.29+phase)*1.05*.29;
  out.vx=(flock.cosAngle??Math.cos(flock.angle))*alongV-(flock.sinAngle??Math.sin(flock.angle))*acrossV;
  out.vz=(flock.sinAngle??Math.sin(flock.angle))*alongV+(flock.cosAngle??Math.cos(flock.angle))*acrossV;
- out.heading=Math.atan2(out.vx,out.vz);return out;
+ out.vy=Math.cos(t*Math.PI)*8*Math.PI/flock.duration+.08*.43*Math.cos(age*.43+phase);
+ out.heading=Math.atan2(out.vx,out.vz);out.pitch=-Math.atan2(out.vy,Math.hypot(out.vx,out.vz));return out;
+}
+/** Synthetic branch-to-branch flight. Zero velocity at both contacts prevents
+ * the old sine arc from hitting a stationary perch at ~1 m/s vertically. */
+export function perchFlightAt(age,from,to,duration=12,out={}){
+ const f=Math.max(0,Math.min(1,age/duration)),u=f*f*f*(10+f*(-15+6*f)),v=30*f*f*(1-f)*(1-f)/duration;
+ const arch=Math.sin(Math.PI*f),lift=3.8*arch*arch,liftV=7.6*Math.PI*arch*Math.cos(Math.PI*f)/duration;
+ out.x=from.x+(to.x-from.x)*u;out.y=from.y+(to.y-from.y)*u+lift;out.z=from.z+(to.z-from.z)*u;
+ out.vx=(to.x-from.x)*v;out.vy=(to.y-from.y)*v+liftV;out.vz=(to.z-from.z)*v;
+ out.flying=f<1;out.turn=Math.min(1,f/.12);out.turn=out.turn*out.turn*(3-2*out.turn);out.pitch=-Math.atan2(out.vy,Math.max(.5,Math.hypot(out.vx,out.vz)))*Math.min(1,f/.08,(1-f)/.08);
+ return out;
 }
 export function birdPhase(id){let h=2166136261;for(const c of String(id)){h=Math.imul(h^c.charCodeAt(0),16777619)}return (h>>>0)/4294967296*Math.PI*2;}
 export function perchedBirdAt(time,id,conditions,playerDistance,out={}){

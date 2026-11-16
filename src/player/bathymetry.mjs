@@ -11,7 +11,7 @@ export function createEstimatedBathymetry({areas,lines=[],support,landClear,clea
  for(const r of rings)for(let i=0;i<r.points.length;i++){
   const a=r.points[i],b=r.points[(i+1)%r.points.length],length=distance(a,b);if(length>.01)segments.push({a,b,length,ring:r});
  }
- const metrics={source:'estimated',confidence:'low',version:3,accesses:0,rejected:0,renderedBed:false,water:'opaque source surface; analytic reflection',realDepthClaim:false,preparing:true,prepareMs:0,maxSliceMs:0,firstAccessMs:null,samples:0,cacheHits:0};const started=performance.now();
+ const metrics={source:'estimated',confidence:'low',version:3,accesses:0,rejected:0,rejectionReasons:{},rejectionExamples:[],renderedBed:false,water:'opaque source surface; analytic reflection',realDepthClaim:false,preparing:true,prepareMs:0,maxSliceMs:0,firstAccessMs:null,samples:0,cacheHits:0};const started=performance.now();
  const bounds=new Map(areas.map(a=>[a,{minX:Math.min(...a.rings[0].map(p=>p.x)),maxX:Math.max(...a.rings[0].map(p=>p.x)),minZ:Math.min(...a.rings[0].map(p=>p.z)),maxZ:Math.max(...a.rings[0].map(p=>p.z))}]));
  const wet=(x,z)=>areas.some(a=>x>=bounds.get(a).minX&&x<=bounds.get(a).maxX&&z>=bounds.get(a).minZ&&z<=bounds.get(a).maxZ&&circleHitsPolygon(x,z,a.rings[0],0)&&!a.rings.slice(1).some(r=>circleHitsPolygon(x,z,r,0)));
  const cells=new Map(),cellSize=32;
@@ -49,7 +49,8 @@ export function createEstimatedBathymetry({areas,lines=[],support,landClear,clea
    const nx=-(seg.b.z-seg.a.z)/seg.length*sign,nz=(seg.b.x-seg.a.x)/seg.length*sign,dry={x:x+nx*1.05,z:z+nz*1.05},entry={x:x+nx*.7,z:z+nz*.7},water={x:x-nx*2.2,z:z-nz*2.2};
    if(wet(dry.x,dry.z)||!wet(water.x,water.z))continue;
    const h=support(dry.x,dry.z),s=sample(entry.x,entry.z),w=sample(water.x,water.z);
-   if(!h?.walkable||!landClear(dry.x,dry.z)||!s?.reliable||!w?.reliable||Math.abs(h.height-s.bedY)>.14||!clear(entry.x,entry.z)||!clear(water.x,water.z)){rejected.push({x,z,reason:'shore-support-clearance-or-height'});continue;}
+   const reason=!h?'missing-land-support':!h.walkable?'land-access-or-slope-refused':!landClear(dry.x,dry.z)?'land-collision':!s?.reliable?'entry-water-support-unreliable':!w?.reliable?'boat-water-support-unreliable':Math.abs(h.height-s.bedY)>.14?'shore-height-discontinuity':!clear(entry.x,entry.z)?'entry-clearance':!clear(water.x,water.z)?'boat-clearance':null;
+   if(reason){rejected.push({x,z,reason});metrics.rejectionReasons[reason]=(metrics.rejectionReasons[reason]??0)+1;if(metrics.rejectionExamples.length<24)metrics.rejectionExamples.push({x,z,reason,dry,entry,water,land:h,entrySample:s,boatSample:w});continue;}
    let pass=true;for(let t=0;t<=1;t+=.1){const px=dry.x+(water.x-dry.x)*t,pz=dry.z+(water.z-dry.z)*t;if(!clear(px,pz)){pass=false;break;}}
    if(pass)accesses.push({id:'estimated-bank-'+accesses.length,dry:{...dry,y:h.height},entry,water,normal:{x:nx,z:nz},source:'estimated',confidence:'low',outline:seg.ring.tags.osm_id??null});
   }

@@ -5,7 +5,8 @@ import {DistanceGait,legIK} from './gait.mjs';
 import {sampleLocomotion} from './clips.mjs';
 import {travelerDetails} from './traveler-details.mjs';
 import {sampleJointPose,sampleStepOver} from './joint-clips.mjs';
-export const WALKER_VERSION='original-traveler-rig-v8-continuous-contact-pipeline';
+import {softMinimum} from './cyclic-curve.mjs';
+export const WALKER_VERSION='original-traveler-rig-v9-periodic-curves-soft-reach';
 /** Original lofted silhouette, one skinned mesh and vertex-colour material. */
 export function createWalker(){
  const avatar=new THREE.Group(),bones=[],at=[],position=[],color=[],skinIndex=[],skinWeight=[],index=[],lowIndex=[];
@@ -153,7 +154,10 @@ export function createWalker(){
    // Dropping it during flight used to snap the pelvis up once per footfall.
    local.copy(f.ankle).sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);
    const available=Math.sqrt(Math.max(.05,.855*.855-local.z*local.z-(local.x-f.side*.105)**2));
-   hip=Math.min(hip,available+local.y);
+   // A hard minimum switched the controlling leg with a velocity kink twice
+   // per stride. This spatial envelope preserves planted feet exactly; it
+   // does not filter or delay the input/root or the contact anchor.
+   hip=softMinimum(hip,available+local.y);
   }
   hip=THREE.MathUtils.clamp(hip,.74,.94);hips.position.y=hip;
   aquaticLean*=Math.exp(-dt*8);hips.rotation.set(aquaticLean,Math.sin(wave)*(.025+.018*motion.run)*motion.blend,-Math.sin(wave)*.014*motion.blend-turn*.018*motion.blend);

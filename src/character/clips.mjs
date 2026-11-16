@@ -2,7 +2,7 @@
  * Contact, compression, propulsion, recovery and flight are separate keys.
  * Physics owns speed and position; these clips only describe the body.
  */
-const smooth=t=>t*t*(3-2*t);
+import {cyclicCurve} from './cyclic-curve.mjs';
 const channels=['back','lift','arm','elbow','pitch','twist','roll','ankle'];
 const blendChannels=[...channels,'duty'];
 function frame(t,back,lift,arm,elbow,pitch,twist,roll,ankle){return [t,back,lift,arm,elbow,pitch,twist,roll,ankle];}
@@ -34,9 +34,8 @@ export const LOCOMOTION_CLIPS=Object.freeze({
     frame(1,.66,0,-.76,-1.03,.14,.09,-.032,-.02)]}
 });
 function sample(clip,q,out){
-  q=((q%1)+1)%1;const keys=clip.keys;let i=1;while(i<keys.length-1&&q>keys[i][0])i++;
-  const a=keys[i-1],b=keys[i],t=smooth((q-a[0])/(b[0]-a[0]));
-  for(let j=0;j<channels.length;j++)out[channels[j]]=a[j+1]+(b[j+1]-a[j+1])*t;
+  q=((q%1)+1)%1;
+  for(let j=0;j<channels.length;j++)out[channels[j]]=cyclicCurve(clip.keys,q,j+1);
   out.duty=clip.duty;out.phase=q;return out;
 }
 export function sampleLocomotion(phase,run,out={},scratch={}){

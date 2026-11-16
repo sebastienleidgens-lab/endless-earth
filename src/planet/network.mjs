@@ -3,7 +3,10 @@ const CLOSED=new Set(['no','private','customers','permit','agricultural','forest
 const ROAD=new Set(['motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','unclassified','residential','living_street','service']);
 export function admitFeature(tags,mode,policy={publicRoadClasses:true}){
  if(!tags||CLOSED.has(tags.access)||tags.construction||tags.proposed||tags.disused==='yes'||tags.abandoned==='yes')return {ok:false,reason:'restricted-or-inactive'};
- if(tags.bridge==='yes'||tags.tunnel==='yes'||Number(tags.layer??0)!==0)return {ok:false,reason:'unverified-vertical-structure'};
+ const structure=v=>v!==undefined&&!['no','false','0',''].includes(String(v));
+ if(structure(tags.bridge)||structure(tags.tunnel)||Number(tags.layer??0)!==0)return {ok:false,reason:'unverified-vertical-structure'};
+ if(tags['access:conditional']||tags[mode==='car'?'motor_vehicle:conditional':'foot:conditional'])return {ok:false,reason:'unresolved-conditional-access'};
+ if(tags.access==='unknown'||tags[mode==='car'?'motor_vehicle':'foot']==='unknown')return {ok:false,reason:'unknown-access'};
  if(mode==='car'){
   if(CLOSED.has(tags.motor_vehicle)||CLOSED.has(tags.vehicle))return {ok:false,reason:'motor-access'};
   if(!ROAD.has(tags.highway))return {ok:false,reason:'not-a-motor-road'};
@@ -12,7 +15,8 @@ export function admitFeature(tags,mode,policy={publicRoadClasses:true}){
  }
  if(mode==='foot'){
   if(CLOSED.has(tags.foot)||['motorway','motorway_link','trunk','trunk_link','raceway'].includes(tags.highway))return {ok:false,reason:'pedestrian-access'};
-  return ['footway','path','pedestrian','steps','track','cycleway','residential','living_street','unclassified','tertiary','secondary'].includes(tags.highway)?{ok:true,provenance:'OSM pedestrian access interpreted under regional policy'}:{ok:false,reason:'unknown-foot-access'};
+  const documented=['yes','permissive','designated'].includes(tags.foot??tags.access),publicRoad=policy.publicRoadClasses&&['primary','primary_link','secondary_link','tertiary_link'].includes(tags.highway);
+  return documented&&ROAD.has(tags.highway)||publicRoad||['footway','path','pedestrian','steps','track','cycleway','residential','living_street','unclassified','tertiary','secondary'].includes(tags.highway)?{ok:true,provenance:'OSM pedestrian access interpreted under declared regional road-class policy'}:{ok:false,reason:'unknown-foot-access'};
  }
  if(mode==='rail')return tags.railway==='rail'&&!['disused','abandoned','construction','proposed'].some(k=>tags[k])?{ok:true}:{ok:false,reason:'inactive-rail'};
  if(mode==='boat')return tags.simulatedNavigation==='admitted'&&tags.clearance==='verified'?{ok:true}:{ok:false,reason:'unknown-water-clearance'};
