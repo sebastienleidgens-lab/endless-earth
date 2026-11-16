@@ -23,6 +23,8 @@ export function* terrainLOD(tile,{local,heightBase,focus,goal,profile='balanced'
  function emit(a,b,c,color){for(const triangle of protectedTriangles([a,b,c],pilotBounds,pilotHeight,pilotBreaks)){indices.push(...triangle.map(p=>vertex(p,color)));if(pilotHeight&&triangle.some(p=>Math.abs(Math.abs(p.x)-Math.abs(pilotBounds[2]))<.001||Math.abs(Math.abs(p.z)-Math.abs(pilotBounds[3]))<.001))for(const p of triangle)seam.push(p.x,p.y,p.z);}}
  for(let cy=0;cy<cellCount;cy++)for(let cx=0;cx<cellCount;cx++){yield;const q=stride(cx,cy),ex=x0+cx*baseStep,ny=y0+cy*baseStep,color=habitatColor({x:ex+baseStep/2,y:ny+baseStep/2});if(q===fineStep)detail.add(cx+','+cy);
   for(let y=0;y<baseStep;y+=q){yield;for(let x=0;x<baseStep;x+=q){
+   // A fine row can contain 64 cells; do not hide it in one queue step.
+   if((Math.round(x/q)&7)===0)yield;
    const a=at(ex+x,ny+y),b=at(ex+x+q,ny+y),c=at(ex+x,ny+y+q),d=at(ex+x+q,ny+y+q);
    if(q===fineStep){emit(a,b,c,color);emit(b,d,c,color);continue;}
    // Coordinates are projected east/north, whose local X/Z conversion reverses winding.
