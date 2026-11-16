@@ -54,7 +54,7 @@ export class PackraftController{
    const target=Math.atan2(q.x-p.x,q.z-p.z),error=Math.atan2(Math.sin(target-this.heading),Math.cos(target-this.heading));
    const next=route[Math.min(route.length-1,cursor+1)],bend=Math.abs(Math.atan2(Math.sin(Math.atan2(next.x-q.x,next.z-q.z)-target),Math.cos(Math.atan2(next.x-q.x,next.z-q.z)-target))),desired=clamp(1.05-bend*.38,.45,1.05);
    turn=clamp(error*2.1-this.yawRate*1.3,-1,1);forward=Math.abs(error)<1.1?clamp((desired-this.speed)*1.3+.22,0,1):.12;
-   if(cursor===route.length-1&&distance(p,last)<this.speed*this.speed/1.1+2){forward=this.speed>.12?-.6:0;if(distance(p,last)<1.5&&this.speed<.15)this.stopFollow('river-corridor-ended');}
+   if(cursor===route.length-1&&distance(p,last)<this.speed*this.speed/1.1+2){forward=this.speed>.12?-.6:distance(p,last)>1.4?.22:0;if(distance(p,last)<1.5&&this.speed<.15)this.stopFollow('river-corridor-ended');}
    if(!provider?.network?.metrics.ready){forward=this.speed>.1?-.7:0;this.activity.message='river-loading';}
   }
   if(this.recovery){
