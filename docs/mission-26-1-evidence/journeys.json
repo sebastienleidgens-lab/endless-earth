@@ -1,0 +1,4270 @@
+{
+  "method": "Actual compiled save/restore and UI handlers; diagnostic setup before each independent case. Reload is real. No distance or continuous journey inferred.",
+  "errors": [],
+  "cases": [
+    {
+      "name": "walking-map-profile-reload",
+      "reload": true,
+      "before": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -650,
+            -34.369998931884766,
+            -330
+          ],
+          "gps": {
+            "lat": 46.69826442687747,
+            "lon": 0.8758867918049879
+          },
+          "activity": "walking",
+          "heading": 0,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 38,
+              "maxLocalCameraM": 727.1164731524171,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 38,
+            "calls": 77,
+            "triangles": 275024,
+            "points": 0,
+            "lines": 37
+          },
+          "heap": 322521811,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 83.80000000074506,
+              "maxBatchWallMs": 1397.699999999255,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 83.80000000074506,
+            "maxInstallWallMs": 6970.900000002235,
+            "preparation": {
+              "slices": 1404,
+              "steps": 177633,
+              "cpuMs": 6028.500000007451,
+              "maxSliceMs": 83.80000000074506,
+              "maxStepMs": 81.80000000074506,
+              "completed": 26,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.10000000149011612,
+              "maxDecodeWallMs": 1197.3999999985099
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 2.300000000745058,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heading": 0,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          }
+        },
+        "status": "",
+        "actions": ""
+      },
+      "saved": {
+        "ok": true,
+        "value": {
+          "schema": "planet-journey-v2",
+          "region": "FR-86",
+          "position": {
+            "lat": 46.69826442687747,
+            "lon": 0.8758867918049879,
+            "height": 66.83000106811524,
+            "datum": "IGN69"
+          },
+          "heading": 0,
+          "activity": "walking",
+          "vehicle": null,
+          "extensions": {
+            "profile": "eco",
+            "boat": {
+              "visible": false,
+              "heading": 0,
+              "stroke": 0,
+              "following": false
+            },
+            "camp": null,
+            "exposure": {
+              "wetness": 0
+            },
+            "camera": {
+              "yaw": 0,
+              "pitch": 0.08,
+              "zoom": 4.2,
+              "view": "third"
+            }
+          },
+          "map": {
+            "scale": 0.006,
+            "center": {
+              "x": 537714.1705123918,
+              "y": 6624201.688955783
+            },
+            "follow": true,
+            "layers": [
+              "rail",
+              "hydro",
+              "aviation",
+              "communes",
+              "coverage",
+              "station"
+            ],
+            "open": true
+          },
+          "route": null,
+          "manifests": {
+            "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+          },
+          "climate": {
+            "date": "2026-06-21T13:06:46.614Z",
+            "weather": "clear"
+          },
+          "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        }
+      },
+      "restoreFrom": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -353.66215395553013,
+            -32.22696558738903,
+            -13.727512929741842
+          ],
+          "gps": {
+            "lat": 46.6954233157827,
+            "lon": 0.8797680006964309
+          },
+          "activity": "walking",
+          "heading": 3.141592653589793,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 26,
+              "maxLocalCameraM": 353.77313869194865,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 26,
+            "calls": 91,
+            "triangles": 253238,
+            "points": 0,
+            "lines": 0
+          },
+          "heap": 320633394,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 27.699999999254942,
+              "maxBatchWallMs": 1804.5,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 134.89999999850988,
+            "maxInstallWallMs": 8022.699999999255,
+            "preparation": {
+              "slices": 1327,
+              "steps": 177031,
+              "cpuMs": 6011.899999938905,
+              "maxSliceMs": 134.89999999850988,
+              "maxStepMs": 134.59999999776483,
+              "completed": 26,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.5999999977648258,
+              "maxDecodeWallMs": 1443.800000000745
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.10000000149011612,
+              "maxCpuMs": 0.30000000074505806,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heading": 0,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          }
+        },
+        "status": "",
+        "actions": ""
+      },
+      "after": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -649.9999999999975,
+            -34.36999893188353,
+            -329.9999999998374
+          ],
+          "gps": {
+            "lat": 46.69826442687747,
+            "lon": 0.8758867918049879
+          },
+          "activity": "walking",
+          "heading": 0,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 26,
+              "maxLocalCameraM": 353.77313869194865,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 26,
+            "calls": 91,
+            "triangles": 253238,
+            "points": 0,
+            "lines": 0
+          },
+          "heap": 338028797,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 27.699999999254942,
+              "maxBatchWallMs": 1804.5,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 134.89999999850988,
+            "maxInstallWallMs": 8022.699999999255,
+            "preparation": {
+              "slices": 1327,
+              "steps": 177031,
+              "cpuMs": 6011.899999938905,
+              "maxSliceMs": 134.89999999850988,
+              "maxStepMs": 134.59999999776483,
+              "completed": 26,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.5999999977648258,
+              "maxDecodeWallMs": 1443.800000000745
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.10000000149011612,
+              "maxCpuMs": 0.30000000074505806,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heading": 0,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": false
+        },
+        "status": "Voyage repris au lieu sauvegardé.",
+        "actions": ""
+      },
+      "horizontalErrorDegrees": 0,
+      "passed": true,
+      "extensions": {
+        "schema": "planet-journey-v2",
+        "region": "FR-86",
+        "position": {
+          "lat": 46.69826442687747,
+          "lon": 0.8758867918049879,
+          "height": 66.83000106811647,
+          "datum": "IGN69"
+        },
+        "heading": 0,
+        "activity": "walking",
+        "vehicle": null,
+        "extensions": {
+          "profile": "eco",
+          "boat": {
+            "visible": false,
+            "heading": 0,
+            "stroke": 0,
+            "following": false
+          },
+          "camp": null,
+          "exposure": {
+            "wetness": 0
+          },
+          "camera": {
+            "yaw": 0,
+            "pitch": 0.08,
+            "zoom": 4.2,
+            "view": "third"
+          }
+        },
+        "map": {
+          "scale": 0.006,
+          "center": {
+            "x": 537714.1705123918,
+            "y": 6624201.688955783
+          },
+          "follow": true,
+          "layers": [
+            "rail",
+            "station",
+            "hydro",
+            "aviation",
+            "communes",
+            "coverage"
+          ],
+          "open": true
+        },
+        "route": null,
+        "manifests": {
+          "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        },
+        "climate": {
+          "date": "2026-06-21T13:57:47.015Z",
+          "weather": "clear"
+        },
+        "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+      },
+      "mapLayersRestored": true,
+      "cameraRestored": true,
+      "comparisonCorrection": "Layer state is a set. Reanalyzed the actual saved/restored values with set equality; insertion order is not a map state difference."
+    },
+    {
+      "name": "parked-car",
+      "reload": false,
+      "before": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -67.00550676005383,
+            -33.57383832179413,
+            815.5870095725379
+          ],
+          "gps": {
+            "lat": 46.68797349075124,
+            "lon": 0.8835224125703682
+          },
+          "activity": "walking",
+          "heading": 0,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 28,
+              "maxLocalCameraM": 798.363545723286,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 28,
+            "calls": 290,
+            "triangles": 684256,
+            "points": 0,
+            "lines": 103
+          },
+          "heap": 318172548,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 134.89999999850988,
+              "maxBatchWallMs": 1804.5,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 134.89999999850988,
+            "maxInstallWallMs": 8022.699999999255,
+            "preparation": {
+              "slices": 1329,
+              "steps": 177033,
+              "cpuMs": 6029.19999993965,
+              "maxSliceMs": 134.89999999850988,
+              "maxStepMs": 134.59999999776483,
+              "completed": 26,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.5999999977648258,
+              "maxDecodeWallMs": 1443.800000000745
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.10000000149011612,
+              "maxCpuMs": 0.30000000074505806,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": -68.65537279328971,
+            "y": -33.3823275020014,
+            "z": 815.6080350897605
+          },
+          "heading": 0.01274308259120954,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": true
+        },
+        "status": "Voyage sauvegardé.",
+        "actions": ""
+      },
+      "saved": {
+        "ok": true,
+        "value": {
+          "schema": "planet-journey-v2",
+          "region": "FR-86",
+          "position": {
+            "lat": 46.68797349075124,
+            "lon": 0.8835224125703682,
+            "height": 67.62616167820588,
+            "datum": "IGN69"
+          },
+          "heading": 0,
+          "activity": "walking",
+          "vehicle": {
+            "position": {
+              "lat": 46.68797330187667,
+              "lon": 0.8835008038733916,
+              "height": 67.8176724979986,
+              "datum": "IGN69"
+            },
+            "heading": 0.01274308259120954,
+            "speed": 0,
+            "placed": true,
+            "active": false
+          },
+          "extensions": {
+            "profile": "eco",
+            "boat": {
+              "visible": false,
+              "heading": 0,
+              "stroke": 0,
+              "following": false
+            },
+            "camp": null,
+            "exposure": {
+              "wetness": 0
+            },
+            "camera": {
+              "yaw": 0,
+              "pitch": 0.08,
+              "zoom": 4.2,
+              "view": "third"
+            }
+          },
+          "map": {
+            "scale": 0.006,
+            "center": {
+              "x": 537714.1705123918,
+              "y": 6624201.688955783
+            },
+            "follow": true,
+            "layers": [
+              "rail",
+              "station",
+              "hydro",
+              "aviation",
+              "communes",
+              "coverage"
+            ],
+            "open": false
+          },
+          "route": null,
+          "manifests": {
+            "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+          },
+          "climate": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "weather": "clear"
+          },
+          "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        }
+      },
+      "restoreFrom": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -620,
+            -32.86000061035156,
+            -300
+          ],
+          "gps": {
+            "lat": 46.697994933524974,
+            "lon": 0.876279709106296
+          },
+          "activity": "walking",
+          "heading": 0,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 28,
+              "maxLocalCameraM": 798.363545723286,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 28,
+            "calls": 290,
+            "triangles": 684256,
+            "points": 0,
+            "lines": 103
+          },
+          "heap": 322571279,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 134.89999999850988,
+              "maxBatchWallMs": 1804.5,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 134.89999999850988,
+            "maxInstallWallMs": 8022.699999999255,
+            "preparation": {
+              "slices": 1332,
+              "steps": 177037,
+              "cpuMs": 6046.299999937415,
+              "maxSliceMs": 134.89999999850988,
+              "maxStepMs": 134.59999999776483,
+              "completed": 26,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.5999999977648258,
+              "maxDecodeWallMs": 1443.800000000745
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.10000000149011612,
+              "maxCpuMs": 0.30000000074505806,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": -68.65537279328971,
+            "y": -33.3823275020014,
+            "z": 815.6080350897605
+          },
+          "heading": 0.01274308259120954,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": true
+        },
+        "status": "Voyage sauvegardé.",
+        "actions": ""
+      },
+      "after": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -67.00550676005311,
+            -33.57383832179559,
+            815.5870095723085
+          ],
+          "gps": {
+            "lat": 46.68797349075124,
+            "lon": 0.8835224125703682
+          },
+          "activity": "walking",
+          "heading": 0,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 28,
+              "maxLocalCameraM": 798.363545723286,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 28,
+            "calls": 290,
+            "triangles": 684256,
+            "points": 0,
+            "lines": 103
+          },
+          "heap": 324559455,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 134.89999999850988,
+              "maxBatchWallMs": 1804.5,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 134.89999999850988,
+            "maxInstallWallMs": 8022.699999999255,
+            "preparation": {
+              "slices": 1334,
+              "steps": 177043,
+              "cpuMs": 6082.09999993816,
+              "maxSliceMs": 134.89999999850988,
+              "maxStepMs": 134.59999999776483,
+              "completed": 26,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.5999999977648258,
+              "maxDecodeWallMs": 1443.800000000745
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.10000000149011612,
+              "maxCpuMs": 0.30000000074505806,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": -68.65537279328971,
+            "z": 815.6080350897605,
+            "y": -33.3823275020014
+          },
+          "heading": 0.01274308259120954,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": true
+        },
+        "status": "Voyage repris au lieu sauvegardé.",
+        "actions": ""
+      },
+      "horizontalErrorDegrees": 0,
+      "passed": true,
+      "extensions": {
+        "schema": "planet-journey-v2",
+        "region": "FR-86",
+        "position": {
+          "lat": 46.68797349075124,
+          "lon": 0.8835224125703682,
+          "height": 67.62616167820441,
+          "datum": "IGN69"
+        },
+        "heading": 0,
+        "activity": "walking",
+        "vehicle": {
+          "position": {
+            "lat": 46.68797330187667,
+            "lon": 0.8835008038733916,
+            "height": 67.8176724979986,
+            "datum": "IGN69"
+          },
+          "heading": 0.01274308259120954,
+          "speed": 0,
+          "placed": true,
+          "active": false
+        },
+        "extensions": {
+          "profile": "eco",
+          "boat": {
+            "visible": false,
+            "heading": 0,
+            "stroke": 0,
+            "following": false
+          },
+          "camp": null,
+          "exposure": {
+            "wetness": 0
+          },
+          "camera": {
+            "yaw": 0,
+            "pitch": 0.08,
+            "zoom": 4.2,
+            "view": "third"
+          }
+        },
+        "map": {
+          "scale": 0.006,
+          "center": {
+            "x": 537714.1705123918,
+            "y": 6624201.688955783
+          },
+          "follow": true,
+          "layers": [
+            "rail",
+            "station",
+            "hydro",
+            "aviation",
+            "communes",
+            "coverage"
+          ],
+          "open": false
+        },
+        "route": null,
+        "manifests": {
+          "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        },
+        "climate": {
+          "date": "2026-06-21T13:57:47.015Z",
+          "weather": "clear"
+        },
+        "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+      }
+    },
+    {
+      "name": "occupied-car-reload",
+      "reload": true,
+      "before": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -68.65537279328971,
+            -33.1323275020014,
+            815.6080350897605
+          ],
+          "gps": {
+            "lat": 46.68797330187667,
+            "lon": 0.8835008038733916
+          },
+          "activity": "driving",
+          "heading": 0.01274308259120954,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 33,
+              "maxLocalCameraM": 818.6369787221569,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 33,
+            "calls": 96,
+            "triangles": 301731,
+            "points": 0,
+            "lines": 87
+          },
+          "heap": 344011262,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 54864,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 373,
+              "maxBatchMs": 134.89999999850988,
+              "maxBatchWallMs": 10916,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 134.89999999850988,
+            "maxInstallWallMs": 8022.699999999255,
+            "preparation": {
+              "slices": 2009,
+              "steps": 202061,
+              "cpuMs": 9362.999999925494,
+              "maxSliceMs": 134.89999999850988,
+              "maxStepMs": 134.59999999776483,
+              "completed": 31,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.5999999977648258,
+              "maxDecodeWallMs": 1443.800000000745
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 0.30000000074505806,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": -68.65537279328971,
+            "z": 815.6080350897605,
+            "y": -33.3823275020014
+          },
+          "heading": 0.01274308259120954,
+          "speed": 0,
+          "steering": 0,
+          "active": true,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": true
+        },
+        "status": "Voyage sauvegardé.",
+        "actions": ""
+      },
+      "saved": {
+        "ok": true,
+        "value": {
+          "schema": "planet-journey-v2",
+          "region": "FR-86",
+          "position": {
+            "lat": 46.68797330187667,
+            "lon": 0.8835008038733916,
+            "height": 68.0676724979986,
+            "datum": "IGN69"
+          },
+          "heading": 0.01274308259120954,
+          "activity": "driving",
+          "vehicle": {
+            "position": {
+              "lat": 46.68797330187667,
+              "lon": 0.8835008038733916,
+              "height": 67.8176724979986,
+              "datum": "IGN69"
+            },
+            "heading": 0.01274308259120954,
+            "speed": 0,
+            "placed": true,
+            "active": true
+          },
+          "extensions": {
+            "profile": "eco",
+            "boat": {
+              "visible": false,
+              "heading": 0,
+              "stroke": 0,
+              "following": false
+            },
+            "camp": null,
+            "exposure": {
+              "wetness": 0
+            },
+            "camera": {
+              "yaw": -1.6227166479703177,
+              "pitch": 0.08,
+              "zoom": 4.2,
+              "view": "third"
+            }
+          },
+          "map": {
+            "scale": 0.006,
+            "center": {
+              "x": 537714.1705123918,
+              "y": 6624201.688955783
+            },
+            "follow": true,
+            "layers": [
+              "rail",
+              "station",
+              "hydro",
+              "aviation",
+              "communes",
+              "coverage"
+            ],
+            "open": false
+          },
+          "route": null,
+          "manifests": {
+            "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+          },
+          "climate": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "weather": "clear"
+          },
+          "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        }
+      },
+      "restoreFrom": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -353.66215395553013,
+            -32.22696558738903,
+            -13.727512929741842
+          ],
+          "gps": {
+            "lat": 46.6954233157827,
+            "lon": 0.8797680006964309
+          },
+          "activity": "walking",
+          "heading": 3.141592653589793,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 37,
+              "maxLocalCameraM": 353.77313869194865,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 37,
+            "calls": 91,
+            "triangles": 253238,
+            "points": 0,
+            "lines": 0
+          },
+          "heap": 314878239,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 30.200000002980232,
+              "maxBatchWallMs": 1282.6000000014901,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 95.10000000149012,
+            "maxInstallWallMs": 6490.599999997765,
+            "preparation": {
+              "slices": 1308,
+              "steps": 177534,
+              "cpuMs": 5522.600000079721,
+              "maxSliceMs": 95.10000000149012,
+              "maxStepMs": 92.69999999925494,
+              "completed": 26,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.5,
+              "maxDecodeWallMs": 860.1000000014901
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.09999999776482582,
+              "maxCpuMs": 0.3999999985098839,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heading": 0,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          }
+        },
+        "status": "",
+        "actions": ""
+      },
+      "after": {
+        "snapshot": {
+          "source": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+          "position": [
+            -68.65537279328971,
+            -33.3823275020014,
+            815.6080350897605
+          ],
+          "gps": {
+            "lat": 46.68797330187667,
+            "lon": 0.8835008038733916
+          },
+          "activity": "driving",
+          "heading": 0.01274308259120954,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 37,
+              "maxLocalCameraM": 353.77313869194865,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 37,
+            "calls": 91,
+            "triangles": 253238,
+            "points": 0,
+            "lines": 0
+          },
+          "heap": 314878239,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 30.200000002980232,
+              "maxBatchWallMs": 1282.6000000014901,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 95.10000000149012,
+            "maxInstallWallMs": 6490.599999997765,
+            "preparation": {
+              "slices": 1308,
+              "steps": 177534,
+              "cpuMs": 5522.600000079721,
+              "maxSliceMs": 95.10000000149012,
+              "maxStepMs": 92.69999999925494,
+              "completed": 26,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.5,
+              "maxDecodeWallMs": 860.1000000014901
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.09999999776482582,
+              "maxCpuMs": 0.3999999985098839,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": -68.65537279328971,
+            "z": 815.6080350897605,
+            "y": -33.3823275020014
+          },
+          "heading": 0.01274308259120954,
+          "speed": 0,
+          "steering": 0,
+          "active": true,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": true
+        },
+        "status": "Voyage repris au lieu sauvegardé.",
+        "actions": ""
+      },
+      "horizontalErrorDegrees": 0,
+      "passed": true,
+      "extensions": {
+        "schema": "planet-journey-v2",
+        "region": "FR-86",
+        "position": {
+          "lat": 46.68797330187667,
+          "lon": 0.8835008038733916,
+          "height": 67.8176724979986,
+          "datum": "IGN69"
+        },
+        "heading": 0.01274308259120954,
+        "activity": "driving",
+        "vehicle": {
+          "position": {
+            "lat": 46.68797330187667,
+            "lon": 0.8835008038733916,
+            "height": 67.8176724979986,
+            "datum": "IGN69"
+          },
+          "heading": 0.01274308259120954,
+          "speed": 0,
+          "placed": true,
+          "active": true
+        },
+        "extensions": {
+          "profile": "eco",
+          "boat": {
+            "visible": false,
+            "heading": 0,
+            "stroke": 0,
+            "following": false
+          },
+          "camp": null,
+          "exposure": {
+            "wetness": 0
+          },
+          "camera": {
+            "yaw": -1.6227166479703177,
+            "pitch": 0.08,
+            "zoom": 4.2,
+            "view": "third"
+          }
+        },
+        "map": {
+          "scale": 0.006,
+          "center": {
+            "x": 537714.1705123918,
+            "y": 6624201.688955783
+          },
+          "follow": true,
+          "layers": [
+            "rail",
+            "station",
+            "hydro",
+            "aviation",
+            "communes",
+            "coverage"
+          ],
+          "open": false
+        },
+        "route": null,
+        "manifests": {
+          "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        },
+        "climate": {
+          "date": "2026-06-21T13:57:47.015Z",
+          "weather": "clear"
+        },
+        "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+      }
+    },
+    {
+      "name": "camp-reload",
+      "reload": true,
+      "before": {
+        "snapshot": {
+          "source": "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+          "position": [
+            -650,
+            -34.369998931884766,
+            -330
+          ],
+          "gps": {
+            "lat": 46.69826442687747,
+            "lon": 0.8758867918049879
+          },
+          "activity": "camping",
+          "heading": 0,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 40,
+              "maxLocalCameraM": 727.6118847639374,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 40,
+            "calls": 82,
+            "triangles": 275636,
+            "points": 0,
+            "lines": 37
+          },
+          "heap": 336769383,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 23.099999997764826,
+              "maxBatchWallMs": 509.20000000298023,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 23.099999997764826,
+            "maxInstallWallMs": 3824.800000000745,
+            "preparation": {
+              "slices": 1080,
+              "steps": 176677,
+              "cpuMs": 3613.0000000037253,
+              "maxSliceMs": 23.099999997764826,
+              "maxStepMs": 20.800000000745058,
+              "completed": 25,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.8000000007450581,
+              "maxDecodeWallMs": 819.8999999985099
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 0.6000000014901161,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heading": 0,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          }
+        },
+        "status": "",
+        "actions": ""
+      },
+      "saved": {
+        "ok": true,
+        "value": {
+          "schema": "planet-journey-v2",
+          "region": "FR-86",
+          "position": {
+            "lat": 46.69826442687747,
+            "lon": 0.8758867918049879,
+            "height": 66.83000106811524,
+            "datum": "IGN69"
+          },
+          "heading": 0,
+          "activity": "camping",
+          "vehicle": null,
+          "extensions": {
+            "profile": "eco",
+            "boat": {
+              "visible": false,
+              "heading": 0,
+              "stroke": 0,
+              "following": false
+            },
+            "camp": {
+              "origin": {
+                "lat": 46.69826442687747,
+                "lon": 0.8758867918049879,
+                "height": 66.83000106811524,
+                "datum": "IGN69"
+              },
+              "heading": 0,
+              "tent": {
+                "lat": 46.69826307941071,
+                "lon": 0.8758632167669094,
+                "height": 66.8876010131836,
+                "datum": "IGN69"
+              },
+              "fire": {
+                "lat": 46.69825319798779,
+                "lon": 0.8758979244618582,
+                "height": 66.8636509513855,
+                "datum": "IGN69"
+              },
+              "bag": {
+                "lat": 46.69826981674452,
+                "lon": 0.8758789334589616,
+                "height": 66.84440093994141,
+                "datum": "IGN69"
+              },
+              "pegs": [
+                {
+                  "lat": 46.69827251167805,
+                  "lon": 0.8758520841100389,
+                  "height": 66.90760082244873,
+                  "datum": "IGN69"
+                },
+                {
+                  "lat": 46.69827251167805,
+                  "lon": 0.8758743494237797,
+                  "height": 66.85320087432862,
+                  "datum": "IGN69"
+                },
+                {
+                  "lat": 46.698253647143375,
+                  "lon": 0.8758520841100389,
+                  "height": 66.91480098724367,
+                  "datum": "IGN69"
+                },
+                {
+                  "lat": 46.698253647143375,
+                  "lon": 0.8758743494237797,
+                  "height": 66.85965097427368,
+                  "datum": "IGN69"
+                }
+              ]
+            },
+            "exposure": {
+              "wetness": 0
+            },
+            "camera": {
+              "yaw": 0,
+              "pitch": 0.08,
+              "zoom": 3.1,
+              "view": "third"
+            }
+          },
+          "map": {
+            "scale": 0.006,
+            "center": {
+              "x": 0,
+              "y": 0
+            },
+            "follow": true,
+            "layers": [
+              "road",
+              "rail",
+              "hydro",
+              "aviation",
+              "communes",
+              "coverage",
+              "station"
+            ],
+            "open": false
+          },
+          "route": null,
+          "manifests": {
+            "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+          },
+          "climate": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "weather": "clear"
+          },
+          "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        }
+      },
+      "restoreFrom": {
+        "snapshot": {
+          "source": "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+          "position": [
+            -353.66215395553013,
+            -32.22696558738903,
+            -13.727512929741842
+          ],
+          "gps": {
+            "lat": 46.6954233157827,
+            "lon": 0.8797680006964309
+          },
+          "activity": "walking",
+          "heading": 3.141592653589793,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 30,
+              "maxLocalCameraM": 353.77313869194865,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 30,
+            "calls": 89,
+            "triangles": 240757,
+            "points": 0,
+            "lines": 0
+          },
+          "heap": 378423229,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 8.700000002980232,
+              "maxBatchWallMs": 465.6000000014901,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 20,
+            "maxInstallWallMs": 3368,
+            "preparation": {
+              "slices": 856,
+              "steps": 172265,
+              "cpuMs": 2797.2999999709427,
+              "maxSliceMs": 20,
+              "maxStepMs": 19.800000000745058,
+              "completed": 25,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.19999999925494194,
+              "maxDecodeWallMs": 524.8999999985099
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.30000000074505806,
+              "maxCpuMs": 0.30000000074505806,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heading": 0,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          }
+        },
+        "status": "",
+        "actions": ""
+      },
+      "after": {
+        "snapshot": {
+          "source": "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+          "position": [
+            -649.9999999999975,
+            -34.36999893188353,
+            -329.9999999998374
+          ],
+          "gps": {
+            "lat": 46.69826442687747,
+            "lon": 0.8758867918049879
+          },
+          "activity": "camping",
+          "heading": 0,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 30,
+              "maxLocalCameraM": 353.77313869194865,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 30,
+            "calls": 89,
+            "triangles": 240757,
+            "points": 0,
+            "lines": 0
+          },
+          "heap": 378423229,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 8.700000002980232,
+              "maxBatchWallMs": 465.6000000014901,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 20,
+            "maxInstallWallMs": 3368,
+            "preparation": {
+              "slices": 856,
+              "steps": 172265,
+              "cpuMs": 2797.2999999709427,
+              "maxSliceMs": 20,
+              "maxStepMs": 19.800000000745058,
+              "completed": 25,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.19999999925494194,
+              "maxDecodeWallMs": 524.8999999985099
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.30000000074505806,
+              "maxCpuMs": 0.30000000074505806,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heading": 0,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": false
+        },
+        "status": "Voyage repris au lieu sauvegardé.",
+        "actions": ""
+      },
+      "horizontalErrorDegrees": 0,
+      "passed": true,
+      "extensions": {
+        "schema": "planet-journey-v2",
+        "region": "FR-86",
+        "position": {
+          "lat": 46.69826442687747,
+          "lon": 0.8758867918049879,
+          "height": 66.83000106811647,
+          "datum": "IGN69"
+        },
+        "heading": 0,
+        "activity": "camping",
+        "vehicle": null,
+        "extensions": {
+          "profile": "eco",
+          "boat": {
+            "visible": false,
+            "heading": 0,
+            "stroke": 0,
+            "following": false
+          },
+          "camp": {
+            "origin": {
+              "lat": 46.69826442687747,
+              "lon": 0.8758867918049879,
+              "height": 66.83000106811647,
+              "datum": "IGN69"
+            },
+            "heading": 0,
+            "tent": {
+              "lat": 46.69826307941071,
+              "lon": 0.8758632167669094,
+              "height": 66.88760101318351,
+              "datum": "IGN69"
+            },
+            "fire": {
+              "lat": 46.69825319798778,
+              "lon": 0.8758979244618582,
+              "height": 66.86365095138513,
+              "datum": "IGN69"
+            },
+            "bag": {
+              "lat": 46.69826981674452,
+              "lon": 0.8758789334589617,
+              "height": 66.84440093994263,
+              "datum": "IGN69"
+            },
+            "pegs": [
+              {
+                "lat": 46.69827251167805,
+                "lon": 0.875852084110039,
+                "height": 66.90760082244995,
+                "datum": "IGN69"
+              },
+              {
+                "lat": 46.69827251167805,
+                "lon": 0.8758743494237797,
+                "height": 66.85320087432984,
+                "datum": "IGN69"
+              },
+              {
+                "lat": 46.698253647143375,
+                "lon": 0.875852084110039,
+                "height": 66.91480098724358,
+                "datum": "IGN69"
+              },
+              {
+                "lat": 46.698253647143375,
+                "lon": 0.8758743494237797,
+                "height": 66.85965097427311,
+                "datum": "IGN69"
+              }
+            ]
+          },
+          "exposure": {
+            "wetness": 0
+          },
+          "camera": {
+            "yaw": 0,
+            "pitch": 0.08,
+            "zoom": 3.1,
+            "view": "third"
+          }
+        },
+        "map": {
+          "scale": 0.006,
+          "center": {
+            "x": 0,
+            "y": 0
+          },
+          "follow": true,
+          "layers": [
+            "road",
+            "rail",
+            "station",
+            "hydro",
+            "aviation",
+            "communes",
+            "coverage"
+          ],
+          "open": false
+        },
+        "route": null,
+        "manifests": {
+          "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        },
+        "climate": {
+          "date": "2026-06-21T13:57:47.015Z",
+          "weather": "clear"
+        },
+        "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+      }
+    },
+    {
+      "name": "boat-reload",
+      "reload": true,
+      "before": {
+        "snapshot": {
+          "source": "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+          "position": [
+            -670.4715757510697,
+            -35.24964407749227,
+            -196.957473529208
+          ],
+          "gps": {
+            "lat": 46.6970692909947,
+            "lon": 0.8756186705950666
+          },
+          "activity": "boating",
+          "heading": -0.5224872536321237,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 53,
+              "maxLocalCameraM": 697.8319724175224,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 98,
+            "calls": 74,
+            "triangles": 381329,
+            "points": 0,
+            "lines": 102
+          },
+          "heap": 395646500,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 53336,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 380,
+              "maxBatchMs": 107.60000000149012,
+              "maxBatchWallMs": 5775.099999997765,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 20,
+            "maxInstallWallMs": 3368,
+            "preparation": {
+              "slices": 1305,
+              "steps": 197826,
+              "cpuMs": 4501.49999993667,
+              "maxSliceMs": 107.60000000149012,
+              "maxStepMs": 105.60000000149012,
+              "completed": 30,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.19999999925494194,
+              "maxDecodeWallMs": 524.8999999985099
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 3.2000000029802322,
+              "maxCpuMs": 17.600000001490116,
+              "traffic": {
+                "created": 6,
+                "active": 6,
+                "stops": 0,
+                "distanceM": 4.5,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": {
+                "id": "traffic:osm:1619998476:0",
+                "position": {
+                  "x": -181.48014191003827,
+                  "y": -2.6894197377387767,
+                  "z": -168.04737576944262
+                },
+                "speed": 1.5,
+                "rain": 0
+              }
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heading": 0,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": false
+        },
+        "status": "Voyage sauvegardé.",
+        "actions": ""
+      },
+      "saved": {
+        "ok": true,
+        "value": {
+          "schema": "planet-journey-v2",
+          "region": "FR-86",
+          "position": {
+            "lat": 46.6970692909947,
+            "lon": 0.8756186705950666,
+            "height": 65.95035592250773,
+            "datum": "IGN69"
+          },
+          "heading": -0.5224872536321237,
+          "activity": "boating",
+          "vehicle": null,
+          "extensions": {
+            "profile": "balanced",
+            "boat": {
+              "visible": true,
+              "heading": -0.5224872536321237,
+              "stroke": 0,
+              "following": false
+            },
+            "camp": null,
+            "exposure": {
+              "wetness": 0
+            },
+            "camera": {
+              "yaw": 2.6191053999576925,
+              "pitch": 0.08,
+              "zoom": 4.2,
+              "view": "third"
+            }
+          },
+          "map": {
+            "scale": 0.006,
+            "center": {
+              "x": 0,
+              "y": 0
+            },
+            "follow": true,
+            "layers": [
+              "road",
+              "rail",
+              "station",
+              "hydro",
+              "aviation",
+              "communes",
+              "coverage"
+            ],
+            "open": false
+          },
+          "route": null,
+          "manifests": {
+            "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+          },
+          "climate": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "weather": "clear"
+          },
+          "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        }
+      },
+      "restoreFrom": {
+        "snapshot": {
+          "source": "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+          "position": [
+            -353.66215395553013,
+            -32.22696558738903,
+            -13.727512929741842
+          ],
+          "gps": {
+            "lat": 46.6954233157827,
+            "lon": 0.8797680006964309
+          },
+          "activity": "walking",
+          "heading": 3.141592653589793,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 28,
+              "maxLocalCameraM": 353.77313869194865,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 28,
+            "calls": 90,
+            "triangles": 241287,
+            "points": 0,
+            "lines": 0
+          },
+          "heap": 346449128,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 7.5,
+              "maxBatchWallMs": 493.69999999925494,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 20.300000000745058,
+            "maxInstallWallMs": 4844.099999997765,
+            "preparation": {
+              "slices": 870,
+              "steps": 174314,
+              "cpuMs": 2794.39999999851,
+              "maxSliceMs": 20.300000000745058,
+              "maxStepMs": 20.300000000745058,
+              "completed": 25,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.10000000149011612,
+              "maxDecodeWallMs": 594
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 0.4000000022351742,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": -343.13944322441756,
+            "y": -34.179786410746146,
+            "z": 4.683610016368604
+          },
+          "heading": 0.7761273154934374,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": true
+        },
+        "status": "",
+        "actions": ""
+      },
+      "after": {
+        "snapshot": {
+          "source": "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+          "position": [
+            -670.4715757510669,
+            -35.24964407747962,
+            -196.95747352938866
+          ],
+          "gps": {
+            "lat": 46.6970692909947,
+            "lon": 0.8756186705950666
+          },
+          "activity": "boating",
+          "heading": -0.5224872536321237,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 28,
+              "maxLocalCameraM": 353.77313869194865,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 28,
+            "calls": 90,
+            "triangles": 241287,
+            "points": 0,
+            "lines": 0
+          },
+          "heap": 346449128,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 7.5,
+              "maxBatchWallMs": 493.69999999925494,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 20.300000000745058,
+            "maxInstallWallMs": 4844.099999997765,
+            "preparation": {
+              "slices": 870,
+              "steps": 174314,
+              "cpuMs": 2794.39999999851,
+              "maxSliceMs": 20.300000000745058,
+              "maxStepMs": 20.300000000745058,
+              "completed": 25,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.10000000149011612,
+              "maxDecodeWallMs": 594
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 0.4000000022351742,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": -343.13944322441756,
+            "y": -34.179786410746146,
+            "z": 4.683610016368604
+          },
+          "heading": 0.7761273154934374,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": false
+        },
+        "status": "Voyage repris au lieu sauvegardé.",
+        "actions": ""
+      },
+      "horizontalErrorDegrees": 0,
+      "passed": true,
+      "extensions": {
+        "schema": "planet-journey-v2",
+        "region": "FR-86",
+        "position": {
+          "lat": 46.6970692909947,
+          "lon": 0.8756186705950666,
+          "height": 65.95035592252037,
+          "datum": "IGN69"
+        },
+        "heading": -0.5224872536321237,
+        "activity": "boating",
+        "vehicle": null,
+        "extensions": {
+          "profile": "balanced",
+          "boat": {
+            "visible": true,
+            "heading": -0.5224872536321237,
+            "stroke": 0,
+            "following": false
+          },
+          "camp": null,
+          "exposure": {
+            "wetness": 0
+          },
+          "camera": {
+            "yaw": 2.6191053999576925,
+            "pitch": 0.08,
+            "zoom": 4.2,
+            "view": "third"
+          }
+        },
+        "map": {
+          "scale": 0.006,
+          "center": {
+            "x": 0,
+            "y": 0
+          },
+          "follow": true,
+          "layers": [
+            "road",
+            "rail",
+            "station",
+            "hydro",
+            "aviation",
+            "communes",
+            "coverage"
+          ],
+          "open": false
+        },
+        "route": null,
+        "manifests": {
+          "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        },
+        "climate": {
+          "date": "2026-06-21T13:57:47.015Z",
+          "weather": "clear"
+        },
+        "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+      }
+    },
+    {
+      "name": "unsupported-activity-controlled-refusal",
+      "before": {
+        "position": [
+          -650,
+          -34.369998931884766,
+          -330
+        ],
+        "saved": {
+          "schema": "planet-journey-v2",
+          "region": "FR-86",
+          "position": {
+            "lat": 46.69826442687747,
+            "lon": 0.8758867918049879,
+            "height": 66.83000106811524,
+            "datum": "IGN69"
+          },
+          "heading": 0,
+          "activity": "sitting",
+          "vehicle": null,
+          "extensions": {
+            "profile": "eco",
+            "boat": {
+              "visible": false,
+              "heading": -0.5224872536321237,
+              "stroke": 0,
+              "following": false
+            },
+            "camp": null,
+            "exposure": {
+              "wetness": 0
+            },
+            "camera": {
+              "yaw": 0,
+              "pitch": 0.08,
+              "zoom": 3.1,
+              "view": "third"
+            }
+          },
+          "map": {
+            "scale": 0.006,
+            "center": {
+              "x": 0,
+              "y": 0
+            },
+            "follow": true,
+            "layers": [
+              "road",
+              "rail",
+              "station",
+              "hydro",
+              "aviation",
+              "communes",
+              "coverage"
+            ],
+            "open": false
+          },
+          "route": null,
+          "manifests": {
+            "elevation": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+          },
+          "climate": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "weather": "clear"
+          },
+          "sources": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd"
+        }
+      },
+      "after": {
+        "snapshot": {
+          "source": "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+          "position": [
+            -650,
+            -34.369998931884766,
+            -330
+          ],
+          "gps": {
+            "lat": 46.69826442687747,
+            "lon": 0.8758867918049879
+          },
+          "activity": "walking",
+          "heading": 0,
+          "origin": {
+            "origin": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "revision": 0
+            },
+            "metrics": {
+              "rebases": 0,
+              "frames": 30,
+              "maxLocalCameraM": 727.610988374814,
+              "canonicalPhysics": true
+            }
+          },
+          "buffer": [
+            640,
+            420
+          ],
+          "viewport": [
+            640,
+            420
+          ],
+          "dpr": 1,
+          "render": {
+            "frame": 30,
+            "calls": 78,
+            "triangles": 274316,
+            "points": 0,
+            "lines": 37
+          },
+          "heap": 337563161,
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 4,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 35769031,
+              "active": 0,
+              "queued": 0,
+              "errors": {}
+            },
+            "render": {
+              "tiles": 4,
+              "features": 4490,
+              "triangles": 47986,
+              "trees": 1867,
+              "disposed": 0,
+              "batches": 364,
+              "maxBatchMs": 20.300000000745058,
+              "maxBatchWallMs": 493.69999999925494,
+              "failures": []
+            },
+            "graph": {
+              "foot": {
+                "features": 665,
+                "nodes": 7384,
+                "edges": 15118,
+                "refused": 142,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 665,
+                "nodes": 4598,
+                "edges": 9236,
+                "refused": 407,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 665,
+                "nodes": 0,
+                "edges": 0,
+                "refused": 665,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 20.300000000745058,
+            "maxInstallWallMs": 4844.099999997765,
+            "preparation": {
+              "slices": 924,
+              "steps": 175314,
+              "cpuMs": 2974.800000000745,
+              "maxSliceMs": 20.300000000745058,
+              "maxStepMs": 20.300000000745058,
+              "completed": 25,
+              "cancelled": 0
+            },
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+            "contact": {
+              "available": 499,
+              "expected": 499,
+              "effectiveStepM": 2
+            },
+            "decoder": {
+              "worker": true,
+              "batches": 25,
+              "maxReceiveMs": 0.10000000149011612,
+              "maxDecodeWallMs": 594
+            },
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 0.4000000022351742,
+              "traffic": {
+                "created": 0,
+                "active": 0,
+                "stops": 0,
+                "distanceM": 0,
+                "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic"
+              },
+              "nearbyVehicle": null
+            },
+            "stations": {
+              "count": 60,
+              "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+              "license": "© SNCF Réseau · Open Database License (ODbL)"
+            }
+          },
+          "network": {
+            "builds": 1,
+            "nodes": 6086,
+            "edges": 22159,
+            "components": 6,
+            "ready": true,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 0,
+            "maxSliceMs": 0,
+            "slices": 0,
+            "cache": true
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "audioEnabled": false,
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "car": {
+          "position": {
+            "x": -343.13944322441756,
+            "y": -34.179786410746146,
+            "z": 4.683610016368604
+          },
+          "heading": 0.7761273154934374,
+          "speed": 0,
+          "steering": 0,
+          "active": false,
+          "reason": "",
+          "odometer": 0,
+          "braking": false,
+          "metrics": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "placed": false
+        },
+        "status": "Voyage non repris : appui, activité ou véhicule devenu indisponible. Aucune relocalisation.",
+        "actions": ""
+      },
+      "passed": true
+    }
+  ],
+  "priorSession": "Previous three independent cases retained; camp and boat run in a clean second browser session.",
+  "sourceSHA": "9d6d0d679a660fd72684eddaf1c74dbd3f442611"
+}

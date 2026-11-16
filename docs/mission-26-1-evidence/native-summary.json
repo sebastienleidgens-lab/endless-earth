@@ -1,0 +1,2063 @@
+{
+  "method": "Native rendered frame timestamps and actual controller positions, unmodified recordings. Running requires both activity=running and gait mode=run for every observed frame in a span. No cumulative-duration substitution.",
+  "cases": [
+    {
+      "file": "angles-native-departure.json",
+      "video": "angles-native-departure.webm",
+      "raw": "raw/angles-native-departure.webm",
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 3712,
+      "observedWallSeconds": 1472.2698000000007,
+      "longestConsecutiveRunningSeconds": 44.55069999999925,
+      "run180Passed": false,
+      "projectedDistanceM": 2392.990065348624,
+      "geographicTrace": "angles-native-departure-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 2396.9672325842253,
+      "localDistanceByModeM": {
+        "walking": 106.63285669677862,
+        "running": 2290.3343758874507
+      },
+      "nativeFPS": 2.520597787171888,
+      "frameMs": {
+        "p50": 365.79999999701977,
+        "p95": 794.6999999992549,
+        "p99": 1556.699999999255,
+        "max": 2647.800000000745
+      },
+      "heapFirstBytes": 349643327,
+      "heapLastBytes": 449846523,
+      "heapMaxBytes": 504826111,
+      "renderMemoryFirst": {
+        "geometries": 206,
+        "textures": 16
+      },
+      "renderMemoryLast": {
+        "geometries": 238,
+        "textures": 16
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 3623,
+        "rawSha256": "417a842f284a2fac3144ade20f72b7c9ac43636dd71e2204aa4bda22f2c1457c",
+        "indexedSha256": "59959686bdda3750ff2cd78fcdcf59bb22808a9a07773ee9839e25b54c6cdffa"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-birds-fixed.json",
+      "video": "candidate-birds-fixed.webm",
+      "raw": "raw/candidate-birds-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 13,
+      "observedWallSeconds": 24.800199999999254,
+      "longestConsecutiveRunningSeconds": 0,
+      "run180Passed": false,
+      "projectedDistanceM": 0.0,
+      "geographicTrace": "candidate-birds-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 0.0,
+      "localDistanceByModeM": {
+        "walking": 0.0
+      },
+      "nativeFPS": 0.4838670655881953,
+      "frameMs": {
+        "p50": 1941.1000000014901,
+        "p95": 3580.10000000149,
+        "p99": 3580.10000000149,
+        "max": 3580.10000000149
+      },
+      "heapFirstBytes": 390515251,
+      "heapLastBytes": 406834351,
+      "heapMaxBytes": 406834351,
+      "renderMemoryFirst": {
+        "geometries": 503,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 504,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 10,
+        "rawSha256": "350e2fc9f8c295e2259d4564b0815c41683fd500f075aa31a09f9f7ec38bec5b",
+        "indexedSha256": "943eef53db9bf3d9eb47909d393f0e0b92efa742fb84520c88386ac9ded14d89"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-final-boat-fixed.json",
+      "video": "candidate-final-boat-fixed.webm",
+      "raw": "raw/candidate-final-boat-fixed.webm",
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 42,
+      "observedWallSeconds": 24.03889999999851,
+      "longestConsecutiveRunningSeconds": 0,
+      "run180Passed": false,
+      "projectedDistanceM": 5.104510648282458,
+      "geographicTrace": "candidate-final-boat-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 5.104696184409766,
+      "localDistanceByModeM": {
+        "boating": 5.104696184409766
+      },
+      "nativeFPS": 1.7055688904235444,
+      "frameMs": {
+        "p50": 583.0999999977648,
+        "p95": 689.5,
+        "p99": 818,
+        "max": 818
+      },
+      "heapFirstBytes": 376137555,
+      "heapLastBytes": 373961863,
+      "heapMaxBytes": 397078339,
+      "renderMemoryFirst": {
+        "geometries": 224,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 224,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 39,
+        "rawSha256": "1cd90bce0007a60d56bc8b436066332690e85eaa29cec6021a15058acc2f3d0f",
+        "indexedSha256": "5ffbc822406e47a3cfd99e971f2e2f174a4c13feb821fceddf445668828ed196"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-final-run-flat-left.json",
+      "video": "candidate-final-run-flat-left.webm",
+      "raw": "raw/candidate-final-run-flat-left.webm",
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 48,
+      "observedWallSeconds": 212.61490000000222,
+      "longestConsecutiveRunningSeconds": 212.61490000000222,
+      "run180Passed": true,
+      "projectedDistanceM": 37.48699692333326,
+      "geographicTrace": "candidate-final-run-flat-left-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 37.57480836885714,
+      "localDistanceByModeM": {
+        "running": 37.57480836885714
+      },
+      "nativeFPS": 0.22105694379838622,
+      "frameMs": {
+        "p50": 4277,
+        "p95": 6657.599999997765,
+        "p99": 12384.800000000745,
+        "max": 12384.800000000745
+      },
+      "heapFirstBytes": 341786424,
+      "heapLastBytes": 290978080,
+      "heapMaxBytes": 371466033,
+      "renderMemoryFirst": {
+        "geometries": 239,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 276,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 44,
+        "rawSha256": "3c75259c6f17c08f1543ba43eaf21db0aca72a1fb6eab232aa1e9291b5e58116",
+        "indexedSha256": "2c1ebc23bb935c1a3703b7d580d7ee9b0f3121a4e52e0ba5e45ebc0129cb3a2a"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-final-run-terrain-front.json",
+      "video": "candidate-final-run-terrain-front.webm",
+      "raw": "raw/candidate-final-run-terrain-front.webm",
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 56,
+      "observedWallSeconds": 207.57009999999775,
+      "longestConsecutiveRunningSeconds": 207.57009999999775,
+      "run180Passed": true,
+      "projectedDistanceM": 43.310888006151636,
+      "geographicTrace": "candidate-final-run-terrain-front-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 43.37256836886183,
+      "localDistanceByModeM": {
+        "running": 43.37256836886183
+      },
+      "nativeFPS": 0.26497072555247886,
+      "frameMs": {
+        "p50": 3529.60000000149,
+        "p95": 7324.400000002235,
+        "p99": 9427.29999999702,
+        "max": 9427.29999999702
+      },
+      "heapFirstBytes": 370069254,
+      "heapLastBytes": 294048765,
+      "heapMaxBytes": 372966093,
+      "renderMemoryFirst": {
+        "geometries": 282,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 289,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 51,
+        "rawSha256": "28ccfbc81f079f05af86d6b8bf052ba6b666e0936826227bccce98dab36e9b1f",
+        "indexedSha256": "6b6c17a0c12a2b9bb9a307a83ec325138aea3f7ec940fa4d17056940846e65c3"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-final-run-terrain-right.json",
+      "video": "candidate-final-run-terrain-right.webm",
+      "raw": "raw/candidate-final-run-terrain-right.webm",
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 75,
+      "observedWallSeconds": 214.55569999999926,
+      "longestConsecutiveRunningSeconds": 98.78219999999925,
+      "run180Passed": false,
+      "projectedDistanceM": 24.87533381397554,
+      "geographicTrace": "candidate-final-run-terrain-right-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 24.910768356411516,
+      "localDistanceByModeM": {
+        "running": 24.910768356411516,
+        "walking": 0.0
+      },
+      "nativeFPS": 0.34489878385892453,
+      "frameMs": {
+        "p50": 2751,
+        "p95": 5493.599999997765,
+        "p99": 5891.300000000745,
+        "max": 5891.300000000745
+      },
+      "heapFirstBytes": 308338467,
+      "heapLastBytes": 310391247,
+      "heapMaxBytes": 312819575,
+      "renderMemoryFirst": {
+        "geometries": 413,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 426,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 71,
+        "rawSha256": "5224027f2d7042c60ffcd22dcb7f54cdabc0a02ce36abaf7822d0533c211431c",
+        "indexedSha256": "34522bce54bb7467e0e294af5eaebe1b8a19eedfb5b5a16f84c6f3c10827478f"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-rebases-fixed.json",
+      "video": "candidate-rebases-fixed.webm",
+      "raw": "raw/candidate-rebases-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 7,
+      "observedWallSeconds": 32.476699999999255,
+      "longestConsecutiveRunningSeconds": 0,
+      "run180Passed": false,
+      "projectedDistanceM": 0.0,
+      "geographicTrace": "candidate-rebases-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 0.0,
+      "localDistanceByModeM": {
+        "walking": 0.0
+      },
+      "nativeFPS": 0.1847478346014262,
+      "frameMs": {
+        "p50": 4706,
+        "p95": 11344.699999999255,
+        "p99": 11344.699999999255,
+        "max": 11344.699999999255
+      },
+      "heapFirstBytes": 310654892,
+      "heapLastBytes": 312568620,
+      "heapMaxBytes": 319623900,
+      "renderMemoryFirst": {
+        "geometries": 507,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 507,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 2,
+        "rawSha256": "cca498f2f173f2d2a811bb243a245f35f65903068d880bbb4fd27f46fe5a36f8",
+        "indexedSha256": "6b5bb465f2f0416e46d9e248a160b803fb91cb1f1065cc5a1e1f296a8f46fc3b"
+      },
+      "rebases": 7,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-run-flat-front.json",
+      "video": "candidate-run-flat-front.webm",
+      "raw": "raw/candidate-run-flat-front.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 131,
+      "observedWallSeconds": 181.476,
+      "longestConsecutiveRunningSeconds": 181.476,
+      "run180Passed": true,
+      "projectedDistanceM": 102.33846189257068,
+      "geographicTrace": "candidate-run-flat-front-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 102.57819144212252,
+      "localDistanceByModeM": {
+        "running": 102.57819144212252
+      },
+      "nativeFPS": 0.716348167250766,
+      "frameMs": {
+        "p50": 1358,
+        "p95": 1771.8999999985099,
+        "p99": 2139.699999999255,
+        "max": 4858.29999999702
+      },
+      "heapFirstBytes": 371897881,
+      "heapLastBytes": 334881729,
+      "heapMaxBytes": 384328105,
+      "renderMemoryFirst": {
+        "geometries": 366,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 373,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 126,
+        "rawSha256": "96170b5a7c1f06c3adddd0380f40cb6061bcaa80312d04c911b21d5ba7cda344",
+        "indexedSha256": "4a7991f655660da0368e74e6cd93324d3b845161c3cd8ebbf1791be1950dbf35"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-run-flat-left.json",
+      "video": "candidate-run-flat-left.webm",
+      "raw": "raw/candidate-run-flat-left.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 67,
+      "observedWallSeconds": 179.727,
+      "longestConsecutiveRunningSeconds": 179.727,
+      "run180Passed": false,
+      "projectedDistanceM": 52.65515182028269,
+      "geographicTrace": "candidate-run-flat-left-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 52.77849473999662,
+      "localDistanceByModeM": {
+        "running": 52.77849473999662
+      },
+      "nativeFPS": 0.36722362249411605,
+      "frameMs": {
+        "p50": 2709.699999999255,
+        "p95": 3557.800000000745,
+        "p99": 3968.2999999970198,
+        "max": 3968.2999999970198
+      },
+      "heapFirstBytes": 396419834,
+      "heapLastBytes": 303574434,
+      "heapMaxBytes": 411594575,
+      "renderMemoryFirst": {
+        "geometries": 460,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 430,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 65,
+        "rawSha256": "16b32b7da42c1a486378acf0b18fc41a3c26d28608cd6fed62f440d9982fd696",
+        "indexedSha256": "d8c76875c680a01b8928925b4aa19b72f4e6b6d1503700a32c1e77703edcd90a"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-run-flat-rear.json",
+      "video": "candidate-run-flat-rear.webm",
+      "raw": "raw/candidate-run-flat-rear.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 228,
+      "observedWallSeconds": 183.40530000000075,
+      "longestConsecutiveRunningSeconds": 183.40530000000075,
+      "run180Passed": true,
+      "projectedDistanceM": 180.4551869898703,
+      "geographicTrace": "candidate-run-flat-rear-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 180.87792052222153,
+      "localDistanceByModeM": {
+        "running": 180.87792052222153
+      },
+      "nativeFPS": 1.23769596625615,
+      "frameMs": {
+        "p50": 787.2000000029802,
+        "p95": 1031.199999999255,
+        "p99": 1299.1000000014901,
+        "max": 1451.199999999255
+      },
+      "heapFirstBytes": 372851128,
+      "heapLastBytes": 348554927,
+      "heapMaxBytes": 395745878,
+      "renderMemoryFirst": {
+        "geometries": 427,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 418,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 224,
+        "rawSha256": "b800eeadee248746b9eeb13be6f6bb7cee2aea87fe5a83d5fe29b6d193429ad6",
+        "indexedSha256": "5635fc0a5027349fcf72e4b1fc5f435302537b5ab9ea460d95e7b5c5413c2ca6"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-run-flat-right.json",
+      "video": "candidate-run-flat-right.webm",
+      "raw": "raw/candidate-run-flat-right.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 82,
+      "observedWallSeconds": 182.39569999999927,
+      "longestConsecutiveRunningSeconds": 182.39569999999927,
+      "run180Passed": true,
+      "projectedDistanceM": 63.91724366001566,
+      "geographicTrace": "candidate-run-flat-right-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 64.06696836884443,
+      "localDistanceByModeM": {
+        "running": 64.06696836884443
+      },
+      "nativeFPS": 0.4440894165816427,
+      "frameMs": {
+        "p50": 2070.800000000745,
+        "p95": 3387.39999999851,
+        "p99": 5216.800000000745,
+        "max": 5216.800000000745
+      },
+      "heapFirstBytes": 328129695,
+      "heapLastBytes": 308909109,
+      "heapMaxBytes": 340074607,
+      "renderMemoryFirst": {
+        "geometries": 457,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 468,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 78,
+        "rawSha256": "995bcd2665eda5f97ce882efec79bd56c3d1435a522919551a72f45aa4100a42",
+        "indexedSha256": "e87a9f40cae1aae178025b6eecc8c3a110bc4bc54d8dd44727eef3709b2d30a8"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-run-terrain-front.json",
+      "video": "candidate-run-terrain-front.webm",
+      "raw": "raw/candidate-run-terrain-front.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 56,
+      "observedWallSeconds": 178.913,
+      "longestConsecutiveRunningSeconds": 178.913,
+      "run180Passed": false,
+      "projectedDistanceM": 43.919497616818624,
+      "geographicTrace": "candidate-run-terrain-front-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 43.98204371105484,
+      "localDistanceByModeM": {
+        "running": 43.98204371105484
+      },
+      "nativeFPS": 0.3074119823601415,
+      "frameMs": {
+        "p50": 3351.60000000149,
+        "p95": 4072.39999999851,
+        "p99": 4720.300000000745,
+        "max": 4720.300000000745
+      },
+      "heapFirstBytes": 358528303,
+      "heapLastBytes": 305865526,
+      "heapMaxBytes": 367112767,
+      "renderMemoryFirst": {
+        "geometries": 464,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 465,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 54,
+        "rawSha256": "b5ae3aebe12be75d7829824a48a5cf702b68c0271382583893347049ecd806ef",
+        "indexedSha256": "70261e9ce40a01ac7bfc543e6e84fdc0caf0ab356097b46a2e18681307611a37"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-run-terrain-left.json",
+      "video": "candidate-run-terrain-left.webm",
+      "raw": "raw/candidate-run-terrain-left.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 131,
+      "observedWallSeconds": 181.152,
+      "longestConsecutiveRunningSeconds": 181.152,
+      "run180Passed": true,
+      "projectedDistanceM": 103.3912941016682,
+      "geographicTrace": "candidate-run-terrain-left-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 103.53841635368407,
+      "localDistanceByModeM": {
+        "running": 103.53841635368407
+      },
+      "nativeFPS": 0.7176293940999824,
+      "frameMs": {
+        "p50": 1357.1000000014901,
+        "p95": 2003.5999999977648,
+        "p99": 2485.099999997765,
+        "max": 2580.699999999255
+      },
+      "heapFirstBytes": 310241130,
+      "heapLastBytes": 344867426,
+      "heapMaxBytes": 355490089,
+      "renderMemoryFirst": {
+        "geometries": 478,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 485,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 127,
+        "rawSha256": "218ca72ee7173ce29aec110a10cbf30a31951f85d1795105cd750d2a880a021c",
+        "indexedSha256": "6c2e72a17acdcb58a4c3de981c1fcd7f8f034dfc5fba216e17a47b71c126a4c4"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-run-terrain-rear.json",
+      "video": "candidate-run-terrain-rear.webm",
+      "raw": "raw/candidate-run-terrain-rear.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 164,
+      "observedWallSeconds": 183.44009999999776,
+      "longestConsecutiveRunningSeconds": 183.44009999999776,
+      "run180Passed": true,
+      "projectedDistanceM": 129.52843324140696,
+      "geographicTrace": "candidate-run-terrain-rear-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 129.7126834797343,
+      "localDistanceByModeM": {
+        "running": 129.7126834797343
+      },
+      "nativeFPS": 0.8885734362334189,
+      "frameMs": {
+        "p50": 1039.1000000014901,
+        "p95": 1791.699999999255,
+        "p99": 2132,
+        "max": 2318.599999997765
+      },
+      "heapFirstBytes": 335254833,
+      "heapLastBytes": 356417128,
+      "heapMaxBytes": 374378045,
+      "renderMemoryFirst": {
+        "geometries": 503,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 492,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 160,
+        "rawSha256": "ce2ab632bb168e54dbc9c247f97c9c3c9cdf6d33ea1f482a4de77470d954ae3e",
+        "indexedSha256": "e186d4a4a0bb290642306199a0c0a2eae19fcd6bcc88ae2d735b53c1ab417e72"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-run-terrain-right.json",
+      "video": "candidate-run-terrain-right.webm",
+      "raw": "raw/candidate-run-terrain-right.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 47,
+      "observedWallSeconds": 177.6111000000015,
+      "longestConsecutiveRunningSeconds": 177.6111000000015,
+      "run180Passed": false,
+      "projectedDistanceM": 36.729922664344166,
+      "geographicTrace": "candidate-run-terrain-right-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 36.782235072881164,
+      "localDistanceByModeM": {
+        "running": 36.782235072881164
+      },
+      "nativeFPS": 0.25899282195763446,
+      "frameMs": {
+        "p50": 3727.5,
+        "p95": 5123.5,
+        "p99": 6030.900000002235,
+        "max": 6030.900000002235
+      },
+      "heapFirstBytes": 337315691,
+      "heapLastBytes": 366150452,
+      "heapMaxBytes": 366150452,
+      "renderMemoryFirst": {
+        "geometries": 489,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 489,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 45,
+        "rawSha256": "c5d769f86555e377dbbf182935f2ac19a3b5e534dc72f98a1cf1c3f42f9f366c",
+        "indexedSha256": "b847fd149a877d77908419e54ac08e26ff951817dc6669144f0490e390d6960a"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-shadows-fixed.json",
+      "video": "candidate-shadows-fixed.webm",
+      "raw": "raw/candidate-shadows-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 13,
+      "observedWallSeconds": 24.183400000002234,
+      "longestConsecutiveRunningSeconds": 0,
+      "run180Passed": false,
+      "projectedDistanceM": 0.0,
+      "geographicTrace": "candidate-shadows-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 0.0,
+      "localDistanceByModeM": {
+        "walking": 0.0
+      },
+      "nativeFPS": 0.4962081427755771,
+      "frameMs": {
+        "p50": 2029.699999999255,
+        "p95": 3038,
+        "p99": 3038,
+        "max": 3038
+      },
+      "heapFirstBytes": 368183713,
+      "heapLastBytes": 376046670,
+      "heapMaxBytes": 393132812,
+      "renderMemoryFirst": {
+        "geometries": 511,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 503,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 10,
+        "rawSha256": "9d0ff5464abf08512e69d9d74f01fced1bcdc7481264a0e9da680748756526ae",
+        "indexedSha256": "40c385b720e91b32916f656a426f1c87ee629cb38f5cfb851db2e5818d8e4edb"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-soak-fixed.json",
+      "video": "candidate-soak-fixed.webm",
+      "raw": "raw/candidate-soak-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 126,
+      "observedWallSeconds": 358.1915,
+      "longestConsecutiveRunningSeconds": 0,
+      "run180Passed": false,
+      "projectedDistanceM": 0.0,
+      "geographicTrace": "candidate-soak-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 0.0,
+      "localDistanceByModeM": {
+        "walking": 0.0
+      },
+      "nativeFPS": 0.348975338610771,
+      "frameMs": {
+        "p50": 2527.599999997765,
+        "p95": 4846.89999999851,
+        "p99": 5482.300000000745,
+        "max": 6290.699999999255
+      },
+      "heapFirstBytes": 339070785,
+      "heapLastBytes": 309753512,
+      "heapMaxBytes": 394404947,
+      "renderMemoryFirst": {
+        "geometries": 529,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 507,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 122,
+        "rawSha256": "3e386851f2a36927e84bae3f658c2fb1f8cac2ec3a251560bc5a834de7022d2b",
+        "indexedSha256": "c789677086a66b0ba092093b88fa2752ae6330d093cc6f58902389d0f439c7b3"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "candidate-startup-fixed.json",
+      "video": "candidate-startup-fixed.webm",
+      "raw": "raw/candidate-startup-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 18,
+      "observedWallSeconds": 24.253,
+      "longestConsecutiveRunningSeconds": 19.165900000002235,
+      "run180Passed": false,
+      "projectedDistanceM": 11.946736242339915,
+      "geographicTrace": "candidate-startup-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 11.974720517401193,
+      "localDistanceByModeM": {
+        "walking": 0.3137724105074113,
+        "running": 11.660948106893782
+      },
+      "nativeFPS": 0.7009442130870408,
+      "frameMs": {
+        "p50": 1473.1000000014901,
+        "p95": 2140.5,
+        "p99": 2140.5,
+        "max": 2140.5
+      },
+      "heapFirstBytes": 383484541,
+      "heapLastBytes": 350965102,
+      "heapMaxBytes": 400694409,
+      "renderMemoryFirst": {
+        "geometries": 520,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 523,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 15,
+        "rawSha256": "19dcce5cd3838707aa11898efb435de6c73c588be937a666c5070c72cd662818",
+        "indexedSha256": "904fcbd7692ab8750f4a439ea9b24452cdb40c7d80a773d9d19ea611467e6c02"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-birds-fixed.json",
+      "video": "reference-birds-fixed.webm",
+      "raw": "raw/reference-birds-fixed.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 35,
+      "observedWallSeconds": 24.628800000000744,
+      "longestConsecutiveRunningSeconds": 0,
+      "run180Passed": false,
+      "projectedDistanceM": 0.0,
+      "geographicTrace": "reference-birds-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 0.0,
+      "localDistanceByModeM": {
+        "walking": 0.0
+      },
+      "nativeFPS": 1.3804976287922666,
+      "frameMs": {
+        "p50": 744.8999999985099,
+        "p95": 973,
+        "p99": 1108.5,
+        "max": 1108.5
+      },
+      "heapFirstBytes": 274444186,
+      "heapLastBytes": 288566729,
+      "heapMaxBytes": 299669965,
+      "renderMemoryFirst": {
+        "geometries": 448,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 449,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 31,
+        "rawSha256": "cebeeaa92173911300d0cba6c2abf93395f552530ae9198c24527d8d90787313",
+        "indexedSha256": "ac39c577973ec06fff58f1e6720246f7507bc5db76fa94249e0b74792e561a77"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-final-boat-fixed.json",
+      "video": "reference-final-boat-fixed.webm",
+      "raw": "raw/reference-final-boat-fixed.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 40,
+      "observedWallSeconds": 23.796699999999255,
+      "longestConsecutiveRunningSeconds": 0,
+      "run180Passed": false,
+      "projectedDistanceM": 4.902924947991816,
+      "geographicTrace": "reference-final-boat-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 4.903005017645737,
+      "localDistanceByModeM": {
+        "boating": 4.903005017645737
+      },
+      "nativeFPS": 1.6388827022234689,
+      "frameMs": {
+        "p50": 580.9000000022352,
+        "p95": 805.1000000014901,
+        "p99": 1552.5,
+        "max": 1552.5
+      },
+      "heapFirstBytes": 256670883,
+      "heapLastBytes": 271412156,
+      "heapMaxBytes": 281594404,
+      "renderMemoryFirst": {
+        "geometries": 218,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 218,
+        "textures": 20
+      },
+      "errors": [
+        "THREE.WebGLProgram: Shader Error 0 - VALIDATE_STATUS false\n\nMaterial Name: \nMaterial Type: ShaderMaterial\n\nProgram Info Log: Fragment shader is not compiled.\n\nFRAGMENT\n\nERROR: 0:67: '' : syntax error\n\n  62:    gl_FragColor=vec4(vec3(.65,.79,.78)*light,alpha);\n  63: #if defined( TONE_MAPPING )\n  64: \tgl_FragColor.rgb = toneMapping( gl_FragColor.rgb );\n  65: #endif\n  66: gl_FragColor = linearToOutputTexel( gl_FragColor );\n> 67:   "
+      ],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 37,
+        "rawSha256": "3ee582dc7401de2a76030a79c53695d3ce8359042d0a0f1ce2e99af98cc02305",
+        "indexedSha256": "76cddcdffc89e930d61e2abc81df5ac0cadffdc6df3524b4ee387ee8daa5ba89"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-final-run-flat-left.json",
+      "video": "reference-final-run-flat-left.webm",
+      "raw": "raw/reference-final-run-flat-left.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 84,
+      "observedWallSeconds": 218.42380000000074,
+      "longestConsecutiveRunningSeconds": 218.42380000000074,
+      "run180Passed": true,
+      "projectedDistanceM": 65.51095033261764,
+      "geographicTrace": "reference-final-run-flat-left-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 65.66440836884232,
+      "localDistanceByModeM": {
+        "running": 65.66440836884232
+      },
+      "nativeFPS": 0.3799952203010831,
+      "frameMs": {
+        "p50": 2441,
+        "p95": 4462.29999999702,
+        "p99": 8406.300000000745,
+        "max": 8406.300000000745
+      },
+      "heapFirstBytes": 249136934,
+      "heapLastBytes": 266107023,
+      "heapMaxBytes": 270834035,
+      "renderMemoryFirst": {
+        "geometries": 237,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 241,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 80,
+        "rawSha256": "ca3c5e0554c92385dd31d5851e1b836b951e8015e9b2a1a8814505b847c025b3",
+        "indexedSha256": "c827362817a1ab2ab7c18d0dc222728b1d160729b99300d163d0f92f38dabfbe"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-flat-front.json",
+      "video": "reference-run-flat-front.webm",
+      "raw": "raw/reference-run-flat-front.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 66,
+      "observedWallSeconds": 180.87669999999926,
+      "longestConsecutiveRunningSeconds": 180.87669999999926,
+      "run180Passed": true,
+      "projectedDistanceM": 51.16216281290126,
+      "geographicTrace": "reference-run-flat-front-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 51.28200836885047,
+      "localDistanceByModeM": {
+        "running": 51.28200836885047
+      },
+      "nativeFPS": 0.3593608242521025,
+      "frameMs": {
+        "p50": 2867.099999997765,
+        "p95": 3566.7000000029802,
+        "p99": 5433.699999999255,
+        "max": 5433.699999999255
+      },
+      "heapFirstBytes": 261669313,
+      "heapLastBytes": 242680879,
+      "heapMaxBytes": 264838684,
+      "renderMemoryFirst": {
+        "geometries": 314,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 321,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 62,
+        "rawSha256": "757376f643df9d2746b917ba07470a8073cc21c35cd20f531e94d50038aeefdd",
+        "indexedSha256": "15ff7c189ef54b790591f7cc11adfd64251246b74f8f64460d07620b4254f92e"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-flat-left.json",
+      "video": "reference-run-flat-left.webm",
+      "raw": "raw/reference-run-flat-left.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 50,
+      "observedWallSeconds": 175.63189999999852,
+      "longestConsecutiveRunningSeconds": 175.63189999999852,
+      "run180Passed": false,
+      "projectedDistanceM": 38.676022346058026,
+      "geographicTrace": "reference-run-flat-left-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 38.76661907338439,
+      "localDistanceByModeM": {
+        "running": 38.76661907338439
+      },
+      "nativeFPS": 0.2789925975862039,
+      "frameMs": {
+        "p50": 3406.5,
+        "p95": 5128.599999997765,
+        "p99": 6679.10000000149,
+        "max": 6679.10000000149
+      },
+      "heapFirstBytes": 268530088,
+      "heapLastBytes": 253357126,
+      "heapMaxBytes": 275805992,
+      "renderMemoryFirst": {
+        "geometries": 383,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 385,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 47,
+        "rawSha256": "7a0b3941edd14cf865874e713e99e0f587fe9a6f6a3210b3d0353a40f5bca1a9",
+        "indexedSha256": "2725a4c051954814ed9b0a7f6cdf30e482b95fe988c30ec5f05b7d520da54a23"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-flat-rear.json",
+      "video": "reference-run-flat-rear.webm",
+      "raw": "raw/reference-run-flat-rear.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 167,
+      "observedWallSeconds": 182.13270000000298,
+      "longestConsecutiveRunningSeconds": 182.13270000000298,
+      "run180Passed": true,
+      "projectedDistanceM": 131.82581354770767,
+      "geographicTrace": "reference-run-flat-rear-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 132.1346216746118,
+      "localDistanceByModeM": {
+        "running": 132.1346216746118
+      },
+      "nativeFPS": 0.9114233742759937,
+      "frameMs": {
+        "p50": 1055.5999999977648,
+        "p95": 1622.2000000029802,
+        "p99": 1988.2999999970198,
+        "max": 2208.900000002235
+      },
+      "heapFirstBytes": 242288148,
+      "heapLastBytes": 281066963,
+      "heapMaxBytes": 282539627,
+      "renderMemoryFirst": {
+        "geometries": 376,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 371,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 163,
+        "rawSha256": "781164f799faefe07d19fe37ceb5bbeb5cca9680c59f7e30b10d2ae4f31a016a",
+        "indexedSha256": "80081667547cb4223ee6508ade76c8cdd45ebbdd3424dd8c5cc50489983e7151"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-flat-right.json",
+      "video": "reference-run-flat-right.webm",
+      "raw": "raw/reference-run-flat-right.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 112,
+      "observedWallSeconds": 181.826,
+      "longestConsecutiveRunningSeconds": 181.826,
+      "run180Passed": true,
+      "projectedDistanceM": 87.88222410376864,
+      "geographicTrace": "reference-run-flat-right-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 88.08808836882447,
+      "localDistanceByModeM": {
+        "running": 88.08808836882447
+      },
+      "nativeFPS": 0.610473749628766,
+      "frameMs": {
+        "p50": 1603,
+        "p95": 2151.5,
+        "p99": 3599.699999999255,
+        "max": 3692.199999999255
+      },
+      "heapFirstBytes": 249972736,
+      "heapLastBytes": 261349437,
+      "heapMaxBytes": 274549289,
+      "renderMemoryFirst": {
+        "geometries": 428,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 433,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 108,
+        "rawSha256": "22659a88d2a749edaf02d5b1deb8977e0566dc6cc429bd62acf27c9e71a7dc99",
+        "indexedSha256": "a4cd964733ff348af6ce3297597d0111af2c482233cceba37625b9c4b303a9a7"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-front.json",
+      "video": "reference-run-front.webm",
+      "raw": "raw/reference-run-front.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 171,
+      "observedWallSeconds": 183.3495,
+      "longestConsecutiveRunningSeconds": 142.01869999999926,
+      "run180Passed": false,
+      "projectedDistanceM": 129.89139235277017,
+      "geographicTrace": "reference-run-front-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 130.1470063116775,
+      "localDistanceByModeM": {
+        "running": 129.24810528189914,
+        "walking": 0.8989010297783886
+      },
+      "nativeFPS": 0.9271909658875536,
+      "frameMs": {
+        "p50": 1070.199999999255,
+        "p95": 1386.300000000745,
+        "p99": 2081.300000000745,
+        "max": 3611.599999997765
+      },
+      "heapFirstBytes": 265780792,
+      "heapLastBytes": 259551438,
+      "heapMaxBytes": 281760910,
+      "renderMemoryFirst": {
+        "geometries": 362,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 375,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 164,
+        "rawSha256": "d4ced37980a44941661d9452b254e83c5bf9ca2ac7e19806e62910fd664f3c88",
+        "indexedSha256": "0bbe096af4e960fd0c6c4afb48c0eb6abe034e816be671c15fed9eb68f994602"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-left.json",
+      "video": "reference-run-left.webm",
+      "raw": "raw/reference-run-left.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 111,
+      "observedWallSeconds": 179.765,
+      "longestConsecutiveRunningSeconds": 110.74489999999851,
+      "run180Passed": false,
+      "projectedDistanceM": 83.16239389075817,
+      "geographicTrace": "reference-run-left-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 83.32328490636951,
+      "localDistanceByModeM": {
+        "running": 82.02056943996192,
+        "walking": 1.3027154664076017
+      },
+      "nativeFPS": 0.6119099936027592,
+      "frameMs": {
+        "p50": 1551.3999999985099,
+        "p95": 2688.39999999851,
+        "p99": 2974.699999999255,
+        "max": 7740.099999997765
+      },
+      "heapFirstBytes": 296244337,
+      "heapLastBytes": 282893032,
+      "heapMaxBytes": 329303190,
+      "renderMemoryFirst": {
+        "geometries": 428,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 433,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 106,
+        "rawSha256": "8cb21f2c2992574927be0b30e707e16277635fe5de757164edb0ec11fc813d78",
+        "indexedSha256": "d821d692ffe3044a44572aa294a36d74721c1c3c9c5298a8dae114dde14e8aac"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-rear.json",
+      "video": "reference-run-rear.webm",
+      "raw": "raw/reference-run-rear.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 190,
+      "observedWallSeconds": 182.74209999999778,
+      "longestConsecutiveRunningSeconds": 64.86269999999925,
+      "run180Passed": false,
+      "projectedDistanceM": 143.4763661093852,
+      "geographicTrace": "reference-run-rear-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 143.76436640107573,
+      "localDistanceByModeM": {
+        "running": 141.98178981669508,
+        "walking": 1.782576584380626
+      },
+      "nativeFPS": 1.034244435190371,
+      "frameMs": {
+        "p50": 938.2000000029802,
+        "p95": 1172.7000000029802,
+        "p99": 1508.800000000745,
+        "max": 1684.800000000745
+      },
+      "heapFirstBytes": 251221089,
+      "heapLastBytes": 275885665,
+      "heapMaxBytes": 299633413,
+      "renderMemoryFirst": {
+        "geometries": 409,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 394,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 187,
+        "rawSha256": "57ab5c0948d981b9efcfa39d5e1bf9a7e8091e55758887c84a8fea3511592aa3",
+        "indexedSha256": "d3456c67ab12e722004f9c9ef2d3b1cfb7f5d5bd1026ac1e238229fd68d17ece"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-right.json",
+      "video": "reference-run-right.webm",
+      "raw": "raw/reference-run-right.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 169,
+      "observedWallSeconds": 180.76710000000148,
+      "longestConsecutiveRunningSeconds": 72.51019999999926,
+      "run180Passed": false,
+      "projectedDistanceM": 128.36616116978132,
+      "geographicTrace": "reference-run-right-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 128.61937361795196,
+      "localDistanceByModeM": {
+        "running": 127.27349481390272,
+        "walking": 1.3458788040492604
+      },
+      "nativeFPS": 0.9293726568606712,
+      "frameMs": {
+        "p50": 1044.300000000745,
+        "p95": 1228.699999999255,
+        "p99": 2436.2000000029802,
+        "max": 2689.599999997765
+      },
+      "heapFirstBytes": 265331868,
+      "heapLastBytes": 275290938,
+      "heapMaxBytes": 287069682,
+      "renderMemoryFirst": {
+        "geometries": 449,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 451,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 165,
+        "rawSha256": "8442e3fc3f452f9ce0e8a38a8f9bac647a93cd370d95437a89e296f591e2fa17",
+        "indexedSha256": "ef201353a1e65f23d7a0f0b02287b0f1f743224e8f51a6398482a0761c6a515d"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-terrain-front.json",
+      "video": "reference-run-terrain-front.webm",
+      "raw": "raw/reference-run-terrain-front.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 53,
+      "observedWallSeconds": 180.79029999999702,
+      "longestConsecutiveRunningSeconds": 180.79029999999702,
+      "run180Passed": true,
+      "projectedDistanceM": 41.5156831859824,
+      "geographicTrace": "reference-run-terrain-front-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 41.57480836887056,
+      "localDistanceByModeM": {
+        "running": 41.57480836887056
+      },
+      "nativeFPS": 0.28762605073392133,
+      "frameMs": {
+        "p50": 3206.39999999851,
+        "p95": 5384.599999997765,
+        "p99": 6167.800000000745,
+        "max": 6167.800000000745
+      },
+      "heapFirstBytes": 248221338,
+      "heapLastBytes": 244341875,
+      "heapMaxBytes": 277740869,
+      "renderMemoryFirst": {
+        "geometries": 409,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 410,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 51,
+        "rawSha256": "b1840c39963fcf8552194169b1482e9fc1db9220db69ab64258857c1300252db",
+        "indexedSha256": "43865d4026b4fec6ede7b3e850e5a31c07c5da25f078bc0151efceee07a3b6bb"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-terrain-left.json",
+      "video": "reference-run-terrain-left.webm",
+      "raw": "raw/reference-run-terrain-left.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 139,
+      "observedWallSeconds": 183.2985,
+      "longestConsecutiveRunningSeconds": 183.2985,
+      "run180Passed": true,
+      "projectedDistanceM": 110.21798481431694,
+      "geographicTrace": "reference-run-terrain-left-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 110.37480836890552,
+      "localDistanceByModeM": {
+        "running": 110.37480836890552
+      },
+      "nativeFPS": 0.7528703180877094,
+      "frameMs": {
+        "p50": 1290.3999999985099,
+        "p95": 1920.7999999970198,
+        "p99": 2232.199999999255,
+        "max": 2276.800000000745
+      },
+      "heapFirstBytes": 275812296,
+      "heapLastBytes": 306995619,
+      "heapMaxBytes": 306995619,
+      "renderMemoryFirst": {
+        "geometries": 424,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 429,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 137,
+        "rawSha256": "e40c26dbc2ad9ea2d615db6cba2ac19c440e5d873ac15d38a6e3950c643fa630",
+        "indexedSha256": "4912c7ab6a381bd48640631abd99367099a072d53054dc867d7feb6b5b907a31"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-terrain-rear.json",
+      "video": "reference-run-terrain-rear.webm",
+      "raw": "raw/reference-run-terrain-rear.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 195,
+      "observedWallSeconds": 183.0053999999985,
+      "longestConsecutiveRunningSeconds": 183.0053999999985,
+      "run180Passed": true,
+      "projectedDistanceM": 154.2496540867629,
+      "geographicTrace": "reference-run-terrain-rear-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 154.46899692348865,
+      "localDistanceByModeM": {
+        "running": 154.46899692348865
+      },
+      "nativeFPS": 1.0600780086270765,
+      "frameMs": {
+        "p50": 894.9000000022352,
+        "p95": 1389.6000000014901,
+        "p99": 1787.1000000014901,
+        "max": 2003.5
+      },
+      "heapFirstBytes": 260186329,
+      "heapLastBytes": 255282579,
+      "heapMaxBytes": 280233077,
+      "renderMemoryFirst": {
+        "geometries": 447,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 442,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 192,
+        "rawSha256": "403c37f5c360f5bfc58ac6ee692d72d6b54e8b5d99d36589646fef3f87d32d44",
+        "indexedSha256": "93895922bf0b018d4b6f91bdd39c49e32396841027608633e9f7a1da9fc836f7"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-run-terrain-right.json",
+      "video": "reference-run-terrain-right.webm",
+      "raw": "raw/reference-run-terrain-right.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 47,
+      "observedWallSeconds": 181.024200000003,
+      "longestConsecutiveRunningSeconds": 181.024200000003,
+      "run180Passed": true,
+      "projectedDistanceM": 36.72838320763408,
+      "geographicTrace": "reference-run-terrain-right-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1616",
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 36.780693527297196,
+      "localDistanceByModeM": {
+        "running": 36.780693527297196
+      },
+      "nativeFPS": 0.2541096715245765,
+      "frameMs": {
+        "p50": 3895.60000000149,
+        "p95": 5482.10000000149,
+        "p99": 6081.60000000149,
+        "max": 6081.60000000149
+      },
+      "heapFirstBytes": 312387555,
+      "heapLastBytes": 319560958,
+      "heapMaxBytes": 326917020,
+      "renderMemoryFirst": {
+        "geometries": 447,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 447,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 45,
+        "rawSha256": "c5f5637ab7fd62ff5e5977c5fdd94ae2ec9190f7c78e69fdaf679bdc5f98f0d9",
+        "indexedSha256": "ab15ec2f0d41f4590880328da4aa4c0a4636080dcfb00db72ae4669202745f0d"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-shadows-fixed.json",
+      "video": "reference-shadows-fixed.webm",
+      "raw": "raw/reference-shadows-fixed.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 35,
+      "observedWallSeconds": 24.730300000000746,
+      "longestConsecutiveRunningSeconds": 0,
+      "run180Passed": false,
+      "projectedDistanceM": 0.0,
+      "geographicTrace": "reference-shadows-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 0.0,
+      "localDistanceByModeM": {
+        "walking": 0.0
+      },
+      "nativeFPS": 1.3748316842092079,
+      "frameMs": {
+        "p50": 736.5,
+        "p95": 938.8999999985099,
+        "p99": 1091.0999999977648,
+        "max": 1091.0999999977648
+      },
+      "heapFirstBytes": 263019863,
+      "heapLastBytes": 287807117,
+      "heapMaxBytes": 291149501,
+      "renderMemoryFirst": {
+        "geometries": 450,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 448,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 31,
+        "rawSha256": "b5466ece773b351789172dfacd6065caab3893cef9ff587bf57bf2d448d951ed",
+        "indexedSha256": "b740d70902ac67ac3395734422cbefa32b722cf8345491017d36ad908aeb0b4c"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    },
+    {
+      "file": "reference-startup-fixed.json",
+      "video": "reference-startup-fixed.webm",
+      "raw": "raw/reference-startup-fixed.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "framebuffer": [
+        640,
+        420
+      ],
+      "framesObserved": 15,
+      "observedWallSeconds": 24.5715,
+      "longestConsecutiveRunningSeconds": 21.58210000000149,
+      "run180Passed": false,
+      "projectedDistanceM": 10.279923454194625,
+      "geographicTrace": "reference-startup-fixed-geographic-trace.json.gz",
+      "canonicalTilesVisited": [
+        "131:1617"
+      ],
+      "localHorizontalDistanceM": 10.304003339080952,
+      "localDistanceByModeM": {
+        "walking": 0.2708977761365027,
+        "running": 10.03310556294445
+      },
+      "nativeFPS": 0.5697657855645768,
+      "frameMs": {
+        "p50": 1657,
+        "p95": 2944.099999997765,
+        "p99": 2944.099999997765,
+        "max": 2944.099999997765
+      },
+      "heapFirstBytes": 252281834,
+      "heapLastBytes": 285590275,
+      "heapMaxBytes": 287698019,
+      "renderMemoryFirst": {
+        "geometries": 448,
+        "textures": 20
+      },
+      "renderMemoryLast": {
+        "geometries": 443,
+        "textures": 20
+      },
+      "errors": [],
+      "failure": null,
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 13,
+        "rawSha256": "0e70fa7b7428c288b480a67f9783fa9e529c77c50af674524c5c7942e5b6e7ef",
+        "indexedSha256": "b83e4da2626e2dc64b10e339f87ddebe882ad95f010d76ff407b559e4e090349"
+      },
+      "rebases": 0,
+      "limitations": [
+        "Observed intervals only; no hidden-time interpolation.",
+        "Distance in the historical local frame, not a surveyed EPSG metric.",
+        "Software GPU with simultaneous captures; not the isolated performance benchmark.",
+        "No perceptual certification from a low frame rate."
+      ]
+    }
+  ]
+}

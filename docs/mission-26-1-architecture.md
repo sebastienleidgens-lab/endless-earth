@@ -16,7 +16,7 @@ Le rectangle protégé du pilote est soustrait des nouveaux triangles. Chaque in
 
 Un worker vérifie les empreintes, décompresse et décode ; les messages de features sont accusés réception par petits lots, le raster typé est transféré sans copie. Une file de générateurs prépare index, graphes, géométries et retrait avec un budget cible de 3 ms. Le budget ne préempte pas une étape atomique coûteuse : ses maxima sont mesurés, non garantis par la seule présence d’une file.
 
-La résidence est admise après installation complète. Les demandes périmées sont annulées et retirées. Les objets linéaires et surfaciques sont découpés aux cellules chargées ; un point lointain ne masque plus toute sa rivière ou route. Les index locaux ref-comptent chaque propriétaire chargé. La mémoire déclarée de 96 MiB concerne les données géographiques décodées résidentes, pas le tas global, le worker de route ou le GPU.
+La résidence est admise après installation complète. Les demandes périmées sont annulées et retirées. Les objets linéaires et surfaciques sont découpés aux cellules chargées ; un point lointain ne masque plus toute sa rivière ou route. Les index locaux ref-comptent chaque propriétaire chargé. Le plafond comptable de 96 MiB additionne les octets JSON décodés déclarés et les rasters U16 résidents ; il ne mesure pas les allocations réelles des objets JS issus du JSON. Les index/graphes, le tas global, le worker de route, le GPU et l’audio sont distincts et ne sont pas tous bornés par ce compteur.
 
 ## Données distribuées
 
