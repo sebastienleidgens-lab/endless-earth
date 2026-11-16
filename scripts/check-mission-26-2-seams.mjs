@@ -1,0 +1,9 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {openMission} from './lib/mission-26-2-browser.mjs';
+const exits=JSON.parse(await readFile('work/mission-26-1/exits.json')),report={method:'Short independent strips with explicit placement BEFORE each strip. Actual grounded production collision kernel at 60 Hz; not a full intercommunal frame or native film. No placement during crossings.',errors:[],cases:[],functionalSuccess:false};let browser,page;
+try{({browser,page,errors:report.errors}=await openMission(Number(process.argv[2]??5399)));report.sourceSHA=await page.evaluate(()=>window.p262.source);
+ for(const e of exits){const inside=p=>Math.abs(p.x)<=1000&&Math.abs(p.z)<=1000;let[a,b]=e.segment;if(!inside(a))[a,b]=[b,a];let lo=0,hi=1;for(let i=0;i<50;i++){const t=(lo+hi)/2;if(inside({x:a.x+(b.x-a.x)*t,z:a.z+(b.z-a.z)*t}))lo=t;else hi=t;}const t=(lo+hi)/2,d=Math.hypot(b.x-a.x,b.z-a.z),u={x:(b.x-a.x)/d,z:(b.z-a.z)/d},center={x:a.x+(b.x-a.x)*t,z:a.z+(b.z-a.z)*t},start={x:center.x-u.x*3,z:center.z-u.z*3},end={x:center.x+u.x*3,z:center.z+u.z*3},c={source:e.feature,tags:e.tags,start,end,functionalSuccess:false};
+ try{c.result=await page.evaluate(({start,end})=>window.p262.crossing(start,end),{start,end});c.functionalSuccess=c.result.outward.completed&&c.result.return?.completed;}
+ catch(error){c.failure=String(error);}report.cases.push(c);console.log(e.feature,c.functionalSuccess,c.failure??c.result?.outward?.diagnostic?.rule??'');await writeFile('docs/mission-26-2-evidence/seam-strips.json',JSON.stringify(report,null,2));
+ }report.functionalSuccess=report.cases.every(c=>c.functionalSuccess);
+}catch(e){report.failure=String(e);}finally{await writeFile('docs/mission-26-2-evidence/seam-strips.json',JSON.stringify(report,null,2));await browser?.close();}

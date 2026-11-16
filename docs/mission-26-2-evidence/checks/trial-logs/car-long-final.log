@@ -1,0 +1,51 @@
+progress [ -17929.355972449877, 2.5913884120219834, 13690.842835500736 ] 126:1613 driving
+{
+  from: 'Chauvigny',
+  to: 'furthest-connected-source',
+  mode: 'car',
+  success: false,
+  distance: 144.95544971581523,
+  steps: 227,
+  stop: {
+    height: 2.3413884120219834,
+    admission: {
+      height: 2.3413884120219834,
+      normal: [Object],
+      slope: 0.10236389148404058,
+      datum: 'IGN69',
+      resolutionM: 2,
+      source: 'IGN LHD numeric MNT; 2 m derivative',
+      quantizationMaxErrorM: 0.005,
+      tile: '126:1613',
+      face: 0,
+      ok: true,
+      drivable: false,
+      road: 'osm:way:41386481',
+      width: 4.8,
+      speedLimit: 13.9,
+      provenance: 'OSM road corridor + declared regional access policy; inferred width when absent'
+    },
+    clear: true,
+    collision: {
+      surface: 'planet-terrain',
+      obstacle: null,
+      access: [Object],
+      building: null,
+      collider: null
+    },
+    gps: { lat: 46.57231362885824, lon: 0.6495748612369996 }
+  },
+  car: {
+    position: {
+      x: -17929.355972449877,
+      y: 2.3413884120219834,
+      z: 13690.842835500736
+    },
+    heading: 2.1383535775731426,
+    speed: 0,
+    steering: -0.42589395758339993,
+    reason: 'traffic-occupancy',
+    odometer: 144.9593533909371,
+    active: true
+  }
+}
