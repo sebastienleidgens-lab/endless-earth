@@ -407,6 +407,7 @@ if(geographyReady&&!walkMenu?.open&&!activity.locked&&!boatHandled&&!groundHandl
  if(!water.handled){if(interactionDecor&&!interactionDecor.walkingClear({x:avatar.position.x+displacement.x,y:avatar.position.y,z:avatar.position.z+displacement.z})){displacement.x=displacement.z=0;}moveWithCollision(avatar.position,displacement,terrainHeight,!autoStep,dt);if(Math.hypot(displacement.x,displacement.z)>.001&&['mapped-water','rendered-water'].includes(String(lastMovementDiagnostic()?.obstacle)))activity.message='unknown-depth';}
 }
 const moved=avatar.position.distanceTo(previous);
+if(!carHandled&&!boatHandled&&!groundHandled&&lastMovementDiagnostic()?.obstruction?.reason==='tile-loading'&&(controls.forward||controls.strafe))activity.message='terrain-loading';else if(activity.message==='terrain-loading'&&moved>.0001)activity.message='';
 if(autoStep&&walker.active&&Math.hypot(avatar.position.x-previous.x-displacement.x,avatar.position.z-previous.z-displacement.z)>.00001)walker.stop('Chemin bloqué · promenade arrêtée');
 
 if(carHandled){avatar.rotation.y=planet!.car.heading;if(!dragging&&performance.now()-lastCameraInteraction>3500)yaw=behind(yaw,planet!.car.heading+Math.PI,dt);}else if(groundHandled&&groundActions.sit>0&&groundActions.seat?.kind!=='ground'){avatar.rotation.y=groundActions.heading??avatar.rotation.y;}else if(boatHandled){avatar.rotation.y=boat.heading;}else if(moved>.0001){
