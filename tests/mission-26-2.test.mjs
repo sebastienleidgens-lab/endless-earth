@@ -1,4 +1,5 @@
 import {admitFeature} from '../src/planet/network.mjs';
+import {terrainLayout} from '../src/planet/terrain-lod.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -9,6 +10,14 @@ import {cyclicCurve} from '../src/character/cyclic-curve.mjs';
 import {perchFlightAt} from '../src/earthlife/fauna.mjs';
 import {createWalker} from '../src/character/walker.mjs';
 const finish=g=>{let s;do{s=g.next();}while(!s.done);return s.value;};
+test('LOD identity stays stable at rest, skips distant rebuilds and includes remote parked support',()=>{
+ const tile={bounds:[0,0,4096,4096],grid:{size:33},contact:{step:2}},local=(x,y)=>({x,z:-y});
+ const at=focus=>terrainLayout(tile,{local,focus,profile:'eco'});
+ const a=at({x:20000,z:20000}),b=at({x:21000,z:21000});assert.equal(a.key,b.key);
+ const near=at({x:100,z:-100});assert.notEqual(a.key,near.key);
+ const two=terrainLayout(tile,{local,focus:{x:100,z:-100},goal:{x:100,z:-100,extra:[{x:3900,z:-3900}]},profile:'eco'});
+ assert.equal(two.strides.get('30,30'),2);assert.notEqual(two.key,near.key);
+});
 test('all unverified bridge/tunnel types stay closed, public primary foot links follow declared policy',()=>{
  for(const bridge of ['yes','viaduct','boardwalk','low_water_crossing'])assert.equal(admitFeature({highway:'primary',bridge},'foot').ok,false);
  assert.equal(admitFeature({highway:'primary',tunnel:'building_passage'},'car').ok,false);
