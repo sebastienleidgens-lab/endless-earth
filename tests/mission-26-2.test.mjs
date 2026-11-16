@@ -2,6 +2,12 @@ import {admitFeature} from '../src/planet/network.mjs';
 import {terrainLayout} from '../src/planet/terrain-lod.mjs';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {RouteIndex} from '../src/planet/route-index.mjs';
+test('source-route avoidance finds a real alternative without editing coordinates or opening a forbidden edge',()=>{
+ const nodes=[[0,0],[10,5],[20,0]],edges=[[0,1,Math.hypot(10,5),0,1],[0,2,20,1,1],[1,2,Math.hypot(10,5),0,1]],buffer=new ArrayBuffer(16+3*16+3*24+2*8),v=new DataView(buffer);v.setUint32(0,0x45455254);v.setUint32(4,3,true);v.setUint32(8,3,true);v.setUint32(12,2,true);let o=16;
+ for(const [x,y]of nodes){v.setFloat64(o,x,true);v.setFloat64(o+8,y,true);o+=16;}for(const [a,b,d,s,m]of edges){v.setUint32(o,a,true);v.setUint32(o+4,b,true);v.setFloat64(o+8,d,true);v.setUint32(o+16,s,true);v.setUint32(o+20,m,true);o+=24;}v.setFloat64(o,123,true);v.setFloat64(o+8,456,true);
+ const graph=new RouteIndex(new Uint8Array(buffer)),a={x:0,y:0},b={x:20,y:0};assert.deepEqual(graph.route(a,b).features,['osm:way:456']);const alternative=graph.route(a,b,'foot',{avoidSources:['osm:way:456']});assert.equal(alternative.complete,true);assert.equal(alternative.distance,2*Math.hypot(10,5));assert.deepEqual(alternative.features,['osm:way:123','osm:way:123']);assert.equal(graph.route(a,b,'foot',{avoidSources:['osm:way:123','osm:way:456']}).complete,false);
+});
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
