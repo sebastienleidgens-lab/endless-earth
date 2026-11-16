@@ -4,7 +4,7 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export class CarController {
  constructor(){this.position={x:0,y:0,z:0};this.heading=0;this.speed=0;this.steering=0;this.active=false;this.reason='';this.odometer=0;this.braking=false;this.metrics={steps:0,refusals:0,maxSpeed:0};}
  place(p,heading=0){this.position={...p};this.heading=heading;this.speed=0;}
- clearAt(x,z,heading,world){const c=Math.cos(heading),s=Math.sin(heading);for(const [u,v]of [[0,0],[-.82,-1.6],[.82,-1.6],[-.82,1.6],[.82,1.6]]){const q=world(x+c*u+s*v,z-s*u+c*v);if(!q?.drivable||!Number.isFinite(q.height))return {ok:false,reason:q?.reason??'tile-loading'};}return {ok:true};}
+ clearAt(x,z,heading,world){if(world.vehicleClear&&!world.vehicleClear(x,z,heading))return {ok:false,reason:'traffic-occupancy'};const c=Math.cos(heading),s=Math.sin(heading);for(const [u,v]of [[0,0],[-.82,-1.6],[.82,-1.6],[-.82,1.6],[.82,1.6]]){const q=world(x+c*u+s*v,z-s*u+c*v);if(!q?.drivable||!Number.isFinite(q.height))return {ok:false,reason:q?.reason??'tile-loading'};}return {ok:true};}
  update(dt,input,world){if(!this.active)return false;if(!Number.isFinite(dt)||dt<0)return false;const steps=Math.max(1,Math.ceil(Math.min(.25,dt)/.0167)),h=Math.min(.25,dt)/steps;
   for(let i=0;i<steps;i++){
    const ground=world(this.position.x,this.position.z);if(!ground?.drivable){this.speed=0;this.reason=ground?.reason??'tile-loading';break;}

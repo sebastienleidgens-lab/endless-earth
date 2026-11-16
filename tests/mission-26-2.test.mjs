@@ -2,6 +2,9 @@ import {admitFeature} from '../src/planet/network.mjs';
 import {terrainLayout} from '../src/planet/terrain-lod.mjs';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {vehiclesOverlap,pedestrianNearVehicle} from '../src/planet/vehicle-space.mjs';
+import {trafficLanePoint} from '../src/planet/traffic.mjs';
+import {measureLine} from '../src/planet/transport-motion.mjs';
 import {RouteIndex} from '../src/planet/route-index.mjs';
 test('source-route avoidance finds a real alternative without editing coordinates or opening a forbidden edge',()=>{
  const nodes=[[0,0],[10,5],[20,0]],edges=[[0,1,Math.hypot(10,5),0,1],[0,2,20,1,1],[1,2,Math.hypot(10,5),0,1]],buffer=new ArrayBuffer(16+3*16+3*24+2*8),v=new DataView(buffer);v.setUint32(0,0x45455254);v.setUint32(4,3,true);v.setUint32(8,3,true);v.setUint32(12,2,true);let o=16;
@@ -18,6 +21,17 @@ import {cyclicCurve} from '../src/character/cyclic-curve.mjs';
 import {perchFlightAt} from '../src/earthlife/fauna.mjs';
 import {createWalker} from '../src/character/walker.mjs';
 const finish=g=>{let s;do{s=g.next();}while(!s.done);return s.value;};
+test('complete vehicle hulls let opposing lanes pass and retain front, crossing and pedestrian collisions',()=>{
+ const a={x:1.2,z:0,heading:0},opposite={x:-1.2,z:0,heading:Math.PI};assert.equal(vehiclesOverlap(a,opposite),false);
+ assert.equal(vehiclesOverlap(a,{x:1.2,z:3,heading:0}),true);assert.equal(vehiclesOverlap(a,{x:1.2,z:0,heading:Math.PI/2}),true);
+ assert.equal(pedestrianNearVehicle({x:1.2,z:0},a),true);assert.equal(pedestrianNearVehicle({x:-1.2,z:0},a),false);
+});
+test('scenic lane positions keep the source direction, use the right side and stay centred on narrow roads',()=>{
+ const north=measureLine([{x:0,y:0},{x:0,y:100}]),south=measureLine([{x:0,y:100},{x:0,y:0}]);
+ assert.ok(Math.abs(trafficLanePoint(north,50,4.8).x-1.2)<1e-9);assert.ok(Math.abs(trafficLanePoint(south,50,4.8).x+1.2)<1e-9);
+ assert.equal(trafficLanePoint(north,50,3.5).x,0);
+ const before=trafficLanePoint(north,49.999,4.8),after=trafficLanePoint(north,50.001,4.8);assert.ok(Math.hypot(after.x-before.x,after.y-before.y)<.00201);
+});
 test('outside-France fixture declares its actual tile hash and the runtime elevation/optional-source contract',async()=>{
  const manifest=JSON.parse(await readFile('public/planet/validation-other-frame/manifest.json'));
  assert.equal(manifest.projection.origin.lon,-71);assert.equal(manifest.verticalDatum,'WGS84-ellipsoid');
