@@ -4,8 +4,9 @@ export function linePosition(line,distance){const d=clamp(distance,0,line.length
 /** A train accelerates along admitted source nodes and brakes at the end of
  * the checked corridor. Missing junctions/crossing protection never teleport it. */
 export class RailMotion {
- constructor(points){this.line=measureLine(points);this.distance=0;this.speed=0;this.stopped=false;this.reason='';}
- update(dt,limit=22.2){const h=Math.max(0,Math.min(.25,dt)),remaining=this.line.length-this.distance,clearance=12,brakeDistance=this.speed*this.speed/(2*.8)+clearance+2,target=remaining<brakeDistance?Math.sqrt(Math.max(0,2*.8*(remaining-clearance))):limit;this.speed+=clamp(target-this.speed,-.8*h,.45*h);const next=Math.min(this.line.length-clearance,this.distance+Math.max(0,this.speed)*h);this.distance=Math.max(0,next);if(remaining<clearance+.5&&this.speed<.1){this.speed=0;this.stopped=true;this.reason='end-of-verified-rail-corridor';}return linePosition(this.line,this.distance);}
+ constructor(points){this.line=measureLine(points);this.distance=0;this.speed=0;this.stopped=false;this.reason='';this.stations=[];this.stationIndex=0;this.dwell=0;this.stationStops=0;}
+ update(dt,limit=22.2){const h=Math.max(0,Math.min(.25,dt));if(this.dwell>0){this.dwell=Math.max(0,this.dwell-h);this.speed=0;return linePosition(this.line,this.distance);}const station=this.stations[this.stationIndex],endpoint=this.line.length-12,goal=station?Math.min(station.distance,endpoint):endpoint,remaining=goal-this.distance,brakeDistance=this.speed*this.speed/(2*.8)+2,target=remaining<brakeDistance?Math.sqrt(Math.max(0,2*.8*(remaining-.1))):limit;this.speed+=clamp(target-this.speed,-.8*h,.45*h);this.distance=Math.max(this.distance,Math.min(goal,this.distance+Math.max(0,this.speed)*h));if(station&&goal===station.distance&&goal-this.distance<.12&&this.speed<.5){this.distance=goal;this.speed=0;this.dwell=15;this.stationIndex++;this.stationStops++;this.reason='synthetic-station-dwell';}else if(!station&&remaining<.5&&this.speed<.5){this.speed=0;this.stopped=true;this.reason='end-of-verified-rail-corridor';}return linePosition(this.line,this.distance);}
+
 }
 /** Synthetic closed airport circuit. The only grounded leg follows the
  * imported runway. It is scenery, not flight planning or real movements. */
