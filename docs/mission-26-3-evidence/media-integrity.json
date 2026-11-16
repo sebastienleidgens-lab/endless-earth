@@ -1,0 +1,739 @@
+{
+  "method": "Original native MediaRecorder blobs vs indexed WebM. Compare encoded packet payload SHA and PTS/DTS separately for video and audio, ignoring legal stream-number renumbering. No decoding/re-encoding or interpolation. Packet identity does not turn a failed protocol or low-FPS film into acceptance.",
+  "cases": [
+    {
+      "file": "candidate-checked-forest-birds-shadows-balanced.webm",
+      "eligibleProtocol": true,
+      "bytes": 255707,
+      "originalBytes": 255566,
+      "originalSHA256": "6c699f92874413b5c976366470dad004c2d73483086a958696d5274f469b5aca",
+      "indexedSHA256": "dead762c7afad7647e08f01fcd4c00bab3950cc6801b1915a1e08f7fb4309b75",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 9,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 292,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.95,
+      "passed": true
+    },
+    {
+      "file": "candidate-checked-forest-birds-shadows-eco.webm",
+      "eligibleProtocol": true,
+      "bytes": 242701,
+      "originalBytes": 242545,
+      "originalSHA256": "a5de5dfc32754eb86de4b603c7e101b3f88d7a25b0fcd2984b8008a6ae150dfb",
+      "indexedSHA256": "1e9d9e3ac8953c4edc078b2fe6d9e6ed87da9e8e617c8311bfd4608507f04c6a",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 10,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 284,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.05,
+      "passed": true
+    },
+    {
+      "file": "candidate-checked-forest-birds-shadows-quality.webm",
+      "eligibleProtocol": true,
+      "bytes": 231045,
+      "originalBytes": 230888,
+      "originalSHA256": "5aa54c1d6bc9958cef094721e8ddaa2ce4e209035321505a2d4b0620474227fa",
+      "indexedSHA256": "89c0e8a583e5ec3dfdbcd7b148946ea8320ff6ea71c2c55ce6e0465a65b63aa9",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 7,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 277,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.057,
+      "passed": true
+    },
+    {
+      "file": "candidate-checked-pilot-water-balanced.webm",
+      "eligibleProtocol": true,
+      "bytes": 168866,
+      "originalBytes": 168656,
+      "originalSHA256": "68fc154a6e3b501e9fdc9d061c4b15cb04863803d2ef2abc5def5ee312a14c5a",
+      "indexedSHA256": "2fba3bba81162e4660182b28f506bf988b8de6d96fec522bde8e58833398afa2",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 4,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 226,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 16.036,
+      "passed": true
+    },
+    {
+      "file": "candidate-checked-run-four-views-balanced.webm",
+      "eligibleProtocol": true,
+      "bytes": 65276,
+      "originalBytes": 65295,
+      "originalSHA256": "bfb14489c59e8142f9764b1c2a6aaa126a58a433d29ba661fe7699b757690e57",
+      "indexedSHA256": "8bfde75e5cd661cae3a80310bdee9b338886e58d4871d3daa4e26a7d93a4826a",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 22,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 452,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 32.499,
+      "passed": true
+    },
+    {
+      "file": "candidate-checked-walk-four-views-balanced.webm",
+      "eligibleProtocol": true,
+      "bytes": 64997,
+      "originalBytes": 65000,
+      "originalSHA256": "29ae0316a1d030a9779de57521c0f38966c906328b8d0e8f0d711a22f4ee876a",
+      "indexedSHA256": "45952a9ca7bec238441496c33345f134463bda88af8b2f8648f8cf5e1af84d10",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 20,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 445,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 32.116,
+      "passed": true
+    },
+    {
+      "file": "candidate-forest-birds-shadows-balanced.webm",
+      "eligibleProtocol": false,
+      "bytes": 0,
+      "originalBytes": 0,
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "indexedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failure": "Error: Empty capture from a retained failed protocol",
+      "passed": false
+    },
+    {
+      "file": "candidate-forest-birds-shadows-eco.webm",
+      "eligibleProtocol": true,
+      "bytes": 284498,
+      "originalBytes": 284339,
+      "originalSHA256": "7eafd3cf5b3c26f8a4dc1befc875c126c45098802b7ad04cca3f5a63d812f0a3",
+      "indexedSHA256": "bea8a45202c5f94b8097d0dc0e48298649ba88a54e1623c6677944730e8a6167",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 18,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 294,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.052,
+      "passed": true
+    },
+    {
+      "file": "candidate-forest-birds-shadows-quality.webm",
+      "eligibleProtocol": true,
+      "bytes": 293360,
+      "originalBytes": 293201,
+      "originalSHA256": "55533b0191c28537827dc13ee1521852ee3a46dd481e3348edfed7062318b303",
+      "indexedSHA256": "d83647c37dbdbfdd14bd8da52170cefed5d684c356542255e306637e43237c72",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 13,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 290,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.148,
+      "passed": true
+    },
+    {
+      "file": "candidate-native-car-junction-verified.webm",
+      "eligibleProtocol": true,
+      "bytes": 584313,
+      "originalBytes": 584462,
+      "originalSHA256": "26affea49da8f2f3591237c650f10301eacb96e32b17fc0ac0fd4ae5eac6d08a",
+      "indexedSHA256": "007dd9f043b21545e1216462c7aa73a828f0c1d7488df66c08331d1e3b18a0dd",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 65,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 639,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 43.149,
+      "passed": true
+    },
+    {
+      "file": "candidate-native-car-junction.webm",
+      "eligibleProtocol": false,
+      "bytes": 1213603,
+      "originalBytes": 1215831,
+      "originalSHA256": "28fbc78bb1948ce02116f634c700dd1fd1a26b153d9b24c0a2f80ce2c8f71d75",
+      "indexedSHA256": "9b33cc8b9bfba8b107ccf1baafcdc237e66214b5a058a48a3207a1150b0106d1",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 293,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 2681,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 180.1,
+      "passed": true
+    },
+    {
+      "file": "candidate-native-car.webm",
+      "eligibleProtocol": true,
+      "bytes": 1432758,
+      "originalBytes": 1433812,
+      "originalSHA256": "715f5283a1268558011aa5a8ff4a04a8a8c9bb60395213804bbb9c6de80db705",
+      "indexedSHA256": "f99d67654b28c76a805005e8bbfdc9519e89fec70f575dc3c77c003f1795e4cf",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 125,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 1568,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 106.599,
+      "passed": true
+    },
+    {
+      "file": "candidate-pilot-water-balanced.webm",
+      "eligibleProtocol": false,
+      "bytes": 0,
+      "originalBytes": 0,
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "indexedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failure": "Error: Empty capture from a retained failed protocol",
+      "passed": false
+    },
+    {
+      "file": "candidate-run-four-views-balanced.webm",
+      "eligibleProtocol": false,
+      "bytes": 0,
+      "originalBytes": 0,
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "indexedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failure": "Error: Empty capture from a retained failed protocol",
+      "passed": false
+    },
+    {
+      "file": "candidate-walk-four-views-balanced.webm",
+      "eligibleProtocol": true,
+      "bytes": 111859,
+      "originalBytes": 111876,
+      "originalSHA256": "e965202bf25a6da4cf1bedc7d154f01ce88280fdba3673a6fc2485f3acf30d59",
+      "indexedSHA256": "dbae2cebcde752979f40b437d260b113a1a7df860f20f46cb95e388bb7c40f65",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 33,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 476,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 32.6,
+      "passed": true
+    },
+    {
+      "file": "reference-checked-forest-birds-shadows-balanced.webm",
+      "eligibleProtocol": true,
+      "bytes": 313096,
+      "originalBytes": 312937,
+      "originalSHA256": "2c3baaddae70d99b689116251be21590ec8142498f938b3a9de1e4b83d417742",
+      "indexedSHA256": "41a3717f01094f9b1b8abcb1cfafadc6848fba54a7de1e8a43e7a2a54082ad63",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 18,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 297,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.171,
+      "passed": true
+    },
+    {
+      "file": "reference-checked-forest-birds-shadows-eco.webm",
+      "eligibleProtocol": true,
+      "bytes": 330855,
+      "originalBytes": 330697,
+      "originalSHA256": "356be8fcea19ab25459006ac0650d61abeb5250cf1d23562981b04cf77e97537",
+      "indexedSHA256": "5ba4c1929c8f0e95a73d5fcf25bbb41a09c8720252c74ec15d5dc5bbc9d49989",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 25,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 301,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.09,
+      "passed": true
+    },
+    {
+      "file": "reference-checked-forest-birds-shadows-quality.webm",
+      "eligibleProtocol": true,
+      "bytes": 227621,
+      "originalBytes": 227461,
+      "originalSHA256": "5ef73ccedf4d4566a5c98da104e3b67f30c83d5d79811c210a149ae731848b42",
+      "indexedSHA256": "f9fb9276ab4d683115cddb1fd5a813099d1c14a6aac9681fc6a87718f8c335cd",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 6,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 272,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.092,
+      "passed": true
+    },
+    {
+      "file": "reference-checked-pilot-water-balanced.webm",
+      "eligibleProtocol": true,
+      "bytes": 173176,
+      "originalBytes": 172964,
+      "originalSHA256": "3f2779baf30d0ed13ecad11797f5df1313be7fc566ac1bf197c23a0b18f30a2d",
+      "indexedSHA256": "56af6bc280e8697754fa8379cac3fb5523d4a8ffb5565ea61908bfa4f606c3c7",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 3,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 221,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 16.069,
+      "passed": true
+    },
+    {
+      "file": "reference-checked-run-four-views-balanced.webm",
+      "eligibleProtocol": true,
+      "bytes": 201428,
+      "originalBytes": 201440,
+      "originalSHA256": "534f3c58664aff465d95607ac71b2e0a1fa51501512543fb4f5a12a6ddae0fc9",
+      "indexedSHA256": "fa92818fe5b18ac18b17698e535922cb1ddf9021da082d0ec2c3be5163a7649c",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 52,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 481,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 32.299,
+      "passed": true
+    },
+    {
+      "file": "reference-checked-walk-four-views-balanced.webm",
+      "eligibleProtocol": false,
+      "bytes": 175968,
+      "originalBytes": 175969,
+      "originalSHA256": "34c2071329330fbda4dd61ad0c940fab843271bcb06307d1987eb02b5f042695",
+      "indexedSHA256": "515fa71f624fa7b7c32e42ef0d95a0034d06b8674f4c7936e7dce90649f6c905",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 42,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 477,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 32.11,
+      "passed": true
+    },
+    {
+      "file": "reference-forest-birds-shadows-balanced.webm",
+      "eligibleProtocol": false,
+      "bytes": 0,
+      "originalBytes": 0,
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "indexedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failure": "Error: Empty capture from a retained failed protocol",
+      "passed": false
+    },
+    {
+      "file": "reference-forest-birds-shadows-eco.webm",
+      "eligibleProtocol": false,
+      "bytes": 277282,
+      "originalBytes": 277123,
+      "originalSHA256": "56a62d33b142cc5199bf10357e7cf42f0507b0524b9faeb6130bd1fd3f01212c",
+      "indexedSHA256": "4470e30f2bee5390d8427677be0cc4a8fddf1e6233d8e935e52a5328dc8656b8",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 17,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 291,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.059,
+      "passed": true
+    },
+    {
+      "file": "reference-forest-birds-shadows-quality.webm",
+      "eligibleProtocol": false,
+      "bytes": 252132,
+      "originalBytes": 251973,
+      "originalSHA256": "77a9771af33949d53c55f8f7495c2ab04dee4d71b665d490227bf9290dfb0003",
+      "indexedSHA256": "f421435438a91cecc35709160fcf85bc265603aa943401325017f6388e019192",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 10,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 289,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 20.019,
+      "passed": true
+    },
+    {
+      "file": "reference-pilot-water-balanced.webm",
+      "eligibleProtocol": false,
+      "bytes": 0,
+      "originalBytes": 0,
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "indexedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failure": "Error: Empty capture from a retained failed protocol",
+      "passed": false
+    },
+    {
+      "file": "reference-run-four-views-balanced.webm",
+      "eligibleProtocol": false,
+      "bytes": 0,
+      "originalBytes": 0,
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "indexedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failure": "Error: Empty capture from a retained failed protocol",
+      "passed": false
+    },
+    {
+      "file": "reference-walk-four-views-balanced.webm",
+      "eligibleProtocol": false,
+      "bytes": 119741,
+      "originalBytes": 119756,
+      "originalSHA256": "cc3c886fcd567ea88ddc2cccd7e641f78bb2c9c0dc576f6a9a00fe493e6e9972",
+      "indexedSHA256": "171c8abe3e1a9b9271845b52eb260ffe1bfc8cd282a590c14066af2260484cf1",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "vp9",
+          "width": 800,
+          "height": 600
+        },
+        {
+          "type": "audio",
+          "codec": "opus",
+          "channels": 2,
+          "sampleRate": "48000"
+        }
+      ],
+      "video": {
+        "packets": 30,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "audio": {
+        "packets": 470,
+        "ptsDtsAndPayloadsIdentical": true
+      },
+      "durationS": 32.494,
+      "passed": true
+    }
+  ],
+  "eligible": 16,
+  "eligibleAllPassed": true
+}

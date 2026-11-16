@@ -1,0 +1,26 @@
+{
+  "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+  "tests": {
+    "command": "npm test",
+    "pass": 457,
+    "fail": 0,
+    "durationMs": 37291.858692,
+    "log": "tests-horizon-origin.log",
+    "programCoreSourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+    "guidanceCommit": "a3d0be9"
+  },
+  "productionBuild": {
+    "command": "npm run build",
+    "passed": true,
+    "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+    "log": "logs/build-cycle.log"
+  },
+  "note": "Runtime code was committed before the frozen evidence builds. Subsequent evidence runners/diagnostic probes are bound by each build receipt and explicit runner hashes where available; early runner revisions were not committed individually.",
+  "testsPrevious": {
+    "command": "npm test",
+    "pass": 455,
+    "fail": 0,
+    "durationMs": 110546.805585,
+    "log": "tests.log"
+  }
+}

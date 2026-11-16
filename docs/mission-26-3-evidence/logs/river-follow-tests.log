@@ -1,0 +1,48 @@
+✔ M26.3 exact 3.883 km source bend has continuous visible road support across the former wedge (24.994062ms)
+✔ adjacent tile copies retain exactly the same road triangles and heights at their shared seam (8.065407ms)
+✔ same walking kernel permits a contour road but still refuses a sustained steep ramp and a cliff (9.705114ms)
+✔ directional road policy preserves private, rail, water and off-road steep refusals (1.20203ms)
+✔ stalled network has a bounded retryable state; a late generation cannot publish a floor (65.012972ms)
+✔ aborted demand immediately frees a decoder slot even if the old network ignores AbortSignal (54.632785ms)
+✔ a cooperative installation deadline aborts, rolls back and frees the serial installation queue (41.701249ms)
+✔ source-route driver advances a passed source vertex instead of circling back after a low-rate overshoot (0.833563ms)
+✔ physical tile installation takes priority over queued optional terrain refinement (5.576386ms)
+✔ route driver turns a source right-angle through 4.8m and 7m corridors using the unchanged swept car hull (75.332084ms)
+✔ slow camera travel does not alternate two source casters at a shadow budget boundary; approach still admits a near tree (0.779272ms)
+✔ a rounded source junction advances past a short intermediate node without steering back toward it (0.228297ms)
+✔ decoded tile waiting behind an installation does not inherit the expired network deadline (123.363336ms)
+✔ river following finishes instead of remaining motionless between the braking and arrival radii (152.64609ms)
+✔ preparation yields between bounded slices, preserves step order and cancels work without installing a partial tile (22.265423ms)
+✔ tile residency is committed after asynchronous installation and a stale installation rolls back (26.370322ms)
+✔ incremental graph construction and source-owner eviction retain one-way destination nodes without global rescans (18.601833ms)
+✔ a department river crossing the pilot preserves its historical water owner and interpolates only the exterior mesh (12.733561ms)
+✔ Lambert93 agrees with its official false origin and round trips department-scale positions without converting heights (0.905863ms)
+✔ legacy adapter preserves its historical east/south axes and an unrelated region uses another projection provider (1.125673ms)
+✔ floating-origin moves camera, visual, physics proxy and sound together; canonical state survives multiple rebases (1.03525ms)
+✔ terrain interpolation and normals share the exact triangle diagonal and remain continuous at tile boundaries (4.272086ms)
+✔ tile checksum and length verification reject corrupted bytes before physical installation (208.694556ms)
+✔ opaque gzip tile transport verifies compressed bytes and decodes exactly once (30.538321ms)
+✔ tile streaming bounds concurrency/residency, survives cancellation and never installs stale requests (12.987328ms)
+✔ demand selection fits the declared byte budget without evicting and reloading demanded tiles forever (9.325718ms)
+✔ metric tile demand covers the horizon and preloads the direction of travel without fetching a distant square (2.365413ms)
+✔ directed source topology crosses tiles once, retains shared owners and never connects grade-separated crossings (4.190916ms)
+✔ transport admission keeps motorway pedestrians, private tracks, uncertain bridges and water clearance closed (0.9293ms)
+✔ mapped water/buildings and missing support block travel instead of receiving an invisible fallback floor (3.572595ms)
+✔ car hull sweeps stop before walls, missing tiles and vertical road discontinuities across irregular frame rates (80.03502ms)
+✔ right-hand car steering remains right from the following camera rather than mirroring the keyboard (4.175616ms)
+✔ save/resume validates canonical state and refuses unavailable support without replacing the saved position (0.951641ms)
+✔ analytic flock samples and identity phases survive a CPU cadence/LOD change without a phase reset (4.777813ms)
+✔ paddle force only exists while the shared blade pose enters water; wakes come in stern pairs and fade when stopped (2.862877ms)
+✔ river following supplies input to physics, preserves manual takeover and does not impose spline positions (23.579715ms)
+✔ packraft checks the full visible hull and the water under its blade instead of assuming a flat infinite surface (6.410124ms)
+✔ rail acceleration and braking keep the whole leading vehicle before an unverified corridor end (14.186321ms)
+✔ synthetic airport flight stays continuous through takeoff, airborne turns and landing, then remains parked (3.61431ms)
+✔ a synthetic train brakes for an explicitly assigned source station, dwells, then continues on its rail (16.112224ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1253.089663

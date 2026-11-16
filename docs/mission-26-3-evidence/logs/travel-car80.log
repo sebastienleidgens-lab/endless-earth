@@ -1,0 +1,79 @@
+progress [ -14284.4090966427, -17.43946857206019, 37893.703880421184 ] 127:1608 
+progress [ -14280.60990110484, -14.258940730117388, 37991.39942593641 ] 127:1608 tile-loading
+progress [ -14397.963879542123, -19.838796567313032, 38526.66152820892 ] 127:1607 
+progress [ -14413.583394003826, -18.716208138304708, 39245.09943012502 ] 127:1607 
+progress [ -14224.269066136432, -9.036570107988403, 39418.36077671928 ] 127:1607 
+progress [ -13752.930336852418, 18.629363698586552, 39503.2379728038 ] 127:1607 
+{
+  from: 'Diameter',
+  to: 'car-80km',
+  mode: 'car',
+  success: false,
+  distance: 2907.499115227521,
+  steps: 1431,
+  stop: {
+    height: 26.063343545537045,
+    admission: {
+      height: 26.063343545537045,
+      normal: [Object],
+      slope: 0.009271484819339412,
+      datum: 'IGN69',
+      resolutionM: 2,
+      source: 'IGN LHD numeric MNT; 2 m derivative',
+      quantizationMaxErrorM: 0.005,
+      tile: '127:1607',
+      face: 86,
+      surface: 'road',
+      road: 'osm:way:198218282',
+      supportOwner: 'osm:way:198218282',
+      ok: true,
+      drivable: false,
+      width: 5.5,
+      speedLimit: 8.333333333333334,
+      directionalGradeLimit: 0.7,
+      provenance: 'OSM road corridor + declared regional access policy; inferred width when absent'
+    },
+    clear: true,
+    collision: {
+      surface: 'planet-terrain',
+      obstacle: null,
+      access: [Object],
+      building: null,
+      collider: null
+    },
+    gps: { lat: 46.34032743010594, lon: 0.7059473336497653 }
+  },
+  car: {
+    position: {
+      x: -13625.208084962982,
+      y: 26.063343545537045,
+      z: 39515.54648060756
+    },
+    heading: 1.3473387758851134,
+    speed: 0,
+    steering: -0.08306412133605413,
+    reason: '',
+    odometer: 2907.5385500928746,
+    ground: {
+      height: 26.063343545537045,
+      normal: [Object],
+      slope: 0.009271484819339412,
+      datum: 'IGN69',
+      resolutionM: 2,
+      source: 'IGN LHD numeric MNT; 2 m derivative',
+      quantizationMaxErrorM: 0.005,
+      tile: '127:1607',
+      face: 86,
+      surface: 'road',
+      road: 'osm:way:198218282',
+      supportOwner: 'osm:way:198218282',
+      ok: true,
+      drivable: true,
+      width: 5.5,
+      speedLimit: 8.333333333333334,
+      directionalGradeLimit: null,
+      provenance: 'OSM road corridor + declared regional access policy; inferred width when absent'
+    },
+    active: true
+  }
+}

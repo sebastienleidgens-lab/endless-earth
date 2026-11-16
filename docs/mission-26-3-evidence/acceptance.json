@@ -1,0 +1,1254 @@
+{
+  "mission": "26.3",
+  "overallStatus": "PARTIEL",
+  "generatedAt": "2026-11-16T23:56:59.543830+00:00",
+  "referenceExecutedM262": "58ba496050f7541a63599c28a1a553f7f0b453e9",
+  "referenceDeliveryM262": "0e51a60a95d65dbc1dccc647dfe2a40da7493636",
+  "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+  "environment": {
+    "renderer": "Chromium Linux / ANGLE SwiftShader, software Vulkan",
+    "physicalGPUValidated": false,
+    "phoneHardwareValidated": false,
+    "acceleratedViewport": [
+      320,
+      210
+    ],
+    "nativeViewport": [
+      800,
+      600
+    ],
+    "benchmarkViewport": [
+      640,
+      420
+    ],
+    "dpr": 1,
+    "sound": "Enabled in corrected native/benchmark protocols; early multi-case gait harness toggled audio in some cases, visible in snapshots. Physical180s results do not claim audio/performance acceptance."
+  },
+  "statuses": [
+    "WAITING_FOR_TILE",
+    "RETRYABLE_BLOCKED",
+    "PHYSICAL_BLOCKED",
+    "SOURCE_UNKNOWN",
+    "ERROR",
+    "COMPLETED"
+  ],
+  "scenarios": [
+    {
+      "id": "V01",
+      "scenario": "Chauvigny ≥20 km et reprise",
+      "status": "ATTEINT",
+      "result": "21034.73 m, arrivée, 7 tuiles ; retour 60.03 m ; reprise du point sauvegardé pendant le voyage.",
+      "evidence": [
+        "travel/Chauvigny-foot-21km-foot.json",
+        "communes-trace.json"
+      ],
+      "limits": "Accéléré ; reprise normale dans la même page. Le reload de page est vérifié séparément, sans l’attribuer rétroactivement à ce voyage.",
+      "codeSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+      "startGPS": {
+        "lat": 46.57105470370647,
+        "lon": 0.6491156933924196
+      },
+      "arrivalGPS": {
+        "lat": 46.737559402890724,
+        "lon": 0.5537306253059257
+      },
+      "lastGPS": {
+        "lat": 46.737559402890724,
+        "lon": 0.5537306253059257
+      },
+      "physicalDistanceM": 21034.730957360265,
+      "tiles": [
+        "125:1615",
+        "125:1616",
+        "125:1617",
+        "125:1618",
+        "126:1613",
+        "126:1614",
+        "126:1615"
+      ],
+      "wallSeconds": 1116.517299999997,
+      "simulationSeconds": 14715.25,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "refusal": null,
+      "errors": [],
+      "executions": [
+        {
+          "evidence": "travel/Chauvigny-foot-21km-foot.json",
+          "codeSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-travel/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.57105470370647,
+            "lon": 0.6491156933924196
+          },
+          "arrivalGPS": {
+            "lat": 46.737559402890724,
+            "lon": 0.5537306253059257
+          },
+          "lastGPS": {
+            "lat": 46.737559402890724,
+            "lon": 0.5537306253059257
+          },
+          "physicalDistanceM": 21034.730957360265,
+          "offRoadDistanceM": null,
+          "tiles": [
+            "125:1615",
+            "125:1616",
+            "125:1617",
+            "125:1618",
+            "126:1613",
+            "126:1614",
+            "126:1615"
+          ],
+          "wallSeconds": 1116.517299999997,
+          "simulationSeconds": 14715.25,
+          "renderedFps": null,
+          "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V02",
+      "scenario": "Vrai spawn Angles →3 tuiles",
+      "status": "ATTEINT",
+      "result": "4737.88 m, 3 tuiles canoniques, arrivée depuis le spawn intact.",
+      "evidence": [
+        "travel/spawn-east-dense-avoid-water-foot.json",
+        "communes-trace.json"
+      ],
+      "limits": "Les tuiles couvrent la frontière administrative ; un échantillon longe Lurais/Indre. L’arrivée exacte est à Angles selon API Geo. Pas de nouvelle acquisition hors Vienne.",
+      "codeSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+      "startGPS": {
+        "lat": 46.6954233157827,
+        "lon": 0.8797680006964309
+      },
+      "arrivalGPS": {
+        "lat": 46.689415842861465,
+        "lon": 0.9160364703273235
+      },
+      "lastGPS": {
+        "lat": 46.689415842861465,
+        "lon": 0.9160364703273235
+      },
+      "physicalDistanceM": 4737.88407480962,
+      "tiles": [
+        "131:1617",
+        "132:1616",
+        "132:1617"
+      ],
+      "wallSeconds": 345.45230000000447,
+      "simulationSeconds": 3368.25,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "refusal": null,
+      "errors": [],
+      "executions": [
+        {
+          "evidence": "travel/spawn-east-dense-avoid-water-foot.json",
+          "codeSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-travel/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.6954233157827,
+            "lon": 0.8797680006964309
+          },
+          "arrivalGPS": {
+            "lat": 46.689415842861465,
+            "lon": 0.9160364703273235
+          },
+          "lastGPS": {
+            "lat": 46.689415842861465,
+            "lon": 0.9160364703273235
+          },
+          "physicalDistanceM": 4737.88407480962,
+          "offRoadDistanceM": null,
+          "tiles": [
+            "131:1617",
+            "132:1616",
+            "132:1617"
+          ],
+          "wallSeconds": 345.45230000000447,
+          "simulationSeconds": 3368.25,
+          "renderedFps": null,
+          "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V03",
+      "scenario": "Coutures et hors chaussée",
+      "status": "PARTIEL",
+      "result": "27/27 bandes aller-retour ; traversée totale de 310.49 m, dont 304.33 m hors chaussée mesurés à chaque pas.",
+      "evidence": [
+        "seam-strips.json",
+        "offroad-complete.json",
+        "offroad.json",
+        "offroad-verified.json",
+        "offroad-verified-retry.json"
+      ],
+      "limits": "Rue du Pont historique reste distinct et non retesté ici. OSM access=yes est une admission de jeu, pas une preuve cadastrale.",
+      "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "method": "See linked protocols; no route length is substituted for physical travel.",
+      "executions": [
+        {
+          "evidence": "seam-strips.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Short independent strips with explicit placement BEFORE each strip. Actual grounded production collision kernel at 60 Hz; not a full intercommunal frame or native film. No placement during crossings.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "offroad-complete.json",
+          "codeSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-guidance/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": {
+            "lat": 46.56120830937135,
+            "lon": 0.40405371072750684
+          },
+          "lastGPS": {
+            "lat": 46.56120830937135,
+            "lon": 0.40405371072750684
+          },
+          "physicalDistanceM": 310.4934337298229,
+          "offRoadDistanceM": 304.3309337298365,
+          "tiles": [],
+          "wallSeconds": 11.393400000005961,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Independent repeat of the successful310m known-access area traverse. Normal foot input and full production frame, dt .25. Every step classifies the actual admission; mapped-road crossings are excluded conservatively from off-road distance. No position assignment during travel.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "offroad.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Known OSM access=yes area; source tags are a gameplay inference, not a legal survey. Independent initial placements declared. Full production frame with normal input, dt .25. No repositioning during a traverse.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "offroad-verified.json",
+          "codeSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-guidance/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": {
+            "lat": 46.559893391524305,
+            "lon": 0.40410552720603016
+          },
+          "physicalDistanceM": 164.72035323898388,
+          "offRoadDistanceM": 158.5578532389972,
+          "tiles": [],
+          "wallSeconds": 9.77769999999553,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Independent repeat of the successful310m known-access area traverse. Normal foot input and full production frame, dt .25. Every step classifies the actual admission; mapped-road crossings are excluded conservatively from off-road distance. No position assignment during travel.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "offroad-verified-retry.json",
+          "codeSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-guidance/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": {
+            "lat": 46.561044914495895,
+            "lon": 0.4040535623794282
+          },
+          "physicalDistanceM": 293.45439269005357,
+          "offRoadDistanceM": 287.2918926900669,
+          "tiles": [],
+          "wallSeconds": 20.93810000000149,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Independent repeat of the successful310m known-access area traverse. Normal foot input and full production frame, dt .25. Every step classifies the actual admission; mapped-road crossings are excluded conservatively from off-road distance. No position assignment during travel.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V04",
+      "scenario": "Raccord automobile 3,883 km",
+      "status": "ATTEINT",
+      "result": "Même corridor historique dépassé jusqu’à l’arrivée du 40 km ; trou de chaussée corrigé, quatre coins de coque et triangles visibles exportés.",
+      "evidence": [
+        "geometry-comparison.json",
+        "geometry-comparison.svg",
+        "geometry-reference-3d/visible-mesh.obj",
+        "geometry-candidate-3d/visible-mesh.obj",
+        "predictive/Vallee-stop-car-40km-car.json"
+      ],
+      "limits": "Le premier carrefour de Chauvigny est suivi séparément ; il ne faut pas le déclarer réparé par cette seule preuve.",
+      "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "arrivalGPS": {
+        "lat": 46.3221813263622,
+        "lon": 0.8408697784262673
+      },
+      "lastGPS": {
+        "lat": 46.3221813263622,
+        "lon": 0.8408697784262673
+      },
+      "physicalDistanceM": 40425.41711575152,
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "wallSeconds": 1049.565200000003,
+      "simulationSeconds": 4751.75,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "refusal": "",
+      "errors": [],
+      "executions": [
+        {
+          "evidence": "predictive/Vallee-stop-car-40km-car.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.60650819688691,
+            "lon": 0.6053124990529222
+          },
+          "arrivalGPS": {
+            "lat": 46.3221813263622,
+            "lon": 0.8408697784262673
+          },
+          "lastGPS": {
+            "lat": 46.3221813263622,
+            "lon": 0.8408697784262673
+          },
+          "physicalDistanceM": 40425.41711575152,
+          "offRoadDistanceM": null,
+          "tiles": [
+            "126:1611",
+            "126:1612",
+            "126:1613",
+            "126:1614",
+            "127:1609",
+            "127:1610",
+            "127:1611",
+            "128:1608",
+            "128:1609",
+            "129:1607",
+            "129:1608",
+            "130:1607"
+          ],
+          "wallSeconds": 1049.565200000003,
+          "simulationSeconds": 4751.75,
+          "renderedFps": null,
+          "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+          "refusal": "",
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V05",
+      "scenario": "Voiture ≥40 km puis ≥200 m à pied",
+      "status": "ATTEINT",
+      "result": "40425.42 m jusqu’à l’arrivée ; parking, sortie et 205.13 m à pied.",
+      "evidence": [
+        "predictive/Vallee-stop-car-40km-car.json",
+        "visual-regressions/candidate-native-car-junction-verified.json",
+        "visual-regressions/candidate-native-car.json",
+        "reload-corrected.json",
+        "communes-trace.json"
+      ],
+      "limits": "Simulation accélérée, coque active. La prise native corrigée documente frontière/carrefour/arrêt/sortie/reprise en68frames à1,57FPS ; ce n’est pas une preuve de fluidité. Les premiers protocoles incomplets sont conservés.",
+      "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "arrivalGPS": {
+        "lat": 46.3221813263622,
+        "lon": 0.8408697784262673
+      },
+      "lastGPS": {
+        "lat": 46.3221813263622,
+        "lon": 0.8408697784262673
+      },
+      "physicalDistanceM": 40425.41711575152,
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "wallSeconds": 1049.565200000003,
+      "simulationSeconds": 4751.75,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "refusal": "",
+      "errors": [],
+      "executions": [
+        {
+          "evidence": "predictive/Vallee-stop-car-40km-car.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.60650819688691,
+            "lon": 0.6053124990529222
+          },
+          "arrivalGPS": {
+            "lat": 46.3221813263622,
+            "lon": 0.8408697784262673
+          },
+          "lastGPS": {
+            "lat": 46.3221813263622,
+            "lon": 0.8408697784262673
+          },
+          "physicalDistanceM": 40425.41711575152,
+          "offRoadDistanceM": null,
+          "tiles": [
+            "126:1611",
+            "126:1612",
+            "126:1613",
+            "126:1614",
+            "127:1609",
+            "127:1610",
+            "127:1611",
+            "128:1608",
+            "128:1609",
+            "129:1607",
+            "129:1608",
+            "130:1607"
+          ],
+          "wallSeconds": 1049.565200000003,
+          "simulationSeconds": 4751.75,
+          "renderedFps": null,
+          "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+          "refusal": "",
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "visual-regressions/candidate-native-car-junction-verified.json",
+          "codeSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-guidance/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.53764166643422,
+            "lon": 0.6457808293563452
+          },
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": 42.59610000000149,
+          "simulationSeconds": 16.33240000000596,
+          "renderedFps": 1.5729139522162277,
+          "method": "Native production frames only during recording, normal steering/braking, real door transition, save/reprise action. Independent declared initial placement on a previously measured wide source road BEFORE recording. No positional repair during driving. Native film is not a 40km proof or hardware/perceptual validation.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "visual-regressions/candidate-native-car.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.574227589666414,
+            "lon": 0.6394356275584008
+          },
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": 105.7675,
+          "simulationSeconds": 31.35690000000596,
+          "renderedFps": 1.210201621481079,
+          "method": "Native production frames only during recording, normal steering/braking, real door transition, save/reprise action. Independent declared initial placement on a previously measured wide source road BEFORE recording. No positional repair during driving. Native film is not a 40km proof or hardware/perceptual validation.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "reload-corrected.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Independent real page-reload smoke test at a declared geographic station selected from the long trip. Initial placement only before the smoke test; actual car input creates the save. Reload uses existing localStorage and normal resume action, never an injected save. This is NOT retroactively a reload during the already archived 40km or 21km trip.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V06",
+      "scenario": "Voiture ≥80 km jusqu’à l’arrivée",
+      "status": "NON ATTEINT",
+      "result": "Plus grand essai archivé : 60677.00 m, sans arrivée ; ne valide pas 80 km.",
+      "evidence": [
+        "guidance/Vallee-source-roundtrip-car-80km-car.json"
+      ],
+      "limits": "Le trajet aller-retour est déclaré. Les déplacements de manœuvre sont réels ; aucun itinéraire calculé n’est compté comme accompli.",
+      "codeSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "arrivalGPS": null,
+      "lastGPS": {
+        "lat": 46.446649819549286,
+        "lon": 0.6741110060327823
+      },
+      "physicalDistanceM": 60677.00094397746,
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "wallSeconds": 1126.9771999999955,
+      "simulationSeconds": 6936.25,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "refusal": "steep-support",
+      "errors": [],
+      "executions": [
+        {
+          "evidence": "guidance/Vallee-source-roundtrip-car-80km-car.json",
+          "codeSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-guidance/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.60650819688691,
+            "lon": 0.6053124990529222
+          },
+          "arrivalGPS": null,
+          "lastGPS": {
+            "lat": 46.446649819549286,
+            "lon": 0.6741110060327823
+          },
+          "physicalDistanceM": 60677.00094397746,
+          "offRoadDistanceM": null,
+          "tiles": [
+            "126:1611",
+            "126:1612",
+            "126:1613",
+            "126:1614",
+            "127:1609",
+            "127:1610",
+            "127:1611",
+            "128:1608",
+            "128:1609",
+            "129:1607",
+            "129:1608",
+            "130:1607"
+          ],
+          "wallSeconds": 1126.9771999999955,
+          "simulationSeconds": 6936.25,
+          "renderedFps": null,
+          "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+          "refusal": "steep-support",
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V07",
+      "scenario": "Nouveau packraft ≥1 km",
+      "status": "PARTIEL",
+      "result": "Clain : suivi physique 886.04 m, retour à la berge 957.86 m, débarquement et marche 2.13 m.",
+      "evidence": [
+        "river-1-priority.json",
+        "river-0.json",
+        "river-2-warm.json",
+        "river-3-final.json",
+        "river-4-cycle.json",
+        "clain-diameter-plan.json"
+      ],
+      "limits": "Seuil de corridor ≥1 km NON ATTEINT. Ne pas additionner aller et retour pour le fabriquer. Cinq secteurs essayés ; profondeur/courant/niveau estimés, ouvrages inconnus fermés.",
+      "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "method": "See linked protocols; no route length is substituted for physical travel.",
+      "executions": [
+        {
+          "evidence": "river-1-priority.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": {
+            "lat": 46.57044422926999,
+            "lon": 0.32767620404018627
+          },
+          "physicalDistanceM": 886.0434677193033,
+          "offRoadDistanceM": null,
+          "tiles": [
+            "120:1614",
+            "121:1614"
+          ],
+          "wallSeconds": 528.965,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "river-0.json",
+          "codeSHA": "d9b29e70e581b30f50aa305445b92be611e8649b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-final/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": {
+            "lat": 46.43728327032647,
+            "lon": 0.12244418866783868
+          },
+          "physicalDistanceM": 163.66510622000797,
+          "offRoadDistanceM": null,
+          "tiles": [
+            "116:1610"
+          ],
+          "wallSeconds": 50.71460000000149,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "river-2-warm.json",
+          "codeSHA": "d16b2b3b972f872fc120fb2313ebad94911d4ea0",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-banks/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "river-3-final.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "river-4-cycle.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V08",
+      "scenario": "Streaming borné et reprise",
+      "status": "PARTIEL",
+      "result": "HTTP503 retardé : arrêt devant la tuile manquante, clic de reprise sans déplacement, franchissement par le même acteur.",
+      "evidence": [
+        "streaming-network-corrected.json",
+        "streaming-network.json",
+        "tests.log",
+        "travel/Chauvigny-foot-21km-foot.json"
+      ],
+      "limits": "Annulation ignorée, génération périmée, éviction et délais aussi couverts en unités ; matrice navigateur non exhaustive. Tâches >50ms encore observées.",
+      "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "method": "See linked protocols; no route length is substituted for physical travel.",
+      "executions": [
+        {
+          "evidence": "streaming-network-corrected.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.5738520685698,
+            "lon": 0.64547945332821
+          },
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Independent declared road placement BEFORE trial, followed by normal controller input against a delayed HTTP503 geometry tile. Same actor retries via existing UI and crosses without placement/restore. Explicit dt .25; not native network/FPS benchmark. Unit tests separately cover ignored AbortSignal, late generations, concurrent eviction and queue timeout.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "streaming-network.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.574193594361745,
+            "lon": 0.6449127442401248
+          },
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Independent declared road placement BEFORE trial, followed by normal controller input against a delayed HTTP503 geometry tile. Same actor retries via existing UI and crosses without placement/restore. Explicit dt .25; not native network/FPS benchmark. Unit tests separately cover ignored AbortSignal, late generations, concurrent eviction and queue timeout.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "travel/Chauvigny-foot-21km-foot.json",
+          "codeSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-travel/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.57105470370647,
+            "lon": 0.6491156933924196
+          },
+          "arrivalGPS": {
+            "lat": 46.737559402890724,
+            "lon": 0.5537306253059257
+          },
+          "lastGPS": {
+            "lat": 46.737559402890724,
+            "lon": 0.5537306253059257
+          },
+          "physicalDistanceM": 21034.730957360265,
+          "offRoadDistanceM": null,
+          "tiles": [
+            "125:1615",
+            "125:1616",
+            "125:1617",
+            "125:1618",
+            "126:1613",
+            "126:1614",
+            "126:1615"
+          ],
+          "wallSeconds": 1116.517299999997,
+          "simulationSeconds": 14715.25,
+          "renderedFps": null,
+          "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V09",
+      "scenario": "Démarche/course, plat/pente,4 vues",
+      "status": "PARTIEL",
+      "result": "16/16 reprises atteignent 180 s simulées réellement consécutives. Films natifs disponibles, perceptif NON VALIDÉ.",
+      "evidence": [
+        "visual-regressions/candidate-physical-gait.json",
+        "visual-regressions/candidate-checked-native.json",
+        "visual-regressions/reference-checked-native.json"
+      ],
+      "limits": "Rig inchangé. Premières captures fonctionnelles parfois cadrées trop bas ; films récents cadrent les pieds. L’ancien banc et ses erreurs restent conservés. Pas de certification de naturel.",
+      "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "method": "See linked protocols; no route length is substituted for physical travel.",
+      "executions": [
+        {
+          "evidence": "visual-regressions/candidate-physical-gait.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Actual full production frame, normal world-direction controls, dt .25, collisions active. Prior successful trace provides steering targets only. Independent initial placement before each trial. Consecutive activity AND physical speed tested. Render checkpoints are not native fluidity evidence.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "visual-regressions/candidate-checked-native.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Native canvas + original mixed stereo audio, no manual simulation steps, no position assignment during clips. Independent matched setup before clips; four camera angles are explicitly timed. 800x600 DPR1, seed12345, June21 clear. Software renderer: no hardware or perceptual validation.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "visual-regressions/reference-checked-native.json",
+          "codeSHA": "0e51a60a95d65dbc1dccc647dfe2a40da7493636",
+          "sameSourceBuildReceipts": [
+            "builds/reference-compiled/receipt.json",
+            "builds/reference-current/receipt.json",
+            "builds/reference-geometry/receipt.json",
+            "builds/reference-paired/receipt.json",
+            "builds/reference-paired-current/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Native canvas + original mixed stereo audio, no manual simulation steps, no position assignment during clips. Independent matched setup before clips; four camera angles are explicitly timed. 800x600 DPR1, seed12345, June21 clear. Software renderer: no hardware or perceptual validation.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V10",
+      "scenario": "Oiseaux et quatre familles d’ombres",
+      "status": "PARTIEL",
+      "result": "Hystérésis de casters8m testée ; films natifs Éco/Équilibré/Qualité et états initiaux appariés.",
+      "evidence": [
+        "visual-regressions/candidate-checked-native.json",
+        "visual-regressions/reference-checked-native.json",
+        "visual-regressions/paired-comparison.json"
+      ],
+      "limits": "Instances d’oiseaux déclarées par le moteur, visibilité et fluidité non certifiées. Shimmer, pixel et cohérence du vent non résolus perceptivement. Pas de nouvelle correction du vol.",
+      "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "method": "See linked protocols; no route length is substituted for physical travel.",
+      "executions": [
+        {
+          "evidence": "visual-regressions/candidate-checked-native.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Native canvas + original mixed stereo audio, no manual simulation steps, no position assignment during clips. Independent matched setup before clips; four camera angles are explicitly timed. 800x600 DPR1, seed12345, June21 clear. Software renderer: no hardware or perceptual validation.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "visual-regressions/reference-checked-native.json",
+          "codeSHA": "0e51a60a95d65dbc1dccc647dfe2a40da7493636",
+          "sameSourceBuildReceipts": [
+            "builds/reference-compiled/receipt.json",
+            "builds/reference-current/receipt.json",
+            "builds/reference-geometry/receipt.json",
+            "builds/reference-paired/receipt.json",
+            "builds/reference-paired-current/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Native canvas + original mixed stereo audio, no manual simulation steps, no position assignment during clips. Independent matched setup before clips; four camera angles are explicitly timed. 800x600 DPR1, seed12345, June21 clear. Software renderer: no hardware or perceptual validation.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V11",
+      "scenario": "Performances et endurance",
+      "status": "PARTIEL",
+      "result": "Benchmarks isolés et intervalles bruts ; deux sessions murales >30min sur versions intermédiaires.",
+      "evidence": [
+        "performance.json",
+        "reference-benchmarks.json",
+        "candidate-benchmarks.json",
+        "endurance.json",
+        "endurance-recovery.json",
+        "terrain-equivalence.json"
+      ],
+      "limits": "SwiftShader : 60/30FPS matériel NON VALIDÉ. ≤8ms / aucune tâche >50ms / ≤5% non démontrés. Endurance à stations indépendantes, sans la présenter comme30min de trajet natif continu.",
+      "codeSHA": "0e51a60a95d65dbc1dccc647dfe2a40da7493636",
+      "method": "See linked protocols; no route length is substituted for physical travel.",
+      "executions": [
+        {
+          "evidence": "reference-benchmarks.json",
+          "codeSHA": "0e51a60a95d65dbc1dccc647dfe2a40da7493636",
+          "sameSourceBuildReceipts": [
+            "builds/reference-compiled/receipt.json",
+            "builds/reference-current/receipt.json",
+            "builds/reference-geometry/receipt.json",
+            "builds/reference-paired/receipt.json",
+            "builds/reference-paired-current/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Isolated browser, NO video encoder. Active game frame with audio, chosen full profile, fixed 640x420 DPR1. SwiftShader software. Raw intervals retained; small samples do not validate hardware or robust P99.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "candidate-benchmarks.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Isolated browser, NO video encoder. Active game frame with audio, chosen full profile, fixed 640x420 DPR1. SwiftShader software. Raw intervals retained; small samples do not validate hardware or robust P99.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "endurance.json",
+          "codeSHA": "1eb19c2cea13b221915a1559f22246137456e094",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-stream/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.6954233157827,
+            "lon": 0.8797680006964309
+          },
+          "arrivalGPS": null,
+          "lastGPS": {
+            "lat": 46.606950146868954,
+            "lon": 0.6079987615953778
+          },
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": 1820.61745879,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "One browser session, >=30 min wall time. Deliberate diagnostic sector relocations BETWEEN independent short controller legs stress residency/eviction; these are not a continuous geographic journey. Full production frames, explicit dt <=.25, native rendering at checkpoints, original effects/audio. Concurrent functional campaigns; not an isolated FPS benchmark.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "endurance-recovery.json",
+          "codeSHA": "596956bb7bb2d444e44f31f600429200d9b851b2",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-recovery/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": {
+            "lat": 46.6954233157827,
+            "lon": 0.8797680006964309
+          },
+          "arrivalGPS": null,
+          "lastGPS": {
+            "lat": 46.78577514972171,
+            "lon": 0.8151314994152536
+          },
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": 1993.046171049,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "One browser session, >=30 min wall time. Deliberate diagnostic sector relocations BETWEEN independent short controller legs stress residency/eviction; these are not a continuous geographic journey. Full production frames, explicit dt <=.25, native rendering at checkpoints, original effects/audio. Concurrent functional campaigns; not an isolated FPS benchmark.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    },
+    {
+      "id": "V12",
+      "scenario": "Conservation, tests et reproduction",
+      "status": "ATTEINT",
+      "result": "457 tests réussis ; données/anciens rapports conservés ; reload réel conduite et marche ; PR38 en brouillon.",
+      "evidence": [
+        "verification.json",
+        "preservation.json",
+        "baseline.json",
+        "reload-corrected.json",
+        "REPRODUCTION.md",
+        "pr-before-delivery.json"
+      ],
+      "limits": "Voir les SHA réellement exécutés et reçus de builds. Les comparaisons de versions et limites des anciens conducteurs sont explicites. Aucun merge, achat ou déploiement.",
+      "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "method": "See linked protocols; no route length is substituted for physical travel.",
+      "executions": [
+        {
+          "evidence": "verification.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": null,
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        },
+        {
+          "evidence": "reload-corrected.json",
+          "codeSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+          "sameSourceBuildReceipts": [
+            "builds/candidate-control-probes/receipt.json",
+            "builds/candidate-cycle/receipt.json",
+            "builds/candidate-geometry/receipt.json"
+          ],
+          "buildLimit": "Receipts sharing source SHA; instrumentation may differ. Use the exact archived bundle and protocol for identity, not a reconstruction with later helpers.",
+          "sourcePolicy": "Existing OSM/IGN source manifests and preserved licences; no new geographic acquisition.",
+          "startGPS": null,
+          "arrivalGPS": null,
+          "lastGPS": null,
+          "physicalDistanceM": null,
+          "offRoadDistanceM": null,
+          "tiles": [],
+          "wallSeconds": null,
+          "simulationSeconds": null,
+          "renderedFps": null,
+          "method": "Independent real page-reload smoke test at a declared geographic station selected from the long trip. Initial placement only before the smoke test; actual car input creates the save. Reload uses existing localStorage and normal resume action, never an injected save. This is NOT retroactively a reload during the already archived 40km or 21km trip.",
+          "refusal": null,
+          "unrecordedFields": "Null means not recorded by that protocol; nested cases and local geometry remain in the raw file. No inferred GPS, duration or FPS."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2410 @@
+{
+  "sector": "osm:way:144017801",
+  "tags": {
+    "access": "yes",
+    "landuse": "grass"
+  },
+  "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+  "errors": [],
+  "functionalSuccess": false,
+  "sourceSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+  "failure": "Error: page.evaluate: Error: No streamed support at requested area\n    at window.p262.areaPlace (http://localhost:5410/endless-earth/assets/index-C9P5p5S4.js:4894:19192)\n    at async <anonymous>:381:23",
+  "status": "ERROR",
+  "failedState": {
+    "state": {
+      "position": [
+        -353.66215395553013,
+        -32.22696558738903,
+        -13.727512929741842
+      ],
+      "heading": 3.141592653589793,
+      "birds": {
+        "individuals": 0,
+        "drawCalls": 0,
+        "triangles": 0,
+        "perches": 24,
+        "families": [],
+        "sources": [],
+        "renderSamples": 126,
+        "cpuMs": 0.20000000298023224,
+        "maxCpuMs": 308.20000000298023,
+        "clock": 108.51579999999703,
+        "trajectory": "analytic-per-render-frame"
+      },
+      "shadow": {
+        "state": "ready",
+        "mode": "local",
+        "matchedGeometry": 287,
+        "ambientVertices": 536452,
+        "shadowSize": 0,
+        "shadowBytes": 0,
+        "staticTriangles": 0,
+        "treeInstances": 0,
+        "updates": 0,
+        "lastUpdateCpuMs": 0,
+        "maxUpdateCpuMs": 0,
+        "lastShadowCalls": 0,
+        "lastShadowTriangles": 0,
+        "extraPasses": 0,
+        "selectionBuilds": 0,
+        "shadowIndexBytes": 0,
+        "sourceBytes": 5495013,
+        "filter": "none",
+        "windTests": 0,
+        "windSkips": 0,
+        "windMotionBoundM": 0,
+        "maxWindMotionBoundM": 0,
+        "windThresholdM": 0,
+        "character": {
+          "updates": 0,
+          "size": 0,
+          "bytes": 0,
+          "proxies": 0,
+          "extraPasses": 0,
+          "poseAgeMs": 0,
+          "lastCpuMs": 0,
+          "maxCpuMs": 0,
+          "receiver": "landscape only; actor receives landscape map"
+        }
+      },
+      "boat": {
+        "active": false,
+        "heading": 0,
+        "following": false,
+        "metrics": {
+          "plans": 0,
+          "lateralError": 0,
+          "maxLateralError": 0,
+          "stops": 0
+        }
+      },
+      "planet": {
+        "contactQueries": {
+          "queries": 2859,
+          "hits": 52,
+          "invalidations": 2302,
+          "maxEntries": 632
+        },
+        "state": "ready",
+        "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+        "stream": {
+          "loaded": 2,
+          "unloaded": 0,
+          "failures": 0,
+          "residentBytes": 32279276,
+          "active": 2,
+          "queued": 0,
+          "errors": {},
+          "timeouts": 0,
+          "cancellations": 2,
+          "generation": 6,
+          "jobs": [
+            {
+              "id": "131:1616",
+              "generation": 2,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794860278147
+            },
+            {
+              "id": "131:1617",
+              "generation": 1,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794860278149
+            },
+            {
+              "id": "120:1614",
+              "generation": 4,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 716.075460607162,
+              "at": 1794860359054
+            },
+            {
+              "id": "121:1613",
+              "generation": 5,
+              "state": "WAITING_FOR_TILE",
+              "phase": "installation-queue",
+              "priority": 856.2377847629241,
+              "at": 1794860365820
+            },
+            {
+              "id": "121:1614",
+              "generation": 3,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 0.1787703459833814,
+              "at": 1794860507645
+            },
+            {
+              "id": "120:1613",
+              "generation": 6,
+              "state": "WAITING_FOR_TILE",
+              "phase": "installation-queue",
+              "priority": 1116.1648491556489,
+              "at": 1794860509866
+            }
+          ]
+        },
+        "render": {
+          "tiles": 2,
+          "features": 44476,
+          "triangles": 36480,
+          "trees": 535,
+          "disposed": 44,
+          "batches": 890,
+          "batchRebuilds": 3,
+          "maxBatchMs": 396.3999999985099,
+          "maxBatchWallMs": 32227.40000000596,
+          "failures": []
+        },
+        "graph": {
+          "foot": {
+            "features": 11753,
+            "nodes": 46689,
+            "edges": 100244,
+            "refused": 4232,
+            "routes": 0,
+            "visited": 0
+          },
+          "car": {
+            "features": 11753,
+            "nodes": 25187,
+            "edges": 43443,
+            "refused": 8269,
+            "routes": 0,
+            "visited": 0
+          },
+          "rail": {
+            "features": 11753,
+            "nodes": 1984,
+            "edges": 3968,
+            "refused": 11729,
+            "routes": 0,
+            "visited": 0
+          }
+        },
+        "car": {
+          "steps": 0,
+          "refusals": 0,
+          "maxSpeed": 0
+        },
+        "maxInstallMs": 396.3999999985099,
+        "maxInstallWallMs": 148590.29999999702,
+        "preparation": {
+          "slices": 13540,
+          "steps": 2058712,
+          "cpuMs": 88478.39999947697,
+          "maxSliceMs": 396.3999999985099,
+          "maxStepMs": 393.79999999701977,
+          "completed": 21,
+          "cancelled": 1,
+          "stages": {
+            "surface-index:131:1616": {
+              "steps": 557,
+              "cpuMs": 28.600000001490116,
+              "maxStepMs": 10.200000002980232,
+              "over8": 2,
+              "over50": 0
+            },
+            "foot-graph:131:1616": {
+              "steps": 2169,
+              "cpuMs": 39.899999998509884,
+              "maxStepMs": 10.399999998509884,
+              "over8": 1,
+              "over50": 0
+            },
+            "car-graph:131:1616": {
+              "steps": 1403,
+              "cpuMs": 10.599999994039536,
+              "maxStepMs": 2.100000001490116,
+              "over8": 0,
+              "over50": 0
+            },
+            "rail-graph:131:1616": {
+              "steps": 534,
+              "cpuMs": 1.9000000059604645,
+              "maxStepMs": 0.5,
+              "over8": 0,
+              "over50": 0
+            },
+            "render-install:131:1616": {
+              "steps": 29070,
+              "cpuMs": 1815.5000000596046,
+              "maxStepMs": 57.80000000447035,
+              "over8": 40,
+              "over50": 2
+            },
+            "static-batches": {
+              "steps": 57290,
+              "cpuMs": 12832.499999761581,
+              "maxStepMs": 179.19999999552965,
+              "over8": 221,
+              "over50": 14
+            },
+            "surface-index:120:1614": {
+              "steps": 11728,
+              "cpuMs": 416.4999999701977,
+              "maxStepMs": 44.69999999552965,
+              "over8": 14,
+              "over50": 0
+            },
+            "foot-graph:120:1614": {
+              "steps": 21271,
+              "cpuMs": 175.7999999448657,
+              "maxStepMs": 7.5999999940395355,
+              "over8": 0,
+              "over50": 0
+            },
+            "car-graph:120:1614": {
+              "steps": 17708,
+              "cpuMs": 190.29999997466803,
+              "maxStepMs": 43.600000001490116,
+              "over8": 5,
+              "over50": 0
+            },
+            "rail-graph:120:1614": {
+              "steps": 12478,
+              "cpuMs": 33.79999999701977,
+              "maxStepMs": 3.2999999970197678,
+              "over8": 0,
+              "over50": 0
+            },
+            "render-install:120:1614": {
+              "steps": 432774,
+              "cpuMs": 16167.999999858439,
+              "maxStepMs": 124.60000000149012,
+              "over8": 321,
+              "over50": 30
+            },
+            "surface-index:121:1614": {
+              "steps": 33679,
+              "cpuMs": 1943.9000000208616,
+              "maxStepMs": 164.19999999552965,
+              "over8": 50,
+              "over50": 5
+            },
+            "foot-graph:121:1614": {
+              "steps": 62063,
+              "cpuMs": 2809.600000113249,
+              "maxStepMs": 393.79999999701977,
+              "over8": 59,
+              "over50": 7
+            },
+            "car-graph:121:1614": {
+              "steps": 48012,
+              "cpuMs": 851.2000001221895,
+              "maxStepMs": 68.10000000149012,
+              "over8": 20,
+              "over50": 3
+            },
+            "rail-graph:121:1614": {
+              "steps": 34455,
+              "cpuMs": 243.3999999910593,
+              "maxStepMs": 31.399999998509884,
+              "over8": 6,
+              "over50": 0
+            },
+            "render-install:121:1614": {
+              "steps": 870548,
+              "cpuMs": 25082.6000001505,
+              "maxStepMs": 125.09999999403954,
+              "over8": 382,
+              "over50": 19
+            },
+            "terrain-refine:121:1614": {
+              "steps": 10,
+              "cpuMs": 46.19999998807907,
+              "maxStepMs": 16.600000001490116,
+              "over8": 2,
+              "over50": 0
+            },
+            "surface-index:121:1613": {
+              "steps": 11495,
+              "cpuMs": 332.20000003278255,
+              "maxStepMs": 46.19999999552965,
+              "over8": 5,
+              "over50": 0
+            },
+            "foot-graph:121:1613": {
+              "steps": 23629,
+              "cpuMs": 511.99999994784594,
+              "maxStepMs": 47.29999999701977,
+              "over8": 8,
+              "over50": 0
+            },
+            "car-graph:121:1613": {
+              "steps": 17423,
+              "cpuMs": 137.10000003874302,
+              "maxStepMs": 11.699999995529652,
+              "over8": 3,
+              "over50": 0
+            },
+            "rail-graph:121:1613": {
+              "steps": 11892,
+              "cpuMs": 259.40000000596046,
+              "maxStepMs": 115.80000000447035,
+              "over8": 4,
+              "over50": 2
+            },
+            "render-install:121:1613": {
+              "steps": 358524,
+              "cpuMs": 17304.099999912083,
+              "maxStepMs": 123.70000000298023,
+              "over8": 307,
+              "over50": 31
+            }
+          },
+          "longSteps": [
+            {
+              "label": "render-install:121:1613",
+              "ms": 61
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 40.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.700000002980232
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 41.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 37.099999994039536
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 27.799999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 42.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.699999995529652
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 12.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 10
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 46
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 41.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 17.799999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 45.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 19.69999999552965
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 43.29999999701977
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 54.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 19.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 39.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 43.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 38.900000005960464
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.700000002980232
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 35.69999999552965
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.800000004470348
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 14.600000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 18.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 17
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 15.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.199999995529652
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 17.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 20
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.600000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 10.900000005960464
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 10.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 18
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 13.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 22.200000002980232
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 12.300000004470348
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 41.20000000298023
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.199999995529652
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.199999995529652
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.600000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 13.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.199999995529652
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 41
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.299999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.900000005960464
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 10.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 46.79999999701977
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.199999995529652
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 40.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.800000004470348
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 14.799999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 36.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 10.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 13.799999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 12.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 80.60000000149012
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 16.299999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 29.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 12.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 17.200000002980232
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.400000005960464
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 55.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 43.599999994039536
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 16.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 49.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 10.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 52.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.400000005960464
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 56
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 22.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 12.799999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 58.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 18.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 63.30000000447035
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 16.299999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 13.300000004470348
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 53.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 19.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 24.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 13.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 93.10000000149012
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 34
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 76.29999999701977
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 123.70000000298023
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.600000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 48.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 14.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.800000004470348
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.799999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 47.30000000447035
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 9.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 22.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 12.399999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 22.5
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 12
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 20
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 23.80000000447035
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 82.10000000149012
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.799999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 42.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 18.600000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 13.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 11.899999998509884
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 14.600000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.099999994039536
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 10.299999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 15.799999997019768
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 45.100000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 13.600000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 8.600000001490116
+            },
+            {
+              "label": "render-install:121:1613",
+              "ms": 12.600000001490116
+            }
+          ]
+        },
+        "failures": [],
+        "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+        "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+        "contact": {
+          "available": 499,
+          "expected": 499,
+          "effectiveStepM": 2
+        },
+        "decoder": {
+          "worker": true,
+          "batches": 280,
+          "maxReceiveMs": 38.80000000447035,
+          "maxDecodeWallMs": 5164.10000000149
+        },
+        "transport": {
+          "trains": 0,
+          "aircraft": 0,
+          "railStops": 0,
+          "railRoutes": [],
+          "flight": {
+            "source": "osm:way:67222804",
+            "x": 493940.2700275318,
+            "y": 6613381.722609107,
+            "height": 163.74057157828526,
+            "phase": "climb",
+            "pitch": 0.06,
+            "synthetic": true
+          },
+          "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+          "cpuMs": 1.5,
+          "maxCpuMs": 27.100000001490116,
+          "traffic": {
+            "created": 0,
+            "active": 0,
+            "stops": 0,
+            "distanceM": 0,
+            "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+            "extensions": 0,
+            "routeEnds": 0
+          },
+          "nearbyVehicle": null
+        },
+        "stations": {
+          "count": 60,
+          "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+          "license": "© SNCF Réseau · Open Database License (ODbL)"
+        }
+      },
+      "source": "6883ca2e2ac116ba8726a585801549707911bda3",
+      "heightBaseM": 101.2,
+      "verticalDatum": "IGN69",
+      "activity": "walking",
+      "audioEnabled": false,
+      "gps": {
+        "lat": 46.6954233157827,
+        "lon": 0.8797680006964309
+      },
+      "movement": null,
+      "admission": {
+        "ok": false,
+        "reason": "tile-loading",
+        "state": "WAITING_FOR_TILE",
+        "tile": "131:1617"
+      },
+      "origin": {
+        "origin": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "revision": 0
+        },
+        "metrics": {
+          "rebases": 0,
+          "frames": 127,
+          "maxLocalCameraM": 353.77313869194865,
+          "canonicalPhysics": true
+        }
+      },
+      "buffer": [
+        480,
+        320
+      ],
+      "viewport": [
+        480,
+        320
+      ],
+      "heap": 684366680,
+      "longTasks": [
+        {
+          "t": 680.8000000044703,
+          "ms": 5174
+        },
+        {
+          "t": 6505.39999999851,
+          "ms": 97
+        },
+        {
+          "t": 6752.10000000149,
+          "ms": 1420
+        },
+        {
+          "t": 8173,
+          "ms": 52
+        },
+        {
+          "t": 8647.10000000149,
+          "ms": 103
+        },
+        {
+          "t": 8905.70000000298,
+          "ms": 50
+        },
+        {
+          "t": 9358.39999999851,
+          "ms": 255
+        },
+        {
+          "t": 9849.30000000447,
+          "ms": 207
+        },
+        {
+          "t": 11078.20000000298,
+          "ms": 225
+        },
+        {
+          "t": 12402.60000000149,
+          "ms": 565
+        },
+        {
+          "t": 13357.39999999851,
+          "ms": 52
+        },
+        {
+          "t": 13959,
+          "ms": 795
+        },
+        {
+          "t": 14885.30000000447,
+          "ms": 5017
+        },
+        {
+          "t": 19903.10000000149,
+          "ms": 74
+        },
+        {
+          "t": 20095.20000000298,
+          "ms": 57
+        },
+        {
+          "t": 20261.5,
+          "ms": 87
+        },
+        {
+          "t": 20389.30000000447,
+          "ms": 66
+        },
+        {
+          "t": 21101.89999999851,
+          "ms": 54
+        },
+        {
+          "t": 21157,
+          "ms": 78
+        },
+        {
+          "t": 21356.20000000298,
+          "ms": 834
+        },
+        {
+          "t": 22199,
+          "ms": 184
+        },
+        {
+          "t": 22385.5,
+          "ms": 13692
+        },
+        {
+          "t": 36077.70000000298,
+          "ms": 749
+        },
+        {
+          "t": 36842.20000000298,
+          "ms": 5801
+        },
+        {
+          "t": 42662.60000000149,
+          "ms": 88
+        },
+        {
+          "t": 43070,
+          "ms": 3325
+        },
+        {
+          "t": 46427.39999999851,
+          "ms": 73
+        },
+        {
+          "t": 46506.20000000298,
+          "ms": 190
+        },
+        {
+          "t": 47499,
+          "ms": 4907
+        },
+        {
+          "t": 52421,
+          "ms": 173
+        },
+        {
+          "t": 52686.70000000298,
+          "ms": 74
+        },
+        {
+          "t": 52784.60000000149,
+          "ms": 278
+        },
+        {
+          "t": 53064.30000000447,
+          "ms": 202
+        },
+        {
+          "t": 53356.10000000149,
+          "ms": 58
+        },
+        {
+          "t": 53775.10000000149,
+          "ms": 857
+        },
+        {
+          "t": 54632.5,
+          "ms": 186
+        },
+        {
+          "t": 54837.70000000298,
+          "ms": 205
+        },
+        {
+          "t": 58504,
+          "ms": 55
+        },
+        {
+          "t": 59297.5,
+          "ms": 51
+        },
+        {
+          "t": 60892,
+          "ms": 78
+        },
+        {
+          "t": 61896.39999999851,
+          "ms": 55
+        },
+        {
+          "t": 62098.5,
+          "ms": 50
+        },
+        {
+          "t": 62293.20000000298,
+          "ms": 59
+        },
+        {
+          "t": 62357.10000000149,
+          "ms": 5204
+        },
+        {
+          "t": 67571.70000000298,
+          "ms": 198
+        },
+        {
+          "t": 67823.10000000149,
+          "ms": 62
+        },
+        {
+          "t": 70348.70000000298,
+          "ms": 122
+        },
+        {
+          "t": 73072.10000000149,
+          "ms": 196
+        },
+        {
+          "t": 73460.39999999851,
+          "ms": 101
+        },
+        {
+          "t": 74309.10000000149,
+          "ms": 100
+        },
+        {
+          "t": 74497,
+          "ms": 69
+        },
+        {
+          "t": 74674.80000000447,
+          "ms": 220
+        },
+        {
+          "t": 75683,
+          "ms": 158
+        },
+        {
+          "t": 78970,
+          "ms": 76
+        },
+        {
+          "t": 79698.5,
+          "ms": 55
+        },
+        {
+          "t": 79773.70000000298,
+          "ms": 127
+        },
+        {
+          "t": 79900.80000000447,
+          "ms": 50
+        },
+        {
+          "t": 80085.5,
+          "ms": 64
+        },
+        {
+          "t": 80498.39999999851,
+          "ms": 59
+        },
+        {
+          "t": 81306.89999999851,
+          "ms": 60
+        },
+        {
+          "t": 81849.39999999851,
+          "ms": 99
+        },
+        {
+          "t": 83894.60000000149,
+          "ms": 56
+        },
+        {
+          "t": 84160.60000000149,
+          "ms": 131
+        },
+        {
+          "t": 84699.10000000149,
+          "ms": 51
+        },
+        {
+          "t": 85606.20000000298,
+          "ms": 52
+        },
+        {
+          "t": 86291.60000000149,
+          "ms": 70
+        },
+        {
+          "t": 87388.20000000298,
+          "ms": 90
+        },
+        {
+          "t": 87697.30000000447,
+          "ms": 105
+        },
+        {
+          "t": 88049.89999999851,
+          "ms": 57
+        },
+        {
+          "t": 89302.70000000298,
+          "ms": 50
+        },
+        {
+          "t": 89851.39999999851,
+          "ms": 53
+        },
+        {
+          "t": 90244.39999999851,
+          "ms": 168
+        },
+        {
+          "t": 91702.20000000298,
+          "ms": 51
+        },
+        {
+          "t": 92090.30000000447,
+          "ms": 81
+        },
+        {
+          "t": 93230.10000000149,
+          "ms": 127
+        },
+        {
+          "t": 94210.10000000149,
+          "ms": 68
+        },
+        {
+          "t": 94372.20000000298,
+          "ms": 377
+        },
+        {
+          "t": 95889.10000000149,
+          "ms": 77
+        },
+        {
+          "t": 97103.10000000149,
+          "ms": 54
+        },
+        {
+          "t": 97614.80000000447,
+          "ms": 283
+        },
+        {
+          "t": 97898,
+          "ms": 59
+        },
+        {
+          "t": 98420.70000000298,
+          "ms": 68
+        },
+        {
+          "t": 98693,
+          "ms": 64
+        },
+        {
+          "t": 98904.89999999851,
+          "ms": 57
+        },
+        {
+          "t": 99894.10000000149,
+          "ms": 54
+        },
+        {
+          "t": 100641.39999999851,
+          "ms": 169
+        },
+        {
+          "t": 102559.10000000149,
+          "ms": 115
+        },
+        {
+          "t": 103577.70000000298,
+          "ms": 172
+        },
+        {
+          "t": 104098.70000000298,
+          "ms": 54
+        },
+        {
+          "t": 106773.70000000298,
+          "ms": 269
+        },
+        {
+          "t": 108098.10000000149,
+          "ms": 50
+        },
+        {
+          "t": 108498,
+          "ms": 50
+        },
+        {
+          "t": 108704.10000000149,
+          "ms": 86
+        },
+        {
+          "t": 109698.30000000447,
+          "ms": 50
+        },
+        {
+          "t": 109856.80000000447,
+          "ms": 191
+        },
+        {
+          "t": 110106.20000000298,
+          "ms": 51
+        },
+        {
+          "t": 110484,
+          "ms": 74
+        },
+        {
+          "t": 110685.60000000149,
+          "ms": 66
+        },
+        {
+          "t": 110882.10000000149,
+          "ms": 84
+        },
+        {
+          "t": 111902.60000000149,
+          "ms": 50
+        },
+        {
+          "t": 112498.70000000298,
+          "ms": 53
+        },
+        {
+          "t": 112861,
+          "ms": 81
+        },
+        {
+          "t": 113273.20000000298,
+          "ms": 210
+        },
+        {
+          "t": 114500.70000000298,
+          "ms": 52
+        },
+        {
+          "t": 115503.20000000298,
+          "ms": 50
+        },
+        {
+          "t": 116297.5,
+          "ms": 55
+        },
+        {
+          "t": 116431.30000000447,
+          "ms": 243
+        },
+        {
+          "t": 117693.10000000149,
+          "ms": 60
+        },
+        {
+          "t": 117793.20000000298,
+          "ms": 69
+        },
+        {
+          "t": 118704.5,
+          "ms": 58
+        },
+        {
+          "t": 118901.20000000298,
+          "ms": 61
+        },
+        {
+          "t": 120568.20000000298,
+          "ms": 269
+        },
+        {
+          "t": 120897,
+          "ms": 51
+        },
+        {
+          "t": 121096.20000000298,
+          "ms": 54
+        },
+        {
+          "t": 121305.70000000298,
+          "ms": 77
+        },
+        {
+          "t": 121497.5,
+          "ms": 54
+        },
+        {
+          "t": 121895,
+          "ms": 62
+        },
+        {
+          "t": 122103.20000000298,
+          "ms": 51
+        },
+        {
+          "t": 124705.70000000298,
+          "ms": 166
+        },
+        {
+          "t": 124875.70000000298,
+          "ms": 149
+        },
+        {
+          "t": 125364.70000000298,
+          "ms": 70
+        },
+        {
+          "t": 125768.20000000298,
+          "ms": 117
+        },
+        {
+          "t": 127270.89999999851,
+          "ms": 100
+        },
+        {
+          "t": 129401.89999999851,
+          "ms": 642
+        },
+        {
+          "t": 130503.30000000447,
+          "ms": 51
+        },
+        {
+          "t": 131495.3999999985,
+          "ms": 59
+        },
+        {
+          "t": 132035.6000000015,
+          "ms": 79
+        },
+        {
+          "t": 132114.70000000298,
+          "ms": 56
+        },
+        {
+          "t": 132170.8999999985,
+          "ms": 113
+        },
+        {
+          "t": 132310.70000000298,
+          "ms": 60
+        },
+        {
+          "t": 134161.30000000447,
+          "ms": 241
+        },
+        {
+          "t": 134505.20000000298,
+          "ms": 69
+        },
+        {
+          "t": 134589.8999999985,
+          "ms": 52
+        },
+        {
+          "t": 136105.30000000447,
+          "ms": 65
+        },
+        {
+          "t": 136825.20000000298,
+          "ms": 56
+        },
+        {
+          "t": 137446.8999999985,
+          "ms": 6125
+        },
+        {
+          "t": 144300.30000000447,
+          "ms": 50
+        },
+        {
+          "t": 145496.70000000298,
+          "ms": 73
+        },
+        {
+          "t": 145702.1000000015,
+          "ms": 90
+        },
+        {
+          "t": 146053.70000000298,
+          "ms": 142
+        },
+        {
+          "t": 147107.20000000298,
+          "ms": 65
+        },
+        {
+          "t": 148221.30000000447,
+          "ms": 88
+        },
+        {
+          "t": 148903.8999999985,
+          "ms": 125
+        },
+        {
+          "t": 150004.20000000298,
+          "ms": 158
+        },
+        {
+          "t": 151751.30000000447,
+          "ms": 62
+        },
+        {
+          "t": 151899.30000000447,
+          "ms": 64
+        },
+        {
+          "t": 152063.70000000298,
+          "ms": 207
+        },
+        {
+          "t": 152313.3999999985,
+          "ms": 55
+        },
+        {
+          "t": 152437.3999999985,
+          "ms": 136
+        },
+        {
+          "t": 153073.6000000015,
+          "ms": 81
+        },
+        {
+          "t": 155109.1000000015,
+          "ms": 57
+        },
+        {
+          "t": 155713.80000000447,
+          "ms": 107
+        },
+        {
+          "t": 156661.3999999985,
+          "ms": 361
+        },
+        {
+          "t": 157102.20000000298,
+          "ms": 59
+        },
+        {
+          "t": 157226.6000000015,
+          "ms": 262
+        },
+        {
+          "t": 157488.70000000298,
+          "ms": 60
+        },
+        {
+          "t": 157901.8999999985,
+          "ms": 57
+        },
+        {
+          "t": 159502.1000000015,
+          "ms": 54
+        },
+        {
+          "t": 159557,
+          "ms": 117
+        },
+        {
+          "t": 160094.30000000447,
+          "ms": 56
+        },
+        {
+          "t": 161505.20000000298,
+          "ms": 105
+        },
+        {
+          "t": 162164.1000000015,
+          "ms": 60
+        },
+        {
+          "t": 162679.6000000015,
+          "ms": 134
+        },
+        {
+          "t": 162898.30000000447,
+          "ms": 50
+        },
+        {
+          "t": 163471.8999999985,
+          "ms": 396
+        },
+        {
+          "t": 164485.20000000298,
+          "ms": 216
+        },
+        {
+          "t": 164701.6000000015,
+          "ms": 440
+        },
+        {
+          "t": 165502.20000000298,
+          "ms": 51
+        },
+        {
+          "t": 166300.80000000447,
+          "ms": 51
+        },
+        {
+          "t": 166885.3999999985,
+          "ms": 69
+        },
+        {
+          "t": 168875.5,
+          "ms": 143
+        },
+        {
+          "t": 169516.5,
+          "ms": 106
+        },
+        {
+          "t": 171104.8999999985,
+          "ms": 54
+        },
+        {
+          "t": 172697.3999999985,
+          "ms": 184
+        },
+        {
+          "t": 173499.30000000447,
+          "ms": 52
+        },
+        {
+          "t": 176708.80000000447,
+          "ms": 3043
+        },
+        {
+          "t": 180886.1000000015,
+          "ms": 662
+        },
+        {
+          "t": 182701.1000000015,
+          "ms": 50
+        },
+        {
+          "t": 182904.1000000015,
+          "ms": 51
+        },
+        {
+          "t": 183554,
+          "ms": 73
+        },
+        {
+          "t": 184294.8999999985,
+          "ms": 58
+        },
+        {
+          "t": 186104.30000000447,
+          "ms": 55
+        },
+        {
+          "t": 186383.3999999985,
+          "ms": 398
+        },
+        {
+          "t": 188150.30000000447,
+          "ms": 72
+        },
+        {
+          "t": 188894.20000000298,
+          "ms": 64
+        },
+        {
+          "t": 189096.70000000298,
+          "ms": 60
+        },
+        {
+          "t": 190103.5,
+          "ms": 50
+        },
+        {
+          "t": 192303.20000000298,
+          "ms": 59
+        },
+        {
+          "t": 192503.20000000298,
+          "ms": 50
+        },
+        {
+          "t": 192813.1000000015,
+          "ms": 396
+        },
+        {
+          "t": 193298.70000000298,
+          "ms": 51
+        },
+        {
+          "t": 193690.30000000447,
+          "ms": 64
+        },
+        {
+          "t": 194856.1000000015,
+          "ms": 105
+        },
+        {
+          "t": 196102.20000000298,
+          "ms": 56
+        },
+        {
+          "t": 198440.8999999985,
+          "ms": 235
+        },
+        {
+          "t": 201296.5,
+          "ms": 53
+        },
+        {
+          "t": 201441.80000000447,
+          "ms": 171
+        },
+        {
+          "t": 202483.1000000015,
+          "ms": 66
+        },
+        {
+          "t": 204062.20000000298,
+          "ms": 179
+        },
+        {
+          "t": 206903.70000000298,
+          "ms": 50
+        },
+        {
+          "t": 207041.70000000298,
+          "ms": 208
+        },
+        {
+          "t": 210855.6000000015,
+          "ms": 122
+        },
+        {
+          "t": 211298.30000000447,
+          "ms": 50
+        },
+        {
+          "t": 211696.8999999985,
+          "ms": 52
+        },
+        {
+          "t": 211850.6000000015,
+          "ms": 127
+        },
+        {
+          "t": 212504.5,
+          "ms": 275
+        },
+        {
+          "t": 216770.70000000298,
+          "ms": 212
+        },
+        {
+          "t": 220194.1000000015,
+          "ms": 224
+        },
+        {
+          "t": 222627.5,
+          "ms": 335
+        },
+        {
+          "t": 224423,
+          "ms": 215
+        },
+        {
+          "t": 226248.8999999985,
+          "ms": 255
+        },
+        {
+          "t": 228083,
+          "ms": 166
+        },
+        {
+          "t": 229964.80000000447,
+          "ms": 147
+        },
+        {
+          "t": 231591.30000000447,
+          "ms": 89
+        },
+        {
+          "t": 234494.8999999985,
+          "ms": 53
+        },
+        {
+          "t": 234987.3999999985,
+          "ms": 399
+        },
+        {
+          "t": 235497.5,
+          "ms": 51
+        },
+        {
+          "t": 237857.70000000298,
+          "ms": 236
+        },
+        {
+          "t": 240802,
+          "ms": 176
+        },
+        {
+          "t": 243469,
+          "ms": 157
+        },
+        {
+          "t": 245900.30000000447,
+          "ms": 273
+        },
+        {
+          "t": 247884.20000000298,
+          "ms": 64
+        },
+        {
+          "t": 248892.8999999985,
+          "ms": 461
+        },
+        {
+          "t": 251702,
+          "ms": 51
+        },
+        {
+          "t": 251783,
+          "ms": 392
+        },
+        {
+          "t": 254772.6000000015,
+          "ms": 385
+        },
+        {
+          "t": 255677.5,
+          "ms": 80
+        },
+        {
+          "t": 257645.5,
+          "ms": 165
+        },
+        {
+          "t": 260560.6000000015,
+          "ms": 253
+        },
+        {
+          "t": 263548.6000000015,
+          "ms": 137
+        },
+        {
+          "t": 265598.1000000015,
+          "ms": 300
+        },
+        {
+          "t": 266098.30000000447,
+          "ms": 51
+        },
+        {
+          "t": 267464.700000003,
+          "ms": 288
+        },
+        {
+          "t": 269198.30000000447,
+          "ms": 224
+        },
+        {
+          "t": 270308.5,
+          "ms": 69
+        },
+        {
+          "t": 271587.1000000015,
+          "ms": 163
+        },
+        {
+          "t": 272279.8999999985,
+          "ms": 71
+        },
+        {
+          "t": 273765,
+          "ms": 263
+        },
+        {
+          "t": 276004.5,
+          "ms": 277
+        },
+        {
+          "t": 277775.3999999985,
+          "ms": 299
+        },
+        {
+          "t": 279699.80000000447,
+          "ms": 50
+        },
+        {
+          "t": 279878.3999999985,
+          "ms": 238
+        },
+        {
+          "t": 281470.200000003,
+          "ms": 83
+        },
+        {
+          "t": 281877.3999999985,
+          "ms": 384
+        },
+        {
+          "t": 283103.80000000447,
+          "ms": 49
+        },
+        {
+          "t": 283304.200000003,
+          "ms": 73
+        },
+        {
+          "t": 283857.1000000015,
+          "ms": 166
+        },
+        {
+          "t": 284073,
+          "ms": 85
+        },
+        {
+          "t": 284676.1000000015,
+          "ms": 393
+        },
+        {
+          "t": 285285.3999999985,
+          "ms": 96
+        },
+        {
+          "t": 286705.30000000447,
+          "ms": 51
+        },
+        {
+          "t": 286898.1000000015,
+          "ms": 50
+        },
+        {
+          "t": 287305.1000000015,
+          "ms": 196
+        },
+        {
+          "t": 288898.1000000015,
+          "ms": 183
+        },
+        {
+          "t": 289115.5,
+          "ms": 54
+        },
+        {
+          "t": 290097.6000000015,
+          "ms": 72
+        },
+        {
+          "t": 290205.80000000447,
+          "ms": 343
+        },
+        {
+          "t": 290685.6000000015,
+          "ms": 97
+        },
+        {
+          "t": 291159.1000000015,
+          "ms": 53
+        },
+        {
+          "t": 291219.80000000447,
+          "ms": 52
+        },
+        {
+          "t": 291306,
+          "ms": 73
+        },
+        {
+          "t": 291557.5,
+          "ms": 150
+        },
+        {
+          "t": 291828.5,
+          "ms": 179
+        },
+        {
+          "t": 292070.3999999985,
+          "ms": 101
+        },
+        {
+          "t": 292575.6000000015,
+          "ms": 382
+        },
+        {
+          "t": 294257.6000000015,
+          "ms": 593
+        },
+        {
+          "t": 295981.700000003,
+          "ms": 207
+        },
+        {
+          "t": 296300.3999999985,
+          "ms": 53
+        },
+        {
+          "t": 297082.3999999985,
+          "ms": 67
+        },
+        {
+          "t": 297700.1000000015,
+          "ms": 50
+        },
+        {
+          "t": 297884.80000000447,
+          "ms": 299
+        },
+        {
+          "t": 299316.8999999985,
+          "ms": 84
+        },
+        {
+          "t": 300198.1000000015,
+          "ms": 231
+        },
+        {
+          "t": 301680.700000003,
+          "ms": 69
+        },
+        {
+          "t": 302053,
+          "ms": 120
+        },
+        {
+          "t": 302238.700000003,
+          "ms": 111
+        },
+        {
+          "t": 302697.30000000447,
+          "ms": 66
+        },
+        {
+          "t": 302797.5,
+          "ms": 1570
+        },
+        {
+          "t": 306045.700000003,
+          "ms": 440
+        },
+        {
+          "t": 308421.30000000447,
+          "ms": 603
+        },
+        {
+          "t": 310912.3999999985,
+          "ms": 62
+        },
+        {
+          "t": 311016.5,
+          "ms": 50
+        },
+        {
+          "t": 311107.3999999985,
+          "ms": 56
+        },
+        {
+          "t": 311356.8999999985,
+          "ms": 76
+        },
+        {
+          "t": 311628.700000003,
+          "ms": 280
+        },
+        {
+          "t": 312891,
+          "ms": 68
+        },
+        {
+          "t": 314098.30000000447,
+          "ms": 368
+        },
+        {
+          "t": 315518.6000000015,
+          "ms": 75
+        },
+        {
+          "t": 316228.30000000447,
+          "ms": 379
+        },
+        {
+          "t": 317656.8999999985,
+          "ms": 99
+        },
+        {
+          "t": 318017.5,
+          "ms": 156
+        },
+        {
+          "t": 319102.1000000015,
+          "ms": 53
+        },
+        {
+          "t": 319790.1000000015,
+          "ms": 627
+        },
+        {
+          "t": 320803.6000000015,
+          "ms": 63
+        },
+        {
+          "t": 322009.1000000015,
+          "ms": 194
+        },
+        {
+          "t": 322311.6000000015,
+          "ms": 120
+        },
+        {
+          "t": 323272.700000003,
+          "ms": 76
+        },
+        {
+          "t": 324088.3999999985,
+          "ms": 110
+        },
+        {
+          "t": 324624.30000000447,
+          "ms": 874
+        },
+        {
+          "t": 326463.200000003,
+          "ms": 87
+        },
+        {
+          "t": 328214,
+          "ms": 69
+        },
+        {
+          "t": 328305.6000000015,
+          "ms": 52
+        },
+        {
+          "t": 328553.6000000015,
+          "ms": 121
+        },
+        {
+          "t": 329369.8999999985,
+          "ms": 76
+        },
+        {
+          "t": 330435.1000000015,
+          "ms": 818
+        },
+        {
+          "t": 331700.80000000447,
+          "ms": 51
+        },
+        {
+          "t": 331860.200000003,
+          "ms": 99
+        },
+        {
+          "t": 332625.80000000447,
+          "ms": 216
+        },
+        {
+          "t": 332951.1000000015,
+          "ms": 71
+        },
+        {
+          "t": 333500.5,
+          "ms": 50
+        },
+        {
+          "t": 334287.30000000447,
+          "ms": 78
+        },
+        {
+          "t": 334493.700000003,
+          "ms": 924
+        },
+        {
+          "t": 337291,
+          "ms": 69
+        },
+        {
+          "t": 337514.30000000447,
+          "ms": 143
+        },
+        {
+          "t": 337691.80000000447,
+          "ms": 91
+        },
+        {
+          "t": 338512.200000003,
+          "ms": 51
+        },
+        {
+          "t": 338954.700000003,
+          "ms": 612
+        },
+        {
+          "t": 339689.200000003,
+          "ms": 78
+        },
+        {
+          "t": 341109.700000003,
+          "ms": 50
+        },
+        {
+          "t": 341360.700000003,
+          "ms": 86
+        },
+        {
+          "t": 342103.8999999985,
+          "ms": 57
+        },
+        {
+          "t": 342267.1000000015,
+          "ms": 56
+        },
+        {
+          "t": 342497.6000000015,
+          "ms": 58
+        },
+        {
+          "t": 342709.80000000447,
+          "ms": 246
+        },
+        {
+          "t": 344880,
+          "ms": 78
+        },
+        {
+          "t": 345087.8999999985,
+          "ms": 63
+        },
+        {
+          "t": 346757.1000000015,
+          "ms": 278
+        },
+        {
+          "t": 349552.5,
+          "ms": 123
+        },
+        {
+          "t": 350709.200000003,
+          "ms": 56
+        },
+        {
+          "t": 352683.700000003,
+          "ms": 346
+        },
+        {
+          "t": 356653.30000000447,
+          "ms": 95
+        },
+        {
+          "t": 357026.8999999985,
+          "ms": 1988
+        },
+        {
+          "t": 360255.80000000447,
+          "ms": 102
+        },
+        {
+          "t": 360358,
+          "ms": 256
+        },
+        {
+          "t": 360666.6000000015,
+          "ms": 82
+        },
+        {
+          "t": 361306.700000003,
+          "ms": 58
+        },
+        {
+          "t": 361700.700000003,
+          "ms": 50
+        },
+        {
+          "t": 361895.700000003,
+          "ms": 53
+        },
+        {
+          "t": 362089.5,
+          "ms": 59
+        },
+        {
+          "t": 362297.5,
+          "ms": 58
+        },
+        {
+          "t": 362485.200000003,
+          "ms": 63
+        },
+        {
+          "t": 362704.3999999985,
+          "ms": 54
+        },
+        {
+          "t": 363081.1000000015,
+          "ms": 93
+        },
+        {
+          "t": 363296.700000003,
+          "ms": 79
+        },
+        {
+          "t": 363471.700000003,
+          "ms": 239
+        },
+        {
+          "t": 363885.1000000015,
+          "ms": 285
+        },
+        {
+          "t": 364170.200000003,
+          "ms": 597
+        },
+        {
+          "t": 365089.5,
+          "ms": 68
+        },
+        {
+          "t": 366554.200000003,
+          "ms": 58
+        },
+        {
+          "t": 366813.700000003,
+          "ms": 114
+        },
+        {
+          "t": 368055.30000000447,
+          "ms": 1228
+        }
+      ],
+      "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "audio": {
+        "aircraftEvents": 0,
+        "contextUpdates": 0,
+        "cpuMs": 0,
+        "maxCpuMs": 0,
+        "nearbyChecks": 0,
+        "memoryCells": 0,
+        "perches": 0,
+        "contact": {
+          "surface": null,
+          "material": "unknown",
+          "basis": "no reliable ground material",
+          "confidence": "unknown",
+          "wetness": 0
+        },
+        "context": null
+      },
+      "buffers": {
+        "attributeBuffers": 29248,
+        "attributeBytes": 180811322,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      }
+    },
+    "water": {},
+    "boat": {
+      "active": false,
+      "following": false,
+      "heading": 0,
+      "speed": 0,
+      "reason": "",
+      "followMetrics": {
+        "plans": 0,
+        "lateralError": 0,
+        "maxLateralError": 0,
+        "stops": 0
+      }
+    }
+  }
+}

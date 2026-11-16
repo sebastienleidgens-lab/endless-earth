@@ -1,0 +1,83 @@
+✔ source-route avoidance finds a real alternative without editing coordinates or opening a forbidden edge (31.261541ms)
+✔ dismantled rail cannot create a phantom obstacle on an admitted public road or grant access to unknown land (13.264781ms)
+✔ traffic uses an actual rendered support even while access waits; missing support never becomes NaN or a zero floor (10.721903ms)
+✔ contact caching cannot carry an unloaded floor or an old LOD across ownership revisions (4.237197ms)
+✔ complete vehicle hulls let opposing lanes pass and retain front, crossing and pedestrian collisions (4.814556ms)
+✔ scenic lane positions keep the source direction, use the right side and stay centred on narrow roads (0.868016ms)
+✔ outside-France fixture declares its actual tile hash and the runtime elevation/optional-source contract (140.092325ms)
+✔ LOD identity stays stable at rest, skips distant rebuilds and includes remote parked support (43.016018ms)
+✔ all unverified bridge/tunnel types stay closed, public primary foot links follow declared policy (142.002399ms)
+✔ a nearby narrow path cannot block a position inside another public road corridor (7.040157ms)
+✔ named structures and uncertain access never silently become at-grade public roads (1.180352ms)
+✔ sliced geometry retains Three.js area-weighted normals, finite bounds and all vertices (41.211621ms)
+✔ documented area access opens off-road ground but never private, unknown, rail or motorway (20.765873ms)
+✔ periodic authored keys share their tangent across internal keys and cycle wrap (3.985201ms)
+✔ branch flight reaches both source perches with zero endpoint velocity (0.446758ms)
+✔ periodic gait preserves planted contacts on flat ground and continuous slopes (2312.840214ms)
+✔ M26.3 exact 3.883 km source bend has continuous visible road support across the former wedge (120.7169ms)
+✔ adjacent tile copies retain exactly the same road triangles and heights at their shared seam (9.738903ms)
+✔ same walking kernel permits a contour road but still refuses a sustained steep ramp and a cliff (26.463335ms)
+✔ directional road policy preserves private, rail, water and off-road steep refusals (4.500975ms)
+✔ stalled network has a bounded retryable state; a late generation cannot publish a floor (89.669957ms)
+✔ aborted demand immediately frees a decoder slot even if the old network ignores AbortSignal (29.736949ms)
+✔ a cooperative installation deadline aborts, rolls back and frees the serial installation queue (44.975291ms)
+✔ source-route driver advances a passed source vertex instead of circling back after a low-rate overshoot (9.171449ms)
+✔ physical tile installation takes priority over queued optional terrain refinement (16.582141ms)
+✔ route driver turns a source right-angle through 4.8m and 7m corridors using the unchanged swept car hull (381.941592ms)
+✔ slow camera travel does not alternate two source casters at a shadow budget boundary; approach still admits a near tree (0.503958ms)
+✔ a rounded source junction advances past a short intermediate node without steering back toward it (0.11407ms)
+✖ decoded tile waiting behind an installation does not inherit the expired network deadline (240.939619ms)
+✔ river following finishes instead of remaining motionless between the braking and arrival radii (305.899868ms)
+✔ scenic traffic extends its finite source horizon instead of parking forever in the middle of a through road (408.064732ms)
+✔ a department river crossing the pilot preserves its historical water owner and interpolates only the exterior mesh (19.899822ms)
+✔ Lambert93 agrees with its official false origin and round trips department-scale positions without converting heights (3.425438ms)
+✔ legacy adapter preserves its historical east/south axes and an unrelated region uses another projection provider (0.396436ms)
+✔ floating-origin moves camera, visual, physics proxy and sound together; canonical state survives multiple rebases (5.078949ms)
+✔ terrain interpolation and normals share the exact triangle diagonal and remain continuous at tile boundaries (51.360729ms)
+✔ tile checksum and length verification reject corrupted bytes before physical installation (398.070211ms)
+✔ opaque gzip tile transport verifies compressed bytes and decodes exactly once (396.63198ms)
+✔ tile streaming bounds concurrency/residency, survives cancellation and never installs stale requests (24.787157ms)
+✔ demand selection fits the declared byte budget without evicting and reloading demanded tiles forever (14.287665ms)
+✔ metric tile demand covers the horizon and preloads the direction of travel without fetching a distant square (3.040526ms)
+✔ directed source topology crosses tiles once, retains shared owners and never connects grade-separated crossings (9.328541ms)
+✔ transport admission keeps motorway pedestrians, private tracks, uncertain bridges and water clearance closed (0.179821ms)
+✔ mapped water/buildings and missing support block travel instead of receiving an invisible fallback floor (4.516709ms)
+✔ car hull sweeps stop before walls, missing tiles and vertical road discontinuities across irregular frame rates (58.632608ms)
+✔ right-hand car steering remains right from the following camera rather than mirroring the keyboard (5.254324ms)
+✔ save/resume validates canonical state and refuses unavailable support without replacing the saved position (1.563379ms)
+✔ analytic flock samples and identity phases survive a CPU cadence/LOD change without a phase reset (11.879508ms)
+✔ paddle force only exists while the shared blade pose enters water; wakes come in stern pairs and fade when stopped (2.380392ms)
+✔ river following supplies input to physics, preserves manual takeover and does not impose spline positions (66.431674ms)
+✔ packraft checks the full visible hull and the water under its blade instead of assuming a flat infinite surface (8.947467ms)
+✔ rail acceleration and braking keep the whole leading vehicle before an unverified corridor end (126.369657ms)
+✔ synthetic airport flight stays continuous through takeoff, airborne turns and landing, then remains parked (3.474591ms)
+✔ a synthetic train brakes for an explicitly assigned source station, dwells, then continues on its rail (210.920129ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 53
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4164.388336
+
+✖ failing tests:
+
+test at tests/mission-26-3.test.mjs:29:1
+✖ decoded tile waiting behind an installation does not inherit the expired network deadline (240.939619ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/endless-earth/tests/mission-26-3.test.mjs:29:384)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processTimers (node:internal/timers:615:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

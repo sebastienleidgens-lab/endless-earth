@@ -1,0 +1,42 @@
+✔ source-route avoidance finds a real alternative without editing coordinates or opening a forbidden edge (5.038875ms)
+✔ dismantled rail cannot create a phantom obstacle on an admitted public road or grant access to unknown land (5.740457ms)
+✔ traffic uses an actual rendered support even while access waits; missing support never becomes NaN or a zero floor (0.484781ms)
+✔ contact caching cannot carry an unloaded floor or an old LOD across ownership revisions (1.088319ms)
+✔ complete vehicle hulls let opposing lanes pass and retain front, crossing and pedestrian collisions (0.709707ms)
+✔ scenic lane positions keep the source direction, use the right side and stay centred on narrow roads (1.040328ms)
+✔ outside-France fixture declares its actual tile hash and the runtime elevation/optional-source contract (17.857583ms)
+✔ LOD identity stays stable at rest, skips distant rebuilds and includes remote parked support (17.04453ms)
+✔ all unverified bridge/tunnel types stay closed, public primary foot links follow declared policy (0.878258ms)
+✔ a nearby narrow path cannot block a position inside another public road corridor (0.565272ms)
+✔ named structures and uncertain access never silently become at-grade public roads (0.545756ms)
+✔ sliced geometry retains Three.js area-weighted normals, finite bounds and all vertices (6.278742ms)
+✔ documented area access opens off-road ground but never private, unknown, rail or motorway (0.869344ms)
+✔ periodic authored keys share their tangent across internal keys and cycle wrap (0.734034ms)
+✔ branch flight reaches both source perches with zero endpoint velocity (0.511313ms)
+✔ periodic gait preserves planted contacts on flat ground and continuous slopes (319.293836ms)
+✔ M26.3 exact 3.883 km source bend has continuous visible road support across the former wedge (12.604729ms)
+✔ adjacent tile copies retain exactly the same road triangles and heights at their shared seam (5.450094ms)
+✔ same walking kernel permits a contour road but still refuses a sustained steep ramp and a cliff (6.123378ms)
+✔ directional road policy preserves private, rail, water and off-road steep refusals (0.891641ms)
+✔ stalled network has a bounded retryable state; a late generation cannot publish a floor (64.072152ms)
+✔ aborted demand immediately frees a decoder slot even if the old network ignores AbortSignal (20.736364ms)
+✔ a cooperative installation deadline aborts, rolls back and frees the serial installation queue (41.226253ms)
+✔ source-route driver advances a passed source vertex instead of circling back after a low-rate overshoot (1.277233ms)
+✔ physical tile installation takes priority over queued optional terrain refinement (4.846887ms)
+✔ route driver turns a source right-angle through 4.8m and 7m corridors using the unchanged swept car hull (43.631595ms)
+✔ slow camera travel does not alternate two source casters at a shadow budget boundary; approach still admits a near tree (0.924427ms)
+✔ a rounded source junction advances past a short intermediate node without steering back toward it (0.285376ms)
+✔ decoded tile waiting behind an installation does not inherit the expired network deadline (44.861264ms)
+✔ river following finishes instead of remaining motionless between the braking and arrival radii (60.175789ms)
+✔ scenic traffic extends its finite source horizon instead of parking forever in the middle of a through road (19.396126ms)
+✔ required fine contact preempts unrelated tile installation and reprioritizes an already queued refinement (3.673851ms)
+✔ bank discovery uses the admitted visible road height, and cannot grant private or missing support (0.398815ms)
+✔ source traffic can circulate around a directed triangle instead of mistaking a visited junction for a real dead end (53.201179ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 704.300936
