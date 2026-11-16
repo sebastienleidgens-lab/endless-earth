@@ -18,7 +18,7 @@ export class PlanetSurface {
  sample(p){const s=this.manifest.tileSize,id=Math.floor(p.x/s)+':'+Math.floor(p.y/s),tile=this.tiles.get(id);if(tile){const fine=tile.contact?sampleFine(tile.contact,p):null;return fine?{...fine,tile:tile.id}:sampleTile(tile,p);}for(const tile of this.tiles.values()){const result=tile.contact?sampleFine(tile.contact,p):null;if(result)return {...result,tile:tile.id};const coarse=sampleTile(tile,p);if(coarse)return {...coarse,resolutionM:128};}return null;}
  habitat(p){for(const f of this.query(p))if(f.polygon&&inside(p,f.points)&&!(f.holes??[]).some(r=>inside(p,r))){const t=f.tags;if(f.kind==='hydro')return 'water';if(t.landuse==='forest'||t.natural==='wood')return 'wood';if(t.landuse==='farmland')return 'agriculture';if(['meadow','grass','orchard','residential'].includes(t.landuse))return t.landuse;}return 'unknown';}
  nearestRoad(p,mode='foot',max=30){let best=null;for(const f of this.query(p,max)){if(f.kind!=='road'||!admitFeature(f.tags,mode,this.manifest.accessDefaults).ok)continue;const q=nearestOnLine(p,f.points);if(q&&q.distance<=max&&(!best||q.distance<best.distance))best={...q,feature:f,width:roadWidth(f.tags)};}return best;}
- admission(p,mode='foot'){
+ admission(p,mode='foot',physicalSupport){
   const support=this.sample(p);if(!support)return {ok:false,reason:'tile-loading'};
   for(const f of this.query(p,2)){
    const within=f.polygon&&inside(p,f.points)&&!(f.holes??[]).some(r=>inside(p,r));
@@ -27,9 +27,13 @@ export class PlanetSurface {
   }
   const road=this.nearestRoad(p,mode,25),radius=mode==='car'?.05:.3;
   if(!road||road.distance>road.width/2-radius)return {ok:false,reason:'unknown-land-access',...support};
-  if(support.slope>(mode==='car'?.45:.7))return {ok:false,reason:'steep-support',...support};
+  // Access/obstacles above still belong to the source. Grade belongs to the
+  // displayed contact triangle, which can differ from the raw raster at a road
+  // edge or the exact protected-pilot transition. Never flatten either owner.
+  const contact=(typeof physicalSupport==='function'?physicalSupport(road.feature.id):physicalSupport)??support;
+  if(contact.slope>(mode==='car'?.45:.7))return {ok:false,reason:'steep-support',...support,...contact};
   const speed=Number.parseFloat(road.feature.tags.maxspeed),speedLimit=Number.isFinite(speed)?speed/3.6:['motorway','trunk'].includes(road.feature.tags.highway)?30.5:['primary','secondary','tertiary','unclassified'].includes(road.feature.tags.highway)?22.2:13.9;
-  return {...support,ok:true,drivable:mode==='car',road:road.feature.id,width:road.width,speedLimit,provenance:'OSM road corridor + declared regional access policy; inferred width when absent'};
+  return {...support,...contact,ok:true,drivable:mode==='car',road:road.feature.id,width:road.width,speedLimit,provenance:'OSM road corridor + declared regional access policy; inferred width when absent'};
  }
  clear(){this.tiles.clear();this.features.clear();this.cells.clear();}
 }
