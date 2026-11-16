@@ -3,6 +3,7 @@ import {terrainLayout} from '../src/planet/terrain-lod.mjs';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {ContactQueryCache} from '../src/planet/query-cache.mjs';
+import {removedRail} from '../src/planet/rail-state.mjs';
 import {vehiclesOverlap,pedestrianNearVehicle} from '../src/planet/vehicle-space.mjs';
 import {trafficLanePoint,trafficRenderHeight} from '../src/planet/traffic.mjs';
 import {measureLine} from '../src/planet/transport-motion.mjs';
@@ -22,6 +23,12 @@ import {cyclicCurve} from '../src/character/cyclic-curve.mjs';
 import {perchFlightAt} from '../src/earthlife/fauna.mjs';
 import {createWalker} from '../src/character/walker.mjs';
 const finish=g=>{let s;do{s=g.next();}while(!s.done);return s.value;};
+test('dismantled rail cannot create a phantom obstacle on an admitted public road or grant access to unknown land',()=>{
+ const surface=new PlanetSurface({tileSize:100,accessDefaults:{publicRoadClasses:true}}),rail={id:'erased',kind:'rail',tags:{railway:'razed'},points:[[50,0],[50,100]]},road={id:'public',kind:'road',tags:{highway:'secondary'},points:[[0,50],[100,50]]},tile={id:'0:0',bounds:[0,0,100,100],grid:{size:2,heights:[0,0,0,0]},features:[rail,road]};surface.add(tile);
+ assert.equal(removedRail(rail.tags),true);assert.equal(surface.admission({x:50,y:50}).ok,true);assert.equal(surface.admission({x:50,y:70}).ok,false);
+ surface.remove(tile);surface.add({...tile,features:[road,{...rail,tags:{railway:'rail'}}]});assert.equal(surface.admission({x:50,y:50}).reason,'unverified-rail-crossing');
+ surface.clear();surface.add({...tile,features:[road,{...rail,tags:{railway:'razed',access:'private'}}]});assert.equal(surface.admission({x:50,y:50}).ok,false);
+});
 test('traffic uses an actual rendered support even while access waits; missing support never becomes NaN or a zero floor',()=>{
  assert.equal(trafficRenderHeight({ok:false,renderHeightRelative:true,renderedHeight:5,height:106},100),5);
  assert.equal(trafficRenderHeight({ok:false,renderHeightRelative:true,height:106},100),null);

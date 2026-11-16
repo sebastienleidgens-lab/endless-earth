@@ -24,6 +24,8 @@ import {protectedTriangles} from './protected-triangles.mjs';
 import {clipPolygon,clipSegment} from './feature-clip.mjs';
 // @ts-ignore Incremental normals and bounds, identical visible geometry.
 import {prepareGeometry} from './geometry-preparation.mjs';
+// @ts-ignore Do not depict mapped dismantled alignments as physical tracks.
+import {removedRail} from './rail-state.mjs';
 export function createPlanetRenderer(scene:THREE.Scene,local:(x:number,y:number)=>{x:number;z:number},heightBase:()=>number,surface:any,pilotBounds:number[],providedQueue?:any,pilotHeight?:(x:number,z:number)=>number|null,pilotBreaks?:number[][]){
  const queue=providedQueue??new PreparationQueue();
  const exterior=(p:Position[])=>clipExterior(p,pilotBounds);
@@ -63,6 +65,7 @@ export function createPlanetRenderer(scene:THREE.Scene,local:(x:number,y:number)
  function localObject<T extends THREE.Object3D>(object:T):T{const origin=(object as unknown as THREE.Mesh).geometry?.userData.origin;if(origin)object.position.fromArray(origin);return object;}
  function outsidePilot(p:Position){return p.x<pilotBounds[0]||p.x>pilotBounds[2]||p.z<pilotBounds[1]||p.z>pilotBounds[3];}
  function* featureObjectSteps(f:any,tile:any):Generator<any,THREE.Object3D|null,any>{
+  if(f.kind==='rail'&&removedRail(f.tags))return null;
   if(!['road','aviation','rail','hydro','barrier'].includes(f.kind)||f.points.length<2)return null;
   const group=new THREE.Group();group.name=f.id+':'+tile.id;group.userData.provenance={source:'OSM',id:f.id,owner:tile.id,vertical:'IGN69 MNT sampled support; water level and structure appearance inferred',simulation:false};
   const triangle=(coordinates:number[][],extra:number,vertices:Position[],pin=true)=>{const polygon=clipPolygon(coordinates,tile.bounds);if(polygon.length<3)return;for(let i=1;i<polygon.length-1;i++){const selected=[polygon[0],polygon[i],polygon[i+1]];if(selected.some(p=>!surface.sample({x:p[0],y:p[1]})))continue;const p=selected.map(p=>point(p,extra));if((p[1].z-p[0].z)*(p[2].x-p[0].x)-(p[1].x-p[0].x)*(p[2].z-p[0].z)<0)[p[1],p[2]]=[p[2],p[1]];for(const tri of protectedTriangles(p,pilotBounds,pin?pilotHeight:undefined,pin?pilotBreaks:undefined))vertices.push(...tri);}};
