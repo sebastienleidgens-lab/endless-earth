@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "endlessEarth": {
-    "missionReport": "docs/mission-26-1.md"
+    "missionReport": "docs/mission-26-2.md"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -96,7 +96,8 @@
     "test:planet": "node --test tests/planet.test.mjs",
     "geo:planet:audit": "node scripts/audit-planet.mjs",
     "test:planet:contact": "node --test tests/planet-contact.test.mjs tests/planet-preparation.test.mjs tests/planet.test.mjs",
-    "geo:planet:contact:audit": "node scripts/audit-mission-26-1-contact.mjs"
+    "geo:planet:contact:audit": "node scripts/audit-mission-26-1-contact.mjs",
+    "test:mission-26-2": "node --test tests/mission-26-2.test.mjs tests/planet.test.mjs tests/planet-contact.test.mjs tests/planet-preparation.test.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"
