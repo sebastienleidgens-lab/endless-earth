@@ -21,6 +21,7 @@ export function createWaterMarks(scene){
    gl_FragColor=vec4(vec3(.65,.79,.78)*light,alpha);
    #include <tonemapping_fragment>
    #include <colorspace_fragment>
+   }
   `});
  const mesh=new THREE.Mesh(geometry,material);mesh.name='player-water-rings';mesh.frustumCulled=false;mesh.visible=false;scene.add(mesh);let cursor=0;const metrics={capacity,emitted:0,paddleContacts:0,wakePairs:0,drawCalls:0};
  function put(p,t,profile,kind,heading=0,strength=1){const cap=profile==='eco'?12:profile==='quality'?48:32,i=cursor++%cap;origins.set([p.x,p.y+.009,p.z],i*3);births[i]=t;styles.set([kind,heading,0,strength],i*4);geometry.attributes.origin.needsUpdate=geometry.attributes.birth.needsUpdate=geometry.attributes.style.needsUpdate=true;geometry.instanceCount=cap;metrics.emitted++;}
