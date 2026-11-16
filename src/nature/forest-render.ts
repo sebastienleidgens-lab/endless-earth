@@ -1,6 +1,8 @@
 // @ts-ignore Identical coarse wind from the existing half-float field, once per individual.
 import {cachedForestWind} from './forest-wind-cache.mjs';
 import * as THREE from 'three';
+// @ts-ignore View-independent caster with detailed trunk and bounded branch cost.
+import {stableForestCaster} from './forest-shadow-source.mjs';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 // @ts-ignore Original deterministic metric library.
 import {createForestModels,forestAtlas,FOREST_VERSION,FOREST_LIBRARY,forestLayout,forestIdentity} from './forest-model.mjs';
@@ -45,8 +47,8 @@ export function addForest(scene:THREE.Object3D,anchors:any[],features:any[],heig
   for(const level of model.levels)resources.geometries.push(level.wood,level.leaves);
  }
  // A stable canonical caster never changes geometry with camera/visible LOD.
- // It uses the same authored branches, leaf alpha and fine wind as near colour.
- const casterSources=new Map<string,THREE.BufferGeometry>();for(const [id,model]of models){const wrap=(source:any)=>{const g=new THREE.BufferGeometry();for(const [name,attribute]of Object.entries(source.attributes))if(!FOREST_MOTION_ATTRIBUTES.includes(name))g.setAttribute(name,attribute as THREE.BufferAttribute);g.setIndex(source.index);return g;},parts=[wrap(model.levels[0].wood),wrap(model.levels[1].leaves)],g=mergeGeometries(parts)!;parts.forEach(g=>g.dispose());g.name='forest-'+id+'-stable-near-wood-caster';g.userData.woodCount=model.levels[0].wood.index.count;g.computeBoundingBox();g.computeBoundingSphere();casterSources.set(id,g);resources.geometries.push(g);}
+ // It uses the authored near trunk, stable middle branches, leaf alpha and shared wind.
+ const casterSources=new Map<string,THREE.BufferGeometry>();for(const [id,model]of models){const g=stableForestCaster(model,FOREST_MOTION_ATTRIBUTES);casterSources.set(id,g);resources.geometries.push(g);}
  const casterGroups=()=>batches.filter(b=>b.lod===1).map(b=>({source:casterSources.get(b.id),forest:true,atlas,life,trees:b.points.map((p:any)=>({matrix:p.worldMatrix,x:p.anchor[0],z:p.anchor[1],traits:p.traits,form:p.form,dates:p.dates,life:p.life,basis:p.basis,anchor:p.anchor}))}));
  const stats=scene.userData.forest={version:FOREST_VERSION,lodVersion:FOREST_LOD_VERSION,...plan.stats,forms:Object.keys(FOREST_LIBRARY),visible:0,levels:[0,0,0,0],submittedTriangles:0,selectionUpdates:0,selectionCpuMs:0,maxSelectionCpuMs:0,transitioning:0,pendingTransitions:0,maxTransitions:FOREST_FADE_LIMIT,appearances:0,disappearances:0,lodChanges:0,batchRebuilds:0,geometryChanges:0,windCacheCpuMs:0,maxWindCacheCpuMs:0,windCacheUpdates:0,source:prepared?.forest?'source-bound prepared infill':'deterministic runtime fallback',items,models,atlas,batches,casterGroups,trees:plan.trees};
  const lastPosition=new THREE.Vector3(Infinity,0,0),lastQuaternion=new THREE.Quaternion(),lastCullingPosition=new THREE.Vector3(Infinity,0,0),frustum=new THREE.Frustum(),clip=new THREE.Matrix4(),sphere=new THREE.Sphere();let lastProfile='',lastFov=-1,lastAspect=-1,initialized=false,lastSeason=-1;
