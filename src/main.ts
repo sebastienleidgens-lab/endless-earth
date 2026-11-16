@@ -70,7 +70,7 @@ import {createWalkMenu} from './ui/menu';
 import {createWalker} from './character/walker.mjs';
 // @ts-ignore Source-bound, physically verified starts.
 import {prepareStarts,chooseStart,inspectStart} from './controls/spawn.mjs';
-import { canWalk as pilotCanWalk, moveWithCollision as pilotMoveWithCollision, walkingHeight as pilotWalkingHeight, cameraClear as pilotCameraClear, hasWalkingSupport as pilotHasWalkingSupport, lastMovementDiagnostic, inspectCollision as pilotInspectCollision, aquaticClear } from './world/collisions';
+import { canWalk as pilotCanWalk, moveWithCollision as pilotMoveWithCollision, walkingHeight as pilotWalkingHeight, cameraClear as pilotCameraClear, hasWalkingSupport as pilotHasWalkingSupport, lastMovementDiagnostic as pilotLastMovementDiagnostic, inspectCollision as pilotInspectCollision, aquaticClear } from './world/collisions';
 // @ts-ignore Canonical loaded-water dispatch.
 import {combineWater} from './planet/water-dispatch.mjs';
 import {createPlanetRuntime} from './planet/runtime';
@@ -79,12 +79,14 @@ import { circleHitsPolygon, movement, nextView, cameraFraction, smoothMovement, 
 
 let planet:ReturnType<typeof createPlanetRuntime>|null=null;
 const inPilot=(x:number,z:number)=>Math.abs(x)<=1000&&Math.abs(z)<=1000;
+let departmentMovementDiagnostic:any=null;
+function lastMovementDiagnostic(){return departmentMovementDiagnostic??pilotLastMovementDiagnostic();}
 function canWalk(x:number,z:number,camera=false):boolean{return inPilot(x,z)?pilotCanWalk(x,z,camera)&&(camera||!planet?.ready||planet.canWalk(x,z)):camera?planet?.height(x,z)!==null&&!!planet?.ready:!!planet?.canWalk(x,z);}
 const cameraClear=(x:number,z:number)=>inPilot(x,z)?pilotCameraClear(x,z):!!planet?.ready&&planet.height(x,z)!==null;
 const hasWalkingSupport=(x:number,z:number)=>inPilot(x,z)&&pilotHasWalkingSupport(x,z);
 function walkingHeight(height:(x:number,z:number)=>number|null){const pilot=pilotWalkingHeight(height);return (x:number,z:number)=>inPilot(x,z)?pilot(x,z):planet?.height(x,z)??null;}
 function inspectCollision(x:number,z:number){if(inPilot(x,z))return pilotInspectCollision(x,z);const a=planet?.admission(x,z);return {surface:'planet-terrain',obstacle:a?.ok?null:a?.reason??'tile-loading',access:{clear:!!a?.ok,support:null,slope:.7,reasons:[]},building:null,collider:null};}
-function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null,slide=true,seconds=0){if(inPilot(position.x,position.z)&&inPilot(position.x+displacement.x,position.z+displacement.z)){if(planet?.car.placed&&!planet.canWalk(position.x+displacement.x,position.z+displacement.z))return;pilotMoveWithCollision(position,displacement,height,slide,seconds);return;}moveGrounded(position,displacement,canWalk,walkingHeight(height),()=>.7,slide);}
+function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null,slide=true,seconds=0){departmentMovementDiagnostic=null;if(inPilot(position.x,position.z)&&inPilot(position.x+displacement.x,position.z+displacement.z)){if(planet?.car.placed&&!planet.canWalk(position.x+displacement.x,position.z+displacement.z))return;pilotMoveWithCollision(position,displacement,height,slide,seconds);return;}moveGrounded(position,displacement,canWalk,walkingHeight(height),()=>.7,slide,(failure:any)=>{departmentMovementDiagnostic={...failure,gps:planet?.geo(failure.requested),admission:planet?.admission(failure.requested.x,failure.requested.z)};});}
 
 // @ts-ignore Source-bound immutable pilot navigation cache.
 import {loadPreparedWater} from './player/prepared-water.mjs';
