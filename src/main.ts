@@ -71,6 +71,8 @@ import {createWalker} from './character/walker.mjs';
 // @ts-ignore Source-bound, physically verified starts.
 import {prepareStarts,chooseStart,inspectStart} from './controls/spawn.mjs';
 import { canWalk as pilotCanWalk, moveWithCollision as pilotMoveWithCollision, walkingHeight as pilotWalkingHeight, cameraClear as pilotCameraClear, hasWalkingSupport as pilotHasWalkingSupport, lastMovementDiagnostic, inspectCollision as pilotInspectCollision, aquaticClear } from './world/collisions';
+// @ts-ignore Canonical loaded-water dispatch.
+import {combineWater} from './planet/water-dispatch.mjs';
 import {createPlanetRuntime} from './planet/runtime';
 // @ts-ignore shared deterministic runtime
 import { circleHitsPolygon, movement, nextView, cameraFraction, smoothMovement, transitionWeight,moveGrounded } from './controls/walking.mjs';
@@ -84,6 +86,9 @@ function walkingHeight(height:(x:number,z:number)=>number|null){const pilot=pilo
 function inspectCollision(x:number,z:number){if(inPilot(x,z))return pilotInspectCollision(x,z);const a=planet?.admission(x,z);return {surface:'planet-terrain',obstacle:a?.ok?null:a?.reason??'tile-loading',access:{clear:!!a?.ok,support:null,slope:.7,reasons:[]},building:null,collider:null};}
 function moveWithCollision(position:THREE.Vector3,displacement:{x:number;z:number},height:(x:number,z:number)=>number|null,slide=true,seconds=0){if(inPilot(position.x,position.z)&&inPilot(position.x+displacement.x,position.z+displacement.z)){if(planet?.car.placed&&!planet.canWalk(position.x+displacement.x,position.z+displacement.z))return;pilotMoveWithCollision(position,displacement,height,slide,seconds);return;}moveGrounded(position,displacement,canWalk,walkingHeight(height),()=>.7,slide);}
 
+// @ts-ignore Source-bound immutable pilot navigation cache.
+import {loadPreparedWater} from './player/prepared-water.mjs';
+import {floatingRenderOrigin} from './planet/render-origin';
 import './style.css';
 import {buildIdentity} from 'virtual:build-identity';
 import {createLandscapeLighting} from './lighting/runtime';
@@ -253,12 +258,27 @@ addEventListener('keydown',event=>{if(event.code==='KeyV'&&!event.repeat&&!walkM
 let walkMenu:ReturnType<typeof createWalkMenu>|null=null;
 setViewMode('third');
 const input = new InputController(renderer.domElement,()=>!geographyReady||!!walkMenu?.open||activity.locked);
-planet=createPlanetRuntime({scene,root,player:avatar,activity,origin:ANGLES,manifestUrl:import.meta.env.BASE_URL+'planet/fr-86/manifest.json',verticalDatum:'IGN69',pilotBounds:[-1000,-1000,1000,1000],heightBase:()=>activeTerrain?.sample(0,0)??0,pilotHeight:(x,z)=>activeTerrain?pilotWalkingHeight((a,b)=>activeTerrain!.relativeHeight(a,b))(x,z):null,pilotClear:pilotCanWalk,clearInput:()=>{input.clear();walker.stop('Promenade en pause · voiture');tourContinue=false;},climate:()=>scene.userData.climate});
+planet=createPlanetRuntime({scene,root,player:avatar,activity,origin:ANGLES,manifestUrl:import.meta.env.BASE_URL+'planet/fr-86/manifest.json',verticalDatum:'IGN69',pilotBounds:[-1000,-1000,1000,1000],heightBase:()=>activeTerrain?.sample(0,0)??0,pilotHeight:(x,z)=>activeTerrain?pilotWalkingHeight((a,b)=>activeTerrain!.relativeHeight(a,b))(x,z):null,pilotClear:pilotCanWalk,pilotSurfaceSHA:()=>activeTerrain?.singleSurface?.manifest.binarySha256,clearInput:()=>{input.clear();walker.stop('Promenade en pause · voiture');tourContinue=false;},climate:()=>scene.userData.climate,journey:{
+ capture(toGeo:any){const encode=(layout:any)=>layout?{...layout,...Object.fromEntries(['origin','tent','fire','bag'].map(k=>[k,toGeo(layout[k])])),pegs:layout.pegs.map(toGeo)}:null;return {profile:lifeSettings.name,boat:{visible:boat.visible,heading:boat.heading,stroke:boat.stroke,following:boat.following},camp:encode(activity.camp),exposure:{wetness:exposure.wetness},camera:{yaw,pitch,zoom,view:viewMode}};},
+ async validate(saved:any,p:any,fromGeo:any){const provider=scene.userData.aquaticProvider?.at(p.x,p.z),started=performance.now();if(['boating','swimming','wading'].includes(saved.activity)){while(provider&&!provider.network.metrics.ready&&performance.now()-started<60000)await new Promise(r=>setTimeout(r,100));}if(saved.activity==='boating')return {ok:!!provider?.network?.metrics.ready&&boat.clearAt(provider,playerWaterClear,p.x,p.z,saved.extensions?.boat?.heading??saved.heading)&&provider.returnRouteVerified(p.x,p.z)};if(['swimming','wading'].includes(saved.activity))return {ok:!!provider?.sample(p.x,p.z)?.reliable&&provider.returnRouteVerified(p.x,p.z)&&playerWaterClear(p.x,p.z)};if(saved.activity==='camping'){const origin=saved.extensions?.camp?.origin;return origin?playerWorld?.camp(fromGeo(origin),saved.extensions.camp.heading):{ok:false};}return {ok:false};},
+ restore(saved:any,p:any,fromGeo:any){
+  boat.reset();camp.clear();aquatic.provider=null;const e=saved.extensions??{},provider=scene.userData.aquaticProvider;
+  if(e.profile&&['eco','balanced','quality'].includes(e.profile)){applyQuality(e.profile==='eco'?'low':'high');setLifeProfile(e.profile);}
+  if(saved.climate?.date)dispatchEvent(new CustomEvent('nature-test-date',{detail:saved.climate.date}));
+  if(saved.climate?.weather){const select=document.querySelector<HTMLSelectElement>('select[aria-label="Météo simulée"]');if(select){select.value=saved.climate.weather;select.dispatchEvent(new Event('change'));}}
+  if(saved.activity==='boating'){activity.state='boating';const level=provider.sample(p.x,p.z).surfaceY;avatar.position.set(p.x,level+.1,p.z);boat.position={x:p.x,y:level,z:p.z};boat.heading=e.boat?.heading??saved.heading;boat.stroke=e.boat?.stroke??0;boat.visible=true;boat.scale=boat.pose=1;boat.provider=provider;if(e.boat?.following)boat.toggleFollow(provider);}
+  else if(saved.activity==='camping'){const check=playerWorld.camp(fromGeo(e.camp.origin),e.camp.heading);if(check.ok){activity.state='camping';activity.camp=check.layout;camp.install(check.layout,(x:number,z:number)=>playerWorld.query(x,z));}}
+  else if(['swimming','wading'].includes(saved.activity)){activity.state=saved.activity;aquatic.provider=provider;aquatic.last=provider.sample(p.x,p.z);avatar.position.set(p.x,p.y,p.z);}
+  if(e.camera){yaw=e.camera.yaw;pitch=e.camera.pitch;zoom=e.camera.zoom;setViewMode(e.camera.view);}
+  if(Number.isFinite(e.exposure?.wetness))exposure.wetness=e.exposure.wetness;velocity.x=velocity.z=0;
+ }
+}});
 scene.userData.planet=planet;
+const floatingWorld=floatingRenderOrigin(renderer,scene,camera,()=>avatar.position);
 if(perfPreview)Object.defineProperty(window,'endlessPlanetDiagnostics',{get:()=>({metrics:planet?.metrics,ready:planet?.ready,region:planet?.region?.id,position:planet?.geo(avatar.position),car:planet?.car,mapOpen:planet?.mapOpen})});
 const walker=new AutoWalk(), sound=new Soundscape(sensorySeed);let tourContinue=false,tourWait=0;
 const actions=createActions(root,()=>{if(!playerWorld||!geographyReady)return;const result=activity.toggleCamp(()=>playerWorld.camp(avatar.position,avatar.rotation.y));if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause · campement');}},{boat:()=>playerAction('boat'),seat:()=>playerAction('seat'),jump:()=>playerAction('jump'),recover:()=>{boat.stopFollow();boat.recovery=!boat.recovery;},follow:()=>{boat.toggleFollow(scene.userData.aquaticProvider);}});
-function playerWaterClear(x:number,z:number){return aquaticClear(x,z)&&!restrictedAreas.some(r=>circleHitsPolygon(x,z,r,.6))&&!waterObstacles?.query({x,z},1.1).point;}
+function playerWaterClear(x:number,z:number){return (inPilot(x,z)?aquaticClear(x,z):!!planet?.waterClear(x,z))&&!restrictedAreas.some(r=>circleHitsPolygon(x,z,r,.6))&&!waterObstacles?.query({x,z},1.1).point;}
 function playerAction(kind:string){if(!playerWorld||!geographyReady||walkMenu?.open)return;const provider=scene.userData.aquaticProvider;const result=kind==='boat'?(boat.active?boat.dock(avatar.position,provider,playerWaterClear):boat.launch(avatar.position,avatar.rotation.y,provider,playerWaterClear)):kind==='seat'?groundActions.toggleSeat(avatar.position,playerWorld):groundActions.requestJump(avatar.position,avatar.rotation.y,playerWorld);if(result.ok){activity.message='';input.clear();velocity.x=velocity.z=0;tourContinue=false;walker.stop('Promenade en pause');}else activity.message=result.reason;contextAge=1;}
 const updateAtmosphere=naturalSky(scene,sun,(x,z)=>inPilot(x,z)?activeTerrain?.relativeHeight(x,z)??0:planet?.height(x,z)??0,ANGLES,hemisphere,avatar,camera);
 const panel=document.createElement('div');panel.className='living-panel';
@@ -355,7 +375,7 @@ function prepareWorldSenses(){if(!activeTerrain||worldSensoryReady)return;const 
  const pilotCamp=playerWorld.camp;playerWorld.camp=(p:any,heading:number)=>inPilot(p.x,p.z)?pilotCamp(p,heading):{ok:false,reason:'road'};
  interactionDecor=createInteractionDecor(scene,playerWorld);playerWorld.clearPose=interactionDecor.clearPose;
  footIndex=footRoadIndex(acousticRoads);waterObstacles=proximityIndex(mappedWeirs);
- scene.userData.aquaticProvider=createEstimatedBathymetry({incremental:true,origin:avatar.position,areas:riverAreas,lines:riverLines,support:(x:number,z:number)=>activeTerrain!.supportAt(x,z),landClear:canWalk,clear:playerWaterClear});
+ scene.userData.aquaticProvider=combineWater(createEstimatedBathymetry({prepared:loadPreparedWater(new URL(import.meta.env.BASE_URL+'planet/fr-86/navigation/',location.origin),activeTerrain!.singleSurface?.manifest.binarySha256),incremental:true,origin:avatar.position,areas:riverAreas,lines:riverLines,support:(x:number,z:number)=>activeTerrain!.supportAt(x,z),landClear:canWalk,clear:playerWaterClear}),()=>planet?.water,()=>avatar.position);
  scene.userData.playerInteractions={query:(x:number,z:number)=>playerWorld.query(x,z),camp:(x:number,z:number,heading=0)=>playerWorld.camp({x,z},heading),activity,campMetrics:camp.metrics,footprints:footprints.metrics};
 }
 function frame(){requestAnimationFrame(frame);const elapsed=clock.getDelta();const dt=Math.min(elapsed,.25);
@@ -459,7 +479,7 @@ villageLife.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettin
 traffic.update(elapsed,scene.userData.climate??{},avatar.position,lifeSettings.name,villageLife.director.groups.flatMap((g:any)=>g.members.map((m:any)=>m.position)));
 sensitiveWorld.update(elapsed,scene.userData.climate??{},avatar.position,camera,lifeSettings.name);
 if(activeTerrain)lanterns.update(scene.userData.climate,avatar.position,(x,z)=>activeTerrain!.relativeHeight(x,z),lifeSettings.name);
-const motor=traffic.vehicle,mp=traffic.metrics.position,driven=planet?.car;sound.vehicle(driven?.active?{id:'player-travel-car',position:{x:driven.position.x,y:driven.position.y+.7,z:driven.position.z},speed:Math.abs(driven.speed),rain:scene.userData.climate?.weather?.rain??0}:motor&&mp?{id:motor.id,position:{x:mp[0],y:mp[1]+.7,z:mp[2]},speed:traffic.metrics.speed,rain:scene.userData.climate?.weather?.rain??0}:null);
+const motor=traffic.vehicle,mp=traffic.metrics.position,driven=planet?.car;sound.vehicle(driven?.active?{id:'player-travel-car',position:{x:driven.position.x,y:driven.position.y+.7,z:driven.position.z},speed:Math.abs(driven.speed),rain:scene.userData.climate?.weather?.rain??0}:planet?.nearbyVehicle??(motor&&mp?{id:motor.id,position:{x:mp[0],y:mp[1]+.7,z:mp[2]},speed:traffic.metrics.speed,rain:scene.userData.climate?.weather?.rain??0}:null));
 
 camera.getWorldDirection(audioForward);audioUp.copy(worldUp).applyQuaternion(camera.quaternion);sound.listener(camera.position,audioForward,audioUp);
 sound.update(avatar.position,moved,scene.userData.earthLife?.wind.speed??.35,yaw,scene.userData.acousticClimate??scene.userData.climate,scene.userData.earthLife,scene.userData.lifeHabitat,lifeSettings.name,acousticAltitude,scene.userData.lifeSoundSources??[],locomotion,signs.audioFlight,activeTerrain?avatar.position.y+(activeTerrain.sample(0,0)??0):null);

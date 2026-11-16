@@ -1,0 +1,8 @@
+/** Cooperative preparation only; simulation/rendering keep their existing loop. */
+export class PreparationQueue {
+ constructor({budgetMs=3,delayMs=8,now=()=>performance.now()}={}){this.budgetMs=budgetMs;this.delayMs=delayMs;this.now=now;this.jobs=[];this.timer=null;this.closed=false;this.metrics={slices:0,steps:0,cpuMs:0,maxSliceMs:0,maxStepMs:0,completed:0,cancelled:0};}
+ run(iterator,signal){return new Promise((resolve,reject)=>{if(this.closed){reject(new Error('Preparation queue closed'));return;}this.jobs.push({iterator,signal,resolve,reject});this.schedule();});}
+ schedule(){if(this.timer===null&&this.jobs.length&&!this.closed)this.timer=setTimeout(()=>this.pump(),this.delayMs);}
+ pump(){this.timer=null;const start=this.now();do{const job=this.jobs.shift();if(!job)break;try{if(job.signal?.aborted){job.iterator.return?.();this.metrics.cancelled++;job.reject(new DOMException('Preparation cancelled','AbortError'));continue;}const t=this.now(),step=job.iterator.next();this.metrics.steps++;this.metrics.maxStepMs=Math.max(this.metrics.maxStepMs,this.now()-t);if(step.done){this.metrics.completed++;job.resolve(step.value);}else this.jobs.push(job);}catch(e){job.iterator.return?.();job.reject(e);}}while(this.jobs.length&&this.now()-start<this.budgetMs);const elapsed=this.now()-start;this.metrics.slices++;this.metrics.cpuMs+=elapsed;this.metrics.maxSliceMs=Math.max(this.metrics.maxSliceMs,elapsed);this.schedule();}
+ dispose(){this.closed=true;if(this.timer!==null)clearTimeout(this.timer);this.timer=null;for(const j of this.jobs){j.iterator.return?.();j.reject(new DOMException('Preparation disposed','AbortError'));}this.jobs.length=0;}
+}
