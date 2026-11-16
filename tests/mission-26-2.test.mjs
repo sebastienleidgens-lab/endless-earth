@@ -2,6 +2,7 @@ import {admitFeature} from '../src/planet/network.mjs';
 import {terrainLayout} from '../src/planet/terrain-lod.mjs';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {ContactQueryCache} from '../src/planet/query-cache.mjs';
 import {vehiclesOverlap,pedestrianNearVehicle} from '../src/planet/vehicle-space.mjs';
 import {trafficLanePoint} from '../src/planet/traffic.mjs';
 import {measureLine} from '../src/planet/transport-motion.mjs';
@@ -21,6 +22,15 @@ import {cyclicCurve} from '../src/character/cyclic-curve.mjs';
 import {perchFlightAt} from '../src/earthlife/fauna.mjs';
 import {createWalker} from '../src/character/walker.mjs';
 const finish=g=>{let s;do{s=g.next();}while(!s.done);return s.value;};
+test('contact caching cannot carry an unloaded floor or an old LOD across ownership revisions',()=>{
+ const cache=new ContactQueryCache(2);let support=null;
+ assert.equal(cache.get('p','loading',()=>support),null);support={height:10,face:2};
+ assert.equal(cache.get('p','installed',()=>support).face,2);
+ support={height:11,face:5};assert.equal(cache.get('p','refined',()=>support).height,11);
+ support=null;assert.equal(cache.get('p','evicted',()=>support),null);
+ for(let i=0;i<100;i++)cache.get(String(i),'evicted',()=>({height:i}));assert.ok(cache.values.size<=2);
+ cache.invalidate();assert.equal(cache.values.size,0);
+});
 test('complete vehicle hulls let opposing lanes pass and retain front, crossing and pedestrian collisions',()=>{
  const a={x:1.2,z:0,heading:0},opposite={x:-1.2,z:0,heading:Math.PI};assert.equal(vehiclesOverlap(a,opposite),false);
  assert.equal(vehiclesOverlap(a,{x:1.2,z:3,heading:0}),true);assert.equal(vehiclesOverlap(a,{x:1.2,z:0,heading:Math.PI/2}),true);

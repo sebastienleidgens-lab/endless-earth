@@ -6,6 +6,8 @@ import {createProjection,legacyAdapter,requireSameDatum} from './coordinates.mjs
 import {WorldTileManager,tileLoader,tileDemand,sha256} from './tile-manager.mjs';
 // @ts-ignore Same support mesh for render and physical admission.
 import {PlanetSurface} from './surface.mjs';
+// @ts-ignore Exact frame-local contacts, invalidated by preparation/residency revisions.
+import {ContactQueryCache} from './query-cache.mjs';
 // @ts-ignore Crop source outlines to the local simulation window, never create access on crop edges.
 import {clipPolygon} from './feature-clip.mjs';
 // @ts-ignore Source-topology transport graphs.
@@ -33,16 +35,20 @@ export function createPlanetRuntime(o:Options){
  let stations:any[]=[];let region:RegionManifest|null=null,projection:any=null,surface:any=null,manager:any=null,view:any=null,map:ReturnType<typeof createPlanetMap>|null=null,transport:ReturnType<typeof createPlanetTransport>|null=null,overview:any[]=[],lastDemand=-Infinity,time=0,closed=false,started=false,transition:any=null,storage:JourneyStorage|null=null,lastSave=-Infinity,demandTarget:any=null;
  try{storage=new JourneyStorage(localStorage);}catch{/* Private/browser storage can be unavailable. */}
  const footGraph=new TiledNetwork('foot'),carGraph=new TiledNetwork('car'),railGraph=new TiledNetwork('rail');
- const metrics={state:'idle',source:'',stream:null as any,render:null as any,graph:{foot:footGraph.metrics,car:carGraph.metrics,rail:railGraph.metrics},car:car.metrics,maxInstallMs:0,maxInstallWallMs:0,preparation:preparation.metrics,failures:[]as string[],frame:'legacy-adapter; canonical EPSG coordinates preserved',floatingOrigin:'integrated render/audio origin; canonical simulation and storage unchanged'};
+ const contactQueries=new ContactQueryCache(4096);
+ const metrics={contactQueries:contactQueries.metrics,state:'idle',source:'',stream:null as any,render:null as any,graph:{foot:footGraph.metrics,car:carGraph.metrics,rail:railGraph.metrics},car:car.metrics,maxInstallMs:0,maxInstallWallMs:0,preparation:preparation.metrics,failures:[]as string[],frame:'legacy-adapter; canonical EPSG coordinates preserved',floatingOrigin:'integrated render/audio origin; canonical simulation and storage unchanged'};
  function geo(p:{x:number;z:number}){return legacy.toGeo(p);}
  function projected(p:{x:number;z:number}){return projection.project(geo(p));}
  function local(x:number,y:number){return legacy.fromGeo(projection.unproject({x,y}));}
  function roadHeading(road:any){const i=Math.max(1,road.index),a=road.feature.points[i-1],b=road.feature.points[i],p=local(a[0],a[1]),q=local(b[0],b[1]);return Math.atan2(q.x-p.x,q.z-p.z);}
  function inPilot(x:number,z:number){const b=o.pilotBounds;return x>=b[0]&&x<=b[2]&&z>=b[1]&&z<=b[3];}
- function height(x:number,z:number){if(inPilot(x,z))return o.pilotHeight(x,z);if(!projection||!surface||!manager||!view)return null;const p=projected({x,z}),sample=surface?.sample(p);if(!sample||!manager?.resident.has(sample.tile)||sample.resolutionM===2&&!view?.fineAt(sample.tile,p.x,p.y))return null;return view?.sample(x,z,surface.nearestRoad(p,'foot',25)?.feature.id)?.height??null;}
- function admission(x:number,z:number,mode='foot'){
+ function heightUncached(x:number,z:number){if(inPilot(x,z))return o.pilotHeight(x,z);if(!projection||!surface||!manager||!view)return null;const p=projected({x,z}),sample=surface?.sample(p);if(!sample||!manager?.resident.has(sample.tile)||sample.resolutionM===2&&!view?.fineAt(sample.tile,p.x,p.y))return null;return view?.sample(x,z,surface.nearestRoad(p,'foot',25)?.feature.id)?.height??null;}
+ function admissionUncached(x:number,z:number,mode='foot'){
   if(!surface)return {ok:false,reason:'tile-loading'};const p=projected({x,z}),h=height(x,z),q=surface.admission(p,mode,(road:string)=>inPilot(x,z)?o.pilotSupport(x,z):view?.sample(x,z,road));if(!q.ok)return q;if(h===null)return {ok:false,reason:'tile-loading'};if(inPilot(x,z)&&!o.pilotClear(x,z))return {ok:false,reason:'pilot-collision'};return {...q,height:inPilot(x,z)?h:q.height??h,drivable:mode==='car'};
  }
+ function contactStamp(){return preparation.metrics.steps+':'+(manager?.metrics.loaded??0)+':'+(manager?.metrics.unloaded??0);}
+ function height(x:number,z:number):number|null{return inPilot(x,z)?heightUncached(x,z):contactQueries.get('height:'+x+':'+z,contactStamp(),()=>heightUncached(x,z));}
+ function admission(x:number,z:number,mode='foot'):any{return inPilot(x,z)?admissionUncached(x,z,mode):contactQueries.get(mode+':'+x+':'+z,contactStamp(),()=>admissionUncached(x,z,mode));}
  function carWorld(x:number,z:number){return admission(x,z,'car');}
  (carWorld as any).vehicleClear=(x:number,z:number,heading:number)=>transport?.vehicleClear(x,z,heading)??true;
  function footClear(x:number,z:number){if(!inPilot(x,z)&&view&&!view.clear(x,z))return false;if(transport&&!transport.clear(x,z))return false;if(car.placed&&o.activity.state!=='driving'){const dx=x-car.position.x,dz=z-car.position.z,c=Math.cos(car.heading),s=Math.sin(car.heading);if(Math.abs(c*dx-s*dz)<1.15&&Math.abs(s*dx+c*dz)<2.15)return false;}return inPilot(x,z)?o.pilotClear(x,z):!!admission(x,z).ok;}
@@ -80,7 +86,7 @@ export function createPlanetRuntime(o:Options){
  }
  resumeButton.onclick=()=>{void resume().catch(e=>{status.textContent='Reprise indisponible : '+String(e);metrics.failures.push(String(e));demandTarget=null;});};
  function update(dt:number,player:THREE.Object3D,camera:THREE.Camera,controls:{forward:number;strafe:number},ready:boolean,paused=false,profile='balanced'){
-  time=Math.max(time+dt,o.climate()?.elapsedSeconds??0);if(ready&&!started)void init();if(!region||!manager||!surface)return false;
+  contactQueries.invalidate();time=Math.max(time+dt,o.climate()?.elapsedSeconds??0);if(ready&&!started)void init();if(!region||!manager||!surface)return false;
   const p=projected(player.position);if(time-lastDemand>.4){const speed=car.active?car.speed:1.5,heading=car.active?car.heading:player.rotation.y;const demand=tileDemand(region,demandTarget??p,{x:Math.sin(heading)*speed,y:-Math.cos(heading)*speed},1);if(demandTarget?.extra)for(const at of demandTarget.extra)for(const t of tileDemand(region,at,{x:0,y:0},1))if(!demand.some((q:any)=>q.id===t.id))demand.push(t);if(plannedRoute?.points?.length){let nearest=0,d=Infinity;for(let i=0;i<plannedRoute.points.length;i++){const q=plannedRoute.points[i],n=Math.hypot(q.x-p.x,q.y-p.y);if(n<d){d=n;nearest=i;}}if(d<100){let distance=0,i=nearest;while(i<plannedRoute.points.length-1&&distance<800){distance+=Math.hypot(plannedRoute.points[i+1].x-plannedRoute.points[i].x,plannedRoute.points[i+1].y-plannedRoute.points[i].y);i++;}for(const t of tileDemand(region,plannedRoute.points[i],{x:0,y:0},.5))if(!demand.some((a:any)=>a.id===t.id))demand.push({...t,priority:t.priority+2000});}}manager.demand(demand);lastDemand=time;}
   updateWater(player.position);view?.update(player.position,profile,demandTarget?{...local(demandTarget.x,demandTarget.y),extra:(demandTarget.extra??[]).map((p:any)=>local(p.x,p.y))}:undefined);const front=projected({x:player.position.x+Math.sin(car.heading),z:player.position.z+Math.cos(car.heading)});transport?.update(dt,time,{...p,vehicle:car.active,heading:Math.atan2(front.x-p.x,-(front.y-p.y))},profile,o.climate());map?.update(time);retryButton.hidden=!manager.failed.size;if(manager.failed.size)status.textContent='Le paysage suivant est indisponible · déplacement arrêté.';
   if(!car.placed&&['walking','running'].includes(o.activity.state)){const road=surface.nearestRoad(p,'car',18);if(road){const position=local(road.x,road.y),h=height(position.x,position.z),heading=roadHeading(road);if(h!==null){const x=position.x+Math.sin(heading)*7,z=position.z+Math.cos(heading)*7;if(car.clearAt(x,z,heading,carWorld).ok){car.place({x,y:height(x,z)!,z},heading);car.placed=true;}}}}
