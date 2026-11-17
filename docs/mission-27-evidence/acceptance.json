@@ -1,11 +1,11 @@
 {
   "schema": "mission-27-acceptance-v1",
-  "assembledAt": "2026-11-17T13:27:15.375Z",
+  "assembledAt": "2026-11-17T13:30:45.989Z",
   "verdict": "PARTIEL",
   "completeMissionAccepted": false,
   "code": {
     "baselineCommit": "1d330cab93847a4026194088c60d378c71c0b8f7",
-    "assemblyHead": "7845dcb8bbecbe4a5e57ebb13256559d622eb08d",
+    "assemblyHead": "9d8abdfff6edcb86ea691a8501664264166210fd",
     "executedSourceCommit": "7845dcb8bbecbe4a5e57ebb13256559d622eb08d",
     "assemblyBranch": "mission/27-world-enrichment",
     "workingTreeDirty": true
@@ -1181,6 +1181,26 @@
   ],
   "evidenceSnapshot": [
     {
+      "path": "gallery-validation.json",
+      "bytes": 39274,
+      "sha256": "83a31b92c687f3b01cb994302655c28da5c58814e70be835afac462fe625a9ea"
+    },
+    {
+      "path": "production-smoke.json",
+      "bytes": 154304,
+      "sha256": "9b6956a6c567ea883673520c8b28e08fad657de19c34d58261f8bccf0d2d8e0b"
+    },
+    {
+      "path": "generation-cache.json",
+      "bytes": 62679,
+      "sha256": "75bddab0904381d304d7b7fc75a3bd0c60a71c660edf2c94c5eb779c91f1bff5"
+    },
+    {
+      "path": "browser-premature-readiness.json",
+      "bytes": 967365,
+      "sha256": "42a187193cc6ef312a3a179653867dadebf2e8a8c59ec601ebfd2b3d465ea3c9"
+    },
+    {
       "path": "generation.json",
       "bytes": 122183,
       "sha256": "1f85e23dcb0e566f68f5775b78241a980ef6ded6b968ea84bac965380f788833"
@@ -1287,8 +1307,8 @@
     },
     {
       "path": "git-state.json",
-      "bytes": 718,
-      "sha256": "619160c8acd9be0dc33d25568dde8e971b8febb9b00479a6983d3b8055e1a34e"
+      "bytes": 1184,
+      "sha256": "90ffa3cff5636267076dcc6a88fd6aa0d5bbab02034bfb19c5bb0f0d7742bdf0"
     },
     {
       "path": "residual-defects.geojson",
