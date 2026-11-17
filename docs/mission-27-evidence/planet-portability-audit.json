@@ -1,0 +1,297 @@
+{
+  "schema": "mission-27-planet-portability-v1",
+  "verdict": "PARTIAL",
+  "baseCommit": "1d330cab93847a4026194088c60d378c71c0b8f7",
+  "contracts": [
+    {
+      "schema": "regional-enrichment-pack-v1",
+      "path": "src/enrichment/contracts.ts",
+      "state": "implemented"
+    },
+    {
+      "schema": "world-enrichment-v1",
+      "path": "src/enrichment/generator.mjs",
+      "state": "implemented"
+    },
+    {
+      "schema": "world-enrichment-manifest-v1",
+      "path": "src/enrichment/manifest.mjs",
+      "state": "implemented"
+    },
+    {
+      "schema": "WGS84-ENU-v1",
+      "path": "src/planet/coordinates.mjs",
+      "state": "numeric-provider-tested-not-integrated-global-runtime"
+    },
+    {
+      "schema": "earth-angular-v1",
+      "path": "src/planet/coordinates.mjs",
+      "state": "addressing-tested-not-active-Vienne-ownership"
+    },
+    {
+      "schema": "planet-journey-v2",
+      "path": "src/planet/save.mjs",
+      "state": "historical-format-retained-no-global-migration-claimed"
+    }
+  ],
+  "convertedDependencies": [
+    {
+      "concern": "Facade, roof palette, levels and detail habitat selection",
+      "target": "declarative regional enrichment packs",
+      "scope": "new artistic layer only"
+    },
+    {
+      "concern": "Geodetic singularity at dateline/poles",
+      "target": "explicit 3D ECEF/ENU provider",
+      "scope": "numeric API with ellipsoidal heights, not active global gameplay"
+    },
+    {
+      "concern": "Administrative ownership of world addresses",
+      "target": "earth-angular-v1 hierarchical cells",
+      "scope": "new address contract; historical Lambert files retained"
+    }
+  ],
+  "remainingDependencies": [
+    {
+      "path": "src/main.ts",
+      "dependency": "Angles origin, fr-86 manifest paths, IGN69 vertical datum and pilot adapters",
+      "state": "retained-blocking-full-planet-runtime",
+      "reason": "Preserves the shipped pilot. No manifest-only worldwide application bootstrap is proved."
+    },
+    {
+      "path": "src/planet/runtime.ts",
+      "dependency": "legacyAdapter is the active player/render geographic frame",
+      "state": "retained-blocking-full-planet-runtime",
+      "reason": "New ECEF/ENU provider is not a complete replacement for 2D runtime project/unproject calls."
+    },
+    {
+      "path": "src/planet/fine-grid.mjs",
+      "dependency": "IGN69 fine-raster provider metadata",
+      "state": "retained-source-specific",
+      "reason": "Correct for the pinned Vienne data. Another vertical provider and datum conversion require explicit implementation."
+    },
+    {
+      "path": "src/main.ts",
+      "dependency": "naturalSky receives Angles origin",
+      "state": "retained-blocking-moving-global-sun",
+      "reason": "Solar algorithm supports coordinates, but runtime origin is not dynamically migrated between distant frames."
+    },
+    {
+      "path": "src/nature/library.mjs",
+      "dependency": "temperate vegetation and annual phenology",
+      "state": "retained-regional-library",
+      "reason": "New content packs do not replace every historical flora/climate consumer."
+    },
+    {
+      "path": "src/audio/profiles.mjs",
+      "dependency": "temperate-Europe animal and bird catalog",
+      "state": "retained-region-restricted",
+      "reason": "Existing region guards avoid blindly applying European birds everywhere; no real tropical sound library integrated."
+    },
+    {
+      "path": "src/planet/render.ts",
+      "dependency": "historical department palettes and coarse trees",
+      "state": "retained-partial-pack-coverage",
+      "reason": "The new facade/detail layer is parametrized; all historical renderer features are not yet regional packs."
+    },
+    {
+      "path": "src/nature/climate.mjs",
+      "dependency": "calendar seasons and existing solar/time context",
+      "state": "partially-general",
+      "reason": "Hemisphere-aware seasons and global solar math pre-exist, but civil timezone boundaries, DST, monsoon and polar calendar acceptance are not fully validated."
+    }
+  ],
+  "geodesy": {
+    "audit": "geodesy-audit.json",
+    "tests": "geodesy-tests.tap",
+    "sampleCount": 308,
+    "maxECEFRoundTripErrorM": 3.250391045874771e-9,
+    "maxHeightRoundTripErrorM": 1.862645149230957e-9,
+    "testPasses": 29,
+    "testFailures": 0,
+    "coverage": [
+      "WGS84 axes",
+      "308 global ECEF round-trips",
+      "north/south polar ENU patches",
+      "antimeridian ENU patch",
+      "explicit datum rejection",
+      "bounded local patch",
+      "canonical global cell parents and owners",
+      "save/JSON/rebase/return"
+    ],
+    "notValidated": [
+      "Civil timezones and daylight saving boundaries",
+      "Global player traversal through frame/CRS changes",
+      "Unknown source vertical datum conversion",
+      "Source/provider border physical seams",
+      "Global-scale map and audio migration"
+    ]
+  },
+  "environments": [
+    {
+      "id": "Vienne-real",
+      "data": "real-pinned-existing",
+      "expectedTiles": 499,
+      "runtimeAcceptance": "see coverage and browser receipts; no global success inferred"
+    },
+    {
+      "id": "mountain-fixture",
+      "data": "synthetic",
+      "manifest": "public/planet/validation-m27-mountain/manifest.json",
+      "pack": "public/enrichment/packs/mountain-fixture.json",
+      "sourceTiles": 4,
+      "sourceGeneration": "executed",
+      "enrichmentGeneration": "executed-two-identical-generations-per-tile",
+      "runtimeAcceptance": {
+        "functionalPassed": true,
+        "receipt": "fixtures-runtime.json",
+        "scope": "Same production territory runtime, render, admitted synthetic controller sampling and save/resume; no complete climate/audio/fauna or perceptive universality claim",
+        "hardware": "SwiftShader software rendering; no physical GPU or smartphone"
+      },
+      "generationReceipt": "fixtures/mountain/generation.json",
+      "buildingPlans": 8,
+      "detailPlans": 512,
+      "packedBytes": 34235,
+      "decodedBytes": 414886,
+      "ruleHashes": {
+        "src/enrichment/generator.mjs": "9674831df28efc50ba192db9390e35e7c1476e9b724cbb6768bc178d3c706f5e",
+        "src/enrichment/architecture.mjs": "25f099363b0472b80ee3737a0fef67eb535a9c6083a8da7de5c870bd4ef252b3",
+        "src/enrichment/load.mjs": "33b6b8ddb9db35977935f97b5c763980aaf72ab2c86a3beca6b311be18b90290",
+        "src/planet/surface.mjs": "d04780360c255d46edff4994aa5ca5421266f99bf66fa976ed62ce98d1e9b9ce",
+        "src/planet/coordinates.mjs": "117f2e150eeb51488eb2b38e4e204c8c8c6080b9ef27a8cde8f79ad931b26577",
+        "scripts/prepare-mission-27.mjs": "e49b39d09334031959d22d74406aec91b030838c70ff5aff1e0b1841c6003eab"
+      },
+      "cpuIntegration": {
+        "passed": true,
+        "receipt": "fixtures/fixture-tests.tap",
+        "covered": [
+          "source and sidecar SHA/decode",
+          "source building collision",
+          "support availability",
+          "four actual evictions and two reloaded original tiles",
+          "stable identity after reload",
+          "journey save/read/admission",
+          "shared-edge sampled heights"
+        ],
+        "notCovered": [
+          "browser-render",
+          "audio",
+          "native camera perception",
+          "full weather integration"
+        ]
+      }
+    },
+    {
+      "id": "tropical-fixture",
+      "data": "synthetic",
+      "manifest": "public/planet/validation-m27-tropical/manifest.json",
+      "pack": "public/enrichment/packs/tropical-fixture.json",
+      "sourceTiles": 4,
+      "sourceGeneration": "executed",
+      "enrichmentGeneration": "executed-two-identical-generations-per-tile",
+      "runtimeAcceptance": {
+        "functionalPassed": true,
+        "receipt": "fixtures-runtime.json",
+        "scope": "Same production territory runtime, render, admitted synthetic controller sampling and save/resume; no complete climate/audio/fauna or perceptive universality claim",
+        "hardware": "SwiftShader software rendering; no physical GPU or smartphone"
+      },
+      "generationReceipt": "fixtures/tropical/generation.json",
+      "buildingPlans": 8,
+      "detailPlans": 512,
+      "packedBytes": 34025,
+      "decodedBytes": 432041,
+      "ruleHashes": {
+        "src/enrichment/generator.mjs": "9674831df28efc50ba192db9390e35e7c1476e9b724cbb6768bc178d3c706f5e",
+        "src/enrichment/architecture.mjs": "25f099363b0472b80ee3737a0fef67eb535a9c6083a8da7de5c870bd4ef252b3",
+        "src/enrichment/load.mjs": "33b6b8ddb9db35977935f97b5c763980aaf72ab2c86a3beca6b311be18b90290",
+        "src/planet/surface.mjs": "d04780360c255d46edff4994aa5ca5421266f99bf66fa976ed62ce98d1e9b9ce",
+        "src/planet/coordinates.mjs": "117f2e150eeb51488eb2b38e4e204c8c8c6080b9ef27a8cde8f79ad931b26577",
+        "scripts/prepare-mission-27.mjs": "e49b39d09334031959d22d74406aec91b030838c70ff5aff1e0b1841c6003eab"
+      },
+      "cpuIntegration": {
+        "passed": true,
+        "receipt": "fixtures/fixture-tests.tap",
+        "covered": [
+          "source and sidecar SHA/decode",
+          "source building collision",
+          "support availability",
+          "four actual evictions and two reloaded original tiles",
+          "stable identity after reload",
+          "journey save/read/admission",
+          "shared-edge sampled heights"
+        ],
+        "notCovered": [
+          "browser-render",
+          "audio",
+          "native camera perception",
+          "full weather integration"
+        ]
+      }
+    }
+  ],
+  "internationalEvidence": "international-fixtures.json",
+  "costModel": {
+    "evidenceType": "illustrative-planning-projection-not-benchmark",
+    "currencyCostIncurred": 0,
+    "newRecurringService": false,
+    "newDependencies": 0,
+    "assumedCompressedArtBytesPerKm2": {
+      "desert": 2000,
+      "rural": 15000,
+      "forest": 25000,
+      "denseUrban": 250000
+    },
+    "excluded": [
+      "terrain and imagery",
+      "source vectors",
+      "shared texture/audio libraries",
+      "browser and GPU residency",
+      "replication and backups",
+      "future data updates",
+      "network/request-provider quotas"
+    ],
+    "illustrativeAreaKm2": {
+      "metropolitanFrance": 551695,
+      "Europe": 10180000,
+      "EarthLand": 148940000
+    },
+    "singleHabitatCompressedArtProjectionsBytes": {
+      "metropolitanFrance": {
+        "desert": 1103390000,
+        "rural": 8275425000,
+        "forest": 13792375000,
+        "denseUrban": 137923750000
+      },
+      "Europe": {
+        "desert": 20360000000,
+        "rural": 152700000000,
+        "forest": 254500000000,
+        "denseUrban": 2545000000000
+      },
+      "EarthLand": {
+        "desert": 297880000000,
+        "rural": 2234100000000,
+        "forest": 3723500000000,
+        "denseUrban": 37235000000000
+      }
+    },
+    "requestModel": "One optional artistic sidecar per resident geographic tile plus a small per-region manifest; not a per-building HTTP request. Geography/fine-raster requests remain additional.",
+    "generationCapacity": "Offline pipeline is incremental but not distributed; measured Vienne receipt is required for throughput. No planetary throughput benchmark.",
+    "measuredSyntheticArtBytesPerKm2": {
+      "mountain-fixture": 32649.04,
+      "tropical-fixture": 32448.77
+    },
+    "measuredSyntheticNote": "Tiny invented fixtures with forced128-detail-per-tile budget. These rates do not predict department or planet production."
+  },
+  "scaleLimits": [
+    "No globally moving player/render frame integration.",
+    "No full regionalization of historical sky, vegetation and audio consumers.",
+    "No global geoid/datum conversion.",
+    "Angular cells are not equal-area/metric or a validated global transport graph.",
+    "No provider-border or changed-political-boundary physical acceptance campaign.",
+    "Fixture climate fields do not implement monsoon/alpine meteorology or verified botany.",
+    "Storage, bandwidth and paid/free hosting quotas at continental/global scale are unproved.",
+    "GPU memory, physical Android thermal/energy and long native eviction endurance remain separate requirements."
+  ],
+  "acceptanceImplication": "A04 and A37–A45 must remain PARTIAL or NOT_ACHIEVED until their complete runtime and coverage evidence is available; numeric geodesy and parametrized packs alone do not close them."
+}

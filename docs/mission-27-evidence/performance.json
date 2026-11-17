@@ -1,0 +1,42 @@
+{
+  "schema": "mission-27-performance-v1",
+  "sourceCommit": "7845dcb8bbecbe4a5e57ebb13256559d622eb08d",
+  "hardware": "SwiftShader software; no GPU hardware, power measurement or physical Android",
+  "nativeStationary": {
+    "renderedFrames": 90,
+    "renderedTimestampSpanSeconds": 11.961199999999954,
+    "renderedFramesPerTimestampSecond": 7.440725010868504,
+    "requestedCaptureFPS": 30,
+    "frameIntervalMs": {
+      "p50": 129,
+      "p95": 195.10000000009313,
+      "p99": 216,
+      "max": 225.20000000018626
+    },
+    "framebuffer": [
+      384,
+      240
+    ],
+    "profile": "eco",
+    "viewport": [
+      640,
+      400
+    ],
+    "effectivePixelRatio": 0.6
+  },
+  "maxObservedPreparationStepMs": 148.5,
+  "maxObservedPreparationSliceMs": 148.5,
+  "budgetsMet": false,
+  "pairedPerformanceRegression": null,
+  "longSessionMinutes": null,
+  "physicalHardwareStatus": "NON_VALID\u00c9_SUR_MAT\u00c9RIEL",
+  "resourceContention": "A separate production smoke ran during part of the diagnostic capture campaign; this is not an isolated benchmark.",
+  "limitations": [
+    "Native stationary rendered timestamps are observations, not native journey FPS.",
+    "Requested MediaRecorder FPS is not actual rendered FPS.",
+    "No 30\u201360 minute final endurance or complete heap/GPU/audio allocation measurement.",
+    "No <=5% paired active-cost conclusion.",
+    "The fixedResolution query parameter was not implemented by the M27 inspection shim; the actual framebuffer was 384\u00d7240 for a 640\u00d7400 viewport. No matched-resolution performance claim."
+  ],
+  "adaptiveResolutionControlled": false
+}

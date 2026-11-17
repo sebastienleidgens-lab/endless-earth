@@ -1,0 +1,88 @@
+{
+  "schema": "mission-27-geodesy-audit-v1",
+  "evidenceType": "synthetic-numeric",
+  "executedAt": "2026-11-17T12:57:32.540Z",
+  "sourceFileSHA256": "117f2e150eeb51488eb2b38e4e204c8c8c6080b9ef27a8cde8f79ad931b26577",
+  "sampleCount": 308,
+  "maxECEFRoundTripErrorM": 3.250391045874771e-9,
+  "maxHeightRoundTripErrorM": 1.862645149230957e-9,
+  "crossings": [
+    {
+      "origin": {
+        "lat": 10,
+        "lon": 179.9999,
+        "height": 12,
+        "datum": "WGS84-ellipsoid"
+      },
+      "target": {
+        "lat": 10,
+        "lon": -179.9999,
+        "height": 13,
+        "datum": "WGS84-ellipsoid"
+      },
+      "local": {
+        "x": 21.927917501715033,
+        "y": 0.000006645975013597205,
+        "up": 0.9999623100235956,
+        "datum": "WGS84-ellipsoid"
+      },
+      "errorM": 2.799417870308996e-9
+    },
+    {
+      "origin": {
+        "lat": 90,
+        "lon": 0,
+        "height": 0,
+        "datum": "WGS84-ellipsoid"
+      },
+      "target": {
+        "lat": 89.9999,
+        "lon": 140,
+        "height": 8,
+        "datum": "WGS84-ellipsoid"
+      },
+      "local": {
+        "x": 7.179559589047812,
+        "y": 8.556265933883799,
+        "up": 7.999990252777933,
+        "datum": "WGS84-ellipsoid"
+      },
+      "errorM": 0
+    },
+    {
+      "origin": {
+        "lat": -90,
+        "lon": 73,
+        "height": 100,
+        "datum": "WGS84-ellipsoid"
+      },
+      "target": {
+        "lat": -89.9999,
+        "lon": -111,
+        "height": 101,
+        "datum": "WGS84-ellipsoid"
+      },
+      "local": {
+        "x": 0.7791501118335558,
+        "y": -11.14236571360333,
+        "up": 0.9999902527779334,
+        "datum": "WGS84-ellipsoid"
+      },
+      "errorM": 0
+    }
+  ],
+  "tests": {
+    "command": "node --test --test-reporter=tap tests/enrichment-geodesy.test.mjs tests/planet.test.mjs",
+    "exitCode": 0,
+    "passed": 29,
+    "failed": 0,
+    "log": "geodesy-tests.tap"
+  },
+  "limits": [
+    "Numerical precision is not geospatial source accuracy.",
+    "WGS84 ellipsoidal heights only for the new ENU provider; no IGN69/geoid conversion.",
+    "ENU x/y/up are required; no global flat terrain or inter-frame runtime traversal validated.",
+    "Global angular cells are addressing contracts; current Vienne files remain historical Lambert cells.",
+    "No timezone library or local civil-calendar validation added."
+  ]
+}

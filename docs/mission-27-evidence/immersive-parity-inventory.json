@@ -1,0 +1,654 @@
+{
+  "schema": "mission-27-immersive-parity-inventory-v1",
+  "checkedAtUtc": "2026-11-17T13:00:03.710264+00:00",
+  "baselineCommit": "1d330cab93847a4026194088c60d378c71c0b8f7",
+  "scope": "Source-level inventory of M26.4 shared systems and remaining pilot dependencies; candidate M27 paths are identified separately and do not assert native rendering",
+  "method": [
+    "Read baseline src/planet/render.ts from Git HEAD before accepting candidate changes as baseline",
+    "Inspect main.ts adapters, shared weather/wind/audio/activities, render and source-bound fields",
+    "Inspect current candidate enrichment integration without awarding runtime validation",
+    "View initial first-person and aerial PNGs; record static evidence limits"
+  ],
+  "baselineVerification": {
+    "testsPassedReportedByPrimaryAgent": 466,
+    "testsExecutedByThisInventory": 0,
+    "sourceOfTestCount": "Primary-agent baseline run; final verification receipts are authoritative"
+  },
+  "coverage": {
+    "expectedBaseTiles": 499,
+    "expectedCommunes": 265,
+    "tilesRuntimeAuditedByThisInventory": null,
+    "systemsProvenEquivalentOnAllTiles": null,
+    "status": "not-a-department-runtime-audit"
+  },
+  "baselineScreenshots": [
+    {
+      "path": "docs/mission-27-evidence/gallery/angles-before-aerial.png",
+      "sha256": "b1e71f4af604b29e97f1c71f1119bc64913ce09f62c4b7321be8d1fd2916b299",
+      "proofType": "static",
+      "claim": "Limited initial screenshot, not an animation/audio/department coverage proof"
+    },
+    {
+      "path": "docs/mission-27-evidence/gallery/angles-before-first.png",
+      "sha256": "b2998bda60451ff337caa8a555a058e3b5989cc9459d2f34d3424f4107e04e59",
+      "proofType": "static",
+      "claim": "Limited initial screenshot, not an animation/audio/department coverage proof"
+    },
+    {
+      "path": "docs/mission-27-evidence/gallery/angles-before-mobile.png",
+      "sha256": "4066b2e28836fc217d8c2de8ec78b456dfb6ab391699192da2175a698ea0ae2d",
+      "proofType": "static",
+      "claim": "Limited initial screenshot, not an animation/audio/department coverage proof"
+    },
+    {
+      "path": "docs/mission-27-evidence/gallery/angles-before-third.png",
+      "sha256": "981016fd72b73053eab593855367187a0aee38ed091c2de84639b0b0b65c37c1",
+      "proofType": "static",
+      "claim": "Limited initial screenshot, not an animation/audio/department coverage proof"
+    }
+  ],
+  "baselineLimitation": "The inspected first-person and aerial PNGs show the explicit landscape-unavailable / movement-stopped message. They are retained as the observed initial state and do not establish a healthy or complete visual baseline. Other frames are listed by hash without a claim of visual inspection.",
+  "candidateM27": {
+    "paths": [
+      "src/enrichment/render.ts",
+      "src/enrichment/architecture.mjs",
+      "src/enrichment/load.mjs",
+      "src/enrichment/manifest.mjs"
+    ],
+    "sourceObservation": "Candidate path for deterministic regional building plans and decorative instances; renderer hooks seen in the working tree",
+    "runtimeProofInThisInventory": "none",
+    "authority": "artistic only; source geography and physical permissions remain authoritative",
+    "finalProofLocation": "Final report and runtime evidence receipts, when produced"
+  },
+  "systems": [
+    {
+      "id": "sky-clock",
+      "name": "Horloge, soleil, ciel et lune",
+      "sourcePaths": [
+        "src/main.ts",
+        "src/nature/sky.ts",
+        "src/nature/atmosphere.ts",
+        "src/nature/moon.mjs"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "naturalSky est construit une seule fois pour la scène, avec ANGLES; le ciel suit le joueur et met à jour le même soleil.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "La même fonction frame appelle updateAtmosphere hors pilote; son callback de hauteur consulte planet.height. Le site astronomique et le fuseau restent ceux d’Angles dans main.ts.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "ANGLES transmis par main.ts; latitude/longitude/fuseau fixés pour la session"
+      ],
+      "remainingAdapters": [
+        "Mettre à jour le contexte géographique pour les territoires et grands déplacements sans recréer les horloges; vérifier rebase et continuité visuelle."
+      ],
+      "existingRelevantTests": [
+        "tests/atmosphere.test.mjs",
+        "tests/earthlife.test.mjs",
+        "tests/planet.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Une horloge commune ne prouve pas une latitude solaire correcte sur toute la Terre; aucune campagne temporelle 499 tuiles ici."
+      ]
+    },
+    {
+      "id": "weather-seasons",
+      "name": "Saisons, pluie, neige, surfaces humides",
+      "sourcePaths": [
+        "src/nature/sky.ts",
+        "src/nature/weather-model.mjs",
+        "src/nature/snow-weather.ts",
+        "src/nature/snow-state.mjs",
+        "src/nature/climate.mjs",
+        "src/main.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Moteur météo simulée unique; snowExposureSource est préparé depuis les manifests et packs d’exposition du pilote. Les matériaux historiques reçoivent les états communs.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "La pluie suit la caméra et le callback de hauteur du monde. Le champ d’exposition neige demeure celui du pilote; sample retourne cover=0 hors emprise disponible. Les matériaux Lambert départementaux ne réemploient pas automatiquement tous les récepteurs de neige et d’humidité historiques.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "snowExposureSource construit depuis data/angles-*-snow-exposure",
+        "latitudes/seasonUniform et calendrier initialisés par le site pilote"
+      ],
+      "remainingAdapters": [
+        "Fournir une exposition départementale liée aux vrais supports et des récepteurs de matériau compatibles; packs climatiques sans saisons européennes universelles."
+      ],
+      "existingRelevantTests": [
+        "tests/atmosphere.test.mjs",
+        "tests/snow.test.mjs",
+        "tests/coherence.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Textures d’exposition, particules et changement de variantes; météo globale ne garantit pas parité matérielle."
+      ]
+    },
+    {
+      "id": "shared-wind",
+      "name": "Vent spatial et horloge communs",
+      "sourcePaths": [
+        "src/earthlife/state.mjs",
+        "src/earthlife/wind.mjs",
+        "src/living/atmosphere.ts",
+        "src/planet/render.ts",
+        "src/nature/forest-life-runtime.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "updateLifeTime met à jour lifeUniforms; foliage/forêt utilisent le champ commun et les états de saison historiques.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "M26.4 branche explicitement crownMaterial et crownDepth sur lifeUniforms et windGLSL. Les troncs départementaux simples ne sont pas la forêt articulée du pilote. Le candidat M27 src/enrichment/render.ts réemploie ce champ, sans preuve native donnée par cet inventaire.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Les géométries et attributs articulés du pilote ne sont pas ceux des arbres simplifiés départementaux"
+      ],
+      "remainingAdapters": [
+        "Préserver les ancres canoniques/phase après éviction et rebase; rapprocher le tronc, les détails, les sons et les casters sans deuxième champ de vent."
+      ],
+      "existingRelevantTests": [
+        "tests/forest-life.test.mjs",
+        "tests/forest-shadow-motion.test.mjs",
+        "tests/earthlife.test.mjs",
+        "tests/mission-26-4.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Compiler le même code couleur/depth ne prouve pas une ombre stable; rebases et gros groupes instanciés à profiler."
+      ]
+    },
+    {
+      "id": "forest",
+      "name": "Arbres, branches, feuilles et sous-bois",
+      "sourcePaths": [
+        "src/nature/forest-render.ts",
+        "src/nature/forest-material.ts",
+        "src/nature/forest-lod.mjs",
+        "src/nature/forest-life-runtime.ts",
+        "src/planet/render.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Forêt de modèles ramifiés, attributs saisonniers, LOD, atlas de mouvement et casters propres aux assets historiques.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "M26.4 place des troncs CylinderGeometry et des couronnes IcosahedronGeometry dans habitat wood: grille 64 m perturbée, maximum 512 arbres par tuile, exclusion routes/rails/aviation/bâtiments, contact au support affiché. Ce n’est pas une extension équivalente de la forêt du pilote.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "userData.forest et modèles/branches du pilote attendus par plusieurs consommateurs"
+      ],
+      "remainingAdapters": [
+        "Adapter les peuplements départementaux aux catalogues régionaux, essences/habitats et attributs historiques; exposer les mêmes identités de branches/perchoirs aux consommateurs; auditer lisières et sous-bois."
+      ],
+      "existingRelevantTests": [
+        "tests/forest.test.mjs",
+        "tests/forest-lod.test.mjs",
+        "tests/forest-life.test.mjs",
+        "tests/nature-owner.test.mjs",
+        "tests/planet-contact.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Répétition des silhouettes, coût du modèle proche, changements de masse et de collider pendant streaming."
+      ]
+    },
+    {
+      "id": "ground-detail",
+      "name": "Sols, herbes, fleurs et petits détails",
+      "sourcePaths": [
+        "src/nature/flower-render.ts",
+        "src/nature/flowers.mjs",
+        "src/nature/surfaces.ts",
+        "src/world/decoration-stream.mjs",
+        "src/planet/render.ts",
+        "src/enrichment/render.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Matériaux et décorations préparés du pilote, détails de végétation et animation de foliage dans leur voie historique.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "M26.4 colore le terrain départemental par habitat, sans parité de texture/sous-bois à déduire. Le candidat M27 ajoute un chemin d’instances décoratives chargé par sidecar; la présence du fichier et du branchement n’est pas une observation des 499 tuiles.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Manifests et géométries de décor historique attachés au pilote; palettes par habitat en dur dans le renderer départemental de base"
+      ],
+      "remainingAdapters": [
+        "Vérifier chaque famille, ancrage, exclusion et support en mouvement; garder profils et identité cohérents; différencier un milieu naturellement ouvert d’un décor manquant."
+      ],
+      "existingRelevantTests": [
+        "tests/decorations.test.mjs",
+        "tests/nature-render.test.mjs",
+        "tests/surface-art.test.mjs",
+        "tests/planet-contact.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Uploads d’instances, surdensité artificielle, recouvrement des chemins, ombres et alpha scintillants."
+      ]
+    },
+    {
+      "id": "water-visual",
+      "name": "Eau, reflets, berges et courant visuel",
+      "sourcePaths": [
+        "src/nature/surfaces.ts",
+        "src/earthlife/water.mjs",
+        "src/earthlife/river-flow.ts",
+        "src/planet/render.ts",
+        "src/nature/sky.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Le pilote possède son eau à normales animées et réflexion analytique du ciel, champs riverField et climat partagés; courant visuel illustratif.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "Les polygones hydro départementaux utilisent un MeshStandardMaterial à couleur/roughness/metalness fixes; les lignes hydro sont des LineSegments. Ils ne sont pas enregistrés dans le shader waterColor du pilote. Le champ banks de naturalSky est construit depuis riverAreas/riverLines du pilote.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "riverAreas/riverLines et champs river-flow préparés pour le pilote"
+      ],
+      "remainingAdapters": [
+        "Brancher les surfaces départementales sur les shaders et paramètres historiques sans double eau sur le pilote; adapter les champs et berges au réseau source; conserver navigabilité séparée."
+      ],
+      "existingRelevantTests": [
+        "tests/earthlife.test.mjs",
+        "tests/mission-25-1.test.mjs",
+        "tests/planet-contact.test.mjs",
+        "tests/mission-26-4.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "La présence d’une collision d’eau ne prouve ni reflets animés ni berges détaillées; transparence, confluences et raccords à profiler."
+      ]
+    },
+    {
+      "id": "aquatic-contacts",
+      "name": "Nage, packraft, pagaie et sillage",
+      "sourcePaths": [
+        "src/main.ts",
+        "src/planet/runtime.ts",
+        "src/planet/water-dispatch.mjs",
+        "src/player/packraft.mjs",
+        "src/player/water-contacts.mjs",
+        "src/player/water-marks.mjs"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Activités historiques, contrôles de coque et contacts de mains/pagaie; effets et sons utilisent les mêmes événements.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "combineWater relie le fournisseur du pilote à planet.water; runtime construit un fournisseur de bathymétrie estimée sur eau chargée et admission conservatrice. Les ponts/seuils et accès non prouvés restent refusés; ce raccord ne transfère pas le shader d’eau.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Accès et prétraitement du pilote conservés; certaines activités dépendent d’une berge admise"
+      ],
+      "remainingAdapters": [
+        "Tester effets visuels/sonores et sauvegarde sur corridors départementaux réellement admis; tenir séparées géométrie visible, courant décoratif et sûreté du contrôleur."
+      ],
+      "existingRelevantTests": [
+        "tests/aquatic-player.test.mjs",
+        "tests/mission-25-2.test.mjs",
+        "tests/mission-26-3.test.mjs",
+        "tests/mission-26-4.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Construction incrémentale du réseau, mise à jour des supports, refus légitimes, coût du sillage et sources audio."
+      ]
+    },
+    {
+      "id": "fauna",
+      "name": "Oiseaux, perchoirs et petite faune",
+      "sourcePaths": [
+        "src/earthlife/fauna-render.ts",
+        "src/earthlife/fauna.mjs",
+        "src/earthlife/sensitive-world.ts",
+        "src/nature/sky.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Trajectoires analytiques, pose par frame et découverte de perchoirs dans userData.forest; silhouettes génériques, pas inventaire biologique observé.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "Le contrôleur global reçoit le joueur et l’habitat départemental et peut générer un vol générique hors pilote. Les arbres simples départementaux n’exposent pas userData.forest/model.tree.branches; leurs perchoirs ne sont pas découverts par cette voie. sensitiveWorld est configuré depuis les berges du pilote.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Découverte scene.userData.forest; plafond lifeCeiling calculé sur realWorld; catalogue et mois de migration tempérés"
+      ],
+      "remainingAdapters": [
+        "Fournir un adaptateur d’ancres/perchoirs stable pour les objets départementaux; adapter familles/sons au pack et altitude; vérifier continuité et densité en conditions natives."
+      ],
+      "existingRelevantTests": [
+        "tests/earthlife.test.mjs",
+        "tests/mission-25-1.test.mjs",
+        "tests/mission-26-4.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Apparitions, ancrages périmés après éviction, plafond inadapté et saccades non détectées par tests analytiques."
+      ]
+    },
+    {
+      "id": "spatial-audio",
+      "name": "Audio spatial, habitats et feuillage",
+      "sourcePaths": [
+        "src/living/sound.ts",
+        "src/audio/renderer.ts",
+        "src/audio/context.mjs",
+        "src/audio/geography.mjs",
+        "src/audio/foliage.mjs",
+        "src/main.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Soundscape unique; audio utilisateur activable, ressources/voix bornées, eau/pas/feuillage/agents; obstacles et indices établis depuis géographie historique.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "main.ts passe lifeHabitat départemental, hauteur, sources d’oiseaux et véhicule à la même instance. En revanche les waterIndex/roadsIndex/obstacles et foliageAnchors restent construits depuis riverAreas/riverLines/acousticRoads/acousticBuildings et forêts du pilote. acousticContext contient toujours region temperate-europe et conversion ANGLES.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Indices acoustiques historiques pilote; ANGLES et Europe/Paris; identifiant de région temperate-europe; collecte initiale des branches"
+      ],
+      "remainingAdapters": [
+        "Adapter les indices eau/voirie/occlusion/feuillage aux tuiles actives avec IDs persistants; packs sonores/contextes géographiques; rétention/fade indépendants de l’éviction."
+      ],
+      "existingRelevantTests": [
+        "tests/audio.test.mjs",
+        "tests/audio-immersive.test.mjs",
+        "tests/mission-25-1.test.mjs",
+        "tests/coherence.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Voix doublées aux frontières, chant/feuillage sans ancre, mauvaise altitude ou son de rivière manquant; aucune écoute physique dans cet inventaire."
+      ]
+    },
+    {
+      "id": "ground-traces",
+      "name": "Empreintes et traces de contact",
+      "sourcePaths": [
+        "src/main.ts",
+        "src/player/footprints.mjs",
+        "src/player/ground-marks.mjs",
+        "src/player/world.mjs",
+        "src/audio/materials.mjs"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Mises à jour à partir des contacts réels, neige/humidité et playerWorld; surface et activité contrôlées.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "playerWorld.support utilise planet.admission hors pilote; frame met à jour les mêmes empreintes et groundMarks avec lifeHabitat. Les catégories de chaussée proviennent encore footIndex/acousticRoads du pilote et la neige de l’exposition historique.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "footRoadIndex historique; groundSnowAt dépendant du champ chargé"
+      ],
+      "remainingAdapters": [
+        "Adapter les matériaux de contact de la voirie et l’exposition neige hors pilote; vérifier supports et masques sans modifier l’appui physique."
+      ],
+      "existingRelevantTests": [
+        "tests/player-life.test.mjs",
+        "tests/mission-25.test.mjs",
+        "tests/mission-25-2.test.mjs",
+        "tests/snow.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Mauvaise surface de pas, traces flottantes, allocations et persistance après éviction."
+      ]
+    },
+    {
+      "id": "activities",
+      "name": "Campement, assise et interactions",
+      "sourcePaths": [
+        "src/main.ts",
+        "src/player/world.mjs",
+        "src/player/interactable-surfaces.mjs",
+        "src/player/camp.mjs",
+        "src/player/activity.mjs"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "playerWorld et interactions historiques exigent provenance, admission et support; décors d’interaction et camp préservés.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "main.ts remplace explicitement playerWorld.camp hors pilote par un refus reason=road. Les listes de routes/berges/arbres et les objets interactifs historiques sont initialisées depuis le pilote. L’admission du terrain départemental ne certifie pas toutes les interactions.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Données sémantiques, objets et arbres du pilote; politique de refus du camp hors pilote"
+      ],
+      "remainingAdapters": [
+        "N’ouvrir une interaction qu’avec son contrat physique et ses données sémantiques; préserver les refus; documenter l’absence plutôt que rendre le décor interactif implicitement."
+      ],
+      "existingRelevantTests": [
+        "tests/player-life.test.mjs",
+        "tests/mission-25-1.test.mjs",
+        "tests/mission-25-2.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Faux droits d’accès, traversée de murs/décors, inadéquation du balayage de pose."
+      ]
+    },
+    {
+      "id": "lighting-materials",
+      "name": "Ombres, matériaux et éclairage",
+      "sourcePaths": [
+        "src/main.ts",
+        "src/lighting/state.mjs",
+        "src/nature/forest-shadow-source.mjs",
+        "src/nature/forest-material.ts",
+        "src/planet/render.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Voie d’éclairage et casters de forêt source-bound, avec corrections M26.4 et profils historiques conservés.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "Les matériaux de surface départementaux appellent lightingReceiver; les couronnes ont une profondeur animée commune. main.ts configure les shadow maps hors pilote (Équilibré 1024, Qualité 1536, Éco selon sa politique existante) et le snapping de projection. Cela ne prouve ni parité PBR, ni absence de shimmer ou popping.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Bibliothèque de matériaux/atlas et données lighting installés sur realWorld; politique d’ombres différente selon voie pilote/département"
+      ],
+      "remainingAdapters": [
+        "Comparer mouvements et casters en profils appariés; tester coordonnées/rebase; conserver les ombres pendant optimisation et publier les défauts temporels."
+      ],
+      "existingRelevantTests": [
+        "tests/lighting.test.mjs",
+        "tests/forest-shadow-motion.test.mjs",
+        "tests/authentic-materials.test.mjs",
+        "tests/mission-26-4.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Aliasing, passage de LOD/caster, upload des shadow maps, changement de teinte et coût GPU; revue physique absente."
+      ]
+    },
+    {
+      "id": "local-life",
+      "name": "Agents, circulation et ambiance locale",
+      "sourcePaths": [
+        "src/main.ts",
+        "src/planet/transport.ts",
+        "src/planet/traffic.mjs",
+        "src/planet/transport-motion.mjs",
+        "src/living/sound.ts",
+        "src/life/village.ts"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "villageLife et traffic sont préparés avec exportTourGraph/acousticRoads du pilote; sons drainés vers Soundscape.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "planet.transport reçoit les données et climat des tuiles; nearbyVehicle est transmis au même Soundscape. Ce raccord ne peuple pas automatiquement chaque commune avec les agents du pilote; pas de nouvelle activité ferroviaire certifiée par cet inventaire.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Graphe piéton et routes historiques utilisés par villageLife; catalogue d’agents local"
+      ],
+      "remainingAdapters": [
+        "Adapter les agents aux infrastructures admises et au contexte; éviter duplication avec trafic départemental; observer chaque mode réellement activé."
+      ],
+      "existingRelevantTests": [
+        "tests/mission-20.test.mjs",
+        "tests/mission-22.test.mjs",
+        "tests/planet.test.mjs",
+        "tests/mission-26-2.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Multiplication d’agents, simulation hors caméra coûteuse, circulation inventée ou voix inutiles."
+      ]
+    },
+    {
+      "id": "identity-stream-origin",
+      "name": "Identités, streaming, sauvegarde et origine",
+      "sourcePaths": [
+        "src/planet/tile-manager.mjs",
+        "src/planet/runtime.ts",
+        "src/planet/render-origin.ts",
+        "src/planet/origin-state.mjs",
+        "src/planet/origin-shader.mjs",
+        "src/planet/save.mjs"
+      ],
+      "verification": {
+        "kind": "source-inspection",
+        "runtimeNativeObservedByThisAudit": false,
+        "departmentTilesRuntimeAudited": null,
+        "qualitativeParity": "not-validated"
+      },
+      "angles": {
+        "sourceObservation": "Géographie, activités et origine historique conservées; M26 apporte l’adaptateur et les mécanismes partagés.",
+        "nativeEvidence": "Historical mission evidence exists; this inventory does not recertify it"
+      },
+      "outsidePilot": {
+        "sourceObservation": "Tile manager, workers, queue et origine de rendu/audio existent; sauvegarde conserve coordonnées canoniques, datum et activités compatibles. Chaque système de décor nouvellement branché doit encore prouver l’identité et le cycle de vie après éviction/rebase; disponibilité du manifeste n’est pas observation du rendu.",
+        "departmentCoverageClaim": null
+      },
+      "pilotDependencies": [
+        "Adaptateur legacy ANGLES et référence IGN69 du territoire courant; états de systèmes non tous sérialisés par objet"
+      ],
+      "remainingAdapters": [
+        "Auditer retour arrière, profil, rebase, reload et éviction pour nouveaux objets, casters et sources; ne pas déplacer les supports pour un changement artistique."
+      ],
+      "existingRelevantTests": [
+        "tests/planet.test.mjs",
+        "tests/planet-contact.test.mjs",
+        "tests/planet-preparation.test.mjs",
+        "tests/mission-26-3.test.mjs",
+        "tests/mission-26-4.test.mjs"
+      ],
+      "testExecutionClaim": "Test names identify relevant coverage, not a claim that this inventory executed them",
+      "performanceAndQualityRisks": [
+        "Réponses périmées, doubles propriétaires, phases réinitialisées, tâches de préparation >50 ms déjà ouvertes en M26.4."
+      ]
+    }
+  ],
+  "overallVerdict": "PARTIEL — substantial systems are shared by source, but full living-world parity on 499 tiles is not demonstrated",
+  "acceptanceImplications": {
+    "A46": "Source inventory supplied; final acceptance depends on complete review and evidence",
+    "A47_A52": "Open: source wiring does not establish department-wide animated and sensory parity",
+    "A56": "NON VALIDÉ: no human review of a native immersive sequence in this inventory"
+  },
+  "auditNotes": [
+    "No second weather, wind or audio engine is proposed.",
+    "No boolean configuration flag is used as a runtime observation.",
+    "No native observation or per-tile performance is manufactured.",
+    "No new access, swim/camp permission or navigation corridor follows from visual decoration."
+  ]
+}

@@ -1,0 +1,3702 @@
+{
+  "schema": "mission-27-streaming-observations-v1",
+  "sourceCommit": "7845dcb8bbecbe4a5e57ebb13256559d622eb08d",
+  "proofType": "diagnostic-placements-and-native-stationary-observation",
+  "snapshots": [
+    {
+      "gps": {
+        "lat": 46.6954233157827,
+        "lon": 0.8797680006964309
+      },
+      "stream": {
+        "loaded": 1,
+        "unloaded": 0,
+        "failures": 0,
+        "residentBytes": 9254688,
+        "active": 2,
+        "queued": 2,
+        "errors": {},
+        "timeouts": 0,
+        "cancellations": 0,
+        "generation": 3,
+        "jobs": [
+          {
+            "id": "131:1617",
+            "generation": 1,
+            "state": "WAITING_FOR_TILE",
+            "phase": "installation-queue",
+            "priority": 0.1533444130155708,
+            "at": 1794921318983
+          },
+          {
+            "id": "131:1616",
+            "generation": 2,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 646.5760283550067,
+            "at": 1794921325475
+          },
+          {
+            "id": "130:1617",
+            "generation": 3,
+            "state": "WAITING_FOR_TILE",
+            "phase": "network",
+            "priority": 1426.5332871331043,
+            "at": 1794921325475
+          }
+        ]
+      },
+      "preparation": {
+        "slices": 393,
+        "steps": 124712,
+        "cpuMs": 1341.5000000002328,
+        "maxSliceMs": 21.199999999953434,
+        "maxStepMs": 18.699999999953434,
+        "completed": 8,
+        "cancelled": 0,
+        "stages": {
+          "surface-index:131:1616": {
+            "steps": 557,
+            "cpuMs": 4.600000000093132,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1616": {
+            "steps": 2169,
+            "cpuMs": 10.799999999813735,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1616": {
+            "steps": 1403,
+            "cpuMs": 5.199999999953434,
+            "maxStepMs": 0.20000000018626451,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1616": {
+            "steps": 534,
+            "cpuMs": 0.39999999990686774,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1616": {
+            "steps": 111805,
+            "cpuMs": 1074.0999999986961,
+            "maxStepMs": 18.699999999953434,
+            "over8": 5,
+            "over50": 0
+          },
+          "static-batches": {
+            "steps": 568,
+            "cpuMs": 130.79999999981374,
+            "maxStepMs": 8.199999999953434,
+            "over8": 1,
+            "over50": 0
+          },
+          "surface-index:131:1617": {
+            "steps": 2185,
+            "cpuMs": 11.200000000186265,
+            "maxStepMs": 0.6999999999534339,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1617": {
+            "steps": 4746,
+            "cpuMs": 10.300000000279397,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1617": {
+            "steps": 745,
+            "cpuMs": 2.5000000002328306,
+            "maxStepMs": 0.20000000018626451,
+            "over8": 0,
+            "over50": 0
+          }
+        },
+        "longSteps": [
+          {
+            "label": "render-install:131:1616",
+            "ms": 17.800000000046566
+          },
+          {
+            "label": "render-install:131:1616",
+            "ms": 18.600000000093132
+          },
+          {
+            "label": "render-install:131:1616",
+            "ms": 18.699999999953434
+          },
+          {
+            "label": "render-install:131:1616",
+            "ms": 12.300000000046566
+          },
+          {
+            "label": "render-install:131:1616",
+            "ms": 15.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.199999999953434
+          }
+        ]
+      },
+      "decoder": {
+        "worker": true,
+        "batches": 13,
+        "maxReceiveMs": 0.20000000018626451,
+        "maxDecodeWallMs": 532.5
+      },
+      "enrichment": {
+        "tiles": 1,
+        "buildings": 0,
+        "windows": 0,
+        "doors": 0,
+        "details": 512,
+        "animatedDetails": 290,
+        "fallbacks": 0
+      }
+    },
+    {
+      "gps": {
+        "lat": 46.55358940175024,
+        "lon": 0.6687868972019588
+      },
+      "stream": {
+        "loaded": 3,
+        "unloaded": 0,
+        "failures": 0,
+        "residentBytes": 35550272,
+        "active": 0,
+        "queued": 0,
+        "errors": {},
+        "timeouts": 0,
+        "cancellations": 2,
+        "generation": 5,
+        "jobs": [
+          {
+            "id": "131:1616",
+            "generation": 2,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 646.5760283550067,
+            "at": 1794921325475
+          },
+          {
+            "id": "131:1617",
+            "generation": 1,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794921329460
+          },
+          {
+            "id": "130:1617",
+            "generation": 3,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794921329460
+          },
+          {
+            "id": "127:1613",
+            "generation": 4,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.08508717007075345,
+            "at": 1794921341520
+          },
+          {
+            "id": "126:1613",
+            "generation": 5,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 1228.6585917442292,
+            "at": 1794921360817
+          }
+        ]
+      },
+      "preparation": {
+        "slices": 2585,
+        "steps": 770444,
+        "cpuMs": 9450.700000003213,
+        "maxSliceMs": 33.39999999990687,
+        "maxStepMs": 31.199999999953434,
+        "completed": 27,
+        "cancelled": 1,
+        "stages": {
+          "surface-index:131:1616": {
+            "steps": 557,
+            "cpuMs": 4.600000000093132,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1616": {
+            "steps": 2169,
+            "cpuMs": 10.799999999813735,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1616": {
+            "steps": 1403,
+            "cpuMs": 5.199999999953434,
+            "maxStepMs": 0.20000000018626451,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1616": {
+            "steps": 534,
+            "cpuMs": 0.39999999990686774,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1616": {
+            "steps": 111805,
+            "cpuMs": 1074.0999999986961,
+            "maxStepMs": 18.699999999953434,
+            "over8": 5,
+            "over50": 0
+          },
+          "static-batches": {
+            "steps": 13437,
+            "cpuMs": 2142.299999999348,
+            "maxStepMs": 22.200000000186265,
+            "over8": 30,
+            "over50": 0
+          },
+          "surface-index:131:1617": {
+            "steps": 2185,
+            "cpuMs": 11.200000000186265,
+            "maxStepMs": 0.6999999999534339,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1617": {
+            "steps": 4746,
+            "cpuMs": 10.300000000279397,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1617": {
+            "steps": 3663,
+            "cpuMs": 9.00000000023283,
+            "maxStepMs": 1.3999999999068677,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1617": {
+            "steps": 2167,
+            "cpuMs": 0.9000000001396984,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1617": {
+            "steps": 17619,
+            "cpuMs": 224.59999999962747,
+            "maxStepMs": 19.4000000001397,
+            "over8": 1,
+            "over50": 0
+          },
+          "terrain-refine:131:1617": {
+            "steps": 12486,
+            "cpuMs": 255.9000000017695,
+            "maxStepMs": 6.7000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "surface-index:127:1613": {
+            "steps": 1414,
+            "cpuMs": 10.899999999674037,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:127:1613": {
+            "steps": 3546,
+            "cpuMs": 19.900000001536682,
+            "maxStepMs": 6.600000000093132,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:127:1613": {
+            "steps": 2366,
+            "cpuMs": 4.899999999674037,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:127:1613": {
+            "steps": 1469,
+            "cpuMs": 2.0000000002328306,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:127:1613": {
+            "steps": 168864,
+            "cpuMs": 1592.0999999942724,
+            "maxStepMs": 31.199999999953434,
+            "over8": 13,
+            "over50": 0
+          },
+          "terrain-refine:127:1613": {
+            "steps": 47430,
+            "cpuMs": 971.2000000029802,
+            "maxStepMs": 22.9000000001397,
+            "over8": 5,
+            "over50": 0
+          },
+          "surface-index:126:1613": {
+            "steps": 7352,
+            "cpuMs": 30.399999999674037,
+            "maxStepMs": 1.7000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:126:1613": {
+            "steps": 11832,
+            "cpuMs": 20.399999999208376,
+            "maxStepMs": 0.39999999990686774,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:126:1613": {
+            "steps": 10009,
+            "cpuMs": 22.399999999906868,
+            "maxStepMs": 7,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:126:1613": {
+            "steps": 7354,
+            "cpuMs": 3.0999999998603016,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:126:1613": {
+            "steps": 336037,
+            "cpuMs": 2523.6000000012573,
+            "maxStepMs": 14.699999999953434,
+            "over8": 12,
+            "over50": 0
+          }
+        },
+        "longSteps": [
+          {
+            "label": "render-install:131:1616",
+            "ms": 17.800000000046566
+          },
+          {
+            "label": "render-install:131:1616",
+            "ms": 18.600000000093132
+          },
+          {
+            "label": "render-install:131:1616",
+            "ms": 18.699999999953434
+          },
+          {
+            "label": "render-install:131:1616",
+            "ms": 12.300000000046566
+          },
+          {
+            "label": "render-install:131:1616",
+            "ms": 15.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.199999999953434
+          },
+          {
+            "label": "render-install:131:1617",
+            "ms": 19.4000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.699999999953434
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 19.100000000093132
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 11.300000000046566
+          },
+          {
+            "label": "terrain-refine:127:1613",
+            "ms": 22.9000000001397
+          },
+          {
+            "label": "terrain-refine:127:1613",
+            "ms": 8.300000000046566
+          },
+          {
+            "label": "terrain-refine:127:1613",
+            "ms": 12
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 18.600000000093132
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 19.800000000046566
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 20.5999999998603
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 24.100000000093132
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 9.400000000139698
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 8.100000000093132
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 14.800000000046566
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 17.699999999953434
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 18.699999999953434
+          },
+          {
+            "label": "render-install:127:1613",
+            "ms": 31.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 21.4000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.5999999998603
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 22.200000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.900000000139698
+          },
+          {
+            "label": "terrain-refine:127:1613",
+            "ms": 18.600000000093132
+          },
+          {
+            "label": "terrain-refine:127:1613",
+            "ms": 8.299999999813735
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 10.899999999906868
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 14.300000000046566
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 14.699999999953434
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 10.700000000186265
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 8.199999999953434
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 14.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 18.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.599999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 19
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 11
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 21.9000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 21.899999999906868
+          }
+        ]
+      },
+      "decoder": {
+        "worker": true,
+        "batches": 56,
+        "maxReceiveMs": 0.20000000018626451,
+        "maxDecodeWallMs": 788.8999999999069
+      },
+      "enrichment": {
+        "tiles": 3,
+        "buildings": 325,
+        "windows": 4196,
+        "doors": 194,
+        "details": 1536,
+        "animatedDetails": 899,
+        "fallbacks": 0
+      }
+    },
+    {
+      "gps": {
+        "lat": 46.585415349385144,
+        "lon": 0.37347615784821375
+      },
+      "stream": {
+        "loaded": 5,
+        "unloaded": 0,
+        "failures": 0,
+        "residentBytes": 87015751,
+        "active": 0,
+        "queued": 0,
+        "errors": {},
+        "timeouts": 0,
+        "cancellations": 2,
+        "generation": 7,
+        "jobs": [
+          {
+            "id": "131:1616",
+            "generation": 2,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 646.5760283550067,
+            "at": 1794921325475
+          },
+          {
+            "id": "131:1617",
+            "generation": 1,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794921329460
+          },
+          {
+            "id": "130:1617",
+            "generation": 3,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794921329460
+          },
+          {
+            "id": "127:1613",
+            "generation": 4,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.08508717007075345,
+            "at": 1794921341520
+          },
+          {
+            "id": "126:1613",
+            "generation": 5,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 1228.6585917442292,
+            "at": 1794921360817
+          },
+          {
+            "id": "122:1614",
+            "generation": 7,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 799.7190706182885,
+            "at": 1794921386949
+          },
+          {
+            "id": "121:1614",
+            "generation": 6,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.12560105145498737,
+            "at": 1794921504179
+          }
+        ]
+      },
+      "preparation": {
+        "slices": 10016,
+        "steps": 2778838,
+        "cpuMs": 37063.99999999069,
+        "maxSliceMs": 56,
+        "maxStepMs": 56,
+        "completed": 43,
+        "cancelled": 1,
+        "stages": {
+          "surface-index:131:1616": {
+            "steps": 557,
+            "cpuMs": 4.600000000093132,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1616": {
+            "steps": 2169,
+            "cpuMs": 10.799999999813735,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1616": {
+            "steps": 1403,
+            "cpuMs": 5.199999999953434,
+            "maxStepMs": 0.20000000018626451,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1616": {
+            "steps": 534,
+            "cpuMs": 0.39999999990686774,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1616": {
+            "steps": 111805,
+            "cpuMs": 1074.0999999986961,
+            "maxStepMs": 18.699999999953434,
+            "over8": 5,
+            "over50": 0
+          },
+          "static-batches": {
+            "steps": 138082,
+            "cpuMs": 14626.099999987753,
+            "maxStepMs": 56,
+            "over8": 154,
+            "over50": 1
+          },
+          "surface-index:131:1617": {
+            "steps": 2185,
+            "cpuMs": 11.200000000186265,
+            "maxStepMs": 0.6999999999534339,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1617": {
+            "steps": 4746,
+            "cpuMs": 10.300000000279397,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1617": {
+            "steps": 3663,
+            "cpuMs": 9.00000000023283,
+            "maxStepMs": 1.3999999999068677,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1617": {
+            "steps": 2167,
+            "cpuMs": 0.9000000001396984,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1617": {
+            "steps": 17619,
+            "cpuMs": 224.59999999962747,
+            "maxStepMs": 19.4000000001397,
+            "over8": 1,
+            "over50": 0
+          },
+          "terrain-refine:131:1617": {
+            "steps": 12486,
+            "cpuMs": 255.9000000017695,
+            "maxStepMs": 6.7000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "surface-index:127:1613": {
+            "steps": 1414,
+            "cpuMs": 10.899999999674037,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:127:1613": {
+            "steps": 3546,
+            "cpuMs": 19.900000001536682,
+            "maxStepMs": 6.600000000093132,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:127:1613": {
+            "steps": 2366,
+            "cpuMs": 4.899999999674037,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:127:1613": {
+            "steps": 1469,
+            "cpuMs": 2.0000000002328306,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:127:1613": {
+            "steps": 168864,
+            "cpuMs": 1592.0999999942724,
+            "maxStepMs": 31.199999999953434,
+            "over8": 13,
+            "over50": 0
+          },
+          "terrain-refine:127:1613": {
+            "steps": 52517,
+            "cpuMs": 1083.3000000033062,
+            "maxStepMs": 22.9000000001397,
+            "over8": 5,
+            "over50": 0
+          },
+          "surface-index:126:1613": {
+            "steps": 7352,
+            "cpuMs": 30.399999999674037,
+            "maxStepMs": 1.7000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:126:1613": {
+            "steps": 11832,
+            "cpuMs": 20.399999999208376,
+            "maxStepMs": 0.39999999990686774,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:126:1613": {
+            "steps": 10009,
+            "cpuMs": 22.399999999906868,
+            "maxStepMs": 7,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:126:1613": {
+            "steps": 7354,
+            "cpuMs": 3.0999999998603016,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:126:1613": {
+            "steps": 336037,
+            "cpuMs": 2523.6000000012573,
+            "maxStepMs": 14.699999999953434,
+            "over8": 12,
+            "over50": 0
+          },
+          "surface-index:122:1614": {
+            "steps": 4417,
+            "cpuMs": 23.600000000093132,
+            "maxStepMs": 1.2000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:122:1614": {
+            "steps": 10279,
+            "cpuMs": 40.60000000055879,
+            "maxStepMs": 1.6000000000931323,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:122:1614": {
+            "steps": 7761,
+            "cpuMs": 16.19999999902211,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:122:1614": {
+            "steps": 4396,
+            "cpuMs": 3.4000000001396984,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:122:1614": {
+            "steps": 334220,
+            "cpuMs": 2674.9999999934807,
+            "maxStepMs": 41.60000000009313,
+            "over8": 14,
+            "over50": 0
+          },
+          "surface-index:121:1614": {
+            "steps": 33679,
+            "cpuMs": 133.8999999994412,
+            "maxStepMs": 10.600000000093132,
+            "over8": 1,
+            "over50": 0
+          },
+          "foot-graph:121:1614": {
+            "steps": 61637,
+            "cpuMs": 178.39999999967404,
+            "maxStepMs": 7.899999999906868,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:121:1614": {
+            "steps": 47973,
+            "cpuMs": 77.2999999995809,
+            "maxStepMs": 3.2000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:121:1614": {
+            "steps": 34562,
+            "cpuMs": 23.80000000097789,
+            "maxStepMs": 1.1000000000931323,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:121:1614": {
+            "steps": 1291901,
+            "cpuMs": 9579.799999990966,
+            "maxStepMs": 23.799999999813735,
+            "over8": 44,
+            "over50": 0
+          },
+          "terrain-refine:121:1614": {
+            "steps": 47837,
+            "cpuMs": 865.0999999972992,
+            "maxStepMs": 10,
+            "over8": 3,
+            "over50": 0
+          }
+        },
+        "longSteps": [
+          {
+            "label": "render-install:121:1614",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 11.800000000046566
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 10.899999999906868
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 15.800000000046566
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 14.800000000046566
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 20.300000000046566
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 16.600000000093132
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 19
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 14.700000000186265
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 15.100000000093132
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 11
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 10.5
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 19.800000000046566
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 23.799999999813735
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 15.5
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 11
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "render-install:121:1614",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 22.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 9
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.900000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.900000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 30.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 24.5999999998603
+          },
+          {
+            "label": "static-batches",
+            "ms": 21.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 33.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.599999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 18.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 22.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.599999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.5
+          },
+          {
+            "label": "terrain-refine:121:1614",
+            "ms": 9.699999999953434
+          },
+          {
+            "label": "terrain-refine:121:1614",
+            "ms": 10
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.900000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.799999999813735
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 25.4000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 9
+          },
+          {
+            "label": "static-batches",
+            "ms": 27.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.200000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.099999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.9000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.099999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.900000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.900000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 22.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 32.200000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 26.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 18
+          },
+          {
+            "label": "static-batches",
+            "ms": 26.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 18.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 25.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 32.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 21.0999999998603
+          },
+          {
+            "label": "static-batches",
+            "ms": 18.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 56
+          },
+          {
+            "label": "static-batches",
+            "ms": 37
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 29.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.9000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 9
+          }
+        ]
+      },
+      "decoder": {
+        "worker": true,
+        "batches": 208,
+        "maxReceiveMs": 20.4000000001397,
+        "maxDecodeWallMs": 1328.8000000000466
+      },
+      "enrichment": {
+        "tiles": 5,
+        "buildings": 3830,
+        "windows": 36866,
+        "doors": 1204,
+        "details": 2385,
+        "animatedDetails": 1516,
+        "fallbacks": 0
+      }
+    },
+    {
+      "gps": {
+        "lat": 46.42859257575624,
+        "lon": 0.8827666519969051
+      },
+      "stream": {
+        "loaded": 8,
+        "unloaded": 3,
+        "failures": 0,
+        "residentBytes": 86960942,
+        "active": 1,
+        "queued": 0,
+        "errors": {},
+        "timeouts": 0,
+        "cancellations": 2,
+        "generation": 11,
+        "jobs": [
+          {
+            "id": "131:1616",
+            "generation": 2,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 646.5760283550067,
+            "at": 1794921325475
+          },
+          {
+            "id": "131:1617",
+            "generation": 1,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794921329460
+          },
+          {
+            "id": "130:1617",
+            "generation": 3,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794921329460
+          },
+          {
+            "id": "127:1613",
+            "generation": 4,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.08508717007075345,
+            "at": 1794921341520
+          },
+          {
+            "id": "126:1613",
+            "generation": 5,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 1228.6585917442292,
+            "at": 1794921360817
+          },
+          {
+            "id": "122:1614",
+            "generation": 7,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 799.7190706182885,
+            "at": 1794921386949
+          },
+          {
+            "id": "121:1614",
+            "generation": 6,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.12560105145498737,
+            "at": 1794921504179
+          },
+          {
+            "id": "131:1610",
+            "generation": 9,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 304.80379926306244,
+            "at": 1794921613715
+          },
+          {
+            "id": "131:1609",
+            "generation": 8,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.2109472058385277,
+            "at": 1794921677268
+          },
+          {
+            "id": "130:1610",
+            "generation": 11,
+            "state": "WAITING_FOR_TILE",
+            "phase": "installation-queue",
+            "priority": 914.0273224020946,
+            "at": 1794921677740
+          },
+          {
+            "id": "130:1609",
+            "generation": 10,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 859.3127789266267,
+            "at": 1794921762275
+          }
+        ]
+      },
+      "preparation": {
+        "slices": 16927,
+        "steps": 3870179,
+        "cpuMs": 65697.69999997201,
+        "maxSliceMs": 148.5,
+        "maxStepMs": 148.5,
+        "completed": 85,
+        "cancelled": 1,
+        "stages": {
+          "surface-index:131:1616": {
+            "steps": 557,
+            "cpuMs": 4.600000000093132,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1616": {
+            "steps": 2169,
+            "cpuMs": 10.799999999813735,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1616": {
+            "steps": 1403,
+            "cpuMs": 5.199999999953434,
+            "maxStepMs": 0.20000000018626451,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1616": {
+            "steps": 534,
+            "cpuMs": 0.39999999990686774,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1616": {
+            "steps": 111805,
+            "cpuMs": 1074.0999999986961,
+            "maxStepMs": 18.699999999953434,
+            "over8": 5,
+            "over50": 0
+          },
+          "static-batches": {
+            "steps": 321365,
+            "cpuMs": 34395.19999997481,
+            "maxStepMs": 148.5,
+            "over8": 374,
+            "over50": 7
+          },
+          "surface-index:131:1617": {
+            "steps": 2185,
+            "cpuMs": 11.200000000186265,
+            "maxStepMs": 0.6999999999534339,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1617": {
+            "steps": 4746,
+            "cpuMs": 10.300000000279397,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1617": {
+            "steps": 3663,
+            "cpuMs": 9.00000000023283,
+            "maxStepMs": 1.3999999999068677,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1617": {
+            "steps": 2167,
+            "cpuMs": 0.9000000001396984,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1617": {
+            "steps": 17619,
+            "cpuMs": 224.59999999962747,
+            "maxStepMs": 19.4000000001397,
+            "over8": 1,
+            "over50": 0
+          },
+          "terrain-refine:131:1617": {
+            "steps": 12486,
+            "cpuMs": 255.9000000017695,
+            "maxStepMs": 6.7000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "surface-index:127:1613": {
+            "steps": 1414,
+            "cpuMs": 10.899999999674037,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:127:1613": {
+            "steps": 3546,
+            "cpuMs": 19.900000001536682,
+            "maxStepMs": 6.600000000093132,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:127:1613": {
+            "steps": 2366,
+            "cpuMs": 4.899999999674037,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:127:1613": {
+            "steps": 1469,
+            "cpuMs": 2.0000000002328306,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:127:1613": {
+            "steps": 168864,
+            "cpuMs": 1592.0999999942724,
+            "maxStepMs": 31.199999999953434,
+            "over8": 13,
+            "over50": 0
+          },
+          "terrain-refine:127:1613": {
+            "steps": 52517,
+            "cpuMs": 1083.3000000033062,
+            "maxStepMs": 22.9000000001397,
+            "over8": 5,
+            "over50": 0
+          },
+          "surface-index:126:1613": {
+            "steps": 7352,
+            "cpuMs": 30.399999999674037,
+            "maxStepMs": 1.7000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:126:1613": {
+            "steps": 11832,
+            "cpuMs": 20.399999999208376,
+            "maxStepMs": 0.39999999990686774,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:126:1613": {
+            "steps": 10009,
+            "cpuMs": 22.399999999906868,
+            "maxStepMs": 7,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:126:1613": {
+            "steps": 7354,
+            "cpuMs": 3.0999999998603016,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:126:1613": {
+            "steps": 336037,
+            "cpuMs": 2523.6000000012573,
+            "maxStepMs": 14.699999999953434,
+            "over8": 12,
+            "over50": 0
+          },
+          "surface-index:122:1614": {
+            "steps": 4417,
+            "cpuMs": 23.600000000093132,
+            "maxStepMs": 1.2000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:122:1614": {
+            "steps": 10279,
+            "cpuMs": 40.60000000055879,
+            "maxStepMs": 1.6000000000931323,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:122:1614": {
+            "steps": 7761,
+            "cpuMs": 16.19999999902211,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:122:1614": {
+            "steps": 4396,
+            "cpuMs": 3.4000000001396984,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:122:1614": {
+            "steps": 334220,
+            "cpuMs": 2674.9999999934807,
+            "maxStepMs": 41.60000000009313,
+            "over8": 14,
+            "over50": 0
+          },
+          "surface-index:121:1614": {
+            "steps": 33679,
+            "cpuMs": 133.8999999994412,
+            "maxStepMs": 10.600000000093132,
+            "over8": 1,
+            "over50": 0
+          },
+          "foot-graph:121:1614": {
+            "steps": 61637,
+            "cpuMs": 178.39999999967404,
+            "maxStepMs": 7.899999999906868,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:121:1614": {
+            "steps": 47973,
+            "cpuMs": 77.2999999995809,
+            "maxStepMs": 3.2000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:121:1614": {
+            "steps": 34562,
+            "cpuMs": 23.80000000097789,
+            "maxStepMs": 1.1000000000931323,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:121:1614": {
+            "steps": 1291901,
+            "cpuMs": 9579.799999990966,
+            "maxStepMs": 23.799999999813735,
+            "over8": 44,
+            "over50": 0
+          },
+          "terrain-refine:121:1614": {
+            "steps": 72700,
+            "cpuMs": 1446.1999999973923,
+            "maxStepMs": 27,
+            "over8": 5,
+            "over50": 0
+          },
+          "surface-index:131:1610": {
+            "steps": 1486,
+            "cpuMs": 13.899999999208376,
+            "maxStepMs": 2.699999999953434,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1610": {
+            "steps": 3296,
+            "cpuMs": 16.50000000046566,
+            "maxStepMs": 4.100000000093132,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1610": {
+            "steps": 2727,
+            "cpuMs": 11.699999999953434,
+            "maxStepMs": 3.1000000000931323,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1610": {
+            "steps": 1471,
+            "cpuMs": 1.5999999998603016,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1610": {
+            "steps": 143181,
+            "cpuMs": 1313.1000000019558,
+            "maxStepMs": 24.199999999953434,
+            "over8": 14,
+            "over50": 0
+          },
+          "terrain-refine:131:1610": {
+            "steps": 189,
+            "cpuMs": 18.800000000046566,
+            "maxStepMs": 1.2000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "unspecified": {
+            "steps": 84024,
+            "cpuMs": 112.39999999850988,
+            "maxStepMs": 14.600000000093132,
+            "over8": 1,
+            "over50": 0
+          },
+          "surface-index:131:1609": {
+            "steps": 3518,
+            "cpuMs": 63.200000000419095,
+            "maxStepMs": 29.600000000093132,
+            "over8": 1,
+            "over50": 0
+          },
+          "foot-graph:131:1609": {
+            "steps": 7142,
+            "cpuMs": 59.49999999953434,
+            "maxStepMs": 16.399999999906868,
+            "over8": 1,
+            "over50": 0
+          },
+          "car-graph:131:1609": {
+            "steps": 6014,
+            "cpuMs": 13.499999999534339,
+            "maxStepMs": 1.8999999999068677,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1609": {
+            "steps": 3777,
+            "cpuMs": 3.0000000002328306,
+            "maxStepMs": 0.5,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1609": {
+            "steps": 244449,
+            "cpuMs": 2193.2000000008848,
+            "maxStepMs": 32.5,
+            "over8": 18,
+            "over50": 0
+          },
+          "terrain-refine:131:1609": {
+            "steps": 24283,
+            "cpuMs": 634.5000000032596,
+            "maxStepMs": 23.200000000186265,
+            "over8": 8,
+            "over50": 0
+          },
+          "surface-index:130:1609": {
+            "steps": 4829,
+            "cpuMs": 23.5999999998603,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:130:1609": {
+            "steps": 8338,
+            "cpuMs": 18.699999999953434,
+            "maxStepMs": 0.20000000018626451,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:130:1609": {
+            "steps": 7398,
+            "cpuMs": 14.40000000083819,
+            "maxStepMs": 0.39999999990686774,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:130:1609": {
+            "steps": 5038,
+            "cpuMs": 3.3999999999068677,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:130:1609": {
+            "steps": 233517,
+            "cpuMs": 1995.500000004191,
+            "maxStepMs": 20.300000000046566,
+            "over8": 17,
+            "over50": 0
+          },
+          "surface-index:130:1610": {
+            "steps": 1309,
+            "cpuMs": 12.899999999674037,
+            "maxStepMs": 0.5,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:130:1610": {
+            "steps": 2649,
+            "cpuMs": 7.999999999301508,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:130:1610": {
+            "steps": 1989,
+            "cpuMs": 3.0000000002328306,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:130:1610": {
+            "steps": 1293,
+            "cpuMs": 0.8999999994412065,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:130:1610": {
+            "steps": 91278,
+            "cpuMs": 908.7000000036787,
+            "maxStepMs": 24.100000000093132,
+            "over8": 10,
+            "over50": 0
+          }
+        },
+        "longSteps": [
+          {
+            "label": "static-batches",
+            "ms": 11.299999999813735
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 34.60000000009313
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 37.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 26
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.200000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 27.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 12
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.299999999813735
+          },
+          {
+            "label": "static-batches",
+            "ms": 55.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 20.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.200000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 58.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 148.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 37.5999999998603
+          },
+          {
+            "label": "static-batches",
+            "ms": 27.5999999998603
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 11
+          },
+          {
+            "label": "static-batches",
+            "ms": 9
+          },
+          {
+            "label": "static-batches",
+            "ms": 32.60000000009313
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 37.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 28.300000000046566
+          },
+          {
+            "label": "unspecified",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 15
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 15.199999999953434
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 14.899999999906868
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 18.699999999953434
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 15.399999999906868
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 20.300000000046566
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 8.399999999906868
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 14.699999999953434
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 10.700000000186265
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 11.5
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 11.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 18.800000000046566
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 9.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.900000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.4000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 24.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.299999999813735
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 10
+          },
+          {
+            "label": "static-batches",
+            "ms": 32.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.599999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.099999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.799999999813735
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 45.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.9000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 18
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 18.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 28.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 21.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.200000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.200000000186265
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 11.399999999906868
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 24.100000000093132
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 11
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 22.699999999953434
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 14.900000000139698
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 14.800000000046566
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 18.800000000046566
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 18.699999999953434
+          }
+        ]
+      },
+      "decoder": {
+        "worker": true,
+        "batches": 253,
+        "maxReceiveMs": 20.4000000001397,
+        "maxDecodeWallMs": 1328.8000000000466
+      },
+      "enrichment": {
+        "tiles": 5,
+        "buildings": 2742,
+        "windows": 18914,
+        "doors": 858,
+        "details": 2385,
+        "animatedDetails": 1557,
+        "fallbacks": 0
+      }
+    },
+    {
+      "gps": {
+        "lat": 46.42859257575624,
+        "lon": 0.8827666519969051
+      },
+      "stream": {
+        "loaded": 8,
+        "unloaded": 3,
+        "failures": 0,
+        "residentBytes": 86960942,
+        "active": 1,
+        "queued": 0,
+        "errors": {},
+        "timeouts": 0,
+        "cancellations": 2,
+        "generation": 11,
+        "jobs": [
+          {
+            "id": "131:1616",
+            "generation": 2,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 646.5760283550067,
+            "at": 1794921325475
+          },
+          {
+            "id": "131:1617",
+            "generation": 1,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794921329460
+          },
+          {
+            "id": "130:1617",
+            "generation": 3,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794921329460
+          },
+          {
+            "id": "127:1613",
+            "generation": 4,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.08508717007075345,
+            "at": 1794921341520
+          },
+          {
+            "id": "126:1613",
+            "generation": 5,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 1228.6585917442292,
+            "at": 1794921360817
+          },
+          {
+            "id": "122:1614",
+            "generation": 7,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 799.7190706182885,
+            "at": 1794921386949
+          },
+          {
+            "id": "121:1614",
+            "generation": 6,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.12560105145498737,
+            "at": 1794921504179
+          },
+          {
+            "id": "131:1610",
+            "generation": 9,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 304.80379926306244,
+            "at": 1794921613715
+          },
+          {
+            "id": "131:1609",
+            "generation": 8,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.2109472058385277,
+            "at": 1794921677268
+          },
+          {
+            "id": "130:1610",
+            "generation": 11,
+            "state": "WAITING_FOR_TILE",
+            "phase": "installation-queue",
+            "priority": 914.0273224020946,
+            "at": 1794921677740
+          },
+          {
+            "id": "130:1609",
+            "generation": 10,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 859.3127789266267,
+            "at": 1794921762275
+          }
+        ]
+      },
+      "preparation": {
+        "slices": 17326,
+        "steps": 3938564,
+        "cpuMs": 67286.19999997108,
+        "maxSliceMs": 148.5,
+        "maxStepMs": 148.5,
+        "completed": 86,
+        "cancelled": 1,
+        "stages": {
+          "surface-index:131:1616": {
+            "steps": 557,
+            "cpuMs": 4.600000000093132,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1616": {
+            "steps": 2169,
+            "cpuMs": 10.799999999813735,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1616": {
+            "steps": 1403,
+            "cpuMs": 5.199999999953434,
+            "maxStepMs": 0.20000000018626451,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1616": {
+            "steps": 534,
+            "cpuMs": 0.39999999990686774,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1616": {
+            "steps": 111805,
+            "cpuMs": 1074.0999999986961,
+            "maxStepMs": 18.699999999953434,
+            "over8": 5,
+            "over50": 0
+          },
+          "static-batches": {
+            "steps": 325469,
+            "cpuMs": 35407.39999997243,
+            "maxStepMs": 148.5,
+            "over8": 385,
+            "over50": 7
+          },
+          "surface-index:131:1617": {
+            "steps": 2185,
+            "cpuMs": 11.200000000186265,
+            "maxStepMs": 0.6999999999534339,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1617": {
+            "steps": 4746,
+            "cpuMs": 10.300000000279397,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1617": {
+            "steps": 3663,
+            "cpuMs": 9.00000000023283,
+            "maxStepMs": 1.3999999999068677,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1617": {
+            "steps": 2167,
+            "cpuMs": 0.9000000001396984,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1617": {
+            "steps": 17619,
+            "cpuMs": 224.59999999962747,
+            "maxStepMs": 19.4000000001397,
+            "over8": 1,
+            "over50": 0
+          },
+          "terrain-refine:131:1617": {
+            "steps": 12486,
+            "cpuMs": 255.9000000017695,
+            "maxStepMs": 6.7000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "surface-index:127:1613": {
+            "steps": 1414,
+            "cpuMs": 10.899999999674037,
+            "maxStepMs": 0.4000000001396984,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:127:1613": {
+            "steps": 3546,
+            "cpuMs": 19.900000001536682,
+            "maxStepMs": 6.600000000093132,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:127:1613": {
+            "steps": 2366,
+            "cpuMs": 4.899999999674037,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:127:1613": {
+            "steps": 1469,
+            "cpuMs": 2.0000000002328306,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:127:1613": {
+            "steps": 168864,
+            "cpuMs": 1592.0999999942724,
+            "maxStepMs": 31.199999999953434,
+            "over8": 13,
+            "over50": 0
+          },
+          "terrain-refine:127:1613": {
+            "steps": 52517,
+            "cpuMs": 1083.3000000033062,
+            "maxStepMs": 22.9000000001397,
+            "over8": 5,
+            "over50": 0
+          },
+          "surface-index:126:1613": {
+            "steps": 7352,
+            "cpuMs": 30.399999999674037,
+            "maxStepMs": 1.7000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:126:1613": {
+            "steps": 11832,
+            "cpuMs": 20.399999999208376,
+            "maxStepMs": 0.39999999990686774,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:126:1613": {
+            "steps": 10009,
+            "cpuMs": 22.399999999906868,
+            "maxStepMs": 7,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:126:1613": {
+            "steps": 7354,
+            "cpuMs": 3.0999999998603016,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:126:1613": {
+            "steps": 336037,
+            "cpuMs": 2523.6000000012573,
+            "maxStepMs": 14.699999999953434,
+            "over8": 12,
+            "over50": 0
+          },
+          "surface-index:122:1614": {
+            "steps": 4417,
+            "cpuMs": 23.600000000093132,
+            "maxStepMs": 1.2000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:122:1614": {
+            "steps": 10279,
+            "cpuMs": 40.60000000055879,
+            "maxStepMs": 1.6000000000931323,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:122:1614": {
+            "steps": 7761,
+            "cpuMs": 16.19999999902211,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:122:1614": {
+            "steps": 4396,
+            "cpuMs": 3.4000000001396984,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:122:1614": {
+            "steps": 334220,
+            "cpuMs": 2674.9999999934807,
+            "maxStepMs": 41.60000000009313,
+            "over8": 14,
+            "over50": 0
+          },
+          "surface-index:121:1614": {
+            "steps": 33679,
+            "cpuMs": 133.8999999994412,
+            "maxStepMs": 10.600000000093132,
+            "over8": 1,
+            "over50": 0
+          },
+          "foot-graph:121:1614": {
+            "steps": 61637,
+            "cpuMs": 178.39999999967404,
+            "maxStepMs": 7.899999999906868,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:121:1614": {
+            "steps": 47973,
+            "cpuMs": 77.2999999995809,
+            "maxStepMs": 3.2000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:121:1614": {
+            "steps": 34562,
+            "cpuMs": 23.80000000097789,
+            "maxStepMs": 1.1000000000931323,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:121:1614": {
+            "steps": 1291901,
+            "cpuMs": 9579.799999990966,
+            "maxStepMs": 23.799999999813735,
+            "over8": 44,
+            "over50": 0
+          },
+          "terrain-refine:121:1614": {
+            "steps": 72712,
+            "cpuMs": 1447.599999997532,
+            "maxStepMs": 27,
+            "over8": 5,
+            "over50": 0
+          },
+          "surface-index:131:1610": {
+            "steps": 1486,
+            "cpuMs": 13.899999999208376,
+            "maxStepMs": 2.699999999953434,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1610": {
+            "steps": 3296,
+            "cpuMs": 16.50000000046566,
+            "maxStepMs": 4.100000000093132,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1610": {
+            "steps": 2727,
+            "cpuMs": 11.699999999953434,
+            "maxStepMs": 3.1000000000931323,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1610": {
+            "steps": 1471,
+            "cpuMs": 1.5999999998603016,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1610": {
+            "steps": 143181,
+            "cpuMs": 1313.1000000019558,
+            "maxStepMs": 24.199999999953434,
+            "over8": 14,
+            "over50": 0
+          },
+          "terrain-refine:131:1610": {
+            "steps": 201,
+            "cpuMs": 19.0999999998603,
+            "maxStepMs": 1.2000000001862645,
+            "over8": 0,
+            "over50": 0
+          },
+          "unspecified": {
+            "steps": 84024,
+            "cpuMs": 112.39999999850988,
+            "maxStepMs": 14.600000000093132,
+            "over8": 1,
+            "over50": 0
+          },
+          "surface-index:131:1609": {
+            "steps": 3518,
+            "cpuMs": 63.200000000419095,
+            "maxStepMs": 29.600000000093132,
+            "over8": 1,
+            "over50": 0
+          },
+          "foot-graph:131:1609": {
+            "steps": 7142,
+            "cpuMs": 59.49999999953434,
+            "maxStepMs": 16.399999999906868,
+            "over8": 1,
+            "over50": 0
+          },
+          "car-graph:131:1609": {
+            "steps": 6014,
+            "cpuMs": 13.499999999534339,
+            "maxStepMs": 1.8999999999068677,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1609": {
+            "steps": 3777,
+            "cpuMs": 3.0000000002328306,
+            "maxStepMs": 0.5,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1609": {
+            "steps": 244449,
+            "cpuMs": 2193.2000000008848,
+            "maxStepMs": 32.5,
+            "over8": 18,
+            "over50": 0
+          },
+          "terrain-refine:131:1609": {
+            "steps": 24283,
+            "cpuMs": 634.5000000032596,
+            "maxStepMs": 23.200000000186265,
+            "over8": 8,
+            "over50": 0
+          },
+          "surface-index:130:1609": {
+            "steps": 4829,
+            "cpuMs": 23.5999999998603,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:130:1609": {
+            "steps": 8338,
+            "cpuMs": 18.699999999953434,
+            "maxStepMs": 0.20000000018626451,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:130:1609": {
+            "steps": 7398,
+            "cpuMs": 14.40000000083819,
+            "maxStepMs": 0.39999999990686774,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:130:1609": {
+            "steps": 5038,
+            "cpuMs": 3.3999999999068677,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:130:1609": {
+            "steps": 233517,
+            "cpuMs": 1995.500000004191,
+            "maxStepMs": 20.300000000046566,
+            "over8": 17,
+            "over50": 0
+          },
+          "surface-index:130:1610": {
+            "steps": 1309,
+            "cpuMs": 12.899999999674037,
+            "maxStepMs": 0.5,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:130:1610": {
+            "steps": 2649,
+            "cpuMs": 7.999999999301508,
+            "maxStepMs": 0.30000000004656613,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:130:1610": {
+            "steps": 1989,
+            "cpuMs": 3.0000000002328306,
+            "maxStepMs": 0.19999999995343387,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:130:1610": {
+            "steps": 1293,
+            "cpuMs": 0.8999999994412065,
+            "maxStepMs": 0.10000000009313226,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:130:1610": {
+            "steps": 155535,
+            "cpuMs": 1435.3000000012107,
+            "maxStepMs": 24.100000000093132,
+            "over8": 15,
+            "over50": 0
+          }
+        },
+        "longSteps": [
+          {
+            "label": "static-batches",
+            "ms": 55.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 20.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.200000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 58.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 148.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 37.5999999998603
+          },
+          {
+            "label": "static-batches",
+            "ms": 27.5999999998603
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 11
+          },
+          {
+            "label": "static-batches",
+            "ms": 9
+          },
+          {
+            "label": "static-batches",
+            "ms": 32.60000000009313
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 37.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 28.300000000046566
+          },
+          {
+            "label": "unspecified",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 15
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 15.199999999953434
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 14.899999999906868
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 18.699999999953434
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 15.399999999906868
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 20.300000000046566
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 8.399999999906868
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 14.699999999953434
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 10.700000000186265
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 11.5
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 11.600000000093132
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 18.800000000046566
+          },
+          {
+            "label": "render-install:130:1609",
+            "ms": 9.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.900000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.4000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 24.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.299999999813735
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 10
+          },
+          {
+            "label": "static-batches",
+            "ms": 32.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.599999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.099999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 19.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.700000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.799999999813735
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 45.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 17.9000000001397
+          },
+          {
+            "label": "static-batches",
+            "ms": 18
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 18.300000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.600000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 28.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 21.399999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.200000000186265
+          },
+          {
+            "label": "static-batches",
+            "ms": 13.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.200000000186265
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 11.399999999906868
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 24.100000000093132
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 11
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 22.699999999953434
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 14.900000000139698
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 14.800000000046566
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 18.800000000046566
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 10.800000000046566
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 10.600000000093132
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 18.699999999953434
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 16
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 18.699999999953434
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 16.5
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 18.199999999953434
+          },
+          {
+            "label": "render-install:130:1610",
+            "ms": 16.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 31.100000000093132
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.599999999860302
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.899999999906868
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 14
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.800000000046566
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 11.400000000139698
+          },
+          {
+            "label": "static-batches",
+            "ms": 14.699999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 15.199999999953434
+          },
+          {
+            "label": "static-batches",
+            "ms": 18.5
+          }
+        ]
+      },
+      "decoder": {
+        "worker": true,
+        "batches": 253,
+        "maxReceiveMs": 20.4000000001397,
+        "maxDecodeWallMs": 1328.8000000000466
+      },
+      "enrichment": {
+        "tiles": 6,
+        "buildings": 2742,
+        "windows": 18914,
+        "doors": 858,
+        "details": 2897,
+        "animatedDetails": 1856,
+        "fallbacks": 0
+      }
+    }
+  ],
+  "terrainRequests": [
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/131-1616.pack",
+      "bytes": 3229340,
+      "sha256": "9a52666b0c3e787f20c4be8570fbc495ea96d6533acbf0f2f9d10ce432436e37",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/131-1617.pack",
+      "bytes": 3050043,
+      "sha256": "b90a42978f19cd01ca7122ca907886c7999f4fa6143d50c51359a43ac910a1ce",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/130-1617.pack",
+      "bytes": 3049934,
+      "sha256": "d24b6fac1973eeeea42e451b8ca8ec24a4f5b9be5c0b9a3602ce5302fae7fe54",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/127-1613.pack",
+      "bytes": 3100839,
+      "sha256": "fc76bfc8c81aa55721a03d6a86486ffc80f140fb6e23910716d03242a577b81d",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/126-1613.pack",
+      "bytes": 3287392,
+      "sha256": "b5ddc60a1472cddc0bbc07ad6f29dab21c700510ddfb1ee6b888664c59271fb5",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/122-1614.pack",
+      "bytes": 2901025,
+      "sha256": "8c06ac75e360ecda8ccd508ded7572a45946744be188e06914ae96666ec262c3",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/121-1614.pack",
+      "bytes": 3536410,
+      "sha256": "bf5b36f50bd7fb57d50dd8c596f22f2dfcec14d62c61784d398d2c18287abb7f",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/131-1610.pack",
+      "bytes": 2720914,
+      "sha256": "7b028e27a64ebbe5f99083bda7185ace3b48b0c6e3e46308aaf1b67b0d314dfa",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/131-1609.pack",
+      "bytes": 3177241,
+      "sha256": "0320b20c723f8950708aa8da4d9785cf4e1212529ada497d07610a2620e1d45a",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/130-1609.pack",
+      "bytes": 2930256,
+      "sha256": "af7d6a3481b019acd4424d9bf1451fd6747cb572cda936e3d8ed7e3e67dc8b2d",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sebastienleidgens-lab/endless-earth/acb0a73b396229bf90731b90a558a8d5d072a9ec/public/planet/fr-86/contact-2m/130-1610.pack",
+      "bytes": 2972645,
+      "sha256": "0b786a45d6a0b31483652d8c7b21849a59f8b6f5f2b5ff202d9d57727b6f1d7b",
+      "transport": "local exact historical bytes; production checksum validation retained"
+    }
+  ],
+  "sourceTerrainBytes": 33956039,
+  "transport": "Exact historical terrain bytes locally fulfilled; production loader, byte length and SHA checks retained. Other assets use the local preview server.",
+  "limitations": [
+    "Snapshots are not a complete request or per-frame trace.",
+    "No native long crossing, driving, river, 503/offline traversal or complete network volume measured.",
+    "This protocol does not prove imperceptible streaming."
+  ]
+}
