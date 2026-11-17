@@ -35,14 +35,14 @@ export function createFauna(scene:THREE.Scene,budget:InstanceType<typeof WorldLi
  const previous=scene.userData.lifeSoundSources,sources:any[]=[],pool=Array.from({length:9},()=>({id:'',kind:'bird',habitat:'wood',position:new THREE.Vector3(),velocity:new THREE.Vector3(),family:'passerine',updatedAt:0}));scene.userData.lifeSoundSources=sources;
  const previousBirds=new Map<string,any>();const dummy=new THREE.Object3D(),flockState:any={},localState:any={},anchor={x:0,z:0},point={x:0,y:0,z:0,vx:0,vy:0,vz:0};
  const metrics={individuals:0,drawCalls:0,triangles:0,perches:0,families:[]as string[],sources:[]as any[],renderSamples:0,cpuMs:0,maxCpuMs:0,clock:0,trajectory:'analytic-per-render-frame'};scene.userData.birdMetrics=metrics;
- let cell='',ownerX=NaN,ownerZ=NaN,ceiling=0,perches:any[]=[],nextPerches=0;
+ let cell='',ownerX=NaN,ownerZ=NaN,ceiling=0,perches:any[]=[],nextPerches=0;const selectedPerches=new Set<string>();
  function discover(p:THREE.Vector3){
   const old=new Map(perches.map(p=>[p.id,p]));perches=[];scene.traverse(o=>{if(!o.userData.forest)return;for(const t of o.userData.forest.items){
    if(Math.hypot(t.anchor[0]-p.x,t.anchor[1]-p.z)>135)continue;
    const branch=t.model.tree.branches.find((b:any)=>b.order===1);if(!branch)continue;
    const q=branch.points.at(-1).clone().applyMatrix4(t.worldMatrix);
    const id=`tree-bird:${t.id}`;perches.push({id,position:q,number:Math.abs(t.anchor[0]*37+t.anchor[1]*13),habitat:'wood',flightStart:old.get(id)?.flightStart??null,destination:old.get(id)?.destination??null});
-  }});perches.sort((a,b)=>a.position.distanceToSquared(p)-b.position.distanceToSquared(p));perches.length=Math.min(24,perches.length);metrics.perches=perches.length;
+  }});perches.sort((a,b)=>Number(selectedPerches.has(b.id))-Number(selectedPerches.has(a.id))||a.position.distanceToSquared(p)-b.position.distanceToSquared(p));perches.length=Math.min(24,perches.length);metrics.perches=perches.length;
  }
  return {metrics,update(t:number,p:THREE.Vector3,c:any){
   const started=performance.now();metrics.renderSamples++;metrics.clock=t;
@@ -54,11 +54,12 @@ export function createFauna(scene:THREE.Scene,budget:InstanceType<typeof WorldLi
    if(count>=max)return;dummy.position.set(q.x,q.y,q.z);dummy.rotation.set(pitch,heading,0);dummy.scale.setScalar(scale);dummy.updateMatrix();mesh.setMatrixAt(count,dummy.matrix);params.setXYZ(count,family,birdPhase(id),flap);const old=previousBirds.get(id),dt=old?t-old.t:0,v=Number.isFinite(q.vx)?new THREE.Vector3(q.vx,q.vy??0,q.vz):old&&dt>0&&dt<1?new THREE.Vector3(q.x-old.x,q.y-old.y,q.z-old.z).divideScalar(dt):new THREE.Vector3();previousBirds.set(id,{x:q.x,y:q.y,z:q.z,t});
    const source=pool[count];source.id=id;source.position.copy(dummy.position);source.velocity.copy(v);source.updatedAt=t;source.habitat=habitat;source.family=family===2?'geese':family===1?'long-wing':family===3?'robin':family===4?'tit':'blackbird';families.add(source.family);if(family!==1&&family!==2)sources.push(source);count++;
   };
+  selectedPerches.clear();
   for(const perch of perches){if(count>=Math.min(2,max))break;const distance=perch.position.distanceTo(p),state=perchedBirdAt(t,perch.number,c,distance,localState);if(!state.visible){perch.flightStart=null;continue;}
    point.vx=point.vy=point.vz=0;point.x=perch.position.x;point.y=perch.position.y;point.z=perch.position.z;
    if((distance<7||state.flying)&&perch.flightStart===null){perch.flightStart=t;perch.destination=perches.find(a=>a.id!==perch.id&&a.position.distanceTo(perch.position)>9&&a.position.distanceTo(perch.position)<70)?.position??perch.position;}
-   let flying=false,heading=perch.number,pitch=0;if(perch.flightStart!==null){const destination=perch.destination??perch.position,s=perchFlightAt(t-perch.flightStart,perch.position,destination,12,point);flying=s.flying;const target=Math.atan2(destination.x-perch.position.x,destination.z-perch.position.z);heading=perch.number+Math.atan2(Math.sin(target-perch.number),Math.cos(target-perch.number))*s.turn;pitch=s.pitch;}
-   draw(point,heading,[0,3,4][Math.floor(perch.number)%3],flying?1:0,perch.id,perch.habitat,.65*state.fade,pitch);
+   let flap=0,heading=perch.number,pitch=0;if(perch.flightStart!==null){const destination=perch.destination??perch.position,s=perchFlightAt(t-perch.flightStart,perch.position,destination,12,point);flap=s.flap;const target=Math.atan2(destination.x-perch.position.x,destination.z-perch.position.z);heading=perch.number+Math.atan2(Math.sin(target-perch.number),Math.cos(target-perch.number))*s.turn;pitch=s.pitch;}
+   selectedPerches.add(perch.id);draw(point,heading,[0,3,4][Math.floor(perch.number)%3],flap,perch.id,perch.habitat,.65*state.fade,pitch);
   }
   if(!Number.isFinite(ownerX)||flockState.epoch!==Math.floor(t/180)&&Math.hypot(p.x-anchor.x,p.z-anchor.z)>360){ownerX=Math.floor(p.x/256);ownerZ=Math.floor(p.z/256);anchor.x=(ownerX+.5)*256;anchor.z=(ownerZ+.5)*256;ceiling=scene.userData.lifeCeiling??Infinity;if(!Number.isFinite(ceiling))ceiling=(height(anchor.x,anchor.z)??0)+85;}
   const flock=flockAt(t,ownerX*73856093+ownerZ*19349663,c,9,flockState);

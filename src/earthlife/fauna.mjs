@@ -29,7 +29,12 @@ export function perchFlightAt(age,from,to,duration=12,out={}){
  const arch=Math.sin(Math.PI*f),lift=3.8*arch*arch,liftV=7.6*Math.PI*arch*Math.cos(Math.PI*f)/duration;
  out.x=from.x+(to.x-from.x)*u;out.y=from.y+(to.y-from.y)*u+lift;out.z=from.z+(to.z-from.z)*u;
  out.vx=(to.x-from.x)*v;out.vy=(to.y-from.y)*v+liftV;out.vz=(to.z-from.z)*v;
- out.flying=f<1;out.turn=Math.min(1,f/.12);out.turn=out.turn*out.turn*(3-2*out.turn);out.pitch=-Math.atan2(out.vy,Math.max(.5,Math.hypot(out.vx,out.vz)))*Math.min(1,f/.08,(1-f)/.08);
+ const ease=x=>{const q=Math.max(0,Math.min(1,x));return q*q*q*(10+q*(-15+6*q));};
+ out.flying=f<1;out.turn=ease(f/.12);
+ // Body trajectory, orientation and wing energy share the same flight age.
+ // A boolean flying flag used to snap the wings at take-off and landing.
+ out.flap=ease(age/.5)*ease((duration-age)/.65);
+ out.pitch=-Math.atan2(out.vy,Math.max(.5,Math.hypot(out.vx,out.vz)))*ease(f/.08)*ease((1-f)/.08);
  return out;
 }
 export function birdPhase(id){let h=2166136261;for(const c of String(id)){h=Math.imul(h^c.charCodeAt(0),16777619)}return (h>>>0)/4294967296*Math.PI*2;}

@@ -60,7 +60,16 @@ vec3 forestPose(vec3 raw,inout vec3 n,vec4 season){
  vec2 anchor=(modelMatrix*instanceMatrix[3]).xz;float size=forestWindRect.w;vec2 q=clamp((anchor-forestWindRect.xy)/forestWindRect.z,0.,1.);vec2 uv=(q*(size-1.)+.5)/size;uv.y*=.5;vec4 bank=texture2D(forestWindField,uv);vec2 w=forestLocal(mix(bank.xy,bank.zw,clamp(.52+forestData.y*.20,0.,1.)));
  #endif
  float gain=forestData.y*forestForm.w*lifeVegetation;
- n.y-=${FOREST_COARSE_BEND*2}*p.y*gain*dot(w,n.xz);p.xz+=w*(${FOREST_COARSE_BEND}*p.y*p.y*gain);
+ if(forestData.z<.5&&forestJoint(0).w<.005){
+  // The canonical trunk must keep the same root rotation through visible
+  // LOD and the stable depth caster. A parabolic coarse trunk used to slide
+  // through its own fine shadow as the camera crossed the detail boundary.
+  vec2 anchor=(modelMatrix*instanceMatrix[3]).xz;float size=forestWindRect.w;
+  vec2 q=clamp((anchor-forestWindRect.xy)/forestWindRect.z,0.,1.);vec2 uv=(q*(size-1.)+.5)/size;uv.y*=.5;
+  vec2 rootWind=forestLocal(texture2D(forestWindField,uv).xy);
+  float rootGain=min(forestData.y,${FOREST_BRANCH_FLEX_LIMIT})*forestForm.w*lifeVegetation;
+  forestRotate(p,n,vec3(0.),vec3(rootWind.y,0.,-rootWind.x),.006*rootGain/(1.+forestData.x*.08+natureTraits.y*.3+forestForm.y*.4));
+ }else{n.y-=${FOREST_COARSE_BEND*2}*p.y*gain*dot(w,n.xz);p.xz+=w*(${FOREST_COARSE_BEND}*p.y*p.y*gain);}
  #elif LIFE_WIND_MODE == 2
  vec4 forestPrimary=forestJoint(0);vec2 lifeAnchor=(modelMatrix*instanceMatrix[3]).xz;
  float size=forestWindRect.w;vec2 q=clamp((lifeAnchor-forestWindRect.xy)/forestWindRect.z,0.,1.);vec2 uv=(q*(size-1.)+.5)/size;uv.y*=.5;

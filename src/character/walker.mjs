@@ -6,7 +6,7 @@ import {sampleLocomotion} from './clips.mjs';
 import {travelerDetails} from './traveler-details.mjs';
 import {sampleJointPose,sampleStepOver} from './joint-clips.mjs';
 import {softMinimum} from './cyclic-curve.mjs';
-export const WALKER_VERSION='original-traveler-rig-v9-periodic-curves-soft-reach';
+export const WALKER_VERSION='original-traveler-rig-v10-contact-start-clearance-before-ik';
 /** Original lofted silhouette, one skinned mesh and vertex-colour material. */
 export function createWalker(){
  const avatar=new THREE.Group(),bones=[],at=[],position=[],color=[],skinIndex=[],skinWeight=[],index=[],lowIndex=[];
@@ -102,7 +102,16 @@ export function createWalker(){
   poseKind='walking';poseAge=1;pack.scale.setScalar(1);pack.position.set(0,.03,-.15);
   const jumped=initialized&&last.distanceTo(avatar.position)>3;
   if(!jumped&&initialized&&dt>.08&&distance>0){const end=avatar.position.clone(),start=last.clone(),facing=avatar.rotation.y,from=lastFacing,steps=Math.ceil(dt/.08),contacts=[];for(let i=1;i<=steps;i++){avatar.position.lerpVectors(start,end,i/steps);avatar.rotation.y=from+Math.atan2(Math.sin(facing-from),Math.cos(facing-from))*i/steps;const m=this.update(distance/steps,dt/steps,height,activity);contacts.push(...m.footContacts);}avatar.position.copy(end);avatar.rotation.y=facing;motion.footContacts.splice(0,motion.footContacts.length,...contacts);motion.contacts=contacts.length;metrics.contacts=contacts.length;return motion;}
-  if(motion.idleTime>.3&&distance>0){local.copy(legs[0].target).sub(legs[1].target).applyAxisAngle(THREE.Object3D.DEFAULT_UP,-avatar.rotation.y);motion.restartOffset=local.z<0?1.6:.6}motion.update(jumped?0:distance,dt);if(!initialized||jumped)reset();last.copy(avatar.position);const wave=motion.phase*Math.PI,turnRate=dt>0?Math.atan2(Math.sin(avatar.rotation.y-lastFacing),Math.cos(avatar.rotation.y-lastFacing))/dt:0;lastFacing=avatar.rotation.y;turn+=(THREE.MathUtils.clamp(turnRate,-2,2)-turn)*(1-Math.exp(-dt*5));
+  if(!initialized||jumped)reset();
+  if(distance>0&&(motion.idleTime>.3||motion.blend<.01)){
+   // Begin the swing at toe-off, from the actual settled contact. The old
+   // restart began one foot halfway through flight and replanted its partner
+   // ahead in a single frame. Neither physical root nor planted foot is moved.
+   local.copy(legs[0].target).sub(legs[1].target).applyAxisAngle(upAxis,-avatar.rotation.y);
+   motion.phase=Math.ceil(motion.phase/2)*2+2*sampleLocomotion(0,motion.run).duty+(local.z<0?1:0);
+   for(let i=0;i<legs.length;i++){const f=legs[i];f.cycle=Math.floor(motion.phase*.5+i*.5);f.stance=true;f.liftedCycle=null;f.swingFrom=null;f.settle=null;f.startingStance=true;f.startDuty=null;}
+  }
+  motion.update(jumped?0:distance,dt);last.copy(avatar.position);const wave=motion.phase*Math.PI,turnRate=dt>0?Math.atan2(Math.sin(avatar.rotation.y-lastFacing),Math.cos(avatar.rotation.y-lastFacing))/dt:0;lastFacing=avatar.rotation.y;turn+=(THREE.MathUtils.clamp(turnRate,-2,2)-turn)*(1-Math.exp(-dt*5));
   let hip=.87+motion.run*.025*Math.sin(wave*2-.3)*motion.blend;
   metrics.soleError=metrics.plantError=metrics.plantSlideM=0;metrics.swingIK=0;
   for(let i=0;i<2;i++){
@@ -114,14 +123,15 @@ export function createWalker(){
     // repeatedly replant the same foot as the duty factor crosses its phase.
     f.duty=clip.duty;
     f.stopAge=0;f.stance=q<f.duty&&f.liftedCycle!==cycle;
+    if(f.startingStance&&f.stance&&f.cycle===cycle){local.copy(f.anchor).sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);if(local.z<-.28){f.stance=false;f.startDuty=q;f.liftedCycle=cycle;}}
     if(f.stance&&(!wasStance||f.cycle!==cycle)){
      // Account for the fraction of the frame after touchdown. This keeps the
      // world contact independent of 30/60/120 Hz sampling.
-     point(f.side,motion.stride*(.44-.16*motion.run)+.10-q*2*motion.stride,f.anchor);f.plantHeading=avatar.rotation.y;f.measured=false;
+     point(f.side,motion.stride*(.44-.16*motion.run)+.10-q*2*motion.stride,f.anchor);f.plantHeading=avatar.rotation.y;f.measured=false;f.startingStance=false;f.startDuty=null;
      motion.footContacts.push({side:f.side,position:f.anchor.clone(),run:motion.run,energy:.65+motion.run*.55});
     }
     if(!f.stance){
-     if(wasStance||!f.swingFrom){f.swingFrom=f.anchor.clone();f.swingPitch=f.pitch??0;f.swingDuty=f.duty;f.liftedCycle=cycle;f.swingLocal=f.anchor.clone().sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);f.swingLocal.z+=Math.max(0,q-f.duty)*2*motion.stride;}
+     if(wasStance||!f.swingFrom){f.swingFrom=f.anchor.clone();f.swingPitch=f.pitch??0;f.swingDuty=f.startDuty??f.duty;f.liftedCycle=cycle;f.swingLocal=f.anchor.clone().sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);f.swingLocal.z+=Math.max(0,q-f.swingDuty)*2*motion.stride;}
      const phase=THREE.MathUtils.clamp((q-f.swingDuty)/(1-f.swingDuty),0,1),u=phase*phase*phase*(10+phase*(-15+phase*6));
      const p2=phase*phase,p3=p2*phase,travel=2*motion.stride*(1-f.swingDuty),front=motion.stride*(.44-.16*motion.run)+.10;
      // Hermite tangents cancel root travel at both endpoints. The old
@@ -150,6 +160,16 @@ export function createWalker(){
     f.target.copy(f.anchor);
     offsetFoot.copy(ball).applyAxisAngle(sideAxis,f.pitch).applyAxisAngle(upAxis,f.plantHeading);f.ankle.copy(f.anchor).sub(offsetFoot);
    }
+   if(!f.stance&&!f.settle){
+    // Solve sole clearance BEFORE pelvis/reach and IK. The old second solve
+    // used another target and introduced a3mm step at toe-off/touchdown.
+    const phase=THREE.MathUtils.clamp((q-(f.swingDuty??clip.duty))/(1-(f.swingDuty??clip.duty)),0,1),margin=.003*Math.sin(Math.PI*phase)**2;
+    offsetFoot.copy(ball).applyAxisAngle(sideAxis,f.pitch??0).applyAxisAngle(upAxis,avatar.rotation.y).add(f.ankle);
+    const hb=height(offsetFoot.x,offsetFoot.z),ballGap=Number.isFinite(hb)?hb+margin-offsetFoot.y:0;
+    offsetFoot.copy(heel).applyAxisAngle(sideAxis,f.pitch??0).applyAxisAngle(upAxis,avatar.rotation.y).add(f.ankle);
+    const hh=height(offsetFoot.x,offsetFoot.z),heelGap=Number.isFinite(hh)?hh+margin-offsetFoot.y:0,correction=Math.max(0,ballGap,heelGap);
+    if(correction>0){f.ankle.y+=correction;metrics.swingIK++;}
+   }
    // The same reach envelope applies on BOTH sides of toe-off/touchdown.
    // Dropping it during flight used to snap the pelvis up once per footfall.
    local.copy(f.ankle).sub(avatar.position).applyAxisAngle(upAxis,-avatar.rotation.y);
@@ -174,11 +194,6 @@ export function createWalker(){
   for(const f of legs){
    solveLeg(f,f.ankle);
    orientFoot(f,f.pitch??0,f.stance?f.plantHeading:avatar.rotation.y);
-   if(!f.stance&&!f.settle){
-    f.foot.updateWorldMatrix(true,true);f.foot.localToWorld(world.copy(ball));const h=height(world.x,world.z);f.foot.localToWorld(local.copy(heel));const hh=height(local.x,local.z);
-    const correction=Math.max(0,Number.isFinite(h)?h+.003-world.y:0,Number.isFinite(hh)?hh+.003-local.y:0);
-    if(correction>0){f.foot.getWorldPosition(f.ankle);f.ankle.y+=correction;solveLeg(f,f.ankle);orientFoot(f,f.pitch??0,avatar.rotation.y);metrics.swingIK++;}
-   }
   }
   for(let i=0;i<2;i++){const a=arms[i],clip=legs[i].clip;a.upper.rotation.set(.055+clip.arm*motion.blend+turn*a.side*.025,0,a.side*(.065+motion.run*.025)+clip.roll*motion.blend);a.lower.rotation.set(-.13+(clip.elbow+.13)*motion.blend,0,0);a.hand.rotation.z=a.side*.035;}
   secondary(false,false,motion.time,motion.blend);
