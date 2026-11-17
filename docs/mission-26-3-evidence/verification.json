@@ -12,8 +12,11 @@
   "productionBuild": {
     "command": "npm run build",
     "passed": true,
-    "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
-    "log": "logs/build-cycle.log"
+    "sourceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+    "log": "logs/build-delivery.log",
+    "clean": true,
+    "bundle": "builds/delivery-production/receipt.json",
+    "browserCheck": "production-check/production-check.json"
   },
   "note": "Runtime code was committed before the frozen evidence builds. Subsequent evidence runners/diagnostic probes are bound by each build receipt and explicit runner hashes where available; early runner revisions were not committed individually.",
   "testsPrevious": {
@@ -22,5 +25,20 @@
     "fail": 0,
     "durationMs": 110546.805585,
     "log": "tests.log"
+  },
+  "productionBuildPrevious": {
+    "command": "npm run build",
+    "passed": true,
+    "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+    "log": "logs/build-cycle.log"
+  },
+  "galleryCheck": "gallery-check.json",
+  "mediaIntegrity": "media-integrity.json",
+  "deliveryIdentityTests": {
+    "command": "node --test tests/build-identity.test.mjs",
+    "pass": 10,
+    "fail": 0,
+    "log": "logs/identity-tests-delivery.log",
+    "note": "Subset of the457 tests, repeated after mission metadata changed; not10 additional unique tests."
   }
 }

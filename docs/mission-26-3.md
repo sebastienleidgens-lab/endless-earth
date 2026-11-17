@@ -120,6 +120,8 @@ La plus longue tâche observée dans ces benchmarks est de2746 ms (référence, 
 
 Référence exécutée58ba496050f7541a63599c28a1a553f7f0b453e9 ; livraison antérieure0e51a60a95d65dbc1dccc647dfe2a40da7493636(src/public équivalents). Chaque essai indique le SHA exécuté ; les commits de documentation/métadonnées ne changent pas rétroactivement ce programme. Sources : IGN/MNT et OSM selon les [licences conservées](../public/planet/fr-86/LICENSE.md), API Geo/Licence Ouverte2.0 pour les communes. Relief fin dérivé et profondeurs de jeu ne sont pas des mesures de sécurité réelle.
 
+Build de production sans hooks : SHA`b5a4f98c87d4adf130342bc05cfa732a70056502`, checkout propre à la compilation, identité26.3 vérifiée dans quatre dispositions de menu. L’archive compilée est conservée ; les commits suivants ajoutent uniquement les preuves/documentation.
+
 457 tests réussis, compilation et contrôles navigateur documentés. Carte desktop/tactile, mémoire source, activités, sauvegardes et vrai reload conduite/marche sont vérifiés dans leur périmètre. Les fumées de région synthétique ne comptent pas comme des kilomètres de Vienne. Trains/avions gardent le socle existant, sans nouveau service passager.
 
 Branche`mission/26-vienne-planet-engine`, PR38 ouverte et en brouillon. `main` observé à`01e791be64cefae2eb1e90ab465f9bf0b848c33e`. M25.2(tête110b4548 et merge5fe6e792) reste ancêtre de cette branche, absent de main. **Aucun achat, abonnement, merge, déploiement ni workflow de production modifié.**
