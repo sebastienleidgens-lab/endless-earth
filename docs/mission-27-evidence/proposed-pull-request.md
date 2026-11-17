@@ -1,10 +1,10 @@
-# PR proposée — Mission 27
+# Description de la PR — Mission 27
 
-État : non créée. Le contrôle automatique demande une autorisation explicite avant ouverture sur GitHub. Destination : `sebastienleidgens-lab/endless-earth`, base `main`, tête `mission/27-world-enrichment`, brouillon `true`.
+État : PR #39 créée en brouillon après autorisation explicite de l’utilisateur (« Go »). URL : https://github.com/sebastienleidgens-lab/endless-earth/pull/39. Destination : `sebastienleidgens-lab/endless-earth`, base `main`, tête `mission/27-world-enrichment`, brouillon `true`.
 
 Titre : **Mission 27 — enrichissement tuilé du monde, livraison partielle**
 
-+Hors du pilote, le rendu départemental utilisait des volumes de bâtiments simples. Cette PR ajoute une génération déterministe de façades, ouvertures et toitures, ainsi que des grappes de petits détails contextuels. Les artefacts gzip sont chargés et vérifiés dans le worker existant, puis rendus sans modifier les sources physiques ni les droits d’accès.
+Hors du pilote, le rendu départemental utilisait des volumes de bâtiments simples. Cette PR ajoute une génération déterministe de façades, ouvertures et toitures, ainsi que des grappes de petits détails contextuels. Les artefacts gzip sont chargés et vérifiés dans le worker existant, puis rendus sans modifier les sources physiques ni les droits d’accès.
 
 **Verdict M27 : PARTIEL. PR en brouillon, non prête à fusionner comme mission achevée.** Base vérifiée : `1d330cab93847a4026194088c60d378c71c0b8f7` (PR #38 fusionnée dans main). Le code du jeu observé est `7845dcb8bbecbe4a5e57ebb13256559d622eb08d` ; les commits documentaires suivants conservent le même arbre src.
 

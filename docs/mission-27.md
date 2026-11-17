@@ -8,9 +8,9 @@
 
 ## 2. État Git et version exécutée
 
-Base réelle contenant M26.4 : `1d330cab93847a4026194088c60d378c71c0b8f7`, fusion de la PR #38 dans `main`. Tête locale lors de cet assemblage : `9d8abdfff6edcb86ea691a8501664264166210fd`, branche `mission/27-world-enrichment`; arbre de travail sale=true. SHA du code exécuté déclaré par les reçus finaux : `7845dcb8bbecbe4a5e57ebb13256559d622eb08d`. Le `sourceCommit` des reçus de génération décrit leur référence propre et ne remplace pas ce SHA runtime.
+Base réelle contenant M26.4 : `1d330cab93847a4026194088c60d378c71c0b8f7`, fusion de la PR #38 dans `main`. Tête locale lors de cet assemblage : `c78fbf9bbc464161956de099b4b0fd1af59b3014`, branche `mission/27-world-enrichment`; arbre de travail sale=true. SHA du code exécuté déclaré par les reçus finaux : `7845dcb8bbecbe4a5e57ebb13256559d622eb08d`. Le `sourceCommit` des reçus de génération décrit leur référence propre et ne remplace pas ce SHA runtime.
 
-PR finale : État final de la PR non fourni à cet assemblage; aucune PR n’est créée ou modifiée par ce script. Ouverture refusée par le contrôle automatique : une autorisation utilisateur explicite est requise. [Description proposée](mission-27-evidence/proposed-pull-request.md). La branche a été poussée avant ce refus ; aucune tentative de contournement.
+PR finale : https://github.com/sebastienleidgens-lab/endless-earth/pull/39 · état=open · draft=true · tête vérifiée à la création=c78fbf9bbc464161956de099b4b0fd1af59b3014 · base=1d330cab93847a4026194088c60d378c71c0b8f7
 
 [git-state.json](mission-27-evidence/git-state.json) · [validation.json](mission-27-evidence/validation.json). Ce script n’effectue aucune fusion, publication ni mise en production et ne modifie aucun workflow.
 
@@ -148,4 +148,4 @@ Les 56 critères du référentiel central sont conservés, malgré les anciennes
 
 ## 17. Décision proposée
 
-**Ne pas accepter M27 comme entièrement achevée.** Conserver la PR consolidée en brouillon pour revue du code et des écarts. Le pipeline fonctionnel est une avancée partielle; couverture artistique, parité sensorielle, campagnes natives, matériel et portabilité du jeu complet demandent encore du travail. Aucune fusion, publication ou dépense n’est effectuée par cette remise.
+**Ne pas accepter M27 comme entièrement achevée.** Conserver la PR consolidée en brouillon pour revue du code et des écarts. Le pipeline fonctionnel est une avancée partielle; couverture artistique, parité sensorielle, campagnes natives, matériel et portabilité du jeu complet demandent encore du travail. Aucune fusion, mise en production du jeu ou dépense n’est effectuée par cette remise. La branche et la PR en brouillon sont publiées pour revue après autorisation explicite.
