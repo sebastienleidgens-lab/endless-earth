@@ -1,0 +1,35 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><link rel="icon" href="data:,"><title>M27 — fixture synthétique de rendu</title>
+<style>body{margin:0;background:#a7bdc4;color:#25322b;font:16px system-ui}canvas{display:block}aside{position:absolute;left:20px;top:16px;background:#fffdf0e8;padding:12px 16px;border-radius:8px;max-width:490px}small{display:block;margin-top:5px}</style>
+<aside><strong>Fixture synthétique — <span id="pack"></span></strong><small>Même renderer départemental, aucune géographie réelle ni activité de déplacement certifiée.</small></aside>
+<script type="module">
+import * as THREE from 'three';
+import {createPlanetRenderer} from '../src/planet/render.ts';
+import {PlanetSurface} from '../src/planet/surface.mjs';
+import {generateEnrichment} from '../src/enrichment/generator.mjs';
+import {validateEnrichment} from '../src/enrichment/load.mjs';
+import {updateLifeTime} from '../src/earthlife/state.mjs';
+const choice=new URL(location.href).searchParams.get('pack')??'vienne';
+if(!['vienne','mountain-fixture','tropical-fixture'].includes(choice))throw Error('Unknown fixture pack');
+const pack=await fetch('../enrichment/packs/'+choice+'.json').then(r=>r.json());
+document.querySelector('#pack').textContent=pack.id;
+const region={tileSize:128},scene=new THREE.Scene();scene.background=new THREE.Color(0xbacbd0);scene.userData.natureCalendar={value:new THREE.Vector4(.85,.1,.15,.1)};
+scene.add(new THREE.HemisphereLight(0xeaf5ff,0x62664d,2.2));
+const sun=new THREE.DirectionalLight(0xffe8bf,2.5);sun.position.set(85,80,-15);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-90;sun.shadow.camera.right=90;sun.shadow.camera.top=90;sun.shadow.camera.bottom=-90;sun.shadow.camera.near=.5;sun.shadow.camera.far=240;sun.shadow.bias=-.0002;sun.target.position.set(64,0,-64);scene.add(sun,sun.target);
+const bounds=[0,0,128,128],ring=[[0,0],[128,0],[128,128],[0,128],[0,0]],slope=choice==='mountain-fixture'?.11:0;
+const tile={schema:'planet-tile-v1',id:'0:0',bounds,grid:{size:9,datum:'fixture-relative',heights:Array.from({length:81},(_,i)=>10+(i%9)*16*slope)},features:[
+ {id:'fixture:wood',kind:'landcover',polygon:true,points:ring,tags:{landuse:'forest'}},
+ {id:'fixture:house',kind:'building',polygon:true,points:[[48,60],[68,60],[68,78],[48,78],[48,60]],tags:{building:'house','building:levels':'2'}},
+ {id:'fixture:path',kind:'road',polygon:false,points:[[0,48],[128,48]],tags:{highway:'path',access:'yes'}}
+]};
+const art=validateEnrichment(generateEnrichment(tile,pack,{spacing:16,maxDetails:256,coordinateNamespace:'synthetic-webgl-fixture'}),tile.id),plans=new Map(art.buildings.map(p=>[p.id,p]));
+for(const f of tile.features)if(f.kind==='building')f.enrichmentPlan=plans.get(f.id);
+tile.enrichment=art;tile.enrichmentStatus={state:'verified-fixture'};
+const surface=new PlanetSurface(region);surface.add(tile);
+const view=createPlanetRenderer(scene,(x,y)=>({x,z:-y}),()=>10,surface,[10000,10000,10010,10010]);
+view.add(tile);await view.flush();
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(1);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;document.body.append(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,1000);camera.position.set(85,15+slope*64,-32);camera.lookAt(58,3+slope*64,-68);camera.updateMatrixWorld();
+function draw(time=120){updateLifeTime(time,.7);renderer.render(scene,camera);return {metrics:structuredClone(view.metrics),renderer:renderer.info.render,triangles:renderer.info.render.triangles,buffer:[renderer.domElement.width,renderer.domElement.height]};}
+window.enrichmentFixture={pack:pack.id,synthetic:true,draw,view,renderer,scene,camera,art,async profile(profile){view.update(new THREE.Vector3(58,0,-68),profile);await view.flush();await new Promise(r=>setTimeout(r,60));return draw();}};
+draw();window.enrichmentFixture.ready=true;
+</script></html>

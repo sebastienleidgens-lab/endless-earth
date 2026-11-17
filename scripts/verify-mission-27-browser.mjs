@@ -2,6 +2,7 @@ import {chromium} from 'playwright';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {missionBrowserOptions,missionContextOptions} from './lib/mission-26-browser.mjs';
+import {createProjection,legacyAdapter} from '../src/planet/coordinates.mjs';
 
 const port=Number(process.argv[2]??5408),mode=process.argv[3]??'all',base=`http://localhost:${port}/endless-earth/`,out='docs/mission-27-evidence';
 await mkdir(out+'/gallery',{recursive:true});
@@ -59,12 +60,15 @@ try{
      if(!geo?.lat)geo={lat:station?.latitude??station?.lat,lon:station?.longitude??station?.lon};
      if(!Number.isFinite(geo.lat)||!Number.isFinite(geo.lon))throw Error('No source-derived station coordinates');
      scene.placement=await page.evaluate(g=>window.q26.regionPlace(g,'foot','eco'),geo);
-     await page.waitForFunction(()=>window.endlessPlanetDiagnostics.metrics.render?.enrichment?.buildings>0,null,{timeout:180000});
-     await page.waitForTimeout(1200);scene.state=await page.evaluate(()=>window.m27.state());
-     await page.evaluate(()=>window.p252.hold(true));
-     await page.evaluate(()=>window.p252.render());
+     scene.settled=await page.evaluate(()=>window.m27.settle());
+     const manifest=JSON.parse(await readFile('public/planet/fr-86/manifest.json','utf8')),pack=JSON.parse(await readFile('public/enrichment/packs/vienne.json','utf8'));
+     const projection=createProjection(manifest.projection),legacy=legacyAdapter(pack.protectedRegion.origin),at=projection.project(scene.settled.gps);
+     const buildings=await page.evaluate(()=>window.m27.nearBuildings());
+     const candidates=buildings.map(f=>{const p=f.points.slice(0,-1),center={x:p.reduce((n,v)=>n+v[0],0)/p.length,y:p.reduce((n,v)=>n+v[1],0)/p.length};return {id:f.id,center,distance:Math.hypot(center.x-at.x,center.y-at.y)};}).sort((a,b)=>a.distance-b.distance);
+     if(candidates.length){const building=candidates[0],g=projection.unproject(building.center);scene.building=building;scene.facadePlacement=await page.evaluate(g=>window.q26.regionPlace(g,'foot','eco'),g);await page.evaluate(()=>window.m27.settle());const q=legacy.fromGeo(g);scene.camera=await page.evaluate(q=>window.m27.look(q),{...q,y:scene.facadePlacement.y+2.5});}
+     scene.state=await page.evaluate(()=>window.m27.state());
      await page.screenshot({path:`${out}/gallery/${label.toLowerCase()}-after.png`});
-     scene.passed=true;
+     scene.passed=scene.state.planet.render.enrichment.buildings>0;
     }catch(error){scene.failure=String(error);scene.passed=false;}
     record.scenes.push(scene);await writeFile(out+'/browser-gameplay.json',JSON.stringify(record,null,2));
    }
