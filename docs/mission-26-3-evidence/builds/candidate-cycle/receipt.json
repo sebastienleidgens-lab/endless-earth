@@ -1,0 +1,53 @@
+{
+  "sourceCommit": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+  "sourceTrees": {
+    "src": "24a5ce39d51d5a6323c7f11ce3e803c8307bbb51",
+    "public": "24a7d7776b508824edcdbbc5f6d256c1b08134fe",
+    "package.json": "4fce9545d34660f17748e0d736c5607b3267537c",
+    "package-lock.json": "e5a244f1710f880215d52c258f5c782bfd909b65",
+    "vite.config.ts": "ba92617c05652efa2fd2e51f549724415cc4abe0"
+  },
+  "instrumentation": {
+    "scripts/build-mission-26-3.mjs": "1618f0f465749268f952075ff92fcf1abf6638db640c173583c97394f54981ea",
+    "scripts/lib/mission-26-3-diagnostic.mjs": "79f5ca073c85aebed5379a561698393fe2c0b2fd9a07d7d672670a292b9a0c85",
+    "scripts/lib/mission-26-3-input.mjs": "15c2380829bdce4a439c9b5ad6845e1bb6cea3a380240fc3862bd689e41a1860",
+    "scripts/lib/mission-26-2-fixture.mjs": "c5adc69968cc71d04c8cb00f52dd1e6f38d4bd8fcadeb6277382935304e58e61",
+    "scripts/lib/mission-26-3-planning.mjs": "ce25534c6df50315207a2dc50958018c3ff4e0b162da12e9259bc83177ba2a32",
+    "scripts/lib/mission-26-diagnostic.mjs": "3b32b38af636745a16f9ad5f33247a433a7c14a0860d8f5dc08cea417f1d4671",
+    "scripts/lib/mission-25-2-diagnostic.mjs": "91e7722b1099f876b2b04b5bfa758c5a6500bf3c879e49b7b74f0ef33791e253"
+  },
+  "data": {
+    "regionManifestSHA256": "943275cd2af39c72fc01caedcf52fb662fe69e4488b3833957b859c344f521a1",
+    "navigationManifestSHA256": "6fdc2f09cc3f96aa9b58ff97cdd7d3d8d2b4c12558857441920c1fc4c11834f5",
+    "fineSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec"
+  },
+  "method": "Common evidence-only shim. Manual step calls the ENTIRE original frame with explicit dt, normal controls and collisions, no positional repair. Production frame body and controllers active; render-hook environment and agents sampled at drawn checkpoints only. No native animation or weather endurance implied. Native captures never use manual stepping.",
+  "builtAt": "2026-11-16T21:20:42.919Z",
+  "files": {
+    "index.html": {
+      "bytes": 556,
+      "sha256": "099dacda7bf127216ac55341c95e61fba997af05f29b0be6ee32cfbb364ddf50"
+    },
+    "runtime-build.json": {
+      "bytes": 1895,
+      "sha256": "e5de94499a77f598ceea59b00cbc2f90382bf5eed2db7631b0d94fd38e2cdca3"
+    },
+    "assets/decode.worker-BMKxq6qV.js": {
+      "bytes": 4122,
+      "sha256": "564417dad9d0085e152a1aae2058abdf93009ea19e8518f137140676964e42d1"
+    },
+    "assets/index-BcnGgHtO.css": {
+      "bytes": 9249,
+      "sha256": "46bf44cbc88e8691b423799dfe846e2045db4452ff347c5767907a48401a3361"
+    },
+    "assets/index-CRPSCoOm.js": {
+      "bytes": 1273637,
+      "sha256": "be321035bf3bc029d8bb3d160063cc568631c785ccb5e52eae998198588fdcf9"
+    },
+    "assets/route.worker-WxT_Km7y.js": {
+      "bytes": 4674,
+      "sha256": "d63ab9a17111095701ec72565207bbee5553bc8094f4db9ae555e6121d8a49a6"
+    }
+  },
+  "scope": "Exact executed diagnostic HTML/JS/CSS/workers. Public source assets are referenced by source manifests rather than duplicating hundreds of MB per build."
+}

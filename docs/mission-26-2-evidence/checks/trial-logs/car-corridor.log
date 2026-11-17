@@ -1,0 +1,68 @@
+progress [ -17929.015977106992, 2.5633757834780857, 13690.774246699431 ] 126:1613 driving
+{
+  from: 'Chauvigny',
+  to: 'furthest-connected-source',
+  mode: 'car',
+  success: false,
+  distance: 145.00871899962283,
+  steps: 247,
+  stop: {
+    height: 2.3133757834780857,
+    admission: {
+      height: 2.3133757834780857,
+      normal: [Object],
+      slope: 0.10236389148404058,
+      datum: 'IGN69',
+      resolutionM: 2,
+      source: 'IGN LHD numeric MNT; 2 m derivative',
+      quantizationMaxErrorM: 0.005,
+      tile: '126:1613',
+      face: 0,
+      ok: true,
+      drivable: false,
+      road: 'osm:way:41386481',
+      width: 4.8,
+      speedLimit: 13.9,
+      provenance: 'OSM road corridor + declared regional access policy; inferred width when absent'
+    },
+    clear: true,
+    collision: {
+      surface: 'planet-terrain',
+      obstacle: null,
+      access: [Object],
+      building: null,
+      collider: null
+    },
+    gps: { lat: 46.57231424499911, lon: 0.6495793142387524 }
+  },
+  car: {
+    position: {
+      x: -17929.015977106992,
+      y: 2.3133757834780857,
+      z: 13690.774246699431
+    },
+    heading: 2.3198197910846927,
+    speed: 0,
+    steering: -0.08316753473904669,
+    reason: '',
+    odometer: 145.01496871562244,
+    ground: {
+      height: 2.3133757834780857,
+      normal: [Object],
+      slope: 0.10236389148404058,
+      datum: 'IGN69',
+      resolutionM: 2,
+      source: 'IGN LHD numeric MNT; 2 m derivative',
+      quantizationMaxErrorM: 0.005,
+      tile: '126:1613',
+      face: 0,
+      ok: true,
+      drivable: true,
+      road: 'osm:way:41386481',
+      width: 4.8,
+      speedLimit: 13.9,
+      provenance: 'OSM road corridor + declared regional access policy; inferred width when absent'
+    },
+    active: true
+  }
+}

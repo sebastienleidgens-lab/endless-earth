@@ -1,0 +1,1322 @@
+{
+  "method": "GPS sampled from actual controller traces. Odometers sum EACH physical step, not this sampled line. Independent source/prepared-network plans have zero accepted distance until physically run. Native endurance is separate. Failed/intermediate runs preserved; no root restoration contributes to distance.",
+  "runtime": "d162a653785d656e1a6652c4ca406889a1b55c28",
+  "horizontalDatum": "WGS84",
+  "verticalDatum": "IGN69; localY relative to recorded heightBaseM",
+  "journeys": [
+    {
+      "file": "authored-regression/Vallee-stop-car-40km-car.json",
+      "sourceSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "sector": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 40354.33796861792,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 5009.75,
+      "lastSampleSimulationSeconds": 5005,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 1288.245099999994,
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "endGPS": {
+        "lat": 46.32218132992737,
+        "lon": 0.840869774357595
+      },
+      "canonicalTiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "maxStepM": 3.076909943340878,
+      "collisionReason": "",
+      "boatEnd": null,
+      "parkingWalkM": 205.12633391651832,
+      "parkingWalkCompleted": true,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "clain-legacy-final.json",
+      "sourceSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "sector": "Clain historique — régression du corridor M26.3",
+      "status": "LEGACY_CORRIDOR_ENDED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "distanceM": 886.0682450235281,
+      "signedProgressM": 886.6007436340701,
+      "netDisplacementM": 854.5851111957593,
+      "backwardProjectionM": 0,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 1155.25,
+      "simulatedSecondsBound": [
+        1155.25,
+        1160.0
+      ],
+      "wallSeconds": 192.99109999999405,
+      "startGPS": {
+        "lat": 46.573832760238226,
+        "lon": 0.3377195710775077
+      },
+      "endGPS": {
+        "lat": 46.5704442363445,
+        "lon": 0.32767621435325167
+      },
+      "canonicalTiles": [
+        "120:1614",
+        "121:1614"
+      ],
+      "maxStepM": 0.22453517207496135,
+      "collisionReason": null,
+      "boatEnd": {
+        "active": true,
+        "following": false,
+        "recovery": false,
+        "heading": -0.7853990694693538,
+        "speed": 0.09146422150350003,
+        "reason": "",
+        "followMetrics": {
+          "plans": 1,
+          "lateralError": 1.357810733002026e-06,
+          "maxLateralError": 1.323524403391275,
+          "stops": 3
+        },
+        "pose": 1
+      },
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": 2.1322837643885015,
+      "savedWhileBoating": true,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": "walking",
+      "failure": null
+    },
+    {
+      "file": "final-80km/Vallee-source-roundtrip-car-80km-car.json",
+      "sourceSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "sector": null,
+      "status": "RETRYABLE_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 63893.009160087175,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 8279.5,
+      "lastSampleSimulationSeconds": 8276.75,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 4156.289700000003,
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "endGPS": {
+        "lat": 46.47422026270323,
+        "lon": 0.6602047511613284
+      },
+      "canonicalTiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "maxStepM": 3.076909943340878,
+      "collisionReason": "tile-loading",
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "final-travel/Chauvigny-foot-21km-foot.json",
+      "sourceSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "sector": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 21034.730957360265,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 15054,
+      "lastSampleSimulationSeconds": 15050,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 2985.521400000006,
+      "startGPS": {
+        "lat": 46.57105470370647,
+        "lon": 0.6491156933924196
+      },
+      "endGPS": {
+        "lat": 46.737559402890724,
+        "lon": 0.5537306253059257
+      },
+      "canonicalTiles": [
+        "125:1615",
+        "125:1616",
+        "125:1617",
+        "125:1618",
+        "126:1613",
+        "126:1614",
+        "126:1615"
+      ],
+      "maxStepM": 0.3625000000077624,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "final-travel/Vallee-stop-car-40km-car.json",
+      "sourceSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "sector": null,
+      "status": "WAITING_FOR_TILE",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 25857.76502375634,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 9500.5,
+      "lastSampleSimulationSeconds": 9500,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 5400.111200000003,
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "endGPS": {
+        "lat": 46.4074806109314,
+        "lon": 0.7123328322163506
+      },
+      "canonicalTiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611"
+      ],
+      "maxStepM": 3.076891426008712,
+      "collisionReason": "tile-loading",
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "final-travel/spawn-east-dense-avoid-water-foot.json",
+      "sourceSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "sector": null,
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 1539.8996293982673,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 1096.25,
+      "lastSampleSimulationSeconds": 1095,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 508.598200000003,
+      "startGPS": {
+        "lat": 46.6954233157827,
+        "lon": 0.8797680006964309
+      },
+      "endGPS": {
+        "lat": 46.69300547775268,
+        "lon": 0.8864995505906751
+      },
+      "canonicalTiles": [
+        "131:1617"
+      ],
+      "maxStepM": 0.36250000000018534,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "junction/Chauvigny-junction-local-600m-car.json",
+      "sourceSHA": "f4a7391a654d78a888e008fcce64949b853d4119",
+      "sector": null,
+      "status": "SOURCE_UNKNOWN",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 145.24332701793307,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 31.25,
+      "lastSampleSimulationSeconds": 30,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 16.02020000000298,
+      "startGPS": {
+        "lat": 46.57105470370647,
+        "lon": 0.6491156933924196
+      },
+      "endGPS": {
+        "lat": 46.57230588057602,
+        "lon": 0.6496032587682137
+      },
+      "canonicalTiles": [
+        "126:1613"
+      ],
+      "maxStepM": 2.08333333333525,
+      "collisionReason": "unknown-land-access",
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "junction-corrected/Chauvigny-junction-local-600m-car.json",
+      "sourceSHA": "f4a7391a654d78a888e008fcce64949b853d4119",
+      "sector": null,
+      "status": "SOURCE_UNKNOWN",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 145.24332701793307,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 31.25,
+      "lastSampleSimulationSeconds": 30,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 12.64690000000596,
+      "startGPS": {
+        "lat": 46.57105470370647,
+        "lon": 0.6491156933924196
+      },
+      "endGPS": {
+        "lat": 46.57230588057602,
+        "lon": 0.6496032587682137
+      },
+      "canonicalTiles": [
+        "126:1613"
+      ],
+      "maxStepM": 2.08333333333525,
+      "collisionReason": "unknown-land-access",
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "junction-final/Chauvigny-junction-local-600m-car.json",
+      "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "sector": null,
+      "status": "SOURCE_UNKNOWN",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 145.24332701793307,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 31.25,
+      "lastSampleSimulationSeconds": 30,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 22.60540000000596,
+      "startGPS": {
+        "lat": 46.57105470370647,
+        "lon": 0.6491156933924196
+      },
+      "endGPS": {
+        "lat": 46.57230588057602,
+        "lon": 0.6496032587682137
+      },
+      "canonicalTiles": [
+        "126:1613"
+      ],
+      "maxStepM": 2.08333333333525,
+      "collisionReason": "unknown-land-access",
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "offroad-complete-intermediate.json",
+      "sourceSHA": "f4a7391a654d78a888e008fcce64949b853d4119",
+      "sector": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Independent repeat of the successful310m known-access area traverse. Normal foot input and full production frame, dt .25. Every step classifies the actual admission; mapped-road crossings are excluded conservatively from off-road distance. No position assignment during travel.",
+      "distanceM": 311.11079030041213,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 228,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 24.63569999998808,
+      "startGPS": null,
+      "endGPS": {
+        "lat": 46.561210825870546,
+        "lon": 0.4040535818647504
+      },
+      "canonicalTiles": [
+        "122:1613"
+      ],
+      "maxStepM": 0.3625000000031162,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "offroad-complete.json",
+      "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "sector": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Independent repeat of the successful310m known-access area traverse. Normal foot input and full production frame, dt .25. Every step classifies the actual admission; mapped-road crossings are excluded conservatively from off-road distance. No position assignment during travel.",
+      "distanceM": 311.37938363842096,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 239.75,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 46.21439999999106,
+      "startGPS": null,
+      "endGPS": {
+        "lat": 46.56121087509831,
+        "lon": 0.40405357136581
+      },
+      "canonicalTiles": [
+        "122:1613"
+      ],
+      "maxStepM": 0.3625000000023528,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "regression/Chauvigny-foot-21km-foot.json",
+      "sourceSHA": "f4a7391a654d78a888e008fcce64949b853d4119",
+      "sector": null,
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 14395.97015100496,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 10585.75,
+      "lastSampleSimulationSeconds": 10585,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 2008.7525999999941,
+      "startGPS": {
+        "lat": 46.57105470370647,
+        "lon": 0.6491156933924196
+      },
+      "endGPS": {
+        "lat": 46.68185135709197,
+        "lon": 0.5763512021554662
+      },
+      "canonicalTiles": [
+        "125:1615",
+        "125:1616",
+        "126:1613",
+        "126:1614",
+        "126:1615"
+      ],
+      "maxStepM": 0.3625000000077624,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "regression/Vallee-stop-car-40km-car.json",
+      "sourceSHA": "f4a7391a654d78a888e008fcce64949b853d4119",
+      "sector": null,
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 32564.65448639663,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 4911.5,
+      "lastSampleSimulationSeconds": 4910,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 2700.127399999991,
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "endGPS": {
+        "lat": 46.36390812483184,
+        "lon": 0.7716748905593326
+      },
+      "canonicalTiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1608"
+      ],
+      "maxStepM": 3.0769069333661383,
+      "collisionReason": "",
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "regression/spawn-east-dense-avoid-water-foot.json",
+      "sourceSHA": "f4a7391a654d78a888e008fcce64949b853d4119",
+      "sector": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 4736.782158698208,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 3476.75,
+      "lastSampleSimulationSeconds": 3475,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 521.260700000003,
+      "startGPS": {
+        "lat": 46.6954233157827,
+        "lon": 0.8797680006964309
+      },
+      "endGPS": {
+        "lat": 46.6894156207799,
+        "lon": 0.9160362924508387
+      },
+      "canonicalTiles": [
+        "131:1617",
+        "132:1616",
+        "132:1617"
+      ],
+      "maxStepM": 0.3625000000008524,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "river-4-tangential.json",
+      "sourceSHA": "f4a7391a654d78a888e008fcce64949b853d4119",
+      "sector": "riparian:Vienne Lussac",
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "distanceM": 578.8594555379376,
+      "signedProgressM": 579.4011488942679,
+      "netDisplacementM": 548.1998167710041,
+      "backwardProjectionM": 0,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 800.25,
+      "simulatedSecondsBound": [
+        800.25,
+        805.0
+      ],
+      "wallSeconds": 105.1705,
+      "startGPS": {
+        "lat": 46.40558844103921,
+        "lon": 0.727986192897531
+      },
+      "endGPS": {
+        "lat": 46.403853751798906,
+        "lon": 0.7347053697827406
+      },
+      "canonicalTiles": [
+        "128:1609"
+      ],
+      "maxStepM": 0.2534134458638224,
+      "collisionReason": null,
+      "boatEnd": {
+        "active": true,
+        "following": false,
+        "recovery": false,
+        "heading": 1.433697195680312,
+        "speed": 0.09291863009614457,
+        "reason": "",
+        "followMetrics": {
+          "plans": 1,
+          "lateralError": 0.007194760038579946,
+          "maxLateralError": 1.1074643127723656,
+          "stops": 3
+        },
+        "pose": 1
+      },
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": 0.9443939064986262,
+      "savedWhileBoating": true,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": "walking",
+      "failure": null
+    },
+    {
+      "file": "river-5-authored.json",
+      "sourceSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "sector": "riparian:Gartempe Vicq",
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "distanceM": 1000.1204170079759,
+      "signedProgressM": 1000.736923457062,
+      "netDisplacementM": 976.7724919815961,
+      "backwardProjectionM": 0,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 1280.25,
+      "simulatedSecondsBound": [
+        1280.25,
+        1285.0
+      ],
+      "wallSeconds": 150.93339999999105,
+      "startGPS": {
+        "lat": 46.7323425723686,
+        "lon": 0.8779864802336973
+      },
+      "endGPS": {
+        "lat": 46.72566700181904,
+        "lon": 0.8696839181492801
+      },
+      "canonicalTiles": [
+        "131:1617",
+        "131:1618"
+      ],
+      "maxStepM": 0.22665494732711458,
+      "collisionReason": null,
+      "boatEnd": {
+        "active": true,
+        "following": true,
+        "recovery": false,
+        "heading": -0.7831405938462382,
+        "speed": 0.8451979447511105,
+        "reason": "",
+        "followMetrics": {
+          "plans": 1,
+          "lateralError": 0.03972195851099185,
+          "maxLateralError": 0.8979874095734217,
+          "stops": 2
+        },
+        "pose": 1
+      },
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": 2.1322837643783337,
+      "savedWhileBoating": true,
+      "boatResume": {
+        "restored": false,
+        "errorM": 1.0767489783382984,
+        "refusal": {
+          "message": "river-manual-control",
+          "status": "Revenez à une berge avant de changer de voyage."
+        }
+      },
+      "recoveryEndActivity": "walking",
+      "failure": null
+    },
+    {
+      "file": "river-5-diagnosed.json",
+      "sourceSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "sector": "riparian:Gartempe Vicq",
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "distanceM": 555.3915062450826,
+      "signedProgressM": 555.6183252690158,
+      "netDisplacementM": 540.4396466102253,
+      "backwardProjectionM": 0,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 785.25,
+      "simulatedSecondsBound": [
+        785.25,
+        790.0
+      ],
+      "wallSeconds": 168.86359999999405,
+      "startGPS": {
+        "lat": 46.732341937144824,
+        "lon": 0.877986180917237
+      },
+      "endGPS": {
+        "lat": 46.728701455809095,
+        "lon": 0.873304635478985
+      },
+      "canonicalTiles": [
+        "131:1618"
+      ],
+      "maxStepM": 0.25221650679319774,
+      "collisionReason": null,
+      "boatEnd": {
+        "active": true,
+        "following": true,
+        "recovery": false,
+        "heading": -1.063628735172862,
+        "speed": 9.71639751880122e-19,
+        "reason": "",
+        "followMetrics": {
+          "plans": 1,
+          "lateralError": 0.001343196288899169,
+          "maxLateralError": 0.8950087743280328,
+          "stops": 2
+        },
+        "pose": 1
+      },
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": true,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": "boating",
+      "failure": null
+    },
+    {
+      "file": "river-5-full-resume.json",
+      "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "sector": "riparian:Gartempe Vicq",
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "distanceM": 1000.1174541151414,
+      "signedProgressM": 1000.6994651199398,
+      "netDisplacementM": 976.7363984276998,
+      "backwardProjectionM": 0,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 1305.25,
+      "simulatedSecondsBound": [
+        1305.25,
+        1310.0
+      ],
+      "wallSeconds": 171.92690000000596,
+      "startGPS": {
+        "lat": 46.7323425723686,
+        "lon": 0.8779864802336973
+      },
+      "endGPS": {
+        "lat": 46.72566713953408,
+        "lon": 0.8696844111773206
+      },
+      "canonicalTiles": [
+        "131:1617",
+        "131:1618"
+      ],
+      "maxStepM": 0.224846072092789,
+      "collisionReason": null,
+      "boatEnd": {
+        "active": true,
+        "following": true,
+        "recovery": false,
+        "heading": -0.7840412841521303,
+        "speed": 0.7794897280660484,
+        "reason": "",
+        "followMetrics": {
+          "plans": 1,
+          "lateralError": 0.023922875354538336,
+          "maxLateralError": 0.8999481689592547,
+          "stops": 2
+        },
+        "pose": 1
+      },
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": true,
+      "boatResume": {
+        "restored": false,
+        "errorM": 1.040727761236107,
+        "refusal": {
+          "message": "river-manual-control"
+        }
+      },
+      "recoveryEndActivity": "boating",
+      "failure": null
+    },
+    {
+      "file": "river-5-local-water-fixed.json",
+      "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "sector": "riparian:Gartempe Vicq",
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "distanceM": 1000.1174541151414,
+      "signedProgressM": 1000.6994651199398,
+      "netDisplacementM": 976.7363984276998,
+      "backwardProjectionM": 0,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 1305.25,
+      "simulatedSecondsBound": [
+        1305.25,
+        1310.0
+      ],
+      "wallSeconds": 394.811,
+      "startGPS": {
+        "lat": 46.7323425723686,
+        "lon": 0.8779864802336973
+      },
+      "endGPS": {
+        "lat": 46.72566713953408,
+        "lon": 0.8696844111773206
+      },
+      "canonicalTiles": [
+        "131:1617",
+        "131:1618"
+      ],
+      "maxStepM": 0.224846072092789,
+      "collisionReason": null,
+      "boatEnd": {
+        "active": true,
+        "following": true,
+        "recovery": false,
+        "heading": -0.7840412841521303,
+        "speed": 0.7794897280660484,
+        "reason": "",
+        "followMetrics": {
+          "plans": 1,
+          "lateralError": 0.023922875354538336,
+          "maxLateralError": 0.8999481689592547,
+          "stops": 2
+        },
+        "pose": 1
+      },
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": true,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": "boating",
+      "failure": null
+    },
+    {
+      "file": "river-5-manual-return.json",
+      "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "sector": "riparian:Gartempe Vicq",
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "distanceM": 1000.1174541151414,
+      "signedProgressM": 1000.6994651199398,
+      "netDisplacementM": 976.7363984276998,
+      "backwardProjectionM": 0,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 1305.25,
+      "simulatedSecondsBound": [
+        1305.25,
+        1310.0
+      ],
+      "wallSeconds": 124.79890000000596,
+      "startGPS": {
+        "lat": 46.7323425723686,
+        "lon": 0.8779864802336973
+      },
+      "endGPS": {
+        "lat": 46.72566713953408,
+        "lon": 0.8696844111773206
+      },
+      "canonicalTiles": [
+        "131:1617",
+        "131:1618"
+      ],
+      "maxStepM": 0.224846072092789,
+      "collisionReason": null,
+      "boatEnd": {
+        "active": true,
+        "following": true,
+        "recovery": false,
+        "heading": -0.7840412841521303,
+        "speed": 0.7794897280660484,
+        "reason": "",
+        "followMetrics": {
+          "plans": 1,
+          "lateralError": 0.023922875354538336,
+          "maxLateralError": 0.8999481689592547,
+          "stops": 2
+        },
+        "pose": 1
+      },
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": true,
+      "boatResume": {
+        "restored": false,
+        "errorM": 1.040727761236107,
+        "refusal": {
+          "message": "river-manual-control",
+          "status": "Revenez à une berge avant de changer de voyage."
+        }
+      },
+      "recoveryEndActivity": "boating",
+      "failure": null
+    },
+    {
+      "file": "river-5-screen.json",
+      "sourceSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "sector": "riparian:Gartempe Vicq",
+      "status": "PHYSICAL_BLOCKED",
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "distanceM": 555.3915062450826,
+      "signedProgressM": 555.6183252690158,
+      "netDisplacementM": 540.4396466102253,
+      "backwardProjectionM": 0,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": 785.25,
+      "simulatedSecondsBound": [
+        785.25,
+        790.0
+      ],
+      "wallSeconds": 137.46809999999405,
+      "startGPS": {
+        "lat": 46.732341937144824,
+        "lon": 0.877986180917237
+      },
+      "endGPS": {
+        "lat": 46.728701455809095,
+        "lon": 0.873304635478985
+      },
+      "canonicalTiles": [
+        "131:1618"
+      ],
+      "maxStepM": 0.25221650679319774,
+      "collisionReason": null,
+      "boatEnd": {
+        "active": true,
+        "following": true,
+        "recovery": false,
+        "heading": -1.063628735172862,
+        "speed": 9.71639751880122e-19,
+        "reason": "",
+        "followMetrics": {
+          "plans": 1,
+          "lateralError": 0.001343196288899169,
+          "maxLateralError": 0.8950087743280328,
+          "stops": 2
+        },
+        "pose": 1
+      },
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": true,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": "boating",
+      "failure": null
+    },
+    {
+      "file": "road-grid-d749-replay.json",
+      "sourceSHA": "c77aae5bf0152b80eafd43e8ab285292c8650c08",
+      "sector": null,
+      "status": null,
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Independent declared local start at an actually retained car pose before D749. Normal full-frame steering and complete car swept collisions; no position assigned after departure. Local distance is not an80km proof.",
+      "distanceM": 0,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": null,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 0.8427999999970198,
+      "startGPS": {
+        "lat": 46.44589808111631,
+        "lon": 0.6750764460881754
+      },
+      "endGPS": {
+        "lat": 46.445905831979566,
+        "lon": 0.675094866377973
+      },
+      "canonicalTiles": [
+        "127:1610"
+      ],
+      "maxStepM": null,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "road-grid-height-ready-d749-replay.json",
+      "sourceSHA": "c77aae5bf0152b80eafd43e8ab285292c8650c08",
+      "sector": null,
+      "status": null,
+      "completed": false,
+      "functionalSuccess": false,
+      "method": "Independent declared local start at an actually retained car pose before D749. Normal full-frame steering and complete car swept collisions; no position assigned after departure. Local distance is not an80km proof.",
+      "distanceM": 10.677901870730793,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": null,
+      "lastSampleSimulationSeconds": null,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 0.9094000000059604,
+      "startGPS": {
+        "lat": 46.445905831979566,
+        "lon": 0.675094866377973
+      },
+      "endGPS": {
+        "lat": 46.44598341019365,
+        "lon": 0.675012771120162
+      },
+      "canonicalTiles": [
+        "127:1610"
+      ],
+      "maxStepM": null,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "travel-80km/Vallee-source-roundtrip-car-80km-car.json",
+      "sourceSHA": "f4a7391a654d78a888e008fcce64949b853d4119",
+      "sector": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 80540.93770016894,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 11095.75,
+      "lastSampleSimulationSeconds": 11095,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 5244.254200000003,
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "endGPS": {
+        "lat": 46.60651683827285,
+        "lon": 0.6053237231992918
+      },
+      "canonicalTiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "maxStepM": 3.076909943340878,
+      "collisionReason": "",
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "warmed-spawn/spawn-east-dense-avoid-water-foot.json",
+      "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "sector": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 4737.884074816927,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 3348,
+      "lastSampleSimulationSeconds": 3345,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 221.39640000000597,
+      "startGPS": {
+        "lat": 46.6954233157827,
+        "lon": 0.8797680006964309
+      },
+      "endGPS": {
+        "lat": 46.68941584286148,
+        "lon": 0.9160364703273327
+      },
+      "canonicalTiles": [
+        "131:1617",
+        "132:1616",
+        "132:1617"
+      ],
+      "maxStepM": 0.3625000000008671,
+      "collisionReason": null,
+      "boatEnd": null,
+      "parkingWalkM": null,
+      "parkingWalkCompleted": null,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    },
+    {
+      "file": "water-final-80km/Vallee-source-roundtrip-car-80km-car.json",
+      "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "sector": null,
+      "status": "COMPLETED",
+      "completed": true,
+      "functionalSuccess": true,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "distanceM": 80605.09430423396,
+      "signedProgressM": null,
+      "netDisplacementM": null,
+      "backwardProjectionM": null,
+      "simulatedSeconds": 9996.75,
+      "lastSampleSimulationSeconds": 9995,
+      "simulatedSecondsBound": null,
+      "wallSeconds": 3428.755900000006,
+      "startGPS": {
+        "lat": 46.60650819688691,
+        "lon": 0.6053124990529222
+      },
+      "endGPS": {
+        "lat": 46.60651613343878,
+        "lon": 0.6053242459784369
+      },
+      "canonicalTiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "maxStepM": 3.076909943340878,
+      "collisionReason": "",
+      "boatEnd": null,
+      "parkingWalkM": 205.13149999840317,
+      "parkingWalkCompleted": true,
+      "afterDockWalkM": null,
+      "savedWhileBoating": null,
+      "boatResume": {
+        "restored": null,
+        "errorM": null,
+        "refusal": null
+      },
+      "recoveryEndActivity": null,
+      "failure": null
+    }
+  ],
+  "nativeEndurance": "endurance-authored-final.json",
+  "sourcePlans": [
+    "routes-selection.json",
+    "bank-source-candidates.json"
+  ],
+  "legacyBaseline": "../mission-26-3-evidence/journeys.json"
+}

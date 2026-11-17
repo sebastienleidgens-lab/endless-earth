@@ -1,0 +1,204 @@
+{
+  "method": "Source junction plus boundary selected near an already physically traveled path; native controller must still cross both. No traveled distance is inferred.",
+  "initial": {
+    "step": 5160,
+    "simulationSeconds": 1290,
+    "wallMs": 521456.200000003,
+    "position": [
+      -18219.037684201066,
+      3.6380830531440567,
+      17550.525692542866
+    ],
+    "gps": {
+      "lat": 46.53764166643422,
+      "lon": 0.6457808293563452
+    },
+    "datum": "IGN69",
+    "localYIsRelative": true,
+    "altitudeM": 104.83808305314406,
+    "owner": "osm:way:640476461",
+    "face": 150,
+    "tile": "126:1613",
+    "normal": {
+      "x": -0.041145945196894324,
+      "y": 0.9991506494067962,
+      "z": 0.0022340509912178487
+    },
+    "slope": 0.041241578888017334,
+    "supportHeight": 3.3880830531440567,
+    "activity": "driving",
+    "canonicalTile": "126:1613",
+    "command": {
+      "forward": 1,
+      "strafe": -0.000012978745790508846,
+      "brake": false
+    },
+    "distanceM": 9152.478739662914,
+    "stream": {
+      "loaded": 8,
+      "unloaded": 0,
+      "failures": 0,
+      "residentBytes": 74814489,
+      "active": 0,
+      "queued": 0,
+      "errors": {},
+      "timeouts": 0,
+      "cancellations": 7,
+      "generation": 15,
+      "jobs": [
+        {
+          "id": "131:1616",
+          "generation": 2,
+          "state": "CANCELLED",
+          "phase": "installation",
+          "priority": null,
+          "at": 1794860149128
+        },
+        {
+          "id": "131:1617",
+          "generation": 1,
+          "state": "CANCELLED",
+          "phase": "installation",
+          "priority": null,
+          "at": 1794860149128
+        },
+        {
+          "id": "126:1615",
+          "generation": 4,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 402.75408324960455,
+          "at": 1794860174090
+        },
+        {
+          "id": "126:1614",
+          "generation": 3,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 0.21411352136061293,
+          "at": 1794860193699
+        },
+        {
+          "id": "125:1614",
+          "generation": 5,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 1525.8752628005557,
+          "at": 1794860308663
+        },
+        {
+          "id": "125:1615",
+          "generation": 6,
+          "state": "CANCELLED",
+          "phase": "installation",
+          "priority": null,
+          "at": 1794860308664
+        },
+        {
+          "id": "126:1613",
+          "generation": 7,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 1.7325506255097358,
+          "at": 1794860460096
+        },
+        {
+          "id": "127:1614",
+          "generation": 9,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 882.6534432423738,
+          "at": 1794860491504
+        },
+        {
+          "id": "127:1613",
+          "generation": 10,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 719.1568859801149,
+          "at": 1794860515215
+        },
+        {
+          "id": "126:1612",
+          "generation": 12,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 596.0872602626979,
+          "at": 1794860672686
+        },
+        {
+          "id": "127:1612",
+          "generation": 15,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 985.9141967258336,
+          "at": 1794860698448
+        }
+      ]
+    },
+    "origin": {
+      "origin": {
+        "x": -18688,
+        "y": 0,
+        "z": 15360,
+        "revision": 4
+      },
+      "metrics": {
+        "rebases": 4,
+        "frames": 105,
+        "maxLocalCameraM": 2036.1072814087038,
+        "canonicalPhysics": true
+      }
+    },
+    "car": {
+      "position": {
+        "x": -18219.037684201066,
+        "y": 3.3880830531440567,
+        "z": 17550.525692542866
+      },
+      "heading": 0.1751026826328004,
+      "speed": 12.51937784245212,
+      "steering": 0.000004378222565539408,
+      "reason": "",
+      "odometer": 9152.531156763358,
+      "ground": {
+        "height": 3.3880830531440567,
+        "normal": {
+          "x": -0.041145945196894324,
+          "y": 0.9991506494067962,
+          "z": 0.0022340509912178487
+        },
+        "slope": 0.041241578888017334,
+        "datum": "IGN69",
+        "resolutionM": 2,
+        "source": "IGN LHD numeric MNT; 2 m derivative",
+        "quantizationMaxErrorM": 0.005,
+        "tile": "126:1613",
+        "face": 150,
+        "surface": "road",
+        "road": "osm:way:640476461",
+        "supportOwner": "osm:way:640476461",
+        "ok": true,
+        "drivable": true,
+        "width": 7,
+        "speedLimit": 22.2,
+        "directionalGradeLimit": null,
+        "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+      },
+      "active": true
+    }
+  },
+  "junction": {
+    "node": 260139,
+    "degree": 4,
+    "gps": {
+      "lon": 0.6459067979857172,
+      "lat": 46.53721509847034
+    },
+    "distanceAlongOldTraceM": 9200.91859965266,
+    "sourceNearestM": 1.1117735211931015
+  },
+  "boundaryDistanceM": 9208.460859397213,
+  "requiredDistanceM": 100,
+  "score": 7.5422597445540305
+}

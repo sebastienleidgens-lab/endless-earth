@@ -1,0 +1,158 @@
+{
+  "mode": "car",
+  "failure": null,
+  "details": {
+    "route": {
+      "sourceId": "osm:way:306417557",
+      "tags": {
+        "highway": "unclassified"
+      },
+      "sourceLengthM": 1202.882109570384,
+      "start": {
+        "lon": 0.746675336062212,
+        "lat": 46.673630649493795
+      },
+      "projectedPoints": [
+        [
+          527766.7399494032,
+          6621740.617073507
+        ],
+        [
+          527218.532,
+          6621832.636
+        ],
+        [
+          526844.407,
+          6621896.969
+        ],
+        [
+          526635.52,
+          6621932.577
+        ],
+        [
+          526631.898,
+          6621933.203
+        ]
+      ],
+      "localPoints": [
+        {
+          "x": -10515.545903366039,
+          "z": 2412.232098351099
+        },
+        {
+          "x": -11065.488971878432,
+          "z": 2335.7385696769957
+        },
+        {
+          "x": -11440.85005546764,
+          "z": 2282.0268323985483
+        },
+        {
+          "x": -11650.4211711961,
+          "z": 2252.359860135729
+        },
+        {
+          "x": -11654.05529753548,
+          "z": 2251.836922623725
+        }
+      ],
+      "provenance": "Actual imported OSM road, selected for a long gentle corridor; eligibility is not a guarantee that the native car completes it.",
+      "sourceProjectedPoints": [
+        [
+          527817.649,
+          6621731.004
+        ],
+        [
+          527815.998,
+          6621731.328
+        ],
+        [
+          527781.533,
+          6621738.134
+        ],
+        [
+          527218.532,
+          6621832.636
+        ],
+        [
+          526844.407,
+          6621896.969
+        ],
+        [
+          526635.52,
+          6621932.577
+        ],
+        [
+          526631.898,
+          6621933.203
+        ]
+      ],
+      "diagnosticOffset": "Start is 15 m beyond source node 2, on the mapped way; heading follows the same way. First blocked attempt retained separately."
+    },
+    "diagnostic": "Placement before recording on a source road; all movement during the film is input-driven.",
+    "placement": {
+      "x": -10515.545903365903,
+      "z": 2412.232098351099,
+      "y": 36.3763456364387,
+      "heading": -1.7090031237777545,
+      "source": "osm:way:306417557",
+      "position": {
+        "lat": 46.673630649493795,
+        "lon": 0.7466753360622138
+      }
+    },
+    "car": {
+      "clear": {
+        "ok": true
+      },
+      "car": {
+        "position": {
+          "x": -10515.545903365903,
+          "y": 36.3763456364387,
+          "z": 2412.232098351099
+        },
+        "heading": -1.7090031237777545,
+        "speed": 0,
+        "steering": 0,
+        "active": false,
+        "reason": "",
+        "odometer": 0,
+        "braking": false,
+        "metrics": {
+          "steps": 0,
+          "refusals": 0,
+          "maxSpeed": 0
+        },
+        "placed": true
+      }
+    },
+    "driver": {
+      "cursor": 4,
+      "done": true,
+      "distance": 0.2808895131541598,
+      "error": -0.021794310539606565
+    },
+    "finalVehicle": {
+      "position": {
+        "x": -11653.781158943113,
+        "y": 37.96909932418582,
+        "z": 2251.881989493622
+      },
+      "heading": -1.711698129039436,
+      "speed": 0.0410565946996562,
+      "steering": -9.90614864130553e-87,
+      "active": true,
+      "reason": "",
+      "odometer": 1149.4762723750769,
+      "braking": false,
+      "metrics": {
+        "steps": 9436,
+        "refusals": 0,
+        "maxSpeed": 10.8939109399567
+      },
+      "placed": true
+    },
+    "outcome": "route-completed"
+  },
+  "errors": []
+}

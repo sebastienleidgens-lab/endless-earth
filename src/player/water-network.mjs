@@ -4,11 +4,11 @@ const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
  * depth is manufactured here. Rebuild only when the surface owner changes.
  * The conservative lattice carries a checked corridor, not a flow direction.
  */
-export function createWaterNetwork({areas, sample, contains, clear, accesses, step = 4, limit = 998}) {
+export function createWaterNetwork({areas, sample, contains, clear, accesses, step = 4, limit = 998, bounds=[-limit,-limit,limit,limit], deferred = false, accessesReady=()=>true}) {
   let nodes = null,iterator=null,scheduled=false,closed=false;
   const metrics = {builds: 0, nodes: 0, edges: 0, components: 0, ready: false,
-    step, bounds: [-limit, -limit, limit, limit], source: 'loaded OSM surface / estimated game bed',
-    confidence: 'low', bridgePolicy: 'existing clearance refusals preserved', buildMs: 0};
+    step, bounds: [...bounds], source: 'loaded OSM surface / estimated game bed',
+    confidence: 'low', bridgePolicy: 'existing clearance refusals preserved', buildMs: 0,cpuMs:0,maxSliceMs:0,slices:0};
   const key = (x, z) => `${x},${z}`;
   function valid(x, z) {
     if (!contains(x, z) || !clear(x, z)) return false;
@@ -28,15 +28,18 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
   function* buildSteps() {
     const start = performance.now();
     nodes = new Map();
+    // A component with no verified return bank cannot admit any activity.
+    // Wait for bank discovery first, then avoid indexing unreachable water.
+    if(!accesses.length){metrics.reason='no-verified-bank-access';metrics.builds++;metrics.ready=true;metrics.buildMs=performance.now()-start;return;}
     for (const area of areas) {
       const ring = area.rings[0];
-      const minX = Math.max(-limit, Math.min(...ring.map(p => p.x)));
-      const maxX = Math.min(limit, Math.max(...ring.map(p => p.x)));
-      const minZ = Math.max(-limit, Math.min(...ring.map(p => p.z)));
-      const maxZ = Math.min(limit, Math.max(...ring.map(p => p.z)));
+      const minX = Math.max(bounds[0], Math.min(...ring.map(p => p.x)));
+      const maxX = Math.min(bounds[2], Math.max(...ring.map(p => p.x)));
+      const minZ = Math.max(bounds[1], Math.min(...ring.map(p => p.z)));
+      const maxZ = Math.min(bounds[3], Math.max(...ring.map(p => p.z)));
       for (let z = Math.ceil(minZ / step) * step; z <= maxZ; z += step) {
         for (let x = Math.ceil(minX / step) * step; x <= maxX; x += step) {
-          if (nodes.has(key(x, z)) || !valid(x, z)) continue;
+          yield;if (nodes.has(key(x, z)) || !valid(x, z)) continue;
           if (![[1.12,0],[-1.12,0],[0,1.12],[0,-1.12]].every(([dx,dz]) => valid(x+dx,z+dz))) continue;
           nodes.set(key(x,z), {x,z,links:[],parent:null,exit:null,component:-1});
         }
@@ -46,7 +49,7 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
     for (const node of nodes.values()) {
       for (const [dx,dz] of [[step,0],[0,step],[step,step],[-step,step]]) {
         const other = nodes.get(key(node.x+dx,node.z+dz));
-        if (!other || !corridor(node,other)) continue;
+        yield;if (!other || !corridor(node,other)) continue;
         node.links.push(other); other.links.push(node); metrics.edges++;
       }
       yield;
@@ -61,22 +64,31 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
       yield;
     }
     for (let i=0;i<queue.length;i++) {
-      const node=queue[i];
+      yield;const node=queue[i];
       for (const other of node.links) if (!other.exit) {
         other.exit=node.exit;other.parent=node;queue.push(other);
       }
     }
     for (const node of nodes.values()) if (node.component<0) {
       const group=[node], id=metrics.components++;node.component=id;
-      for(let i=0;i<group.length;i++)for(const other of group[i].links)if(other.component<0){other.component=id;group.push(other);}
+      for(let i=0;i<group.length;i++){yield;for(const other of group[i].links)if(other.component<0){other.component=id;group.push(other);}}
     }
     metrics.nodes=nodes.size;metrics.builds++;metrics.ready=true;metrics.buildMs=performance.now()-start;
   }
-  function build(){if(metrics.ready||closed)return;iterator??=buildSteps();while(!iterator.next().done){};}
+  function* hydrateSteps(snapshot){
+    if(metrics.ready||closed)return;const next=new Map(),exits=new Map(accesses.map(a=>[a.id,a]));
+    if(!Array.isArray(snapshot)||snapshot.length>100000)throw Error('Invalid water cache node count');
+    for(const row of snapshot){yield;if(!Number.isFinite(row.x)||!Number.isFinite(row.z)||Math.abs(row.x)>limit||Math.abs(row.z)>limit||!Array.isArray(row.links)||row.links.length>8||next.has(key(row.x,row.z))||row.exit&&!exits.has(row.exit))throw Error('Invalid cached water node');next.set(key(row.x,row.z),{x:row.x,z:row.z,component:row.component,exit:exits.get(row.exit)??null,parent:null,links:[]});}
+    let edges=0;for(const row of snapshot){yield;const node=next.get(key(row.x,row.z));for(const p of row.links){const other=next.get(key(p[0],p[1]));if(!other||distance(node,other)>step*1.415)throw Error('Invalid cached water edge');node.links.push(other);edges++;}if(row.parent){node.parent=next.get(key(...row.parent));if(!node.parent||!node.links.includes(node.parent)||node.parent.exit!==node.exit)throw Error('Invalid cached bank route');}}
+    // Verify each parent chain terminates rather than installing a cyclic return route.
+    const verified=new Set();for(const node of next.values()){yield;const chain=new Set();let n=node;while(n?.parent&&!verified.has(n)){if(chain.has(n))throw Error('Cyclic cached bank route');chain.add(n);n=n.parent;}for(const n of chain)verified.add(n);}
+    nodes=next;deferred=false;metrics.nodes=next.size;metrics.edges=edges/2;metrics.components=new Set([...next.values()].map(n=>n.component)).size;metrics.ready=true;metrics.builds++;metrics.cache=true;
+  }
+  function build(){if(metrics.ready||closed||!accessesReady())return;if(deferred)throw Error('Water cache is still preparing');iterator??=buildSteps();while(!iterator.next().done){};}
   function prepare(){
-    if(metrics.ready||scheduled||closed)return;
+    if(metrics.ready||scheduled||closed||deferred||!accessesReady())return;
     iterator??=buildSteps();scheduled=true;
-    const advance=()=>{if(closed||metrics.ready){scheduled=false;return;}const start=performance.now();while(performance.now()-start<3){if(iterator.next().done){scheduled=false;return;}}setTimeout(advance,16);};
+    const advance=()=>{if(closed||metrics.ready){scheduled=false;return;}const start=performance.now();while(performance.now()-start<3){if(iterator.next().done){scheduled=false;break;}}const slice=performance.now()-start;metrics.cpuMs+=slice;metrics.maxSliceMs=Math.max(metrics.maxSliceMs,slice);metrics.slices++;if(!metrics.ready)setTimeout(advance,8);};
     setTimeout(advance,0);
   }
   function nearby(p, radius=step*2, connected=true) {
@@ -101,7 +113,26 @@ export function createWaterNetwork({areas, sample, contains, clear, accesses, st
     }
     return result;
   }
-  return {metrics,build,prepare,corridor,attach,route,connected:(x,z)=>!!attach({x,z}),
+  function follow(p,heading,maxDistance=2000){
+    if(!metrics.ready){prepare();return {ok:false,reason:'river-loading'};}
+    const start=attach(p);if(!start)return {ok:false,reason:'no-safe-river'};
+    const forward={x:Math.sin(heading),z:Math.cos(heading)},cost=new Map([[start,0]]),parent=new Map(),queue=[start],visited=new Set();let best=start,bestDistance=0;
+    // This is a loaded, checked component. No global graph completion, no
+    // invented flow direction, and a single plan per user request.
+    for(let cursor=0;cursor<queue.length&&cursor<12000;cursor++){
+      const n=queue[cursor];if(visited.has(n))continue;visited.add(n);const d=cost.get(n);if(d>maxDistance)continue;
+      if(d>bestDistance){best=n;bestDistance=d;}
+      for(const other of n.links){if(!other.exit||visited.has(other))continue;
+        const edge=distance(n,other);if(n===start&&((other.x-n.x)*forward.x+(other.z-n.z)*forward.z)/edge<.35)continue;
+        const next=d+edge;if(next>=(cost.get(other)??Infinity))continue;cost.set(other,next);parent.set(other,n);queue.push(other);
+      }
+    }
+    if(bestDistance<12)return {ok:false,reason:'river-direction-required'};
+    const points=[];let node=best;while(node){points.push({x:node.x,z:node.z});node=parent.get(node);}points.reverse();points.unshift({x:p.x,z:p.z});
+    const simplified=[points[0]];for(let i=0;i<points.length-1;){let end=i+1;for(let j=i+2;j<Math.min(points.length,i+10);j++){if(!corridor(points[i],points[j]))break;end=j;}simplified.push(points[end]);i=end;}
+    return {ok:true,points:simplified,distance:bestDistance,source:metrics.source,confidence:'low',flow:'unknown; chosen heading, no upstream/downstream assertion'};
+  }
+  return {metrics,build,prepare,hydrateSteps,release(){deferred=false;},corridor,attach,route,follow,connected:(x,z)=>!!attach({x,z}),
     snapshot(){build();return [...nodes.values()].map(n=>({x:n.x,z:n.z,component:n.component,exit:n.exit?.id??null,links:n.links.map(o=>[o.x,o.z])}));},
     dispose(){closed=true;nodes?.clear();nodes=null;iterator=null;metrics.ready=false;}};
 }

@@ -1,0 +1,321 @@
+{
+  "method": "Isolated Node CPU/index benchmark, no browser or encoder. Exact same existing source tiles, query order and polygons. Elapsed monotonic timings include GC/preemption; not native frame times, GPU work, whole river preparation or game streaming SLA.",
+  "reference": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+  "candidateRuntime": "d162a653785d656e1a6652c4ca406889a1b55c28",
+  "node": "v24.22.1",
+  "tiles": [
+    "120:1613",
+    "121:1613",
+    "120:1614",
+    "121:1614"
+  ],
+  "hashes": {
+    "src/planet/surface.mjs": "d04780360c255d46edff4994aa5ca5421266f99bf66fa976ed62ce98d1e9b9ce",
+    "src/player/water-polygon.mjs": "9a9814ffd3c7ca1e66bd5b80f2a02526f96fc1a95d5ab8852dc0bbe74bd5fa0b",
+    "src/controls/walking.mjs": "568a7a03494a4b3a332ac29294d29edb1610da5a6f4e8fcfa85a5eb100974d1f"
+  },
+  "index": [
+    {
+      "version": "reference",
+      "buildElapsedMs": 1245.1700410000003,
+      "generatorStepsMs": {
+        "n": 66958,
+        "p50": 0.003701999999975669,
+        "p95": 0.04662700000017139,
+        "p99": 0.11823900000013055,
+        "max": 38.1613339999999,
+        "over8": 7,
+        "over50": 0
+      },
+      "queries": [
+        {
+          "run": 0,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 130.86032300000034,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 0,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 119.577722,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 1,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 130.19421699999975,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 1,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 120.85060399999975,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 2,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 113.7886639999997,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 2,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 111.87969800000019,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 3,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 132.2681419999999,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 3,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 117.96226000000024,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 4,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 114.3000149999998,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 4,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 306.53590500000064,
+          "checksum": 2515675,
+          "metrics": null
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "buildElapsedMs": 627.2410960000002,
+      "generatorStepsMs": {
+        "n": 66958,
+        "p50": 0.0021990000000187138,
+        "p95": 0.016284999999697902,
+        "p99": 0.043254000000160886,
+        "max": 129.0614969999997,
+        "over8": 5,
+        "over50": 2
+      },
+      "queries": [
+        {
+          "run": 0,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 107.36624600000005,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 9402,
+            "misses": 47046
+          }
+        },
+        {
+          "run": 0,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 19.032996999999796,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 56436,
+            "misses": 47052
+          }
+        },
+        {
+          "run": 1,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 123.79138499999999,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 56436,
+            "misses": 94092
+          }
+        },
+        {
+          "run": 1,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 30.533691999999974,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 103470,
+            "misses": 94098
+          }
+        },
+        {
+          "run": 2,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 100.08724400000028,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 103470,
+            "misses": 141138
+          }
+        },
+        {
+          "run": 2,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 16.521632999999383,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 150504,
+            "misses": 141144
+          }
+        },
+        {
+          "run": 3,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 125.27881400000024,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 150504,
+            "misses": 188184
+          }
+        },
+        {
+          "run": 3,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 17.117267999999967,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 197538,
+            "misses": 188190
+          }
+        },
+        {
+          "run": 4,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 427.75389499999983,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 197538,
+            "misses": 235230
+          }
+        },
+        {
+          "run": 4,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 35.983290999999554,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 244572,
+            "misses": 235236
+          }
+        }
+      ]
+    }
+  ],
+  "water": {
+    "source": "osm:relation:139244:0",
+    "tags": {
+      "natural": "water",
+      "water": "river"
+    },
+    "vertices": 1764,
+    "samples": 8325,
+    "exactSameMembership": true,
+    "runs": [
+      {
+        "run": 0,
+        "version": "reference",
+        "elapsedMs": 265.567994,
+        "wet": 962
+      },
+      {
+        "run": 0,
+        "version": "candidate",
+        "elapsedMs": 30.953419000000395,
+        "wet": 962
+      },
+      {
+        "run": 1,
+        "version": "candidate",
+        "elapsedMs": 30.251452999999856,
+        "wet": 962
+      },
+      {
+        "run": 1,
+        "version": "reference",
+        "elapsedMs": 267.8648370000001,
+        "wet": 962
+      },
+      {
+        "run": 2,
+        "version": "reference",
+        "elapsedMs": 364.2583990000003,
+        "wet": 962
+      },
+      {
+        "run": 2,
+        "version": "candidate",
+        "elapsedMs": 31.250436000000263,
+        "wet": 962
+      },
+      {
+        "run": 3,
+        "version": "candidate",
+        "elapsedMs": 29.767955000000256,
+        "wet": 962
+      },
+      {
+        "run": 3,
+        "version": "reference",
+        "elapsedMs": 291.9348720000007,
+        "wet": 962
+      },
+      {
+        "run": 4,
+        "version": "reference",
+        "elapsedMs": 294.71001499999966,
+        "wet": 962
+      },
+      {
+        "run": 4,
+        "version": "candidate",
+        "elapsedMs": 57.14162899999974,
+        "wet": 962
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+✔ M26.3 exact 3.883 km source bend has continuous visible road support across the former wedge (22.163374ms)
+✔ adjacent tile copies retain exactly the same road triangles and heights at their shared seam (11.806214ms)
+✔ same walking kernel permits a contour road but still refuses a sustained steep ramp and a cliff (16.37017ms)
+✔ directional road policy preserves private, rail, water and off-road steep refusals (1.872046ms)
+✔ stalled network has a bounded retryable state; a late generation cannot publish a floor (64.599563ms)
+✔ aborted demand immediately frees a decoder slot even if the old network ignores AbortSignal (22.181192ms)
+✔ a cooperative installation deadline aborts, rolls back and frees the serial installation queue (40.524166ms)
+✔ source-route driver advances a passed source vertex instead of circling back after a low-rate overshoot (1.256827ms)
+✔ physical tile installation takes priority over queued optional terrain refinement (4.573472ms)
+✔ route driver turns a source right-angle through 4.8m and 7m corridors using the unchanged swept car hull (40.598878ms)
+✔ slow camera travel does not alternate two source casters at a shadow budget boundary; approach still admits a near tree (0.931583ms)
+✔ a rounded source junction advances past a short intermediate node without steering back toward it (0.302424ms)
+✔ decoded tile waiting behind an installation does not inherit the expired network deadline (44.711419ms)
+✔ river following finishes instead of remaining motionless between the braking and arrival radii (66.540372ms)
+✔ scenic traffic extends its finite source horizon instead of parking forever in the middle of a through road (16.527268ms)
+✔ required fine contact preempts unrelated tile installation and reprioritizes an already queued refinement (1.938648ms)
+✔ bank discovery uses the admitted visible road height, and cannot grant private or missing support (0.391133ms)
+✔ fine binary restores row resets and the exact two source triangle planes (2.403556ms)
+✔ visible fine terrain is its physical triangle support, including the protected boundary profile (177.876132ms)
+✔ a coarse parent retains every required edge vertex beside a finer neighbour (114.637829ms)
+✔ department route respects mode masks, directed topology and actual source lengths (4.301468ms)
+✔ v1 journey migration preserves the original frame and complete legacy payload (1.03405ms)
+✔ source geometry is clipped to loaded metric cells without requiring its distant endpoints (1.11282ms)
+✔ a long river remains indexed in each resident owner without indexing or retaining its distant bounding box (5.04652ms)
+✔ stable shadow source keeps the actual detailed trunk and foliage without promoting every near twig (1868.292561ms)
+✔ access restrictions survive contact overrides; mapped foot roads use the directional kernel (3.112963ms)
+✔ cloned shader customization composes origin helpers once and also converts code added by another owner (1.053679ms)
+✔ preparation yields between bounded slices, preserves step order and cancels work without installing a partial tile (21.897888ms)
+✔ tile residency is committed after asynchronous installation and a stale installation rolls back (24.049567ms)
+✔ incremental graph construction and source-owner eviction retain one-way destination nodes without global rescans (6.428798ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2578.28732

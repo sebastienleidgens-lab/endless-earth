@@ -1,0 +1,396 @@
+{
+  "mode": "boat:5",
+  "failure": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#action-boat')\u001b[22m\n\u001b[2m    - locator resolved to <button title=\"\" hidden=\"\" type=\"button\" id=\"action-boat\">Sortir le bateau</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    43 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+  "details": {
+    "site": {
+      "id": "estimated-bank-302",
+      "dry": {
+        "x": -124.27827931472889,
+        "z": 173.568604106153,
+        "y": -33.142896889585444
+      },
+      "entry": {
+        "x": -124.50419620372989,
+        "z": 173.83592705553093
+      },
+      "water": {
+        "x": -126.3760789983096,
+        "z": 176.05088863609083
+      },
+      "normal": {
+        "x": 0.6454768257171422,
+        "z": -0.7637798553654856
+      },
+      "source": "estimated",
+      "confidence": "low",
+      "outline": 58716178
+    },
+    "component": 5,
+    "depth": "estimated game bed; no real-world navigability claim",
+    "failureState": {
+      "state": {
+        "commit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "profile": "eco",
+        "position": [
+          -11190.653830037169,
+          37.47193367818319,
+          2317.816513412302
+        ],
+        "camera": {
+          "position": [
+            -11185.720044104775,
+            39.49118188205588,
+            2318.5222735808593
+          ],
+          "quaternion": [
+            -0.0673663223750247,
+            0.6525221518467327,
+            0.05841555802554834,
+            0.7525053106387607
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+          "bones": 31,
+          "triangles": 3940,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 1,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 0,
+          "mode": "sitting",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.74
+        },
+        "activity": "running",
+        "network": {
+          "builds": 1,
+          "nodes": 6086,
+          "edges": 22159,
+          "components": 6,
+          "ready": true,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 164538.2999999998,
+          "cpuMs": 52928.200000132434,
+          "maxSliceMs": 45.799999999813735,
+          "slices": 13044
+        },
+        "audio": {
+          "layers": [],
+          "activeSources": [
+            {
+              "asset": "traffic-fs-873189-m11-1",
+              "recording": "fs-873189",
+              "position": {
+                "x": -11190.653830037169,
+                "y": 37.921933678183194,
+                "z": 2317.816513412302
+              },
+              "diffuse": false,
+              "gain": 0.14000000059604645,
+              "retirementGain": 1,
+              "masterGain": 0.38499999046325684,
+              "distance": 5.225215877603629,
+              "refDistance": 5,
+              "panningModel": "equalpower",
+              "reason": "interpreted moving vehicle, existing CC0 motor/rolling excerpt; no local recording",
+              "occlusion": 0,
+              "transition": "playing"
+            }
+          ],
+          "recentEvents": [],
+          "nodes": 10,
+          "voices": 1,
+          "peakVoices": 2,
+          "hrtf": 0,
+          "beds": 0,
+          "budget": {
+            "voices": 8,
+            "hrtf": 1,
+            "beds": 2,
+            "hz": 2
+          },
+          "dropped": 0,
+          "steps": 0,
+          "lastStepAssets": [],
+          "heardBirds": 0,
+          "waterContacts": 0,
+          "waterBufferBytes": 0,
+          "roadEvents": 0,
+          "profile": "eco",
+          "obstructionChecks": 0,
+          "obstructionUpdates": 136,
+          "cacheBytes": 3609600,
+          "peakBytes": 3609600,
+          "cached": 1,
+          "pending": 0,
+          "activeLoads": 0,
+          "loads": 1,
+          "decodes": 1,
+          "deferred": 0,
+          "deniedDecodes": 0,
+          "failures": {},
+          "aircraftEvents": 0,
+          "contextUpdates": 111,
+          "cpuMs": 0,
+          "maxCpuMs": 56.60000000055879,
+          "nearbyChecks": 0,
+          "memoryCells": 6,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": {
+            "version": 1,
+            "geo": {
+              "lat": 46.67447646316448,
+              "lon": 0.7378570527066164
+            },
+            "key": "wgs84-v1:69977:92537",
+            "worldTimeMs": 1782050267015,
+            "localHour": 15.963055555555554,
+            "season": "summer",
+            "timeBasis": "civil",
+            "altitudeM": 138.6702135637083,
+            "habitat": "unknown",
+            "solarAltitude": 0.9849118505468907,
+            "weather": {
+              "cloud": 0.16,
+              "mist": 0,
+              "wind": 0.2033705361890239,
+              "rain": 0,
+              "snow": 0,
+              "gust": 0.47997271700509636,
+              "electric": 0,
+              "temperatureC": 18.529786633813934,
+              "snowCover": 0
+            },
+            "position": {
+              "x": -11188.838985108769,
+              "y": 37.4702135637083,
+              "z": 2318.0761205305344
+            },
+            "water": null,
+            "emitters": [],
+            "ground": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "influences": {},
+            "sources": [],
+            "provenance": {
+              "geography": "IGN/ASP/OSM classifications; mix inferred",
+              "weather": "EarthLife simulated",
+              "region": "temperate-europe"
+            },
+            "fixture": false,
+            "environment": {
+              "revision": 694,
+              "commandRevision": 6,
+              "manual": false
+            },
+            "mixRevision": 692,
+            "listener": {
+              "position": {
+                "x": -11183.905199167928,
+                "y": 39.489477286357996,
+                "z": 2318.7818806400305
+              },
+              "forward": {
+                "x": -0.9741822881890188,
+                "y": -0.1776219219391725,
+                "z": -0.13935322825626453
+              }
+            },
+            "traffic": [],
+            "roof": null
+          }
+        },
+        "climate": {
+          "time": 87.16419999999921,
+          "wind": {
+            "x": 0.18114889633918335,
+            "z": -0.09255703510304689,
+            "speed": 0.2033705361890239,
+            "gust": 0.47997271700509636,
+            "slow": 0.5353949680676203,
+            "turn": -0.009549133514151292,
+            "water": -0.999618843263352
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "world": {
+        "position": [
+          -11190.653830037169,
+          37.47193367818319,
+          2317.816513412302
+        ],
+        "heading": -1.7128788942000444,
+        "birds": {
+          "individuals": 0,
+          "drawCalls": 0,
+          "triangles": 0,
+          "perches": 0,
+          "families": [],
+          "sources": [],
+          "renderSamples": 694,
+          "cpuMs": 0,
+          "maxCpuMs": 13.199999999254942,
+          "clock": 87.16419999999921,
+          "trajectory": "analytic-per-render-frame"
+        },
+        "shadow": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 0,
+          "shadowBytes": 0,
+          "staticTriangles": 0,
+          "treeInstances": 0,
+          "updates": 0,
+          "lastUpdateCpuMs": 0,
+          "maxUpdateCpuMs": 0,
+          "lastShadowCalls": 0,
+          "lastShadowTriangles": 0,
+          "extraPasses": 0,
+          "selectionBuilds": 0,
+          "shadowIndexBytes": 0,
+          "sourceBytes": 5495013,
+          "filter": "none",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0,
+          "character": {
+            "updates": 0,
+            "size": 0,
+            "bytes": 0,
+            "proxies": 0,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 0,
+            "maxCpuMs": 0,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "boat": {
+          "active": false,
+          "heading": 0,
+          "following": false,
+          "metrics": {
+            "plans": 0,
+            "lateralError": 0,
+            "maxLateralError": 0,
+            "stops": 3
+          }
+        },
+        "planet": {
+          "state": "ready",
+          "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+          "stream": {
+            "loaded": 3,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 965191,
+            "active": 0,
+            "queued": 0
+          },
+          "render": {
+            "tiles": 3,
+            "features": 1153,
+            "triangles": 6144,
+            "trees": 1184,
+            "disposed": 0,
+            "batches": 168,
+            "maxBatchMs": 85.19999999925494
+          },
+          "graph": {
+            "foot": {
+              "features": 262,
+              "nodes": 2541,
+              "edges": 5176,
+              "refused": 108,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 262,
+              "nodes": 1724,
+              "edges": 3468,
+              "refused": 180,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 262,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 262,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 4647,
+            "refusals": 0,
+            "maxSpeed": 10.528751963692569
+          },
+          "maxInstallMs": 244.5,
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0,
+            "maxCpuMs": 8.599999999627471
+          }
+        }
+      }
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,74 @@
+progress [ -15716.481798880879, -22.702729175921117, -30284.87282849456 ] 127:1624 
+{
+  from: 'North',
+  to: 'car-80km',
+  mode: 'car',
+  success: false,
+  distance: 2077.2803386363353,
+  steps: 1594,
+  stop: {
+    height: -25.544202159611267,
+    admission: {
+      height: -25.544202159611267,
+      normal: [Object],
+      slope: 0.2639443577137242,
+      datum: 'IGN69',
+      resolutionM: 2,
+      source: 'IGN LHD numeric MNT; 2 m derivative',
+      quantizationMaxErrorM: 0.005,
+      tile: '127:1624',
+      face: 313,
+      surface: 'road',
+      road: 'osm:way:1275194933',
+      supportOwner: 'osm:way:1275194933',
+      ok: true,
+      drivable: false,
+      width: 4.8,
+      speedLimit: 22.2,
+      directionalGradeLimit: 0.7,
+      provenance: 'OSM road corridor + declared regional access policy; inferred width when absent'
+    },
+    clear: true,
+    collision: {
+      surface: 'planet-terrain',
+      obstacle: null,
+      access: [Object],
+      building: null,
+      collider: null
+    },
+    gps: { lat: 46.96759854444992, lon: 0.6785621207706355 }
+  },
+  car: {
+    position: {
+      x: -15716.122340045278,
+      y: -25.544202159611267,
+      z: -30312.273968164987
+    },
+    heading: 3.221457283075678,
+    speed: 0,
+    steering: -0.00111086508340202,
+    reason: '',
+    odometer: 2077.3019218942864,
+    ground: {
+      height: -25.544202159611267,
+      normal: [Object],
+      slope: 0.2639443577137242,
+      datum: 'IGN69',
+      resolutionM: 2,
+      source: 'IGN LHD numeric MNT; 2 m derivative',
+      quantizationMaxErrorM: 0.005,
+      tile: '127:1624',
+      face: 313,
+      surface: 'road',
+      road: 'osm:way:1275194933',
+      supportOwner: 'osm:way:1275194933',
+      ok: true,
+      drivable: true,
+      width: 4.8,
+      speedLimit: 22.2,
+      directionalGradeLimit: null,
+      provenance: 'OSM road corridor + declared regional access policy; inferred width when absent'
+    },
+    active: true
+  }
+}

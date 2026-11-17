@@ -1,0 +1,3599 @@
+{
+  "method": "Paired stationary render+gl.finish, 4 warmup and 16 samples, Chromium SwiftShader. Simulation held; excludes active shadow refresh, physics, animation, audio, input and streaming. These figures cannot close the <=5% active-frame or 60/30 FPS targets. Reference and candidate served separately with the same diagnostic API.",
+  "rows": [
+    {
+      "version": "reference",
+      "build": null,
+      "profile": "eco",
+      "scene": {
+        "name": "field",
+        "x": -37,
+        "z": 190,
+        "yaw": 0.3,
+        "pitch": 0.12,
+        "zoom": 5
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": null,
+        "profile": "eco",
+        "position": [
+          -37,
+          -10.748750091241874,
+          190
+        ],
+        "camera": {
+          "position": [
+            -35.53316574324863,
+            -8.000294501571531,
+            194.74187638403998
+          ],
+          "quaternion": [
+            -0.10746125552639021,
+            0.14855295183902825,
+            0.016241180286799137,
+            0.982914199268428
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v7-articulated-clips",
+          "bones": 31,
+          "triangles": 3940,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 1,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 1.7763568394002505e-15,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 0,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 211.80000000074506,
+          "maxSliceMs": 24.59999999962747,
+          "slices": 50
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 11.897400000000372,
+          "wind": {
+            "x": 0.13527992053249827,
+            "z": -0.06480864697055734,
+            "speed": 0.1498266917123204,
+            "gust": 0.28628404462835255,
+            "slow": 0.43819325312623925,
+            "turn": 0.02012061840769329,
+            "water": -0.0706464488975602
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 5.700000001117587,
+          "frame": 59,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 2.800000000745058,
+          "frame": 60,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 7.300000000745058,
+          "frame": 61,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 9.899999998509884,
+          "frame": 62,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 3.699999999254942,
+          "frame": 63,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 11.799999998882413,
+          "frame": 64,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 9.300000000745058,
+          "frame": 65,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 9.299999998882413,
+          "frame": 66,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 5.900000000372529,
+          "frame": 67,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 9.800000000745058,
+          "frame": 68,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 12.600000001490116,
+          "frame": 69,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 16.899999998509884,
+          "frame": 70,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 6.400000000372529,
+          "frame": 71,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 12.300000000745058,
+          "frame": 72,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 9.399999998509884,
+          "frame": 73,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 8.5,
+          "frame": 74,
+          "calls": 156,
+          "triangles": 339001,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        }
+      ],
+      "medianMs": 9.299999999813735,
+      "p95Ms": 16.899999998509884,
+      "buffers": {
+        "attributeBuffers": 1025,
+        "attributeBytes": 41930726,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "reference",
+      "build": null,
+      "profile": "eco",
+      "scene": {
+        "name": "forest",
+        "x": -620,
+        "z": -300,
+        "yaw": 0.7,
+        "pitch": 0.12,
+        "zoom": 4.8
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": null,
+        "profile": "eco",
+        "position": [
+          -620,
+          -32.86000061035156,
+          -300
+        ],
+        "camera": {
+          "position": [
+            -616.929992560436,
+            -30.135382015393095,
+            -296.3551587428094
+          ],
+          "quaternion": [
+            -0.10395873106198647,
+            0.34079152470363205,
+            0.03794789912403757,
+            0.9336025256383078
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v7-articulated-clips",
+          "bones": 31,
+          "triangles": 3940,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 1,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 0,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 7512.6000000517815,
+          "maxSliceMs": 104.40000000037253,
+          "slices": 1828
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 17.67040000000038,
+          "wind": {
+            "x": 0.08914623697032246,
+            "z": -0.04457086159471708,
+            "speed": 0.09961735735744044,
+            "gust": 0,
+            "slow": 0.4150723223226685,
+            "turn": 0.01964596479955754,
+            "water": -0.9982823971882337
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 2.600000001490116,
+          "frame": 98,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 2.300000000745058,
+          "frame": 99,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 2.5,
+          "frame": 100,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 2.700000001117587,
+          "frame": 101,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 4.700000001117587,
+          "frame": 102,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 14.400000000372529,
+          "frame": 103,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 2.900000000372529,
+          "frame": 104,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 7.099999999627471,
+          "frame": 105,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 6.100000001490116,
+          "frame": 106,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 4.300000000745058,
+          "frame": 107,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 6.200000001117587,
+          "frame": 108,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 2.399999998509884,
+          "frame": 109,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 4.400000000372529,
+          "frame": 110,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 2.099999999627471,
+          "frame": 111,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 2.699999999254942,
+          "frame": 112,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        },
+        {
+          "ms": 5.100000001490116,
+          "frame": 113,
+          "calls": 42,
+          "triangles": 83214,
+          "points": 0,
+          "lines": 0,
+          "geometries": 210,
+          "textures": 16
+        }
+      ],
+      "medianMs": 3.6000000005587935,
+      "p95Ms": 14.400000000372529,
+      "buffers": {
+        "attributeBuffers": 1005,
+        "attributeBytes": 41674910,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "reference",
+      "build": null,
+      "profile": "balanced",
+      "scene": {
+        "name": "field",
+        "x": -37,
+        "z": 190,
+        "yaw": 0.3,
+        "pitch": 0.12,
+        "zoom": 5
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": null,
+        "profile": "balanced",
+        "position": [
+          -37,
+          -10.748750091241874,
+          190
+        ],
+        "camera": {
+          "position": [
+            -35.53352234030879,
+            -8.000561543353648,
+            194.7407236026876
+          ],
+          "quaternion": [
+            -0.10746125552639046,
+            0.14855295183902847,
+            0.016241180286799203,
+            0.982914199268428
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v7-articulated-clips",
+          "bones": 31,
+          "triangles": 7880,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 0,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 1.7763568394002505e-15,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 325,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 11049.700000045821,
+          "maxSliceMs": 104.40000000037253,
+          "slices": 2685
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 20.5286999999974,
+          "wind": {
+            "x": 0.08640014623595095,
+            "z": -0.04220205112042923,
+            "speed": 0.0960757010773138,
+            "gust": 0.005107930116401286,
+            "slow": 0.3969952665798133,
+            "turn": 0.019283130536631173,
+            "water": -0.6746100465724575
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 12.599999999627471,
+          "frame": 129,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 6.100000001490116,
+          "frame": 130,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 11.299999998882413,
+          "frame": 131,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 2.699999999254942,
+          "frame": 132,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 11.5,
+          "frame": 133,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 6.400000000372529,
+          "frame": 134,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 3.299999998882413,
+          "frame": 135,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 2.599999999627471,
+          "frame": 136,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 5.800000000745058,
+          "frame": 137,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 9.900000000372529,
+          "frame": 138,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 17.699999999254942,
+          "frame": 139,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 3.399999998509884,
+          "frame": 140,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 3.400000000372529,
+          "frame": 141,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 3.5,
+          "frame": 142,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 7.099999999627471,
+          "frame": 143,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        },
+        {
+          "ms": 4.800000000745058,
+          "frame": 144,
+          "calls": 159,
+          "triangles": 343131,
+          "points": 0,
+          "lines": 0,
+          "geometries": 226,
+          "textures": 20
+        }
+      ],
+      "medianMs": 5.950000001117587,
+      "p95Ms": 17.699999999254942,
+      "buffers": {
+        "attributeBuffers": 1023,
+        "attributeBytes": 42109542,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "reference",
+      "build": null,
+      "profile": "balanced",
+      "scene": {
+        "name": "forest",
+        "x": -620,
+        "z": -300,
+        "yaw": 0.7,
+        "pitch": 0.12,
+        "zoom": 4.8
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": null,
+        "profile": "balanced",
+        "position": [
+          -620,
+          -32.86000061035156,
+          -300
+        ],
+        "camera": {
+          "position": [
+            -616.9299925698838,
+            -30.135382018700195,
+            -296.35515875402626
+          ],
+          "quaternion": [
+            -0.10395873106198615,
+            0.3407915247036318,
+            0.03794789912403741,
+            0.933602525638308
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v7-articulated-clips",
+          "bones": 31,
+          "triangles": 7880,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 0,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 4034,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 22692.000000087544,
+          "maxSliceMs": 104.40000000037253,
+          "slices": 4818
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 26.50849999999814,
+          "wind": {
+            "x": 0.09622489806967482,
+            "z": -0.0457763472796315,
+            "speed": 0.10641901478376921,
+            "gust": 0,
+            "slow": 0.44341256159903836,
+            "turn": 0.018216353155670627,
+            "water": 0.7669725140107232
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 3.199999999254942,
+          "frame": 185,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 8.599999999627471,
+          "frame": 186,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 4.700000001117587,
+          "frame": 187,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 3.100000001490116,
+          "frame": 188,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 1.900000000372529,
+          "frame": 189,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 2.300000000745058,
+          "frame": 190,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 2.099999999627471,
+          "frame": 191,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 7.699999999254942,
+          "frame": 192,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 8.800000000745058,
+          "frame": 193,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 5.099999999627471,
+          "frame": 194,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 5.5,
+          "frame": 195,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 2.699999999254942,
+          "frame": 196,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 1.800000000745058,
+          "frame": 197,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 1.700000001117587,
+          "frame": 198,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 2.800000000745058,
+          "frame": 199,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        },
+        {
+          "ms": 4.599999999627471,
+          "frame": 200,
+          "calls": 47,
+          "triangles": 92596,
+          "points": 0,
+          "lines": 0,
+          "geometries": 227,
+          "textures": 20
+        }
+      ],
+      "medianMs": 3.150000000372529,
+      "p95Ms": 8.800000000745058,
+      "buffers": {
+        "attributeBuffers": 1012,
+        "attributeBytes": 42352738,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "reference",
+      "build": null,
+      "profile": "quality",
+      "scene": {
+        "name": "field",
+        "x": -37,
+        "z": 190,
+        "yaw": 0.3,
+        "pitch": 0.12,
+        "zoom": 5
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": null,
+        "profile": "quality",
+        "position": [
+          -37,
+          -10.748750091241874,
+          190
+        ],
+        "camera": {
+          "position": [
+            -35.53313536663652,
+            -8.000271753698545,
+            194.74197458336886
+          ],
+          "quaternion": [
+            -0.10746125552639013,
+            0.14855295183902836,
+            0.016241180286799137,
+            0.982914199268428
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v7-articulated-clips",
+          "bones": 31,
+          "triangles": 7880,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 0,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 1.7763568394002505e-15,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 5352,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 27309.30000005476,
+          "maxSliceMs": 104.40000000037253,
+          "slices": 5654
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 30.574199999997393,
+          "wind": {
+            "x": 0.10124684230628589,
+            "z": -0.056593513285904666,
+            "speed": 0.11597624063432045,
+            "gust": 0,
+            "slow": 0.48323433597633525,
+            "turn": 0.017241734275228793,
+            "water": 0.9206506734200228
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 3.400000000372529,
+          "frame": 221,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 9.900000000372529,
+          "frame": 222,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 3.400000000372529,
+          "frame": 223,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 6.200000001117587,
+          "frame": 224,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 4.800000000745058,
+          "frame": 225,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 5.900000000372529,
+          "frame": 226,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 8.699999999254942,
+          "frame": 227,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 6.200000001117587,
+          "frame": 228,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 7.099999999627471,
+          "frame": 229,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.400000000372529,
+          "frame": 230,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 4.599999999627471,
+          "frame": 231,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 6.099999999627471,
+          "frame": 232,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.300000000745058,
+          "frame": 233,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.400000000372529,
+          "frame": 234,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.5,
+          "frame": 235,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.900000000372529,
+          "frame": 236,
+          "calls": 161,
+          "triangles": 344260,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        }
+      ],
+      "medianMs": 4.7000000001862645,
+      "p95Ms": 9.900000000372529,
+      "buffers": {
+        "attributeBuffers": 1032,
+        "attributeBytes": 43658326,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "reference",
+      "build": null,
+      "profile": "quality",
+      "scene": {
+        "name": "forest",
+        "x": -620,
+        "z": -300,
+        "yaw": 0.7,
+        "pitch": 0.12,
+        "zoom": 4.8
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": null,
+        "profile": "quality",
+        "position": [
+          -620,
+          -32.86000061035156,
+          -300
+        ],
+        "camera": {
+          "position": [
+            -616.9299925620707,
+            -30.13538201596531,
+            -296.3551587447502
+          ],
+          "quaternion": [
+            -0.1039587310619861,
+            0.34079152470363316,
+            0.037947899124037565,
+            0.9336025256383075
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v7-articulated-clips",
+          "bones": 31,
+          "triangles": 7880,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 0,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 7700,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 36944.40000009723,
+          "maxSliceMs": 104.40000000037253,
+          "slices": 7288
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 36.33189999999664,
+          "wind": {
+            "x": 0.0970598913345438,
+            "z": -0.05276971214728615,
+            "speed": 0.11047555575546558,
+            "gust": 0.00390656538023082,
+            "slow": 0.4577755481506232,
+            "turn": 0.015514308810976919,
+            "water": -0.3754062462549721
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 2.199999999254942,
+          "frame": 281,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 1.5,
+          "frame": 282,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.5,
+          "frame": 283,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 1.900000000372529,
+          "frame": 284,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.5,
+          "frame": 285,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.599999999627471,
+          "frame": 286,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 5,
+          "frame": 287,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 8.200000001117587,
+          "frame": 288,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 1.300000000745058,
+          "frame": 289,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.800000000745058,
+          "frame": 290,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 1.800000000745058,
+          "frame": 291,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.199999999254942,
+          "frame": 292,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.200000001117587,
+          "frame": 293,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.199999999254942,
+          "frame": 294,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 1.800000000745058,
+          "frame": 295,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        },
+        {
+          "ms": 2.300000000745058,
+          "frame": 296,
+          "calls": 51,
+          "triangles": 96268,
+          "points": 0,
+          "lines": 0,
+          "geometries": 238,
+          "textures": 20
+        }
+      ],
+      "medianMs": 2.2000000001862645,
+      "p95Ms": 8.200000001117587,
+      "buffers": {
+        "attributeBuffers": 1012,
+        "attributeBytes": 43501246,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "candidate",
+      "build": {
+        "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "builtAt": "2026-11-15T21:44:58.834Z",
+        "root": "/workspace/endless-earth",
+        "method": "Compiled instrumented runtime; exact native capture build."
+      },
+      "profile": "eco",
+      "scene": {
+        "name": "field",
+        "x": -37,
+        "z": 190,
+        "yaw": 0.3,
+        "pitch": 0.12,
+        "zoom": 5
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "profile": "eco",
+        "position": [
+          -37,
+          -10.748750091241874,
+          190
+        ],
+        "camera": {
+          "position": [
+            -35.53318812255898,
+            -8.00031126057374,
+            194.74180403781358
+          ],
+          "quaternion": [
+            -0.10746125552639,
+            0.14855295183902803,
+            0.016241180286799082,
+            0.982914199268428
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+          "bones": 31,
+          "triangles": 3940,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 1,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 1.7763568394002505e-15,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 0,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 0,
+          "maxSliceMs": 0,
+          "slices": 0
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 11.457199999999258,
+          "wind": {
+            "x": 0.13163990249023946,
+            "z": -0.06334203535235484,
+            "speed": 0.14592693281045901,
+            "gust": 0.25671035579906026,
+            "slow": 0.44116715544085666,
+            "turn": 0.020144204083167878,
+            "water": 0.0481300519664926
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 11.400000000372529,
+          "frame": 62,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 11,
+          "frame": 63,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 10.199999999254942,
+          "frame": 64,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 5.799999998882413,
+          "frame": 65,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 8.300000000745058,
+          "frame": 66,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 12.600000001490116,
+          "frame": 67,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 10.200000001117587,
+          "frame": 68,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 13.299999998882413,
+          "frame": 69,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 13.5,
+          "frame": 70,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 11.400000000372529,
+          "frame": 71,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 8.400000000372529,
+          "frame": 72,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 14.5,
+          "frame": 73,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 10.099999999627471,
+          "frame": 74,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 11.099999999627471,
+          "frame": 75,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 9,
+          "frame": 76,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        },
+        {
+          "ms": 11.400000000372529,
+          "frame": 77,
+          "calls": 188,
+          "triangles": 436342,
+          "points": 0,
+          "lines": 0,
+          "geometries": 240,
+          "textures": 16
+        }
+      ],
+      "medianMs": 11.049999999813735,
+      "p95Ms": 14.5,
+      "buffers": {
+        "attributeBuffers": 1816,
+        "attributeBytes": 44145854,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "candidate",
+      "build": {
+        "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "builtAt": "2026-11-15T21:44:58.834Z",
+        "root": "/workspace/endless-earth",
+        "method": "Compiled instrumented runtime; exact native capture build."
+      },
+      "profile": "eco",
+      "scene": {
+        "name": "forest",
+        "x": -620,
+        "z": -300,
+        "yaw": 0.7,
+        "pitch": 0.12,
+        "zoom": 4.8
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "profile": "eco",
+        "position": [
+          -620,
+          -32.86000061035156,
+          -300
+        ],
+        "camera": {
+          "position": [
+            -616.9299925667073,
+            -30.135382017588302,
+            -296.35515875025504
+          ],
+          "quaternion": [
+            -0.10395873106198629,
+            0.34079152470363694,
+            0.03794789912403812,
+            0.933602525638306
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+          "bones": 31,
+          "triangles": 3940,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 1,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 0,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 6484.500000033528,
+          "maxSliceMs": 39.59999999962747,
+          "slices": 1632
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 17.156,
+          "wind": {
+            "x": 0.08797468557097544,
+            "z": -0.04432010977757707,
+            "speed": 0.0984673137639634,
+            "gust": 0,
+            "slow": 0.41028047401651413,
+            "turn": 0.01970176764443818,
+            "water": -0.9967801747582279
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 2.800000000745058,
+          "frame": 99,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.5,
+          "frame": 100,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.700000001117587,
+          "frame": 101,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 7.099999999627471,
+          "frame": 102,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 3.300000000745058,
+          "frame": 103,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.899999998509884,
+          "frame": 104,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.300000000745058,
+          "frame": 105,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.299999998882413,
+          "frame": 106,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.299999998882413,
+          "frame": 107,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.300000000745058,
+          "frame": 108,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.800000000745058,
+          "frame": 109,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.900000000372529,
+          "frame": 110,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.399999998509884,
+          "frame": 111,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.699999999254942,
+          "frame": 112,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 2.799999998882413,
+          "frame": 113,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        },
+        {
+          "ms": 8.300000000745058,
+          "frame": 114,
+          "calls": 75,
+          "triangles": 185245,
+          "points": 0,
+          "lines": 63,
+          "geometries": 252,
+          "textures": 16
+        }
+      ],
+      "medianMs": 2.75,
+      "p95Ms": 8.300000000745058,
+      "buffers": {
+        "attributeBuffers": 2686,
+        "attributeBytes": 46354750,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "candidate",
+      "build": {
+        "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "builtAt": "2026-11-15T21:44:58.834Z",
+        "root": "/workspace/endless-earth",
+        "method": "Compiled instrumented runtime; exact native capture build."
+      },
+      "profile": "balanced",
+      "scene": {
+        "name": "field",
+        "x": -37,
+        "z": 190,
+        "yaw": 0.3,
+        "pitch": 0.12,
+        "zoom": 5
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "profile": "balanced",
+        "position": [
+          -37,
+          -10.748750091241874,
+          190
+        ],
+        "camera": {
+          "position": [
+            -35.5335950884389,
+            -8.000616021621926,
+            194.74048842776
+          ],
+          "quaternion": [
+            -0.10746125552639024,
+            0.14855295183902853,
+            0.016241180286799176,
+            0.982914199268428
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+          "bones": 31,
+          "triangles": 7880,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 0,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 1.7763568394002505e-15,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 817,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 10551.200000029057,
+          "maxSliceMs": 51.399999998509884,
+          "slices": 2631
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 20.156300000000744,
+          "wind": {
+            "x": 0.08855979378974116,
+            "z": -0.043053100531958675,
+            "speed": 0.09838038177810814,
+            "gust": 0.008207289447991845,
+            "slow": 0.40458351926758923,
+            "turn": 0.01933559480761117,
+            "water": -0.7452997475885496
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 22.200000001117587,
+          "frame": 131,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 4.800000000745058,
+          "frame": 132,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 31.59999999962747,
+          "frame": 133,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 15.299999998882413,
+          "frame": 134,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 5.699999999254942,
+          "frame": 135,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 3.600000001490116,
+          "frame": 136,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 14,
+          "frame": 137,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 3.600000001490116,
+          "frame": 138,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 11.400000000372529,
+          "frame": 139,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 17.300000000745058,
+          "frame": 140,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 8.900000000372529,
+          "frame": 141,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 8.400000000372529,
+          "frame": 142,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 9.300000000745058,
+          "frame": 143,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 15.699999999254942,
+          "frame": 144,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 7.800000000745058,
+          "frame": 145,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        },
+        {
+          "ms": 7.800000000745058,
+          "frame": 146,
+          "calls": 203,
+          "triangles": 499864,
+          "points": 0,
+          "lines": 56,
+          "geometries": 266,
+          "textures": 20
+        }
+      ],
+      "medianMs": 9.100000000558794,
+      "p95Ms": 31.59999999962747,
+      "buffers": {
+        "attributeBuffers": 2729,
+        "attributeBytes": 46519264,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "candidate",
+      "build": {
+        "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "builtAt": "2026-11-15T21:44:58.834Z",
+        "root": "/workspace/endless-earth",
+        "method": "Compiled instrumented runtime; exact native capture build."
+      },
+      "profile": "balanced",
+      "scene": {
+        "name": "forest",
+        "x": -620,
+        "z": -300,
+        "yaw": 0.7,
+        "pitch": 0.12,
+        "zoom": 4.8
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "profile": "balanced",
+        "position": [
+          -620,
+          -32.86000061035156,
+          -300
+        ],
+        "camera": {
+          "position": [
+            -616.9299926663954,
+            -30.135382052482893,
+            -296.35515886860884
+          ],
+          "quaternion": [
+            -0.10395873106198653,
+            0.34079152470362983,
+            0.03794789912403731,
+            0.9336025256383088
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+          "bones": 31,
+          "triangles": 7880,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 0,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 4402,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 23133.20000012219,
+          "maxSliceMs": 86.5,
+          "slices": 4820
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 25.679599999999628,
+          "wind": {
+            "x": 0.09540897943925754,
+            "z": -0.04519625443985937,
+            "speed": 0.10542548712830163,
+            "gust": 0,
+            "slow": 0.4392728630345901,
+            "turn": 0.01839001753561198,
+            "water": 0.6054305304555313
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 7.099999999627471,
+          "frame": 189,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 7.5,
+          "frame": 190,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 7.800000000745058,
+          "frame": 191,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 5.800000000745058,
+          "frame": 192,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 9.199999999254942,
+          "frame": 193,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 14.899999998509884,
+          "frame": 194,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 10.699999999254942,
+          "frame": 195,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 13.800000000745058,
+          "frame": 196,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 3.5,
+          "frame": 197,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 7.100000001490116,
+          "frame": 198,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 11,
+          "frame": 199,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 6.800000000745058,
+          "frame": 200,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 10.299999998882413,
+          "frame": 201,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 4.599999999627471,
+          "frame": 202,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 3.099999999627471,
+          "frame": 203,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        },
+        {
+          "ms": 3.099999999627471,
+          "frame": 204,
+          "calls": 81,
+          "triangles": 189585,
+          "points": 0,
+          "lines": 63,
+          "geometries": 270,
+          "textures": 20
+        }
+      ],
+      "medianMs": 7.300000000745058,
+      "p95Ms": 14.899999998509884,
+      "buffers": {
+        "attributeBuffers": 2725,
+        "attributeBytes": 46676818,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "candidate",
+      "build": {
+        "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "builtAt": "2026-11-15T21:44:58.834Z",
+        "root": "/workspace/endless-earth",
+        "method": "Compiled instrumented runtime; exact native capture build."
+      },
+      "profile": "quality",
+      "scene": {
+        "name": "field",
+        "x": -37,
+        "z": 190,
+        "yaw": 0.3,
+        "pitch": 0.12,
+        "zoom": 5
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "profile": "quality",
+        "position": [
+          -37,
+          -10.748750091241874,
+          190
+        ],
+        "camera": {
+          "position": [
+            -35.536508833818175,
+            -8.002798013134605,
+            194.73106908106865
+          ],
+          "quaternion": [
+            -0.10746125552639033,
+            0.14855295183902845,
+            0.016241180286799183,
+            0.982914199268428
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+          "bones": 31,
+          "triangles": 7880,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 0,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 1.7763568394002505e-15,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 5280,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 27299.700000125915,
+          "maxSliceMs": 86.5,
+          "slices": 5473
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 26.81790000000037,
+          "wind": {
+            "x": 0.09439211394939115,
+            "z": -0.05069559585463366,
+            "speed": 0.10714278973667178,
+            "gust": 8.894546013624005e-14,
+            "slow": 0.44642829056940797,
+            "turn": 0.01814936509816848,
+            "water": 0.8178402079289453
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 11.600000001490116,
+          "frame": 221,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 3.5,
+          "frame": 222,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 9.800000000745058,
+          "frame": 223,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 12.199999999254942,
+          "frame": 224,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 5.800000000745058,
+          "frame": 225,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 7.199999999254942,
+          "frame": 226,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 6.800000000745058,
+          "frame": 227,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 10.200000001117587,
+          "frame": 228,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 24.300000000745058,
+          "frame": 229,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 12.900000000372529,
+          "frame": 230,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 3.199999999254942,
+          "frame": 231,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 2.900000000372529,
+          "frame": 232,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 13.5,
+          "frame": 233,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 4.5,
+          "frame": 234,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 15.900000000372529,
+          "frame": 235,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        },
+        {
+          "ms": 10.599999999627471,
+          "frame": 236,
+          "calls": 206,
+          "triangles": 501477,
+          "points": 0,
+          "lines": 56,
+          "geometries": 277,
+          "textures": 20
+        }
+      ],
+      "medianMs": 10.000000000931323,
+      "p95Ms": 24.300000000745058,
+      "buffers": {
+        "attributeBuffers": 2721,
+        "attributeBytes": 47653810,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    },
+    {
+      "version": "candidate",
+      "build": {
+        "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "builtAt": "2026-11-15T21:44:58.834Z",
+        "root": "/workspace/endless-earth",
+        "method": "Compiled instrumented runtime; exact native capture build."
+      },
+      "profile": "quality",
+      "scene": {
+        "name": "forest",
+        "x": -620,
+        "z": -300,
+        "yaw": 0.7,
+        "pitch": 0.12,
+        "zoom": 4.8
+      },
+      "viewport": [
+        480,
+        320
+      ],
+      "dpr": 1,
+      "state": {
+        "commit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+        "profile": "quality",
+        "position": [
+          -620,
+          -32.86000061035156,
+          -300
+        ],
+        "camera": {
+          "position": [
+            -616.9299925852289,
+            -30.135382024071564,
+            -296.35515877224464
+          ],
+          "quaternion": [
+            -0.10395873106198626,
+            0.34079152470363283,
+            0.0379478991240376,
+            0.9336025256383076
+          ],
+          "fov": 55
+        },
+        "walker": {
+          "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+          "bones": 31,
+          "triangles": 7880,
+          "drawCalls": 1,
+          "imageTextures": 0,
+          "boneTextureBytes": 1984,
+          "lod": 0,
+          "lodTriangles": [
+            7880,
+            3940
+          ],
+          "phase": 0.6,
+          "speed": 0,
+          "contacts": 0,
+          "soleError": 0,
+          "plantError": 0,
+          "mode": "idle",
+          "plantSlideM": 0,
+          "swingIK": 0,
+          "pelvisY": 0.87
+        },
+        "activity": "walking",
+        "network": {
+          "builds": 0,
+          "nodes": 0,
+          "edges": 8528,
+          "components": 0,
+          "ready": false,
+          "step": 4,
+          "bounds": [
+            -998,
+            -998,
+            998,
+            998
+          ],
+          "source": "loaded OSM surface / estimated game bed",
+          "confidence": "low",
+          "bridgePolicy": "existing clearance refusals preserved",
+          "buildMs": 0,
+          "cpuMs": 38360.10000017844,
+          "maxSliceMs": 86.5,
+          "slices": 7515
+        },
+        "audio": {
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "climate": {
+          "time": 32.606,
+          "wind": {
+            "x": 0.10076271805657065,
+            "z": -0.05173696914999053,
+            "speed": 0.11324342115049892,
+            "gust": 7.165265509462191e-7,
+            "slow": 0.47184712238482074,
+            "turn": 0.01667817894874979,
+            "water": 0.5819772101033704
+          },
+          "date": "2026-06-21T13:57:47.015Z"
+        },
+        "captureTransport": "base64-sha256-v3",
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "interactions": {
+          "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+          "objects": 3,
+          "colliders": 14,
+          "sweeps": 0,
+          "rejected": 0,
+          "last": null
+        }
+      },
+      "samples": [
+        {
+          "ms": 2.599999999627471,
+          "frame": 283,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 2.700000001117587,
+          "frame": 284,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 2.899999998509884,
+          "frame": 285,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 2.599999999627471,
+          "frame": 286,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 2.699999999254942,
+          "frame": 287,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 5.099999999627471,
+          "frame": 288,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 4.900000000372529,
+          "frame": 289,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 3.5,
+          "frame": 290,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 11.5,
+          "frame": 291,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 6.599999999627471,
+          "frame": 292,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 5.5,
+          "frame": 293,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 3.599999999627471,
+          "frame": 294,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 10,
+          "frame": 295,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 9.699999999254942,
+          "frame": 296,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 7.900000000372529,
+          "frame": 297,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        },
+        {
+          "ms": 4.900000000372529,
+          "frame": 298,
+          "calls": 85,
+          "triangles": 193257,
+          "points": 0,
+          "lines": 63,
+          "geometries": 281,
+          "textures": 20
+        }
+      ],
+      "medianMs": 4.900000000372529,
+      "p95Ms": 11.5,
+      "buffers": {
+        "attributeBuffers": 2725,
+        "attributeBytes": 47825326,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      },
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,584 @@
+{
+  "method": "Same intended source stations, requested date/seed/profile/framebuffer and independent fresh-browser setup; real before-states compared, not asserted identical from input labels. Shader/geometry changes are intentional, atmospheric sensitivity and shadow/camera differences remain visible. No<=5percent performance or artistic acceptance inferred from these captures.",
+  "pairs": [
+    {
+      "scene": "forest-birds-shadows",
+      "profile": "balanced",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.1787122745697525,
+          "candidate": 0.23097050161531496
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 29,
+          "candidate": 30
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "forest-birds-shadows",
+      "profile": "eco",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.12026195246816943,
+          "candidate": 0.25219422551980814
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 30,
+          "candidate": 26
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "forest-birds-shadows",
+      "profile": "quality",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.14768963990453002,
+          "candidate": 0.20155960993657135
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 30,
+          "candidate": 31
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "pilot-water",
+      "profile": "balanced",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-authored-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": false,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": false,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.acousticWeather.wind",
+          "reference": 0.14573257879529408,
+          "candidate": 0.1456956109494606
+        },
+        {
+          "field": "climate.cloudMotion.drift[0]",
+          "reference": 34.055604813850096,
+          "candidate": 34.04750110692316
+        },
+        {
+          "field": "climate.cloudMotion.drift[1]",
+          "reference": -18.44862829361061,
+          "candidate": -18.44416213135373
+        },
+        {
+          "field": "climate.cloudMotion.morph[0]",
+          "reference": 0.13555115958510233,
+          "candidate": 0.13554637091848085
+        },
+        {
+          "field": "climate.cloudMotion.morph[1]",
+          "reference": 0.08531107010329404,
+          "candidate": 0.08530796432385622
+        },
+        {
+          "field": "climate.cloudMotion.morph[2]",
+          "reference": 0.11933876283305465,
+          "candidate": 0.11933460118325671
+        },
+        {
+          "field": "climate.elapsedSeconds",
+          "reference": 142.03190000000598,
+          "candidate": 142.02660000000895
+        },
+        {
+          "field": "climate.metrics.windDirectionRad",
+          "reference": 1.0606711673511118,
+          "candidate": 1.060704234517556
+        },
+        {
+          "field": "climate.sensitive.bankDistance",
+          "reference": 2.0782232862515375,
+          "candidate": 2.073571492446089
+        },
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.019448660479031852,
+          "candidate": 0.019524427815883715
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 49,
+          "candidate": 52
+        },
+        {
+          "field": "climate.wind.slow",
+          "reference": 0.6072190783137253,
+          "candidate": 0.6070650456227525
+        },
+        {
+          "field": "climate.wind.speed",
+          "reference": 0.14573257879529408,
+          "candidate": 0.1456956109494606
+        },
+        {
+          "field": "climate.wind.turn",
+          "reference": -0.019842248480621508,
+          "candidate": -0.019842329277967002
+        },
+        {
+          "field": "climate.wind.water",
+          "reference": 0.6047892095631361,
+          "candidate": 0.6036489629380374
+        },
+        {
+          "field": "climate.wind.x",
+          "reference": 0.12719462339167917,
+          "candidate": 0.12716464700391356
+        },
+        {
+          "field": "climate.wind.z",
+          "reference": -0.07116832321070797,
+          "candidate": -0.07114602942376924
+        }
+      ],
+      "cameraDifferences": [
+        {
+          "field": "camera.position[0]",
+          "reference": -668.3823234758712,
+          "candidate": -668.3824460325275
+        },
+        {
+          "field": "camera.position[1]",
+          "reference": -33.36400236282179,
+          "candidate": -33.36402476846381
+        },
+        {
+          "field": "camera.position[2]",
+          "reference": -200.58547154050137,
+          "candidate": -200.585258720197
+        },
+        {
+          "field": "camera.rotation[0]",
+          "reference": -0.025401164565051045,
+          "candidate": -0.02540116456505135
+        },
+        {
+          "field": "camera.rotation[1]",
+          "reference": 0.9613862323399054,
+          "candidate": 0.9613862323399048
+        },
+        {
+          "field": "camera.rotation[2]",
+          "reference": 0.09500961585208369,
+          "candidate": 0.09500961585208419
+        },
+        {
+          "field": "camera.rotation[3]",
+          "reference": 0.25703008773616426,
+          "candidate": 0.25703008773616587
+        }
+      ],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "river-shadows",
+      "profile": "balanced",
+      "referenceReport": "reference-retry-river-native.json",
+      "candidateReport": "candidate-retry-river-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.27782113329541164,
+          "candidate": 0.23621541588545694
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 31,
+          "candidate": 29
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "river-shadows",
+      "profile": "quality",
+      "referenceReport": "reference-retry-river-native.json",
+      "candidateReport": "candidate-retry-river-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.26603046559569676,
+          "candidate": 0.24045502282122547
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 27,
+          "candidate": 26
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "run-four-views",
+      "profile": "balanced",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": false,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.13349837402709538,
+          "candidate": 0.028660397920327162
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 37,
+          "candidate": 50
+        }
+      ],
+      "cameraDifferences": [
+        {
+          "field": "camera.position[1]",
+          "reference": -38.102889879991636,
+          "candidate": -38.10287813412956
+        }
+      ],
+      "shadowDifferences": [
+        {
+          "field": "shadow.camera[13]",
+          "reference": 0.0006144315203598056,
+          "candidate": 0.0006144316905612448
+        }
+      ]
+    },
+    {
+      "scene": "run-slope-four-views",
+      "profile": "balanced",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": false,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.11845759115388646,
+          "candidate": 0.05905137377895705
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 34,
+          "candidate": 45
+        }
+      ],
+      "cameraDifferences": [
+        {
+          "field": "camera.position[1]",
+          "reference": 23.426321661892917,
+          "candidate": 23.426331047770702
+        }
+      ],
+      "shadowDifferences": [
+        {
+          "field": "shadow.camera[13]",
+          "reference": -0.00023752169637681128,
+          "candidate": -0.00023752148537404047
+        }
+      ]
+    },
+    {
+      "scene": "trunk-approach",
+      "profile": "balanced",
+      "referenceReport": "reference-retry-trunk-native.json",
+      "candidateReport": "candidate-retry-trunk-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.2339819949810023,
+          "candidate": 0.2351731251430164
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 31,
+          "candidate": 32
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "trunk-approach",
+      "profile": "quality",
+      "referenceReport": "reference-retry-trunk-native.json",
+      "candidateReport": "candidate-retry-trunk-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "91f4f53b2832b387a196430121367989214f4f36",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.25032936260469424,
+          "candidate": 0.2897477840929488
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 31,
+          "candidate": 26
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "village-shadows",
+      "profile": "balanced",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.19398832337990485,
+          "candidate": 0.16825820321224597
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 30,
+          "candidate": 35
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "village-shadows",
+      "profile": "quality",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": true,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.1547523163257678,
+          "candidate": 0.18671804969881198
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 33,
+          "candidate": 26
+        }
+      ],
+      "cameraDifferences": [],
+      "shadowDifferences": []
+    },
+    {
+      "scene": "walk-four-views",
+      "profile": "balanced",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": false,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.10528423710438689,
+          "candidate": 0.07244152139077828
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 38,
+          "candidate": 40
+        }
+      ],
+      "cameraDifferences": [
+        {
+          "field": "camera.position[1]",
+          "reference": -38.102889879991636,
+          "candidate": -38.10287813412956
+        }
+      ],
+      "shadowDifferences": [
+        {
+          "field": "shadow.camera[13]",
+          "reference": 0.0006144315203598056,
+          "candidate": 0.0006144316905612448
+        }
+      ]
+    },
+    {
+      "scene": "walk-slope-four-views",
+      "profile": "balanced",
+      "referenceReport": "reference-matched-native.json",
+      "candidateReport": "candidate-matched-native.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "candidateSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+      "framebufferSame": true,
+      "profileSame": true,
+      "cameraExactlyEqual": false,
+      "climateExactlyEqual": false,
+      "solarExactlyEqual": true,
+      "windExactlyEqual": true,
+      "dateSame": true,
+      "shadowMatrixMaxAbsDelta": 0,
+      "climateDifferences": [
+        {
+          "field": "climate.sensitive.mist",
+          "reference": 0.10539672760142871,
+          "candidate": 0.06148412539237862
+        },
+        {
+          "field": "climate.transition.revision",
+          "reference": 37,
+          "candidate": 41
+        }
+      ],
+      "cameraDifferences": [
+        {
+          "field": "camera.position[1]",
+          "reference": 23.426321661892917,
+          "candidate": 23.426331047770702
+        }
+      ],
+      "shadowDifferences": [
+        {
+          "field": "shadow.camera[13]",
+          "reference": -0.00023752169637681128,
+          "candidate": -0.00023752148537404047
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1326 @@
+{
+  "method": "Horizontal physical root displacement accumulated on EVERY executed controller step. GeoJSON joins sampled roots, not all substeps; its polyline length is NOT the odometer. Restores, car door transitions and independent placements are excluded from travel distance. Source plans are never counted. IGN69 elevations remain in raw traces, WGS84 map has no vertical coordinate.",
+  "journeys": [
+    {
+      "id": "arrival/North-car-80km-car",
+      "evidence": "arrival/North-car-80km-car.json",
+      "sourceSHA": "d16b2b3b972f872fc120fb2313ebad94911d4ea0",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 1523.39204700661,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 216.5,
+      "wallSeconds": 17.90120000000298,
+      "startGPS": [
+        0.6808315959190447,
+        46.951759900287215
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6817446130859464,
+        46.96331786288159
+      ],
+      "tiles": [
+        "127:1624"
+      ],
+      "tileCount": 1,
+      "reason": "traffic-occupancy",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.0645902409406025,
+      "traceSamples": 44,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "arrival/Vallee-stop-car-40km-car",
+      "evidence": "arrival/Vallee-stop-car-40km-car.json",
+      "sourceSHA": "d16b2b3b972f872fc120fb2313ebad94911d4ea0",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 8283.862259449485,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 941.5,
+      "wallSeconds": 104.25060000000148,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.643152405513854,
+        46.545027228318474
+      ],
+      "tiles": [
+        "126:1613",
+        "126:1614"
+      ],
+      "tileCount": 2,
+      "reason": "traffic-occupancy",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076891426008712,
+      "traceSamples": 193,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "candidate/Vallee-car-40km-car",
+      "evidence": "candidate/Vallee-car-40km-car.json",
+      "sourceSHA": "19198246fecfe30f8bde1a4c864e869c3321c83e",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 1157.2396421418869,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 184.5,
+      "wallSeconds": 120.30539999999851,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6121100961943395,
+        46.59722009435518
+      ],
+      "tiles": [
+        "126:1614"
+      ],
+      "tileCount": 1,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.5474674375922515,
+      "traceSamples": 38,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "candidate-stream/Vallee-car-40km-car",
+      "evidence": "candidate-stream/Vallee-car-40km-car.json",
+      "sourceSHA": "1eb19c2cea13b221915a1559f22246137456e094",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 5016.434579030562,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 656.5,
+      "wallSeconds": 221.38220000000297,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.644293514965288,
+        46.57198352314463
+      ],
+      "tiles": [
+        "126:1613",
+        "126:1614"
+      ],
+      "tileCount": 2,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.5531859246409643,
+      "traceSamples": 134,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "cycle/North-car-80km-car",
+      "evidence": "cycle/North-car-80km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 2077.2803386363353,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 398.5,
+      "wallSeconds": 23.52259999999404,
+      "startGPS": [
+        0.6808315959190447,
+        46.951759900287215
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6785621207706355,
+        46.96759854444992
+      ],
+      "tiles": [
+        "127:1624"
+      ],
+      "tileCount": 1,
+      "reason": "traffic-occupancy",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.0694534781618112,
+      "traceSamples": 80,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "cycle/Vallee-stop-car-40km-car",
+      "evidence": "cycle/Vallee-stop-car-40km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 22686.9735976149,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 2776.25,
+      "wallSeconds": 622.6218999999985,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6875113329988533,
+        46.4273322618909
+      ],
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611"
+      ],
+      "tileCount": 7,
+      "reason": "steep-support",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.07689142600305,
+      "traceSamples": 577,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "final/Chauvigny-foot-21km-foot",
+      "evidence": "final/Chauvigny-foot-21km-foot.json",
+      "sourceSHA": "d9b29e70e581b30f50aa305445b92be611e8649b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "RETRYABLE_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 618.8239125961652,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 1820.5,
+      "wallSeconds": 989.3285,
+      "startGPS": [
+        0.6491156933924196,
+        46.57105470370647
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6446288633256015,
+        46.57432103521219
+      ],
+      "tiles": [
+        "126:1613"
+      ],
+      "tileCount": 1,
+      "reason": "tile-loading",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 0.3625000000065604,
+      "traceSamples": 365,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "final/Vallee-car-40km-car",
+      "evidence": "final/Vallee-car-40km-car.json",
+      "sourceSHA": "d9b29e70e581b30f50aa305445b92be611e8649b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 5306.7211884344715,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 686.25,
+      "wallSeconds": 338.16079999999704,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6430059552521901,
+        46.569731565011885
+      ],
+      "tiles": [
+        "126:1613",
+        "126:1614"
+      ],
+      "tileCount": 2,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076891426008712,
+      "traceSamples": 140,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "final/spawn-north-multitile-foot",
+      "evidence": "final/spawn-north-multitile-foot.json",
+      "sourceSHA": "d9b29e70e581b30f50aa305445b92be611e8649b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 1541.8380837152313,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 1073.25,
+      "wallSeconds": 291.55460000000147,
+      "startGPS": [
+        0.8797680006964309,
+        46.6954233157827
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.878443617877599,
+        46.70243714281199
+      ],
+      "tiles": [
+        "131:1617"
+      ],
+      "tileCount": 1,
+      "reason": null,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 0.36250000000039506,
+      "traceSamples": 215,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "guidance/Chauvigny-junction-local-600m-car",
+      "evidence": "guidance/Chauvigny-junction-local-600m-car.json",
+      "sourceSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 145.24332701793307,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 31.25,
+      "wallSeconds": 4.092800000004471,
+      "startGPS": [
+        0.6491156933924196,
+        46.57105470370647
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6496032587682137,
+        46.57230588057602
+      ],
+      "tiles": [
+        "126:1613"
+      ],
+      "tileCount": 1,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 2.08333333333525,
+      "traceSamples": 7,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "guidance/Vallee-source-roundtrip-car-80km-car",
+      "evidence": "guidance/Vallee-source-roundtrip-car-80km-car.json",
+      "sourceSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 60677.00094397746,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 6936.25,
+      "wallSeconds": 1126.9771999999955,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6741110060327823,
+        46.446649819549286
+      ],
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "tileCount": 12,
+      "reason": "steep-support",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076915690161698,
+      "traceSamples": 1451,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "local-regressions/Chauvigny-junction-local-600m-car",
+      "evidence": "local-regressions/Chauvigny-junction-local-600m-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 145.374111759208,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 32.25,
+      "wallSeconds": 5.51569999999553,
+      "startGPS": [
+        0.6491156933924196,
+        46.57105470370647
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6496050463074693,
+        46.572305961476836
+      ],
+      "tiles": [
+        "126:1613"
+      ],
+      "tileCount": 1,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 2.08333333333525,
+      "traceSamples": 7,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "local-regressions/Chauvigny-oneway-outer",
+      "evidence": "local-regressions/Chauvigny-oneway-outer.json",
+      "sourceSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 146.13439869686394,
+      "offRoadDistanceM": null,
+      "simulationSeconds": null,
+      "wallSeconds": 1.7172999999970198,
+      "startGPS": [
+        0.6491156933924196,
+        46.57105470370647
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6495991489724358,
+        46.572308054917706
+      ],
+      "tiles": [
+        "126:1613"
+      ],
+      "tileCount": 1,
+      "reason": "unknown-land-access",
+      "method": "Independent repeat from the exact original Chauvigny source departure. Normal car input follows an outer approach ONLY on known one-way roads, within the unchanged admitted corridor. No infrastructure, permission, hull or position change during travel. dt .25, full production frame, explicit initial placement.",
+      "maxStepM": 2.083333333337567,
+      "traceSamples": 12,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "long/Diameter-car-80km-car",
+      "evidence": "long/Diameter-car-80km-car.json",
+      "sourceSHA": "d9b29e70e581b30f50aa305445b92be611e8649b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 2907.5052559223723,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 371,
+      "wallSeconds": 77.126,
+      "startGPS": [
+        0.6976590943114274,
+        46.358696296214724
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.7059473942077363,
+        46.34032735394398
+      ],
+      "tiles": [
+        "127:1607",
+        "127:1608"
+      ],
+      "tileCount": 2,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.0752386040999227,
+      "traceSamples": 75,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "offroad-complete",
+      "evidence": "offroad-complete.json",
+      "sourceSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "COMPLETED",
+      "controllerArrived": true,
+      "allAssertionsPassed": true,
+      "distanceM": 310.4934337298229,
+      "offRoadDistanceM": 304.3309337298365,
+      "simulationSeconds": null,
+      "wallSeconds": 11.393400000005961,
+      "startGPS": [
+        0.404186520573457,
+        46.55842297397272
+      ],
+      "arrivalGPS": [
+        0.40405371072750684,
+        46.56120830937135
+      ],
+      "lastGPS": [
+        0.40405371072750684,
+        46.56120830937135
+      ],
+      "tiles": [
+        "122:1613"
+      ],
+      "tileCount": 1,
+      "reason": null,
+      "method": "Independent repeat of the successful310m known-access area traverse. Normal foot input and full production frame, dt .25. Every step classifies the actual admission; mapped-road crossings are excluded conservatively from off-road distance. No position assignment during travel.",
+      "maxStepM": 0.3625000000007335,
+      "traceSamples": 890,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "offroad-verified-retry",
+      "evidence": "offroad-verified-retry.json",
+      "sourceSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 293.45439269005357,
+      "offRoadDistanceM": 287.2918926900669,
+      "simulationSeconds": null,
+      "wallSeconds": 20.93810000000149,
+      "startGPS": [
+        0.404186520573457,
+        46.55842297397272
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.4040535623794282,
+        46.561044914495895
+      ],
+      "tiles": [
+        "122:1613"
+      ],
+      "tileCount": 1,
+      "reason": "tile-loading",
+      "method": "Independent repeat of the successful310m known-access area traverse. Normal foot input and full production frame, dt .25. Every step classifies the actual admission; mapped-road crossings are excluded conservatively from off-road distance. No position assignment during travel.",
+      "maxStepM": 0.3624999999992145,
+      "traceSamples": 2000,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "offroad-verified",
+      "evidence": "offroad-verified.json",
+      "sourceSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 164.72035323898388,
+      "offRoadDistanceM": 158.5578532389972,
+      "simulationSeconds": null,
+      "wallSeconds": 9.77769999999553,
+      "startGPS": [
+        0.404186520573457,
+        46.55842297397272
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.40410552720603016,
+        46.559893391524305
+      ],
+      "tiles": [
+        "122:1613"
+      ],
+      "tileCount": 1,
+      "reason": "tile-loading",
+      "method": "Independent repeat of the successful310m known-access area traverse. Normal foot input and full production frame, dt .25. Every step classifies the actual admission; mapped-road crossings are excluded conservatively from off-road distance. No position assignment during travel.",
+      "maxStepM": 0.3624999999992145,
+      "traceSamples": 547,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "passing/North-car-80km-car",
+      "evidence": "passing/North-car-80km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 2077.248432052317,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 398.5,
+      "wallSeconds": 25.62729999999702,
+      "startGPS": [
+        0.6808315959190447,
+        46.951759900287215
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6785571308818794,
+        46.96759803291494
+      ],
+      "tiles": [
+        "127:1624"
+      ],
+      "tileCount": 1,
+      "reason": "traffic-occupancy",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.0694534781618112,
+      "traceSamples": 80,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "passing/Through-car-80km-car",
+      "evidence": "passing/Through-car-80km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 16495.011774941722,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 1959.5,
+      "wallSeconds": 428.079,
+      "startGPS": [
+        0.6531756557567325,
+        46.95751416388454
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.5526379931058796,
+        46.83727637361157
+      ],
+      "tiles": [
+        "125:1621",
+        "125:1622",
+        "126:1622",
+        "126:1623",
+        "127:1623",
+        "127:1624"
+      ],
+      "tileCount": 6,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076645357843016,
+      "traceSamples": 400,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "physical-replay/Vallee-roundtrip-car-80km-car",
+      "evidence": "physical-replay/Vallee-roundtrip-car-80km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 18866.80036144836,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 2497.5,
+      "wallSeconds": 408.91389999999853,
+      "startGPS": [
+        0.60531249905292,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6684721868874832,
+        46.45879253962461
+      ],
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1610",
+        "127:1611"
+      ],
+      "tileCount": 6,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076747769976812,
+      "traceSamples": 567,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "physical-replay/Vallee-source-roundtrip-car-80km-car",
+      "evidence": "physical-replay/Vallee-source-roundtrip-car-80km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 43625.244594740056,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 5322.5,
+      "wallSeconds": 1018.714299999997,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.8112748659616066,
+        46.33106662491576
+      ],
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "tileCount": 12,
+      "reason": null,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076909943340878,
+      "traceSamples": 1114,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "predictive/Through-detour-car-80km-car",
+      "evidence": "predictive/Through-detour-car-80km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 16620.242636347863,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 2170,
+      "wallSeconds": 600.1977999999971,
+      "startGPS": [
+        0.6532548978477517,
+        46.9575571999407
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.5614147042571189,
+        46.841420568025754
+      ],
+      "tiles": [
+        "125:1621",
+        "125:1622",
+        "126:1622",
+        "126:1623",
+        "127:1623",
+        "127:1624"
+      ],
+      "tileCount": 6,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076645357836807,
+      "traceSamples": 462,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "predictive/Vallee-stop-car-40km-car",
+      "evidence": "predictive/Vallee-stop-car-40km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "COMPLETED",
+      "controllerArrived": true,
+      "allAssertionsPassed": true,
+      "distanceM": 40425.41711575152,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 4751.75,
+      "wallSeconds": 1049.565200000003,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": [
+        0.8408697784262673,
+        46.3221813263622
+      ],
+      "lastGPS": [
+        0.8408697784262673,
+        46.3221813263622
+      ],
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "tileCount": 12,
+      "reason": null,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076909943340878,
+      "traceSamples": 984,
+      "errors": [],
+      "postTrip": {
+        "parkingAndWalking": {
+          "method": "Actual braking, door transition and normal walking input; no positional assignment. Vehicle/door transitions are excluded from walking odometry.",
+          "distanceM": 205.12633396806172,
+          "completed": true,
+          "movedFromSaveM": 1.1633081467028108,
+          "resumePositionErrorM": 3.7842721433003975e-10
+        }
+      }
+    },
+    {
+      "id": "recovered-control/Through-car-80km-car",
+      "evidence": "recovered-control/Through-car-80km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 16537.135541593605,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 1954.75,
+      "wallSeconds": 400.3465,
+      "startGPS": [
+        0.6531756557567325,
+        46.95751416388454
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.5526108885311136,
+        46.83716709028371
+      ],
+      "tiles": [
+        "125:1621",
+        "125:1622",
+        "126:1622",
+        "126:1623",
+        "127:1623",
+        "127:1624"
+      ],
+      "tileCount": 6,
+      "reason": "mapped-barrier",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076645357843016,
+      "traceSamples": 398,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "recovered-control/Vallee-stop-car-40km-car",
+      "evidence": "recovered-control/Vallee-stop-car-40km-car.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 22704.662086347795,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 2894,
+      "wallSeconds": 714.625,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6875279747331391,
+        46.42737232758774
+      ],
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611"
+      ],
+      "tileCount": 7,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.07689142600305,
+      "traceSamples": 600,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "recovery/Chauvigny-foot-21km-foot",
+      "evidence": "recovery/Chauvigny-foot-21km-foot.json",
+      "sourceSHA": "596956bb7bb2d444e44f31f600429200d9b851b2",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "COMPLETED",
+      "controllerArrived": true,
+      "allAssertionsPassed": true,
+      "distanceM": 21034.730957360265,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 15003,
+      "wallSeconds": 2444.7678000000046,
+      "startGPS": [
+        0.6491156933924196,
+        46.57105470370647
+      ],
+      "arrivalGPS": [
+        0.5537306253059257,
+        46.737559402890724
+      ],
+      "lastGPS": [
+        0.5537306253059257,
+        46.737559402890724
+      ],
+      "tiles": [
+        "125:1615",
+        "125:1616",
+        "125:1617",
+        "125:1618",
+        "126:1613",
+        "126:1614",
+        "126:1615"
+      ],
+      "tileCount": 7,
+      "reason": null,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 0.3625000000077624,
+      "traceSamples": 3007,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "recovery/Vallee-car-40km-car",
+      "evidence": "recovery/Vallee-car-40km-car.json",
+      "sourceSHA": "596956bb7bb2d444e44f31f600429200d9b851b2",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 8283.86225945058,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 1137.5,
+      "wallSeconds": 353.353,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6431524055138459,
+        46.54502722831839
+      ],
+      "tiles": [
+        "126:1613",
+        "126:1614"
+      ],
+      "tileCount": 2,
+      "reason": "traffic-occupancy",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076891426008712,
+      "traceSamples": 232,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "recovery/spawn-east-avoid-water-foot",
+      "evidence": "recovery/spawn-east-avoid-water-foot.json",
+      "sourceSHA": "596956bb7bb2d444e44f31f600429200d9b851b2",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 2508.8266088573337,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 1978.5,
+      "wallSeconds": 175.34280000000447,
+      "startGPS": [
+        0.8797680006964309,
+        46.6954233157827
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.8974963639848391,
+        46.69315419545193
+      ],
+      "tiles": [
+        "131:1617"
+      ],
+      "tileCount": 1,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 0.3625000000002271,
+      "traceSamples": 396,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "reference/Chauvigny-foot-21km-foot",
+      "evidence": "reference/Chauvigny-foot-21km-foot.json",
+      "sourceSHA": "58ba496050f7541a63599c28a1a553f7f0b453e9",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 11902.923530357566,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 9829,
+      "wallSeconds": 1911.0098999999984,
+      "startGPS": [
+        0.6491156933924196,
+        46.57105470370647
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.5819830385058831,
+        46.65949670682455
+      ],
+      "tiles": [
+        "125:1615",
+        "125:1616",
+        "126:1613",
+        "126:1614",
+        "126:1615"
+      ],
+      "tileCount": 5,
+      "reason": "tile-loading",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 0.36250000000777954,
+      "traceSamples": 2047,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "reference/Vallee-car-40km-car",
+      "evidence": "reference/Vallee-car-40km-car.json",
+      "sourceSHA": "58ba496050f7541a63599c28a1a553f7f0b453e9",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 3904.82952454396,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 910.25,
+      "wallSeconds": 378.2666000000015,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.6318832886003227,
+        46.57720502509941
+      ],
+      "tiles": [
+        "126:1614"
+      ],
+      "tileCount": 1,
+      "reason": "road-height-discontinuity",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.5474674299273237,
+      "traceSamples": 214,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "river-0",
+      "evidence": "river-0.json",
+      "sourceSHA": "d9b29e70e581b30f50aa305445b92be611e8649b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "boat",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 163.66510622000797,
+      "offRoadDistanceM": null,
+      "simulationSeconds": null,
+      "wallSeconds": 50.71460000000149,
+      "startGPS": [
+        0.12169870501041535,
+        46.43732866178241
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.12244418866783868,
+        46.43728327032647
+      ],
+      "tiles": [
+        "116:1610"
+      ],
+      "tileCount": 1,
+      "reason": null,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "maxStepM": 0.20257777910608452,
+      "traceSamples": 65,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "river-1-priority",
+      "evidence": "river-1-priority.json",
+      "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "boat",
+      "status": "PHYSICAL_BLOCKED",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 886.0434677193033,
+      "offRoadDistanceM": null,
+      "simulationSeconds": null,
+      "wallSeconds": 528.965,
+      "startGPS": [
+        0.33771930863536626,
+        46.57383270871772
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.32767620404018627,
+        46.57044422926999
+      ],
+      "tiles": [
+        "120:1614",
+        "121:1614"
+      ],
+      "tileCount": 2,
+      "reason": null,
+      "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+      "maxStepM": 0.23642562851511315,
+      "traceSamples": 233,
+      "errors": [],
+      "postTrip": {},
+      "interpretation": "Normal end of the demonstrated short Clain component, manual takeover, return and dock succeeded. Outer PHYSICAL_BLOCKED denotes the unmet1km criterion; it does not prove a collision."
+    },
+    {
+      "id": "travel/Chauvigny-foot-21km-foot",
+      "evidence": "travel/Chauvigny-foot-21km-foot.json",
+      "sourceSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "COMPLETED",
+      "controllerArrived": true,
+      "allAssertionsPassed": true,
+      "distanceM": 21034.730957360265,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 14715.25,
+      "wallSeconds": 1116.517299999997,
+      "startGPS": [
+        0.6491156933924196,
+        46.57105470370647
+      ],
+      "arrivalGPS": [
+        0.5537306253059257,
+        46.737559402890724
+      ],
+      "lastGPS": [
+        0.5537306253059257,
+        46.737559402890724
+      ],
+      "tiles": [
+        "125:1615",
+        "125:1616",
+        "125:1617",
+        "125:1618",
+        "126:1613",
+        "126:1614",
+        "126:1615"
+      ],
+      "tileCount": 7,
+      "reason": null,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 0.3625000000077624,
+      "traceSamples": 2950,
+      "errors": [],
+      "postTrip": {
+        "returnAndResume": {
+          "method": "After the verified outbound arrival: normal input returns along the source road, then the normal saved-journey action restores the checkpoint created DURING the outbound walk. Restore displacement is explicitly excluded from walking odometry.",
+          "returnDistanceM": 60.030263003489566,
+          "resumeErrorM": 1.2278450372766552e-10,
+          "releasedInputDriftM": 0,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "travel/Diameter-car-80km-car",
+      "evidence": "travel/Diameter-car-80km-car.json",
+      "sourceSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 2907.499115227521,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 357.75,
+      "wallSeconds": 100.5386000000015,
+      "startGPS": [
+        0.6976590943114274,
+        46.358696296214724
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.7059473336497653,
+        46.34032743010594
+      ],
+      "tiles": [
+        "127:1607",
+        "127:1608"
+      ],
+      "tileCount": 2,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.0752386040999227,
+      "traceSamples": 72,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "travel/Vallee-car-40km-car",
+      "evidence": "travel/Vallee-car-40km-car.json",
+      "sourceSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "car",
+      "status": "SOURCE_UNKNOWN",
+      "controllerArrived": false,
+      "allAssertionsPassed": false,
+      "distanceM": 40460.68939654593,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 4963.25,
+      "wallSeconds": 1284.5385,
+      "startGPS": [
+        0.6053124990529222,
+        46.60650819688691
+      ],
+      "arrivalGPS": null,
+      "lastGPS": [
+        0.8417354954412587,
+        46.32137196850142
+      ],
+      "tiles": [
+        "126:1611",
+        "126:1612",
+        "126:1613",
+        "126:1614",
+        "127:1609",
+        "127:1610",
+        "127:1611",
+        "128:1608",
+        "128:1609",
+        "129:1607",
+        "129:1608",
+        "130:1607"
+      ],
+      "tileCount": 12,
+      "reason": "unknown-land-access",
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 3.076909943340878,
+      "traceSamples": 1014,
+      "errors": [],
+      "postTrip": {}
+    },
+    {
+      "id": "travel/spawn-east-dense-avoid-water-foot",
+      "evidence": "travel/spawn-east-dense-avoid-water-foot.json",
+      "sourceSHA": "6883ca2e2ac116ba8726a585801549707911bda3",
+      "dataPin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "mode": "foot",
+      "status": "COMPLETED",
+      "controllerArrived": true,
+      "allAssertionsPassed": true,
+      "distanceM": 4737.88407480962,
+      "offRoadDistanceM": null,
+      "simulationSeconds": 3368.25,
+      "wallSeconds": 345.45230000000447,
+      "startGPS": [
+        0.8797680006964309,
+        46.6954233157827
+      ],
+      "arrivalGPS": [
+        0.9160364703273235,
+        46.689415842861465
+      ],
+      "lastGPS": [
+        0.9160364703273235,
+        46.689415842861465
+      ],
+      "tiles": [
+        "131:1617",
+        "132:1616",
+        "132:1617"
+      ],
+      "tileCount": 3,
+      "reason": null,
+      "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+      "maxStepM": 0.3625000000008748,
+      "traceSamples": 676,
+      "errors": [],
+      "postTrip": {}
+    }
+  ]
+}

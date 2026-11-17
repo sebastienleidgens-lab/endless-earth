@@ -1,0 +1,63 @@
+import {sampleFine} from './fine-grid.mjs';
+import {admitFeature} from './network.mjs';
+import {areaAccess} from './access.mjs';
+import {removedRail} from './rail-state.mjs';
+export function inside(point,ring){let result=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a[1]>point.y)!==(b[1]>point.y)&&point.x<(b[0]-a[0])*(point.y-a[1])/(b[1]-a[1])+a[0])result=!result;}return result;}
+export function nearestOnLine(point,points){let best=null,d=Infinity;for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((point.x-a[0])*dx+(point.y-a[1])*dy)/(dx*dx+dy*dy||1))),x=a[0]+t*dx,y=a[1]+t*dy,n=Math.hypot(point.x-x,point.y-y);if(n<d){d=n;best={x,y,distance:n,index:i,t,heading:Math.atan2(dx,-dy)};}}return best;}
+export function sampleTile(tile,p){const [x0,y0,x1,y1]=tile.bounds,n=tile.grid.size,step=(x1-x0)/(n-1);if(p.x<x0||p.x>x1||p.y<y0||p.y>y1)return null;const fx=Math.min(n-1-1e-10,(p.x-x0)/step),fy=Math.min(n-1-1e-10,(p.y-y0)/step),x=Math.floor(fx),y=Math.floor(fy),u=fx-x,v=fy-y,h=tile.grid.heights,a=h[y*n+x],b=h[y*n+x+1],c=h[(y+1)*n+x],d=h[(y+1)*n+x+1];let height,dx,dy;if(u+v<=1){dx=(b-a)/step;dy=(c-a)/step;height=a+u*(b-a)+v*(c-a);}else{dx=(d-c)/step;dy=(d-b)/step;height=d+(1-u)*(c-d)+(1-v)*(b-d);}const l=Math.hypot(dx,1,dy);return {height,normal:{x:-dx/l,y:1/l,z:dy/l},slope:Math.hypot(dx,dy),tile:tile.id,datum:tile.grid.datum};}
+export function roadWidth(tags){const parsed=Number.parseFloat(tags.width);if(Number.isFinite(parsed)&&parsed>=.5&&parsed<=45)return parsed;return ['motorway','motorway_link'].includes(tags.highway)?18:['trunk','primary'].includes(tags.highway)?7:['secondary','tertiary'].includes(tags.highway)?5.5:['residential','unclassified','living_street','service'].includes(tags.highway)?4.8:1.8;}
+/** A shared geographic provider for rendered terrain, collisions and map. */
+export class PlanetSurface {
+ constructor(manifest){this.manifest=manifest;this.tiles=new Map();this.features=new Map();this.cells=new Map();this.cellSize=128;this.queryCache=new Map();this.queryMetrics={hits:0,misses:0};}
+ cell(x,y){return Math.floor(x/this.cellSize)+','+Math.floor(y/this.cellSize);}
+ add(tile){for(const _ of this.addSteps(tile)){} }
+ *addSteps(tile){this.queryCache.clear();for(const f of tile.features){yield;let record=this.features.get(f.id);if(record?.owners.has(tile.id))continue;if(!record){record={feature:f,owners:new Set(),ownerKeys:new Map(),keyRefs:new Map()};this.features.set(f.id,record);}record.owners.add(tile.id);const keys=[];record.ownerKeys.set(tile.id,keys);const xs=f.points.map(p=>p[0]),ys=f.points.map(p=>p[1]),minx=Math.floor(Math.max(tile.bounds[0],Math.min(...xs))/this.cellSize),maxx=Math.floor(Math.min(tile.bounds[2],Math.max(...xs))/this.cellSize),miny=Math.floor(Math.max(tile.bounds[1],Math.min(...ys))/this.cellSize),maxy=Math.floor(Math.min(tile.bounds[3],Math.max(...ys))/this.cellSize);
+   for(let y=miny;y<=maxy;y++)for(let x=minx;x<=maxx;x++){const key=x+','+y;if(!this.cells.has(key))this.cells.set(key,new Set());this.cells.get(key).add(f.id);this.queryCache.delete(key);record.keyRefs.set(key,(record.keyRefs.get(key)??0)+1);keys.push(key);if(keys.length%128===0)yield;}
+  }this.tiles.set(tile.id,tile);}
+ remove(tile){for(const _ of this.removeSteps(tile)){} }
+ *removeSteps(tile){this.queryCache.clear();this.tiles.delete(tile.id);for(const f of tile.features){yield;const record=this.features.get(f.id);if(!record||!record.owners.has(tile.id))continue;record.owners.delete(tile.id);for(const k of record.ownerKeys.get(tile.id)??[]){yield;const refs=record.keyRefs.get(k)-1;if(refs>0){record.keyRefs.set(k,refs);continue;}record.keyRefs.delete(k);const cell=this.cells.get(k);cell?.delete(f.id);this.queryCache.delete(k);if(!cell?.size)this.cells.delete(k);}record.ownerKeys.delete(tile.id);if(!record.owners.size)this.features.delete(f.id);}}
+ query(p,radius=0){const x0=Math.floor((p.x-radius)/128),x1=Math.floor((p.x+radius)/128),y0=Math.floor((p.y-radius)/128),y1=Math.floor((p.y+radius)/128);
+  if(x0===x1&&y0===y1){const key=x0+','+y0;let cached=this.queryCache.get(key);if(cached){this.queryMetrics.hits++;return cached;}this.queryMetrics.misses++;cached=Object.freeze([...(this.cells.get(key)??[])].map(id=>this.features.get(id).feature));if(this.queryCache.size>=512)this.queryCache.delete(this.queryCache.keys().next().value);this.queryCache.set(key,cached);return cached;}
+  const ids=new Set();for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)for(const id of this.cells.get(x+','+y)??[])ids.add(id);return [...ids].map(id=>this.features.get(id).feature);}
+ sample(p){const s=this.manifest.tileSize,id=Math.floor(p.x/s)+':'+Math.floor(p.y/s),tile=this.tiles.get(id);if(tile){const fine=tile.contact?sampleFine(tile.contact,p):null;return fine?{...fine,tile:tile.id}:sampleTile(tile,p);}for(const tile of this.tiles.values()){const result=tile.contact?sampleFine(tile.contact,p):null;if(result)return {...result,tile:tile.id};const coarse=sampleTile(tile,p);if(coarse)return {...coarse,resolutionM:128};}return null;}
+ habitat(p){for(const f of this.query(p))if(f.polygon&&inside(p,f.points)&&!(f.holes??[]).some(r=>inside(p,r))){const t=f.tags;if(f.kind==='hydro')return 'water';if(t.landuse==='forest'||t.natural==='wood')return 'wood';if(t.landuse==='farmland')return 'agriculture';if(['meadow','grass','orchard','residential'].includes(t.landuse))return t.landuse;}return 'unknown';}
+ nearestRoad(p,mode='foot',max=30,containedRadius=null){let best=null;for(const f of this.query(p,max)){if(f.kind!=='road'||!admitFeature(f.tags,mode,this.manifest.accessDefaults).ok)continue;const q=nearestOnLine(p,f.points),width=roadWidth(f.tags);if(q&&q.distance<=max&&(containedRadius===null||q.distance<=width/2-containedRadius)&&(!best||q.distance<best.distance))best={...q,feature:f,width};}return best;}
+ admission(p,mode='foot',physicalSupport){
+  const support=this.sample(p);if(!support)return {ok:false,reason:'tile-loading'};
+  for(const f of this.query(p,2)){
+   const within=f.polygon&&inside(p,f.points)&&!(f.holes??[]).some(r=>inside(p,r));
+   if(within&&(f.kind==='building'||f.kind==='hydro'||['private','no'].includes(f.tags.access)))return {ok:false,reason:f.kind==='hydro'?'unverified-water':'mapped-obstacle',...support};
+   if(f.kind==='barrier'&&nearestOnLine(p,f.points)?.distance<.6)return {ok:false,reason:'mapped-barrier',...support};
+  }
+  const radius=mode==='car'?.05:.3;
+  // Rail and controlled-access roads remain closed to a walker even inside
+  // an explicitly open park polygon. No geometric crossing invents a portal.
+  if(mode==='foot')for(const f of this.query(p,20)){
+   if(f.kind==='rail'&&(!removedRail(f.tags)||['private','no','permit','customers'].includes(f.tags.access))&&nearestOnLine(p,f.points)?.distance<2+radius)return {...support,ok:false,reason:'unverified-rail-crossing',access:'known-disallowed',source:f.id};
+   if(f.kind==='road'&&['motorway','motorway_link','trunk','trunk_link'].includes(f.tags.highway)&&nearestOnLine(p,f.points)?.distance<roadWidth(f.tags)/2+radius)return {...support,ok:false,reason:'pedestrian-access',access:'known-disallowed',source:f.id};
+  }
+  let road=this.nearestRoad(p,mode,25,radius);
+  if(road&&road.distance>road.width/2-radius)road=null;
+  let area=null;
+  if(!road&&mode==='foot')for(const f of this.query(p,radius)){
+   if(areaAccess(f).state!=='known-allowed'||!inside(p,f.points)||(f.holes??[]).some(r=>inside(p,r)))continue;
+   const rings=[f.points,...(f.holes??[])];
+   if(rings.some(r=>nearestOnLine(p,[...r,r[0]])?.distance<radius))continue;
+   area=f;break;
+  }
+  if(!road&&!area)return {...support,ok:false,reason:'unknown-land-access',access:'unknown'};
+  // Access/obstacles above still belong to the source. Grade belongs to the
+  // displayed contact triangle, which can differ from the raw raster at a road
+  // edge or the exact protected-pilot transition. Never flatten either owner.
+  const contact=(typeof physicalSupport==='function'?physicalSupport(road?.feature.id):physicalSupport)??support;
+  // The pilot already gives mapped roads the directional/step policy of the
+  // movement kernel. A crossfall cannot by itself close every travel direction.
+  // Off-road ground and cars retain their existing normal limits; source
+  // access, water, rail and barriers above remain unconditional.
+  if((mode==='car'||!road)&&contact.slope>(mode==='car'?.45:.7))return {ok:false,reason:'steep-support',...support,...contact};
+  if(area)return {...support,...contact,ok:true,drivable:false,surface:'terrain',access:'known-allowed',area:area.id,provenance:areaAccess(area).provenance};
+  const speed=Number.parseFloat(road.feature.tags.maxspeed),speedLimit=Number.isFinite(speed)?speed/3.6:['motorway','trunk'].includes(road.feature.tags.highway)?30.5:['primary','secondary','tertiary','unclassified'].includes(road.feature.tags.highway)?22.2:13.9;
+  return {...support,...contact,ok:true,drivable:mode==='car',road:road.feature.id,width:road.width,speedLimit,directionalGradeLimit:mode==='foot'?.7:null,provenance:'OSM road corridor + declared regional access policy; inferred width when absent'};
+ }
+ clear(){this.tiles.clear();this.features.clear();this.cells.clear();this.queryCache.clear();}
+}

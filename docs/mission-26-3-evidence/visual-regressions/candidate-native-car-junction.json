@@ -1,0 +1,5622 @@
+{
+  "method": "Native production frames only during recording, normal steering/braking, real door transition, save/reprise action. Independent declared initial placement on a previously measured wide source road BEFORE recording. No positional repair during driving. Native film is not a 40km proof or hardware/perceptual validation.",
+  "sourceFixture": "visual-regressions/native-junction-fixture.json",
+  "fixture": {
+    "method": "Source junction plus boundary selected near an already physically traveled path; native controller must still cross both. No traveled distance is inferred.",
+    "initial": {
+      "step": 5160,
+      "simulationSeconds": 1290,
+      "wallMs": 521456.200000003,
+      "position": [
+        -18219.037684201066,
+        3.6380830531440567,
+        17550.525692542866
+      ],
+      "gps": {
+        "lat": 46.53764166643422,
+        "lon": 0.6457808293563452
+      },
+      "datum": "IGN69",
+      "localYIsRelative": true,
+      "altitudeM": 104.83808305314406,
+      "owner": "osm:way:640476461",
+      "face": 150,
+      "tile": "126:1613",
+      "normal": {
+        "x": -0.041145945196894324,
+        "y": 0.9991506494067962,
+        "z": 0.0022340509912178487
+      },
+      "slope": 0.041241578888017334,
+      "supportHeight": 3.3880830531440567,
+      "activity": "driving",
+      "canonicalTile": "126:1613",
+      "command": {
+        "forward": 1,
+        "strafe": -0.000012978745790508846,
+        "brake": false
+      },
+      "distanceM": 9152.478739662914,
+      "stream": {
+        "loaded": 8,
+        "unloaded": 0,
+        "failures": 0,
+        "residentBytes": 74814489,
+        "active": 0,
+        "queued": 0,
+        "errors": {},
+        "timeouts": 0,
+        "cancellations": 7,
+        "generation": 15,
+        "jobs": [
+          {
+            "id": "131:1616",
+            "generation": 2,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794860149128
+          },
+          {
+            "id": "131:1617",
+            "generation": 1,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794860149128
+          },
+          {
+            "id": "126:1615",
+            "generation": 4,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 402.75408324960455,
+            "at": 1794860174090
+          },
+          {
+            "id": "126:1614",
+            "generation": 3,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.21411352136061293,
+            "at": 1794860193699
+          },
+          {
+            "id": "125:1614",
+            "generation": 5,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 1525.8752628005557,
+            "at": 1794860308663
+          },
+          {
+            "id": "125:1615",
+            "generation": 6,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794860308664
+          },
+          {
+            "id": "126:1613",
+            "generation": 7,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 1.7325506255097358,
+            "at": 1794860460096
+          },
+          {
+            "id": "127:1614",
+            "generation": 9,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 882.6534432423738,
+            "at": 1794860491504
+          },
+          {
+            "id": "127:1613",
+            "generation": 10,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 719.1568859801149,
+            "at": 1794860515215
+          },
+          {
+            "id": "126:1612",
+            "generation": 12,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 596.0872602626979,
+            "at": 1794860672686
+          },
+          {
+            "id": "127:1612",
+            "generation": 15,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 985.9141967258336,
+            "at": 1794860698448
+          }
+        ]
+      },
+      "origin": {
+        "origin": {
+          "x": -18688,
+          "y": 0,
+          "z": 15360,
+          "revision": 4
+        },
+        "metrics": {
+          "rebases": 4,
+          "frames": 105,
+          "maxLocalCameraM": 2036.1072814087038,
+          "canonicalPhysics": true
+        }
+      },
+      "car": {
+        "position": {
+          "x": -18219.037684201066,
+          "y": 3.3880830531440567,
+          "z": 17550.525692542866
+        },
+        "heading": 0.1751026826328004,
+        "speed": 12.51937784245212,
+        "steering": 0.000004378222565539408,
+        "reason": "",
+        "odometer": 9152.531156763358,
+        "ground": {
+          "height": 3.3880830531440567,
+          "normal": {
+            "x": -0.041145945196894324,
+            "y": 0.9991506494067962,
+            "z": 0.0022340509912178487
+          },
+          "slope": 0.041241578888017334,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1613",
+          "face": 150,
+          "surface": "road",
+          "road": "osm:way:640476461",
+          "supportOwner": "osm:way:640476461",
+          "ok": true,
+          "drivable": true,
+          "width": 7,
+          "speedLimit": 22.2,
+          "directionalGradeLimit": null,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "active": true
+      }
+    },
+    "junction": {
+      "node": 260139,
+      "degree": 4,
+      "gps": {
+        "lon": 0.6459067979857172,
+        "lat": 46.53721509847034
+      },
+      "distanceAlongOldTraceM": 9200.91859965266,
+      "sourceNearestM": 1.1117735211931015
+    },
+    "boundaryDistanceM": 9208.460859397213,
+    "requiredDistanceM": 100,
+    "score": 7.5422597445540305
+  },
+  "initial": {
+    "step": 5160,
+    "simulationSeconds": 1290,
+    "wallMs": 521456.200000003,
+    "position": [
+      -18219.037684201066,
+      3.6380830531440567,
+      17550.525692542866
+    ],
+    "gps": {
+      "lat": 46.53764166643422,
+      "lon": 0.6457808293563452
+    },
+    "datum": "IGN69",
+    "localYIsRelative": true,
+    "altitudeM": 104.83808305314406,
+    "owner": "osm:way:640476461",
+    "face": 150,
+    "tile": "126:1613",
+    "normal": {
+      "x": -0.041145945196894324,
+      "y": 0.9991506494067962,
+      "z": 0.0022340509912178487
+    },
+    "slope": 0.041241578888017334,
+    "supportHeight": 3.3880830531440567,
+    "activity": "driving",
+    "canonicalTile": "126:1613",
+    "command": {
+      "forward": 1,
+      "strafe": -0.000012978745790508846,
+      "brake": false
+    },
+    "distanceM": 9152.478739662914,
+    "stream": {
+      "loaded": 8,
+      "unloaded": 0,
+      "failures": 0,
+      "residentBytes": 74814489,
+      "active": 0,
+      "queued": 0,
+      "errors": {},
+      "timeouts": 0,
+      "cancellations": 7,
+      "generation": 15,
+      "jobs": [
+        {
+          "id": "131:1616",
+          "generation": 2,
+          "state": "CANCELLED",
+          "phase": "installation",
+          "priority": null,
+          "at": 1794860149128
+        },
+        {
+          "id": "131:1617",
+          "generation": 1,
+          "state": "CANCELLED",
+          "phase": "installation",
+          "priority": null,
+          "at": 1794860149128
+        },
+        {
+          "id": "126:1615",
+          "generation": 4,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 402.75408324960455,
+          "at": 1794860174090
+        },
+        {
+          "id": "126:1614",
+          "generation": 3,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 0.21411352136061293,
+          "at": 1794860193699
+        },
+        {
+          "id": "125:1614",
+          "generation": 5,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 1525.8752628005557,
+          "at": 1794860308663
+        },
+        {
+          "id": "125:1615",
+          "generation": 6,
+          "state": "CANCELLED",
+          "phase": "installation",
+          "priority": null,
+          "at": 1794860308664
+        },
+        {
+          "id": "126:1613",
+          "generation": 7,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 1.7325506255097358,
+          "at": 1794860460096
+        },
+        {
+          "id": "127:1614",
+          "generation": 9,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 882.6534432423738,
+          "at": 1794860491504
+        },
+        {
+          "id": "127:1613",
+          "generation": 10,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 719.1568859801149,
+          "at": 1794860515215
+        },
+        {
+          "id": "126:1612",
+          "generation": 12,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 596.0872602626979,
+          "at": 1794860672686
+        },
+        {
+          "id": "127:1612",
+          "generation": 15,
+          "state": "COMPLETED",
+          "phase": "installation",
+          "priority": 985.9141967258336,
+          "at": 1794860698448
+        }
+      ]
+    },
+    "origin": {
+      "origin": {
+        "x": -18688,
+        "y": 0,
+        "z": 15360,
+        "revision": 4
+      },
+      "metrics": {
+        "rebases": 4,
+        "frames": 105,
+        "maxLocalCameraM": 2036.1072814087038,
+        "canonicalPhysics": true
+      }
+    },
+    "car": {
+      "position": {
+        "x": -18219.037684201066,
+        "y": 3.3880830531440567,
+        "z": 17550.525692542866
+      },
+      "heading": 0.1751026826328004,
+      "speed": 12.51937784245212,
+      "steering": 0.000004378222565539408,
+      "reason": "",
+      "odometer": 9152.531156763358,
+      "ground": {
+        "height": 3.3880830531440567,
+        "normal": {
+          "x": -0.041145945196894324,
+          "y": 0.9991506494067962,
+          "z": 0.0022340509912178487
+        },
+        "slope": 0.041241578888017334,
+        "datum": "IGN69",
+        "resolutionM": 2,
+        "source": "IGN LHD numeric MNT; 2 m derivative",
+        "quantizationMaxErrorM": 0.005,
+        "tile": "126:1613",
+        "face": 150,
+        "surface": "road",
+        "road": "osm:way:640476461",
+        "supportOwner": "osm:way:640476461",
+        "ok": true,
+        "drivable": true,
+        "width": 7,
+        "speedLimit": 22.2,
+        "directionalGradeLimit": null,
+        "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+      },
+      "active": true
+    }
+  },
+  "stages": [
+    {
+      "stage": "brake",
+      "wallSeconds": 24.389786028999996,
+      "state": {
+        "position": [
+          -18200.313645174734,
+          4.350062324133017,
+          17652.51559435741
+        ],
+        "gps": {
+          "lat": 46.53672547974886,
+          "lon": 0.6460260626524723
+        },
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "movement": null,
+        "admission": {
+          "height": 4.100062324133017,
+          "normal": {
+            "x": -0.032455735689712696,
+            "y": 0.9994579951733619,
+            "z": -0.005508276035504341
+          },
+          "slope": 0.032937692668147646,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1612",
+          "face": 58,
+          "surface": "road",
+          "road": "osm:way:997573928",
+          "supportOwner": "osm:way:997573928",
+          "ok": true,
+          "drivable": false,
+          "width": 7,
+          "speedLimit": 22.2,
+          "directionalGradeLimit": 0.7,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "activity": "driving",
+        "canonicalTile": "126:1612",
+        "stream": {
+          "loaded": 3,
+          "unloaded": 0,
+          "failures": 0,
+          "residentBytes": 29662422,
+          "active": 1,
+          "queued": 0,
+          "errors": {},
+          "timeouts": 0,
+          "cancellations": 2,
+          "generation": 6,
+          "jobs": [
+            {
+              "id": "131:1616",
+              "generation": 2,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794870379775
+            },
+            {
+              "id": "131:1617",
+              "generation": 1,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794870379775
+            },
+            {
+              "id": "126:1612",
+              "generation": 4,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 21.941243269849647,
+              "at": 1794870388269
+            },
+            {
+              "id": "126:1613",
+              "generation": 3,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 0.24991902572790906,
+              "at": 1794870408415
+            },
+            {
+              "id": "127:1612",
+              "generation": 6,
+              "state": "WAITING_FOR_TILE",
+              "phase": "installation-queue",
+              "priority": 585.8591410984477,
+              "at": 1794870412550
+            },
+            {
+              "id": "127:1613",
+              "generation": 5,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 578.1918105697961,
+              "at": 1794870428282
+            }
+          ]
+        },
+        "origin": {
+          "origin": {
+            "x": -18176,
+            "y": 0,
+            "z": 17664,
+            "revision": 1
+          },
+          "metrics": {
+            "rebases": 1,
+            "frames": 121,
+            "maxLocalCameraM": 353.77313869194865,
+            "canonicalPhysics": true
+          }
+        }
+      },
+      "car": {
+        "position": {
+          "x": -18200.313645174734,
+          "y": 4.100062324133017,
+          "z": 17652.51559435741
+        },
+        "heading": 0.1872500701243481,
+        "speed": 11.312962359472468,
+        "steering": -0.000015011145240789745,
+        "reason": "",
+        "odometer": 103.69615593587733,
+        "ground": {
+          "height": 4.100062324133017,
+          "normal": {
+            "x": -0.032455735689712696,
+            "y": 0.9994579951733619,
+            "z": -0.005508276035504341
+          },
+          "slope": 0.032937692668147646,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1612",
+          "face": 58,
+          "surface": "road",
+          "road": "osm:way:997573928",
+          "supportOwner": "osm:way:997573928",
+          "ok": true,
+          "drivable": true,
+          "width": 7,
+          "speedLimit": 22.2,
+          "directionalGradeLimit": null,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "active": true
+      },
+      "distance": 103.69614967658424,
+      "tiles": [
+        "126:1613",
+        "126:1612"
+      ],
+      "junctionSeen": true,
+      "junctionMinM": 1.4304875132444785
+    },
+    {
+      "stage": "exit",
+      "wallSeconds": 28.481150049000004,
+      "state": {
+        "position": [
+          -18198.844166148196,
+          4.401380444123265,
+          17660.27163975147
+        ],
+        "gps": {
+          "lat": 46.536655806326344,
+          "lon": 0.6460453087769202
+        },
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "movement": null,
+        "admission": {
+          "height": 4.151380444123265,
+          "normal": {
+            "x": -0.04781891578749399,
+            "y": 0.998852095370276,
+            "z": -0.002800511974196096
+          },
+          "slope": 0.047955900299809784,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1612",
+          "face": 66,
+          "surface": "road",
+          "road": "osm:way:997573928",
+          "supportOwner": "osm:way:997573928",
+          "ok": true,
+          "drivable": false,
+          "width": 7,
+          "speedLimit": 22.2,
+          "directionalGradeLimit": 0.7,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "activity": "driving",
+        "canonicalTile": "126:1612",
+        "stream": {
+          "loaded": 3,
+          "unloaded": 0,
+          "failures": 0,
+          "residentBytes": 29662422,
+          "active": 1,
+          "queued": 0,
+          "errors": {},
+          "timeouts": 0,
+          "cancellations": 2,
+          "generation": 6,
+          "jobs": [
+            {
+              "id": "131:1616",
+              "generation": 2,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794870379775
+            },
+            {
+              "id": "131:1617",
+              "generation": 1,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794870379775
+            },
+            {
+              "id": "126:1612",
+              "generation": 4,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 21.941243269849647,
+              "at": 1794870388269
+            },
+            {
+              "id": "126:1613",
+              "generation": 3,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 0.24991902572790906,
+              "at": 1794870408415
+            },
+            {
+              "id": "127:1612",
+              "generation": 6,
+              "state": "WAITING_FOR_TILE",
+              "phase": "installation-queue",
+              "priority": 585.8591410984477,
+              "at": 1794870412550
+            },
+            {
+              "id": "127:1613",
+              "generation": 5,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 578.1918105697961,
+              "at": 1794870428282
+            }
+          ]
+        },
+        "origin": {
+          "origin": {
+            "x": -18176,
+            "y": 0,
+            "z": 17664,
+            "revision": 1
+          },
+          "metrics": {
+            "rebases": 1,
+            "frames": 128,
+            "maxLocalCameraM": 353.77313869194865,
+            "canonicalPhysics": true
+          }
+        }
+      },
+      "car": {
+        "position": {
+          "x": -18198.844166148196,
+          "y": 4.151380444123265,
+          "z": 17660.27163975147
+        },
+        "heading": 0.1872417610236034,
+        "speed": 0,
+        "steering": -7.183009216747742e-11,
+        "reason": "",
+        "odometer": 111.59017954645252,
+        "ground": {
+          "height": 4.151380444123265,
+          "normal": {
+            "x": -0.04781891578749399,
+            "y": 0.998852095370276,
+            "z": -0.002800511974196096
+          },
+          "slope": 0.047955900299809784,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1612",
+          "face": 66,
+          "surface": "road",
+          "road": "osm:way:997573928",
+          "supportOwner": "osm:way:997573928",
+          "ok": true,
+          "drivable": true,
+          "width": 7,
+          "speedLimit": 22.2,
+          "directionalGradeLimit": null,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "active": true
+      },
+      "distance": 103.69614967658424,
+      "tiles": [
+        "126:1613",
+        "126:1612"
+      ],
+      "junctionSeen": true,
+      "junctionMinM": 1.4304875132444785
+    },
+    {
+      "stage": "walk",
+      "wallSeconds": 31.514275194000003,
+      "state": {
+        "position": [
+          -18200.465326486144,
+          4.074630380992026,
+          17660.578786554586
+        ],
+        "gps": {
+          "lat": 46.53665304719229,
+          "lon": 0.6460240760454211
+        },
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "movement": null,
+        "admission": {
+          "height": 4.074630380992026,
+          "normal": {
+            "x": -0.04781891578749399,
+            "y": 0.998852095370276,
+            "z": -0.002800511974196096
+          },
+          "slope": 0.047955900299809784,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1612",
+          "face": 66,
+          "surface": "road",
+          "road": "osm:way:997573928",
+          "supportOwner": "osm:way:997573928",
+          "ok": true,
+          "drivable": false,
+          "width": 7,
+          "speedLimit": 22.2,
+          "directionalGradeLimit": 0.7,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "activity": "walking",
+        "canonicalTile": "126:1612",
+        "stream": {
+          "loaded": 3,
+          "unloaded": 0,
+          "failures": 0,
+          "residentBytes": 29662422,
+          "active": 1,
+          "queued": 0,
+          "errors": {},
+          "timeouts": 0,
+          "cancellations": 2,
+          "generation": 6,
+          "jobs": [
+            {
+              "id": "131:1616",
+              "generation": 2,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794870379775
+            },
+            {
+              "id": "131:1617",
+              "generation": 1,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794870379775
+            },
+            {
+              "id": "126:1612",
+              "generation": 4,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 21.941243269849647,
+              "at": 1794870388269
+            },
+            {
+              "id": "126:1613",
+              "generation": 3,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 0.24991902572790906,
+              "at": 1794870408415
+            },
+            {
+              "id": "127:1612",
+              "generation": 6,
+              "state": "WAITING_FOR_TILE",
+              "phase": "installation-queue",
+              "priority": 585.8591410984477,
+              "at": 1794870412550
+            },
+            {
+              "id": "127:1613",
+              "generation": 5,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 578.1918105697961,
+              "at": 1794870428282
+            }
+          ]
+        },
+        "origin": {
+          "origin": {
+            "x": -18176,
+            "y": 0,
+            "z": 17664,
+            "revision": 1
+          },
+          "metrics": {
+            "rebases": 1,
+            "frames": 133,
+            "maxLocalCameraM": 353.77313869194865,
+            "canonicalPhysics": true
+          }
+        }
+      },
+      "car": {
+        "position": {
+          "x": -18198.844166148196,
+          "y": 4.151380444123265,
+          "z": 17660.27163975147
+        },
+        "heading": 0.1872417610236034,
+        "speed": 0,
+        "steering": -7.183009216747742e-11,
+        "reason": "",
+        "odometer": 111.59017954645252,
+        "ground": {
+          "height": 4.151380444123265,
+          "normal": {
+            "x": -0.04781891578749399,
+            "y": 0.998852095370276,
+            "z": -0.002800511974196096
+          },
+          "slope": 0.047955900299809784,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1612",
+          "face": 66,
+          "surface": "road",
+          "road": "osm:way:997573928",
+          "supportOwner": "osm:way:997573928",
+          "ok": true,
+          "drivable": true,
+          "width": 7,
+          "speedLimit": 22.2,
+          "directionalGradeLimit": null,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "active": false
+      },
+      "distance": 103.69614967658424,
+      "tiles": [
+        "126:1613",
+        "126:1612"
+      ],
+      "junctionSeen": true,
+      "junctionMinM": 1.4304875132444785
+    }
+  ],
+  "errors": [],
+  "sourceSHA": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+  "placement": {
+    "clear": {
+      "ok": true
+    },
+    "car": {
+      "position": {
+        "x": -18219.037684201066,
+        "y": 3.3880830531440567,
+        "z": 17550.525692542866
+      },
+      "heading": 0.1751026826328004,
+      "speed": 0,
+      "steering": 0,
+      "active": false,
+      "reason": "",
+      "odometer": 0,
+      "braking": false,
+      "metrics": {
+        "steps": 0,
+        "refusals": 0,
+        "maxSpeed": 0
+      },
+      "placed": true
+    }
+  },
+  "before": {
+    "position": [
+      -18219.037684201066,
+      3.6380830531440567,
+      17550.525692542866
+    ],
+    "heading": 0.1751026826328004,
+    "birds": {
+      "individuals": 2,
+      "drawCalls": 1,
+      "triangles": 530,
+      "perches": 24,
+      "families": [
+        "tit"
+      ],
+      "sources": [
+        {
+          "id": "tree-bird:tree:-346.476619:-39.343572",
+          "position": [
+            -346.16743636841437,
+            -17.991649883852656,
+            -35.090165792862976
+          ],
+          "family": "tit"
+        },
+        {
+          "id": "tree-bird:tree:-347.880454:17.714729",
+          "position": [
+            -349.22471493765414,
+            -27.248499526366384,
+            12.146178542569537
+          ],
+          "family": "tit"
+        }
+      ],
+      "renderSamples": 84,
+      "cpuMs": 0,
+      "maxCpuMs": 4.399999998509884,
+      "clock": 40.8515,
+      "trajectory": "analytic-per-render-frame"
+    },
+    "shadow": {
+      "state": "ready",
+      "mode": "local",
+      "matchedGeometry": 287,
+      "ambientVertices": 536452,
+      "shadowSize": 1024,
+      "shadowBytes": 5242880,
+      "staticTriangles": 0,
+      "treeInstances": 0,
+      "updates": 2,
+      "lastUpdateCpuMs": 3.6999999955296516,
+      "maxUpdateCpuMs": 100.5,
+      "lastShadowCalls": 1,
+      "lastShadowTriangles": 0,
+      "extraPasses": 1,
+      "selectionBuilds": 2,
+      "shadowIndexBytes": 0,
+      "sourceBytes": 5495013,
+      "filter": "receiver-plane-pcf",
+      "windTests": 0,
+      "windSkips": 0,
+      "windMotionBoundM": 0,
+      "maxWindMotionBoundM": 0,
+      "windThresholdM": 0.030468750000000003,
+      "character": {
+        "updates": 2,
+        "size": 128,
+        "bytes": 81920,
+        "proxies": 1,
+        "extraPasses": 1,
+        "poseAgeMs": 0.3999999985098839,
+        "lastCpuMs": 0.3999999985098839,
+        "maxCpuMs": 1610.7000000029802,
+        "receiver": "landscape only; actor receives landscape map"
+      }
+    },
+    "boat": {
+      "active": false,
+      "heading": 0,
+      "following": false,
+      "metrics": {
+        "plans": 0,
+        "lateralError": 0,
+        "maxLateralError": 0,
+        "stops": 1
+      }
+    },
+    "planet": {
+      "contactQueries": {
+        "queries": 2110,
+        "hits": 740,
+        "invalidations": 99,
+        "maxEntries": 632
+      },
+      "state": "ready",
+      "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+      "stream": {
+        "loaded": 2,
+        "unloaded": 0,
+        "failures": 0,
+        "residentBytes": 20439668,
+        "active": 2,
+        "queued": 0,
+        "errors": {},
+        "timeouts": 0,
+        "cancellations": 2,
+        "generation": 6,
+        "jobs": [
+          {
+            "id": "131:1616",
+            "generation": 2,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794870379775
+          },
+          {
+            "id": "131:1617",
+            "generation": 1,
+            "state": "CANCELLED",
+            "phase": "installation",
+            "priority": null,
+            "at": 1794870379775
+          },
+          {
+            "id": "126:1612",
+            "generation": 4,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 21.941243269849647,
+            "at": 1794870388269
+          },
+          {
+            "id": "127:1613",
+            "generation": 5,
+            "state": "WAITING_FOR_TILE",
+            "phase": "installation-queue",
+            "priority": 585.4546827184695,
+            "at": 1794870388754
+          },
+          {
+            "id": "126:1613",
+            "generation": 3,
+            "state": "COMPLETED",
+            "phase": "installation",
+            "priority": 0.24991902572790906,
+            "at": 1794870408415
+          },
+          {
+            "id": "127:1612",
+            "generation": 6,
+            "state": "WAITING_FOR_TILE",
+            "phase": "network",
+            "priority": 585.8591410984477,
+            "at": 1794870408415
+          }
+        ]
+      },
+      "render": {
+        "contactRevision": 3,
+        "tiles": 2,
+        "features": 9677,
+        "triangles": 78516,
+        "trees": 1024,
+        "disposed": 1,
+        "batches": 378,
+        "batchRebuilds": 2,
+        "maxBatchMs": 153.10000000149012,
+        "maxBatchWallMs": 3632.7999999970198,
+        "failures": []
+      },
+      "graph": {
+        "foot": {
+          "features": 1229,
+          "nodes": 7216,
+          "edges": 15014,
+          "refused": 432,
+          "routes": 0,
+          "visited": 0
+        },
+        "car": {
+          "features": 1229,
+          "nodes": 4544,
+          "edges": 8664,
+          "refused": 785,
+          "routes": 0,
+          "visited": 0
+        },
+        "rail": {
+          "features": 1229,
+          "nodes": 56,
+          "edges": 104,
+          "refused": 1333,
+          "routes": 0,
+          "visited": 0
+        }
+      },
+      "car": {
+        "steps": 24,
+        "refusals": 0,
+        "maxSpeed": 0
+      },
+      "maxInstallMs": 153.10000000149012,
+      "maxInstallWallMs": 20146.39999999851,
+      "preparation": {
+        "slices": 1889,
+        "steps": 448567,
+        "cpuMs": 7879.199999779463,
+        "maxSliceMs": 153.10000000149012,
+        "maxStepMs": 150.39999999850988,
+        "completed": 17,
+        "cancelled": 1,
+        "stages": {
+          "surface-index:131:1616": {
+            "steps": 557,
+            "cpuMs": 6.999999992549419,
+            "maxStepMs": 1.6000000014901161,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:131:1616": {
+            "steps": 2169,
+            "cpuMs": 7.600000008940697,
+            "maxStepMs": 0.20000000298023224,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:131:1616": {
+            "steps": 1403,
+            "cpuMs": 3.300000011920929,
+            "maxStepMs": 0.10000000149011612,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:131:1616": {
+            "steps": 534,
+            "cpuMs": 1,
+            "maxStepMs": 0.10000000149011612,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:131:1616": {
+            "steps": 2830,
+            "cpuMs": 130.4000000283122,
+            "maxStepMs": 5.300000004470348,
+            "over8": 0,
+            "over50": 0
+          },
+          "surface-index:126:1612": {
+            "steps": 2643,
+            "cpuMs": 18.399999998509884,
+            "maxStepMs": 6.899999998509884,
+            "over8": 0,
+            "over50": 0
+          },
+          "foot-graph:126:1612": {
+            "steps": 5513,
+            "cpuMs": 15.399999991059303,
+            "maxStepMs": 4,
+            "over8": 0,
+            "over50": 0
+          },
+          "car-graph:126:1612": {
+            "steps": 4503,
+            "cpuMs": 15.49999999254942,
+            "maxStepMs": 6.800000004470348,
+            "over8": 0,
+            "over50": 0
+          },
+          "rail-graph:126:1612": {
+            "steps": 2622,
+            "cpuMs": 1.7999999970197678,
+            "maxStepMs": 0.10000000149011612,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:126:1612": {
+            "steps": 130570,
+            "cpuMs": 1686.2999999672174,
+            "maxStepMs": 31.299999997019768,
+            "over8": 10,
+            "over50": 0
+          },
+          "static-batches": {
+            "steps": 12746,
+            "cpuMs": 1550.8999999016523,
+            "maxStepMs": 150.39999999850988,
+            "over8": 17,
+            "over50": 1
+          },
+          "terrain-refine:126:1612": {
+            "steps": 58,
+            "cpuMs": 11.300000011920929,
+            "maxStepMs": 1.7999999970197678,
+            "over8": 0,
+            "over50": 0
+          },
+          "surface-index:126:1613": {
+            "steps": 7352,
+            "cpuMs": 78.99999999254942,
+            "maxStepMs": 35.600000001490116,
+            "over8": 1,
+            "over50": 0
+          },
+          "foot-graph:126:1613": {
+            "steps": 11943,
+            "cpuMs": 63.40000006556511,
+            "maxStepMs": 23.5,
+            "over8": 1,
+            "over50": 0
+          },
+          "car-graph:126:1613": {
+            "steps": 10152,
+            "cpuMs": 50.00000002980232,
+            "maxStepMs": 32,
+            "over8": 1,
+            "over50": 0
+          },
+          "rail-graph:126:1613": {
+            "steps": 7379,
+            "cpuMs": 7.399999991059303,
+            "maxStepMs": 0.20000000298023224,
+            "over8": 0,
+            "over50": 0
+          },
+          "render-install:126:1613": {
+            "steps": 227722,
+            "cpuMs": 3029.7999998554587,
+            "maxStepMs": 61.29999999701977,
+            "over8": 23,
+            "over50": 1
+          },
+          "terrain-refine:126:1613": {
+            "steps": 17472,
+            "cpuMs": 665.2999999895692,
+            "maxStepMs": 43.399999998509884,
+            "over8": 6,
+            "over50": 0
+          },
+          "surface-index:127:1613": {
+            "steps": 399,
+            "cpuMs": 9.100000001490116,
+            "maxStepMs": 2.5,
+            "over8": 0,
+            "over50": 0
+          }
+        },
+        "longSteps": [
+          {
+            "label": "render-install:126:1612",
+            "ms": 12.399999998509884
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 22.700000002980232
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 19.600000001490116
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 23.299999997019768
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 11.199999995529652
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 23.399999998509884
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 20.100000001490116
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 31.299999997019768
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 27.299999997019768
+          },
+          {
+            "label": "render-install:126:1612",
+            "ms": 22.399999998509884
+          },
+          {
+            "label": "static-batches",
+            "ms": 14
+          },
+          {
+            "label": "static-batches",
+            "ms": 18.19999999552965
+          },
+          {
+            "label": "surface-index:126:1613",
+            "ms": 35.600000001490116
+          },
+          {
+            "label": "foot-graph:126:1613",
+            "ms": 23.5
+          },
+          {
+            "label": "car-graph:126:1613",
+            "ms": 32
+          },
+          {
+            "label": "terrain-refine:126:1613",
+            "ms": 34.099999994039536
+          },
+          {
+            "label": "terrain-refine:126:1613",
+            "ms": 43.399999998509884
+          },
+          {
+            "label": "terrain-refine:126:1613",
+            "ms": 11.899999998509884
+          },
+          {
+            "label": "terrain-refine:126:1613",
+            "ms": 8.599999994039536
+          },
+          {
+            "label": "terrain-refine:126:1613",
+            "ms": 35.899999998509884
+          },
+          {
+            "label": "terrain-refine:126:1613",
+            "ms": 20.799999997019768
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 13.699999995529652
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 9.200000002980232
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 8.900000005960464
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 17.399999998509884
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 35.29999999701977
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 8.100000001490116
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 8.899999998509884
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 28.100000001490116
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 16.100000001490116
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 23.200000002980232
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 14.100000001490116
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 13.600000001490116
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 27.200000002980232
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 31.30000000447035
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 19.5
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 24.100000001490116
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 39.5
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 41.399999998509884
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 19.200000002980232
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 61.29999999701977
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 34.899999998509884
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 45
+          },
+          {
+            "label": "render-install:126:1613",
+            "ms": 15.200000002980232
+          },
+          {
+            "label": "static-batches",
+            "ms": 35.100000001490116
+          },
+          {
+            "label": "static-batches",
+            "ms": 16.399999998509884
+          },
+          {
+            "label": "static-batches",
+            "ms": 8.699999995529652
+          },
+          {
+            "label": "static-batches",
+            "ms": 31.80000000447035
+          },
+          {
+            "label": "static-batches",
+            "ms": 23
+          },
+          {
+            "label": "static-batches",
+            "ms": 24.900000005960464
+          },
+          {
+            "label": "static-batches",
+            "ms": 10.100000001490116
+          },
+          {
+            "label": "static-batches",
+            "ms": 46.5
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.600000001490116
+          },
+          {
+            "label": "static-batches",
+            "ms": 32.600000001490116
+          },
+          {
+            "label": "static-batches",
+            "ms": 9.599999994039536
+          },
+          {
+            "label": "static-batches",
+            "ms": 23.69999999552965
+          },
+          {
+            "label": "static-batches",
+            "ms": 150.39999999850988
+          },
+          {
+            "label": "static-batches",
+            "ms": 12.799999997019768
+          },
+          {
+            "label": "static-batches",
+            "ms": 31.799999997019768
+          }
+        ]
+      },
+      "failures": [],
+      "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+      "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+      "contact": {
+        "available": 499,
+        "expected": 499,
+        "effectiveStepM": 2
+      },
+      "decoder": {
+        "worker": true,
+        "batches": 67,
+        "maxReceiveMs": 1.3999999985098839,
+        "maxDecodeWallMs": 744
+      },
+      "transport": {
+        "trains": 0,
+        "aircraft": 0,
+        "railStops": 0,
+        "railRoutes": [],
+        "flight": null,
+        "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+        "cpuMs": 2.8000000044703484,
+        "maxCpuMs": 13.700000002980232,
+        "traffic": {
+          "created": 6,
+          "active": 6,
+          "stops": 0,
+          "distanceM": 14.858163718722555,
+          "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+          "extensions": 0,
+          "routeEnds": 0
+        },
+        "nearbyVehicle": {
+          "id": "traffic:osm:11613718013:0",
+          "position": {
+            "x": -18358.99880309369,
+            "y": 0.18390917496837578,
+            "z": 17573.409673093054
+          },
+          "speed": 3,
+          "rain": 0
+        }
+      },
+      "stations": {
+        "count": 60,
+        "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+        "license": "© SNCF Réseau · Open Database License (ODbL)"
+      },
+      "placement": {
+        "requested": {
+          "lat": 46.53764166643422,
+          "lon": 0.6457808293563452
+        },
+        "mode": "car",
+        "source": "osm:way:640476461",
+        "candidate": {
+          "lat": 46.53764356680387,
+          "lon": 0.6457963011174006
+        },
+        "admission": {
+          "height": 3.4372030546614862,
+          "normal": {
+            "x": -0.018547887334426028,
+            "y": 0.9998264113147716,
+            "z": -0.001767233106993737
+          },
+          "slope": 0.018635122497025015,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1613",
+          "face": 149,
+          "surface": "road",
+          "road": "osm:way:640476461",
+          "supportOwner": "osm:way:640476461",
+          "ok": true,
+          "drivable": true,
+          "width": 7,
+          "speedLimit": 22.2,
+          "directionalGradeLimit": null,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        }
+      },
+      "water": {
+        "source": "estimated",
+        "confidence": "low",
+        "version": 3,
+        "accesses": 0,
+        "rejected": 16,
+        "rejectionReasons": {
+          "land-access-or-slope-refused": 16
+        },
+        "rejectionExamples": [
+          {
+            "x": -18496.504267374257,
+            "z": 17808.57029270507,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18495.706922246907,
+              "z": 17807.887108434254
+            },
+            "entry": {
+              "x": -18495.972703956024,
+              "z": 17808.114836524528
+            },
+            "water": {
+              "x": -18498.174895260137,
+              "z": 17810.001726415347
+            },
+            "land": {
+              "height": -25.977839080227298,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -26.098031358084636,
+              "bedY": -26.098031358084636,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.41138135222346,
+              "bedY": -35.23650453455086,
+              "depth": 0.8251231823274039,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18499.757525806708,
+            "z": 17804.773411146252,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18498.960180679358,
+              "z": 17804.090226875436
+            },
+            "entry": {
+              "x": -18499.225962388475,
+              "z": 17804.31795496571
+            },
+            "water": {
+              "x": -18501.42815369259,
+              "z": 17806.20484485653
+            },
+            "land": {
+              "height": -26.849128242098487,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -26.96932051995583,
+              "bedY": -26.96932051995583,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.36593599952959,
+              "bedY": -35.18887962220723,
+              "depth": 0.8229436226776385,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18503.01078423916,
+            "z": 17800.976529587435,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18502.21343911181,
+              "z": 17800.29334531662
+            },
+            "entry": {
+              "x": -18502.479220820926,
+              "z": 17800.521073406893
+            },
+            "water": {
+              "x": -18504.68141212504,
+              "z": 17802.407963297712
+            },
+            "land": {
+              "height": -27.720417403969677,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -27.84060968182702,
+              "bedY": -27.84060968182702,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.32049064683573,
+              "bedY": -35.14101551067609,
+              "depth": 0.8205248638403594,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18506.264042671613,
+            "z": 17797.179648028618,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18505.466697544263,
+              "z": 17796.4964637578
+            },
+            "entry": {
+              "x": -18505.73247925338,
+              "z": 17796.724191848076
+            },
+            "water": {
+              "x": -18507.934670557494,
+              "z": 17798.611081738894
+            },
+            "land": {
+              "height": -28.591706565842237,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -28.711898843699572,
+              "bedY": -28.711898843699572,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.30411604623943,
+              "bedY": -35.12202544613261,
+              "depth": 0.817909399893185,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18509.517301104064,
+            "z": 17793.3827664698,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18508.719955976714,
+              "z": 17792.699582198984
+            },
+            "entry": {
+              "x": -18508.98573768583,
+              "z": 17792.92731028926
+            },
+            "water": {
+              "x": -18511.187928989944,
+              "z": 17794.814200180077
+            },
+            "land": {
+              "height": -29.462995727713423,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -29.58318800557076,
+              "bedY": -29.58318800557076,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.294304893426585,
+              "bedY": -35.10944407326859,
+              "depth": 0.8151391798420092,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18512.770559536515,
+            "z": 17789.585884910983,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18511.973214409165,
+              "z": 17788.902700640167
+            },
+            "entry": {
+              "x": -18512.23899611828,
+              "z": 17789.13042873044
+            },
+            "water": {
+              "x": -18514.441187422395,
+              "z": 17791.01731862126
+            },
+            "land": {
+              "height": -30.334284889584616,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -30.45447716744196,
+              "bedY": -30.45447716744196,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.284493740613726,
+              "bedY": -35.09674855151549,
+              "depth": 0.812254810901765,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18516.023817968966,
+            "z": 17785.78900335217,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18515.226472841616,
+              "z": 17785.105819081353
+            },
+            "entry": {
+              "x": -18515.492254550732,
+              "z": 17785.333547171627
+            },
+            "water": {
+              "x": -18517.694445854846,
+              "z": 17787.220437062446
+            },
+            "land": {
+              "height": -31.205574051456146,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -31.32576632931349,
+              "bedY": -31.32576632931349,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.27468258780104,
+              "bedY": -35.08397746993036,
+              "depth": 0.8092948821293248,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18517.192264732337,
+            "z": 17784.241597334938,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18516.318974178826,
+              "z": 17783.65861911138
+            },
+            "entry": {
+              "x": -18516.610071029994,
+              "z": 17783.852945185896
+            },
+            "water": {
+              "x": -18519.022016368268,
+              "z": 17785.463075517637
+            },
+            "land": {
+              "height": -31.48248441457803,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -31.609105219873697,
+              "bedY": -31.609105219873697,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.26169181292982,
+              "bedY": -35.0697383597085,
+              "depth": 0.8080465467786841,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18519.968351511197,
+            "z": 17780.083070889643,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18519.095060957687,
+              "z": 17779.500092666083
+            },
+            "entry": {
+              "x": -18519.386157808854,
+              "z": 17779.6944187406
+            },
+            "water": {
+              "x": -18521.798103147128,
+              "z": 17781.30454907234
+            },
+            "land": {
+              "height": -32.142287239184746,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -32.26890804448042,
+              "bedY": -32.26890804448042,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.21362256846796,
+              "bedY": -35.01900375721105,
+              "depth": 0.8053811887430917,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18522.74443829006,
+            "z": 17775.924544444348,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18521.87114773655,
+              "z": 17775.341566220788
+            },
+            "entry": {
+              "x": -18522.16224458772,
+              "z": 17775.535892295306
+            },
+            "water": {
+              "x": -18524.574189925992,
+              "z": 17777.146022627046
+            },
+            "land": {
+              "height": -32.802090063792825,
+              "normal": {
+                "x": -0.34916130431353554,
+                "y": 0.9331973263940051,
+                "z": 0.08502431170642455
+              },
+              "slope": 0.3850893688391008,
+              "face": 9802,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -32.9287108690885,
+              "bedY": -32.9287108690885,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.26422560036156,
+              "bedY": -35.06697808945677,
+              "depth": 0.8027524890952016,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18525.520525068925,
+            "z": 17771.766017999053,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18524.647234515414,
+              "z": 17771.183039775493
+            },
+            "entry": {
+              "x": -18524.938331366582,
+              "z": 17771.37736585001
+            },
+            "water": {
+              "x": -18527.350276704856,
+              "z": 17772.98749618175
+            },
+            "land": {
+              "height": -32.78867682379847,
+              "normal": {
+                "x": -0.08108146407174982,
+                "y": 0.9933388302605504,
+                "z": 0.08187651971464689
+              },
+              "slope": 0.11600278102275041,
+              "face": 9796,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -32.82845509516665,
+              "bedY": -32.82845509516665,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.33664990195527,
+              "bedY": -35.13683236634244,
+              "depth": 0.8001824643871733,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18528.29661184779,
+            "z": 17767.607491553757,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18527.423321294278,
+              "z": 17767.024513330198
+            },
+            "entry": {
+              "x": -18527.714418145446,
+              "z": 17767.218839404715
+            },
+            "water": {
+              "x": -18530.12636348372,
+              "z": 17768.828969736456
+            },
+            "land": {
+              "height": -32.67250650150138,
+              "normal": {
+                "x": -0.08108146407174982,
+                "y": 0.9933388302605504,
+                "z": 0.08187651971464689
+              },
+              "slope": 0.11600278102275041,
+              "face": 9796,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -32.71228477286957,
+              "bedY": -32.71228477286957,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.40907420354898,
+              "bedY": -35.20676383943639,
+              "depth": 0.7976896358874109,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18531.07269862665,
+            "z": 17763.448965108462,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18530.19940807314,
+              "z": 17762.865986884903
+            },
+            "entry": {
+              "x": -18530.490504924306,
+              "z": 17763.06031295942
+            },
+            "water": {
+              "x": -18532.90245026258,
+              "z": 17764.67044329116
+            },
+            "land": {
+              "height": -32.556336179204,
+              "normal": {
+                "x": -0.08108146407174982,
+                "y": 0.9933388302605504,
+                "z": 0.08187651971464689
+              },
+              "slope": 0.11600278102275041,
+              "face": 9796,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -32.59611445057218,
+              "bedY": -32.59611445057218,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.481498505142696,
+              "bedY": -35.27678763328952,
+              "depth": 0.7952891281468296,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18533.848785405513,
+            "z": 17759.290438663164,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18532.975494852002,
+              "z": 17758.707460439604
+            },
+            "entry": {
+              "x": -18533.26659170317,
+              "z": 17758.90178651412
+            },
+            "water": {
+              "x": -18535.678537041444,
+              "z": 17760.511916845862
+            },
+            "land": {
+              "height": -32.44016585690661,
+              "normal": {
+                "x": -0.08108146407174982,
+                "y": 0.9933388302605504,
+                "z": 0.08187651971464689
+              },
+              "slope": 0.11600278102275041,
+              "face": 9796,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -32.479944128274795,
+              "bedY": -32.479944128274795,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.55392280673648,
+              "bedY": -35.346915644954954,
+              "depth": 0.7929928382184764,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18536.624872184377,
+            "z": 17755.13191221787,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18535.751581630866,
+              "z": 17754.54893399431
+            },
+            "entry": {
+              "x": -18536.042678482034,
+              "z": 17754.743260068826
+            },
+            "water": {
+              "x": -18538.454623820307,
+              "z": 17756.353390400567
+            },
+            "land": {
+              "height": -32.32399553460952,
+              "normal": {
+                "x": -0.08108146407174982,
+                "y": 0.9933388302605504,
+                "z": 0.08187651971464689
+              },
+              "slope": 0.11600278102275041,
+              "face": 9796,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -32.36377380597771,
+              "bedY": -32.36377380597771,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.62634710833019,
+              "bedY": -35.41715676763454,
+              "depth": 0.7908096593043538,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          },
+          {
+            "x": -18539.40095896324,
+            "z": 17750.973385772573,
+            "reason": "land-access-or-slope-refused",
+            "dry": {
+              "x": -18538.52766840973,
+              "z": 17750.390407549014
+            },
+            "entry": {
+              "x": -18538.818765260898,
+              "z": 17750.58473362353
+            },
+            "water": {
+              "x": -18541.23071059917,
+              "z": 17752.194863955272
+            },
+            "land": {
+              "height": -32.207825212312436,
+              "normal": {
+                "x": -0.08108146407174982,
+                "y": 0.9933388302605504,
+                "z": 0.08187651971464689
+              },
+              "slope": 0.11600278102275041,
+              "face": 9796,
+              "category": "terrain",
+              "walkable": false
+            },
+            "entrySample": {
+              "surfaceY": -32.24760348368062,
+              "bedY": -32.24760348368062,
+              "depth": 0,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": false,
+              "allowed": false,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            },
+            "boatSample": {
+              "surfaceY": -34.69877140992389,
+              "bedY": -35.48751715330677,
+              "depth": 0.7887457433828766,
+              "source": "estimated",
+              "confidence": "low",
+              "reliable": true,
+              "allowed": true,
+              "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+            }
+          }
+        ],
+        "renderedBed": false,
+        "water": "opaque source surface; analytic reflection",
+        "realDepthClaim": false,
+        "preparing": true,
+        "prepareMs": 3645.1999999955297,
+        "maxSliceMs": 5.800000004470348,
+        "firstAccessMs": null,
+        "samples": 34,
+        "cacheHits": 0
+      }
+    },
+    "source": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+    "heightBaseM": 101.2,
+    "verticalDatum": "IGN69",
+    "activity": "driving",
+    "audioEnabled": true,
+    "gps": {
+      "lat": 46.53764166643422,
+      "lon": 0.6457808293563452
+    },
+    "movement": null,
+    "admission": {
+      "height": 3.3880830531440567,
+      "normal": {
+        "x": -0.041145945196894324,
+        "y": 0.9991506494067962,
+        "z": 0.0022340509912178487
+      },
+      "slope": 0.041241578888017334,
+      "datum": "IGN69",
+      "resolutionM": 2,
+      "source": "IGN LHD numeric MNT; 2 m derivative",
+      "quantizationMaxErrorM": 0.005,
+      "tile": "126:1613",
+      "face": 150,
+      "surface": "road",
+      "road": "osm:way:640476461",
+      "supportOwner": "osm:way:640476461",
+      "ok": true,
+      "drivable": false,
+      "width": 7,
+      "speedLimit": 22.2,
+      "directionalGradeLimit": 0.7,
+      "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+    },
+    "origin": {
+      "origin": {
+        "x": -18176,
+        "y": 0,
+        "z": 17664,
+        "revision": 1
+      },
+      "metrics": {
+        "rebases": 1,
+        "frames": 74,
+        "maxLocalCameraM": 353.77313869194865,
+        "canonicalPhysics": true
+      }
+    },
+    "buffer": [
+      800,
+      600
+    ],
+    "viewport": [
+      800,
+      600
+    ],
+    "heap": 419245896,
+    "longTasks": [
+      {
+        "t": 241.5,
+        "ms": 1284
+      },
+      {
+        "t": 1668.1000000014901,
+        "ms": 414
+      },
+      {
+        "t": 2087.5,
+        "ms": 148
+      },
+      {
+        "t": 2454.39999999851,
+        "ms": 108
+      },
+      {
+        "t": 2704.7999999970198,
+        "ms": 57
+      },
+      {
+        "t": 2837.89999999851,
+        "ms": 130
+      },
+      {
+        "t": 3101.10000000149,
+        "ms": 157
+      },
+      {
+        "t": 3652.2999999970198,
+        "ms": 141
+      },
+      {
+        "t": 4234.39999999851,
+        "ms": 380
+      },
+      {
+        "t": 4700.19999999553,
+        "ms": 58
+      },
+      {
+        "t": 5001.60000000149,
+        "ms": 177
+      },
+      {
+        "t": 5213.5,
+        "ms": 1640
+      },
+      {
+        "t": 7489.79999999702,
+        "ms": 388
+      },
+      {
+        "t": 7879.19999999553,
+        "ms": 112
+      },
+      {
+        "t": 7991.79999999702,
+        "ms": 6488
+      },
+      {
+        "t": 14480.69999999553,
+        "ms": 287
+      },
+      {
+        "t": 14770.5,
+        "ms": 1708
+      },
+      {
+        "t": 16583,
+        "ms": 2008
+      },
+      {
+        "t": 18591.79999999702,
+        "ms": 2141
+      },
+      {
+        "t": 20839.89999999851,
+        "ms": 89
+      },
+      {
+        "t": 21171.39999999851,
+        "ms": 206
+      },
+      {
+        "t": 22389,
+        "ms": 1063
+      },
+      {
+        "t": 24907.10000000149,
+        "ms": 54
+      },
+      {
+        "t": 38555.89999999851,
+        "ms": 1609
+      },
+      {
+        "t": 44297.10000000149,
+        "ms": 53
+      },
+      {
+        "t": 46894.19999999553,
+        "ms": 65
+      },
+      {
+        "t": 50913.29999999702,
+        "ms": 55
+      },
+      {
+        "t": 51191,
+        "ms": 153
+      },
+      {
+        "t": 52184.79999999702,
+        "ms": 181
+      },
+      {
+        "t": 52366.69999999553,
+        "ms": 2318
+      },
+      {
+        "t": 54758.69999999553,
+        "ms": 1259
+      }
+    ],
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "audio": {
+      "layers": [],
+      "activeSources": [],
+      "recentEvents": [],
+      "nodes": 5,
+      "voices": 0,
+      "peakVoices": 0,
+      "hrtf": 0,
+      "beds": 0,
+      "budget": {
+        "voices": 12,
+        "hrtf": 2,
+        "beds": 3,
+        "hz": 2
+      },
+      "dropped": 0,
+      "steps": 0,
+      "lastStepAssets": [],
+      "heardBirds": 0,
+      "waterContacts": 0,
+      "waterBufferBytes": 0,
+      "roadEvents": 0,
+      "profile": "balanced",
+      "obstructionChecks": 0,
+      "obstructionUpdates": 0,
+      "cacheBytes": 0,
+      "peakBytes": 0,
+      "cached": 0,
+      "pending": 0,
+      "activeLoads": 0,
+      "loads": 0,
+      "decodes": 0,
+      "deferred": 0,
+      "deniedDecodes": 0,
+      "failures": {},
+      "aircraftEvents": 0,
+      "contextUpdates": 0,
+      "cpuMs": 0,
+      "maxCpuMs": 0,
+      "nearbyChecks": 0,
+      "memoryCells": 0,
+      "perches": 0,
+      "contact": {
+        "surface": null,
+        "material": "unknown",
+        "basis": "no reliable ground material",
+        "confidence": "unknown",
+        "wetness": 0
+      },
+      "context": null
+    },
+    "buffers": {
+      "attributeBuffers": 4719,
+      "attributeBytes": 76280516,
+      "typedTextureBytes": 2523136,
+      "textureCount": 3,
+      "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+    },
+    "diagnosticState": {
+      "commit": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "profile": "balanced",
+      "position": [
+        -18219.037684201066,
+        3.6380830531440567,
+        17550.525692542866
+      ],
+      "camera": {
+        "position": [
+          -18220.07959255826,
+          5.737569667898216,
+          17544.6363458104
+        ],
+        "quaternion": [
+          0.007089255944636273,
+          0.9928903551862157,
+          0.0807657537531706,
+          -0.08715146613238385
+        ],
+        "fov": 55
+      },
+      "walker": {
+        "version": "original-traveler-rig-v9-periodic-curves-soft-reach",
+        "bones": 31,
+        "triangles": 7880,
+        "drawCalls": 1,
+        "imageTextures": 0,
+        "boneTextureBytes": 1984,
+        "lod": 0,
+        "lodTriangles": [
+          7880,
+          3940
+        ],
+        "phase": 0.6,
+        "speed": 0,
+        "contacts": 0,
+        "soleError": 0,
+        "plantError": 0,
+        "mode": "sitting",
+        "plantSlideM": 0,
+        "swingIK": 0,
+        "pelvisY": 0.8680927182227504
+      },
+      "activity": "driving",
+      "network": {
+        "builds": 0,
+        "nodes": 0,
+        "edges": 0,
+        "components": 0,
+        "ready": false,
+        "step": 4,
+        "bounds": [
+          -19417.85638515896,
+          16350.314143393276,
+          -17017.85638515896,
+          18750.314143393276
+        ],
+        "source": "loaded OSM surface / estimated game bed",
+        "confidence": "low",
+        "bridgePolicy": "existing clearance refusals preserved",
+        "buildMs": 0,
+        "cpuMs": 0,
+        "maxSliceMs": 0,
+        "slices": 0
+      },
+      "audio": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [],
+        "nodes": 5,
+        "voices": 0,
+        "peakVoices": 0,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "lastStepAssets": [],
+        "heardBirds": 0,
+        "waterContacts": 0,
+        "waterBufferBytes": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "obstructionChecks": 0,
+        "obstructionUpdates": 0,
+        "cacheBytes": 0,
+        "peakBytes": 0,
+        "cached": 0,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 0,
+        "decodes": 0,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 0,
+        "cpuMs": 0,
+        "maxCpuMs": 0,
+        "nearbyChecks": 0,
+        "memoryCells": 0,
+        "perches": 0,
+        "contact": {
+          "surface": null,
+          "material": "unknown",
+          "basis": "no reliable ground material",
+          "confidence": "unknown",
+          "wetness": 0
+        },
+        "context": null
+      },
+      "climate": {
+        "time": 40.8515,
+        "wind": {
+          "x": 0.10388829311520162,
+          "z": -0.05681823219466939,
+          "speed": 0.11840739804889416,
+          "gust": 0.036853100849882005,
+          "slow": 0.4694096429846358,
+          "turn": 0.013884467140610817,
+          "water": -0.9994107589684211
+        },
+        "date": "2026-06-21T13:57:47.015Z"
+      },
+      "captureTransport": "base64-sha256-v3",
+      "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "interactions": {
+        "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+        "objects": 3,
+        "colliders": 14,
+        "sweeps": 0,
+        "rejected": 0,
+        "last": null
+      }
+    }
+  },
+  "media": {
+    "containerIndexed": true,
+    "codecCopy": true,
+    "packetPTSAndPayloadsIdentical": true,
+    "packets": 293,
+    "rawSha256": "28fbc78bb1948ce02116f634c700dd1fd1a26b153d9b24c0a2f80ce2c8f71d75",
+    "indexedSha256": "9b33cc8b9bfba8b107ccf1baafcdc237e66214b5a058a48a3207a1150b0106d1"
+  },
+  "video": "candidate-native-car-junction.webm",
+  "original": "raw/candidate-native-car-junction.webm",
+  "counter": {
+    "frames": 298,
+    "simulationSeconds": 73.8415,
+    "lastDt": 0.25
+  },
+  "frames": 298,
+  "wallSeconds": 180.0483999999985,
+  "averageRenderedFps": 1.649556452598315,
+  "end": {
+    "state": {
+      "position": [
+        -18200.52441794471,
+        4.070299146192963,
+        17662.07931916822
+      ],
+      "heading": -1.497884719786981,
+      "birds": {
+        "individuals": 0,
+        "drawCalls": 0,
+        "triangles": 0,
+        "perches": 0,
+        "families": [],
+        "sources": [],
+        "renderSamples": 382,
+        "cpuMs": 0,
+        "maxCpuMs": 15.5,
+        "clock": 220.14980000000426,
+        "trajectory": "analytic-per-render-frame"
+      },
+      "shadow": {
+        "state": "ready",
+        "mode": "local",
+        "matchedGeometry": 287,
+        "ambientVertices": 536452,
+        "shadowSize": 1024,
+        "shadowBytes": 5242880,
+        "staticTriangles": 0,
+        "treeInstances": 0,
+        "updates": 44,
+        "lastUpdateCpuMs": 2,
+        "maxUpdateCpuMs": 100.5,
+        "lastShadowCalls": 1,
+        "lastShadowTriangles": 0,
+        "extraPasses": 0,
+        "selectionBuilds": 44,
+        "shadowIndexBytes": 0,
+        "sourceBytes": 5495013,
+        "filter": "receiver-plane-pcf",
+        "windTests": 0,
+        "windSkips": 0,
+        "windMotionBoundM": 0,
+        "maxWindMotionBoundM": 0,
+        "windThresholdM": 0.030468750000000003,
+        "character": {
+          "updates": 300,
+          "size": 128,
+          "bytes": 81920,
+          "proxies": 1,
+          "extraPasses": 1,
+          "poseAgeMs": 0.3999999985098839,
+          "lastCpuMs": 0.3999999985098839,
+          "maxCpuMs": 1610.7000000029802,
+          "receiver": "landscape only; actor receives landscape map"
+        }
+      },
+      "boat": {
+        "active": false,
+        "heading": 0,
+        "following": false,
+        "metrics": {
+          "plans": 0,
+          "lateralError": 0,
+          "maxLateralError": 0,
+          "stops": 1
+        }
+      },
+      "planet": {
+        "contactQueries": {
+          "queries": 61134,
+          "hits": 25514,
+          "invalidations": 963,
+          "maxEntries": 1549
+        },
+        "state": "ready",
+        "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+        "stream": {
+          "loaded": 4,
+          "unloaded": 0,
+          "failures": 0,
+          "residentBytes": 38569372,
+          "active": 0,
+          "queued": 0,
+          "errors": {},
+          "timeouts": 0,
+          "cancellations": 2,
+          "generation": 6,
+          "jobs": [
+            {
+              "id": "131:1616",
+              "generation": 2,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794870379775
+            },
+            {
+              "id": "131:1617",
+              "generation": 1,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794870379775
+            },
+            {
+              "id": "126:1612",
+              "generation": 4,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 21.941243269849647,
+              "at": 1794870388269
+            },
+            {
+              "id": "126:1613",
+              "generation": 3,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 0.24991902572790906,
+              "at": 1794870408415
+            },
+            {
+              "id": "127:1613",
+              "generation": 5,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 578.1918105697961,
+              "at": 1794870428282
+            },
+            {
+              "id": "127:1612",
+              "generation": 6,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 570.1293906865417,
+              "at": 1794870447090
+            }
+          ]
+        },
+        "render": {
+          "contactRevision": 11,
+          "tiles": 4,
+          "features": 11912,
+          "triangles": 220200,
+          "trees": 2048,
+          "disposed": 1,
+          "batches": 660,
+          "batchRebuilds": 4,
+          "maxBatchMs": 153.10000000149012,
+          "maxBatchWallMs": 6052.80000000447,
+          "failures": []
+        },
+        "graph": {
+          "foot": {
+            "features": 1607,
+            "nodes": 10066,
+            "edges": 20884,
+            "refused": 605,
+            "routes": 0,
+            "visited": 0
+          },
+          "car": {
+            "features": 1607,
+            "nodes": 5899,
+            "edges": 11387,
+            "refused": 1056,
+            "routes": 0,
+            "visited": 0
+          },
+          "rail": {
+            "features": 1607,
+            "nodes": 117,
+            "edges": 220,
+            "refused": 1708,
+            "routes": 0,
+            "visited": 0
+          }
+        },
+        "car": {
+          "steps": 796,
+          "refusals": 0,
+          "maxSpeed": 12.458741967962913
+        },
+        "maxInstallMs": 153.10000000149012,
+        "maxInstallWallMs": 20146.39999999851,
+        "preparation": {
+          "slices": 4207,
+          "steps": 802478,
+          "cpuMs": 17775.49999988824,
+          "maxSliceMs": 153.10000000149012,
+          "maxStepMs": 150.39999999850988,
+          "completed": 35,
+          "cancelled": 1,
+          "stages": {
+            "surface-index:131:1616": {
+              "steps": 557,
+              "cpuMs": 6.999999992549419,
+              "maxStepMs": 1.6000000014901161,
+              "over8": 0,
+              "over50": 0
+            },
+            "foot-graph:131:1616": {
+              "steps": 2169,
+              "cpuMs": 7.600000008940697,
+              "maxStepMs": 0.20000000298023224,
+              "over8": 0,
+              "over50": 0
+            },
+            "car-graph:131:1616": {
+              "steps": 1403,
+              "cpuMs": 3.300000011920929,
+              "maxStepMs": 0.10000000149011612,
+              "over8": 0,
+              "over50": 0
+            },
+            "rail-graph:131:1616": {
+              "steps": 534,
+              "cpuMs": 1,
+              "maxStepMs": 0.10000000149011612,
+              "over8": 0,
+              "over50": 0
+            },
+            "render-install:131:1616": {
+              "steps": 2830,
+              "cpuMs": 130.4000000283122,
+              "maxStepMs": 5.300000004470348,
+              "over8": 0,
+              "over50": 0
+            },
+            "surface-index:126:1612": {
+              "steps": 2643,
+              "cpuMs": 18.399999998509884,
+              "maxStepMs": 6.899999998509884,
+              "over8": 0,
+              "over50": 0
+            },
+            "foot-graph:126:1612": {
+              "steps": 5513,
+              "cpuMs": 15.399999991059303,
+              "maxStepMs": 4,
+              "over8": 0,
+              "over50": 0
+            },
+            "car-graph:126:1612": {
+              "steps": 4503,
+              "cpuMs": 15.49999999254942,
+              "maxStepMs": 6.800000004470348,
+              "over8": 0,
+              "over50": 0
+            },
+            "rail-graph:126:1612": {
+              "steps": 2622,
+              "cpuMs": 1.7999999970197678,
+              "maxStepMs": 0.10000000149011612,
+              "over8": 0,
+              "over50": 0
+            },
+            "render-install:126:1612": {
+              "steps": 130570,
+              "cpuMs": 1686.2999999672174,
+              "maxStepMs": 31.299999997019768,
+              "over8": 10,
+              "over50": 0
+            },
+            "static-batches": {
+              "steps": 36831,
+              "cpuMs": 4800.999999895692,
+              "maxStepMs": 150.39999999850988,
+              "over8": 47,
+              "over50": 1
+            },
+            "terrain-refine:126:1612": {
+              "steps": 41099,
+              "cpuMs": 1498.8000000044703,
+              "maxStepMs": 71.69999999552965,
+              "over8": 17,
+              "over50": 1
+            },
+            "surface-index:126:1613": {
+              "steps": 7352,
+              "cpuMs": 78.99999999254942,
+              "maxStepMs": 35.600000001490116,
+              "over8": 1,
+              "over50": 0
+            },
+            "foot-graph:126:1613": {
+              "steps": 11943,
+              "cpuMs": 63.40000006556511,
+              "maxStepMs": 23.5,
+              "over8": 1,
+              "over50": 0
+            },
+            "car-graph:126:1613": {
+              "steps": 10152,
+              "cpuMs": 50.00000002980232,
+              "maxStepMs": 32,
+              "over8": 1,
+              "over50": 0
+            },
+            "rail-graph:126:1613": {
+              "steps": 7379,
+              "cpuMs": 7.399999991059303,
+              "maxStepMs": 0.20000000298023224,
+              "over8": 0,
+              "over50": 0
+            },
+            "render-install:126:1613": {
+              "steps": 227722,
+              "cpuMs": 3029.7999998554587,
+              "maxStepMs": 61.29999999701977,
+              "over8": 23,
+              "over50": 1
+            },
+            "terrain-refine:126:1613": {
+              "steps": 63497,
+              "cpuMs": 2092.900000013411,
+              "maxStepMs": 43.399999998509884,
+              "over8": 16,
+              "over50": 0
+            },
+            "surface-index:127:1613": {
+              "steps": 1414,
+              "cpuMs": 15.799999997019768,
+              "maxStepMs": 2.5,
+              "over8": 0,
+              "over50": 0
+            },
+            "foot-graph:127:1613": {
+              "steps": 3293,
+              "cpuMs": 23.600000008940697,
+              "maxStepMs": 1.3999999985098839,
+              "over8": 0,
+              "over50": 0
+            },
+            "car-graph:127:1613": {
+              "steps": 2140,
+              "cpuMs": 9.000000029802322,
+              "maxStepMs": 1,
+              "over8": 0,
+              "over50": 0
+            },
+            "rail-graph:127:1613": {
+              "steps": 1444,
+              "cpuMs": 1.099999986588955,
+              "maxStepMs": 0.10000000149011612,
+              "over8": 0,
+              "over50": 0
+            },
+            "render-install:127:1613": {
+              "steps": 119891,
+              "cpuMs": 1675.1000000610948,
+              "maxStepMs": 40.20000000298023,
+              "over8": 8,
+              "over50": 0
+            },
+            "surface-index:127:1612": {
+              "steps": 1047,
+              "cpuMs": 18.80000001192093,
+              "maxStepMs": 8.200000002980232,
+              "over8": 1,
+              "over50": 0
+            },
+            "terrain-refine:127:1613": {
+              "steps": 5246,
+              "cpuMs": 226.50000009685755,
+              "maxStepMs": 40.5,
+              "over8": 3,
+              "over50": 0
+            },
+            "foot-graph:127:1612": {
+              "steps": 2056,
+              "cpuMs": 8.50000000745058,
+              "maxStepMs": 0.20000000298023224,
+              "over8": 0,
+              "over50": 0
+            },
+            "car-graph:127:1612": {
+              "steps": 1652,
+              "cpuMs": 4.299999997019768,
+              "maxStepMs": 0.10000000149011612,
+              "over8": 0,
+              "over50": 0
+            },
+            "rail-graph:127:1612": {
+              "steps": 1028,
+              "cpuMs": 0.5,
+              "maxStepMs": 0.10000000149011612,
+              "over8": 0,
+              "over50": 0
+            },
+            "render-install:127:1612": {
+              "steps": 98721,
+              "cpuMs": 1275.0000000819564,
+              "maxStepMs": 49.70000000298023,
+              "over8": 10,
+              "over50": 0
+            },
+            "terrain-refine:127:1612": {
+              "steps": 5227,
+              "cpuMs": 135.49999991059303,
+              "maxStepMs": 5.600000001490116,
+              "over8": 0,
+              "over50": 0
+            }
+          },
+          "longSteps": [
+            {
+              "label": "static-batches",
+              "ms": 14
+            },
+            {
+              "label": "static-batches",
+              "ms": 18.19999999552965
+            },
+            {
+              "label": "surface-index:126:1613",
+              "ms": 35.600000001490116
+            },
+            {
+              "label": "foot-graph:126:1613",
+              "ms": 23.5
+            },
+            {
+              "label": "car-graph:126:1613",
+              "ms": 32
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 34.099999994039536
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 43.399999998509884
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 11.899999998509884
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 8.599999994039536
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 35.899999998509884
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 20.799999997019768
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 13.699999995529652
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 9.200000002980232
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 8.900000005960464
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 17.399999998509884
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 35.29999999701977
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 8.100000001490116
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 8.899999998509884
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 28.100000001490116
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 16.100000001490116
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 23.200000002980232
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 14.100000001490116
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 13.600000001490116
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 27.200000002980232
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 31.30000000447035
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 19.5
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 24.100000001490116
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 39.5
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 41.399999998509884
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 19.200000002980232
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 61.29999999701977
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 34.899999998509884
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 45
+            },
+            {
+              "label": "render-install:126:1613",
+              "ms": 15.200000002980232
+            },
+            {
+              "label": "static-batches",
+              "ms": 35.100000001490116
+            },
+            {
+              "label": "static-batches",
+              "ms": 16.399999998509884
+            },
+            {
+              "label": "static-batches",
+              "ms": 8.699999995529652
+            },
+            {
+              "label": "static-batches",
+              "ms": 31.80000000447035
+            },
+            {
+              "label": "static-batches",
+              "ms": 23
+            },
+            {
+              "label": "static-batches",
+              "ms": 24.900000005960464
+            },
+            {
+              "label": "static-batches",
+              "ms": 10.100000001490116
+            },
+            {
+              "label": "static-batches",
+              "ms": 46.5
+            },
+            {
+              "label": "static-batches",
+              "ms": 9.600000001490116
+            },
+            {
+              "label": "static-batches",
+              "ms": 32.600000001490116
+            },
+            {
+              "label": "static-batches",
+              "ms": 9.599999994039536
+            },
+            {
+              "label": "static-batches",
+              "ms": 23.69999999552965
+            },
+            {
+              "label": "static-batches",
+              "ms": 150.39999999850988
+            },
+            {
+              "label": "static-batches",
+              "ms": 12.799999997019768
+            },
+            {
+              "label": "static-batches",
+              "ms": 31.799999997019768
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 11.399999998509884
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 39.899999998509884
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 10.800000004470348
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 10.600000001490116
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 20.100000001490116
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 20.200000002980232
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 41.5
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 10.800000004470348
+            },
+            {
+              "label": "render-install:127:1613",
+              "ms": 29.200000002980232
+            },
+            {
+              "label": "render-install:127:1613",
+              "ms": 11.399999998509884
+            },
+            {
+              "label": "render-install:127:1613",
+              "ms": 26.600000001490116
+            },
+            {
+              "label": "render-install:127:1613",
+              "ms": 31.200000002980232
+            },
+            {
+              "label": "render-install:127:1613",
+              "ms": 40.20000000298023
+            },
+            {
+              "label": "render-install:127:1613",
+              "ms": 9.099999994039536
+            },
+            {
+              "label": "render-install:127:1613",
+              "ms": 9
+            },
+            {
+              "label": "render-install:127:1613",
+              "ms": 35.20000000298023
+            },
+            {
+              "label": "static-batches",
+              "ms": 8.099999994039536
+            },
+            {
+              "label": "static-batches",
+              "ms": 9.700000002980232
+            },
+            {
+              "label": "static-batches",
+              "ms": 33.20000000298023
+            },
+            {
+              "label": "static-batches",
+              "ms": 11.099999994039536
+            },
+            {
+              "label": "static-batches",
+              "ms": 34.600000001490116
+            },
+            {
+              "label": "static-batches",
+              "ms": 9.399999998509884
+            },
+            {
+              "label": "static-batches",
+              "ms": 8.300000004470348
+            },
+            {
+              "label": "static-batches",
+              "ms": 11.900000005960464
+            },
+            {
+              "label": "static-batches",
+              "ms": 9.600000001490116
+            },
+            {
+              "label": "static-batches",
+              "ms": 9.299999997019768
+            },
+            {
+              "label": "static-batches",
+              "ms": 14.700000002980232
+            },
+            {
+              "label": "static-batches",
+              "ms": 17.299999997019768
+            },
+            {
+              "label": "static-batches",
+              "ms": 19.200000002980232
+            },
+            {
+              "label": "static-batches",
+              "ms": 33.5
+            },
+            {
+              "label": "static-batches",
+              "ms": 8.800000004470348
+            },
+            {
+              "label": "surface-index:127:1612",
+              "ms": 8.200000002980232
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 35.5
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 23.30000000447035
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 71.69999999552965
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 11
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 39.29999999701977
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 8.600000001490116
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 20.5
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 18.5
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 21.099999994039536
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 31.30000000447035
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 8.799999997019768
+            },
+            {
+              "label": "terrain-refine:126:1613",
+              "ms": 33.29999999701977
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 9.300000004470348
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 14.700000002980232
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 37.79999999701977
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 11.800000004470348
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 20.899999998509884
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 11.599999994039536
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 41.399999998509884
+            },
+            {
+              "label": "terrain-refine:126:1612",
+              "ms": 28.5
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 10
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 32.70000000298023
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 8.599999994039536
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 27.200000002980232
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 8.300000004470348
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 19.30000000447035
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 11.399999998509884
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 49.70000000298023
+            },
+            {
+              "label": "render-install:127:1612",
+              "ms": 27.200000002980232
+            },
+            {
+              "label": "static-batches",
+              "ms": 8.300000004470348
+            },
+            {
+              "label": "static-batches",
+              "ms": 32.599999994039536
+            },
+            {
+              "label": "static-batches",
+              "ms": 9.200000002980232
+            },
+            {
+              "label": "static-batches",
+              "ms": 8.5
+            },
+            {
+              "label": "static-batches",
+              "ms": 11.800000004470348
+            },
+            {
+              "label": "static-batches",
+              "ms": 34.19999999552965
+            },
+            {
+              "label": "static-batches",
+              "ms": 25
+            },
+            {
+              "label": "static-batches",
+              "ms": 11.399999998509884
+            },
+            {
+              "label": "static-batches",
+              "ms": 8.200000002980232
+            },
+            {
+              "label": "static-batches",
+              "ms": 45.79999999701977
+            },
+            {
+              "label": "static-batches",
+              "ms": 10.5
+            },
+            {
+              "label": "static-batches",
+              "ms": 14.5
+            },
+            {
+              "label": "static-batches",
+              "ms": 12.600000001490116
+            },
+            {
+              "label": "static-batches",
+              "ms": 11.5
+            },
+            {
+              "label": "static-batches",
+              "ms": 32.399999998509884
+            },
+            {
+              "label": "terrain-refine:127:1613",
+              "ms": 31.799999997019768
+            },
+            {
+              "label": "terrain-refine:127:1613",
+              "ms": 40.5
+            },
+            {
+              "label": "terrain-refine:127:1613",
+              "ms": 9
+            }
+          ]
+        },
+        "failures": [],
+        "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+        "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+        "contact": {
+          "available": 499,
+          "expected": 499,
+          "effectiveStepM": 2
+        },
+        "decoder": {
+          "worker": true,
+          "batches": 69,
+          "maxReceiveMs": 1.3999999985098839,
+          "maxDecodeWallMs": 744
+        },
+        "transport": {
+          "trains": 0,
+          "aircraft": 0,
+          "railStops": 0,
+          "railRoutes": [],
+          "flight": null,
+          "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+          "cpuMs": 40.099999994039536,
+          "maxCpuMs": 40.099999994039536,
+          "traffic": {
+            "created": 6,
+            "active": 6,
+            "stops": 158,
+            "distanceM": 3184.0140503407993,
+            "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+            "extensions": 0,
+            "routeEnds": 2
+          },
+          "nearbyVehicle": {
+            "id": "traffic:osm:11613718013:0",
+            "position": {
+              "x": -18591.78832539665,
+              "y": 4.427073406220616,
+              "z": 17323.784301408534
+            },
+            "speed": 0,
+            "rain": 0
+          }
+        },
+        "stations": {
+          "count": 60,
+          "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+          "license": "© SNCF Réseau · Open Database License (ODbL)"
+        },
+        "placement": {
+          "requested": {
+            "lat": 46.53764166643422,
+            "lon": 0.6457808293563452
+          },
+          "mode": "car",
+          "source": "osm:way:640476461",
+          "candidate": {
+            "lat": 46.53764356680387,
+            "lon": 0.6457963011174006
+          },
+          "admission": {
+            "height": 3.4372030546614862,
+            "normal": {
+              "x": -0.018547887334426028,
+              "y": 0.9998264113147716,
+              "z": -0.001767233106993737
+            },
+            "slope": 0.018635122497025015,
+            "datum": "IGN69",
+            "resolutionM": 2,
+            "source": "IGN LHD numeric MNT; 2 m derivative",
+            "quantizationMaxErrorM": 0.005,
+            "tile": "126:1613",
+            "face": 149,
+            "surface": "road",
+            "road": "osm:way:640476461",
+            "supportOwner": "osm:way:640476461",
+            "ok": true,
+            "drivable": true,
+            "width": 7,
+            "speedLimit": 22.2,
+            "directionalGradeLimit": null,
+            "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+          }
+        },
+        "water": {
+          "source": "estimated",
+          "confidence": "low",
+          "version": 3,
+          "accesses": 0,
+          "rejected": 1199,
+          "rejectionReasons": {
+            "land-access-or-slope-refused": 1199
+          },
+          "rejectionExamples": [
+            {
+              "x": -18459.04922138507,
+              "z": 17853.67809141018,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18458.241223147335,
+                "z": 17853.007540257906
+              },
+              "entry": {
+                "x": -18458.51055589325,
+                "z": 17853.23105730866
+              },
+              "water": {
+                "x": -18460.742170073656,
+                "z": 17855.083055729232
+              },
+              "land": {
+                "height": -33.2666823761216,
+                "normal": {
+                  "x": -0.2965010049630309,
+                  "y": 0.8865949473114219,
+                  "z": 0.3550162721028007
+                },
+                "slope": 0.5217113486293095,
+                "face": 13433,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -33.44625662299282,
+                "bedY": -33.44625662299282,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.94324392000135,
+                "bedY": -35.765071343593235,
+                "depth": 0.821827423591885,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18462.24232211019,
+              "z": 17849.830480754303,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18461.434323872454,
+                "z": 17849.15992960203
+              },
+              "entry": {
+                "x": -18461.703656618367,
+                "z": 17849.383446652784
+              },
+              "water": {
+                "x": -18463.935270798775,
+                "z": 17851.235445073355
+              },
+              "land": {
+                "height": -32.91597815899148,
+                "normal": {
+                  "x": -0.30094149602681,
+                  "y": 0.8967592301309755,
+                  "z": 0.32443350496526346
+                },
+                "slope": 0.49346444316403565,
+                "face": 13484,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -33.08722793766143,
+                "bedY": -33.08722793766143,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.897861495441816,
+                "bedY": -35.72236529523559,
+                "depth": 0.8245037997937772,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18465.43542283531,
+              "z": 17845.982870098425,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18464.627424597576,
+                "z": 17845.31231894615
+              },
+              "entry": {
+                "x": -18464.89675734349,
+                "z": 17845.535835996907
+              },
+              "water": {
+                "x": -18467.128371523897,
+                "z": 17847.387834417477
+              },
+              "land": {
+                "height": -32.59553841107452,
+                "normal": {
+                  "x": -0.30094149602681,
+                  "y": 0.8967592301309755,
+                  "z": 0.32443350496526346
+                },
+                "slope": 0.49346444316403565,
+                "face": 13484,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -32.76678818974447,
+                "bedY": -32.76678818974447,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.85247907088226,
+                "bedY": -35.67922347944106,
+                "depth": 0.8267444085588036,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18468.628523560434,
+              "z": 17842.135259442548,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18467.8205253227,
+                "z": 17841.464708290274
+              },
+              "entry": {
+                "x": -18468.08985806861,
+                "z": 17841.68822534103
+              },
+              "water": {
+                "x": -18470.32147224902,
+                "z": 17843.5402237616
+              },
+              "land": {
+                "height": -32.37117543229889,
+                "normal": {
+                  "x": -0.3148009867351294,
+                  "y": 0.8966314452795328,
+                  "z": 0.3113717875571344
+                },
+                "slope": 0.4938234732274534,
+                "face": 13494,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -32.543356676476186,
+                "bedY": -32.543356676476186,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.80709664632271,
+                "bedY": -35.63562361725802,
+                "depth": 0.82852697093531,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18471.821624285556,
+              "z": 17838.287648786667,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18471.01362604782,
+                "z": 17837.617097634393
+              },
+              "entry": {
+                "x": -18471.282958793734,
+                "z": 17837.84061468515
+              },
+              "water": {
+                "x": -18473.51457297414,
+                "z": 17839.69261310572
+              },
+              "land": {
+                "height": -32.16791077913699,
+                "normal": {
+                  "x": -0.2970428718238231,
+                  "y": 0.90900887066571,
+                  "z": 0.2923497996402703
+                },
+                "slope": 0.4584958187954913,
+                "face": 13493,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -32.32827817376736,
+                "bedY": -32.32827817376736,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.761714221763135,
+                "bedY": -35.591552722810626,
+                "depth": 0.8298385010474922,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18475.01472501068,
+              "z": 17834.44003813079,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18474.206726772944,
+                "z": 17833.769486978515
+              },
+              "entry": {
+                "x": -18474.476059518856,
+                "z": 17833.99300402927
+              },
+              "water": {
+                "x": -18476.707673699264,
+                "z": 17835.84500244984
+              },
+              "land": {
+                "height": -31.693256130955376,
+                "normal": {
+                  "x": -0.26858423244689844,
+                  "y": 0.9082908297787164,
+                  "z": 0.3207339686107496
+                },
+                "slope": 0.46057857751029235,
+                "face": 24258,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -31.851826530273314,
+                "bedY": -31.851826530273314,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.71633179720358,
+                "bedY": -35.54700693319816,
+                "depth": 0.8306751359945795,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18478.207825735797,
+              "z": 17830.592427474912,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18477.399827498062,
+                "z": 17829.921876322638
+              },
+              "entry": {
+                "x": -18477.669160243975,
+                "z": 17830.145393373394
+              },
+              "water": {
+                "x": -18479.900774424383,
+                "z": 17831.997391793964
+              },
+              "land": {
+                "height": -31.611527515545596,
+                "normal": {
+                  "x": -0.35398689899561964,
+                  "y": 0.8823958691365231,
+                  "z": 0.30995290847202034
+                },
+                "slope": 0.5332161595298472,
+                "face": 24511,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -31.7914438595816,
+                "bedY": -31.7914438595816,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.67094937264405,
+                "bedY": -35.50199109476099,
+                "depth": 0.831041722116936,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18481.40092646092,
+              "z": 17826.744816819035,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18480.592928223185,
+                "z": 17826.07426566676
+              },
+              "entry": {
+                "x": -18480.862260969097,
+                "z": 17826.297782717516
+              },
+              "water": {
+                "x": -18483.093875149505,
+                "z": 17828.149781138087
+              },
+              "land": {
+                "height": -31.82521218954711,
+                "normal": {
+                  "x": -0.4060624832736622,
+                  "y": 0.8919133902656532,
+                  "z": 0.1990069444578649
+                },
+                "slope": 0.5070069223093246,
+                "face": 24764,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -31.99547997590205,
+                "bedY": -31.99547997590205,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.62556694808449,
+                "bedY": -35.456518134833004,
+                "depth": 0.8309511867485141,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18484.59402718604,
+              "z": 17822.897206163154,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18483.786028948307,
+                "z": 17822.22665501088
+              },
+              "entry": {
+                "x": -18484.05536169422,
+                "z": 17822.450172061635
+              },
+              "water": {
+                "x": -18486.286975874627,
+                "z": 17824.302170482206
+              },
+              "land": {
+                "height": -31.756843028133197,
+                "normal": {
+                  "x": -0.21745916975812227,
+                  "y": 0.9089488908493285,
+                  "z": 0.355701311934443
+                },
+                "slope": 0.4586699697676287,
+                "face": 25016,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -31.90874836065344,
+                "bedY": -31.90874836065344,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.58018452352492,
+                "bedY": -35.41060825438232,
+                "depth": 0.8304237308573975,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18487.787127911164,
+              "z": 17819.049595507277,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18486.97912967343,
+                "z": 17818.379044355002
+              },
+              "entry": {
+                "x": -18487.248462419342,
+                "z": 17818.602561405758
+              },
+              "water": {
+                "x": -18489.48007659975,
+                "z": 17820.45455982633
+              },
+              "land": {
+                "height": -31.309406432122728,
+                "normal": {
+                  "x": -0.26371870401782216,
+                  "y": 0.953517316584591,
+                  "z": 0.14579839547978907
+                },
+                "slope": 0.31602805909140586,
+                "face": 25270,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -31.451786005928206,
+                "bedY": -31.451786005928206,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.534802098965365,
+                "bedY": -35.36428798116125,
+                "depth": 0.8294858821958836,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18490.980228636286,
+              "z": 17815.2019848514,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18490.17223039855,
+                "z": 17814.531433699125
+              },
+              "entry": {
+                "x": -18490.441563144464,
+                "z": 17814.75495074988
+              },
+              "water": {
+                "x": -18492.673177324872,
+                "z": 17816.60694917045
+              },
+              "land": {
+                "height": -31.968600089928266,
+                "normal": {
+                  "x": -0.3220189820731109,
+                  "y": 0.9309464300240908,
+                  "z": 0.17217003110297124
+                },
+                "slope": 0.392241453709053,
+                "face": 25522,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -32.103101056063565,
+                "bedY": -32.103101056063565,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.489419674405816,
+                "bedY": -35.31758912510138,
+                "depth": 0.8281694506955635,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18494.173329361405,
+              "z": 17811.35437419552,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18493.36533112367,
+                "z": 17810.683823043248
+              },
+              "entry": {
+                "x": -18493.634663869583,
+                "z": 17810.907340094003
+              },
+              "water": {
+                "x": -18495.86627804999,
+                "z": 17812.759338514574
+              },
+              "land": {
+                "height": -32.40158314379623,
+                "normal": {
+                  "x": -0.31629471675715753,
+                  "y": 0.9293778794220371,
+                  "z": 0.190300839179723
+                },
+                "slope": 0.3971793795910881,
+                "face": 25775,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -32.52861877472942,
+                "bedY": -32.52861877472942,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -34.44403724984628,
+                "bedY": -35.270547677778964,
+                "depth": 0.8265104279326845,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18406.707512840614,
+              "z": 17915.87728988918,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18405.904181076174,
+                "z": 17915.201155230814
+              },
+              "entry": {
+                "x": -18406.171958330986,
+                "z": 17915.42653345027
+              },
+              "water": {
+                "x": -18408.390684156584,
+                "z": 17917.2939529829
+              },
+              "land": {
+                "height": -35.37126179140564,
+                "normal": {
+                  "x": -0.47267083657693415,
+                  "y": 0.6320462885434907,
+                  "z": 0.6140844969448909
+                },
+                "slope": 1.2260662693477582,
+                "face": 13321,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -35.53138089049504,
+                "bedY": -35.53138089049504,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.681695715908425,
+                "bedY": -36.44424285911518,
+                "depth": 0.7625471432067501,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18409.92720168997,
+              "z": 17912.051900534705,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18409.12386992553,
+                "z": 17911.37576587634
+              },
+              "entry": {
+                "x": -18409.391647180342,
+                "z": 17911.601144095795
+              },
+              "water": {
+                "x": -18411.61037300594,
+                "z": 17913.468563628423
+              },
+              "land": {
+                "height": -35.45280893375879,
+                "normal": {
+                  "x": -0.6225369429440837,
+                  "y": 0.6209461762559259,
+                  "z": 0.47631250336620345
+                },
+                "slope": 1.2623528970237525,
+                "face": 13348,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -35.85052154469284,
+                "bedY": -35.85052154469284,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.63628419553177,
+                "bedY": -36.4007893550427,
+                "depth": 0.7645051595109227,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18413.146890539327,
+              "z": 17908.22651118023,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18412.343558774886,
+                "z": 17907.550376521864
+              },
+              "entry": {
+                "x": -18412.6113360297,
+                "z": 17907.77575474132
+              },
+              "water": {
+                "x": -18414.830061855297,
+                "z": 17909.643174273948
+              },
+              "land": {
+                "height": -35.74638425590361,
+                "normal": {
+                  "x": -0.6225369429440837,
+                  "y": 0.6209461762559259,
+                  "z": 0.47631250336620345
+                },
+                "slope": 1.2623528970237525,
+                "face": 13348,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -35.72569816069861,
+                "bedY": -35.72569816069861,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.59087267515511,
+                "bedY": -36.35779496272872,
+                "depth": 0.7669222875736064,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18416.366579388683,
+              "z": 17904.401121825755,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18415.563247624243,
+                "z": 17903.72498716739
+              },
+              "entry": {
+                "x": -18415.831024879055,
+                "z": 17903.950365386845
+              },
+              "water": {
+                "x": -18418.049750704653,
+                "z": 17905.817784919473
+              },
+              "land": {
+                "height": -35.46845755223404,
+                "normal": {
+                  "x": -0.5391750514333279,
+                  "y": 0.6261477511779856,
+                  "z": 0.5632310872160907
+                },
+                "slope": 1.2452403217430053,
+                "face": 13349,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -35.6008747767044,
+                "bedY": -35.6008747767044,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.545461154778465,
+                "bedY": -36.31523199818738,
+                "depth": 0.7697708434089122,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18419.58626823804,
+              "z": 17900.57573247128,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18418.7829364736,
+                "z": 17899.899597812913
+              },
+              "entry": {
+                "x": -18419.05071372841,
+                "z": 17900.12497603237
+              },
+              "water": {
+                "x": -18421.26943955401,
+                "z": 17901.992395564997
+              },
+              "land": {
+                "height": -34.79992156626685,
+                "normal": {
+                  "x": -0.5391750514333279,
+                  "y": 0.6261477511779856,
+                  "z": 0.5632310872160907
+                },
+                "slope": 1.2452403217430053,
+                "face": 13349,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -35.23323596243773,
+                "bedY": -35.23323596243773,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.500049634401805,
+                "bedY": -36.273063604961465,
+                "depth": 0.7730139705596623,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18422.805957087396,
+              "z": 17896.750343116804,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18422.002625322955,
+                "z": 17896.074208458438
+              },
+              "entry": {
+                "x": -18422.270402577768,
+                "z": 17896.299586677895
+              },
+              "water": {
+                "x": -18424.489128403366,
+                "z": 17898.167006210522
+              },
+              "land": {
+                "height": -34.699196776487675,
+                "normal": {
+                  "x": -0.6079097938606084,
+                  "y": 0.6494516487668374,
+                  "z": 0.4567912416436956
+                },
+                "slope": 1.1708383402609237,
+                "face": 13382,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -35.10836536199066,
+                "bedY": -35.10836536199066,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.45463811402516,
+                "bedY": -36.23124431796079,
+                "depth": 0.7766062039356306,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18426.025645936752,
+              "z": 17892.924953762333,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18425.22231417231,
+                "z": 17892.248819103967
+              },
+              "entry": {
+                "x": -18425.490091427124,
+                "z": 17892.474197323423
+              },
+              "water": {
+                "x": -18427.708817252722,
+                "z": 17894.34161685605
+              },
+              "land": {
+                "height": -34.48805451378587,
+                "normal": {
+                  "x": -0.4915429238125142,
+                  "y": 0.7147789771322981,
+                  "z": 0.4974701678488376
+                },
+                "slope": 0.9784149298723192,
+                "face": 13376,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -34.82905916448412,
+                "bedY": -34.82905916448412,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.409226593648526,
+                "bedY": -36.189720899434754,
+                "depth": 0.7804943057862276,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18429.24533478611,
+              "z": 17889.099564407858,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18428.442003021668,
+                "z": 17888.42342974949
+              },
+              "entry": {
+                "x": -18428.70978027648,
+                "z": 17888.648807968948
+              },
+              "water": {
+                "x": -18430.92850610208,
+                "z": 17890.516227501575
+              },
+              "land": {
+                "height": -34.03179000091652,
+                "normal": {
+                  "x": -0.47083976686072765,
+                  "y": 0.7148726592612369,
+                  "z": 0.5169787181144917
+                },
+                "slope": 0.9781527549279424,
+                "face": 13377,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -34.37114543725775,
+                "bedY": -34.37114543725775,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.36381507327187,
+                "bedY": -36.14843342699256,
+                "depth": 0.7846183537206918,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18432.465023635465,
+              "z": 17885.274175053382,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18431.661691871024,
+                "z": 17884.598040395016
+              },
+              "entry": {
+                "x": -18431.929469125836,
+                "z": 17884.823418614473
+              },
+              "water": {
+                "x": -18434.148194951435,
+                "z": 17886.6908381471
+              },
+              "land": {
+                "height": -33.38595842295757,
+                "normal": {
+                  "x": -0.47083976686072765,
+                  "y": 0.7148726592612369,
+                  "z": 0.5169787181144917
+                },
+                "slope": 0.9781527549279424,
+                "face": 13377,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -33.725313859298794,
+                "bedY": -33.725313859298794,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.31840355289522,
+                "bedY": -36.10731660251629,
+                "depth": 0.7889130496210724,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18435.68471248482,
+              "z": 17881.448785698907,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18434.88138072038,
+                "z": 17880.77265104054
+              },
+              "entry": {
+                "x": -18435.149157975193,
+                "z": 17880.998029259998
+              },
+              "water": {
+                "x": -18437.36788380079,
+                "z": 17882.865448792625
+              },
+              "land": {
+                "height": -33.784460889977254,
+                "normal": {
+                  "x": -0.533645081468486,
+                  "y": 0.7968613125854404,
+                  "z": 0.2832577898824704
+                },
+                "slope": 0.7581774399996687,
+                "face": 13407,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -34.043901457646236,
+                "bedY": -34.043901457646236,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.27299203251857,
+                "bedY": -36.066301240889025,
+                "depth": 0.793309208370454,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18438.904401334177,
+              "z": 17877.623396344432,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18438.101069569737,
+                "z": 17876.947261686066
+              },
+              "entry": {
+                "x": -18438.36884682455,
+                "z": 17877.172639905522
+              },
+              "water": {
+                "x": -18440.587572650147,
+                "z": 17879.04005943815
+              },
+              "land": {
+                "height": -34.12456915698431,
+                "normal": {
+                  "x": -0.4703803484462621,
+                  "y": 0.8084172486509426,
+                  "z": 0.35384160281008953
+                },
+                "slope": 0.7281015441787428,
+                "face": 13410,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -34.37902358528709,
+                "bedY": -34.37902358528709,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.22758051214193,
+                "bedY": -36.02531588925809,
+                "depth": 0.7977353771161624,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            },
+            {
+              "x": -18442.124090183534,
+              "z": 17873.798006989957,
+              "reason": "land-access-or-slope-refused",
+              "dry": {
+                "x": -18441.320758419093,
+                "z": 17873.12187233159
+              },
+              "entry": {
+                "x": -18441.588535673905,
+                "z": 17873.347250551047
+              },
+              "water": {
+                "x": -18443.807261499504,
+                "z": 17875.214670083675
+              },
+              "land": {
+                "height": -33.9927597177946,
+                "normal": {
+                  "x": -0.33799883006732956,
+                  "y": 0.8639610258749338,
+                  "z": 0.3732668437488771
+                },
+                "slope": 0.5828488397896999,
+                "face": 13404,
+                "category": "terrain",
+                "walkable": false
+              },
+              "entrySample": {
+                "surfaceY": -34.194892233314775,
+                "bedY": -34.194892233314775,
+                "depth": 0,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": false,
+                "allowed": false,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              },
+              "boatSample": {
+                "surfaceY": -35.182168991765266,
+                "bedY": -35.984288521554454,
+                "depth": 0.8021195297891869,
+                "source": "estimated",
+                "confidence": "low",
+                "reliable": true,
+                "allowed": true,
+                "provenance": "Estimated game bed: source OSM river outlines/axes + current rendered water/shore support; NOT surveyed bathymetry or real-world safety information"
+              }
+            }
+          ],
+          "renderedBed": false,
+          "water": "opaque source surface; analytic reflection",
+          "realDepthClaim": false,
+          "preparing": false,
+          "prepareMs": 1233.2000000029802,
+          "maxSliceMs": 38.600000001490116,
+          "firstAccessMs": null,
+          "samples": 2398,
+          "cacheHits": 0
+        }
+      },
+      "source": "a3d0be9de3119d35105bae5d42b7b0ab255cfc67",
+      "heightBaseM": 101.2,
+      "verticalDatum": "IGN69",
+      "activity": "walking",
+      "audioEnabled": true,
+      "gps": {
+        "lat": 46.53663956774014,
+        "lon": 0.6460233021102068
+      },
+      "movement": {
+        "position": {
+          "x": -18200.52441794471,
+          "y": 4.070299146192963,
+          "z": 17662.07931916822
+        },
+        "requested": {
+          "x": -18200.526925760754,
+          "z": 17662.169909462864
+        },
+        "currentHeight": 4.070299146192963,
+        "nextHeight": 4.050655898391825,
+        "horizontalM": 0.09062499999930194,
+        "riseM": -0.01964324780113813,
+        "slope": -0.21675307918664205,
+        "limit": 0.7,
+        "rule": "obstacle",
+        "obstruction": {
+          "reason": "unknown-land-access",
+          "access": "unknown",
+          "source": "IGN LHD numeric MNT; 2 m derivative"
+        },
+        "gps": {
+          "lat": 46.5366387539574,
+          "lon": 0.6460232692647296
+        },
+        "admission": {
+          "height": 105.2506507192785,
+          "normal": {
+            "x": -0.08963658804820904,
+            "y": 0.9959620894245858,
+            "z": 0.004979810447125477
+          },
+          "slope": 0.09013878188659619,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1612",
+          "ok": false,
+          "reason": "unknown-land-access",
+          "access": "unknown"
+        }
+      },
+      "driver": {
+        "done": false,
+        "cursor": 0,
+        "remaining": 422.96318345198614
+      },
+      "admission": {
+        "height": 4.070299146192963,
+        "normal": {
+          "x": -0.051780460465031784,
+          "y": 0.9986557352156705,
+          "z": 0.0023465793993917073
+        },
+        "slope": 0.051903376046711545,
+        "datum": "IGN69",
+        "resolutionM": 2,
+        "source": "IGN LHD numeric MNT; 2 m derivative",
+        "quantizationMaxErrorM": 0.005,
+        "tile": "126:1612",
+        "face": 67,
+        "surface": "road",
+        "road": "osm:way:997573928",
+        "supportOwner": "osm:way:997573928",
+        "ok": true,
+        "drivable": false,
+        "width": 7,
+        "speedLimit": 22.2,
+        "directionalGradeLimit": 0.7,
+        "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+      },
+      "origin": {
+        "origin": {
+          "x": -18176,
+          "y": 0,
+          "z": 17664,
+          "revision": 1
+        },
+        "metrics": {
+          "rebases": 1,
+          "frames": 372,
+          "maxLocalCameraM": 353.77313869194865,
+          "canonicalPhysics": true
+        }
+      },
+      "buffer": [
+        800,
+        600
+      ],
+      "viewport": [
+        800,
+        600
+      ],
+      "heap": 393654101,
+      "longTasks": [
+        {
+          "t": 241.5,
+          "ms": 1284
+        },
+        {
+          "t": 1668.1000000014901,
+          "ms": 414
+        },
+        {
+          "t": 2087.5,
+          "ms": 148
+        },
+        {
+          "t": 2454.39999999851,
+          "ms": 108
+        },
+        {
+          "t": 2704.7999999970198,
+          "ms": 57
+        },
+        {
+          "t": 2837.89999999851,
+          "ms": 130
+        },
+        {
+          "t": 3101.10000000149,
+          "ms": 157
+        },
+        {
+          "t": 3652.2999999970198,
+          "ms": 141
+        },
+        {
+          "t": 4234.39999999851,
+          "ms": 380
+        },
+        {
+          "t": 4700.19999999553,
+          "ms": 58
+        },
+        {
+          "t": 5001.60000000149,
+          "ms": 177
+        },
+        {
+          "t": 5213.5,
+          "ms": 1640
+        },
+        {
+          "t": 7489.79999999702,
+          "ms": 388
+        },
+        {
+          "t": 7879.19999999553,
+          "ms": 112
+        },
+        {
+          "t": 7991.79999999702,
+          "ms": 6488
+        },
+        {
+          "t": 14480.69999999553,
+          "ms": 287
+        },
+        {
+          "t": 14770.5,
+          "ms": 1708
+        },
+        {
+          "t": 16583,
+          "ms": 2008
+        },
+        {
+          "t": 18591.79999999702,
+          "ms": 2141
+        },
+        {
+          "t": 20839.89999999851,
+          "ms": 89
+        },
+        {
+          "t": 21171.39999999851,
+          "ms": 206
+        },
+        {
+          "t": 22389,
+          "ms": 1063
+        },
+        {
+          "t": 24907.10000000149,
+          "ms": 54
+        },
+        {
+          "t": 38555.89999999851,
+          "ms": 1609
+        },
+        {
+          "t": 44297.10000000149,
+          "ms": 53
+        },
+        {
+          "t": 46894.19999999553,
+          "ms": 65
+        },
+        {
+          "t": 50913.29999999702,
+          "ms": 55
+        },
+        {
+          "t": 51191,
+          "ms": 153
+        },
+        {
+          "t": 52184.79999999702,
+          "ms": 181
+        },
+        {
+          "t": 52366.69999999553,
+          "ms": 2318
+        },
+        {
+          "t": 54758.69999999553,
+          "ms": 1259
+        },
+        {
+          "t": 56367.39999999851,
+          "ms": 55
+        },
+        {
+          "t": 57103.29999999702,
+          "ms": 52
+        },
+        {
+          "t": 60796.29999999702,
+          "ms": 81
+        },
+        {
+          "t": 61514.39999999851,
+          "ms": 50
+        },
+        {
+          "t": 65108.79999999702,
+          "ms": 59
+        },
+        {
+          "t": 66108.39999999851,
+          "ms": 66
+        },
+        {
+          "t": 67161,
+          "ms": 127
+        },
+        {
+          "t": 72296.10000000149,
+          "ms": 57
+        },
+        {
+          "t": 74828.5,
+          "ms": 73
+        },
+        {
+          "t": 74901.89999999851,
+          "ms": 53
+        },
+        {
+          "t": 76501.69999999553,
+          "ms": 57
+        },
+        {
+          "t": 83900.60000000149,
+          "ms": 52
+        },
+        {
+          "t": 85311.39999999851,
+          "ms": 63
+        },
+        {
+          "t": 89120.19999999553,
+          "ms": 75
+        },
+        {
+          "t": 90307,
+          "ms": 61
+        },
+        {
+          "t": 90884.5,
+          "ms": 106
+        },
+        {
+          "t": 98899.10000000149,
+          "ms": 64
+        },
+        {
+          "t": 100109.29999999702,
+          "ms": 64
+        },
+        {
+          "t": 107289.79999999702,
+          "ms": 65
+        },
+        {
+          "t": 109489.89999999851,
+          "ms": 72
+        },
+        {
+          "t": 113198.29999999702,
+          "ms": 50
+        },
+        {
+          "t": 118492.60000000149,
+          "ms": 55
+        },
+        {
+          "t": 130684.39999999851,
+          "ms": 67
+        },
+        {
+          "t": 131308.29999999702,
+          "ms": 70
+        },
+        {
+          "t": 132712.3999999985,
+          "ms": 58
+        },
+        {
+          "t": 135308.8999999985,
+          "ms": 66
+        },
+        {
+          "t": 135962.8999999985,
+          "ms": 55
+        },
+        {
+          "t": 138013.8999999985,
+          "ms": 65
+        },
+        {
+          "t": 141977.5,
+          "ms": 129
+        },
+        {
+          "t": 143031.19999999553,
+          "ms": 125
+        },
+        {
+          "t": 143810,
+          "ms": 69
+        },
+        {
+          "t": 148272,
+          "ms": 62
+        },
+        {
+          "t": 153093.5,
+          "ms": 57
+        },
+        {
+          "t": 156904.29999999702,
+          "ms": 59
+        },
+        {
+          "t": 159709.69999999553,
+          "ms": 50
+        },
+        {
+          "t": 160304,
+          "ms": 67
+        },
+        {
+          "t": 160896.79999999702,
+          "ms": 57
+        },
+        {
+          "t": 161503.69999999553,
+          "ms": 62
+        },
+        {
+          "t": 162710.29999999702,
+          "ms": 67
+        },
+        {
+          "t": 170704.5,
+          "ms": 65
+        },
+        {
+          "t": 174260.29999999702,
+          "ms": 99
+        },
+        {
+          "t": 177903.1000000015,
+          "ms": 50
+        },
+        {
+          "t": 184689.19999999553,
+          "ms": 59
+        },
+        {
+          "t": 188687,
+          "ms": 75
+        },
+        {
+          "t": 197644.1000000015,
+          "ms": 53
+        },
+        {
+          "t": 203675,
+          "ms": 83
+        },
+        {
+          "t": 204297.6000000015,
+          "ms": 52
+        },
+        {
+          "t": 205481.19999999553,
+          "ms": 74
+        },
+        {
+          "t": 206692.19999999553,
+          "ms": 56
+        },
+        {
+          "t": 211691.69999999553,
+          "ms": 72
+        },
+        {
+          "t": 213307.79999999702,
+          "ms": 58
+        },
+        {
+          "t": 216307.8999999985,
+          "ms": 58
+        },
+        {
+          "t": 221877.5,
+          "ms": 162
+        },
+        {
+          "t": 232505.79999999702,
+          "ms": 59
+        },
+        {
+          "t": 235772.69999999553,
+          "ms": 696
+        },
+        {
+          "t": 236558.69999999553,
+          "ms": 1427
+        }
+      ],
+      "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "audio": {
+        "layers": [],
+        "activeSources": [],
+        "recentEvents": [],
+        "nodes": 5,
+        "voices": 0,
+        "peakVoices": 2,
+        "hrtf": 0,
+        "beds": 0,
+        "budget": {
+          "voices": 12,
+          "hrtf": 2,
+          "beds": 3,
+          "hz": 2
+        },
+        "dropped": 0,
+        "steps": 0,
+        "lastStepAssets": [],
+        "heardBirds": 0,
+        "waterContacts": 0,
+        "waterBufferBytes": 0,
+        "roadEvents": 0,
+        "profile": "balanced",
+        "obstructionChecks": 0,
+        "obstructionUpdates": 53,
+        "cacheBytes": 3609600,
+        "peakBytes": 3609600,
+        "cached": 1,
+        "pending": 0,
+        "activeLoads": 0,
+        "loads": 1,
+        "decodes": 1,
+        "deferred": 0,
+        "deniedDecodes": 0,
+        "failures": {},
+        "aircraftEvents": 0,
+        "contextUpdates": 281,
+        "cpuMs": 0.30000000447034836,
+        "maxCpuMs": 26.899999998509884,
+        "nearbyChecks": 0,
+        "memoryCells": 2,
+        "perches": 1,
+        "contact": {
+          "surface": null,
+          "material": "unknown",
+          "basis": "no reliable ground material",
+          "confidence": "unknown",
+          "wetness": 0
+        },
+        "context": {
+          "version": 1,
+          "geo": {
+            "lat": 46.53663956774014,
+            "lon": 0.6460233021102068
+          },
+          "key": "wgs84-v1:69906:92490",
+          "worldTimeMs": 1782050267015,
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeBasis": "civil",
+          "altitudeM": 105.27029914619297,
+          "habitat": "residential",
+          "solarAltitude": 0.9849118505468907,
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.07654823620040399,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.000008823582730955886,
+            "electric": 0,
+            "temperatureC": 18.529786633813934,
+            "snowCover": 0
+          },
+          "position": {
+            "x": -18200.52441794471,
+            "y": 4.070299146192963,
+            "z": 17662.07931916822
+          },
+          "water": null,
+          "emitters": [],
+          "ground": null,
+          "influences": {},
+          "sources": [],
+          "provenance": {
+            "geography": "IGN/ASP/OSM classifications; mix inferred",
+            "weather": "EarthLife simulated",
+            "region": "temperate-europe"
+          },
+          "fixture": false,
+          "environment": {
+            "revision": 382,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "mixRevision": 382,
+          "listener": {
+            "position": {
+              "x": -18201.637572732747,
+              "y": 6.6997873100079985,
+              "z": 17656.203012716152
+            },
+            "forward": {
+              "x": 0.18367418459326718,
+              "y": -0.1616187539604611,
+              "z": 0.969609804138895
+            }
+          },
+          "traffic": [],
+          "roof": null
+        }
+      },
+      "buffers": {
+        "attributeBuffers": 6302,
+        "attributeBytes": 101693360,
+        "typedTextureBytes": 2523136,
+        "textureCount": 3,
+        "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+      }
+    },
+    "car": {
+      "position": {
+        "x": -18198.844166148196,
+        "y": 4.151380444123265,
+        "z": 17660.27163975147
+      },
+      "heading": 0.1872417610236034,
+      "speed": 0,
+      "steering": -7.183009216747742e-11,
+      "reason": "",
+      "odometer": 111.59017954645252,
+      "ground": {
+        "height": 4.151380444123265,
+        "normal": {
+          "x": -0.04781891578749399,
+          "y": 0.998852095370276,
+          "z": -0.002800511974196096
+        },
+        "slope": 0.047955900299809784,
+        "datum": "IGN69",
+        "resolutionM": 2,
+        "source": "IGN LHD numeric MNT; 2 m derivative",
+        "quantizationMaxErrorM": 0.005,
+        "tile": "126:1612",
+        "face": 66,
+        "surface": "road",
+        "road": "osm:way:997573928",
+        "supportOwner": "osm:way:997573928",
+        "ok": true,
+        "drivable": true,
+        "width": 7,
+        "speedLimit": 22.2,
+        "directionalGradeLimit": null,
+        "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+      },
+      "active": false
+    },
+    "distanceM": 103.69614967658424,
+    "tiles": [
+      "126:1613",
+      "126:1612"
+    ],
+    "junctionSeen": true,
+    "junctionMinM": 1.4304875132444785
+  },
+  "functionalSuccess": false,
+  "lastStage": "walk",
+  "perceptualStatus": "NON_VALIDE"
+}

@@ -1,0 +1,672 @@
+{
+  "method": "ffprobe checks the actual encoded audio packets, payload SHA and PTS/DTS of native raw versus codec-copy indexed WebM. No audio normalized, stretched, interpolated or replaced. Stereo/channel presence is a transport check, not perceptual validation.",
+  "cases": [
+    {
+      "metadata": "angles-native-departure.json",
+      "video": "angles-native-departure.webm",
+      "raw": "raw/angles-native-departure.webm",
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 22886,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "417a842f284a2fac3144ade20f72b7c9ac43636dd71e2204aa4bda22f2c1457c",
+      "indexedSha256": "59959686bdda3750ff2cd78fcdcf59bb22808a9a07773ee9839e25b54c6cdffa",
+      "containerDurationSeconds": 1472.351
+    },
+    {
+      "metadata": "candidate-birds-fixed.json",
+      "video": "candidate-birds-fixed.webm",
+      "raw": "raw/candidate-birds-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 359,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "350e2fc9f8c295e2259d4564b0815c41683fd500f075aa31a09f9f7ec38bec5b",
+      "indexedSha256": "943eef53db9bf3d9eb47909d393f0e0b92efa742fb84520c88386ac9ded14d89",
+      "containerDurationSeconds": 25.039
+    },
+    {
+      "metadata": "candidate-final-boat-fixed.json",
+      "video": "candidate-final-boat-fixed.webm",
+      "raw": "raw/candidate-final-boat-fixed.webm",
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 394,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "1cd90bce0007a60d56bc8b436066332690e85eaa29cec6021a15058acc2f3d0f",
+      "indexedSha256": "5ffbc822406e47a3cfd99e971f2e2f174a4c13feb821fceddf445668828ed196",
+      "containerDurationSeconds": 24.959
+    },
+    {
+      "metadata": "candidate-final-run-flat-left.json",
+      "video": "candidate-final-run-flat-left.webm",
+      "raw": "raw/candidate-final-run-flat-left.webm",
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 3159,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "3c75259c6f17c08f1543ba43eaf21db0aca72a1fb6eab232aa1e9291b5e58116",
+      "indexedSha256": "2c1ebc23bb935c1a3703b7d580d7ee9b0f3121a4e52e0ba5e45ebc0129cb3a2a",
+      "containerDurationSeconds": 220.012
+    },
+    {
+      "metadata": "candidate-final-run-terrain-front.json",
+      "video": "candidate-final-run-terrain-front.webm",
+      "raw": "raw/candidate-final-run-terrain-front.webm",
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 3251,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "28ccfbc81f079f05af86d6b8bf052ba6b666e0936826227bccce98dab36e9b1f",
+      "indexedSha256": "6b6c17a0c12a2b9bb9a307a83ec325138aea3f7ec940fa4d17056940846e65c3",
+      "containerDurationSeconds": 219.959
+    },
+    {
+      "metadata": "candidate-final-run-terrain-right.json",
+      "video": "candidate-final-run-terrain-right.webm",
+      "raw": "raw/candidate-final-run-terrain-right.webm",
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 3373,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "5224027f2d7042c60ffcd22dcb7f54cdabc0a02ce36abaf7822d0533c211431c",
+      "indexedSha256": "34522bce54bb7467e0e294af5eaebe1b8a19eedfb5b5a16f84c6f3c10827478f",
+      "containerDurationSeconds": 219.999
+    },
+    {
+      "metadata": "candidate-rebases-fixed.json",
+      "video": "candidate-rebases-fixed.webm",
+      "raw": "raw/candidate-rebases-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 363,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "cca498f2f173f2d2a811bb243a245f35f65903068d880bbb4fd27f46fe5a36f8",
+      "indexedSha256": "6b5bb465f2f0416e46d9e248a160b803fb91cb1f1065cc5a1e1f296a8f46fc3b",
+      "containerDurationSeconds": 25.128
+    },
+    {
+      "metadata": "candidate-run-flat-front.json",
+      "video": "candidate-run-flat-front.webm",
+      "raw": "raw/candidate-run-flat-front.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2915,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "96170b5a7c1f06c3adddd0380f40cb6061bcaa80312d04c911b21d5ba7cda344",
+      "indexedSha256": "4a7991f655660da0368e74e6cd93324d3b845161c3cd8ebbf1791be1950dbf35",
+      "containerDurationSeconds": 184.95
+    },
+    {
+      "metadata": "candidate-run-flat-left.json",
+      "video": "candidate-run-flat-left.webm",
+      "raw": "raw/candidate-run-flat-left.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2751,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "16b32b7da42c1a486378acf0b18fc41a3c26d28608cd6fed62f440d9982fd696",
+      "indexedSha256": "d8c76875c680a01b8928925b4aa19b72f4e6b6d1503700a32c1e77703edcd90a",
+      "containerDurationSeconds": 184.97
+    },
+    {
+      "metadata": "candidate-run-flat-rear.json",
+      "video": "candidate-run-flat-rear.webm",
+      "raw": "raw/candidate-run-flat-rear.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2763,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "b800eeadee248746b9eeb13be6f6bb7cee2aea87fe5a83d5fe29b6d193429ad6",
+      "indexedSha256": "5635fc0a5027349fcf72e4b1fc5f435302537b5ab9ea460d95e7b5c5413c2ca6",
+      "containerDurationSeconds": 184.961
+    },
+    {
+      "metadata": "candidate-run-flat-right.json",
+      "video": "candidate-run-flat-right.webm",
+      "raw": "raw/candidate-run-flat-right.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2692,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "995bcd2665eda5f97ce882efec79bd56c3d1435a522919551a72f45aa4100a42",
+      "indexedSha256": "e87a9f40cae1aae178025b6eecc8c3a110bc4bc54d8dd44727eef3709b2d30a8",
+      "containerDurationSeconds": 184.988
+    },
+    {
+      "metadata": "candidate-run-terrain-front.json",
+      "video": "candidate-run-terrain-front.webm",
+      "raw": "raw/candidate-run-terrain-front.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2733,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "b5ae3aebe12be75d7829824a48a5cf702b68c0271382583893347049ecd806ef",
+      "indexedSha256": "70261e9ce40a01ac7bfc543e6e84fdc0caf0ab356097b46a2e18681307611a37",
+      "containerDurationSeconds": 184.998
+    },
+    {
+      "metadata": "candidate-run-terrain-left.json",
+      "video": "candidate-run-terrain-left.webm",
+      "raw": "raw/candidate-run-terrain-left.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2745,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "218ca72ee7173ce29aec110a10cbf30a31951f85d1795105cd750d2a880a021c",
+      "indexedSha256": "6c2e72a17acdcb58a4c3de981c1fcd7f8f034dfc5fba216e17a47b71c126a4c4",
+      "containerDurationSeconds": 184.958
+    },
+    {
+      "metadata": "candidate-run-terrain-rear.json",
+      "video": "candidate-run-terrain-rear.webm",
+      "raw": "raw/candidate-run-terrain-rear.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2726,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "ce2ab632bb168e54dbc9c247f97c9c3c9cdf6d33ea1f482a4de77470d954ae3e",
+      "indexedSha256": "e186d4a4a0bb290642306199a0c0a2eae19fcd6bcc88ae2d735b53c1ab417e72",
+      "containerDurationSeconds": 185.003
+    },
+    {
+      "metadata": "candidate-run-terrain-right.json",
+      "video": "candidate-run-terrain-right.webm",
+      "raw": "raw/candidate-run-terrain-right.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2734,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "c5d769f86555e377dbbf182935f2ac19a3b5e534dc72f98a1cf1c3f42f9f366c",
+      "indexedSha256": "b847fd149a877d77908419e54ac08e26ff951817dc6669144f0490e390d6960a",
+      "containerDurationSeconds": 185.006
+    },
+    {
+      "metadata": "candidate-shadows-fixed.json",
+      "video": "candidate-shadows-fixed.webm",
+      "raw": "raw/candidate-shadows-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 377,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "9d0ff5464abf08512e69d9d74f01fced1bcdc7481264a0e9da680748756526ae",
+      "indexedSha256": "40c385b720e91b32916f656a426f1c87ee629cb38f5cfb851db2e5818d8e4edb",
+      "containerDurationSeconds": 25.008
+    },
+    {
+      "metadata": "candidate-soak-fixed.json",
+      "video": "candidate-soak-fixed.webm",
+      "raw": "raw/candidate-soak-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 5286,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "3e386851f2a36927e84bae3f658c2fb1f8cac2ec3a251560bc5a834de7022d2b",
+      "indexedSha256": "c789677086a66b0ba092093b88fa2752ae6330d093cc6f58902389d0f439c7b3",
+      "containerDurationSeconds": 360.02
+    },
+    {
+      "metadata": "candidate-startup-fixed.json",
+      "video": "candidate-startup-fixed.webm",
+      "raw": "raw/candidate-startup-fixed.webm",
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 367,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "19dcce5cd3838707aa11898efb435de6c73c588be937a666c5070c72cd662818",
+      "indexedSha256": "904fcbd7692ab8750f4a439ea9b24452cdb40c7d80a773d9d19ea611467e6c02",
+      "containerDurationSeconds": 25.011
+    },
+    {
+      "metadata": "reference-birds-fixed.json",
+      "video": "reference-birds-fixed.webm",
+      "raw": "raw/reference-birds-fixed.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 387,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "cebeeaa92173911300d0cba6c2abf93395f552530ae9198c24527d8d90787313",
+      "indexedSha256": "ac39c577973ec06fff58f1e6720246f7507bc5db76fa94249e0b74792e561a77",
+      "containerDurationSeconds": 25.023
+    },
+    {
+      "metadata": "reference-final-boat-fixed.json",
+      "video": "reference-final-boat-fixed.webm",
+      "raw": "raw/reference-final-boat-fixed.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 397,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "3ee582dc7401de2a76030a79c53695d3ce8359042d0a0f1ce2e99af98cc02305",
+      "indexedSha256": "76cddcdffc89e930d61e2abc81df5ac0cadffdc6df3524b4ee387ee8daa5ba89",
+      "containerDurationSeconds": 24.96
+    },
+    {
+      "metadata": "reference-final-run-flat-left.json",
+      "video": "reference-final-run-flat-left.webm",
+      "raw": "raw/reference-final-run-flat-left.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 3147,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "ca3c5e0554c92385dd31d5851e1b836b951e8015e9b2a1a8814505b847c025b3",
+      "indexedSha256": "c827362817a1ab2ab7c18d0dc222728b1d160729b99300d163d0f92f38dabfbe",
+      "containerDurationSeconds": 220.03
+    },
+    {
+      "metadata": "reference-run-flat-front.json",
+      "video": "reference-run-flat-front.webm",
+      "raw": "raw/reference-run-flat-front.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2856,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "757376f643df9d2746b917ba07470a8073cc21c35cd20f531e94d50038aeefdd",
+      "indexedSha256": "15ff7c189ef54b790591f7cc11adfd64251246b74f8f64460d07620b4254f92e",
+      "containerDurationSeconds": 184.99
+    },
+    {
+      "metadata": "reference-run-flat-left.json",
+      "video": "reference-run-flat-left.webm",
+      "raw": "raw/reference-run-flat-left.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2691,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "7a0b3941edd14cf865874e713e99e0f587fe9a6f6a3210b3d0353a40f5bca1a9",
+      "indexedSha256": "2725a4c051954814ed9b0a7f6cdf30e482b95fe988c30ec5f05b7d520da54a23",
+      "containerDurationSeconds": 184.949
+    },
+    {
+      "metadata": "reference-run-flat-rear.json",
+      "video": "reference-run-flat-rear.webm",
+      "raw": "raw/reference-run-flat-rear.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2758,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "781164f799faefe07d19fe37ceb5bbeb5cca9680c59f7e30b10d2ae4f31a016a",
+      "indexedSha256": "80081667547cb4223ee6508ade76c8cdd45ebbdd3424dd8c5cc50489983e7151",
+      "containerDurationSeconds": 184.982
+    },
+    {
+      "metadata": "reference-run-flat-right.json",
+      "video": "reference-run-flat-right.webm",
+      "raw": "raw/reference-run-flat-right.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2783,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "22659a88d2a749edaf02d5b1deb8977e0566dc6cc429bd62acf27c9e71a7dc99",
+      "indexedSha256": "a4cd964733ff348af6ce3297597d0111af2c482233cceba37625b9c4b303a9a7",
+      "containerDurationSeconds": 184.983
+    },
+    {
+      "metadata": "reference-run-front.json",
+      "video": "reference-run-front.webm",
+      "raw": "raw/reference-run-front.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2860,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "d4ced37980a44941661d9452b254e83c5bf9ca2ac7e19806e62910fd664f3c88",
+      "indexedSha256": "0bbe096af4e960fd0c6c4afb48c0eb6abe034e816be671c15fed9eb68f994602",
+      "containerDurationSeconds": 184.969
+    },
+    {
+      "metadata": "reference-run-left.json",
+      "video": "reference-run-left.webm",
+      "raw": "raw/reference-run-left.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2890,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "8cb21f2c2992574927be0b30e707e16277635fe5de757164edb0ec11fc813d78",
+      "indexedSha256": "d821d692ffe3044a44572aa294a36d74721c1c3c9c5298a8dae114dde14e8aac",
+      "containerDurationSeconds": 184.999
+    },
+    {
+      "metadata": "reference-run-rear.json",
+      "video": "reference-run-rear.webm",
+      "raw": "raw/reference-run-rear.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2843,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "57ab5c0948d981b9efcfa39d5e1bf9a7e8091e55758887c84a8fea3511592aa3",
+      "indexedSha256": "d3456c67ab12e722004f9c9ef2d3b1cfb7f5d5bd1026ac1e238229fd68d17ece",
+      "containerDurationSeconds": 184.99
+    },
+    {
+      "metadata": "reference-run-right.json",
+      "video": "reference-run-right.webm",
+      "raw": "raw/reference-run-right.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2844,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "8442e3fc3f452f9ce0e8a38a8f9bac647a93cd370d95437a89e296f591e2fa17",
+      "indexedSha256": "ef201353a1e65f23d7a0f0b02287b0f1f743224e8f51a6398482a0761c6a515d",
+      "containerDurationSeconds": 184.979
+    },
+    {
+      "metadata": "reference-run-terrain-front.json",
+      "video": "reference-run-terrain-front.webm",
+      "raw": "raw/reference-run-terrain-front.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2758,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "b1840c39963fcf8552194169b1482e9fc1db9220db69ab64258857c1300252db",
+      "indexedSha256": "43865d4026b4fec6ede7b3e850e5a31c07c5da25f078bc0151efceee07a3b6bb",
+      "containerDurationSeconds": 185.019
+    },
+    {
+      "metadata": "reference-run-terrain-left.json",
+      "video": "reference-run-terrain-left.webm",
+      "raw": "raw/reference-run-terrain-left.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2747,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "e40c26dbc2ad9ea2d615db6cba2ac19c440e5d873ac15d38a6e3950c643fa630",
+      "indexedSha256": "4912c7ab6a381bd48640631abd99367099a072d53054dc867d7feb6b5b907a31",
+      "containerDurationSeconds": 184.95
+    },
+    {
+      "metadata": "reference-run-terrain-rear.json",
+      "video": "reference-run-terrain-rear.webm",
+      "raw": "raw/reference-run-terrain-rear.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2803,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "403c37f5c360f5bfc58ac6ee692d72d6b54e8b5d99d36589646fef3f87d32d44",
+      "indexedSha256": "93895922bf0b018d4b6f91bdd39c49e32396841027608633e9f7a1da9fc836f7",
+      "containerDurationSeconds": 184.959
+    },
+    {
+      "metadata": "reference-run-terrain-right.json",
+      "video": "reference-run-terrain-right.webm",
+      "raw": "raw/reference-run-terrain-right.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 2743,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "c5f5637ab7fd62ff5e5977c5fdd94ae2ec9190f7c78e69fdaf679bdc5f98f0d9",
+      "indexedSha256": "ab15ec2f0d41f4590880328da4aa4c0a4636080dcfb00db72ae4669202745f0d",
+      "containerDurationSeconds": 185.009
+    },
+    {
+      "metadata": "reference-shadows-fixed.json",
+      "video": "reference-shadows-fixed.webm",
+      "raw": "raw/reference-shadows-fixed.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 388,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "b5466ece773b351789172dfacd6065caab3893cef9ff587bf57bf2d448d951ed",
+      "indexedSha256": "b740d70902ac67ac3395734422cbefa32b722cf8345491017d36ad908aeb0b4c",
+      "containerDurationSeconds": 24.98
+    },
+    {
+      "metadata": "reference-startup-fixed.json",
+      "video": "reference-startup-fixed.webm",
+      "raw": "raw/reference-startup-fixed.webm",
+      "sourceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+      "streams": [
+        {
+          "codec": "opus",
+          "sampleRate": "48000",
+          "channels": 2,
+          "layout": "stereo"
+        }
+      ],
+      "audioPackets": 367,
+      "audioPacketPTSAndPayloadsIdentical": true,
+      "rawSha256": "0e70fa7b7428c288b480a67f9783fa9e529c77c50af674524c5c7942e5b6e7ef",
+      "indexedSha256": "b83e4da2626e2dc64b10e339f87ddebe882ad95f010d76ff407b559e4e090349",
+      "containerDurationSeconds": 25.02
+    }
+  ],
+  "allAudioPacketCopiesIdentical": true,
+  "allStereo": true
+}

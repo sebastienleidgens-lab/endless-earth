@@ -1,0 +1,1032 @@
+{
+  "method": "Native frame and position traces, no interpolation. Distances sum actual player positions, including legitimate activity transitions, not planned route lengths. Rendered cadence and encoded stream are distinct. The common route/start/camera/date/profile parameters do not imply identical native timesteps or frame-by-frame inputs; low software FPS prevents perceptual acceptance. Climate wall-clock progression is not the clamped physics integration time.",
+  "rows": [
+    {
+      "path": "boat-3-native.json",
+      "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+      "bundle": "builds/travel-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 150.43470000000113,
+      "renderedFrames": 539,
+      "renderedFPS": 3.576302541900213,
+      "p50FrameMs": 273.69999999925494,
+      "p95FrameMs": 365.30000000074506,
+      "distanceM": 97.22654828418452,
+      "distanceByActivity": {
+        "walking": 0,
+        "transition": 8.732025007171735,
+        "boating": 88.49452327701276
+      },
+      "durationByActivity": {
+        "walking": 4.136099999999627,
+        "transition": 10.924500000001863,
+        "boating": 135.37409999999957
+      },
+      "longestContiguousS": {
+        "walking": 2.6695,
+        "transition": 5.507800000000745,
+        "boating": 135.37409999999963
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 86.35723213255469,
+      "activities": {
+        "walking": 14,
+        "transition": 40,
+        "boating": 485
+      },
+      "firstPosition": [
+        -487.804873154947,
+        -35.557582006262194,
+        -703.4874526406431
+      ],
+      "lastPosition": [
+        -546.5426674021122,
+        -34.92081332590999,
+        -640.1862868202466
+      ],
+      "climateSeconds": 148.49790000000255,
+      "video": "boat-3-native.webm",
+      "rawOriginal": "quality-fixes/raw/boat-3-native.webm",
+      "sha256": "2e8564b91ac3429167ac94742eff7c0fc813c2ea05a055e8eade7335681d9f18",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 384,
+            "height": 252
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "151.070000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "boat-5-native.json",
+      "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+      "bundle": "builds/travel-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 228.94689999999852,
+      "renderedFrames": 357,
+      "renderedFPS": 1.5549457101188193,
+      "p50FrameMs": 559.6999999992549,
+      "p95FrameMs": 1060,
+      "distanceM": 68.30958435678403,
+      "distanceByActivity": {
+        "walking": 7.105427357601002e-15,
+        "transition": 9.785803226062422,
+        "boating": 58.5237811307216
+      },
+      "durationByActivity": {
+        "walking": 4.226299999998882,
+        "transition": 23.64340000000037,
+        "boating": 201.0771999999993
+      },
+      "longestContiguousS": {
+        "walking": 3.643,
+        "transition": 12.519099999999627,
+        "boating": 201.07719999999927
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 28.869956966695472,
+      "activities": {
+        "walking": 9,
+        "transition": 40,
+        "boating": 308
+      },
+      "firstPosition": [
+        -124.27827931472889,
+        -33.142896889585444,
+        173.568604106153
+      ],
+      "lastPosition": [
+        -101.56942993047903,
+        -33.283852004949594,
+        191.3945039868815
+      ],
+      "climateSeconds": 209.4400999999978,
+      "video": "boat-5-native.webm",
+      "rawOriginal": "quality-fixes/raw/boat-5-native.webm",
+      "sha256": "73424485d90f41344ce90cbbee8db24f5c88abbf528835ef79e21ee898e6a689",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 384,
+            "height": 252
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "230.151000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "capture-tool-failure/boat-3-native.json",
+      "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+      "bundle": "builds/travel-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 30.67650000000093,
+      "renderedFrames": 255,
+      "renderedFPS": 8.279953710494754,
+      "p50FrameMs": 116.20000000018626,
+      "p95FrameMs": 189.20000000018626,
+      "distanceM": 290.606522399668,
+      "distanceByActivity": {
+        "running": 290.606522399668
+      },
+      "durationByActivity": {
+        "running": 30.676500000000924
+      },
+      "longestContiguousS": {
+        "running": 30.67650000000093
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 290.6064317033752,
+      "activities": {
+        "running": 255
+      },
+      "firstPosition": [
+        -10611.670017731069,
+        36.519513145647934,
+        2398.8618549214443
+      ],
+      "lastPosition": [
+        -10899.504733722082,
+        37.14970267528774,
+        2358.825905090102
+      ],
+      "climateSeconds": 30.69349999999999,
+      "video": "capture-tool-failure/boat-3-native.webm",
+      "rawOriginal": "quality-fixes/raw/tool-failure-boat-3-native.webm",
+      "sha256": "7782cf1ef97f81b93cf37016b3218d65bf6e7eb64338e3c6fc5cd84090dd3446",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 563,
+            "height": 369
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "30.851000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#action-boat')\u001b[22m\n\u001b[2m    - locator resolved to <button title=\"\" hidden=\"\" type=\"button\" id=\"action-boat\">Sortir le bateau</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    40 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "capture-tool-failure/boat-5-native.json",
+      "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+      "bundle": "builds/travel-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 30.5825,
+      "renderedFrames": 303,
+      "renderedFPS": 9.874928472165454,
+      "p50FrameMs": 99.79999999888241,
+      "p95FrameMs": 130.09999999962747,
+      "distanceM": 295.54236684808467,
+      "distanceByActivity": {
+        "running": 295.54236684808467
+      },
+      "durationByActivity": {
+        "running": 30.582499999999996
+      },
+      "longestContiguousS": {
+        "running": 30.5825
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 295.5417987876986,
+      "activities": {
+        "running": 303
+      },
+      "firstPosition": [
+        -10903.865460114708,
+        37.1563758353049,
+        2358.2193562154052
+      ],
+      "lastPosition": [
+        -11196.515430083873,
+        37.47748931627687,
+        2316.978032353922
+      ],
+      "climateSeconds": 30.586699999999205,
+      "video": "capture-tool-failure/boat-5-native.webm",
+      "rawOriginal": "quality-fixes/raw/tool-failure-boat-5-native.webm",
+      "sha256": "8f64d90146674f6e4118906c7f4c038210588c2041764b8e44c0470012fe5d84",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 409,
+            "height": 268
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "30.591000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#action-boat')\u001b[22m\n\u001b[2m    - locator resolved to <button title=\"\" hidden=\"\" type=\"button\" id=\"action-boat\">Sortir le bateau</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    43 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "capture-tool-failure/car-native.json",
+      "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+      "bundle": "builds/travel-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 12.033099999999628,
+      "renderedFrames": 73,
+      "renderedFPS": 5.983495524844157,
+      "p50FrameMs": 165.70000000018626,
+      "p95FrameMs": 269,
+      "distanceM": 89.87893822897541,
+      "distanceByActivity": {
+        "walking": 0,
+        "transition": 1.6696913184535866,
+        "driving": 88.20924691052181
+      },
+      "durationByActivity": {
+        "walking": 0.2033999999994412,
+        "transition": 0.734,
+        "driving": 11.095700000000186
+      },
+      "longestContiguousS": {
+        "walking": 0.2033999999994412,
+        "transition": 0.734,
+        "driving": 11.095700000000186
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 88.22467190450347,
+      "activities": {
+        "walking": 2,
+        "transition": 4,
+        "driving": 67
+      },
+      "firstPosition": [
+        -10515.773219300234,
+        36.37067182292053,
+        2413.8663649958053
+      ],
+      "lastPosition": [
+        -10602.913932723679,
+        36.507014482166156,
+        2400.079769789244
+      ],
+      "climateSeconds": 12.038000000000002,
+      "video": "capture-tool-failure/car-native.webm",
+      "rawOriginal": "quality-fixes/raw/tool-failure-car-native.webm",
+      "sha256": "fdcf8da1dd9f7bb784094f025da52b3d2b791e872dcaa52f78c1394da3179aad",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 640,
+            "height": 420
+          }
+        ],
+        "format": {
+          "duration": "11.613000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": "ReferenceError: mode is not defined",
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "car-attempt-1/car-native.json",
+      "sourceCommit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+      "bundle": "builds/quality-after-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 160.92879999999982,
+      "renderedFrames": 1018,
+      "renderedFPS": 6.319564925606859,
+      "p50FrameMs": 123.6000000005588,
+      "p95FrameMs": 385.1000000005588,
+      "distanceM": 7.80478890409452,
+      "distanceByActivity": {
+        "walking": 1.4772785208113632,
+        "transition": 3.337131685821452,
+        "driving": 2.9903786974617033
+      },
+      "durationByActivity": {
+        "walking": 3.748999999999069,
+        "transition": 1.7409000000003727,
+        "driving": 155.43890000000044
+      },
+      "longestContiguousS": {
+        "walking": 3.5890999999996276,
+        "transition": 0.8807000000001862,
+        "driving": 155.43890000000036
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 5.668209709586156,
+      "activities": {
+        "walking": 34,
+        "transition": 13,
+        "driving": 971
+      },
+      "firstPosition": [
+        -10462.990841453344,
+        36.48360261538964,
+        2421.1858521190484
+      ],
+      "lastPosition": [
+        -10468.621233839542,
+        36.4670896251847,
+        2421.8393123018036
+      ],
+      "climateSeconds": 160.94220000000033,
+      "video": "car-attempt-1/car-native.webm",
+      "rawOriginal": "quality-fixes/raw/car-attempt-1-native.webm",
+      "sha256": "9ee40c9f1d877b0775177f1e71cfa8c7d297ce57277ee993e54d0fd499f6c4a8",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 640,
+            "height": 420
+          }
+        ],
+        "format": {
+          "duration": "160.574000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": false,
+      "errors": []
+    },
+    {
+      "path": "car-native.json",
+      "sourceCommit": "3743d54b840e672cd6fb295c8761ec630b797aa9",
+      "bundle": "builds/travel-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 160.89779999999888,
+      "renderedFrames": 1341,
+      "renderedFPS": 8.328268006150546,
+      "p50FrameMs": 103.5,
+      "p95FrameMs": 203.80000000074506,
+      "distanceM": 1155.4493310890539,
+      "distanceByActivity": {
+        "walking": 2.6260587808497595,
+        "transition": 3.3376736117691297,
+        "driving": 1149.4855986964349
+      },
+      "durationByActivity": {
+        "walking": 3.8919999999981374,
+        "transition": 1.6560000000000001,
+        "driving": 155.34980000000087
+      },
+      "longestContiguousS": {
+        "walking": 3.7242999999988826,
+        "transition": 0.868699999999255,
+        "driving": 155.34980000000076
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 1152.1152172185343,
+      "activities": {
+        "walking": 39,
+        "transition": 14,
+        "driving": 1288
+      },
+      "firstPosition": [
+        -10515.773219300234,
+        36.37067182292053,
+        2413.8663649958053
+      ],
+      "lastPosition": [
+        -11656.156867263153,
+        37.97974812775341,
+        2249.8784993509944
+      ],
+      "climateSeconds": 160.90109999999981,
+      "video": "car-native.webm",
+      "rawOriginal": "quality-fixes/raw/car-native.webm",
+      "sha256": "691d4ae34661eb0243d057fbdbcbe1e3d164211008236c8a849a8b5e128df4bc",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 640,
+            "height": 420
+          }
+        ],
+        "format": {
+          "duration": "160.509000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": true,
+      "errors": []
+    },
+    {
+      "path": "quality-fixes/after-birds.json",
+      "sourceCommit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+      "bundle": "builds/quality-after-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 97.97360000000056,
+      "renderedFrames": 112,
+      "renderedFPS": 1.1329582663084685,
+      "p50FrameMs": 867.5999999996275,
+      "p95FrameMs": 1016.5999999996275,
+      "distanceM": 0,
+      "distanceByActivity": {
+        "walking": 0
+      },
+      "durationByActivity": {
+        "walking": 97.97360000000054
+      },
+      "longestContiguousS": {
+        "walking": 97.97360000000056
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 0,
+      "activities": {
+        "walking": 112
+      },
+      "firstPosition": [
+        -426.723088216,
+        6.834994373336627,
+        346.512916
+      ],
+      "lastPosition": [
+        -426.723088216,
+        6.834994373336627,
+        346.512916
+      ],
+      "climateSeconds": 96.8590999999995,
+      "video": "quality-fixes/after-birds.webm",
+      "rawOriginal": "quality-fixes/raw/after-birds.webm",
+      "sha256": "3349f2d0460259e0571570a3480b64614ea292e6158b5ff06a8b3952184a360f",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 422,
+            "height": 277
+          }
+        ],
+        "format": {
+          "duration": "95.392000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "quality-fixes/after-run.json",
+      "sourceCommit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+      "bundle": "builds/quality-after-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 186.95390000000037,
+      "renderedFrames": 171,
+      "renderedFPS": 0.9093150771393358,
+      "p50FrameMs": 1092.4000000003725,
+      "p95FrameMs": 1276.5999999996275,
+      "distanceM": 128.13068053005114,
+      "distanceByActivity": {
+        "walking": 0.9287838038854574,
+        "transition": 3.6729389688115583,
+        "running": 123.52895775735416
+      },
+      "durationByActivity": {
+        "walking": 11.666599999999628,
+        "running": 175.2873000000008
+      },
+      "longestContiguousS": {
+        "walking": 3.742799999999814,
+        "running": 83.64179999999982
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 110.19446865985533,
+      "activities": {
+        "walking": 12,
+        "running": 159
+      },
+      "firstPosition": [
+        -36.969611548365116,
+        -10.76933472525998,
+        189.93418400011024
+      ],
+      "lastPosition": [
+        -14.22396900542746,
+        1.7689436797297589,
+        82.84427671106775
+      ],
+      "climateSeconds": 167.30039999999954,
+      "video": "quality-fixes/after-run.webm",
+      "rawOriginal": "quality-fixes/raw/after-run.webm",
+      "sha256": "061f7be7eb854000cb455a73f9255d9b8f52ae145729e32cf92dabaad2327efb",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 422,
+            "height": 277
+          }
+        ],
+        "format": {
+          "duration": "183.210000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "quality-fixes/after-shadows.json",
+      "sourceCommit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+      "bundle": "builds/quality-after-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 42.50630000000074,
+      "renderedFrames": 45,
+      "renderedFPS": 1.0351406732648862,
+      "p50FrameMs": 984.9000000003725,
+      "p95FrameMs": 1196.0999999996275,
+      "distanceM": 9.10869879516516,
+      "distanceByActivity": {
+        "walking": 9.10869879516516
+      },
+      "durationByActivity": {
+        "walking": 42.506300000000735
+      },
+      "longestContiguousS": {
+        "walking": 42.50630000000074
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 0.6334727651700667,
+      "activities": {
+        "walking": 45
+      },
+      "firstPosition": [
+        -426.7231290690594,
+        6.834999140761511,
+        346.5128835810079
+      ],
+      "lastPosition": [
+        -426.22805012213087,
+        6.792134505130562,
+        346.90575404761563
+      ],
+      "climateSeconds": 40.505200000000286,
+      "video": "quality-fixes/after-shadows.webm",
+      "rawOriginal": "quality-fixes/raw/after-shadows.webm",
+      "sha256": "000f6c498bf119ad18630ceb4fbd523834de43aeeb786742869b0db870134ae4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 422,
+            "height": 277
+          }
+        ],
+        "format": {
+          "duration": "39.874000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "quality-fixes/after-walk.json",
+      "sourceCommit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+      "bundle": "builds/quality-after-runtime.js",
+      "identityBasis": "Runtime build identity",
+      "wallSeconds": 186.76320000000018,
+      "renderedFrames": 168,
+      "renderedFPS": 0.8941804381162876,
+      "p50FrameMs": 1078,
+      "p95FrameMs": 2307.2000000001863,
+      "distanceM": 56.742500922859286,
+      "distanceByActivity": {
+        "walking": 56.742500922859286
+      },
+      "durationByActivity": {
+        "walking": 186.76320000000015
+      },
+      "longestContiguousS": {
+        "walking": 186.76320000000018
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 43.97429477171614,
+      "activities": {
+        "walking": 168
+      },
+      "firstPosition": [
+        -36.969611548365116,
+        -10.76933472525998,
+        189.93418400011024
+      ],
+      "lastPosition": [
+        -21.508525934977182,
+        -8.192657445396307,
+        148.84824764080713
+      ],
+      "climateSeconds": 158.70959999999684,
+      "video": "quality-fixes/after-walk.webm",
+      "rawOriginal": "quality-fixes/raw/after-walk.webm",
+      "sha256": "926687bf808efb7be6be58c60b780969e59cad395bdb3a7db544ee3dcb392354",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 640,
+            "height": 420
+          }
+        ],
+        "format": {
+          "duration": "183.476000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "quality-fixes/before-birds.json",
+      "sourceCommit": "5fe6e792f34369926854b649a5b631426b7037c4",
+      "bundle": "builds/reference-runtime.js",
+      "identityBasis": "Verified pre-edit Git archive; exported reference intentionally has no own Git identity",
+      "wallSeconds": 96.38180000000004,
+      "renderedFrames": 144,
+      "renderedFPS": 1.4836826039770987,
+      "p50FrameMs": 615,
+      "p95FrameMs": 1332.5,
+      "distanceM": 0,
+      "distanceByActivity": {
+        "walking": 0
+      },
+      "durationByActivity": {
+        "walking": 96.38180000000008
+      },
+      "longestContiguousS": {
+        "walking": 96.38180000000004
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 0,
+      "activities": {
+        "walking": 144
+      },
+      "firstPosition": [
+        -426.723088216,
+        6.834994373336627,
+        346.512916
+      ],
+      "lastPosition": [
+        -426.723088216,
+        6.834994373336627,
+        346.512916
+      ],
+      "climateSeconds": 92.44489999999942,
+      "video": "quality-fixes/before-birds.webm",
+      "rawOriginal": "quality-fixes/raw/before-birds.webm",
+      "sha256": "efa56e1cf5760525a831325e75264452179e5e917b1b00c955423ddcb0c3df20",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 640,
+            "height": 420
+          }
+        ],
+        "format": {
+          "duration": "94.459000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "quality-fixes/before-run.json",
+      "sourceCommit": "5fe6e792f34369926854b649a5b631426b7037c4",
+      "bundle": "builds/reference-runtime.js",
+      "identityBasis": "Verified pre-edit Git archive; exported reference intentionally has no own Git identity",
+      "wallSeconds": 185.8435,
+      "renderedFrames": 308,
+      "renderedFPS": 1.6519275627073318,
+      "p50FrameMs": 602.2999999999302,
+      "p95FrameMs": 750.0999999999767,
+      "distanceM": 229.2372741367507,
+      "distanceByActivity": {
+        "walking": 1.9121498285075622,
+        "transition": 7.675433332997846,
+        "running": 219.6496909752453
+      },
+      "durationByActivity": {
+        "walking": 13.426300000000163,
+        "running": 172.41719999999992
+      },
+      "longestContiguousS": {
+        "walking": 2.5445,
+        "running": 47.31470000000007
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 174.25491094684202,
+      "activities": {
+        "walking": 23,
+        "running": 285
+      },
+      "firstPosition": [
+        -36.969611548365116,
+        -10.76933472525998,
+        189.93418400011024
+      ],
+      "lastPosition": [
+        -1.338416974502475,
+        0.970014055536538,
+        19.76550400130963
+      ],
+      "climateSeconds": 185.81990000000013,
+      "video": "quality-fixes/before-run.webm",
+      "rawOriginal": "quality-fixes/raw/before-run.webm",
+      "sha256": "9efa800c2d303bd90a8882a928272a78d55ea7209ceb36e838fedac026e43d2f",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 422,
+            "height": 277
+          }
+        ],
+        "format": {
+          "duration": "183.301000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "quality-fixes/before-shadows.json",
+      "sourceCommit": "5fe6e792f34369926854b649a5b631426b7037c4",
+      "bundle": "builds/reference-runtime.js",
+      "identityBasis": "Verified pre-edit Git archive; exported reference intentionally has no own Git identity",
+      "wallSeconds": 41.174100000000095,
+      "renderedFrames": 65,
+      "renderedFPS": 1.5543752018866193,
+      "p50FrameMs": 652.0999999998603,
+      "p95FrameMs": 851.6999999999534,
+      "distanceM": 15.129341446561869,
+      "distanceByActivity": {
+        "walking": 15.129341446561869
+      },
+      "durationByActivity": {
+        "walking": 41.17410000000009
+      },
+      "longestContiguousS": {
+        "walking": 41.174100000000095
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 0.581571693478703,
+      "activities": {
+        "walking": 65
+      },
+      "firstPosition": [
+        -426.7233714113955,
+        6.835027421357964,
+        346.51269126996885
+      ],
+      "lastPosition": [
+        -426.2688754469,
+        6.795287797256307,
+        346.8733570642844
+      ],
+      "climateSeconds": 40.93569999999998,
+      "video": "quality-fixes/before-shadows.webm",
+      "rawOriginal": "quality-fixes/raw/before-shadows.webm",
+      "sha256": "90656eea4fe55a77a9f152ea619226969baee3aad15c0ee6ec6a1b2ca7f45024",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 422,
+            "height": 277
+          }
+        ],
+        "format": {
+          "duration": "39.210000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    },
+    {
+      "path": "quality-fixes/before-walk.json",
+      "sourceCommit": "5fe6e792f34369926854b649a5b631426b7037c4",
+      "bundle": "builds/reference-runtime.js",
+      "identityBasis": "Verified pre-edit Git archive; exported reference intentionally has no own Git identity",
+      "wallSeconds": 185.42520000000007,
+      "renderedFrames": 309,
+      "renderedFPS": 1.6610471500098145,
+      "p50FrameMs": 571.4000000000233,
+      "p95FrameMs": 859.4000000000233,
+      "distanceM": 107.49402980410903,
+      "distanceByActivity": {
+        "walking": 107.49402980410903
+      },
+      "durationByActivity": {
+        "walking": 185.42520000000005
+      },
+      "longestContiguousS": {
+        "walking": 185.42520000000007
+      },
+      "activityDurationMethod": "Native state-sample intervals; classification boundaries have up to one rendered-frame uncertainty. These wall-clock durations are not clamped physics time.",
+      "displacementM": 94.28377274468653,
+      "activities": {
+        "walking": 309
+      },
+      "firstPosition": [
+        -36.969611548365116,
+        -10.76933472525998,
+        189.93418400011024
+      ],
+      "lastPosition": [
+        -15.957779243149119,
+        0.7505591848384512,
+        98.74632981738888
+      ],
+      "climateSeconds": 182.51229999999987,
+      "video": "quality-fixes/before-walk.webm",
+      "rawOriginal": "quality-fixes/raw/before-walk.webm",
+      "sha256": "f3a107e5189d04ec1e138891e8d2d55b4b1eaaa1d086e8252ac40ab10fdb090a",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 640,
+            "height": 420
+          }
+        ],
+        "format": {
+          "duration": "183.487000"
+        }
+      },
+      "integrity": {
+        "indexedShaMatches": true,
+        "rawOriginalAvailable": true,
+        "nativePacketsPreserved": true,
+        "transformCountMatches": true
+      },
+      "scriptFailure": null,
+      "routeCompleted": null,
+      "errors": []
+    }
+  ],
+  "failures": []
+}

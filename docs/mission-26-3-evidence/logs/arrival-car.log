@@ -1,0 +1,17 @@
+file:///workspace/endless-earth/scripts/lib/mission-26-3-posttrip.mjs:6
+ window.p252.input();window.p262.step(.25,true);result.distanceM=distance;result.completed=distance>=200;result.end=window.p262.snapshot();result.saved=window.p262.save();result.beforeResume=window.p262.telemetry();const target=route[Math.min(cursor,route.length-1)],p=window.p262.position(),dx=target.x-p[0],dz=target.z-p[2],d=Math.hypot(dx,dz)||1,yaw=window.p262.yaw();window.p262.carControls(-(Math.sin(yaw)*dx+Math.cos(yaw)*dz)/d*.6,(Math.cos(yaw)*dx-Math.sin(yaw)*dz)/d*.6);for(let i=0;i<12;i++)window.p262.step(.125,i===11);result.away=window.p262.telemetry();result.movedFromSaveM=Math.hypot(result.away.position[0]-result.beforeResume.position[0],result.away.position[2]-result.beforeResume.position[2]);window.p252.input();window.p252.hold(false);await window.p262.resume();window.p252.hold(true);result.afterResume=window.p262.telemetry();result.resumePositionErrorM=Math.hypot(...result.afterResume.position.map((v,i)=>v-result.beforeResume.position[i]));return result;
+                                                                                                                                                                                                                                                                           ^
+
+SyntaxError: Identifier 'p' has already been declared
+    at compileSourceTextModule (node:internal/modules/esm/utils:319:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:89:18)
+    at #translate (node:internal/modules/esm/loader:438:20)
+    at afterLoad (node:internal/modules/esm/loader:506:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:511:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:564:36)
+    at afterResolve (node:internal/modules/esm/loader:611:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:617:12)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:276:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:381:17)
+
+Node.js v24.22.1

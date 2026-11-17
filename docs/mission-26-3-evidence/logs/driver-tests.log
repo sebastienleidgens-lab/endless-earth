@@ -1,0 +1,16 @@
+✔ M26.3 exact 3.883 km source bend has continuous visible road support across the former wedge (27.626331ms)
+✔ adjacent tile copies retain exactly the same road triangles and heights at their shared seam (7.744698ms)
+✔ same walking kernel permits a contour road but still refuses a sustained steep ramp and a cliff (9.640517ms)
+✔ directional road policy preserves private, rail, water and off-road steep refusals (2.05977ms)
+✔ stalled network has a bounded retryable state; a late generation cannot publish a floor (63.831013ms)
+✔ aborted demand immediately frees a decoder slot even if the old network ignores AbortSignal (21.530356ms)
+✔ a cooperative installation deadline aborts, rolls back and frees the serial installation queue (40.430209ms)
+✔ source-route driver advances a passed source vertex instead of circling back after a low-rate overshoot (3.062086ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 536.549837

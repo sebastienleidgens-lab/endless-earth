@@ -1,0 +1,143 @@
+{
+  "method": "Retained failures and their scope; existence or process exit is never promoted to scenario success. Actual code/data SHA remain in individual proofs.",
+  "items": [
+    {
+      "id": "H01",
+      "kind": "protocol",
+      "observation": "Initial local car replay reused an obsolete Y after a mesh change, yielding a zero-distance support refusal.",
+      "correction": "Prepare actual current height and normal door completion before independent departure.",
+      "limit": "Not a new terrain/geography impossibility.",
+      "evidence": [
+        "road-grid-d749-replay.json",
+        "candidate-exact-d749-replay.json"
+      ]
+    },
+    {
+      "id": "H02",
+      "kind": "discarded-engine-trial",
+      "observation": "Longitudinal road phase2m demonstrably regressed a narrow seam. Walking/car failures on that version are separately retained; the seam diagnosis does not establish every long-run failure cause.",
+      "correction": "Restored original longitudinal4m; kept causal transverse refinement.",
+      "evidence": [
+        "seam-strips-longitudinal-2m.json",
+        "seam-strips-phase4m.json",
+        "regression/Chauvigny-foot-21km-foot.json",
+        "regression/Vallee-stop-car-40km-car.json"
+      ]
+    },
+    {
+      "id": "H03",
+      "kind": "protocol",
+      "observation": "Early synthetic-rig prototypes had dirty/end-of-run SHA labels and a near-zero final floating dt.",
+      "correction": "Bounded-dt exact archived-reference/final paired runs.",
+      "evidence": [
+        "early-diagnostics-limit.json",
+        "reference-paired-rig.json",
+        "candidate-paired-rig.json"
+      ]
+    },
+    {
+      "id": "H04",
+      "kind": "acquisition",
+      "observation": "Empty native WebM attempts had no valid EBML header under load; some screenshots timed out.",
+      "correction": "Retained originals/failures; native preroll waits for three actual RAF frames. No manual step or re-encoding.",
+      "evidence": [
+        "media-integrity.json",
+        "visual-regressions/reference-matched-native.json",
+        "visual-regressions/candidate-matched-native.json",
+        "visual-regressions/reference-retry-trunk-native.json",
+        "visual-regressions/candidate-retry-trunk-native.json",
+        "visual-regressions/reference-retry-river-native.json",
+        "visual-regressions/candidate-retry-river-native.json"
+      ]
+    },
+    {
+      "id": "H05",
+      "kind": "protocol",
+      "observation": "Two endurance launchers initially wrote the same output. Duplicate was terminated; original owner continued and rewrote its full in-memory monotonic journal.",
+      "correction": "Unique exclusive output lock and ownerPID on subsequent sessions.",
+      "evidence": [
+        "endurance-owner-audit.json",
+        "endurance-overlapping-journal-snapshot.json",
+        "endurance-water-final.json"
+      ]
+    },
+    {
+      "id": "H06",
+      "kind": "protocol",
+      "observation": "The first mixed endurance driver kept stale lastMoved on car re-entry, repeatedly exiting/entering. Its1807s wall duration is not qualifying continuous exploration.",
+      "correction": "Reset movement age on actual car entry, distinguish tile waiting from collision stall, and physically walk/return alongside the car.",
+      "evidence": [
+        "endurance-water-final.json",
+        "endurance-final-valid.json",
+        "endurance-authored-final.json"
+      ]
+    },
+    {
+      "id": "H07",
+      "kind": "protocol",
+      "observation": "Original M26.4 car driver only invoked parking/walking after40km, omitting it after the intermediate80km arrival.",
+      "correction": "Same normal posttrip protocol now applies to40 and80km; final80 records205.13m walking.",
+      "evidence": [
+        "travel-80km/Vallee-source-roundtrip-car-80km-car.json",
+        "water-final-80km/Vallee-source-roundtrip-car-80km-car.json"
+      ]
+    },
+    {
+      "id": "H08",
+      "kind": "readiness",
+      "observation": "A cold Angles departure failed at1539.90m with clear centre support. Late default parked-car placement is suspected, not proven from the failed trace which lacked its pose.",
+      "correction": "Wait at the untouched actual spawn until the normal initial car appears; then4737.88m/3tiles physically complete. No actor or car assignment. This does not claim an engine race fixed.",
+      "evidence": [
+        "final-travel/spawn-east-dense-avoid-water-foot.json",
+        "warmed-spawn/spawn-east-dense-avoid-water-foot.json"
+      ]
+    },
+    {
+      "id": "H09",
+      "kind": "engine-correction",
+      "observation": "The first local-water shaft fitting used the already corrected X to recompute its stroke weight, so repeated fitting changed the phase and missed reliable water on return.",
+      "correction": "Use immutable authoredX; idempotence test red/green; same angular bound and actual contact gate. Complete1km-follow/manual/dock/walk replay succeeds.",
+      "evidence": [
+        "river-5-local-water-fixed.json",
+        "river-5-full-resume.json",
+        "river-5-manual-return.json",
+        "river-return-contact-probe.json",
+        "river-return-contact-probe-authored.json",
+        "river-5-authored.json"
+      ]
+    },
+    {
+      "id": "H10",
+      "kind": "source-selection",
+      "observation": "Expanded bank indices changed when preflight was restricted to source-classified rivers. A graph/screen below1km is not a physical navigation failure.",
+      "correction": "Keep both source selections and sector/OSM identities; separate graph plans from actual odometers.",
+      "evidence": [
+        "bank-source-candidates-initial-expanded.json",
+        "bank-source-candidates.json",
+        "river-6-screen.json"
+      ]
+    },
+    {
+      "id": "H11",
+      "kind": "diagnostic-tooling-startup",
+      "observation": "F8 initially sampled before world readiness, then the review build retained the default paused evidence frame. Neither failure is a production journey failure.",
+      "correction": "Guard readiness, release native frame only in review mode, clone timed metric snapshots and reset FPS baseline while loading. Real F8/download check succeeds.",
+      "evidence": [
+        "review/first-check-failed.json",
+        "review/second-check-failed.json",
+        "review/paused-review-check-cancelled.json",
+        "review/live-check-before-layout.json"
+      ]
+    },
+    {
+      "id": "H12",
+      "kind": "managed-browser-protocol-limit",
+      "observation": "Local file:// gallery navigation refused by browser administrative policy after desktop/mobile HTTP checks passed.",
+      "correction": "Policy retained. Local HTTP and Internet-isolated loopback verified; local serving command delivered.",
+      "evidence": [
+        "gallery-first-file-protocol-blocked.json",
+        "gallery-check.json"
+      ]
+    }
+  ]
+}

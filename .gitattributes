@@ -1,2 +1,7 @@
 # Official metadata retained byte for byte, including supplier CRLF/spacing.
 docs/mission-08-5-metadata/* -whitespace -text
+# Executed bundles, raw console logs and measured SVG exports are byte-bound
+# evidence. Preserve supplier/generated whitespace and line endings for hashes.
+docs/mission-26-3-evidence/builds/** -whitespace -text
+docs/mission-26-3-evidence/logs/*.log -whitespace -text
+docs/mission-26-3-evidence/geometry-comparison.svg -whitespace -text

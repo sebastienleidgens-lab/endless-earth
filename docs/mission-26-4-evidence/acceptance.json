@@ -1,0 +1,833 @@
+{
+  "milestone": "M26.4 — Rapport final consolidé",
+  "globalStatus": "PARTIEL",
+  "fullyAccepted": false,
+  "scenarios": [
+    {
+      "id": "A01",
+      "criterion": "Voiture80km et D749",
+      "status": "ATTEINT",
+      "threshold": "Arrival after>=80000m physical vehicle root, causal D749 diagnosis, normal parking/exit/walk>=200m",
+      "obtained": {
+        "file": "water-final-80km/Vallee-source-roundtrip-car-80km-car.json",
+        "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+        "sector": null,
+        "status": "COMPLETED",
+        "completed": true,
+        "functionalSuccess": true,
+        "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+        "distanceM": 80605.09430423396,
+        "signedProgressM": null,
+        "netDisplacementM": null,
+        "backwardProjectionM": null,
+        "simulatedSeconds": 9996.75,
+        "lastSampleSimulationSeconds": 9995,
+        "simulatedSecondsBound": null,
+        "wallSeconds": 3428.755900000006,
+        "startGPS": {
+          "lat": 46.60650819688691,
+          "lon": 0.6053124990529222
+        },
+        "endGPS": {
+          "lat": 46.60651613343878,
+          "lon": 0.6053242459784369
+        },
+        "canonicalTiles": [
+          "126:1611",
+          "126:1612",
+          "126:1613",
+          "126:1614",
+          "127:1609",
+          "127:1610",
+          "127:1611",
+          "128:1608",
+          "128:1609",
+          "129:1607",
+          "129:1608",
+          "130:1607"
+        ],
+        "maxStepM": 3.076909943340878,
+        "collisionReason": "",
+        "boatEnd": null,
+        "parkingWalkM": 205.13149999840317,
+        "parkingWalkCompleted": true,
+        "afterDockWalkM": null,
+        "savedWhileBoating": null,
+        "boatResume": {
+          "restored": null,
+          "errorM": null,
+          "refusal": null
+        },
+        "recoveryEndActivity": null,
+        "failure": null
+      },
+      "evidence": [
+        "water-final-80km/Vallee-source-roundtrip-car-80km-car.json",
+        "geometry-comparison.json",
+        "geometry-comparison.svg",
+        "reference-checked-d749-overlay.png",
+        "phase-checked-d749-overlay.png"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Complete accelerated production frame and normal controller inputs",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "No inferred distance from road graph. Original driver omitted posttrip after80km; only actually recorded parking/walk is accepted."
+    },
+    {
+      "id": "A02",
+      "criterion": "Voiture40km, sortie/marche et carrefour",
+      "status": "ATTEINT",
+      "threshold": "Historical40km, physical parking/exit/walk>=200m; first Chauvigny junction explicitly checked",
+      "obtained": {
+        "file": "authored-regression/Vallee-stop-car-40km-car.json",
+        "sourceSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+        "sector": null,
+        "status": "COMPLETED",
+        "completed": true,
+        "functionalSuccess": true,
+        "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+        "distanceM": 40354.33796861792,
+        "signedProgressM": null,
+        "netDisplacementM": null,
+        "backwardProjectionM": null,
+        "simulatedSeconds": 5009.75,
+        "lastSampleSimulationSeconds": 5005,
+        "simulatedSecondsBound": null,
+        "wallSeconds": 1288.245099999994,
+        "startGPS": {
+          "lat": 46.60650819688691,
+          "lon": 0.6053124990529222
+        },
+        "endGPS": {
+          "lat": 46.32218132992737,
+          "lon": 0.840869774357595
+        },
+        "canonicalTiles": [
+          "126:1611",
+          "126:1612",
+          "126:1613",
+          "126:1614",
+          "127:1609",
+          "127:1610",
+          "127:1611",
+          "128:1608",
+          "128:1609",
+          "129:1607",
+          "129:1608",
+          "130:1607"
+        ],
+        "maxStepM": 3.076909943340878,
+        "collisionReason": "",
+        "boatEnd": null,
+        "parkingWalkM": 205.12633391651832,
+        "parkingWalkCompleted": true,
+        "afterDockWalkM": null,
+        "savedWhileBoating": null,
+        "boatResume": {
+          "restored": null,
+          "errorM": null,
+          "refusal": null
+        },
+        "recoveryEndActivity": null,
+        "failure": null
+      },
+      "evidence": [
+        "authored-regression/Vallee-stop-car-40km-car.json",
+        "junction-final/Chauvigny-junction-local-600m-car.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Complete accelerated production frame and normal controller inputs",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "Chauvigny local refusal remains separately visible; success elsewhere does not close it."
+    },
+    {
+      "id": "A03",
+      "criterion": "Nouvelle rivière>=1km dans un sens",
+      "status": "ATTEINT",
+      "threshold": ">=1000m physical odometer AND signed forward progress; manual takeover, dock and walk",
+      "obtained": {
+        "file": "river-5-authored.json",
+        "sourceSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+        "sector": "riparian:Gartempe Vicq",
+        "status": "COMPLETED",
+        "completed": true,
+        "functionalSuccess": true,
+        "method": "Actual full-frame foot approach, launch, controller-input river following, manual takeover, recovery/docking and walk. Independent initial placement on explicit source-access land only. Estimated game bathymetry/current/level; no surveyed depth or real-world navigation/right claim.",
+        "distanceM": 1000.1204170079759,
+        "signedProgressM": 1000.736923457062,
+        "netDisplacementM": 976.7724919815961,
+        "backwardProjectionM": 0,
+        "simulatedSeconds": null,
+        "lastSampleSimulationSeconds": 1280.25,
+        "simulatedSecondsBound": [
+          1280.25,
+          1285.0
+        ],
+        "wallSeconds": 150.93339999999105,
+        "startGPS": {
+          "lat": 46.7323425723686,
+          "lon": 0.8779864802336973
+        },
+        "endGPS": {
+          "lat": 46.72566700181904,
+          "lon": 0.8696839181492801
+        },
+        "canonicalTiles": [
+          "131:1617",
+          "131:1618"
+        ],
+        "maxStepM": 0.22665494732711458,
+        "collisionReason": null,
+        "boatEnd": {
+          "active": true,
+          "following": true,
+          "recovery": false,
+          "heading": -0.7831405938462382,
+          "speed": 0.8451979447511105,
+          "reason": "",
+          "followMetrics": {
+            "plans": 1,
+            "lateralError": 0.03972195851099185,
+            "maxLateralError": 0.8979874095734217,
+            "stops": 2
+          },
+          "pose": 1
+        },
+        "parkingWalkM": null,
+        "parkingWalkCompleted": null,
+        "afterDockWalkM": 2.1322837643783337,
+        "savedWhileBoating": true,
+        "boatResume": {
+          "restored": false,
+          "errorM": 1.0767489783382984,
+          "refusal": {
+            "message": "river-manual-control",
+            "status": "Revenez à une berge avant de changer de voyage."
+          }
+        },
+        "recoveryEndActivity": "walking",
+        "failure": null
+      },
+      "evidence": [
+        "river-5-authored.json",
+        "clain-source-ends.json",
+        "bank-source-candidates.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Complete accelerated production frame and normal controller inputs",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "No return, lake loop or checked graph length counts. Unknown bridge clearance remains closed. Bathymetry estimated."
+    },
+    {
+      "id": "A04",
+      "criterion": "Pagaie, remous et sillage",
+      "status": "PARTIEL",
+      "threshold": "Real blade/water contact and thrust, pooled effects, readable native film",
+      "obtained": {
+        "exactWorldFrameTest": "PASS",
+        "localWaterArticulationTest": "PASS; bounded0.4rad wrist, blade lateral reach preserved, five-metre drop cannot generate contact",
+        "existingPool": 48
+      },
+      "evidence": [
+        "visual-regressions/candidate-authored-native.json",
+        "visual-regressions/candidate-water-native.json",
+        "visual-regressions/candidate-matched-native.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Actual native captures and targeted logic checks",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "Numerical contact-frame correction proven; visual coherence, boat turns and LOD need readable hardware review."
+    },
+    {
+      "id": "A05",
+      "criterion": "Marche naturelle",
+      "status": "PARTIEL",
+      "threshold": ">=180s physical consecutive walking, flat/slope, four views plus perceptual naturalness",
+      "obtained": {
+        "physicalCases": 8
+      },
+      "evidence": [
+        "visual-regressions/final-physical-gait.json",
+        "visual-regressions/mechanical-comparison.json",
+        "visual-regressions/candidate-matched-native.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Actual native captures and targeted logic checks",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "No perceptual validation under software cadence; angular acceleration peaks remain, startup can worsen."
+    },
+    {
+      "id": "A06",
+      "criterion": "Course naturelle",
+      "status": "PARTIEL",
+      "threshold": ">=180s physical consecutive running, flat/slope, four views, transitions and no visible vibration",
+      "obtained": {
+        "physicalCases": 8
+      },
+      "evidence": [
+        "visual-regressions/final-physical-gait.json",
+        "visual-regressions/mechanical-comparison.json",
+        "visual-regressions/candidate-matched-native.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Actual native captures and targeted logic checks",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "Steady run numerical improvement does not erase adverse startup peaks or validate naturalness."
+    },
+    {
+      "id": "A07",
+      "criterion": "Oiseaux vivants",
+      "status": "PARTIEL",
+      "threshold": "Continuous flight/wing/perch/LOD and readable fixed/moving native views",
+      "obtained": {
+        "C2EnvelopeTest": "PASS"
+      },
+      "evidence": [
+        "visual-regressions/reference-matched-native.json",
+        "visual-regressions/candidate-matched-native.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Actual native captures and targeted logic checks",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "No bird visibility forced; instance counts do not establish on-screen natural flight."
+    },
+    {
+      "id": "A08",
+      "criterion": "Ombres des troncs et du sol",
+      "status": "PARTIEL",
+      "threshold": "No artificial approach/retreat shimmer, foliage/trunk wind coherence",
+      "obtained": {
+        "coarseFineTrunkWindTest": "PASS"
+      },
+      "evidence": [
+        "visual-regressions/reference-matched-native.json",
+        "visual-regressions/candidate-matched-native.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Actual native captures and targeted logic checks",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "Same trunk-root motion fixes one discrepancy. Temporal shimmer/pixel quality not validated."
+    },
+    {
+      "id": "A09",
+      "criterion": "Ombres du monde et coût",
+      "status": "PARTIEL",
+      "threshold": "Four scenes, profiles, sun/wind/LOD and comparable cost",
+      "obtained": {
+        "nativeScenes": [
+          "forest-birds-shadows",
+          "pilot-water",
+          "river-shadows",
+          "run-four-views",
+          "run-slope-four-views",
+          "trunk-approach",
+          "village-shadows",
+          "walk-four-views",
+          "walk-slope-four-views"
+        ]
+      },
+      "evidence": [
+        "performance.json",
+        "visual-regressions/reference-matched-native.json",
+        "visual-regressions/candidate-matched-native.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Actual native captures and targeted logic checks",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "No global shadow cure or<=5percent performance claim; actual matrices/profiles exported."
+    },
+    {
+      "id": "A10",
+      "criterion": "Streaming et chargements",
+      "status": "PARTIEL",
+      "threshold": "Slow/503/retry/rebase same actor, steps<=8ms and none>50ms",
+      "obtained": {
+        "preparationStagesOverBudget": 1355
+      },
+      "evidence": [
+        "streaming-network-corrected.json",
+        "performance.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Compiled runtime, network fault and same-actor retry",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "Measured long preparation steps remain outside thresholds; waiting and rendering costs separated."
+    },
+    {
+      "id": "A11",
+      "criterion": "Performance et endurance",
+      "status": "PARTIEL",
+      "threshold": "Seven scenes/three profiles, P50/P95/P99/max, comparable<=5percent and>=30min active final runtime",
+      "obtained": {
+        "file": "endurance-authored-final.json",
+        "wallSeconds": 1800.7567875140003,
+        "completed": true,
+        "distanceCarM": 9970.068185959093,
+        "distanceFootM": 32.46244766447217,
+        "frames": 6198,
+        "events": [
+          {
+            "t": 738973.9,
+            "kind": "attempt-normal-door",
+            "reason": ""
+          },
+          {
+            "t": 740523.9,
+            "kind": "door-requested"
+          },
+          {
+            "t": 741673.8,
+            "kind": "normal-foot-activity"
+          },
+          {
+            "t": 1038828.7,
+            "kind": "map-open"
+          },
+          {
+            "t": 1042045.2,
+            "kind": "normal-foot-return",
+            "points": 15
+          },
+          {
+            "t": 1059111.1,
+            "kind": "map-close"
+          },
+          {
+            "t": 1062411,
+            "kind": "normal-car-entry-request"
+          },
+          {
+            "t": 1063294.3,
+            "kind": "normal-car-resumed"
+          }
+        ],
+        "tiles": {
+          "loaded": 9,
+          "unloaded": 0,
+          "failures": 0,
+          "residentBytes": 83938243,
+          "active": 0,
+          "queued": 0,
+          "errors": {},
+          "timeouts": 0,
+          "cancellations": 11,
+          "generation": 20,
+          "jobs": [
+            {
+              "id": "131:1616",
+              "generation": 2,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794911158638
+            },
+            {
+              "id": "131:1617",
+              "generation": 1,
+              "state": "CANCELLED",
+              "phase": "installation",
+              "priority": null,
+              "at": 1794911158639
+            },
+            {
+              "id": "126:1615",
+              "generation": 4,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 402.7540832496046,
+              "at": 1794911181719
+            },
+            {
+              "id": "126:1614",
+              "generation": 3,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 0.21411352136066258,
+              "at": 1794911221298
+            },
+            {
+              "id": "125:1614",
+              "generation": 5,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 644.3866851508624,
+              "at": 1794911269942
+            },
+            {
+              "id": "125:1615",
+              "generation": 6,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 799.9133891126955,
+              "at": 1794911304340
+            },
+            {
+              "id": "126:1613",
+              "generation": 9,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 834.7468739031491,
+              "at": 1794911842526
+            },
+            {
+              "id": "127:1614",
+              "generation": 12,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 1258.0606486240038,
+              "at": 1794912283179
+            },
+            {
+              "id": "127:1613",
+              "generation": 15,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 1074.440917304627,
+              "at": 1794912317139
+            },
+            {
+              "id": "126:1612",
+              "generation": 17,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 1038.1635112947574,
+              "at": 1794912816851
+            },
+            {
+              "id": "127:1612",
+              "generation": 20,
+              "state": "COMPLETED",
+              "phase": "installation",
+              "priority": 924.7051231669969,
+              "at": 1794912882018
+            }
+          ]
+        },
+        "heapBeforeBytes": 427433941,
+        "heapAfterBytes": 694214138,
+        "cpuMirrors": {
+          "attributeBuffers": 9612,
+          "attributeBytes": 211860482,
+          "typedTextureBytes": 2523136,
+          "textureCount": 3,
+          "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+        },
+        "actualNativeFrames": 6198,
+        "longTasksRetained": 2048,
+        "longestRetainedTaskMs": 1232,
+        "limits": "One genuine continuous wall-clock session, driving, foot exit/return, map, no placement/manual dt after initial setup. Nine loads, zero observed evictions; no leak-free conclusion. Concurrent functional load: not an isolated FPS benchmark. Geography budget, heap, CPU attribute mirrors and GPU allocation have different scopes."
+      },
+      "evidence": [
+        "performance.json",
+        "cpu-isolated.json",
+        "endurance-authored-final.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Isolated no-encoder CPU/browser benchmarks plus native continuous session",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "Final native30min covers driving, a foot exit/return and map. Nine tiles loaded but zero evictions observed; no leak-free or eviction-endurance conclusion. GPU and robust frame budgets unproven."
+    },
+    {
+      "id": "A12",
+      "criterion": "Acquis pédestres M26.3",
+      "status": "ATTEINT",
+      "threshold": "Chauvigny>=21km, true Angles spawn>=3tiles,27/27two-way seams",
+      "obtained": {
+        "Chauvigny": {
+          "file": "final-travel/Chauvigny-foot-21km-foot.json",
+          "sourceSHA": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+          "sector": null,
+          "status": "COMPLETED",
+          "completed": true,
+          "functionalSuccess": true,
+          "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+          "distanceM": 21034.730957360265,
+          "signedProgressM": null,
+          "netDisplacementM": null,
+          "backwardProjectionM": null,
+          "simulatedSeconds": 15054,
+          "lastSampleSimulationSeconds": 15050,
+          "simulatedSecondsBound": null,
+          "wallSeconds": 2985.521400000006,
+          "startGPS": {
+            "lat": 46.57105470370647,
+            "lon": 0.6491156933924196
+          },
+          "endGPS": {
+            "lat": 46.737559402890724,
+            "lon": 0.5537306253059257
+          },
+          "canonicalTiles": [
+            "125:1615",
+            "125:1616",
+            "125:1617",
+            "125:1618",
+            "126:1613",
+            "126:1614",
+            "126:1615"
+          ],
+          "maxStepM": 0.3625000000077624,
+          "collisionReason": null,
+          "boatEnd": null,
+          "parkingWalkM": null,
+          "parkingWalkCompleted": null,
+          "afterDockWalkM": null,
+          "savedWhileBoating": null,
+          "boatResume": {
+            "restored": null,
+            "errorM": null,
+            "refusal": null
+          },
+          "recoveryEndActivity": null,
+          "failure": null
+        },
+        "Angles": {
+          "file": "warmed-spawn/spawn-east-dense-avoid-water-foot.json",
+          "sourceSHA": "91f4f53b2832b387a196430121367989214f4f36",
+          "sector": null,
+          "status": "COMPLETED",
+          "completed": true,
+          "functionalSuccess": true,
+          "method": "Accelerated COMPLETE production frame, explicit dt .25 s, normal input vector, real controllers/collisions/streaming/audio/rig. Rendering only at checkpoints; not a native film or FPS test. Diagnostic source-road placement only BEFORE traversal except spawn which is untouched. No position assignment or collider alteration during travel.",
+          "distanceM": 4737.884074816927,
+          "signedProgressM": null,
+          "netDisplacementM": null,
+          "backwardProjectionM": null,
+          "simulatedSeconds": 3348,
+          "lastSampleSimulationSeconds": 3345,
+          "simulatedSecondsBound": null,
+          "wallSeconds": 221.39640000000597,
+          "startGPS": {
+            "lat": 46.6954233157827,
+            "lon": 0.8797680006964309
+          },
+          "endGPS": {
+            "lat": 46.68941584286148,
+            "lon": 0.9160364703273327
+          },
+          "canonicalTiles": [
+            "131:1617",
+            "132:1616",
+            "132:1617"
+          ],
+          "maxStepM": 0.3625000000008671,
+          "collisionReason": null,
+          "boatEnd": null,
+          "parkingWalkM": null,
+          "parkingWalkCompleted": null,
+          "afterDockWalkM": null,
+          "savedWhileBoating": null,
+          "boatResume": {
+            "restored": null,
+            "errorM": null,
+            "refusal": null
+          },
+          "recoveryEndActivity": null,
+          "failure": null
+        },
+        "seamsPassed": 27
+      },
+      "evidence": [
+        "final-travel/Chauvigny-foot-21km-foot.json",
+        "warmed-spawn/spawn-east-dense-avoid-water-foot.json",
+        "seam-strips.json",
+        "seam-strips-longitudinal-2m.json",
+        "offroad-complete.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Complete accelerated production frame and normal controller inputs",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "Failed longitudinal2m attempt retained; final road uses original4m phase. Final seam source91 is explicit, active road/foot modules identical to finald162; intermediate ff8 also retained."
+    },
+    {
+      "id": "A13",
+      "criterion": "Activités, interface et préservation",
+      "status": "PARTIEL",
+      "threshold": "Swim/camp/interactions/train/plane/maps/save/reload/touch/audio/licenses and source fidelity",
+      "obtained": {
+        "legacyClain": {
+          "scope": "Same freshly admitted bank within2m of M26.3 and same source outline; short historical corridor, does not satisfy the new1km criterion.",
+          "normalFollowingEnded": true,
+          "normalDock": true,
+          "walkM": 2.1322837643885015,
+          "distanceM": 886.0682450235281,
+          "baselineDistanceM": 886.0434677193033
+        },
+        "fixture": true,
+        "mapCases": [
+          true,
+          true
+        ],
+        "reload": true
+      },
+      "evidence": [
+        "fixture.json",
+        "map-ui.json",
+        "reload-corrected.json",
+        "preservation.json"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Compiled DOM/reload/touch and inheritance unit checks",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "Unit/fixture checks and map emulation do not replace every native activity or a physical Android test. Train/plane source-access policy unchanged."
+    },
+    {
+      "id": "A14",
+      "criterion": "Livraison et Git",
+      "status": "ATTEINT",
+      "threshold": "npmtest/build, SHA/license audit, navigable gallery and same unmerged draftPR #38",
+      "obtained": {
+        "tests": {
+          "command": "npm test",
+          "sourceCommit": "3aa41d279fe2dad5a23804ea30bc40f5748d194e",
+          "coreRuntimeSource": "d162a653785d656e1a6652c4ca406889a1b55c28",
+          "passed": 466,
+          "failed": 0,
+          "log": "tests/tests-payload.log",
+          "sha256": "75115fb369cf75b4d925521356ec0290c50158d2081b88a8fa5b1ece40b9438f"
+        },
+        "production": {
+          "passed": true,
+          "sourceCommit": "3aa41d279fe2dad5a23804ea30bc40f5748d194e",
+          "dirty": false,
+          "layouts": 4,
+          "receipt": "tests/production-check.json",
+          "build": "builds/production/production-build.json",
+          "log": "tests/production-build.log",
+          "hooksAbsent": [
+            "p252",
+            "p261",
+            "p262",
+            "p263",
+            "p264",
+            "q26"
+          ]
+        },
+        "gallery": {
+          "passed": true,
+          "receipt": "gallery-check.json",
+          "scenarios": 14,
+          "mediaPerLayout": 33,
+          "modes": [
+            "desktop",
+            "mobile",
+            "internet-isolated-local"
+          ],
+          "fileProtocol": "Blocked by administered browser; preserved refusal, local HTTP command provided."
+        },
+        "git": {
+          "draft": true,
+          "merged": false,
+          "stateReceipt": "github-delivery-observed.json",
+          "branch": "mission/26-vienne-planet-engine",
+          "pullRequest": 38,
+          "ancestry": {
+            "110b4548aa32297e837874cb6a9a6353c4d1f94b": {
+              "HEAD": true,
+              "origin/main": false
+            },
+            "5fe6e792f34369926854b649a5b631426b7037c4": {
+              "HEAD": true,
+              "origin/main": false
+            },
+            "7b78222b7d93b99926ce4a3a1f5bd91ca2eafb94": {
+              "HEAD": true,
+              "origin/main": false
+            }
+          },
+          "mainAtAudit": "01e791be64cefae2eb1e90ab465f9bf0b848c33e",
+          "mergeBase": "ffbbd765ec75bdcddd0bdb3b58933e46d585b7db",
+          "deliveryState": "Published same open unmerged draft PR38, then observed through GitHub. Any later receipt commit is a descendant; no self-referential current-head hash claimed.",
+          "observedPublishedHead": "fc8606ddb316aea5c8bcc5fd51f3855132977f0a"
+        },
+        "preservation": "preservation.json",
+        "runtimeModules": "active-module-equivalence.json",
+        "publication": {
+          "merge": false,
+          "deployment": false,
+          "purchaseEUR": 0,
+          "productionWorkflowChanges": false
+        },
+        "archives": {
+          "index": "builds/index.json",
+          "instrumentation": "builds/instrumentation-provenance.json",
+          "historicalMissingHelperTextEntries": 18,
+          "missingTextScope": "Earlier prototypes only; compiled original bytes remain retained. Final/matched helper versions are exact.",
+          "compiledBuildCount": 18
+        },
+        "whitespaceAudit": {
+          "scope": "Source/scripts/Markdown checked separately from archival bytes. Original compiled shaders and failed test logs preserve trailing whitespace verbatim; they are never normalized."
+        },
+        "reviewMode": {
+          "passed": true,
+          "receipt": "review/review-check.json",
+          "scope": "F8 visibility, real JSON download, GPU string, framebuffer. Software tooling check only; no hardware or artistic acceptance.",
+          "build": "builds/candidate-review-layout/runtime-build.json",
+          "sourceCommit": "3aa41d279fe2dad5a23804ea30bc40f5748d194e",
+          "samples": 13
+        },
+        "media": {
+          "clips": 33,
+          "nativeCaseRecords": 38,
+          "packetExact": true,
+          "invalidUnclaimedAttempts": 10,
+          "receipt": "media-integrity.json"
+        },
+        "deliveryComplete": true
+      },
+      "evidence": [
+        "verification.json",
+        "preservation.json",
+        "REPRODUCTION.md"
+      ],
+      "runtimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28",
+      "method": "Clean production build, identity, tests, gallery and Git audit",
+      "sourceRecovery": "Frozen compiled receipts in builds/index.json; individual proof source SHA retained; inactive-boat differences documented in active-module-equivalence.json",
+      "referenceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+      "dataSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+      "environment": "Chromium SwiftShader Linux; physical complete frame with explicit dt for journeys, native RAF for films/endurance, isolated timing separately.",
+      "residual": "No merge/deployment/purchase/workflow change; A14 never implies global acceptance."
+    }
+  ],
+  "physicalGPUReview": "NOT_RUN",
+  "definition": "ATTEINT only against full stated row; open essential goals keep draftPR #38."
+}

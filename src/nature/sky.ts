@@ -143,10 +143,15 @@ export function naturalSky(scene:THREE.Scene,sun:THREE.DirectionalLight,height:(
   cpuElapsed+=dt;if(cpuElapsed>=1/Math.max(1,profile.cpuHz)){
    cpuElapsed=0;const started=performance.now();if(player.position.x!==habitatX||player.position.z!==habitatZ||habitatSource!==scene.userData.lifeHabitat){habitatX=player.position.x;habitatZ=player.position.z;habitatSource=scene.userData.lifeHabitat;cachedHabitat=habitatSource?.(habitatX,habitatZ)??'unknown'}
    conditions.habitat=cachedHabitat;conditions.day=day;conditions.rain=state.rain;conditions.wind=localWind.speed;conditions.meanWind=lifeUniforms.lifeMeanWind.value;conditions.month=s.month;conditions.altitude=player.position.y;
-   const activeBirds=fauna.update(elapsed,player.position,conditions),micro=events.update(elapsed,player.position,conditions);calm=micro.calm;
+   const micro=events.update(elapsed,player.position,conditions);calm=micro.calm;
    const diagnostic=scene.userData.earthLife??={time:0,profile:'balanced',budget:{birds:0,particles:0,events:0},limits:profile,activeBirds:0,activeEvents:0,habitat:'unknown',wind:{x:0,z:0,speed:0,gust:0},cpuMs:0,maxCpuMs:0,provenance,resources};
-   diagnostic.time=elapsed;diagnostic.profile=lifeSettings.name;Object.assign(diagnostic.budget,budget.allocated);diagnostic.limits=profile;diagnostic.activeBirds=activeBirds;diagnostic.activeEvents=micro.active;diagnostic.habitat=cachedHabitat;Object.assign(diagnostic.wind,localWind);diagnostic.resources.cpuObjects=11+Number(profile.particles>0);diagnostic.cpuMs=performance.now()-started;diagnostic.maxCpuMs=Math.max(diagnostic.maxCpuMs,diagnostic.cpuMs);
+   diagnostic.time=elapsed;diagnostic.profile=lifeSettings.name;Object.assign(diagnostic.budget,budget.allocated);diagnostic.limits=profile;diagnostic.activeEvents=micro.active;diagnostic.habitat=cachedHabitat;Object.assign(diagnostic.wind,localWind);diagnostic.resources.cpuObjects=11+Number(profile.particles>0);diagnostic.cpuMs=performance.now()-started;diagnostic.maxCpuMs=Math.max(diagnostic.maxCpuMs,diagnostic.cpuMs);
   }
+  // Habitat discovery/events may be throttled. Visible birds and wing pose
+  // share the render clock, including low/irregular frame rates.
+  conditions.day=day;conditions.rain=state.rain;conditions.wind=localWind.speed;
+  const activeBirds=fauna.update(elapsed,player.position,conditions);
+  if(scene.userData.earthLife)scene.userData.earthLife.activeBirds=activeBirds;
   // Both consumers retain this one environment; only geographic queries are throttled.
   Object.assign(environment,{worldTimeMs:+date,moment,mode:demo?'demo':moment,date:date.toISOString(),localTime,localHour,season:seasonAt(s.month,site.lat),timeZone:site.timeZone??'UTC',polar:daylight.polar,calendar:{manual:manualMonth!==null,month:s.month,representativeDay:manualMonth===null?null:15,sunrise:daylight.sunrise,sunset:daylight.sunset,solarNoon:daylight.solarNoon},targetWeather:weatherKey,weatherTau,solar:s,effectiveMeanWind:lifeUniforms.lifeMeanWind.value,starVisibility:atmosphere.starVisibility,rainDrops:state.rain>.005?rain.count:0});
   Object.assign(environment.acousticWeather,state,{wind:localWind.speed,gust:localWind.gust});

@@ -1,0 +1,27 @@
+{
+  "sourceCommit": "30d3bcdeb96961ee66ee722b94ef3ac3505435cf",
+  "sourceTrees": {
+    "src": "0c6c7943edf42a70cf1624b170a7bf988af566fd",
+    "public": "24a7d7776b508824edcdbbc5f6d256c1b08134fe",
+    "package.json": "12c19f2faa73532536b1d743bc6a7323ac4f0e8c",
+    "package-lock.json": "e5a244f1710f880215d52c258f5c782bfd909b65",
+    "vite.config.ts": "ba92617c05652efa2fd2e51f549724415cc4abe0"
+  },
+  "instrumentation": {
+    "scripts/build-mission-26-4.mjs": "d00e2080cb7415c2521050fd3766d93766f95ad937e6c46717fa15ef4c31a3f6",
+    "scripts/lib/mission-26-4-diagnostic.mjs": "8db54832d4ba3f9ee48df0514017491847b5449e7618cd4ae9eaa16bda5fe950",
+    "scripts/lib/mission-26-3-diagnostic.mjs": "a15b64aee89d788e44586607fb038145b075050ad5ee52bf50a51eddd3238923",
+    "scripts/lib/mission-26-3-input.mjs": "5b0760f80e5d9d4e34e9cc59d0439809bda94d3144dfcfa9fd6d882662079307",
+    "scripts/lib/mission-26-2-fixture.mjs": "c5adc69968cc71d04c8cb00f52dd1e6f38d4bd8fcadeb6277382935304e58e61",
+    "scripts/lib/mission-26-3-planning.mjs": "ce25534c6df50315207a2dc50958018c3ff4e0b162da12e9259bc83177ba2a32",
+    "scripts/lib/mission-26-diagnostic.mjs": "3b32b38af636745a16f9ad5f33247a433a7c14a0860d8f5dc08cea417f1d4671",
+    "scripts/lib/mission-25-2-diagnostic.mjs": "91e7722b1099f876b2b04b5bfa758c5a6500bf3c879e49b7b74f0ef33791e253"
+  },
+  "data": {
+    "regionManifestSHA256": "943275cd2af39c72fc01caedcf52fb662fe69e4488b3833957b859c344f521a1",
+    "navigationManifestSHA256": "6fdc2f09cc3f96aa9b58ff97cdd7d3d8d2b4c12558857441920c1fc4c11834f5",
+    "fineSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec"
+  },
+  "method": "Common evidence-only shim. Manual step calls the ENTIRE original frame with explicit dt, normal controls and collisions, no positional repair. Production frame body and controllers active; render-hook environment and agents sampled at drawn checkpoints only. No native animation or weather endurance implied. Native captures never use manual stepping.",
+  "builtAt": "2026-11-17T08:31:16.348Z"
+}

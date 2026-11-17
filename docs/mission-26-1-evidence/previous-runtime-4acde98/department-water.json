@@ -1,0 +1,152 @@
+{
+  "method": "Compiled actual water owner on three new department sectors; diagnostic placement before inspection, no boat distance or native journey inferred.",
+  "errors": [],
+  "cases": [
+    {
+      "name": "Chauvigny · Vienne",
+      "requested": {
+        "lat": 46.565,
+        "lon": 0.641
+      },
+      "placement": {
+        "x": -18523.05813011703,
+        "z": 14373.448775414896,
+        "y": -37.696491247301964,
+        "heading": 1.2801062247497925,
+        "source": "osm:way:616542252",
+        "position": {
+          "lat": 46.56618170341884,
+          "lon": 0.6417989995846174
+        }
+      },
+      "failure": "TimeoutError: page.waitForFunction: Timeout 240000ms exceeded.",
+      "placementDiagnostic": {
+        "requested": {
+          "lat": 46.565,
+          "lon": 0.641
+        },
+        "mode": "car",
+        "source": "osm:way:616542252",
+        "candidate": {
+          "lat": 46.56618170341884,
+          "lon": 0.6417989995846174
+        },
+        "admission": {
+          "height": -37.696491247301964,
+          "normal": {
+            "x": -0.04018832052233839,
+            "y": 0.9985995132631427,
+            "z": 0.03440800785003786
+          },
+          "slope": 0.052979888351468434,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1613",
+          "ok": true,
+          "drivable": true,
+          "road": "osm:way:616542252",
+          "width": 4.8,
+          "speedLimit": 13.9,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent",
+          "face": 0
+        }
+      }
+    },
+    {
+      "name": "Chatellerault · Vienne",
+      "requested": {
+        "lat": 46.815,
+        "lon": 0.541
+      },
+      "failure": "Error: page.evaluate: Error: No admitted source road near this diagnostic location\n    at Object.regionPlace (http://localhost:5390/endless-earth/assets/index-BDQS-tud.js:4893:9022)\n    at async <anonymous>:381:23",
+      "placementDiagnostic": {
+        "requested": {
+          "lat": 46.565,
+          "lon": 0.641
+        },
+        "mode": "car",
+        "source": "osm:way:616542252",
+        "candidate": {
+          "lat": 46.56618170341884,
+          "lon": 0.6417989995846174
+        },
+        "admission": {
+          "height": -37.696491247301964,
+          "normal": {
+            "x": -0.04018832052233839,
+            "y": 0.9985995132631427,
+            "z": 0.03440800785003786
+          },
+          "slope": 0.052979888351468434,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1613",
+          "ok": true,
+          "drivable": true,
+          "road": "osm:way:616542252",
+          "width": 4.8,
+          "speedLimit": 13.9,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent",
+          "face": 0
+        }
+      }
+    },
+    {
+      "name": "La Roche-Posay · Creuse",
+      "requested": {
+        "lat": 46.786,
+        "lon": 0.815
+      },
+      "placement": {
+        "x": -5306.361768465336,
+        "z": -10085.261413805527,
+        "y": -23.176330856199115,
+        "heading": 0.9878032839874048,
+        "source": "osm:way:37480599",
+        "position": {
+          "lat": 46.785897030307275,
+          "lon": 0.8149012884723104
+        }
+      },
+      "failure": "TimeoutError: page.waitForFunction: Timeout 240000ms exceeded.",
+      "placementDiagnostic": {
+        "requested": {
+          "lat": 46.786,
+          "lon": 0.815
+        },
+        "mode": "car",
+        "source": "osm:way:37480599",
+        "candidate": {
+          "lat": 46.785897030307275,
+          "lon": 0.8149012884723104
+        },
+        "admission": {
+          "height": -23.176330856199115,
+          "normal": {
+            "x": -0.05037709411674637,
+            "y": 0.9984677355406721,
+            "z": -0.02289824169308393
+          },
+          "slope": 0.0554218985546395,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "130:1619",
+          "ok": true,
+          "drivable": true,
+          "road": "osm:way:37480599",
+          "width": 5.5,
+          "speedLimit": 22.2,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent",
+          "face": 47
+        }
+      }
+    }
+  ],
+  "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69"
+}

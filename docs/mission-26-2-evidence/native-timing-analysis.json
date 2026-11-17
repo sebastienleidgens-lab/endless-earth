@@ -1,0 +1,93 @@
+{
+  "method": "Environment clock and capped controller dt are separate. Exact controller accumulation unavailable; upper bounds do not grant acceptance. Recorded reports preserved; all media and raw samples unchanged.",
+  "cases": [
+    {
+      "label": "reference",
+      "name": "run-flat-front",
+      "sourceSHA": "d6a906cd7546a4cd8e85226efff64436e53ea200",
+      "observedWallSeconds": 199.6001000000015,
+      "environmentClockElapsedS": 137.14240000000598,
+      "controllerElapsedS": null,
+      "controllerElapsedUpperBoundS": 35,
+      "longestConsecutiveRunControllerUpperBoundS": 34,
+      "controller180Verified": false
+    },
+    {
+      "label": "reference",
+      "name": "departure",
+      "sourceSHA": "d6a906cd7546a4cd8e85226efff64436e53ea200",
+      "observedWallSeconds": 199.14020000000298,
+      "environmentClockElapsedS": 195.1048000000119,
+      "controllerElapsedS": null,
+      "controllerElapsedUpperBoundS": 63.5,
+      "longestConsecutiveRunControllerUpperBoundS": 0,
+      "controller180Verified": false
+    },
+    {
+      "label": "reference",
+      "name": "forest-birds-shadows",
+      "sourceSHA": "d6a906cd7546a4cd8e85226efff64436e53ea200",
+      "observedWallSeconds": 89.85130000000447,
+      "environmentClockElapsedS": 86.46579999998963,
+      "controllerElapsedS": null,
+      "controllerElapsedUpperBoundS": 32,
+      "longestConsecutiveRunControllerUpperBoundS": 0,
+      "controller180Verified": false
+    },
+    {
+      "label": "reference",
+      "name": "pilot-boat",
+      "sourceSHA": "d6a906cd7546a4cd8e85226efff64436e53ea200",
+      "observedWallSeconds": 89.5775,
+      "environmentClockElapsedS": 89.22310000000151,
+      "controllerElapsedS": null,
+      "controllerElapsedUpperBoundS": 31.25,
+      "longestConsecutiveRunControllerUpperBoundS": 0,
+      "controller180Verified": false
+    },
+    {
+      "label": "candidate",
+      "name": "run-flat-front",
+      "sourceSHA": "58ba496050f7541a63599c28a1a553f7f0b453e9",
+      "observedWallSeconds": 199.5476000000015,
+      "environmentClockElapsedS": 121.22649999999999,
+      "controllerElapsedS": null,
+      "controllerElapsedUpperBoundS": 31,
+      "longestConsecutiveRunControllerUpperBoundS": 30.25,
+      "controller180Verified": false
+    },
+    {
+      "label": "candidate",
+      "name": "departure",
+      "sourceSHA": "58ba496050f7541a63599c28a1a553f7f0b453e9",
+      "observedWallSeconds": 199.238,
+      "environmentClockElapsedS": 196.56519999999563,
+      "controllerElapsedS": null,
+      "controllerElapsedUpperBoundS": 65.75,
+      "longestConsecutiveRunControllerUpperBoundS": 0,
+      "controller180Verified": false
+    },
+    {
+      "label": "candidate",
+      "name": "forest-birds-shadows",
+      "sourceSHA": "58ba496050f7541a63599c28a1a553f7f0b453e9",
+      "observedWallSeconds": 89.6901000000015,
+      "environmentClockElapsedS": 87.3258000000045,
+      "controllerElapsedS": null,
+      "controllerElapsedUpperBoundS": 32.5,
+      "longestConsecutiveRunControllerUpperBoundS": 0,
+      "controller180Verified": false
+    },
+    {
+      "label": "candidate",
+      "name": "pilot-boat",
+      "sourceSHA": "58ba496050f7541a63599c28a1a553f7f0b453e9",
+      "observedWallSeconds": 89.35489999999851,
+      "environmentClockElapsedS": 86.85640000000603,
+      "controllerElapsedS": null,
+      "controllerElapsedUpperBoundS": 30.25,
+      "longestConsecutiveRunControllerUpperBoundS": 0,
+      "controller180Verified": false
+    }
+  ]
+}

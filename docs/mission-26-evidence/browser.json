@@ -1,0 +1,6002 @@
+{
+  "method": "Compiled runtime, Chromium SwiftShader. Diagnostic placements before scenarios; no long-journey or physical GPU claim.",
+  "errors": [],
+  "consoleErrors": [],
+  "scenes": [
+    {
+      "name": "Poitiers",
+      "placement": {
+        "x": -41534.39096846069,
+        "z": 12813.13941374903,
+        "y": 14.325806270941854,
+        "heading": 2.9515523571739752,
+        "source": "osm:way:1569842065",
+        "position": {
+          "lat": 46.58019813677912,
+          "lon": 0.34041397297301834
+        }
+      },
+      "result": {
+        "state": {
+          "commit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+          "profile": "eco",
+          "position": [
+            -41534.39096846069,
+            14.325806270941854,
+            12813.13941374903
+          ],
+          "camera": {
+            "position": [
+              -41535.520734187085,
+              16.955294301749575,
+              12819.01254841372
+            ],
+            "quaternion": [
+              -0.08071055168010609,
+              -0.09456488054073472,
+              -0.007692293328820782,
+              0.992211730851411
+            ],
+            "fov": 55
+          },
+          "walker": {
+            "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+            "bones": 31,
+            "triangles": 3940,
+            "drawCalls": 1,
+            "imageTextures": 0,
+            "boneTextureBytes": 1984,
+            "lod": 1,
+            "lodTriangles": [
+              7880,
+              3940
+            ],
+            "phase": 0.6,
+            "speed": 0,
+            "contacts": 0,
+            "soleError": 0,
+            "plantError": 0,
+            "mode": "idle",
+            "plantSlideM": 0,
+            "swingIK": 0,
+            "pelvisY": 0.87
+          },
+          "activity": "walking",
+          "network": {
+            "builds": 0,
+            "nodes": 0,
+            "edges": 0,
+            "components": 0,
+            "ready": false,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 7348.100000014529,
+            "maxSliceMs": 66.8999999994412,
+            "slices": 1972
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "climate": {
+            "time": 39.39429999999795,
+            "wind": {
+              "x": 0.09734375310078831,
+              "z": -0.054449755294212754,
+              "speed": 0.11152334840973453,
+              "gust": 0,
+              "slow": 0.4646806183738939,
+              "turn": 0.014435174871918456,
+              "water": -0.936208821651637
+            },
+            "date": "2026-06-21T13:57:47.015Z"
+          },
+          "captureTransport": "base64-sha256-v3",
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "interactions": {
+            "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+            "objects": 3,
+            "colliders": 14,
+            "sweeps": 0,
+            "rejected": 0,
+            "last": null
+          }
+        },
+        "world": {
+          "position": [
+            -41534.39096846069,
+            14.325806270941854,
+            12813.13941374903
+          ],
+          "heading": 2.9515523571739752,
+          "birds": {
+            "individuals": 0,
+            "drawCalls": 0,
+            "triangles": 0,
+            "perches": 0,
+            "families": [],
+            "sources": [],
+            "renderSamples": 64,
+            "cpuMs": 0,
+            "maxCpuMs": 11.099999999627471,
+            "clock": 39.39429999999795,
+            "trajectory": "analytic-per-render-frame"
+          },
+          "shadow": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 536452,
+            "shadowSize": 0,
+            "shadowBytes": 0,
+            "staticTriangles": 0,
+            "treeInstances": 0,
+            "updates": 0,
+            "lastUpdateCpuMs": 0,
+            "maxUpdateCpuMs": 0,
+            "lastShadowCalls": 0,
+            "lastShadowTriangles": 0,
+            "extraPasses": 0,
+            "selectionBuilds": 0,
+            "shadowIndexBytes": 0,
+            "sourceBytes": 5495013,
+            "filter": "none",
+            "windTests": 0,
+            "windSkips": 0,
+            "windMotionBoundM": 0,
+            "maxWindMotionBoundM": 0,
+            "windThresholdM": 0,
+            "character": {
+              "updates": 0,
+              "size": 0,
+              "bytes": 0,
+              "proxies": 0,
+              "extraPasses": 0,
+              "poseAgeMs": 0,
+              "lastCpuMs": 0,
+              "maxCpuMs": 0,
+              "receiver": "landscape only; actor receives landscape map"
+            }
+          },
+          "boat": {
+            "active": false,
+            "heading": 0,
+            "following": false,
+            "metrics": {
+              "plans": 0,
+              "lateralError": 0,
+              "maxLateralError": 0,
+              "stops": 2
+            }
+          },
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 8,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 25198003,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 8,
+              "features": 69215,
+              "triangles": 16440,
+              "trees": 3418,
+              "disposed": 0,
+              "batches": 1905,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 14618,
+                "nodes": 60427,
+                "edges": 128470,
+                "refused": 5706,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 14618,
+                "nodes": 35357,
+                "edges": 62088,
+                "refused": 10095,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 14618,
+                "nodes": 2103,
+                "edges": 4196,
+                "refused": 14479,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 5.2000000001862645
+            }
+          }
+        },
+        "planet": {
+          "metrics": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 8,
+              "unloaded": 0,
+              "failures": 0,
+              "residentBytes": 25198003,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 8,
+              "features": 69215,
+              "triangles": 16440,
+              "trees": 3418,
+              "disposed": 0,
+              "batches": 1905,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 14618,
+                "nodes": 60427,
+                "edges": 128470,
+                "refused": 5706,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 14618,
+                "nodes": 35357,
+                "edges": 62088,
+                "refused": 10095,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 14618,
+                "nodes": 2103,
+                "edges": 4196,
+                "refused": 14479,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 5.2000000001862645
+            }
+          },
+          "ready": true,
+          "region": "FR-86",
+          "position": {
+            "lat": 46.58019813677912,
+            "lon": 0.34041397297301834
+          },
+          "car": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "heading": 0,
+            "speed": 0,
+            "steering": 0,
+            "active": false,
+            "reason": "",
+            "odometer": 0,
+            "braking": false,
+            "metrics": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            }
+          },
+          "mapOpen": false
+        },
+        "support": {
+          "physical": 14.325806270941854,
+          "rendered": 14.3257949454254,
+          "error": -0.000011325516453553064,
+          "mesh": "planet-terrain-121:1614"
+        }
+      },
+      "still": "Simulation held after loaded scene update; diagnostic still, not a native traversal."
+    },
+    {
+      "name": "Châtellerault",
+      "placement": {
+        "x": -25883.946071292892,
+        "z": -13575.487086733023,
+        "y": -45.28899352041621,
+        "heading": 1.4564036014012318,
+        "source": "osm:way:216936570",
+        "position": {
+          "lat": 46.81725011755959,
+          "lon": 0.5453916587486414
+        }
+      },
+      "result": {
+        "state": {
+          "commit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+          "profile": "eco",
+          "position": [
+            -25883.946071292892,
+            -45.28899352041621,
+            -13575.487086733023
+          ],
+          "camera": {
+            "position": [
+              -25889.88775985469,
+              -42.6595107633549,
+              -13576.169753003
+            ],
+            "quaternion": [
+              -0.05395858748654764,
+              -0.7439152280719579,
+              -0.06051310077679603,
+              0.6633375979947773
+            ],
+            "fov": 55
+          },
+          "walker": {
+            "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+            "bones": 31,
+            "triangles": 3940,
+            "drawCalls": 1,
+            "imageTextures": 0,
+            "boneTextureBytes": 1984,
+            "lod": 1,
+            "lodTriangles": [
+              7880,
+              3940
+            ],
+            "phase": 0.6,
+            "speed": 0,
+            "contacts": 0,
+            "soleError": 0,
+            "plantError": 0,
+            "mode": "idle",
+            "plantSlideM": 0,
+            "swingIK": 0,
+            "pelvisY": 0.87
+          },
+          "activity": "walking",
+          "network": {
+            "builds": 0,
+            "nodes": 0,
+            "edges": 0,
+            "components": 0,
+            "ready": false,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 7680.800000015646,
+            "maxSliceMs": 66.8999999994412,
+            "slices": 2047
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "climate": {
+            "time": 48.44169999999739,
+            "wind": {
+              "x": 0.10933432788988269,
+              "z": -0.05369487404750277,
+              "speed": 0.12171623080989034,
+              "gust": 0,
+              "slow": 0.5071509617078764,
+              "turn": 0.010661941856025096,
+              "water": 0.49069602970695925
+            },
+            "date": "2026-06-21T13:57:47.015Z"
+          },
+          "captureTransport": "base64-sha256-v3",
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "interactions": {
+            "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+            "objects": 3,
+            "colliders": 14,
+            "sweeps": 0,
+            "rejected": 0,
+            "last": null
+          }
+        },
+        "world": {
+          "position": [
+            -25883.946071292892,
+            -45.28899352041621,
+            -13575.487086733023
+          ],
+          "heading": 1.4564036014012318,
+          "birds": {
+            "individuals": 0,
+            "drawCalls": 0,
+            "triangles": 0,
+            "perches": 0,
+            "families": [],
+            "sources": [],
+            "renderSamples": 76,
+            "cpuMs": 0,
+            "maxCpuMs": 19.700000000186265,
+            "clock": 48.44169999999739,
+            "trajectory": "analytic-per-render-frame"
+          },
+          "shadow": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 536452,
+            "shadowSize": 0,
+            "shadowBytes": 0,
+            "staticTriangles": 0,
+            "treeInstances": 0,
+            "updates": 0,
+            "lastUpdateCpuMs": 0,
+            "maxUpdateCpuMs": 0,
+            "lastShadowCalls": 0,
+            "lastShadowTriangles": 0,
+            "extraPasses": 0,
+            "selectionBuilds": 0,
+            "shadowIndexBytes": 0,
+            "sourceBytes": 5495013,
+            "filter": "none",
+            "windTests": 0,
+            "windSkips": 0,
+            "windMotionBoundM": 0,
+            "maxWindMotionBoundM": 0,
+            "windThresholdM": 0,
+            "character": {
+              "updates": 0,
+              "size": 0,
+              "bytes": 0,
+              "proxies": 0,
+              "extraPasses": 0,
+              "poseAgeMs": 0,
+              "lastCpuMs": 0,
+              "maxCpuMs": 0,
+              "receiver": "landscape only; actor receives landscape map"
+            }
+          },
+          "boat": {
+            "active": false,
+            "heading": 0,
+            "following": false,
+            "metrics": {
+              "plans": 0,
+              "lateralError": 0,
+              "maxLateralError": 0,
+              "stops": 3
+            }
+          },
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 11,
+              "unloaded": 6,
+              "failures": 0,
+              "residentBytes": 22832816,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 5,
+              "features": 70065,
+              "triangles": 22584,
+              "trees": 2041,
+              "disposed": 10825,
+              "batches": 1619,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 10165,
+                "nodes": 40461,
+                "edges": 85942,
+                "refused": 7722,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 10165,
+                "nodes": 26140,
+                "edges": 45774,
+                "refused": 13229,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 10165,
+                "nodes": 1439,
+                "edges": 2822,
+                "refused": 19395,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 1,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [
+                {
+                  "id": "rail-agent:osm:11005358332:0",
+                  "points": [
+                    {
+                      "x": 513217.884,
+                      "y": 6638220.975
+                    },
+                    {
+                      "x": 513209.034,
+                      "y": 6638249.196
+                    },
+                    {
+                      "x": 513197.6,
+                      "y": 6638286.308
+                    },
+                    {
+                      "x": 513175.4,
+                      "y": 6638355.234
+                    },
+                    {
+                      "x": 513126.641,
+                      "y": 6638512.357
+                    },
+                    {
+                      "x": 513110.603,
+                      "y": 6638564.269
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:2193186045:0",
+                  "points": [
+                    {
+                      "x": 513060.502,
+                      "y": 6638800.06
+                    },
+                    {
+                      "x": 513057.469,
+                      "y": 6638814.866
+                    },
+                    {
+                      "x": 513052.942,
+                      "y": 6638840.263
+                    },
+                    {
+                      "x": 513048.813,
+                      "y": 6638867.926
+                    },
+                    {
+                      "x": 513043.934,
+                      "y": 6638906.291
+                    },
+                    {
+                      "x": 513039.862,
+                      "y": 6638935.519
+                    },
+                    {
+                      "x": 513037.546,
+                      "y": 6638949.836
+                    },
+                    {
+                      "x": 513033.642,
+                      "y": 6638973.437
+                    },
+                    {
+                      "x": 513030.764,
+                      "y": 6638990.294
+                    },
+                    {
+                      "x": 513028.246,
+                      "y": 6639004.506
+                    },
+                    {
+                      "x": 513026.072,
+                      "y": 6639017.252
+                    },
+                    {
+                      "x": 513024.544,
+                      "y": 6639031.4
+                    },
+                    {
+                      "x": 513022.611,
+                      "y": 6639050.195
+                    },
+                    {
+                      "x": 513022.073,
+                      "y": 6639060.345
+                    },
+                    {
+                      "x": 513021.505,
+                      "y": 6639071.286
+                    },
+                    {
+                      "x": 513019.772,
+                      "y": 6639117.609
+                    },
+                    {
+                      "x": 513018.954,
+                      "y": 6639164.659
+                    },
+                    {
+                      "x": 513019.183,
+                      "y": 6639200.243
+                    },
+                    {
+                      "x": 513019.699,
+                      "y": 6639230.851
+                    },
+                    {
+                      "x": 513021.136,
+                      "y": 6639276.12
+                    },
+                    {
+                      "x": 513023.119,
+                      "y": 6639314.393
+                    },
+                    {
+                      "x": 513026.927,
+                      "y": 6639366.5
+                    },
+                    {
+                      "x": 513030.222,
+                      "y": 6639400.866
+                    },
+                    {
+                      "x": 513034.06,
+                      "y": 6639435.027
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:11004332806:0",
+                  "points": [
+                    {
+                      "x": 513374.155,
+                      "y": 6637641.42
+                    },
+                    {
+                      "x": 513375.37,
+                      "y": 6637628.704
+                    },
+                    {
+                      "x": 513376.053,
+                      "y": 6637617.26
+                    },
+                    {
+                      "x": 513376.628,
+                      "y": 6637602.342
+                    },
+                    {
+                      "x": 513377.143,
+                      "y": 6637593.37
+                    },
+                    {
+                      "x": 513377.925,
+                      "y": 6637583.401
+                    },
+                    {
+                      "x": 513379.178,
+                      "y": 6637564.516
+                    },
+                    {
+                      "x": 513380.695,
+                      "y": 6637544.557
+                    },
+                    {
+                      "x": 513382.498,
+                      "y": 6637518.089
+                    },
+                    {
+                      "x": 513384.223,
+                      "y": 6637481.7
+                    },
+                    {
+                      "x": 513384.74,
+                      "y": 6637461.461
+                    },
+                    {
+                      "x": 513384.845,
+                      "y": 6637421.556
+                    },
+                    {
+                      "x": 513384.438,
+                      "y": 6637390.712
+                    },
+                    {
+                      "x": 513383.466,
+                      "y": 6637363.796
+                    },
+                    {
+                      "x": 513382.164,
+                      "y": 6637339.269
+                    },
+                    {
+                      "x": 513379.798,
+                      "y": 6637303.329
+                    },
+                    {
+                      "x": 513375.384,
+                      "y": 6637255.453
+                    },
+                    {
+                      "x": 513371.634,
+                      "y": 6637223.823
+                    },
+                    {
+                      "x": 513365.493,
+                      "y": 6637180.8
+                    },
+                    {
+                      "x": 513361.615,
+                      "y": 6637156.108
+                    },
+                    {
+                      "x": 513355.069,
+                      "y": 6637119.443
+                    },
+                    {
+                      "x": 513347.215,
+                      "y": 6637081.951
+                    },
+                    {
+                      "x": 513340.918,
+                      "y": 6637053.556
+                    },
+                    {
+                      "x": 513335.027,
+                      "y": 6637030.415
+                    },
+                    {
+                      "x": 513325.607,
+                      "y": 6636995.806
+                    },
+                    {
+                      "x": 513319.024,
+                      "y": 6636972.976
+                    },
+                    {
+                      "x": 513314.047,
+                      "y": 6636956.907
+                    },
+                    {
+                      "x": 513308.946,
+                      "y": 6636941.02
+                    },
+                    {
+                      "x": 513299.686,
+                      "y": 6636913.295
+                    },
+                    {
+                      "x": 513289.069,
+                      "y": 6636883.145
+                    },
+                    {
+                      "x": 513278.146,
+                      "y": 6636854.46
+                    },
+                    {
+                      "x": 513268.383,
+                      "y": 6636831.184
+                    },
+                    {
+                      "x": 513259.113,
+                      "y": 6636808.804
+                    },
+                    {
+                      "x": 513249.68,
+                      "y": 6636784.618
+                    },
+                    {
+                      "x": 513243.927,
+                      "y": 6636769.607
+                    },
+                    {
+                      "x": 513241.644,
+                      "y": 6636763.422
+                    },
+                    {
+                      "x": 513237.564,
+                      "y": 6636753.904
+                    },
+                    {
+                      "x": 513228.558,
+                      "y": 6636733.382
+                    },
+                    {
+                      "x": 513217.772,
+                      "y": 6636712.327
+                    },
+                    {
+                      "x": 513204.722,
+                      "y": 6636687.897
+                    },
+                    {
+                      "x": 513195.638,
+                      "y": 6636671.278
+                    },
+                    {
+                      "x": 513186.045,
+                      "y": 6636654.498
+                    },
+                    {
+                      "x": 513174.336,
+                      "y": 6636634.671
+                    },
+                    {
+                      "x": 513163.079,
+                      "y": 6636615.909
+                    },
+                    {
+                      "x": 513145.995,
+                      "y": 6636588.36
+                    },
+                    {
+                      "x": 513125.519,
+                      "y": 6636556.983
+                    },
+                    {
+                      "x": 513113.446,
+                      "y": 6636538.99
+                    },
+                    {
+                      "x": 513097.563,
+                      "y": 6636516.216
+                    },
+                    {
+                      "x": 513080.737,
+                      "y": 6636492.581
+                    },
+                    {
+                      "x": 513063.49,
+                      "y": 6636469.616
+                    },
+                    {
+                      "x": 513057.486,
+                      "y": 6636461.546
+                    },
+                    {
+                      "x": 513045.699,
+                      "y": 6636446.601
+                    },
+                    {
+                      "x": 513021.582,
+                      "y": 6636416.482
+                    },
+                    {
+                      "x": 512995.828,
+                      "y": 6636385.958
+                    },
+                    {
+                      "x": 512963.474,
+                      "y": 6636349.784
+                    },
+                    {
+                      "x": 512939.984,
+                      "y": 6636324.868
+                    },
+                    {
+                      "x": 512922.315,
+                      "y": 6636306.794
+                    },
+                    {
+                      "x": 512898.567,
+                      "y": 6636283.398
+                    },
+                    {
+                      "x": 512879.084,
+                      "y": 6636264.902
+                    },
+                    {
+                      "x": 512855.875,
+                      "y": 6636243.656
+                    },
+                    {
+                      "x": 512835.631,
+                      "y": 6636225.729
+                    },
+                    {
+                      "x": 512809.495,
+                      "y": 6636203.563
+                    },
+                    {
+                      "x": 512793.373,
+                      "y": 6636190.353
+                    },
+                    {
+                      "x": 512769.545,
+                      "y": 6636171.293
+                    },
+                    {
+                      "x": 512741.964,
+                      "y": 6636150.316
+                    },
+                    {
+                      "x": 512714.376,
+                      "y": 6636130.351
+                    },
+                    {
+                      "x": 512687.098,
+                      "y": 6636111.266
+                    },
+                    {
+                      "x": 512659.31,
+                      "y": 6636092.963
+                    },
+                    {
+                      "x": 512630.435,
+                      "y": 6636074.783
+                    },
+                    {
+                      "x": 512606.782,
+                      "y": 6636060.407
+                    },
+                    {
+                      "x": 512571.293,
+                      "y": 6636039.611
+                    },
+                    {
+                      "x": 512539.774,
+                      "y": 6636021.592
+                    },
+                    {
+                      "x": 512503.119,
+                      "y": 6636000.866
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                }
+              ],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.20000000018626451,
+              "maxCpuMs": 26
+            }
+          }
+        },
+        "planet": {
+          "metrics": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 11,
+              "unloaded": 6,
+              "failures": 0,
+              "residentBytes": 22832816,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 5,
+              "features": 70065,
+              "triangles": 22584,
+              "trees": 2041,
+              "disposed": 10825,
+              "batches": 1619,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 10165,
+                "nodes": 40461,
+                "edges": 85942,
+                "refused": 7722,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 10165,
+                "nodes": 26140,
+                "edges": 45774,
+                "refused": 13229,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 10165,
+                "nodes": 1439,
+                "edges": 2822,
+                "refused": 19395,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 1,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [
+                {
+                  "id": "rail-agent:osm:11005358332:0",
+                  "points": [
+                    {
+                      "x": 513217.884,
+                      "y": 6638220.975
+                    },
+                    {
+                      "x": 513209.034,
+                      "y": 6638249.196
+                    },
+                    {
+                      "x": 513197.6,
+                      "y": 6638286.308
+                    },
+                    {
+                      "x": 513175.4,
+                      "y": 6638355.234
+                    },
+                    {
+                      "x": 513126.641,
+                      "y": 6638512.357
+                    },
+                    {
+                      "x": 513110.603,
+                      "y": 6638564.269
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:2193186045:0",
+                  "points": [
+                    {
+                      "x": 513060.502,
+                      "y": 6638800.06
+                    },
+                    {
+                      "x": 513057.469,
+                      "y": 6638814.866
+                    },
+                    {
+                      "x": 513052.942,
+                      "y": 6638840.263
+                    },
+                    {
+                      "x": 513048.813,
+                      "y": 6638867.926
+                    },
+                    {
+                      "x": 513043.934,
+                      "y": 6638906.291
+                    },
+                    {
+                      "x": 513039.862,
+                      "y": 6638935.519
+                    },
+                    {
+                      "x": 513037.546,
+                      "y": 6638949.836
+                    },
+                    {
+                      "x": 513033.642,
+                      "y": 6638973.437
+                    },
+                    {
+                      "x": 513030.764,
+                      "y": 6638990.294
+                    },
+                    {
+                      "x": 513028.246,
+                      "y": 6639004.506
+                    },
+                    {
+                      "x": 513026.072,
+                      "y": 6639017.252
+                    },
+                    {
+                      "x": 513024.544,
+                      "y": 6639031.4
+                    },
+                    {
+                      "x": 513022.611,
+                      "y": 6639050.195
+                    },
+                    {
+                      "x": 513022.073,
+                      "y": 6639060.345
+                    },
+                    {
+                      "x": 513021.505,
+                      "y": 6639071.286
+                    },
+                    {
+                      "x": 513019.772,
+                      "y": 6639117.609
+                    },
+                    {
+                      "x": 513018.954,
+                      "y": 6639164.659
+                    },
+                    {
+                      "x": 513019.183,
+                      "y": 6639200.243
+                    },
+                    {
+                      "x": 513019.699,
+                      "y": 6639230.851
+                    },
+                    {
+                      "x": 513021.136,
+                      "y": 6639276.12
+                    },
+                    {
+                      "x": 513023.119,
+                      "y": 6639314.393
+                    },
+                    {
+                      "x": 513026.927,
+                      "y": 6639366.5
+                    },
+                    {
+                      "x": 513030.222,
+                      "y": 6639400.866
+                    },
+                    {
+                      "x": 513034.06,
+                      "y": 6639435.027
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:11004332806:0",
+                  "points": [
+                    {
+                      "x": 513374.155,
+                      "y": 6637641.42
+                    },
+                    {
+                      "x": 513375.37,
+                      "y": 6637628.704
+                    },
+                    {
+                      "x": 513376.053,
+                      "y": 6637617.26
+                    },
+                    {
+                      "x": 513376.628,
+                      "y": 6637602.342
+                    },
+                    {
+                      "x": 513377.143,
+                      "y": 6637593.37
+                    },
+                    {
+                      "x": 513377.925,
+                      "y": 6637583.401
+                    },
+                    {
+                      "x": 513379.178,
+                      "y": 6637564.516
+                    },
+                    {
+                      "x": 513380.695,
+                      "y": 6637544.557
+                    },
+                    {
+                      "x": 513382.498,
+                      "y": 6637518.089
+                    },
+                    {
+                      "x": 513384.223,
+                      "y": 6637481.7
+                    },
+                    {
+                      "x": 513384.74,
+                      "y": 6637461.461
+                    },
+                    {
+                      "x": 513384.845,
+                      "y": 6637421.556
+                    },
+                    {
+                      "x": 513384.438,
+                      "y": 6637390.712
+                    },
+                    {
+                      "x": 513383.466,
+                      "y": 6637363.796
+                    },
+                    {
+                      "x": 513382.164,
+                      "y": 6637339.269
+                    },
+                    {
+                      "x": 513379.798,
+                      "y": 6637303.329
+                    },
+                    {
+                      "x": 513375.384,
+                      "y": 6637255.453
+                    },
+                    {
+                      "x": 513371.634,
+                      "y": 6637223.823
+                    },
+                    {
+                      "x": 513365.493,
+                      "y": 6637180.8
+                    },
+                    {
+                      "x": 513361.615,
+                      "y": 6637156.108
+                    },
+                    {
+                      "x": 513355.069,
+                      "y": 6637119.443
+                    },
+                    {
+                      "x": 513347.215,
+                      "y": 6637081.951
+                    },
+                    {
+                      "x": 513340.918,
+                      "y": 6637053.556
+                    },
+                    {
+                      "x": 513335.027,
+                      "y": 6637030.415
+                    },
+                    {
+                      "x": 513325.607,
+                      "y": 6636995.806
+                    },
+                    {
+                      "x": 513319.024,
+                      "y": 6636972.976
+                    },
+                    {
+                      "x": 513314.047,
+                      "y": 6636956.907
+                    },
+                    {
+                      "x": 513308.946,
+                      "y": 6636941.02
+                    },
+                    {
+                      "x": 513299.686,
+                      "y": 6636913.295
+                    },
+                    {
+                      "x": 513289.069,
+                      "y": 6636883.145
+                    },
+                    {
+                      "x": 513278.146,
+                      "y": 6636854.46
+                    },
+                    {
+                      "x": 513268.383,
+                      "y": 6636831.184
+                    },
+                    {
+                      "x": 513259.113,
+                      "y": 6636808.804
+                    },
+                    {
+                      "x": 513249.68,
+                      "y": 6636784.618
+                    },
+                    {
+                      "x": 513243.927,
+                      "y": 6636769.607
+                    },
+                    {
+                      "x": 513241.644,
+                      "y": 6636763.422
+                    },
+                    {
+                      "x": 513237.564,
+                      "y": 6636753.904
+                    },
+                    {
+                      "x": 513228.558,
+                      "y": 6636733.382
+                    },
+                    {
+                      "x": 513217.772,
+                      "y": 6636712.327
+                    },
+                    {
+                      "x": 513204.722,
+                      "y": 6636687.897
+                    },
+                    {
+                      "x": 513195.638,
+                      "y": 6636671.278
+                    },
+                    {
+                      "x": 513186.045,
+                      "y": 6636654.498
+                    },
+                    {
+                      "x": 513174.336,
+                      "y": 6636634.671
+                    },
+                    {
+                      "x": 513163.079,
+                      "y": 6636615.909
+                    },
+                    {
+                      "x": 513145.995,
+                      "y": 6636588.36
+                    },
+                    {
+                      "x": 513125.519,
+                      "y": 6636556.983
+                    },
+                    {
+                      "x": 513113.446,
+                      "y": 6636538.99
+                    },
+                    {
+                      "x": 513097.563,
+                      "y": 6636516.216
+                    },
+                    {
+                      "x": 513080.737,
+                      "y": 6636492.581
+                    },
+                    {
+                      "x": 513063.49,
+                      "y": 6636469.616
+                    },
+                    {
+                      "x": 513057.486,
+                      "y": 6636461.546
+                    },
+                    {
+                      "x": 513045.699,
+                      "y": 6636446.601
+                    },
+                    {
+                      "x": 513021.582,
+                      "y": 6636416.482
+                    },
+                    {
+                      "x": 512995.828,
+                      "y": 6636385.958
+                    },
+                    {
+                      "x": 512963.474,
+                      "y": 6636349.784
+                    },
+                    {
+                      "x": 512939.984,
+                      "y": 6636324.868
+                    },
+                    {
+                      "x": 512922.315,
+                      "y": 6636306.794
+                    },
+                    {
+                      "x": 512898.567,
+                      "y": 6636283.398
+                    },
+                    {
+                      "x": 512879.084,
+                      "y": 6636264.902
+                    },
+                    {
+                      "x": 512855.875,
+                      "y": 6636243.656
+                    },
+                    {
+                      "x": 512835.631,
+                      "y": 6636225.729
+                    },
+                    {
+                      "x": 512809.495,
+                      "y": 6636203.563
+                    },
+                    {
+                      "x": 512793.373,
+                      "y": 6636190.353
+                    },
+                    {
+                      "x": 512769.545,
+                      "y": 6636171.293
+                    },
+                    {
+                      "x": 512741.964,
+                      "y": 6636150.316
+                    },
+                    {
+                      "x": 512714.376,
+                      "y": 6636130.351
+                    },
+                    {
+                      "x": 512687.098,
+                      "y": 6636111.266
+                    },
+                    {
+                      "x": 512659.31,
+                      "y": 6636092.963
+                    },
+                    {
+                      "x": 512630.435,
+                      "y": 6636074.783
+                    },
+                    {
+                      "x": 512606.782,
+                      "y": 6636060.407
+                    },
+                    {
+                      "x": 512571.293,
+                      "y": 6636039.611
+                    },
+                    {
+                      "x": 512539.774,
+                      "y": 6636021.592
+                    },
+                    {
+                      "x": 512503.119,
+                      "y": 6636000.866
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                }
+              ],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0.20000000018626451,
+              "maxCpuMs": 26
+            }
+          },
+          "ready": true,
+          "region": "FR-86",
+          "position": {
+            "lat": 46.81725011755959,
+            "lon": 0.5453916587486414
+          },
+          "car": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "heading": 0,
+            "speed": 0,
+            "steering": 0,
+            "active": false,
+            "reason": "",
+            "odometer": 0,
+            "braking": false,
+            "metrics": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            }
+          },
+          "mapOpen": false
+        },
+        "support": {
+          "physical": -45.28899352041621,
+          "rendered": -45.288993496908915,
+          "error": 2.3507297441938135e-8,
+          "mesh": "planet-terrain-125:1620"
+        }
+      },
+      "still": "Simulation held after loaded scene update; diagnostic still, not a native traversal."
+    },
+    {
+      "name": "Montmorillon",
+      "placement": {
+        "x": -961.1333949935126,
+        "z": 29919.47663806919,
+        "y": 0.004952343730252551,
+        "heading": 1.6082055189320728,
+        "source": "osm:way:1052840780",
+        "position": {
+          "lat": 46.4265299978614,
+          "lon": 0.8718118020080636
+        }
+      },
+      "result": {
+        "state": {
+          "commit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+          "profile": "eco",
+          "position": [
+            -961.1333949935126,
+            0.004952343730252551,
+            29919.47663806919
+          ],
+          "camera": {
+            "position": [
+              -967.1100204305794,
+              2.6344404463601614,
+              29919.70032315342
+            ],
+            "quaternion": [
+              -0.058391829200717005,
+              -0.6914737937900307,
+              -0.05624730048418025,
+              0.7178374662640971
+            ],
+            "fov": 55
+          },
+          "walker": {
+            "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+            "bones": 31,
+            "triangles": 3940,
+            "drawCalls": 1,
+            "imageTextures": 0,
+            "boneTextureBytes": 1984,
+            "lod": 1,
+            "lodTriangles": [
+              7880,
+              3940
+            ],
+            "phase": 0.6,
+            "speed": 0,
+            "contacts": 0,
+            "soleError": 2.706168622523819e-16,
+            "plantError": 1.1368683772161603e-13,
+            "mode": "idle",
+            "plantSlideM": 0,
+            "swingIK": 0,
+            "pelvisY": 0.87
+          },
+          "activity": "walking",
+          "network": {
+            "builds": 0,
+            "nodes": 0,
+            "edges": 0,
+            "components": 0,
+            "ready": false,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 7929.400000016205,
+            "maxSliceMs": 66.8999999994412,
+            "slices": 2116
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "climate": {
+            "time": 56.15479999999702,
+            "wind": {
+              "x": 0.11822541429103299,
+              "z": -0.06812463871767847,
+              "speed": 0.13639415811305347,
+              "gust": 0,
+              "slow": 0.5683089921377228,
+              "turn": 0.006883508056378714,
+              "water": 0.5194158997813164
+            },
+            "date": "2026-06-21T13:57:47.015Z"
+          },
+          "captureTransport": "base64-sha256-v3",
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "interactions": {
+            "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+            "objects": 3,
+            "colliders": 14,
+            "sweeps": 0,
+            "rejected": 0,
+            "last": null
+          }
+        },
+        "world": {
+          "position": [
+            -961.1333949935126,
+            0.004952343730252551,
+            29919.47663806919
+          ],
+          "heading": 1.6082055189320728,
+          "birds": {
+            "individuals": 0,
+            "drawCalls": 0,
+            "triangles": 0,
+            "perches": 0,
+            "families": [],
+            "sources": [],
+            "renderSamples": 91,
+            "cpuMs": 0,
+            "maxCpuMs": 19.700000000186265,
+            "clock": 56.15479999999702,
+            "trajectory": "analytic-per-render-frame"
+          },
+          "shadow": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 536452,
+            "shadowSize": 0,
+            "shadowBytes": 0,
+            "staticTriangles": 0,
+            "treeInstances": 0,
+            "updates": 0,
+            "lastUpdateCpuMs": 0,
+            "maxUpdateCpuMs": 0,
+            "lastShadowCalls": 0,
+            "lastShadowTriangles": 0,
+            "extraPasses": 0,
+            "selectionBuilds": 0,
+            "shadowIndexBytes": 0,
+            "sourceBytes": 5495013,
+            "filter": "none",
+            "windTests": 0,
+            "windSkips": 0,
+            "windMotionBoundM": 0,
+            "maxWindMotionBoundM": 0,
+            "windThresholdM": 0,
+            "character": {
+              "updates": 0,
+              "size": 0,
+              "bytes": 0,
+              "proxies": 0,
+              "extraPasses": 0,
+              "poseAgeMs": 0,
+              "lastCpuMs": 0,
+              "maxCpuMs": 0,
+              "receiver": "landscape only; actor receives landscape map"
+            }
+          },
+          "boat": {
+            "active": false,
+            "heading": 0,
+            "following": false,
+            "metrics": {
+              "plans": 0,
+              "lateralError": 0,
+              "maxLateralError": 0,
+              "stops": 4
+            }
+          },
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 15,
+              "unloaded": 6,
+              "failures": 0,
+              "residentBytes": 26834756,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 9,
+              "features": 80537,
+              "triangles": 31300,
+              "trees": 3328,
+              "disposed": 10825,
+              "batches": 2120,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 11681,
+                "nodes": 50462,
+                "edges": 106660,
+                "refused": 8245,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 11681,
+                "nodes": 32986,
+                "edges": 58499,
+                "refused": 14061,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 11681,
+                "nodes": 1954,
+                "edges": 3850,
+                "refused": 20897,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [
+                {
+                  "id": "rail-agent:osm:11005358332:0",
+                  "points": [
+                    {
+                      "x": 513217.884,
+                      "y": 6638220.975
+                    },
+                    {
+                      "x": 513209.034,
+                      "y": 6638249.196
+                    },
+                    {
+                      "x": 513197.6,
+                      "y": 6638286.308
+                    },
+                    {
+                      "x": 513175.4,
+                      "y": 6638355.234
+                    },
+                    {
+                      "x": 513126.641,
+                      "y": 6638512.357
+                    },
+                    {
+                      "x": 513110.603,
+                      "y": 6638564.269
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:2193186045:0",
+                  "points": [
+                    {
+                      "x": 513060.502,
+                      "y": 6638800.06
+                    },
+                    {
+                      "x": 513057.469,
+                      "y": 6638814.866
+                    },
+                    {
+                      "x": 513052.942,
+                      "y": 6638840.263
+                    },
+                    {
+                      "x": 513048.813,
+                      "y": 6638867.926
+                    },
+                    {
+                      "x": 513043.934,
+                      "y": 6638906.291
+                    },
+                    {
+                      "x": 513039.862,
+                      "y": 6638935.519
+                    },
+                    {
+                      "x": 513037.546,
+                      "y": 6638949.836
+                    },
+                    {
+                      "x": 513033.642,
+                      "y": 6638973.437
+                    },
+                    {
+                      "x": 513030.764,
+                      "y": 6638990.294
+                    },
+                    {
+                      "x": 513028.246,
+                      "y": 6639004.506
+                    },
+                    {
+                      "x": 513026.072,
+                      "y": 6639017.252
+                    },
+                    {
+                      "x": 513024.544,
+                      "y": 6639031.4
+                    },
+                    {
+                      "x": 513022.611,
+                      "y": 6639050.195
+                    },
+                    {
+                      "x": 513022.073,
+                      "y": 6639060.345
+                    },
+                    {
+                      "x": 513021.505,
+                      "y": 6639071.286
+                    },
+                    {
+                      "x": 513019.772,
+                      "y": 6639117.609
+                    },
+                    {
+                      "x": 513018.954,
+                      "y": 6639164.659
+                    },
+                    {
+                      "x": 513019.183,
+                      "y": 6639200.243
+                    },
+                    {
+                      "x": 513019.699,
+                      "y": 6639230.851
+                    },
+                    {
+                      "x": 513021.136,
+                      "y": 6639276.12
+                    },
+                    {
+                      "x": 513023.119,
+                      "y": 6639314.393
+                    },
+                    {
+                      "x": 513026.927,
+                      "y": 6639366.5
+                    },
+                    {
+                      "x": 513030.222,
+                      "y": 6639400.866
+                    },
+                    {
+                      "x": 513034.06,
+                      "y": 6639435.027
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:11004332806:0",
+                  "points": [
+                    {
+                      "x": 513374.155,
+                      "y": 6637641.42
+                    },
+                    {
+                      "x": 513375.37,
+                      "y": 6637628.704
+                    },
+                    {
+                      "x": 513376.053,
+                      "y": 6637617.26
+                    },
+                    {
+                      "x": 513376.628,
+                      "y": 6637602.342
+                    },
+                    {
+                      "x": 513377.143,
+                      "y": 6637593.37
+                    },
+                    {
+                      "x": 513377.925,
+                      "y": 6637583.401
+                    },
+                    {
+                      "x": 513379.178,
+                      "y": 6637564.516
+                    },
+                    {
+                      "x": 513380.695,
+                      "y": 6637544.557
+                    },
+                    {
+                      "x": 513382.498,
+                      "y": 6637518.089
+                    },
+                    {
+                      "x": 513384.223,
+                      "y": 6637481.7
+                    },
+                    {
+                      "x": 513384.74,
+                      "y": 6637461.461
+                    },
+                    {
+                      "x": 513384.845,
+                      "y": 6637421.556
+                    },
+                    {
+                      "x": 513384.438,
+                      "y": 6637390.712
+                    },
+                    {
+                      "x": 513383.466,
+                      "y": 6637363.796
+                    },
+                    {
+                      "x": 513382.164,
+                      "y": 6637339.269
+                    },
+                    {
+                      "x": 513379.798,
+                      "y": 6637303.329
+                    },
+                    {
+                      "x": 513375.384,
+                      "y": 6637255.453
+                    },
+                    {
+                      "x": 513371.634,
+                      "y": 6637223.823
+                    },
+                    {
+                      "x": 513365.493,
+                      "y": 6637180.8
+                    },
+                    {
+                      "x": 513361.615,
+                      "y": 6637156.108
+                    },
+                    {
+                      "x": 513355.069,
+                      "y": 6637119.443
+                    },
+                    {
+                      "x": 513347.215,
+                      "y": 6637081.951
+                    },
+                    {
+                      "x": 513340.918,
+                      "y": 6637053.556
+                    },
+                    {
+                      "x": 513335.027,
+                      "y": 6637030.415
+                    },
+                    {
+                      "x": 513325.607,
+                      "y": 6636995.806
+                    },
+                    {
+                      "x": 513319.024,
+                      "y": 6636972.976
+                    },
+                    {
+                      "x": 513314.047,
+                      "y": 6636956.907
+                    },
+                    {
+                      "x": 513308.946,
+                      "y": 6636941.02
+                    },
+                    {
+                      "x": 513299.686,
+                      "y": 6636913.295
+                    },
+                    {
+                      "x": 513289.069,
+                      "y": 6636883.145
+                    },
+                    {
+                      "x": 513278.146,
+                      "y": 6636854.46
+                    },
+                    {
+                      "x": 513268.383,
+                      "y": 6636831.184
+                    },
+                    {
+                      "x": 513259.113,
+                      "y": 6636808.804
+                    },
+                    {
+                      "x": 513249.68,
+                      "y": 6636784.618
+                    },
+                    {
+                      "x": 513243.927,
+                      "y": 6636769.607
+                    },
+                    {
+                      "x": 513241.644,
+                      "y": 6636763.422
+                    },
+                    {
+                      "x": 513237.564,
+                      "y": 6636753.904
+                    },
+                    {
+                      "x": 513228.558,
+                      "y": 6636733.382
+                    },
+                    {
+                      "x": 513217.772,
+                      "y": 6636712.327
+                    },
+                    {
+                      "x": 513204.722,
+                      "y": 6636687.897
+                    },
+                    {
+                      "x": 513195.638,
+                      "y": 6636671.278
+                    },
+                    {
+                      "x": 513186.045,
+                      "y": 6636654.498
+                    },
+                    {
+                      "x": 513174.336,
+                      "y": 6636634.671
+                    },
+                    {
+                      "x": 513163.079,
+                      "y": 6636615.909
+                    },
+                    {
+                      "x": 513145.995,
+                      "y": 6636588.36
+                    },
+                    {
+                      "x": 513125.519,
+                      "y": 6636556.983
+                    },
+                    {
+                      "x": 513113.446,
+                      "y": 6636538.99
+                    },
+                    {
+                      "x": 513097.563,
+                      "y": 6636516.216
+                    },
+                    {
+                      "x": 513080.737,
+                      "y": 6636492.581
+                    },
+                    {
+                      "x": 513063.49,
+                      "y": 6636469.616
+                    },
+                    {
+                      "x": 513057.486,
+                      "y": 6636461.546
+                    },
+                    {
+                      "x": 513045.699,
+                      "y": 6636446.601
+                    },
+                    {
+                      "x": 513021.582,
+                      "y": 6636416.482
+                    },
+                    {
+                      "x": 512995.828,
+                      "y": 6636385.958
+                    },
+                    {
+                      "x": 512963.474,
+                      "y": 6636349.784
+                    },
+                    {
+                      "x": 512939.984,
+                      "y": 6636324.868
+                    },
+                    {
+                      "x": 512922.315,
+                      "y": 6636306.794
+                    },
+                    {
+                      "x": 512898.567,
+                      "y": 6636283.398
+                    },
+                    {
+                      "x": 512879.084,
+                      "y": 6636264.902
+                    },
+                    {
+                      "x": 512855.875,
+                      "y": 6636243.656
+                    },
+                    {
+                      "x": 512835.631,
+                      "y": 6636225.729
+                    },
+                    {
+                      "x": 512809.495,
+                      "y": 6636203.563
+                    },
+                    {
+                      "x": 512793.373,
+                      "y": 6636190.353
+                    },
+                    {
+                      "x": 512769.545,
+                      "y": 6636171.293
+                    },
+                    {
+                      "x": 512741.964,
+                      "y": 6636150.316
+                    },
+                    {
+                      "x": 512714.376,
+                      "y": 6636130.351
+                    },
+                    {
+                      "x": 512687.098,
+                      "y": 6636111.266
+                    },
+                    {
+                      "x": 512659.31,
+                      "y": 6636092.963
+                    },
+                    {
+                      "x": 512630.435,
+                      "y": 6636074.783
+                    },
+                    {
+                      "x": 512606.782,
+                      "y": 6636060.407
+                    },
+                    {
+                      "x": 512571.293,
+                      "y": 6636039.611
+                    },
+                    {
+                      "x": 512539.774,
+                      "y": 6636021.592
+                    },
+                    {
+                      "x": 512503.119,
+                      "y": 6636000.866
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                }
+              ],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 26
+            }
+          }
+        },
+        "planet": {
+          "metrics": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 15,
+              "unloaded": 6,
+              "failures": 0,
+              "residentBytes": 26834756,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 9,
+              "features": 80537,
+              "triangles": 31300,
+              "trees": 3328,
+              "disposed": 10825,
+              "batches": 2120,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 11681,
+                "nodes": 50462,
+                "edges": 106660,
+                "refused": 8245,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 11681,
+                "nodes": 32986,
+                "edges": 58499,
+                "refused": 14061,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 11681,
+                "nodes": 1954,
+                "edges": 3850,
+                "refused": 20897,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [
+                {
+                  "id": "rail-agent:osm:11005358332:0",
+                  "points": [
+                    {
+                      "x": 513217.884,
+                      "y": 6638220.975
+                    },
+                    {
+                      "x": 513209.034,
+                      "y": 6638249.196
+                    },
+                    {
+                      "x": 513197.6,
+                      "y": 6638286.308
+                    },
+                    {
+                      "x": 513175.4,
+                      "y": 6638355.234
+                    },
+                    {
+                      "x": 513126.641,
+                      "y": 6638512.357
+                    },
+                    {
+                      "x": 513110.603,
+                      "y": 6638564.269
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:2193186045:0",
+                  "points": [
+                    {
+                      "x": 513060.502,
+                      "y": 6638800.06
+                    },
+                    {
+                      "x": 513057.469,
+                      "y": 6638814.866
+                    },
+                    {
+                      "x": 513052.942,
+                      "y": 6638840.263
+                    },
+                    {
+                      "x": 513048.813,
+                      "y": 6638867.926
+                    },
+                    {
+                      "x": 513043.934,
+                      "y": 6638906.291
+                    },
+                    {
+                      "x": 513039.862,
+                      "y": 6638935.519
+                    },
+                    {
+                      "x": 513037.546,
+                      "y": 6638949.836
+                    },
+                    {
+                      "x": 513033.642,
+                      "y": 6638973.437
+                    },
+                    {
+                      "x": 513030.764,
+                      "y": 6638990.294
+                    },
+                    {
+                      "x": 513028.246,
+                      "y": 6639004.506
+                    },
+                    {
+                      "x": 513026.072,
+                      "y": 6639017.252
+                    },
+                    {
+                      "x": 513024.544,
+                      "y": 6639031.4
+                    },
+                    {
+                      "x": 513022.611,
+                      "y": 6639050.195
+                    },
+                    {
+                      "x": 513022.073,
+                      "y": 6639060.345
+                    },
+                    {
+                      "x": 513021.505,
+                      "y": 6639071.286
+                    },
+                    {
+                      "x": 513019.772,
+                      "y": 6639117.609
+                    },
+                    {
+                      "x": 513018.954,
+                      "y": 6639164.659
+                    },
+                    {
+                      "x": 513019.183,
+                      "y": 6639200.243
+                    },
+                    {
+                      "x": 513019.699,
+                      "y": 6639230.851
+                    },
+                    {
+                      "x": 513021.136,
+                      "y": 6639276.12
+                    },
+                    {
+                      "x": 513023.119,
+                      "y": 6639314.393
+                    },
+                    {
+                      "x": 513026.927,
+                      "y": 6639366.5
+                    },
+                    {
+                      "x": 513030.222,
+                      "y": 6639400.866
+                    },
+                    {
+                      "x": 513034.06,
+                      "y": 6639435.027
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:11004332806:0",
+                  "points": [
+                    {
+                      "x": 513374.155,
+                      "y": 6637641.42
+                    },
+                    {
+                      "x": 513375.37,
+                      "y": 6637628.704
+                    },
+                    {
+                      "x": 513376.053,
+                      "y": 6637617.26
+                    },
+                    {
+                      "x": 513376.628,
+                      "y": 6637602.342
+                    },
+                    {
+                      "x": 513377.143,
+                      "y": 6637593.37
+                    },
+                    {
+                      "x": 513377.925,
+                      "y": 6637583.401
+                    },
+                    {
+                      "x": 513379.178,
+                      "y": 6637564.516
+                    },
+                    {
+                      "x": 513380.695,
+                      "y": 6637544.557
+                    },
+                    {
+                      "x": 513382.498,
+                      "y": 6637518.089
+                    },
+                    {
+                      "x": 513384.223,
+                      "y": 6637481.7
+                    },
+                    {
+                      "x": 513384.74,
+                      "y": 6637461.461
+                    },
+                    {
+                      "x": 513384.845,
+                      "y": 6637421.556
+                    },
+                    {
+                      "x": 513384.438,
+                      "y": 6637390.712
+                    },
+                    {
+                      "x": 513383.466,
+                      "y": 6637363.796
+                    },
+                    {
+                      "x": 513382.164,
+                      "y": 6637339.269
+                    },
+                    {
+                      "x": 513379.798,
+                      "y": 6637303.329
+                    },
+                    {
+                      "x": 513375.384,
+                      "y": 6637255.453
+                    },
+                    {
+                      "x": 513371.634,
+                      "y": 6637223.823
+                    },
+                    {
+                      "x": 513365.493,
+                      "y": 6637180.8
+                    },
+                    {
+                      "x": 513361.615,
+                      "y": 6637156.108
+                    },
+                    {
+                      "x": 513355.069,
+                      "y": 6637119.443
+                    },
+                    {
+                      "x": 513347.215,
+                      "y": 6637081.951
+                    },
+                    {
+                      "x": 513340.918,
+                      "y": 6637053.556
+                    },
+                    {
+                      "x": 513335.027,
+                      "y": 6637030.415
+                    },
+                    {
+                      "x": 513325.607,
+                      "y": 6636995.806
+                    },
+                    {
+                      "x": 513319.024,
+                      "y": 6636972.976
+                    },
+                    {
+                      "x": 513314.047,
+                      "y": 6636956.907
+                    },
+                    {
+                      "x": 513308.946,
+                      "y": 6636941.02
+                    },
+                    {
+                      "x": 513299.686,
+                      "y": 6636913.295
+                    },
+                    {
+                      "x": 513289.069,
+                      "y": 6636883.145
+                    },
+                    {
+                      "x": 513278.146,
+                      "y": 6636854.46
+                    },
+                    {
+                      "x": 513268.383,
+                      "y": 6636831.184
+                    },
+                    {
+                      "x": 513259.113,
+                      "y": 6636808.804
+                    },
+                    {
+                      "x": 513249.68,
+                      "y": 6636784.618
+                    },
+                    {
+                      "x": 513243.927,
+                      "y": 6636769.607
+                    },
+                    {
+                      "x": 513241.644,
+                      "y": 6636763.422
+                    },
+                    {
+                      "x": 513237.564,
+                      "y": 6636753.904
+                    },
+                    {
+                      "x": 513228.558,
+                      "y": 6636733.382
+                    },
+                    {
+                      "x": 513217.772,
+                      "y": 6636712.327
+                    },
+                    {
+                      "x": 513204.722,
+                      "y": 6636687.897
+                    },
+                    {
+                      "x": 513195.638,
+                      "y": 6636671.278
+                    },
+                    {
+                      "x": 513186.045,
+                      "y": 6636654.498
+                    },
+                    {
+                      "x": 513174.336,
+                      "y": 6636634.671
+                    },
+                    {
+                      "x": 513163.079,
+                      "y": 6636615.909
+                    },
+                    {
+                      "x": 513145.995,
+                      "y": 6636588.36
+                    },
+                    {
+                      "x": 513125.519,
+                      "y": 6636556.983
+                    },
+                    {
+                      "x": 513113.446,
+                      "y": 6636538.99
+                    },
+                    {
+                      "x": 513097.563,
+                      "y": 6636516.216
+                    },
+                    {
+                      "x": 513080.737,
+                      "y": 6636492.581
+                    },
+                    {
+                      "x": 513063.49,
+                      "y": 6636469.616
+                    },
+                    {
+                      "x": 513057.486,
+                      "y": 6636461.546
+                    },
+                    {
+                      "x": 513045.699,
+                      "y": 6636446.601
+                    },
+                    {
+                      "x": 513021.582,
+                      "y": 6636416.482
+                    },
+                    {
+                      "x": 512995.828,
+                      "y": 6636385.958
+                    },
+                    {
+                      "x": 512963.474,
+                      "y": 6636349.784
+                    },
+                    {
+                      "x": 512939.984,
+                      "y": 6636324.868
+                    },
+                    {
+                      "x": 512922.315,
+                      "y": 6636306.794
+                    },
+                    {
+                      "x": 512898.567,
+                      "y": 6636283.398
+                    },
+                    {
+                      "x": 512879.084,
+                      "y": 6636264.902
+                    },
+                    {
+                      "x": 512855.875,
+                      "y": 6636243.656
+                    },
+                    {
+                      "x": 512835.631,
+                      "y": 6636225.729
+                    },
+                    {
+                      "x": 512809.495,
+                      "y": 6636203.563
+                    },
+                    {
+                      "x": 512793.373,
+                      "y": 6636190.353
+                    },
+                    {
+                      "x": 512769.545,
+                      "y": 6636171.293
+                    },
+                    {
+                      "x": 512741.964,
+                      "y": 6636150.316
+                    },
+                    {
+                      "x": 512714.376,
+                      "y": 6636130.351
+                    },
+                    {
+                      "x": 512687.098,
+                      "y": 6636111.266
+                    },
+                    {
+                      "x": 512659.31,
+                      "y": 6636092.963
+                    },
+                    {
+                      "x": 512630.435,
+                      "y": 6636074.783
+                    },
+                    {
+                      "x": 512606.782,
+                      "y": 6636060.407
+                    },
+                    {
+                      "x": 512571.293,
+                      "y": 6636039.611
+                    },
+                    {
+                      "x": 512539.774,
+                      "y": 6636021.592
+                    },
+                    {
+                      "x": 512503.119,
+                      "y": 6636000.866
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                }
+              ],
+              "flight": null,
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 26
+            }
+          },
+          "ready": true,
+          "region": "FR-86",
+          "position": {
+            "lat": 46.4265299978614,
+            "lon": 0.8718118020080636
+          },
+          "car": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "heading": 0,
+            "speed": 0,
+            "steering": 0,
+            "active": false,
+            "reason": "",
+            "odometer": 0,
+            "braking": false,
+            "metrics": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            }
+          },
+          "mapOpen": false
+        },
+        "support": {
+          "physical": 0.004952343730252551,
+          "rendered": 0.004958291168691176,
+          "error": 0.000005947438438624886,
+          "mesh": "planet-terrain-131:1609"
+        }
+      },
+      "still": "Simulation held after loaded scene update; diagnostic still, not a native traversal."
+    },
+    {
+      "name": "Loudun",
+      "placement": {
+        "x": -61127.561112456795,
+        "z": -34956.64182771083,
+        "y": 0.8774876081482006,
+        "heading": -2.8573846208756892,
+        "source": "osm:way:315955707",
+        "position": {
+          "lat": 47.009319419939914,
+          "lon": 0.08379745507127234
+        }
+      },
+      "result": {
+        "state": {
+          "commit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+          "profile": "eco",
+          "position": [
+            -61127.561112456795,
+            0.8774876081482006,
+            -34956.64182771083
+          ],
+          "camera": {
+            "position": [
+              -61125.88410941879,
+              3.506975620642126,
+              -34950.9009444287
+            ],
+            "quaternion": [
+              -0.08025905585340183,
+              0.14115998698765608,
+              0.011482529454828314,
+              0.9866612861283676
+            ],
+            "fov": 55
+          },
+          "walker": {
+            "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+            "bones": 31,
+            "triangles": 3940,
+            "drawCalls": 1,
+            "imageTextures": 0,
+            "boneTextureBytes": 1984,
+            "lod": 1,
+            "lodTriangles": [
+              7880,
+              3940
+            ],
+            "phase": 0.6,
+            "speed": 0,
+            "contacts": 0,
+            "soleError": 3.3306690738754696e-16,
+            "plantError": 1.0289757937229989e-11,
+            "mode": "idle",
+            "plantSlideM": 0,
+            "swingIK": 0,
+            "pelvisY": 0.87
+          },
+          "activity": "walking",
+          "network": {
+            "builds": 0,
+            "nodes": 0,
+            "edges": 0,
+            "components": 0,
+            "ready": false,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 8186.700000019744,
+            "maxSliceMs": 66.8999999994412,
+            "slices": 2181
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "climate": {
+            "time": 64.12879999999701,
+            "wind": {
+              "x": 0.12019671079885459,
+              "z": -0.06626886789748065,
+              "speed": 0.13724738656963112,
+              "gust": 0.02955352681127239,
+              "slow": 0.5526543182794693,
+              "turn": 0.002631359063962984,
+              "water": -0.9993514793848648
+            },
+            "date": "2026-06-21T13:57:47.015Z"
+          },
+          "captureTransport": "base64-sha256-v3",
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "interactions": {
+            "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+            "objects": 3,
+            "colliders": 14,
+            "sweeps": 0,
+            "rejected": 0,
+            "last": null
+          }
+        },
+        "world": {
+          "position": [
+            -61127.561112456795,
+            0.8774876081482006,
+            -34956.64182771083
+          ],
+          "heading": -2.8573846208756892,
+          "birds": {
+            "individuals": 0,
+            "drawCalls": 0,
+            "triangles": 0,
+            "perches": 0,
+            "families": [],
+            "sources": [],
+            "renderSamples": 106,
+            "cpuMs": 0,
+            "maxCpuMs": 19.700000000186265,
+            "clock": 64.12879999999701,
+            "trajectory": "analytic-per-render-frame"
+          },
+          "shadow": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 536452,
+            "shadowSize": 0,
+            "shadowBytes": 0,
+            "staticTriangles": 0,
+            "treeInstances": 0,
+            "updates": 0,
+            "lastUpdateCpuMs": 0,
+            "maxUpdateCpuMs": 0,
+            "lastShadowCalls": 0,
+            "lastShadowTriangles": 0,
+            "extraPasses": 0,
+            "selectionBuilds": 0,
+            "shadowIndexBytes": 0,
+            "sourceBytes": 5495013,
+            "filter": "none",
+            "windTests": 0,
+            "windSkips": 0,
+            "windMotionBoundM": 0,
+            "maxWindMotionBoundM": 0,
+            "windThresholdM": 0,
+            "character": {
+              "updates": 0,
+              "size": 0,
+              "bytes": 0,
+              "proxies": 0,
+              "extraPasses": 0,
+              "poseAgeMs": 0,
+              "lastCpuMs": 0,
+              "maxCpuMs": 0,
+              "receiver": "landscape only; actor receives landscape map"
+            }
+          },
+          "boat": {
+            "active": false,
+            "heading": 0,
+            "following": false,
+            "metrics": {
+              "plans": 0,
+              "lateralError": 0,
+              "maxLateralError": 0,
+              "stops": 5
+            }
+          },
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 19,
+              "unloaded": 8,
+              "failures": 0,
+              "residentBytes": 25586105,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 11,
+              "features": 74699,
+              "triangles": 39492,
+              "trees": 3041,
+              "disposed": 16175,
+              "batches": 2135,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 8972,
+                "nodes": 46226,
+                "edges": 96788,
+                "refused": 9347,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 8972,
+                "nodes": 30529,
+                "edges": 56046,
+                "refused": 15699,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 8972,
+                "nodes": 1403,
+                "edges": 2774,
+                "refused": 23381,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [
+                {
+                  "id": "rail-agent:osm:11005358332:0",
+                  "points": [
+                    {
+                      "x": 513217.884,
+                      "y": 6638220.975
+                    },
+                    {
+                      "x": 513209.034,
+                      "y": 6638249.196
+                    },
+                    {
+                      "x": 513197.6,
+                      "y": 6638286.308
+                    },
+                    {
+                      "x": 513175.4,
+                      "y": 6638355.234
+                    },
+                    {
+                      "x": 513126.641,
+                      "y": 6638512.357
+                    },
+                    {
+                      "x": 513110.603,
+                      "y": 6638564.269
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:2193186045:0",
+                  "points": [
+                    {
+                      "x": 513060.502,
+                      "y": 6638800.06
+                    },
+                    {
+                      "x": 513057.469,
+                      "y": 6638814.866
+                    },
+                    {
+                      "x": 513052.942,
+                      "y": 6638840.263
+                    },
+                    {
+                      "x": 513048.813,
+                      "y": 6638867.926
+                    },
+                    {
+                      "x": 513043.934,
+                      "y": 6638906.291
+                    },
+                    {
+                      "x": 513039.862,
+                      "y": 6638935.519
+                    },
+                    {
+                      "x": 513037.546,
+                      "y": 6638949.836
+                    },
+                    {
+                      "x": 513033.642,
+                      "y": 6638973.437
+                    },
+                    {
+                      "x": 513030.764,
+                      "y": 6638990.294
+                    },
+                    {
+                      "x": 513028.246,
+                      "y": 6639004.506
+                    },
+                    {
+                      "x": 513026.072,
+                      "y": 6639017.252
+                    },
+                    {
+                      "x": 513024.544,
+                      "y": 6639031.4
+                    },
+                    {
+                      "x": 513022.611,
+                      "y": 6639050.195
+                    },
+                    {
+                      "x": 513022.073,
+                      "y": 6639060.345
+                    },
+                    {
+                      "x": 513021.505,
+                      "y": 6639071.286
+                    },
+                    {
+                      "x": 513019.772,
+                      "y": 6639117.609
+                    },
+                    {
+                      "x": 513018.954,
+                      "y": 6639164.659
+                    },
+                    {
+                      "x": 513019.183,
+                      "y": 6639200.243
+                    },
+                    {
+                      "x": 513019.699,
+                      "y": 6639230.851
+                    },
+                    {
+                      "x": 513021.136,
+                      "y": 6639276.12
+                    },
+                    {
+                      "x": 513023.119,
+                      "y": 6639314.393
+                    },
+                    {
+                      "x": 513026.927,
+                      "y": 6639366.5
+                    },
+                    {
+                      "x": 513030.222,
+                      "y": 6639400.866
+                    },
+                    {
+                      "x": 513034.06,
+                      "y": 6639435.027
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:11004332806:0",
+                  "points": [
+                    {
+                      "x": 513374.155,
+                      "y": 6637641.42
+                    },
+                    {
+                      "x": 513375.37,
+                      "y": 6637628.704
+                    },
+                    {
+                      "x": 513376.053,
+                      "y": 6637617.26
+                    },
+                    {
+                      "x": 513376.628,
+                      "y": 6637602.342
+                    },
+                    {
+                      "x": 513377.143,
+                      "y": 6637593.37
+                    },
+                    {
+                      "x": 513377.925,
+                      "y": 6637583.401
+                    },
+                    {
+                      "x": 513379.178,
+                      "y": 6637564.516
+                    },
+                    {
+                      "x": 513380.695,
+                      "y": 6637544.557
+                    },
+                    {
+                      "x": 513382.498,
+                      "y": 6637518.089
+                    },
+                    {
+                      "x": 513384.223,
+                      "y": 6637481.7
+                    },
+                    {
+                      "x": 513384.74,
+                      "y": 6637461.461
+                    },
+                    {
+                      "x": 513384.845,
+                      "y": 6637421.556
+                    },
+                    {
+                      "x": 513384.438,
+                      "y": 6637390.712
+                    },
+                    {
+                      "x": 513383.466,
+                      "y": 6637363.796
+                    },
+                    {
+                      "x": 513382.164,
+                      "y": 6637339.269
+                    },
+                    {
+                      "x": 513379.798,
+                      "y": 6637303.329
+                    },
+                    {
+                      "x": 513375.384,
+                      "y": 6637255.453
+                    },
+                    {
+                      "x": 513371.634,
+                      "y": 6637223.823
+                    },
+                    {
+                      "x": 513365.493,
+                      "y": 6637180.8
+                    },
+                    {
+                      "x": 513361.615,
+                      "y": 6637156.108
+                    },
+                    {
+                      "x": 513355.069,
+                      "y": 6637119.443
+                    },
+                    {
+                      "x": 513347.215,
+                      "y": 6637081.951
+                    },
+                    {
+                      "x": 513340.918,
+                      "y": 6637053.556
+                    },
+                    {
+                      "x": 513335.027,
+                      "y": 6637030.415
+                    },
+                    {
+                      "x": 513325.607,
+                      "y": 6636995.806
+                    },
+                    {
+                      "x": 513319.024,
+                      "y": 6636972.976
+                    },
+                    {
+                      "x": 513314.047,
+                      "y": 6636956.907
+                    },
+                    {
+                      "x": 513308.946,
+                      "y": 6636941.02
+                    },
+                    {
+                      "x": 513299.686,
+                      "y": 6636913.295
+                    },
+                    {
+                      "x": 513289.069,
+                      "y": 6636883.145
+                    },
+                    {
+                      "x": 513278.146,
+                      "y": 6636854.46
+                    },
+                    {
+                      "x": 513268.383,
+                      "y": 6636831.184
+                    },
+                    {
+                      "x": 513259.113,
+                      "y": 6636808.804
+                    },
+                    {
+                      "x": 513249.68,
+                      "y": 6636784.618
+                    },
+                    {
+                      "x": 513243.927,
+                      "y": 6636769.607
+                    },
+                    {
+                      "x": 513241.644,
+                      "y": 6636763.422
+                    },
+                    {
+                      "x": 513237.564,
+                      "y": 6636753.904
+                    },
+                    {
+                      "x": 513228.558,
+                      "y": 6636733.382
+                    },
+                    {
+                      "x": 513217.772,
+                      "y": 6636712.327
+                    },
+                    {
+                      "x": 513204.722,
+                      "y": 6636687.897
+                    },
+                    {
+                      "x": 513195.638,
+                      "y": 6636671.278
+                    },
+                    {
+                      "x": 513186.045,
+                      "y": 6636654.498
+                    },
+                    {
+                      "x": 513174.336,
+                      "y": 6636634.671
+                    },
+                    {
+                      "x": 513163.079,
+                      "y": 6636615.909
+                    },
+                    {
+                      "x": 513145.995,
+                      "y": 6636588.36
+                    },
+                    {
+                      "x": 513125.519,
+                      "y": 6636556.983
+                    },
+                    {
+                      "x": 513113.446,
+                      "y": 6636538.99
+                    },
+                    {
+                      "x": 513097.563,
+                      "y": 6636516.216
+                    },
+                    {
+                      "x": 513080.737,
+                      "y": 6636492.581
+                    },
+                    {
+                      "x": 513063.49,
+                      "y": 6636469.616
+                    },
+                    {
+                      "x": 513057.486,
+                      "y": 6636461.546
+                    },
+                    {
+                      "x": 513045.699,
+                      "y": 6636446.601
+                    },
+                    {
+                      "x": 513021.582,
+                      "y": 6636416.482
+                    },
+                    {
+                      "x": 512995.828,
+                      "y": 6636385.958
+                    },
+                    {
+                      "x": 512963.474,
+                      "y": 6636349.784
+                    },
+                    {
+                      "x": 512939.984,
+                      "y": 6636324.868
+                    },
+                    {
+                      "x": 512922.315,
+                      "y": 6636306.794
+                    },
+                    {
+                      "x": 512898.567,
+                      "y": 6636283.398
+                    },
+                    {
+                      "x": 512879.084,
+                      "y": 6636264.902
+                    },
+                    {
+                      "x": 512855.875,
+                      "y": 6636243.656
+                    },
+                    {
+                      "x": 512835.631,
+                      "y": 6636225.729
+                    },
+                    {
+                      "x": 512809.495,
+                      "y": 6636203.563
+                    },
+                    {
+                      "x": 512793.373,
+                      "y": 6636190.353
+                    },
+                    {
+                      "x": 512769.545,
+                      "y": 6636171.293
+                    },
+                    {
+                      "x": 512741.964,
+                      "y": 6636150.316
+                    },
+                    {
+                      "x": 512714.376,
+                      "y": 6636130.351
+                    },
+                    {
+                      "x": 512687.098,
+                      "y": 6636111.266
+                    },
+                    {
+                      "x": 512659.31,
+                      "y": 6636092.963
+                    },
+                    {
+                      "x": 512630.435,
+                      "y": 6636074.783
+                    },
+                    {
+                      "x": 512606.782,
+                      "y": 6636060.407
+                    },
+                    {
+                      "x": 512571.293,
+                      "y": 6636039.611
+                    },
+                    {
+                      "x": 512539.774,
+                      "y": 6636021.592
+                    },
+                    {
+                      "x": 512503.119,
+                      "y": 6636000.866
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                }
+              ],
+              "flight": {
+                "source": "osm:way:168148111",
+                "x": 479514.55698556773,
+                "y": 6663532.666571862,
+                "height": 94.92531367187527,
+                "phase": "takeoff",
+                "pitch": 0,
+                "synthetic": true
+              },
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 26
+            }
+          }
+        },
+        "planet": {
+          "metrics": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 19,
+              "unloaded": 8,
+              "failures": 0,
+              "residentBytes": 25586105,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 11,
+              "features": 74699,
+              "triangles": 39492,
+              "trees": 3041,
+              "disposed": 16175,
+              "batches": 2135,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 8972,
+                "nodes": 46226,
+                "edges": 96788,
+                "refused": 9347,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 8972,
+                "nodes": 30529,
+                "edges": 56046,
+                "refused": 15699,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 8972,
+                "nodes": 1403,
+                "edges": 2774,
+                "refused": 23381,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [
+                {
+                  "id": "rail-agent:osm:11005358332:0",
+                  "points": [
+                    {
+                      "x": 513217.884,
+                      "y": 6638220.975
+                    },
+                    {
+                      "x": 513209.034,
+                      "y": 6638249.196
+                    },
+                    {
+                      "x": 513197.6,
+                      "y": 6638286.308
+                    },
+                    {
+                      "x": 513175.4,
+                      "y": 6638355.234
+                    },
+                    {
+                      "x": 513126.641,
+                      "y": 6638512.357
+                    },
+                    {
+                      "x": 513110.603,
+                      "y": 6638564.269
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:2193186045:0",
+                  "points": [
+                    {
+                      "x": 513060.502,
+                      "y": 6638800.06
+                    },
+                    {
+                      "x": 513057.469,
+                      "y": 6638814.866
+                    },
+                    {
+                      "x": 513052.942,
+                      "y": 6638840.263
+                    },
+                    {
+                      "x": 513048.813,
+                      "y": 6638867.926
+                    },
+                    {
+                      "x": 513043.934,
+                      "y": 6638906.291
+                    },
+                    {
+                      "x": 513039.862,
+                      "y": 6638935.519
+                    },
+                    {
+                      "x": 513037.546,
+                      "y": 6638949.836
+                    },
+                    {
+                      "x": 513033.642,
+                      "y": 6638973.437
+                    },
+                    {
+                      "x": 513030.764,
+                      "y": 6638990.294
+                    },
+                    {
+                      "x": 513028.246,
+                      "y": 6639004.506
+                    },
+                    {
+                      "x": 513026.072,
+                      "y": 6639017.252
+                    },
+                    {
+                      "x": 513024.544,
+                      "y": 6639031.4
+                    },
+                    {
+                      "x": 513022.611,
+                      "y": 6639050.195
+                    },
+                    {
+                      "x": 513022.073,
+                      "y": 6639060.345
+                    },
+                    {
+                      "x": 513021.505,
+                      "y": 6639071.286
+                    },
+                    {
+                      "x": 513019.772,
+                      "y": 6639117.609
+                    },
+                    {
+                      "x": 513018.954,
+                      "y": 6639164.659
+                    },
+                    {
+                      "x": 513019.183,
+                      "y": 6639200.243
+                    },
+                    {
+                      "x": 513019.699,
+                      "y": 6639230.851
+                    },
+                    {
+                      "x": 513021.136,
+                      "y": 6639276.12
+                    },
+                    {
+                      "x": 513023.119,
+                      "y": 6639314.393
+                    },
+                    {
+                      "x": 513026.927,
+                      "y": 6639366.5
+                    },
+                    {
+                      "x": 513030.222,
+                      "y": 6639400.866
+                    },
+                    {
+                      "x": 513034.06,
+                      "y": 6639435.027
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:11004332806:0",
+                  "points": [
+                    {
+                      "x": 513374.155,
+                      "y": 6637641.42
+                    },
+                    {
+                      "x": 513375.37,
+                      "y": 6637628.704
+                    },
+                    {
+                      "x": 513376.053,
+                      "y": 6637617.26
+                    },
+                    {
+                      "x": 513376.628,
+                      "y": 6637602.342
+                    },
+                    {
+                      "x": 513377.143,
+                      "y": 6637593.37
+                    },
+                    {
+                      "x": 513377.925,
+                      "y": 6637583.401
+                    },
+                    {
+                      "x": 513379.178,
+                      "y": 6637564.516
+                    },
+                    {
+                      "x": 513380.695,
+                      "y": 6637544.557
+                    },
+                    {
+                      "x": 513382.498,
+                      "y": 6637518.089
+                    },
+                    {
+                      "x": 513384.223,
+                      "y": 6637481.7
+                    },
+                    {
+                      "x": 513384.74,
+                      "y": 6637461.461
+                    },
+                    {
+                      "x": 513384.845,
+                      "y": 6637421.556
+                    },
+                    {
+                      "x": 513384.438,
+                      "y": 6637390.712
+                    },
+                    {
+                      "x": 513383.466,
+                      "y": 6637363.796
+                    },
+                    {
+                      "x": 513382.164,
+                      "y": 6637339.269
+                    },
+                    {
+                      "x": 513379.798,
+                      "y": 6637303.329
+                    },
+                    {
+                      "x": 513375.384,
+                      "y": 6637255.453
+                    },
+                    {
+                      "x": 513371.634,
+                      "y": 6637223.823
+                    },
+                    {
+                      "x": 513365.493,
+                      "y": 6637180.8
+                    },
+                    {
+                      "x": 513361.615,
+                      "y": 6637156.108
+                    },
+                    {
+                      "x": 513355.069,
+                      "y": 6637119.443
+                    },
+                    {
+                      "x": 513347.215,
+                      "y": 6637081.951
+                    },
+                    {
+                      "x": 513340.918,
+                      "y": 6637053.556
+                    },
+                    {
+                      "x": 513335.027,
+                      "y": 6637030.415
+                    },
+                    {
+                      "x": 513325.607,
+                      "y": 6636995.806
+                    },
+                    {
+                      "x": 513319.024,
+                      "y": 6636972.976
+                    },
+                    {
+                      "x": 513314.047,
+                      "y": 6636956.907
+                    },
+                    {
+                      "x": 513308.946,
+                      "y": 6636941.02
+                    },
+                    {
+                      "x": 513299.686,
+                      "y": 6636913.295
+                    },
+                    {
+                      "x": 513289.069,
+                      "y": 6636883.145
+                    },
+                    {
+                      "x": 513278.146,
+                      "y": 6636854.46
+                    },
+                    {
+                      "x": 513268.383,
+                      "y": 6636831.184
+                    },
+                    {
+                      "x": 513259.113,
+                      "y": 6636808.804
+                    },
+                    {
+                      "x": 513249.68,
+                      "y": 6636784.618
+                    },
+                    {
+                      "x": 513243.927,
+                      "y": 6636769.607
+                    },
+                    {
+                      "x": 513241.644,
+                      "y": 6636763.422
+                    },
+                    {
+                      "x": 513237.564,
+                      "y": 6636753.904
+                    },
+                    {
+                      "x": 513228.558,
+                      "y": 6636733.382
+                    },
+                    {
+                      "x": 513217.772,
+                      "y": 6636712.327
+                    },
+                    {
+                      "x": 513204.722,
+                      "y": 6636687.897
+                    },
+                    {
+                      "x": 513195.638,
+                      "y": 6636671.278
+                    },
+                    {
+                      "x": 513186.045,
+                      "y": 6636654.498
+                    },
+                    {
+                      "x": 513174.336,
+                      "y": 6636634.671
+                    },
+                    {
+                      "x": 513163.079,
+                      "y": 6636615.909
+                    },
+                    {
+                      "x": 513145.995,
+                      "y": 6636588.36
+                    },
+                    {
+                      "x": 513125.519,
+                      "y": 6636556.983
+                    },
+                    {
+                      "x": 513113.446,
+                      "y": 6636538.99
+                    },
+                    {
+                      "x": 513097.563,
+                      "y": 6636516.216
+                    },
+                    {
+                      "x": 513080.737,
+                      "y": 6636492.581
+                    },
+                    {
+                      "x": 513063.49,
+                      "y": 6636469.616
+                    },
+                    {
+                      "x": 513057.486,
+                      "y": 6636461.546
+                    },
+                    {
+                      "x": 513045.699,
+                      "y": 6636446.601
+                    },
+                    {
+                      "x": 513021.582,
+                      "y": 6636416.482
+                    },
+                    {
+                      "x": 512995.828,
+                      "y": 6636385.958
+                    },
+                    {
+                      "x": 512963.474,
+                      "y": 6636349.784
+                    },
+                    {
+                      "x": 512939.984,
+                      "y": 6636324.868
+                    },
+                    {
+                      "x": 512922.315,
+                      "y": 6636306.794
+                    },
+                    {
+                      "x": 512898.567,
+                      "y": 6636283.398
+                    },
+                    {
+                      "x": 512879.084,
+                      "y": 6636264.902
+                    },
+                    {
+                      "x": 512855.875,
+                      "y": 6636243.656
+                    },
+                    {
+                      "x": 512835.631,
+                      "y": 6636225.729
+                    },
+                    {
+                      "x": 512809.495,
+                      "y": 6636203.563
+                    },
+                    {
+                      "x": 512793.373,
+                      "y": 6636190.353
+                    },
+                    {
+                      "x": 512769.545,
+                      "y": 6636171.293
+                    },
+                    {
+                      "x": 512741.964,
+                      "y": 6636150.316
+                    },
+                    {
+                      "x": 512714.376,
+                      "y": 6636130.351
+                    },
+                    {
+                      "x": 512687.098,
+                      "y": 6636111.266
+                    },
+                    {
+                      "x": 512659.31,
+                      "y": 6636092.963
+                    },
+                    {
+                      "x": 512630.435,
+                      "y": 6636074.783
+                    },
+                    {
+                      "x": 512606.782,
+                      "y": 6636060.407
+                    },
+                    {
+                      "x": 512571.293,
+                      "y": 6636039.611
+                    },
+                    {
+                      "x": 512539.774,
+                      "y": 6636021.592
+                    },
+                    {
+                      "x": 512503.119,
+                      "y": 6636000.866
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                }
+              ],
+              "flight": {
+                "source": "osm:way:168148111",
+                "x": 479514.55698556773,
+                "y": 6663532.666571862,
+                "height": 94.92531367187527,
+                "phase": "takeoff",
+                "pitch": 0,
+                "synthetic": true
+              },
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 26
+            }
+          },
+          "ready": true,
+          "region": "FR-86",
+          "position": {
+            "lat": 47.009319419939914,
+            "lon": 0.08379745507127234
+          },
+          "car": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "heading": 0,
+            "speed": 0,
+            "steering": 0,
+            "active": false,
+            "reason": "",
+            "odometer": 0,
+            "braking": false,
+            "metrics": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            }
+          },
+          "mapOpen": false
+        },
+        "support": {
+          "physical": 0.8774876081482006,
+          "rendered": 0.8774734833447155,
+          "error": -0.000014124803485060511,
+          "mesh": "planet-terrain-116:1626"
+        }
+      },
+      "still": "Simulation held after loaded scene update; diagnostic still, not a native traversal."
+    },
+    {
+      "name": "Chauvigny",
+      "placement": {
+        "x": -17982.84475560309,
+        "z": 13859.785522367156,
+        "y": 2.316872109397636,
+        "heading": 0.4066142397583617,
+        "source": "osm:way:1496666344",
+        "position": {
+          "lat": 46.57079599782279,
+          "lon": 0.6488743056261055
+        }
+      },
+      "result": {
+        "state": {
+          "commit": "990969bd9c718d456c36504a64fcb422cd7b66d4",
+          "profile": "eco",
+          "position": [
+            -17982.84475560309,
+            2.316872109397636,
+            13859.785522367156
+          ],
+          "camera": {
+            "position": [
+              -17985.21017700004,
+              4.9463601060605775,
+              13854.292357477305
+            ],
+            "quaternion": [
+              0.016370067659396335,
+              0.9761798984769824,
+              0.07940645700440685,
+              -0.20124472981994393
+            ],
+            "fov": 55
+          },
+          "walker": {
+            "version": "original-traveler-rig-v8-continuous-contact-pipeline",
+            "bones": 31,
+            "triangles": 3940,
+            "drawCalls": 1,
+            "imageTextures": 0,
+            "boneTextureBytes": 1984,
+            "lod": 1,
+            "lodTriangles": [
+              7880,
+              3940
+            ],
+            "phase": 0.6,
+            "speed": 0,
+            "contacts": 0,
+            "soleError": 4.440892098500626e-16,
+            "plantError": 3.637978807091713e-12,
+            "mode": "idle",
+            "plantSlideM": 0,
+            "swingIK": 0,
+            "pelvisY": 0.87
+          },
+          "activity": "walking",
+          "network": {
+            "builds": 0,
+            "nodes": 0,
+            "edges": 0,
+            "components": 0,
+            "ready": false,
+            "step": 4,
+            "bounds": [
+              -998,
+              -998,
+              998,
+              998
+            ],
+            "source": "loaded OSM surface / estimated game bed",
+            "confidence": "low",
+            "bridgePolicy": "existing clearance refusals preserved",
+            "buildMs": 0,
+            "cpuMs": 8614.600000018254,
+            "maxSliceMs": 66.8999999994412,
+            "slices": 2290
+          },
+          "audio": {
+            "aircraftEvents": 0,
+            "contextUpdates": 0,
+            "cpuMs": 0,
+            "maxCpuMs": 0,
+            "nearbyChecks": 0,
+            "memoryCells": 0,
+            "perches": 0,
+            "contact": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "context": null
+          },
+          "climate": {
+            "time": 71.43949999999721,
+            "wind": {
+              "x": 0.11761223025669758,
+              "z": -0.06426614383448866,
+              "speed": 0.13402183040151594,
+              "gust": 0.004209640065769745,
+              "slow": 0.5556880272968995,
+              "turn": -0.001386046290666968,
+              "water": 0.42513323338512515
+            },
+            "date": "2026-06-21T13:57:47.015Z"
+          },
+          "captureTransport": "base64-sha256-v3",
+          "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "interactions": {
+            "provenance": "Décor artistique original M25.2 : banc, roche et tronc inventés pour le jeu, sans attestation géographique.",
+            "objects": 3,
+            "colliders": 14,
+            "sweeps": 0,
+            "rejected": 0,
+            "last": null
+          }
+        },
+        "world": {
+          "position": [
+            -17982.84475560309,
+            2.316872109397636,
+            13859.785522367156
+          ],
+          "heading": 0.4066142397583617,
+          "birds": {
+            "individuals": 0,
+            "drawCalls": 0,
+            "triangles": 0,
+            "perches": 0,
+            "families": [],
+            "sources": [],
+            "renderSamples": 122,
+            "cpuMs": 0,
+            "maxCpuMs": 19.700000000186265,
+            "clock": 71.43949999999721,
+            "trajectory": "analytic-per-render-frame"
+          },
+          "shadow": {
+            "state": "ready",
+            "mode": "local",
+            "matchedGeometry": 287,
+            "ambientVertices": 536452,
+            "shadowSize": 0,
+            "shadowBytes": 0,
+            "staticTriangles": 0,
+            "treeInstances": 0,
+            "updates": 0,
+            "lastUpdateCpuMs": 0,
+            "maxUpdateCpuMs": 0,
+            "lastShadowCalls": 0,
+            "lastShadowTriangles": 0,
+            "extraPasses": 0,
+            "selectionBuilds": 0,
+            "shadowIndexBytes": 0,
+            "sourceBytes": 5495013,
+            "filter": "none",
+            "windTests": 0,
+            "windSkips": 0,
+            "windMotionBoundM": 0,
+            "maxWindMotionBoundM": 0,
+            "windThresholdM": 0,
+            "character": {
+              "updates": 0,
+              "size": 0,
+              "bytes": 0,
+              "proxies": 0,
+              "extraPasses": 0,
+              "poseAgeMs": 0,
+              "lastCpuMs": 0,
+              "maxCpuMs": 0,
+              "receiver": "landscape only; actor receives landscape map"
+            }
+          },
+          "boat": {
+            "active": false,
+            "heading": 0,
+            "following": false,
+            "metrics": {
+              "plans": 0,
+              "lateralError": 0,
+              "maxLateralError": 0,
+              "stops": 6
+            }
+          },
+          "planet": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 23,
+              "unloaded": 12,
+              "failures": 0,
+              "residentBytes": 13957670,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 11,
+              "features": 33187,
+              "triangles": 47684,
+              "trees": 3678,
+              "disposed": 40380,
+              "batches": 1676,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 5131,
+                "nodes": 32060,
+                "edges": 66044,
+                "refused": 9993,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 5131,
+                "nodes": 20001,
+                "edges": 38084,
+                "refused": 16664,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 5131,
+                "nodes": 444,
+                "edges": 870,
+                "refused": 24963,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [
+                {
+                  "id": "rail-agent:osm:11005358332:0",
+                  "points": [
+                    {
+                      "x": 513217.884,
+                      "y": 6638220.975
+                    },
+                    {
+                      "x": 513209.034,
+                      "y": 6638249.196
+                    },
+                    {
+                      "x": 513197.6,
+                      "y": 6638286.308
+                    },
+                    {
+                      "x": 513175.4,
+                      "y": 6638355.234
+                    },
+                    {
+                      "x": 513126.641,
+                      "y": 6638512.357
+                    },
+                    {
+                      "x": 513110.603,
+                      "y": 6638564.269
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:2193186045:0",
+                  "points": [
+                    {
+                      "x": 513060.502,
+                      "y": 6638800.06
+                    },
+                    {
+                      "x": 513057.469,
+                      "y": 6638814.866
+                    },
+                    {
+                      "x": 513052.942,
+                      "y": 6638840.263
+                    },
+                    {
+                      "x": 513048.813,
+                      "y": 6638867.926
+                    },
+                    {
+                      "x": 513043.934,
+                      "y": 6638906.291
+                    },
+                    {
+                      "x": 513039.862,
+                      "y": 6638935.519
+                    },
+                    {
+                      "x": 513037.546,
+                      "y": 6638949.836
+                    },
+                    {
+                      "x": 513033.642,
+                      "y": 6638973.437
+                    },
+                    {
+                      "x": 513030.764,
+                      "y": 6638990.294
+                    },
+                    {
+                      "x": 513028.246,
+                      "y": 6639004.506
+                    },
+                    {
+                      "x": 513026.072,
+                      "y": 6639017.252
+                    },
+                    {
+                      "x": 513024.544,
+                      "y": 6639031.4
+                    },
+                    {
+                      "x": 513022.611,
+                      "y": 6639050.195
+                    },
+                    {
+                      "x": 513022.073,
+                      "y": 6639060.345
+                    },
+                    {
+                      "x": 513021.505,
+                      "y": 6639071.286
+                    },
+                    {
+                      "x": 513019.772,
+                      "y": 6639117.609
+                    },
+                    {
+                      "x": 513018.954,
+                      "y": 6639164.659
+                    },
+                    {
+                      "x": 513019.183,
+                      "y": 6639200.243
+                    },
+                    {
+                      "x": 513019.699,
+                      "y": 6639230.851
+                    },
+                    {
+                      "x": 513021.136,
+                      "y": 6639276.12
+                    },
+                    {
+                      "x": 513023.119,
+                      "y": 6639314.393
+                    },
+                    {
+                      "x": 513026.927,
+                      "y": 6639366.5
+                    },
+                    {
+                      "x": 513030.222,
+                      "y": 6639400.866
+                    },
+                    {
+                      "x": 513034.06,
+                      "y": 6639435.027
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:11004332806:0",
+                  "points": [
+                    {
+                      "x": 513374.155,
+                      "y": 6637641.42
+                    },
+                    {
+                      "x": 513375.37,
+                      "y": 6637628.704
+                    },
+                    {
+                      "x": 513376.053,
+                      "y": 6637617.26
+                    },
+                    {
+                      "x": 513376.628,
+                      "y": 6637602.342
+                    },
+                    {
+                      "x": 513377.143,
+                      "y": 6637593.37
+                    },
+                    {
+                      "x": 513377.925,
+                      "y": 6637583.401
+                    },
+                    {
+                      "x": 513379.178,
+                      "y": 6637564.516
+                    },
+                    {
+                      "x": 513380.695,
+                      "y": 6637544.557
+                    },
+                    {
+                      "x": 513382.498,
+                      "y": 6637518.089
+                    },
+                    {
+                      "x": 513384.223,
+                      "y": 6637481.7
+                    },
+                    {
+                      "x": 513384.74,
+                      "y": 6637461.461
+                    },
+                    {
+                      "x": 513384.845,
+                      "y": 6637421.556
+                    },
+                    {
+                      "x": 513384.438,
+                      "y": 6637390.712
+                    },
+                    {
+                      "x": 513383.466,
+                      "y": 6637363.796
+                    },
+                    {
+                      "x": 513382.164,
+                      "y": 6637339.269
+                    },
+                    {
+                      "x": 513379.798,
+                      "y": 6637303.329
+                    },
+                    {
+                      "x": 513375.384,
+                      "y": 6637255.453
+                    },
+                    {
+                      "x": 513371.634,
+                      "y": 6637223.823
+                    },
+                    {
+                      "x": 513365.493,
+                      "y": 6637180.8
+                    },
+                    {
+                      "x": 513361.615,
+                      "y": 6637156.108
+                    },
+                    {
+                      "x": 513355.069,
+                      "y": 6637119.443
+                    },
+                    {
+                      "x": 513347.215,
+                      "y": 6637081.951
+                    },
+                    {
+                      "x": 513340.918,
+                      "y": 6637053.556
+                    },
+                    {
+                      "x": 513335.027,
+                      "y": 6637030.415
+                    },
+                    {
+                      "x": 513325.607,
+                      "y": 6636995.806
+                    },
+                    {
+                      "x": 513319.024,
+                      "y": 6636972.976
+                    },
+                    {
+                      "x": 513314.047,
+                      "y": 6636956.907
+                    },
+                    {
+                      "x": 513308.946,
+                      "y": 6636941.02
+                    },
+                    {
+                      "x": 513299.686,
+                      "y": 6636913.295
+                    },
+                    {
+                      "x": 513289.069,
+                      "y": 6636883.145
+                    },
+                    {
+                      "x": 513278.146,
+                      "y": 6636854.46
+                    },
+                    {
+                      "x": 513268.383,
+                      "y": 6636831.184
+                    },
+                    {
+                      "x": 513259.113,
+                      "y": 6636808.804
+                    },
+                    {
+                      "x": 513249.68,
+                      "y": 6636784.618
+                    },
+                    {
+                      "x": 513243.927,
+                      "y": 6636769.607
+                    },
+                    {
+                      "x": 513241.644,
+                      "y": 6636763.422
+                    },
+                    {
+                      "x": 513237.564,
+                      "y": 6636753.904
+                    },
+                    {
+                      "x": 513228.558,
+                      "y": 6636733.382
+                    },
+                    {
+                      "x": 513217.772,
+                      "y": 6636712.327
+                    },
+                    {
+                      "x": 513204.722,
+                      "y": 6636687.897
+                    },
+                    {
+                      "x": 513195.638,
+                      "y": 6636671.278
+                    },
+                    {
+                      "x": 513186.045,
+                      "y": 6636654.498
+                    },
+                    {
+                      "x": 513174.336,
+                      "y": 6636634.671
+                    },
+                    {
+                      "x": 513163.079,
+                      "y": 6636615.909
+                    },
+                    {
+                      "x": 513145.995,
+                      "y": 6636588.36
+                    },
+                    {
+                      "x": 513125.519,
+                      "y": 6636556.983
+                    },
+                    {
+                      "x": 513113.446,
+                      "y": 6636538.99
+                    },
+                    {
+                      "x": 513097.563,
+                      "y": 6636516.216
+                    },
+                    {
+                      "x": 513080.737,
+                      "y": 6636492.581
+                    },
+                    {
+                      "x": 513063.49,
+                      "y": 6636469.616
+                    },
+                    {
+                      "x": 513057.486,
+                      "y": 6636461.546
+                    },
+                    {
+                      "x": 513045.699,
+                      "y": 6636446.601
+                    },
+                    {
+                      "x": 513021.582,
+                      "y": 6636416.482
+                    },
+                    {
+                      "x": 512995.828,
+                      "y": 6636385.958
+                    },
+                    {
+                      "x": 512963.474,
+                      "y": 6636349.784
+                    },
+                    {
+                      "x": 512939.984,
+                      "y": 6636324.868
+                    },
+                    {
+                      "x": 512922.315,
+                      "y": 6636306.794
+                    },
+                    {
+                      "x": 512898.567,
+                      "y": 6636283.398
+                    },
+                    {
+                      "x": 512879.084,
+                      "y": 6636264.902
+                    },
+                    {
+                      "x": 512855.875,
+                      "y": 6636243.656
+                    },
+                    {
+                      "x": 512835.631,
+                      "y": 6636225.729
+                    },
+                    {
+                      "x": 512809.495,
+                      "y": 6636203.563
+                    },
+                    {
+                      "x": 512793.373,
+                      "y": 6636190.353
+                    },
+                    {
+                      "x": 512769.545,
+                      "y": 6636171.293
+                    },
+                    {
+                      "x": 512741.964,
+                      "y": 6636150.316
+                    },
+                    {
+                      "x": 512714.376,
+                      "y": 6636130.351
+                    },
+                    {
+                      "x": 512687.098,
+                      "y": 6636111.266
+                    },
+                    {
+                      "x": 512659.31,
+                      "y": 6636092.963
+                    },
+                    {
+                      "x": 512630.435,
+                      "y": 6636074.783
+                    },
+                    {
+                      "x": 512606.782,
+                      "y": 6636060.407
+                    },
+                    {
+                      "x": 512571.293,
+                      "y": 6636039.611
+                    },
+                    {
+                      "x": 512539.774,
+                      "y": 6636021.592
+                    },
+                    {
+                      "x": 512503.119,
+                      "y": 6636000.866
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                }
+              ],
+              "flight": {
+                "source": "osm:way:168148111",
+                "x": 479527.0525365236,
+                "y": 6663533.780545849,
+                "height": 94.92531367187527,
+                "phase": "takeoff",
+                "pitch": 0,
+                "synthetic": true
+              },
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 26
+            }
+          }
+        },
+        "planet": {
+          "metrics": {
+            "state": "ready",
+            "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+            "stream": {
+              "loaded": 23,
+              "unloaded": 12,
+              "failures": 0,
+              "residentBytes": 13957670,
+              "active": 0,
+              "queued": 0
+            },
+            "render": {
+              "tiles": 11,
+              "features": 33187,
+              "triangles": 47684,
+              "trees": 3678,
+              "disposed": 40380,
+              "batches": 1676,
+              "maxBatchMs": 2060.600000000559
+            },
+            "graph": {
+              "foot": {
+                "features": 5131,
+                "nodes": 32060,
+                "edges": 66044,
+                "refused": 9993,
+                "routes": 0,
+                "visited": 0
+              },
+              "car": {
+                "features": 5131,
+                "nodes": 20001,
+                "edges": 38084,
+                "refused": 16664,
+                "routes": 0,
+                "visited": 0
+              },
+              "rail": {
+                "features": 5131,
+                "nodes": 444,
+                "edges": 870,
+                "refused": 24963,
+                "routes": 0,
+                "visited": 0
+              }
+            },
+            "car": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "maxInstallMs": 1390.4000000003725,
+            "failures": [],
+            "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+            "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+            "transport": {
+              "trains": 0,
+              "aircraft": 0,
+              "railStops": 0,
+              "railRoutes": [
+                {
+                  "id": "rail-agent:osm:11005358332:0",
+                  "points": [
+                    {
+                      "x": 513217.884,
+                      "y": 6638220.975
+                    },
+                    {
+                      "x": 513209.034,
+                      "y": 6638249.196
+                    },
+                    {
+                      "x": 513197.6,
+                      "y": 6638286.308
+                    },
+                    {
+                      "x": 513175.4,
+                      "y": 6638355.234
+                    },
+                    {
+                      "x": 513126.641,
+                      "y": 6638512.357
+                    },
+                    {
+                      "x": 513110.603,
+                      "y": 6638564.269
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:2193186045:0",
+                  "points": [
+                    {
+                      "x": 513060.502,
+                      "y": 6638800.06
+                    },
+                    {
+                      "x": 513057.469,
+                      "y": 6638814.866
+                    },
+                    {
+                      "x": 513052.942,
+                      "y": 6638840.263
+                    },
+                    {
+                      "x": 513048.813,
+                      "y": 6638867.926
+                    },
+                    {
+                      "x": 513043.934,
+                      "y": 6638906.291
+                    },
+                    {
+                      "x": 513039.862,
+                      "y": 6638935.519
+                    },
+                    {
+                      "x": 513037.546,
+                      "y": 6638949.836
+                    },
+                    {
+                      "x": 513033.642,
+                      "y": 6638973.437
+                    },
+                    {
+                      "x": 513030.764,
+                      "y": 6638990.294
+                    },
+                    {
+                      "x": 513028.246,
+                      "y": 6639004.506
+                    },
+                    {
+                      "x": 513026.072,
+                      "y": 6639017.252
+                    },
+                    {
+                      "x": 513024.544,
+                      "y": 6639031.4
+                    },
+                    {
+                      "x": 513022.611,
+                      "y": 6639050.195
+                    },
+                    {
+                      "x": 513022.073,
+                      "y": 6639060.345
+                    },
+                    {
+                      "x": 513021.505,
+                      "y": 6639071.286
+                    },
+                    {
+                      "x": 513019.772,
+                      "y": 6639117.609
+                    },
+                    {
+                      "x": 513018.954,
+                      "y": 6639164.659
+                    },
+                    {
+                      "x": 513019.183,
+                      "y": 6639200.243
+                    },
+                    {
+                      "x": 513019.699,
+                      "y": 6639230.851
+                    },
+                    {
+                      "x": 513021.136,
+                      "y": 6639276.12
+                    },
+                    {
+                      "x": 513023.119,
+                      "y": 6639314.393
+                    },
+                    {
+                      "x": 513026.927,
+                      "y": 6639366.5
+                    },
+                    {
+                      "x": 513030.222,
+                      "y": 6639400.866
+                    },
+                    {
+                      "x": 513034.06,
+                      "y": 6639435.027
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                },
+                {
+                  "id": "rail-agent:osm:11004332806:0",
+                  "points": [
+                    {
+                      "x": 513374.155,
+                      "y": 6637641.42
+                    },
+                    {
+                      "x": 513375.37,
+                      "y": 6637628.704
+                    },
+                    {
+                      "x": 513376.053,
+                      "y": 6637617.26
+                    },
+                    {
+                      "x": 513376.628,
+                      "y": 6637602.342
+                    },
+                    {
+                      "x": 513377.143,
+                      "y": 6637593.37
+                    },
+                    {
+                      "x": 513377.925,
+                      "y": 6637583.401
+                    },
+                    {
+                      "x": 513379.178,
+                      "y": 6637564.516
+                    },
+                    {
+                      "x": 513380.695,
+                      "y": 6637544.557
+                    },
+                    {
+                      "x": 513382.498,
+                      "y": 6637518.089
+                    },
+                    {
+                      "x": 513384.223,
+                      "y": 6637481.7
+                    },
+                    {
+                      "x": 513384.74,
+                      "y": 6637461.461
+                    },
+                    {
+                      "x": 513384.845,
+                      "y": 6637421.556
+                    },
+                    {
+                      "x": 513384.438,
+                      "y": 6637390.712
+                    },
+                    {
+                      "x": 513383.466,
+                      "y": 6637363.796
+                    },
+                    {
+                      "x": 513382.164,
+                      "y": 6637339.269
+                    },
+                    {
+                      "x": 513379.798,
+                      "y": 6637303.329
+                    },
+                    {
+                      "x": 513375.384,
+                      "y": 6637255.453
+                    },
+                    {
+                      "x": 513371.634,
+                      "y": 6637223.823
+                    },
+                    {
+                      "x": 513365.493,
+                      "y": 6637180.8
+                    },
+                    {
+                      "x": 513361.615,
+                      "y": 6637156.108
+                    },
+                    {
+                      "x": 513355.069,
+                      "y": 6637119.443
+                    },
+                    {
+                      "x": 513347.215,
+                      "y": 6637081.951
+                    },
+                    {
+                      "x": 513340.918,
+                      "y": 6637053.556
+                    },
+                    {
+                      "x": 513335.027,
+                      "y": 6637030.415
+                    },
+                    {
+                      "x": 513325.607,
+                      "y": 6636995.806
+                    },
+                    {
+                      "x": 513319.024,
+                      "y": 6636972.976
+                    },
+                    {
+                      "x": 513314.047,
+                      "y": 6636956.907
+                    },
+                    {
+                      "x": 513308.946,
+                      "y": 6636941.02
+                    },
+                    {
+                      "x": 513299.686,
+                      "y": 6636913.295
+                    },
+                    {
+                      "x": 513289.069,
+                      "y": 6636883.145
+                    },
+                    {
+                      "x": 513278.146,
+                      "y": 6636854.46
+                    },
+                    {
+                      "x": 513268.383,
+                      "y": 6636831.184
+                    },
+                    {
+                      "x": 513259.113,
+                      "y": 6636808.804
+                    },
+                    {
+                      "x": 513249.68,
+                      "y": 6636784.618
+                    },
+                    {
+                      "x": 513243.927,
+                      "y": 6636769.607
+                    },
+                    {
+                      "x": 513241.644,
+                      "y": 6636763.422
+                    },
+                    {
+                      "x": 513237.564,
+                      "y": 6636753.904
+                    },
+                    {
+                      "x": 513228.558,
+                      "y": 6636733.382
+                    },
+                    {
+                      "x": 513217.772,
+                      "y": 6636712.327
+                    },
+                    {
+                      "x": 513204.722,
+                      "y": 6636687.897
+                    },
+                    {
+                      "x": 513195.638,
+                      "y": 6636671.278
+                    },
+                    {
+                      "x": 513186.045,
+                      "y": 6636654.498
+                    },
+                    {
+                      "x": 513174.336,
+                      "y": 6636634.671
+                    },
+                    {
+                      "x": 513163.079,
+                      "y": 6636615.909
+                    },
+                    {
+                      "x": 513145.995,
+                      "y": 6636588.36
+                    },
+                    {
+                      "x": 513125.519,
+                      "y": 6636556.983
+                    },
+                    {
+                      "x": 513113.446,
+                      "y": 6636538.99
+                    },
+                    {
+                      "x": 513097.563,
+                      "y": 6636516.216
+                    },
+                    {
+                      "x": 513080.737,
+                      "y": 6636492.581
+                    },
+                    {
+                      "x": 513063.49,
+                      "y": 6636469.616
+                    },
+                    {
+                      "x": 513057.486,
+                      "y": 6636461.546
+                    },
+                    {
+                      "x": 513045.699,
+                      "y": 6636446.601
+                    },
+                    {
+                      "x": 513021.582,
+                      "y": 6636416.482
+                    },
+                    {
+                      "x": 512995.828,
+                      "y": 6636385.958
+                    },
+                    {
+                      "x": 512963.474,
+                      "y": 6636349.784
+                    },
+                    {
+                      "x": 512939.984,
+                      "y": 6636324.868
+                    },
+                    {
+                      "x": 512922.315,
+                      "y": 6636306.794
+                    },
+                    {
+                      "x": 512898.567,
+                      "y": 6636283.398
+                    },
+                    {
+                      "x": 512879.084,
+                      "y": 6636264.902
+                    },
+                    {
+                      "x": 512855.875,
+                      "y": 6636243.656
+                    },
+                    {
+                      "x": 512835.631,
+                      "y": 6636225.729
+                    },
+                    {
+                      "x": 512809.495,
+                      "y": 6636203.563
+                    },
+                    {
+                      "x": 512793.373,
+                      "y": 6636190.353
+                    },
+                    {
+                      "x": 512769.545,
+                      "y": 6636171.293
+                    },
+                    {
+                      "x": 512741.964,
+                      "y": 6636150.316
+                    },
+                    {
+                      "x": 512714.376,
+                      "y": 6636130.351
+                    },
+                    {
+                      "x": 512687.098,
+                      "y": 6636111.266
+                    },
+                    {
+                      "x": 512659.31,
+                      "y": 6636092.963
+                    },
+                    {
+                      "x": 512630.435,
+                      "y": 6636074.783
+                    },
+                    {
+                      "x": 512606.782,
+                      "y": 6636060.407
+                    },
+                    {
+                      "x": 512571.293,
+                      "y": 6636039.611
+                    },
+                    {
+                      "x": 512539.774,
+                      "y": 6636021.592
+                    },
+                    {
+                      "x": 512503.119,
+                      "y": 6636000.866
+                    }
+                  ],
+                  "synthetic": true,
+                  "restriction": "Stops at unknown crossings and loaded route end"
+                }
+              ],
+              "flight": {
+                "source": "osm:way:168148111",
+                "x": 479527.0525365236,
+                "y": 6663533.780545849,
+                "height": 94.92531367187527,
+                "phase": "takeoff",
+                "pitch": 0,
+                "synthetic": true
+              },
+              "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+              "cpuMs": 0,
+              "maxCpuMs": 26
+            }
+          },
+          "ready": true,
+          "region": "FR-86",
+          "position": {
+            "lat": 46.57079599782279,
+            "lon": 0.6488743056261055
+          },
+          "car": {
+            "position": {
+              "x": -17969.180730848264,
+              "y": -1.4354744543205413,
+              "z": 13854.36917026967
+            },
+            "heading": 3.0238952888789337,
+            "speed": 0,
+            "steering": 0,
+            "active": false,
+            "reason": "",
+            "odometer": 0,
+            "braking": false,
+            "metrics": {
+              "steps": 0,
+              "refusals": 0,
+              "maxSpeed": 0
+            },
+            "placed": true
+          },
+          "mapOpen": false
+        },
+        "support": {
+          "physical": 2.316872109397636,
+          "rendered": 2.31683808700177,
+          "error": -0.00003402239586591804,
+          "mesh": "planet-terrain-126:1613"
+        }
+      },
+      "still": "Simulation held after loaded scene update; diagnostic still, not a native traversal."
+    },
+    {
+      "name": "Poitiers-Biard",
+      "error": "Error: page.evaluate: Error: No admitted source road near this diagnostic location\n    at Object.regionPlace (http://localhost:5380/endless-earth/assets/index-Db0mW51J.js:4886:8938)\n    at async <anonymous>:381:23"
+    }
+  ],
+  "map": {
+    "open": true,
+    "canvas": {
+      "x": 39.390625,
+      "y": 213,
+      "width": 883.1875,
+      "height": 346
+    }
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "map": {
+      "x": 3.890625,
+      "y": 15.875,
+      "width": 384.1875,
+      "height": 812.234375
+    },
+    "touch": "Viewport check only; native CDP gestures are a separate scenario."
+  },
+  "final": {
+    "metrics": {
+      "state": "ready",
+      "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+      "stream": {
+        "loaded": 24,
+        "unloaded": 13,
+        "failures": 0,
+        "residentBytes": 16353909,
+        "active": 0,
+        "queued": 0
+      },
+      "render": {
+        "tiles": 11,
+        "features": 39903,
+        "triangles": 49732,
+        "trees": 3842,
+        "disposed": 41066,
+        "batches": 1880,
+        "maxBatchMs": 2060.600000000559
+      },
+      "graph": {
+        "foot": {
+          "features": 6620,
+          "nodes": 37235,
+          "edges": 76966,
+          "refused": 10932,
+          "routes": 0,
+          "visited": 0
+        },
+        "car": {
+          "features": 6620,
+          "nodes": 23328,
+          "edges": 44202,
+          "refused": 18074,
+          "routes": 0,
+          "visited": 0
+        },
+        "rail": {
+          "features": 6620,
+          "nodes": 906,
+          "edges": 1800,
+          "refused": 27069,
+          "routes": 0,
+          "visited": 0
+        }
+      },
+      "car": {
+        "steps": 0,
+        "refusals": 0,
+        "maxSpeed": 0
+      },
+      "maxInstallMs": 1390.4000000003725,
+      "failures": [],
+      "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+      "floatingOrigin": "provider tested; existing pilot rendering not rebased",
+      "transport": {
+        "trains": 1,
+        "aircraft": 0,
+        "railStops": 0,
+        "railRoutes": [
+          {
+            "id": "rail-agent:osm:11005358332:0",
+            "points": [
+              {
+                "x": 513217.884,
+                "y": 6638220.975
+              },
+              {
+                "x": 513209.034,
+                "y": 6638249.196
+              },
+              {
+                "x": 513197.6,
+                "y": 6638286.308
+              },
+              {
+                "x": 513175.4,
+                "y": 6638355.234
+              },
+              {
+                "x": 513126.641,
+                "y": 6638512.357
+              },
+              {
+                "x": 513110.603,
+                "y": 6638564.269
+              }
+            ],
+            "synthetic": true,
+            "restriction": "Stops at unknown crossings and loaded route end"
+          },
+          {
+            "id": "rail-agent:osm:2193186045:0",
+            "points": [
+              {
+                "x": 513060.502,
+                "y": 6638800.06
+              },
+              {
+                "x": 513057.469,
+                "y": 6638814.866
+              },
+              {
+                "x": 513052.942,
+                "y": 6638840.263
+              },
+              {
+                "x": 513048.813,
+                "y": 6638867.926
+              },
+              {
+                "x": 513043.934,
+                "y": 6638906.291
+              },
+              {
+                "x": 513039.862,
+                "y": 6638935.519
+              },
+              {
+                "x": 513037.546,
+                "y": 6638949.836
+              },
+              {
+                "x": 513033.642,
+                "y": 6638973.437
+              },
+              {
+                "x": 513030.764,
+                "y": 6638990.294
+              },
+              {
+                "x": 513028.246,
+                "y": 6639004.506
+              },
+              {
+                "x": 513026.072,
+                "y": 6639017.252
+              },
+              {
+                "x": 513024.544,
+                "y": 6639031.4
+              },
+              {
+                "x": 513022.611,
+                "y": 6639050.195
+              },
+              {
+                "x": 513022.073,
+                "y": 6639060.345
+              },
+              {
+                "x": 513021.505,
+                "y": 6639071.286
+              },
+              {
+                "x": 513019.772,
+                "y": 6639117.609
+              },
+              {
+                "x": 513018.954,
+                "y": 6639164.659
+              },
+              {
+                "x": 513019.183,
+                "y": 6639200.243
+              },
+              {
+                "x": 513019.699,
+                "y": 6639230.851
+              },
+              {
+                "x": 513021.136,
+                "y": 6639276.12
+              },
+              {
+                "x": 513023.119,
+                "y": 6639314.393
+              },
+              {
+                "x": 513026.927,
+                "y": 6639366.5
+              },
+              {
+                "x": 513030.222,
+                "y": 6639400.866
+              },
+              {
+                "x": 513034.06,
+                "y": 6639435.027
+              }
+            ],
+            "synthetic": true,
+            "restriction": "Stops at unknown crossings and loaded route end"
+          },
+          {
+            "id": "rail-agent:osm:11004332806:0",
+            "points": [
+              {
+                "x": 513374.155,
+                "y": 6637641.42
+              },
+              {
+                "x": 513375.37,
+                "y": 6637628.704
+              },
+              {
+                "x": 513376.053,
+                "y": 6637617.26
+              },
+              {
+                "x": 513376.628,
+                "y": 6637602.342
+              },
+              {
+                "x": 513377.143,
+                "y": 6637593.37
+              },
+              {
+                "x": 513377.925,
+                "y": 6637583.401
+              },
+              {
+                "x": 513379.178,
+                "y": 6637564.516
+              },
+              {
+                "x": 513380.695,
+                "y": 6637544.557
+              },
+              {
+                "x": 513382.498,
+                "y": 6637518.089
+              },
+              {
+                "x": 513384.223,
+                "y": 6637481.7
+              },
+              {
+                "x": 513384.74,
+                "y": 6637461.461
+              },
+              {
+                "x": 513384.845,
+                "y": 6637421.556
+              },
+              {
+                "x": 513384.438,
+                "y": 6637390.712
+              },
+              {
+                "x": 513383.466,
+                "y": 6637363.796
+              },
+              {
+                "x": 513382.164,
+                "y": 6637339.269
+              },
+              {
+                "x": 513379.798,
+                "y": 6637303.329
+              },
+              {
+                "x": 513375.384,
+                "y": 6637255.453
+              },
+              {
+                "x": 513371.634,
+                "y": 6637223.823
+              },
+              {
+                "x": 513365.493,
+                "y": 6637180.8
+              },
+              {
+                "x": 513361.615,
+                "y": 6637156.108
+              },
+              {
+                "x": 513355.069,
+                "y": 6637119.443
+              },
+              {
+                "x": 513347.215,
+                "y": 6637081.951
+              },
+              {
+                "x": 513340.918,
+                "y": 6637053.556
+              },
+              {
+                "x": 513335.027,
+                "y": 6637030.415
+              },
+              {
+                "x": 513325.607,
+                "y": 6636995.806
+              },
+              {
+                "x": 513319.024,
+                "y": 6636972.976
+              },
+              {
+                "x": 513314.047,
+                "y": 6636956.907
+              },
+              {
+                "x": 513308.946,
+                "y": 6636941.02
+              },
+              {
+                "x": 513299.686,
+                "y": 6636913.295
+              },
+              {
+                "x": 513289.069,
+                "y": 6636883.145
+              },
+              {
+                "x": 513278.146,
+                "y": 6636854.46
+              },
+              {
+                "x": 513268.383,
+                "y": 6636831.184
+              },
+              {
+                "x": 513259.113,
+                "y": 6636808.804
+              },
+              {
+                "x": 513249.68,
+                "y": 6636784.618
+              },
+              {
+                "x": 513243.927,
+                "y": 6636769.607
+              },
+              {
+                "x": 513241.644,
+                "y": 6636763.422
+              },
+              {
+                "x": 513237.564,
+                "y": 6636753.904
+              },
+              {
+                "x": 513228.558,
+                "y": 6636733.382
+              },
+              {
+                "x": 513217.772,
+                "y": 6636712.327
+              },
+              {
+                "x": 513204.722,
+                "y": 6636687.897
+              },
+              {
+                "x": 513195.638,
+                "y": 6636671.278
+              },
+              {
+                "x": 513186.045,
+                "y": 6636654.498
+              },
+              {
+                "x": 513174.336,
+                "y": 6636634.671
+              },
+              {
+                "x": 513163.079,
+                "y": 6636615.909
+              },
+              {
+                "x": 513145.995,
+                "y": 6636588.36
+              },
+              {
+                "x": 513125.519,
+                "y": 6636556.983
+              },
+              {
+                "x": 513113.446,
+                "y": 6636538.99
+              },
+              {
+                "x": 513097.563,
+                "y": 6636516.216
+              },
+              {
+                "x": 513080.737,
+                "y": 6636492.581
+              },
+              {
+                "x": 513063.49,
+                "y": 6636469.616
+              },
+              {
+                "x": 513057.486,
+                "y": 6636461.546
+              },
+              {
+                "x": 513045.699,
+                "y": 6636446.601
+              },
+              {
+                "x": 513021.582,
+                "y": 6636416.482
+              },
+              {
+                "x": 512995.828,
+                "y": 6636385.958
+              },
+              {
+                "x": 512963.474,
+                "y": 6636349.784
+              },
+              {
+                "x": 512939.984,
+                "y": 6636324.868
+              },
+              {
+                "x": 512922.315,
+                "y": 6636306.794
+              },
+              {
+                "x": 512898.567,
+                "y": 6636283.398
+              },
+              {
+                "x": 512879.084,
+                "y": 6636264.902
+              },
+              {
+                "x": 512855.875,
+                "y": 6636243.656
+              },
+              {
+                "x": 512835.631,
+                "y": 6636225.729
+              },
+              {
+                "x": 512809.495,
+                "y": 6636203.563
+              },
+              {
+                "x": 512793.373,
+                "y": 6636190.353
+              },
+              {
+                "x": 512769.545,
+                "y": 6636171.293
+              },
+              {
+                "x": 512741.964,
+                "y": 6636150.316
+              },
+              {
+                "x": 512714.376,
+                "y": 6636130.351
+              },
+              {
+                "x": 512687.098,
+                "y": 6636111.266
+              },
+              {
+                "x": 512659.31,
+                "y": 6636092.963
+              },
+              {
+                "x": 512630.435,
+                "y": 6636074.783
+              },
+              {
+                "x": 512606.782,
+                "y": 6636060.407
+              },
+              {
+                "x": 512571.293,
+                "y": 6636039.611
+              },
+              {
+                "x": 512539.774,
+                "y": 6636021.592
+              },
+              {
+                "x": 512503.119,
+                "y": 6636000.866
+              }
+            ],
+            "synthetic": true,
+            "restriction": "Stops at unknown crossings and loaded route end"
+          },
+          {
+            "id": "rail-agent:osm:506159885:0",
+            "points": [
+              {
+                "x": 520106.829,
+                "y": 6610086.813
+              },
+              {
+                "x": 520073.209,
+                "y": 6610073.592
+              },
+              {
+                "x": 520040.901,
+                "y": 6610056.055
+              },
+              {
+                "x": 520005.712,
+                "y": 6610033.936
+              },
+              {
+                "x": 519969.914,
+                "y": 6610008.815
+              },
+              {
+                "x": 519936.306,
+                "y": 6609978.806
+              },
+              {
+                "x": 519890.38,
+                "y": 6609933.776
+              },
+              {
+                "x": 519856.554,
+                "y": 6609904.152
+              },
+              {
+                "x": 519822.706,
+                "y": 6609877.428
+              },
+              {
+                "x": 519786.803,
+                "y": 6609853
+              }
+            ],
+            "synthetic": true,
+            "restriction": "Stops at unknown crossings and loaded route end"
+          },
+          {
+            "id": "rail-agent:osm:506159888:0",
+            "points": [
+              {
+                "x": 520727.56,
+                "y": 6610243.444
+              },
+              {
+                "x": 520770.148,
+                "y": 6610244.425
+              },
+              {
+                "x": 520814.179,
+                "y": 6610243.153
+              },
+              {
+                "x": 520858.927,
+                "y": 6610237.916
+              },
+              {
+                "x": 520900.776,
+                "y": 6610228.454
+              },
+              {
+                "x": 520944.768,
+                "y": 6610214.719
+              },
+              {
+                "x": 520991.628,
+                "y": 6610193.854
+              },
+              {
+                "x": 521031.669,
+                "y": 6610171.703
+              },
+              {
+                "x": 521068.187,
+                "y": 6610148.823
+              },
+              {
+                "x": 521103.918,
+                "y": 6610119.789
+              },
+              {
+                "x": 521134.144,
+                "y": 6610089.585
+              },
+              {
+                "x": 521166.459,
+                "y": 6610052.309
+              }
+            ],
+            "synthetic": true,
+            "restriction": "Stops at unknown crossings and loaded route end"
+          },
+          {
+            "id": "rail-agent:osm:506159876:0",
+            "points": [
+              {
+                "x": 519523.977,
+                "y": 6609774.799
+              },
+              {
+                "x": 519563.473,
+                "y": 6609777.042
+              },
+              {
+                "x": 519603.917,
+                "y": 6609782.313
+              },
+              {
+                "x": 519646.561,
+                "y": 6609792.24
+              },
+              {
+                "x": 519687.643,
+                "y": 6609805.047
+              },
+              {
+                "x": 519733.367,
+                "y": 6609823.45
+              },
+              {
+                "x": 519775.538,
+                "y": 6609846.313
+              }
+            ],
+            "synthetic": true,
+            "restriction": "Stops at unknown crossings and loaded route end"
+          }
+        ],
+        "flight": {
+          "source": "osm:way:168148111",
+          "x": 479543.2438304171,
+          "y": 6663535.223994025,
+          "height": 94.92531367187527,
+          "phase": "takeoff",
+          "pitch": 0,
+          "synthetic": true
+        },
+        "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+        "cpuMs": 0,
+        "maxCpuMs": 26
+      }
+    },
+    "ready": true,
+    "region": "FR-86",
+    "position": {
+      "lat": 46.57079599782279,
+      "lon": 0.6488743056261055
+    },
+    "car": {
+      "position": {
+        "x": -17969.180730848264,
+        "y": -1.4354744543205413,
+        "z": 13854.36917026967
+      },
+      "heading": 3.0238952888789337,
+      "speed": 0,
+      "steering": 0,
+      "active": false,
+      "reason": "",
+      "odometer": 0,
+      "braking": false,
+      "metrics": {
+        "steps": 0,
+        "refusals": 0,
+        "maxSpeed": 0
+      },
+      "placed": true
+    },
+    "mapOpen": true
+  }
+}

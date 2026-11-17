@@ -1,0 +1,612 @@
+{
+  "defects": [
+    {
+      "priority": "P0",
+      "name": "spawn-SaintPierre-foot",
+      "gps": {
+        "lat": 46.70243785246074,
+        "lon": 0.87844366037263
+      },
+      "tiles": [
+        "131:1617"
+      ],
+      "movement": null,
+      "vehicleRefusal": null,
+      "forwardInspection": null,
+      "evidence": "spawn-SaintPierre-foot.json",
+      "cause": "See exact first refusal and forward inspection; source plan can exceed physical support/clearance.",
+      "consequence": "Selected journey incomplete.",
+      "reproduction": "See exact from/to/mode in the linked case chosen object; invoke traverse-mission-26-2.mjs with those values and port 5401.",
+      "possibleCorrection": "Inspect local source, rendered support and preparation ownership; no invented access or positional repair."
+    },
+    {
+      "priority": "P0",
+      "name": "Chauvigny-foot-21km-foot",
+      "gps": {
+        "lat": 46.668680925698844,
+        "lon": 0.580081777054517
+      },
+      "tiles": [
+        "125:1615",
+        "125:1616",
+        "126:1613",
+        "126:1614",
+        "126:1615"
+      ],
+      "movement": {
+        "position": {
+          "x": -23235.287309936175,
+          "y": -43.42002024107349,
+          "z": 2963.2353512053305
+        },
+        "requested": {
+          "x": -23235.287696051102,
+          "z": 2963.1373924295394
+        },
+        "currentHeight": -43.42002024107349,
+        "nextHeight": null,
+        "horizontalM": 0.09795953674464254,
+        "riseM": null,
+        "slope": null,
+        "limit": 0.7,
+        "rule": "obstacle",
+        "obstruction": {
+          "reason": "tile-loading"
+        },
+        "gps": {
+          "lat": 46.66868180567347,
+          "lon": 0.5800817821115583
+        },
+        "admission": {
+          "ok": false,
+          "reason": "tile-loading"
+        }
+      },
+      "vehicleRefusal": null,
+      "forwardInspection": {
+        "height": null,
+        "admission": {
+          "ok": false,
+          "reason": "tile-loading"
+        },
+        "clear": false,
+        "collision": {
+          "surface": "planet-terrain",
+          "obstacle": "tile-loading",
+          "access": {
+            "clear": false,
+            "support": null,
+            "slope": 0.7,
+            "reasons": []
+          },
+          "building": null,
+          "collider": null
+        },
+        "gps": {
+          "lat": 46.668682273155255,
+          "lon": 0.580081779468824
+        }
+      },
+      "evidence": "Chauvigny-foot-21km-foot.json",
+      "cause": "See exact first refusal and forward inspection; source plan can exceed physical support/clearance.",
+      "consequence": "Selected journey incomplete.",
+      "reproduction": "See exact from/to/mode in the linked case chosen object; invoke traverse-mission-26-2.mjs with those values and port 5401.",
+      "possibleCorrection": "Inspect local source, rendered support and preparation ownership; no invented access or positional repair."
+    },
+    {
+      "priority": "P0",
+      "name": "Chauvigny-furthest-connected-source-car",
+      "gps": {
+        "lat": 46.57231424499911,
+        "lon": 0.6495793142387524
+      },
+      "tiles": [
+        "126:1613"
+      ],
+      "movement": null,
+      "vehicleRefusal": {
+        "position": {
+          "x": -17929.015977106992,
+          "y": 2.3133757834780857,
+          "z": 13690.774246699431
+        },
+        "heading": 2.3198197910846927,
+        "speed": 0,
+        "steering": -0.47859611796611784,
+        "reason": "unknown-land-access",
+        "odometer": 145.01496871562244,
+        "ground": {
+          "height": 2.3133757834780857,
+          "normal": {
+            "x": 0.09113018414228344,
+            "y": 0.9948016341592651,
+            "z": 0.04544225139942815
+          },
+          "slope": 0.10236389148404058,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1613",
+          "face": 0,
+          "ok": true,
+          "drivable": true,
+          "road": "osm:way:41386481",
+          "width": 4.8,
+          "speedLimit": 13.9,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "active": true
+      },
+      "forwardInspection": {
+        "height": 2.2981962990093754,
+        "admission": {
+          "height": 2.2981962990093754,
+          "normal": {
+            "x": 0.09113018414228344,
+            "y": 0.9948016341592651,
+            "z": 0.04544225139942815
+          },
+          "slope": 0.10236389148404058,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1613",
+          "face": 0,
+          "ok": true,
+          "drivable": false,
+          "road": "osm:way:41386481",
+          "width": 4.8,
+          "speedLimit": 13.9,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "clear": true,
+        "collision": {
+          "surface": "planet-terrain",
+          "obstacle": null,
+          "access": {
+            "clear": true,
+            "support": null,
+            "slope": 0.7,
+            "reasons": []
+          },
+          "building": null,
+          "collider": null
+        },
+        "gps": {
+          "lat": 46.57231383214212,
+          "lon": 0.649581184337457
+        }
+      },
+      "evidence": "Chauvigny-furthest-connected-source-car.json",
+      "cause": "unknown-land-access",
+      "consequence": "Selected journey incomplete.",
+      "reproduction": "See exact from/to/mode in the linked case chosen object; invoke traverse-mission-26-2.mjs with those values and port 5401.",
+      "possibleCorrection": "Inspect local source, rendered support and preparation ownership; no invented access or positional repair.",
+      "sourceRoad": "osm:way:41386481",
+      "humanMovementDiagnosticIsVehicleCause": false
+    },
+    {
+      "priority": "P0",
+      "name": "Vallee-car-40km-car",
+      "gps": {
+        "lat": 46.57732004297148,
+        "lon": 0.6316443492300177
+      },
+      "tiles": [
+        "126:1614"
+      ],
+      "movement": null,
+      "vehicleRefusal": {
+        "position": {
+          "x": -19298.385430858612,
+          "y": -35.32285997494651,
+          "z": 13133.528816415275
+        },
+        "heading": 0.9327610727780775,
+        "speed": 0,
+        "steering": -0.12051969885714492,
+        "reason": "road-height-discontinuity",
+        "odometer": 3882.8294737174283,
+        "ground": {
+          "height": -35.32285997494651,
+          "normal": {
+            "x": 0.024142045338809433,
+            "y": 0.9992388568500999,
+            "z": -0.03064096290531006
+          },
+          "slope": 0.03903877664583386,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1614",
+          "face": 46130,
+          "ok": true,
+          "drivable": true,
+          "road": "osm:way:927245732",
+          "width": 7,
+          "speedLimit": 25,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "active": true
+      },
+      "forwardInspection": {
+        "height": -35.16724071008718,
+        "admission": {
+          "height": -35.16724071008718,
+          "normal": {
+            "x": -0.040888665928801374,
+            "y": 0.9991448092995632,
+            "z": -0.006145490078251115
+          },
+          "slope": 0.04138330531423672,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "126:1614",
+          "face": 19,
+          "ok": true,
+          "drivable": false,
+          "road": "osm:way:927245732",
+          "width": 7,
+          "speedLimit": 25,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "clear": true,
+        "collision": {
+          "surface": "planet-terrain",
+          "obstacle": null,
+          "access": {
+            "clear": true,
+            "support": null,
+            "slope": 0.7,
+            "reasons": []
+          },
+          "building": null,
+          "collider": null
+        },
+        "gps": {
+          "lat": 46.57731933540728,
+          "lon": 0.6316460211643125
+        }
+      },
+      "evidence": "Vallee-car-40km-car.json",
+      "cause": "road-height-discontinuity",
+      "consequence": "Selected journey incomplete.",
+      "reproduction": "See exact from/to/mode in the linked case chosen object; invoke traverse-mission-26-2.mjs with those values and port 5401.",
+      "possibleCorrection": "Inspect local source, rendered support and preparation ownership; no invented access or positional repair.",
+      "sourceRoad": "osm:way:927245732",
+      "humanMovementDiagnosticIsVehicleCause": false
+    },
+    {
+      "priority": "P0",
+      "name": "osm:way:450089955",
+      "gps": {
+        "lat": 46.68630855001702,
+        "lon": 0.8849814456377615
+      },
+      "localStart": {
+        "x": 42.79899434831618,
+        "z": 997.2474764569104
+      },
+      "evidence": "seam-strips.json",
+      "cause": {
+        "position": {
+          "x": 44.44256264237162,
+          "y": -33.09430256239984,
+          "z": 1001.0390776375132
+        },
+        "requested": {
+          "x": 44.452174152863165,
+          "z": 1001.0612507438325
+        },
+        "currentHeight": -33.09430256239984,
+        "nextHeight": -33.101578343886516,
+        "horizontalM": 0.02416666666664483,
+        "riseM": -0.0072757814866761805,
+        "slope": -0.30106682013859676,
+        "limit": 0.7,
+        "rule": "obstacle",
+        "obstruction": {
+          "reason": "steep-support",
+          "source": "IGN LHD numeric MNT; 2 m derivative"
+        },
+        "gps": {
+          "lat": 46.68630735491607,
+          "lon": 0.8849822009435142
+        },
+        "admission": {
+          "ok": false,
+          "reason": "steep-support",
+          "height": -33.101578343886516,
+          "normal": {
+            "x": -0.42621386187637667,
+            "y": 0.7637180048207515,
+            "z": 0.4848469377618421
+          },
+          "slope": 0.8452727329286959,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "131:1616",
+          "face": 3
+        }
+      },
+      "consequence": "Independent pilot boundary strip incomplete.",
+      "possibleCorrection": "Inspect exact forward support and inherited geometry; do not widen or remove obstacles to force a pass."
+    },
+    {
+      "priority": "P0",
+      "name": "osm:way:757440678",
+      "gps": {
+        "lat": 46.70428847154262,
+        "lon": 0.8784240063731463
+      },
+      "localStart": {
+        "x": -453.38951808523626,
+        "z": -997.9906944387394
+      },
+      "evidence": "seam-strips.json",
+      "cause": {
+        "position": {
+          "x": -456.27873399486396,
+          "y": -35.66930362963424,
+          "z": -1000.5966521236089
+        },
+        "requested": {
+          "x": -456.2966794352964,
+          "z": -1000.6128381961857
+        },
+        "currentHeight": -35.66930362963424,
+        "nextHeight": -35.6738930266229,
+        "horizontalM": 0.024166666666665435,
+        "riseM": -0.004589396988656347,
+        "slope": -0.18990608228923783,
+        "limit": 0.7,
+        "rule": "obstacle",
+        "obstruction": {
+          "reason": "steep-support",
+          "source": "IGN LHD numeric MNT; 2 m derivative"
+        },
+        "gps": {
+          "lat": 46.70428861694391,
+          "lon": 0.8784237713373455
+        },
+        "admission": {
+          "ok": false,
+          "reason": "steep-support",
+          "height": -35.6738930266229,
+          "normal": {
+            "x": -0.4059633268060063,
+            "y": 0.7634359765269051,
+            "z": 0.5023537469085013
+          },
+          "slope": 0.8460218418176431,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "131:1617",
+          "face": 30
+        }
+      },
+      "consequence": "Independent pilot boundary strip incomplete.",
+      "possibleCorrection": "Inspect exact forward support and inherited geometry; do not widen or remove obstacles to force a pass."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation terrain-refine:131:1616",
+      "tile": "131:1616",
+      "tileCentreGPS": {
+        "lon": 0.8888453641744886,
+        "lat": 46.6713220906115
+      },
+      "locationKind": "Derived tile centre, not exact camera location at the long step",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 820.2999999970198,
+      "over50CumulativeMax": 1,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation render-install:121:1614",
+      "tile": "121:1614",
+      "tileCentreGPS": {
+        "lon": 0.3569441072332763,
+        "lat": 46.58649076005651
+      },
+      "locationKind": "Derived tile centre, not exact camera location at the long step",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 206.20000000298023,
+      "over50CumulativeMax": 4,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation terrain-refine:131:1617",
+      "tile": "131:1617",
+      "tileCentreGPS": {
+        "lon": 0.8874120824159041,
+        "lat": 46.70818993658835
+      },
+      "locationKind": "Derived tile centre, not exact camera location at the long step",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 199.29999999701977,
+      "over50CumulativeMax": 11,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation terrain-refine:121:1614",
+      "tile": "121:1614",
+      "tileCentreGPS": {
+        "lon": 0.3569441072332763,
+        "lat": 46.58649076005651
+      },
+      "locationKind": "Derived tile centre, not exact camera location at the long step",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 164.79999999701977,
+      "over50CumulativeMax": 4,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation render-install:131:1616",
+      "tile": "131:1616",
+      "tileCentreGPS": {
+        "lon": 0.8888453641744886,
+        "lat": 46.6713220906115
+      },
+      "locationKind": "Derived tile centre, not exact camera location at the long step",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 102.39999999850988,
+      "over50CumulativeMax": 1,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation surface-index:121:1614",
+      "tile": "121:1614",
+      "tileCentreGPS": {
+        "lon": 0.3569441072332763,
+        "lat": 46.58649076005651
+      },
+      "locationKind": "Derived tile centre, not exact camera location at the long step",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 101.79999999701977,
+      "over50CumulativeMax": 1,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation static-batches",
+      "tile": null,
+      "tileCentreGPS": null,
+      "locationKind": "Global preparation stage",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 96.69999999552965,
+      "over50CumulativeMax": 3,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation render-install:120:1614",
+      "tile": "120:1614",
+      "tileCentreGPS": {
+        "lon": 0.3034804349221181,
+        "lat": 46.58524399115249
+      },
+      "locationKind": "Derived tile centre, not exact camera location at the long step",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 66.89999999850988,
+      "over50CumulativeMax": 1,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "Preparation foot-graph:121:1613",
+      "tile": "121:1613",
+      "tileCentreGPS": {
+        "lon": 0.35873315779072046,
+        "lat": 46.549629431980335
+      },
+      "locationKind": "Derived tile centre, not exact camera location at the long step",
+      "cause": "Measured CPU step over 50 ms; internal operation cause requires further profiling.",
+      "maxStepMs": 58.100000001490116,
+      "over50CumulativeMax": 1,
+      "consequence": "Long preparation pause remains possible.",
+      "evidence": "preparation-peaks.json",
+      "reproduction": "Run the sequential final candidate benchmark; inspect labelled preparation stages.",
+      "possibleCorrection": "Profile and subdivide the remaining large internal geometry/index/allocation operations without changing the rendered or physical sources."
+    },
+    {
+      "priority": "P0",
+      "name": "P0_HUMAIN",
+      "scope": "Perceptual / departmental requirement",
+      "evidence": [
+        "reference-motion.json",
+        "candidate-motion.json",
+        "candidate-native.json"
+      ],
+      "cause": "Tangentes périodiques communes et enveloppe de portée adoucie ; gains numériques localisés, acceptation humaine non acquise.",
+      "gps": null,
+      "reasonGPSUnavailable": "Requirement concerns several scenes, not one newly surveyed point."
+    },
+    {
+      "priority": "P0",
+      "name": "P0_OISEAUX",
+      "scope": "Perceptual / departmental requirement",
+      "evidence": [
+        "candidate-native.json",
+        "checks/tests.txt"
+      ],
+      "cause": "Vitesse nulle aux extrémités des transferts et dérivées analytiques ; pas de preuve de fluidité matérielle.",
+      "gps": null,
+      "reasonGPSUnavailable": "Requirement concerns several scenes, not one newly surveyed point."
+    },
+    {
+      "priority": "P0",
+      "name": "P0_TRONCS",
+      "scope": "Perceptual / departmental requirement",
+      "evidence": [
+        "candidate-native.json",
+        "checks/tests.txt"
+      ],
+      "cause": "Réancrage des arbres et suppression de reconstructions lointaines inutiles ; approche perceptive complète non validée.",
+      "gps": null,
+      "reasonGPSUnavailable": "Requirement concerns several scenes, not one newly surveyed point."
+    },
+    {
+      "priority": "P0",
+      "name": "P0_OMBRES",
+      "scope": "Perceptual / departmental requirement",
+      "evidence": [
+        "reference-native.json",
+        "candidate-native.json"
+      ],
+      "cause": "Aucune correction perceptive des quatre défauts d’ombres certifiée ; comportement hérité et films de station conservés.",
+      "gps": null,
+      "reasonGPSUnavailable": "Requirement concerns several scenes, not one newly surveyed point."
+    },
+    {
+      "priority": "P0",
+      "name": "P0_RIVIERE",
+      "scope": "Perceptual / departmental requirement",
+      "evidence": [
+        "department-water.json"
+      ],
+      "cause": "Diagnostic des berges amélioré ; aucun nouveau voyage départemental complet.",
+      "gps": null,
+      "reasonGPSUnavailable": "Requirement concerns several scenes, not one newly surveyed point."
+    }
+  ],
+  "footHarnessLimit": "The 12.97 km run stopped on its 120 simulated-second non-progression guard while forward support reported tile-loading. The 600 s cumulative loading limit was not reached. This is not proof that the location is impassable; the full 20 km remains unvalidated. Reproduction wrapper now excludes terrain preparation from that non-progression guard; this changed wrapper has not been used to invent additional travelled metres."
+}

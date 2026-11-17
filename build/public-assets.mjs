@@ -1,0 +1,4 @@
+import{cp,mkdir,readFile}from'node:fs/promises';import{resolve,relative,join}from'node:path';
+/** Remote immutable terrain is not duplicated in the site artifact. Source
+ * packs remain versioned, inspectable and checksum-bound in the data commit. */
+export function publicAssets(){let config;return{name:'source-bound-public-assets',config(){return{build:{copyPublicDir:false}}},configResolved(c){config=c},async closeBundle(){if(config.command!=='build')return;const source=resolve(config.root,'public'),out=resolve(config.root,config.build.outDir);let rules={remoteDirectories:[]};try{rules=JSON.parse(await readFile(join(source,'remote-assets.json'),'utf8'));}catch{}await mkdir(out,{recursive:true});await cp(source,out,{recursive:true,filter(path){const p=relative(source,path).replaceAll('\\','/');return !(p.endsWith('.pack')&&rules.remoteDirectories.some(dir=>p.startsWith(dir+'/')));}});}};}

@@ -1,0 +1,7 @@
+// @ts-ignore Bounded public-source binary loader.
+import {boundedBytes,sha256} from './tile-manager.mjs';
+// @ts-ignore Shared source-topology index tested in Node.
+import {RouteIndex} from './route-index.mjs';
+const scope=globalThis as any;let prepared:Promise<any>|null=null,source='';
+async function load(base:string){const manifestURL=new URL('navigation/land.json',base),response=await fetch(manifestURL);if(!response.ok)throw Error('Route manifest unavailable');const m=await response.json();if(m.schema!=='planet-route-manifest-v2'||m.bytes>40*1024*1024||m.decodedBytes>64*1024*1024)throw Error('Invalid route budget');const r=await fetch(new URL(m.url,manifestURL));if(!r.ok)throw Error('Route network unavailable');const packed=await boundedBytes(r.body,m.bytes+1);if(packed.length!==m.bytes||await sha256(packed)!==m.sha256)throw Error('Route checksum mismatch');const bytes=await boundedBytes(new Blob([packed]).stream().pipeThrough(new DecompressionStream('gzip')),m.decodedBytes+1);if(bytes.length!==m.decodedBytes)throw Error('Route decoded length mismatch');source=m.sha256;return new RouteIndex(bytes);}
+scope.onmessage=async({data:d}:any)=>{if(d.type==='abort')return;try{prepared??=load(d.base);const index=await prepared,result=index.route(d.from,d.to,d.mode,{avoidSources:Array.isArray(d.avoidSources)?d.avoidSources.slice(0,128):[]});scope.postMessage({id:d.id,route:{...result,sourceSHA:source}});}catch(e){prepared=null;scope.postMessage({id:d.id,route:{complete:false,reason:String(e)}});}};

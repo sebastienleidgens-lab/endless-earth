@@ -1,0 +1,709 @@
+{
+  "schema": "mission-acceptance-v2",
+  "mission": "26.1",
+  "overallStatus": "PARTIEL",
+  "mergeReady": false,
+  "executedProgramSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+  "referenceSHA": "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5",
+  "immutableFineDataSHA": "acb0a73b396229bf90731b90a558a8d5d072a9ec",
+  "requirements": [
+    {
+      "id": "git",
+      "title": "Base et ascendance consolidées",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/git-ancestry.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Portée : M25.2 et M26 sont conservées. La décision de fusion reste au propriétaire.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be"
+      ]
+    },
+    {
+      "id": "coordinates",
+      "title": "Coordonnées, datum et généralisation mondiale",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-architecture.md",
+        "tests/planet.test.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "WGS84 et IGN69 conservés ; la physique garde le repère régional historique. Aucun moteur géocentrique mondial complet validé.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "origin",
+      "title": "Origine flottante intégrée au rendu et au son",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/origin-eco.json",
+        "docs/mission-26-1-evidence/origin-balanced.json",
+        "docs/mission-26-1-evidence/origin-quality.json",
+        "src/planet/render-origin.ts"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Rebases et invariance numérique contrôlés sur trois profils avec voix actives. Écoute perceptive et tous les acteurs distants non certifiés.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611"
+      ]
+    },
+    {
+      "id": "fixture",
+      "title": "Second manifeste hors projection française",
+      "status": "PARTIEL",
+      "evidence": [
+        "public/planet/validation-other-frame/manifest.json",
+        "tests/planet.test.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Fixture synthétique et composants/projection testés ; aucune session native complète du jeu avec cet autre manifeste.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "access-policy",
+      "title": "Refus des restrictions et niveaux cartographiés",
+      "status": "PARTIEL",
+      "evidence": [
+        "tests/planet.test.mjs",
+        "src/planet/network.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Cas privés/no, bridge=yes, tunnel=yes et niveaux testés. Autres variantes/conditions et accès par classe restent incomplets ou inférés ; aucun certificat juridique de terrain.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "seam",
+      "title": "Couture complète pilote–département",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/seam-strips.json",
+        "docs/mission-26-1-evidence/angles-west-final.json",
+        "public/planet/fr-86/navigation/pilot-boundary.json"
+      ],
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "failureReason": "Des sondes restent infranchissables ; pas de validation exhaustive zéro trou/LOD, toutes saisons, tous modes.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84"
+      ]
+    },
+    {
+      "id": "legacy-seams",
+      "title": "Rue du Pont et résidus hérités",
+      "status": "NON ATTEINT",
+      "evidence": [
+        "docs/mission-23.md",
+        "docs/mission-26.md"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Le maillage historique est préservé. La fermeture ciblée du résidu hérité et de tous les micro-vides n’est pas démontrée.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "fine-data",
+      "title": "499 dérivés IGN de contact à 2 m",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/contact-audit.json",
+        "docs/mission-26-1-evidence/contact-coverage.svg",
+        "public/planet/fr-86/contact-2m/manifest.json"
+      ],
+      "sourceSHA": "4acde9875bedb0cf121d857e1413ac52db3bac69",
+      "failureReason": null,
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "4acde9875bedb0cf121d857e1413ac52db3bac69"
+      ]
+    },
+    {
+      "id": "lod",
+      "title": "LOD et même support visible/physique",
+      "status": "PARTIEL",
+      "evidence": [
+        "tests/planet-contact.test.mjs",
+        "src/planet/terrain-lod.mjs",
+        "src/planet/mesh-support.mjs",
+        "docs/mission-26-1-evidence/seam-strips.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Concordance locale et contrats testés. Pas de certification millimétrique globale, de toutes les bascules ni de toute la géographie.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84"
+      ]
+    },
+    {
+      "id": "landscapes",
+      "title": "Biomes, paysages et liberté hors routes",
+      "status": "PARTIEL",
+      "evidence": [
+        "src/planet/render.ts",
+        "src/planet/surface.mjs",
+        "docs/mission-26-1-data.md"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Forêts et bâtiments départementaux restent simplifiés ; pas d’inventaire d’essences ni d’admission générale des terrains publics hors corridors.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "stations",
+      "title": "Toutes les stations visuelles demandées",
+      "status": "NON ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/reference-session-1.json",
+        "docs/mission-26-1-evidence/candidate-capture.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "La campagne Angles ne couvre pas l’ensemble des centres, plateaux, forêts, échangeur, gare et aéroport demandés.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "preparation",
+      "title": "Préparation sans tâche principale ≥50 ms",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/smoke.json",
+        "docs/mission-26-1-evidence/department-water.json",
+        "src/planet/work-queue.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Le découpage et les workers réduisent le travail synchrone, mais des lots mesurés dépassent encore 50 ms. La cible ne passe pas.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611"
+      ]
+    },
+    {
+      "id": "memory",
+      "title": "Budgets, éviction et ressources",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/preservation.json",
+        "docs/mission-26-1-evidence/candidate-capture.json",
+        "src/planet/tile-manager.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "96 MiB bornent le compteur d’octets JSON déclarés et de rasters typés, pas les allocations JS réelles, graphes, worker/GPU/audio. Endurance multi-tuiles et fuite globale non certifiées.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "4acde9875bedb0cf121d857e1413ac52db3bac69"
+      ]
+    },
+    {
+      "id": "network",
+      "title": "Perte réseau, cache et reprise",
+      "status": "PARTIEL",
+      "evidence": [
+        "src/planet/runtime.ts",
+        "src/planet/tile-manager.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Retry et annulation sont intégrés. Rechargement hors ligne complet et matrice de coupures pendant tous les modes non validés.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "walking-controller",
+      "title": "Contrôleur depuis Angles, sortie et retour",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/angles-west-final.json"
+      ],
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "failureReason": "Portée : simulation accélérée du vrai noyau de mouvement, route de Vicq, pas un film natif ni une traversée départementale.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84"
+      ]
+    },
+    {
+      "id": "walking-native",
+      "title": "Départ natif Angles → sortie → retour",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/angles-native-departure.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": null,
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be"
+      ]
+    },
+    {
+      "id": "department-traverse",
+      "title": "Grande traversée à pied, plusieurs communes et tuiles",
+      "status": "NON ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/routes-audit.json",
+        "docs/mission-26-1-evidence/angles-controller.json",
+        "docs/mission-26-1-evidence/angles-west-final.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "La connectivité topologique et le petit aller-retour ne constituent pas une simulation intégrale ni un voyage natif entre deux côtés du département.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84"
+      ]
+    },
+    {
+      "id": "run-duration",
+      "title": "180 s natives consécutives, quatre vues, plat et pente",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/native-summary.json",
+        "docs/mission-26-1-evidence/run-routes.json"
+      ],
+      "sourceSHA": "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+      "failureReason": "La vue droite sur pente reste en échec : meilleure prise 177,61 s ; reprise interrompue après 98,78 s de course et 24,91 m. Cause précise du blocage non isolée, aucune collision supprimée.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "gait",
+      "title": "P0 voyageur : naturel, démarrage, contacts et caméra",
+      "status": "NON ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/candidate-gait.json",
+        "docs/mission-26-1-evidence/reference-gait.json",
+        "docs/mission-26-1-evidence/native-summary.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Gait et rig restent identiques à M26 ; pics numériques et validation perceptive ouverts. Les filtrages qui dégradaient le pied planté ont été retirés.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "car",
+      "title": "Voiture, grands trajets intercommunaux et A10",
+      "status": "PARTIEL",
+      "evidence": [
+        "src/planet/car.mjs",
+        "docs/mission-26-1-evidence/routes-audit.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "La physique et les couloirs source fonctionnent sur de courts essais ; plusieurs grands voyages, jonctions et A10 ne sont pas démontrés.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be"
+      ]
+    },
+    {
+      "id": "traffic",
+      "title": "Trafic varié, voies et priorités",
+      "status": "PARTIEL",
+      "evidence": [
+        "src/planet/traffic.mjs",
+        "src/planet/transport.ts"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Agents automobiles simples ; pas de système complet de voies, carrefours, bus/camions et congestion validé.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "water-preparation",
+      "title": "Préparation aquatique extensible",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/department-water.json",
+        "public/planet/fr-86/navigation/pilot.json",
+        "src/player/water-network.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Cache pilote vérifié et calcul inutile sans berge supprimé. Pas de portails aquatiques continus entre bassins/tuiles ni trois corridors admis.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "water-new",
+      "title": "Trois nouvelles sections en bateau",
+      "status": "NON ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/department-water.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "0 accès admis dans les trois secteurs inspectés. Les règles de support/accès actuelles sont limitantes ; ce résultat ne prouve pas une impossibilité géographique.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611"
+      ]
+    },
+    {
+      "id": "swimming",
+      "title": "Nage et sortie sur les nouveaux secteurs",
+      "status": "NON ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/department-water.json",
+        "tests/mission-25-1.test.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Le pilote historique est conservé ; aucune nage départementale nouvelle complète n’a été démontrée.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611"
+      ]
+    },
+    {
+      "id": "raft-p0",
+      "title": "P0 packraft : suivi, pagaie et sillage nouveaux secteurs",
+      "status": "PARTIEL",
+      "evidence": [
+        "src/player/packraft.mjs",
+        "docs/mission-26-1-evidence/department-water.json",
+        "docs/mission-26-1-evidence/journeys.json",
+        "docs/mission-26-1-evidence/candidate-final-boat-fixed.json",
+        "docs/mission-26-1-evidence/reference-final-boat-fixed.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Shader des rides/sillages réparé et rendu natif pilote rejoué. Aucun suivi départemental prolongé nouvellement admis ni preuve perceptive suffisante.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "rail",
+      "title": "Rail, gares, circulation et transport de passager",
+      "status": "PARTIEL",
+      "evidence": [
+        "public/planet/fr-86/stations.json",
+        "src/planet/transport.ts"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "60 gares sourcées, arrêts simulés ; trains simples, pas de voyage passager ni de scénarios natifs multi-tuiles/croisements complets.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "aviation",
+      "title": "Aviation : cycle natif et géographie vérifiée",
+      "status": "PARTIEL",
+      "evidence": [
+        "src/planet/transport-motion.mjs",
+        "src/planet/transport.ts"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Circuit synthétique et infrastructure OSM ; cycle natif complet, garde au terrain, roulage et embarquement non validés.",
+      "unverified": true,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "birds",
+      "title": "P0 oiseaux : vol et ailes perceptivement fluides",
+      "status": "PARTIEL",
+      "evidence": [
+        "tests/planet.test.mjs",
+        "docs/mission-26-1-evidence/candidate-birds-fixed.json",
+        "docs/mission-26-1-evidence/reference-birds-fixed.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Échantillonnage analytique préservé. Les films logiciels à très bas FPS ne valident pas la fluidité ni toutes les transitions/espèces.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "trunk-shadows",
+      "title": "P0 troncs : caster stable et clipping",
+      "status": "PARTIEL",
+      "evidence": [
+        "src/nature/forest-shadow-source.mjs",
+        "tests/planet-contact.test.mjs",
+        "docs/mission-26-1-evidence/candidate-shadows-fixed.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Tronc détaillé stable, branches intermédiaires et feuillage conservés. Fermeture perceptive sur tous profils/essences non démontrée.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "4acde9875bedb0cf121d857e1413ac52db3bac69"
+      ]
+    },
+    {
+      "id": "global-shadows",
+      "title": "P0 ombres globales",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/origin-balanced.json",
+        "docs/mission-26-1-evidence/origin-quality.json",
+        "docs/mission-26-1-evidence/candidate-shadows-fixed.json",
+        "docs/mission-26-1-evidence/reference-shadows-fixed.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Composition des shaders corrigée ; aliasing, soleil bas, saisons, mouvement et coût GPU physique restent ouverts.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "audio",
+      "title": "Audio réel, mix stéréo et continuité spatiale",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/audio-audit.json",
+        "docs/mission-26-1-evidence/origin-eco.json",
+        "docs/mission-26-1-evidence/origin-balanced.json",
+        "docs/mission-26-1-evidence/origin-quality.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Paquets audio natifs vérifiés, voix actives lors des rebases. Qualité audible du mix, rail/avion et tous scénarios non certifiés.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "map",
+      "title": "Carte, vrai routage et état restauré",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/routes-audit.json",
+        "docs/mission-26-1-evidence/journeys.json",
+        "src/planet/map.ts"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Routes et distances sur topologie source ; tous les appuis 3D, étapes libres, relief ombré/couches et parcours de carte complets restent ouverts.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611"
+      ]
+    },
+    {
+      "id": "saves",
+      "title": "Reprise marche, voiture, camp et bateau",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/journeys.json",
+        "tests/planet-contact.test.mjs"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Cas indépendants de reload réussis ; la chaîne complète dans une seule géographie, nage, suivi actif et tous champs ne sont pas certifiés.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611"
+      ]
+    },
+    {
+      "id": "refusal",
+      "title": "Refus contrôlé sans relocalisation",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/journeys.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Portée : activité de reprise non prise en charge, position inchangée et erreur explicite. Tous les accès invalides ne sont pas couverts.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611"
+      ]
+    },
+    {
+      "id": "endurance",
+      "title": "Endurance et nombreuses traversées de tuiles",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/candidate-capture.json",
+        "docs/mission-26-1-evidence/native-summary.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Même contexte actif prolongé mais placements entre scènes ; ce n’est pas 30–60 min de voyage libre multi-tuiles avec toutes les variations demandées.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "performance",
+      "title": "Benchmark trois profils, modes et surcoût ≤5 %",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/candidate-benchmark.json",
+        "docs/mission-26-1-evidence/reference-benchmark.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "SwiftShader et échantillons courts ; tous les modes/streaming ne sont pas couverts. Le seuil ≤5 % et les budgets ne sont pas réputés passés.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "balanced-regression",
+      "title": "Surcoût Équilibré ≤5 % sur scènes comparables",
+      "status": "NON ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/candidate-benchmark.json",
+        "docs/mission-26-1-evidence/reference-benchmark.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Médiane mesurée : forêt ~0 %, pont +7,3 %, berge +11,5 % dans cette campagne logicielle. Seuil échoué ; échantillons courts, pas une mesure de matériel physique.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "hardware",
+      "title": "60 FPS desktop et 30 FPS téléphone physique",
+      "status": "NON ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/candidate-benchmark.json",
+        "docs/mission-26-1-evidence/reference-benchmark.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Aucun GPU desktop ni smartphone physique disponible ; aucune certification matérielle déduite de SwiftShader.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "9d6d0d679a660fd72684eddaf1c74dbd3f442611",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    },
+    {
+      "id": "touch",
+      "title": "Desktop et tactile compilé",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/map-ui.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Carte tactile émulée vérifiée si présente ; commandes prolongées de tous les transports et Android physique non validés.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be"
+      ]
+    },
+    {
+      "id": "map-ui-functional",
+      "title": "Carte : route UI, pinch, cibles 44 px et cache chargé",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/map-ui.json",
+        "docs/mission-26-1-evidence/desktop-map.png",
+        "docs/mission-26-1-evidence/mobile-map.png"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Portée : contrôles fonctionnels desktop et émulation tactile ; aucune certification matérielle ou performance active.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be"
+      ]
+    },
+    {
+      "id": "preservation",
+      "title": "Sources historiques, Living Paintings et workflows",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/preservation.json",
+        "docs/mission-26-1-evidence/builds/reference-tests.log"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Portée : audit byte à byte listé et tests historiques ; tous les usages perceptifs ne sont pas certifiés.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be"
+      ]
+    },
+    {
+      "id": "licenses",
+      "title": "Licences, traçabilité et budget 0 €",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-data.md",
+        "docs/mission-26-1-evidence/sources/native-pilot-mnt.json",
+        "docs/mission-26-1-evidence/sources/sncf-gares-original.json",
+        "docs/mission-26-1-evidence/distribution.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "La capacité de l’hébergement gratuit à l’échelle France/monde n’est pas garantie.",
+      "unverified": false,
+      "evidenceSourceSHAs": []
+    },
+    {
+      "id": "evidence-integrity",
+      "title": "Intégrité des fichiers, schéma et liens locaux",
+      "status": "ATTEINT",
+      "evidence": [
+        "docs/mission-26-1-evidence/artifacts.json",
+        "docs/mission-26-1-evidence/links-audit.json",
+        "docs/mission-26-1-evidence/source-tree.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Portée : empreintes et existence des preuves ; pas une validation perceptive ou géographique supplémentaire.",
+      "unverified": false,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be"
+      ]
+    },
+    {
+      "id": "evidence",
+      "title": "Galerie, sources exécutées et preuves brutes",
+      "status": "PARTIEL",
+      "evidence": [
+        "docs/mission-26-1-evidence/native-summary.json",
+        "docs/mission-26-1-evidence/audio-audit.json",
+        "docs/mission-26-1-evidence/builds/candidate-final/receipt.json"
+      ],
+      "sourceSHA": "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+      "failureReason": "Les scénarios absents restent non atteints. Les films antérieurs à des corrections portent leur SHA exact et ne couvrent pas automatiquement le code final.",
+      "unverified": true,
+      "evidenceSourceSHAs": [
+        "1f676fb4aaf1824d15b8c04a83d95af0f11055be",
+        "4acde9875bedb0cf121d857e1413ac52db3bac69",
+        "78b6ef61b1bb2aeab1529cd6b9ceca3a92598d84",
+        "de3958c6c55b9ef9856d5809b14ef3d41ed8e4b5"
+      ]
+    }
+  ]
+}

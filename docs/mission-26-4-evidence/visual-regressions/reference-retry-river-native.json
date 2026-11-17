@@ -1,0 +1,4984 @@
+{
+  "label": "reference-retry-river",
+  "method": "Native canvas + original mixed stereo audio, no manual simulation steps, no position assignment during clips. Independent matched setup before clips; four camera angles are explicitly timed. 800x600 DPR1, seed12345, June21 clear. Software renderer: no hardware or perceptual validation.",
+  "cases": [
+    {
+      "name": "reference-retry-river-river-shadows-balanced",
+      "scene": "river-shadows",
+      "profile": "balanced",
+      "requestedWallSeconds": 16,
+      "errorsBefore": 0,
+      "viewChanges": [
+        {
+          "wallSeconds": 8.019982149000002,
+          "view": "moving"
+        }
+      ],
+      "environmentBefore": {
+        "source": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+        "climate": {
+          "worldTimeMs": 1782045858310,
+          "solar": {
+            "altitude": 1.130663888179556,
+            "azimuth": 3.591123851979253,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0,
+            "electric": 0,
+            "temperatureC": 18.69468340703728
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17823988313419012,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.14435812473040552,
+            "electric": 0,
+            "temperatureC": 18.69468340703728,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1575983400627863,
+            "z": -0.08327957868635055,
+            "speed": 0.17823988313419012,
+            "gust": 0.14435812473040552,
+            "slow": 0.6488333986510286,
+            "turn": -0.01934420715654646,
+            "water": 0.9502611968351016
+          },
+          "transition": {
+            "revision": 31,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 18.69468340703728,
+            "humidityPct": 46.08,
+            "cloudCover": 0.16,
+            "cloudDensity": 0.11199999999999999,
+            "rainIntensity": 0,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.0846648004115504,
+            "meanWindMps": 3.5999999999999996,
+            "gustWindMps": 3.5999999999999996,
+            "fog": 0,
+            "visibilityM": 18000,
+            "stormRisk": 0,
+            "electricalActivity": 0,
+            "groundWetness": 0,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.8624,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "calm",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.4608,
+            "dew": 0,
+            "mist": 0.27782113329541164,
+            "bankDistance": 26.880364196808294
+          },
+          "diffuseNight": {
+            "intensity": 1.451496,
+            "nightWeight": 0,
+            "moon": 0
+          },
+          "moon": {
+            "date": "2026-06-21T12:44:18.310Z",
+            "altitude": 0.17865482987000592,
+            "azimuth": 1.7856860410319335,
+            "phase": 0.23724193425181095,
+            "illumination": 0.45998839239572603,
+            "brightLimbAngle": -1.1601465358640362,
+            "parallacticAngle": -0.7343501880456613,
+            "distanceKm": 386080.2864684271,
+            "angularRadius": 0.004513963958847974,
+            "geometricallyVisible": true,
+            "direction": [
+              0.9614496231492963,
+              0.17770597470139363,
+              0.20984567830075448
+            ],
+            "visibility": 0.28,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 121,
+          "targetWeather": "clear",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [],
+            "nextSeconds": null
+          },
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T12:44:18.310Z",
+          "localTime": "21 juin 2026, 14:44",
+          "localHour": 14.738333333333333,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 6,
+            "representativeDay": null,
+            "sunrise": 1782014590999.9846,
+            "sunset": 1782071544999.9927,
+            "solarNoon": 1782043067015.189
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "groundWetness": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 18.69468340703728,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1.6679917003139315,
+              -0.8913978934317528
+            ],
+            "morph": [
+              0.11632444134605564,
+              0.072921649841908,
+              0.1025823618446819
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "camera": {
+          "position": [
+            -135,
+            -33.0754700986969,
+            215.4824093846644
+          ],
+          "rotation": [
+            -0.0847597831082671,
+            0,
+            0,
+            0.9964014146755512
+          ],
+          "projection": [
+            1.4407365952283748,
+            0,
+            0,
+            0,
+            0,
+            1.9209821269711662,
+            0,
+            0,
+            0,
+            0,
+            -1.0001333422228147,
+            -1,
+            0,
+            0,
+            -0.20001333422228149,
+            0
+          ]
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "profile": "balanced",
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 37336,
+          "treeInstances": 10,
+          "updates": 1,
+          "lastUpdateCpuMs": 110.29999999701977,
+          "maxUpdateCpuMs": 110.29999999701977,
+          "lastShadowCalls": 6,
+          "lastShadowTriangles": 49510,
+          "extraPasses": 1,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 524288,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0.030468750000000003,
+          "character": {
+            "updates": 1,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 12.699999988079071,
+            "lastCpuMs": 12.699999988079071,
+            "maxCpuMs": 12.699999988079071,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "shadow": {
+          "size": [
+            1024,
+            1024
+          ],
+          "type": 2,
+          "bias": 0,
+          "normalBias": 0,
+          "camera": [
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            -0.004004004004004004,
+            0,
+            0,
+            0,
+            -1.002002002002002,
+            1
+          ],
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "paddle": {
+          "stroke": 0,
+          "pose": {},
+          "tip": [
+            0,
+            0,
+            0
+          ],
+          "hands": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "marks": {
+            "capacity": 48,
+            "emitted": 0,
+            "paddleContacts": 0,
+            "wakePairs": 0,
+            "drawCalls": 0
+          }
+        },
+        "renderer": {
+          "memory": {
+            "geometries": 202,
+            "textures": 20
+          },
+          "render": {
+            "frame": 33,
+            "calls": 165,
+            "triangles": 371295,
+            "points": 0,
+            "lines": 0
+          }
+        }
+      },
+      "before": {
+        "position": [
+          -135,
+          -35.665000915527344,
+          210
+        ],
+        "heading": 0,
+        "birds": {
+          "individuals": 2,
+          "drawCalls": 1,
+          "triangles": 530,
+          "perches": 19,
+          "families": [
+            "tit",
+            "robin"
+          ],
+          "sources": [
+            {
+              "id": "tree-bird:tree:-122.706503:286.309434",
+              "position": [
+                -123.16122400771495,
+                -29.046734267858998,
+                284.13545873692846
+              ],
+              "family": "tit"
+            },
+            {
+              "id": "tree-bird:tree:-109.204736:286.232908",
+              "position": [
+                -108.40559827126727,
+                -29.854395834496202,
+                283.87851078696207
+              ],
+              "family": "robin"
+            }
+          ],
+          "renderSamples": 31,
+          "cpuMs": 2.5999999940395355,
+          "maxCpuMs": 7.299999997019768,
+          "clock": 121,
+          "trajectory": "analytic-per-render-frame"
+        },
+        "shadow": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 37336,
+          "treeInstances": 10,
+          "updates": 1,
+          "lastUpdateCpuMs": 110.29999999701977,
+          "maxUpdateCpuMs": 110.29999999701977,
+          "lastShadowCalls": 6,
+          "lastShadowTriangles": 49510,
+          "extraPasses": 1,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 524288,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0.030468750000000003,
+          "character": {
+            "updates": 1,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 12.699999988079071,
+            "lastCpuMs": 12.699999988079071,
+            "maxCpuMs": 12.699999988079071,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "boat": {
+          "active": false,
+          "heading": 0,
+          "following": false,
+          "metrics": {
+            "plans": 0,
+            "lateralError": 0,
+            "maxLateralError": 0,
+            "stops": 1
+          }
+        },
+        "planet": {
+          "contactQueries": {
+            "queries": 632,
+            "hits": 0,
+            "invalidations": 30,
+            "maxEntries": 632
+          },
+          "state": "ready",
+          "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+          "stream": {
+            "loaded": 0,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 0,
+            "active": 2,
+            "queued": 2,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 2,
+            "jobs": [
+              {
+                "id": "131:1616",
+                "generation": 2,
+                "state": "WAITING_FOR_TILE",
+                "phase": "installation-queue",
+                "priority": 646.5760283550067,
+                "at": 1794909713469
+              },
+              {
+                "id": "131:1617",
+                "generation": 1,
+                "state": "WAITING_FOR_TILE",
+                "phase": "installation-queue",
+                "priority": 0.1533444130155708,
+                "at": 1794909713650
+              }
+            ]
+          },
+          "render": {
+            "contactRevision": 1,
+            "tiles": 0,
+            "features": 0,
+            "triangles": 11951,
+            "trees": 0,
+            "disposed": 0,
+            "batches": 0,
+            "batchRebuilds": 0,
+            "maxBatchMs": 46.5,
+            "maxBatchWallMs": 0,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 108,
+              "nodes": 1615,
+              "edges": 3270,
+              "refused": 23,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 108,
+              "nodes": 869,
+              "edges": 1738,
+              "refused": 73,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 108,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 108,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 0,
+          "maxInstallWallMs": 0,
+          "preparation": {
+            "slices": 140,
+            "steps": 24364,
+            "cpuMs": 748.8000000417233,
+            "maxSliceMs": 46.5,
+            "maxStepMs": 45.29999999701977,
+            "completed": 4,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:131:1616": {
+                "steps": 557,
+                "cpuMs": 59,
+                "maxStepMs": 45.29999999701977,
+                "over8": 1,
+                "over50": 0
+              },
+              "foot-graph:131:1616": {
+                "steps": 2169,
+                "cpuMs": 15,
+                "maxStepMs": 4.0999999940395355,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:131:1616": {
+                "steps": 1403,
+                "cpuMs": 5.400000035762787,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1616": {
+                "steps": 534,
+                "cpuMs": 0.4000000059604645,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1616": {
+                "steps": 19701,
+                "cpuMs": 591.4000000357628,
+                "maxStepMs": 44.20000000298023,
+                "over8": 11,
+                "over50": 0
+              }
+            },
+            "longSteps": [
+              {
+                "label": "surface-index:131:1616",
+                "ms": 45.29999999701977
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 13.100000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.800000011920929
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.200000002980232
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.599999994039536
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 12.299999997019768
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 11.799999997019768
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.399999991059303
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 28.799999997019768
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.900000005960464
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 44.20000000298023
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.100000008940697
+              }
+            ]
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "contact": {
+            "available": 499,
+            "expected": 499,
+            "effectiveStepM": 2
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 13,
+            "maxReceiveMs": 0.30000001192092896,
+            "maxDecodeWallMs": 1114.3999999910593
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0.6000000089406967,
+            "maxCpuMs": 0.6000000089406967,
+            "traffic": {
+              "created": 0,
+              "active": 0,
+              "stops": 0,
+              "distanceM": 0,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": null
+          },
+          "stations": {
+            "count": 60,
+            "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+            "license": "© SNCF Réseau · Open Database License (ODbL)"
+          }
+        },
+        "source": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "activity": "walking",
+        "audioEnabled": true,
+        "gps": {
+          "lat": 46.693413546532526,
+          "lon": 0.8826318721441129
+        },
+        "movement": null,
+        "admission": {
+          "ok": false,
+          "reason": "tile-loading",
+          "state": "WAITING_FOR_TILE",
+          "tile": "131:1617"
+        },
+        "origin": {
+          "origin": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "revision": 0
+          },
+          "metrics": {
+            "rebases": 0,
+            "frames": 31,
+            "maxLocalCameraM": 353.77313869194865,
+            "canonicalPhysics": true
+          }
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "viewport": [
+          800,
+          600
+        ],
+        "heap": 271270563,
+        "longTasks": [
+          {
+            "t": 452.79999999701977,
+            "ms": 2420
+          },
+          {
+            "t": 3032.7000000029802,
+            "ms": 586
+          },
+          {
+            "t": 4079.9000000059605,
+            "ms": 120
+          },
+          {
+            "t": 4281.4000000059605,
+            "ms": 57
+          },
+          {
+            "t": 4365,
+            "ms": 180
+          },
+          {
+            "t": 4999.79999999702,
+            "ms": 164
+          },
+          {
+            "t": 5680.9000000059605,
+            "ms": 355
+          },
+          {
+            "t": 6374.5999999940395,
+            "ms": 330
+          },
+          {
+            "t": 6850,
+            "ms": 2295
+          },
+          {
+            "t": 9888.79999999702,
+            "ms": 74
+          },
+          {
+            "t": 9989.90000000596,
+            "ms": 369
+          },
+          {
+            "t": 10359.79999999702,
+            "ms": 108
+          },
+          {
+            "t": 10468,
+            "ms": 10008
+          },
+          {
+            "t": 20476.90000000596,
+            "ms": 666
+          },
+          {
+            "t": 21147.29999999702,
+            "ms": 2853
+          },
+          {
+            "t": 24265.29999999702,
+            "ms": 1969
+          },
+          {
+            "t": 26283.09999999404,
+            "ms": 153
+          },
+          {
+            "t": 27202.79999999702,
+            "ms": 2638
+          },
+          {
+            "t": 30171,
+            "ms": 100
+          },
+          {
+            "t": 30271.29999999702,
+            "ms": 73
+          },
+          {
+            "t": 33459.40000000596,
+            "ms": 1706
+          },
+          {
+            "t": 35178.5,
+            "ms": 1395
+          },
+          {
+            "t": 36620,
+            "ms": 1153
+          }
+        ],
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "audio": {
+          "layers": [],
+          "activeSources": [],
+          "recentEvents": [],
+          "nodes": 5,
+          "voices": 0,
+          "peakVoices": 0,
+          "hrtf": 0,
+          "beds": 0,
+          "budget": {
+            "voices": 12,
+            "hrtf": 2,
+            "beds": 3,
+            "hz": 2
+          },
+          "dropped": 0,
+          "steps": 0,
+          "lastStepAssets": [],
+          "heardBirds": 0,
+          "waterContacts": 0,
+          "waterBufferBytes": 0,
+          "roadEvents": 0,
+          "profile": "balanced",
+          "obstructionChecks": 0,
+          "obstructionUpdates": 0,
+          "cacheBytes": 0,
+          "peakBytes": 0,
+          "cached": 0,
+          "pending": 0,
+          "activeLoads": 0,
+          "loads": 0,
+          "decodes": 0,
+          "deferred": 0,
+          "deniedDecodes": 0,
+          "failures": {},
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "buffers": {
+          "attributeBuffers": 1105,
+          "attributeBytes": 42810240,
+          "typedTextureBytes": 2523136,
+          "textureCount": 3,
+          "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+        }
+      },
+      "beforeImage": "reference-retry-river-river-shadows-balanced-before.png",
+      "prerollWallSeconds": 10.004135869000006,
+      "prerollMethod": "Native RAF only; wait for three actual production frames before the requested recording interval so an empty encoder under load cannot masquerade as a clip. Preroll remains in original media and measured FPS/durations.",
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 4,
+        "rawSha256": "d1a217dbf15570c778ac2a6d07f61a4c5e04f3392a16fdd70e15edb902fb89b0",
+        "indexedSha256": "b7000b1adfb3a782907c0fe65331039bdbfcc6720bd3ee86b2a577c0e6b333e7",
+        "allAudioVideoPacketPTSAndPayloadsIdentical": true,
+        "streams": [
+          {
+            "type": "video",
+            "codec": "vp9",
+            "width": 800,
+            "height": 600
+          },
+          {
+            "type": "audio",
+            "codec": "opus",
+            "channels": 2,
+            "sampleRate": "48000"
+          }
+        ]
+      },
+      "video": "reference-retry-river-river-shadows-balanced.webm",
+      "original": "raw/reference-retry-river-river-shadows-balanced.webm",
+      "frames": 7,
+      "wallSeconds": 23.20379999999702,
+      "averageRenderedFps": 0.25857833630701743,
+      "counter": {
+        "frames": 7,
+        "simulationSeconds": 1.4147999999970198,
+        "lastDt": 0.25
+      },
+      "simulationSeconds": 1.4147999999970198,
+      "distanceM": 0,
+      "perceptualStatus": "NON_VALIDE",
+      "framesWithBirds": 7,
+      "framesFile": "reference-retry-river-river-shadows-balanced-frames.json.gz",
+      "transformsFile": "reference-retry-river-river-shadows-balanced-transforms.json.gz",
+      "environmentAfter": {
+        "source": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0,
+            "electric": 0,
+            "temperatureC": 18.529786633813934
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.23103362392633273,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.5485738838440221,
+            "electric": 0,
+            "temperatureC": 18.529786633813934,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.20482351267412696,
+            "z": -0.10693622866041926,
+            "speed": 0.23103362392633273,
+            "gust": 0.5485738838440221,
+            "slow": 0.6060670751944387,
+            "turn": -0.01969964304897747,
+            "water": 0.4732911928492899
+          },
+          "transition": {
+            "revision": 38,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 18.529786633813934,
+            "humidityPct": 46.08,
+            "cloudCover": 0.16,
+            "cloudDensity": 0.11199999999999999,
+            "rainIntensity": 0,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.0896335946965259,
+            "meanWindMps": 3.5999999999999996,
+            "gustWindMps": 3.5999999999999996,
+            "fog": 0,
+            "visibilityM": 18000,
+            "stormRisk": 0,
+            "electricalActivity": 0,
+            "groundWetness": 0,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.8624,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "calm",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.4608,
+            "dew": 0,
+            "mist": 0.15650858027850115,
+            "bankDistance": 26.880364196808294
+          },
+          "diffuseNight": {
+            "intensity": 1.451496,
+            "nightWeight": 0,
+            "moon": 0
+          },
+          "moon": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "altitude": 0.3762708273495534,
+            "azimuth": 2.038343306049544,
+            "phase": 0.23893939726382565,
+            "illumination": 0.46530388899636943,
+            "brightLimbAngle": -1.1601017135015295,
+            "parallacticAngle": -0.658949512417717,
+            "distanceKm": 386384.8646086329,
+            "angularRadius": 0.004524545865627336,
+            "geometricallyVisible": true,
+            "direction": [
+              0.8302261441780371,
+              0.3674547475372261,
+              0.41916769679404264
+            ],
+            "visibility": 0.28,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 126.16479999999702,
+          "targetWeather": "clear",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [],
+            "nextSeconds": null
+          },
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin 2026, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 6,
+            "representativeDay": null,
+            "sunrise": 1782014590999.9846,
+            "sunset": 1782071544999.9927,
+            "solarNoon": 1782043067015.189
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "groundWetness": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 18.529786633813934,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              11.305310788557398,
+              -6.001032529731562
+            ],
+            "morph": [
+              0.12108589012302619,
+              0.07597566694759898,
+              0.10674038012447004
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "camera": {
+          "position": [
+            -135,
+            -33.0754790145318,
+            215.48235735842314
+          ],
+          "rotation": [
+            -0.08475978310826711,
+            0,
+            0,
+            0.9964014146755512
+          ],
+          "projection": [
+            1.4407365952283748,
+            0,
+            0,
+            0,
+            0,
+            1.9209821269711662,
+            0,
+            0,
+            0,
+            0,
+            -1.0001333422228147,
+            -1,
+            0,
+            0,
+            -0.20001333422228149,
+            0
+          ]
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "profile": "balanced",
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 42747,
+          "treeInstances": 10,
+          "updates": 7,
+          "lastUpdateCpuMs": 0.20000000298023224,
+          "maxUpdateCpuMs": 110.29999999701977,
+          "lastShadowCalls": 6,
+          "lastShadowTriangles": 54921,
+          "extraPasses": 1,
+          "selectionBuilds": 4,
+          "shadowIndexBytes": 524288,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 6,
+          "windSkips": 0,
+          "windMotionBoundM": 0.023655734341231412,
+          "maxWindMotionBoundM": 0.027983021912748724,
+          "windThresholdM": 0.030468750000000003,
+          "character": {
+            "updates": 8,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 0.5999999940395355,
+            "lastCpuMs": 0.5999999940395355,
+            "maxCpuMs": 12.699999988079071,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "shadow": {
+          "size": [
+            1024,
+            1024
+          ],
+          "type": 2,
+          "bias": 0,
+          "normalBias": 0,
+          "camera": [
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            -0.004004004004004004,
+            0,
+            0,
+            0,
+            -1.002002002002002,
+            1
+          ],
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "paddle": {
+          "stroke": 0,
+          "pose": {},
+          "tip": [
+            0,
+            0,
+            0
+          ],
+          "hands": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "marks": {
+            "capacity": 48,
+            "emitted": 0,
+            "paddleContacts": 0,
+            "wakePairs": 0,
+            "drawCalls": 0
+          }
+        },
+        "renderer": {
+          "memory": {
+            "geometries": 220,
+            "textures": 20
+          },
+          "render": {
+            "frame": 53,
+            "calls": 178,
+            "triangles": 430347,
+            "points": 0,
+            "lines": 14
+          }
+        }
+      },
+      "after": {
+        "position": [
+          -135,
+          -35.665000915527344,
+          210
+        ],
+        "heading": 0,
+        "birds": {
+          "individuals": 2,
+          "drawCalls": 1,
+          "triangles": 530,
+          "perches": 19,
+          "families": [
+            "tit",
+            "robin"
+          ],
+          "sources": [
+            {
+              "id": "tree-bird:tree:-122.706503:286.309434",
+              "position": [
+                -123.16122400771495,
+                -29.046734267858998,
+                284.13545873692846
+              ],
+              "family": "tit"
+            },
+            {
+              "id": "tree-bird:tree:-109.204736:286.232908",
+              "position": [
+                -108.40559827126727,
+                -29.854395834496202,
+                283.87851078696207
+              ],
+              "family": "robin"
+            }
+          ],
+          "renderSamples": 38,
+          "cpuMs": 0.10000000894069672,
+          "maxCpuMs": 7.299999997019768,
+          "clock": 126.16479999999702,
+          "trajectory": "analytic-per-render-frame"
+        },
+        "shadow": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 42747,
+          "treeInstances": 10,
+          "updates": 7,
+          "lastUpdateCpuMs": 0.20000000298023224,
+          "maxUpdateCpuMs": 110.29999999701977,
+          "lastShadowCalls": 6,
+          "lastShadowTriangles": 54921,
+          "extraPasses": 1,
+          "selectionBuilds": 4,
+          "shadowIndexBytes": 524288,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 6,
+          "windSkips": 0,
+          "windMotionBoundM": 0.023655734341231412,
+          "maxWindMotionBoundM": 0.027983021912748724,
+          "windThresholdM": 0.030468750000000003,
+          "character": {
+            "updates": 8,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 0.5999999940395355,
+            "lastCpuMs": 0.5999999940395355,
+            "maxCpuMs": 12.699999988079071,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "boat": {
+          "active": false,
+          "heading": 0,
+          "following": false,
+          "metrics": {
+            "plans": 0,
+            "lateralError": 0,
+            "maxLateralError": 0,
+            "stops": 1
+          }
+        },
+        "planet": {
+          "contactQueries": {
+            "queries": 632,
+            "hits": 0,
+            "invalidations": 37,
+            "maxEntries": 632
+          },
+          "state": "ready",
+          "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+          "stream": {
+            "loaded": 1,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 8691256,
+            "active": 1,
+            "queued": 0,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 2,
+            "jobs": [
+              {
+                "id": "131:1617",
+                "generation": 1,
+                "state": "WAITING_FOR_TILE",
+                "phase": "installation-queue",
+                "priority": 0.1533444130155708,
+                "at": 1794909713650
+              },
+              {
+                "id": "131:1616",
+                "generation": 2,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 387.5533837932337,
+                "at": 1794909730613
+              }
+            ]
+          },
+          "render": {
+            "contactRevision": 3,
+            "tiles": 2,
+            "features": 2482,
+            "triangles": 23666,
+            "trees": 864,
+            "disposed": 0,
+            "batches": 87,
+            "batchRebuilds": 1,
+            "maxBatchMs": 78.90000000596046,
+            "maxBatchWallMs": 501.20000000298023,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 388,
+              "nodes": 4113,
+              "edges": 8428,
+              "refused": 71,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 388,
+              "nodes": 2344,
+              "edges": 4712,
+              "refused": 242,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 388,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 388,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 59.3999999910593,
+          "maxInstallWallMs": 17142.79999999702,
+          "preparation": {
+            "slices": 1297,
+            "steps": 242774,
+            "cpuMs": 6920.89999987185,
+            "maxSliceMs": 80.09999999403954,
+            "maxStepMs": 78.30000001192093,
+            "completed": 12,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:131:1616": {
+                "steps": 557,
+                "cpuMs": 59,
+                "maxStepMs": 45.29999999701977,
+                "over8": 1,
+                "over50": 0
+              },
+              "foot-graph:131:1616": {
+                "steps": 2169,
+                "cpuMs": 15,
+                "maxStepMs": 4.0999999940395355,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:131:1616": {
+                "steps": 1403,
+                "cpuMs": 5.400000035762787,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1616": {
+                "steps": 534,
+                "cpuMs": 0.4000000059604645,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1616": {
+                "steps": 84680,
+                "cpuMs": 1769.1999997794628,
+                "maxStepMs": 57.29999999701977,
+                "over8": 22,
+                "over50": 1
+              },
+              "static-batches": {
+                "steps": 837,
+                "cpuMs": 882.999999910593,
+                "maxStepMs": 65.80000001192093,
+                "over8": 22,
+                "over50": 3
+              },
+              "terrain-refine:131:1616": {
+                "steps": 52,
+                "cpuMs": 54.70000001788139,
+                "maxStepMs": 49.29999999701977,
+                "over8": 1,
+                "over50": 0
+              },
+              "surface-index:131:1617": {
+                "steps": 2185,
+                "cpuMs": 20.599999979138374,
+                "maxStepMs": 10.399999991059303,
+                "over8": 1,
+                "over50": 0
+              },
+              "foot-graph:131:1617": {
+                "steps": 4746,
+                "cpuMs": 16.899999991059303,
+                "maxStepMs": 5.5999999940395355,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:131:1617": {
+                "steps": 3663,
+                "cpuMs": 6.499999985098839,
+                "maxStepMs": 0.20000000298023224,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1617": {
+                "steps": 2167,
+                "cpuMs": 0.7999999970197678,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1617": {
+                "steps": 123627,
+                "cpuMs": 2420.3000000864267,
+                "maxStepMs": 78.30000001192093,
+                "over8": 33,
+                "over50": 1
+              },
+              "terrain-refine:131:1617": {
+                "steps": 16154,
+                "cpuMs": 1275.5000000447035,
+                "maxStepMs": 47.70000000298023,
+                "over8": 9,
+                "over50": 0
+              }
+            },
+            "longSteps": [
+              {
+                "label": "surface-index:131:1616",
+                "ms": 45.29999999701977
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 13.100000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.800000011920929
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.200000002980232
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.599999994039536
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 12.299999997019768
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 11.799999997019768
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.399999991059303
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 28.799999997019768
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.900000005960464
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 44.20000000298023
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.100000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 35.19999998807907
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 35.20000000298023
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.900000005960464
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 43.400000005960464
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.200000002980232
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 44.79999999701977
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.900000005960464
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 57.29999999701977
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.100000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.600000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 14.299999997019768
+              },
+              {
+                "label": "terrain-refine:131:1616",
+                "ms": 49.29999999701977
+              },
+              {
+                "label": "surface-index:131:1617",
+                "ms": 10.399999991059303
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 11.099999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 32.5
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 15.200000002980232
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 10.300000011920929
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 47.400000005960464
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 15.299999997019768
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 10
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 17.099999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 9.600000008940697
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.200000002980232
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 11.700000002980232
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 44
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.600000008940697
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.599999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.5
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 11.199999988079071
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 45.29999999701977
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.900000005960464
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 41
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 16.400000005960464
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 78.30000001192093
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 40.5
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.299999997019768
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 13
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 36.5
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 46
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 44.29999999701977
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 39.70000000298023
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 30.30000001192093
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 47.70000000298023
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 44.1000000089407
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 38.30000001192093
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 11.400000005960464
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 42.6000000089407
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 50
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 32.599999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 11.600000008940697
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 36.70000000298023
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.799999997019768
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 32
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 12.100000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.400000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.300000011920929
+              },
+              {
+                "label": "static-batches",
+                "ms": 43.20000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 17
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.100000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 22.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 52.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.399999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.100000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 65.80000001192093
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 18.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.600000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.100000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 53.29999999701977
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.799999997019768
+              }
+            ]
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "contact": {
+            "available": 499,
+            "expected": 499,
+            "effectiveStepM": 2
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 13,
+            "maxReceiveMs": 0.30000001192092896,
+            "maxDecodeWallMs": 1114.3999999910593
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0,
+            "maxCpuMs": 0.6000000089406967,
+            "traffic": {
+              "created": 0,
+              "active": 0,
+              "stops": 0,
+              "distanceM": 0,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": null
+          },
+          "stations": {
+            "count": 60,
+            "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+            "license": "© SNCF Réseau · Open Database License (ODbL)"
+          }
+        },
+        "source": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "activity": "walking",
+        "audioEnabled": true,
+        "gps": {
+          "lat": 46.693413546532526,
+          "lon": 0.8826318721441129
+        },
+        "movement": null,
+        "admission": {
+          "ok": false,
+          "reason": "unverified-water",
+          "height": 65.32893056063098,
+          "normal": {
+            "x": -0.009998375395984516,
+            "y": 0.9998375395986506,
+            "z": 0.014997563093980327
+          },
+          "slope": 0.018027756377319314,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "131:1617"
+        },
+        "origin": {
+          "origin": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "revision": 0
+          },
+          "metrics": {
+            "rebases": 0,
+            "frames": 38,
+            "maxLocalCameraM": 353.77313869194865,
+            "canonicalPhysics": true
+          }
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "viewport": [
+          800,
+          600
+        ],
+        "heap": 302408251,
+        "longTasks": [
+          {
+            "t": 452.79999999701977,
+            "ms": 2420
+          },
+          {
+            "t": 3032.7000000029802,
+            "ms": 586
+          },
+          {
+            "t": 4079.9000000059605,
+            "ms": 120
+          },
+          {
+            "t": 4281.4000000059605,
+            "ms": 57
+          },
+          {
+            "t": 4365,
+            "ms": 180
+          },
+          {
+            "t": 4999.79999999702,
+            "ms": 164
+          },
+          {
+            "t": 5680.9000000059605,
+            "ms": 355
+          },
+          {
+            "t": 6374.5999999940395,
+            "ms": 330
+          },
+          {
+            "t": 6850,
+            "ms": 2295
+          },
+          {
+            "t": 9888.79999999702,
+            "ms": 74
+          },
+          {
+            "t": 9989.90000000596,
+            "ms": 369
+          },
+          {
+            "t": 10359.79999999702,
+            "ms": 108
+          },
+          {
+            "t": 10468,
+            "ms": 10008
+          },
+          {
+            "t": 20476.90000000596,
+            "ms": 666
+          },
+          {
+            "t": 21147.29999999702,
+            "ms": 2853
+          },
+          {
+            "t": 24265.29999999702,
+            "ms": 1969
+          },
+          {
+            "t": 26283.09999999404,
+            "ms": 153
+          },
+          {
+            "t": 27202.79999999702,
+            "ms": 2638
+          },
+          {
+            "t": 30171,
+            "ms": 100
+          },
+          {
+            "t": 30271.29999999702,
+            "ms": 73
+          },
+          {
+            "t": 33459.40000000596,
+            "ms": 1706
+          },
+          {
+            "t": 35178.5,
+            "ms": 1395
+          },
+          {
+            "t": 36620,
+            "ms": 1153
+          },
+          {
+            "t": 43410.79999999702,
+            "ms": 145
+          },
+          {
+            "t": 43573.20000000298,
+            "ms": 66
+          },
+          {
+            "t": 46693.29999999702,
+            "ms": 87
+          },
+          {
+            "t": 48286.70000000298,
+            "ms": 51
+          },
+          {
+            "t": 48791.20000000298,
+            "ms": 4615
+          },
+          {
+            "t": 53442.20000000298,
+            "ms": 53
+          },
+          {
+            "t": 53497.59999999404,
+            "ms": 200
+          },
+          {
+            "t": 54087.5,
+            "ms": 50
+          },
+          {
+            "t": 55483.79999999702,
+            "ms": 54
+          },
+          {
+            "t": 57862.79999999702,
+            "ms": 111
+          },
+          {
+            "t": 58798.90000000596,
+            "ms": 4072
+          },
+          {
+            "t": 62885.59999999404,
+            "ms": 128
+          },
+          {
+            "t": 65287.70000000298,
+            "ms": 50
+          },
+          {
+            "t": 66685.40000000596,
+            "ms": 68
+          },
+          {
+            "t": 66883,
+            "ms": 61
+          },
+          {
+            "t": 68289.40000000596,
+            "ms": 50
+          },
+          {
+            "t": 69007.90000000596,
+            "ms": 55
+          },
+          {
+            "t": 70012.59999999404,
+            "ms": 64
+          },
+          {
+            "t": 71084.59999999404,
+            "ms": 54
+          },
+          {
+            "t": 71202.90000000596,
+            "ms": 81
+          },
+          {
+            "t": 71284.70000000298,
+            "ms": 76
+          },
+          {
+            "t": 71890.20000000298,
+            "ms": 55
+          }
+        ],
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "audio": {
+          "layers": [
+            {
+              "id": "water",
+              "asset": "river-moderate-fs-591733-m11-1",
+              "actualBusGain": 0.5395185947418213,
+              "targetGain": 0.5395185860399996,
+              "masterGain": 0.38499999046325684,
+              "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 2.0 m",
+              "diffuse": false,
+              "pan": null,
+              "position": {
+                "x": -135,
+                "y": -35.84776410825809,
+                "z": 215.48235735842314
+              },
+              "panningModel": "equalpower",
+              "transition": "steady",
+              "nextWindowIn": 0.8079999999999998
+            },
+            {
+              "id": "water-detail",
+              "asset": "water-turbulence-fs-553607-m11-1",
+              "actualBusGain": 0.19026294350624084,
+              "targetGain": 0.19032989985625567,
+              "masterGain": 0.38499999046325684,
+              "reason": "mapped weir proximity 8.1 m; turbulence is an artistic interpretation, discharge unknown",
+              "diffuse": false,
+              "pan": null,
+              "position": {
+                "x": -135,
+                "y": -35.84776410825809,
+                "z": 215.48235735842314
+              },
+              "panningModel": "equalpower",
+              "transition": "steady",
+              "nextWindowIn": 12.472000000000001
+            }
+          ],
+          "activeSources": [
+            {
+              "asset": "river-moderate-fs-591733-m11-1",
+              "recording": "fs-591733",
+              "position": null,
+              "diffuse": false,
+              "gain": 0.699999988079071,
+              "retirementGain": 1,
+              "masterGain": 0.38499999046325684,
+              "distance": null,
+              "refDistance": 4,
+              "panningModel": null,
+              "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 2.0 m",
+              "occlusion": 0,
+              "transition": "playing"
+            },
+            {
+              "asset": "water-turbulence-fs-553607-m11-1",
+              "recording": "fs-553607",
+              "position": null,
+              "diffuse": false,
+              "gain": 0.699999988079071,
+              "retirementGain": 1,
+              "masterGain": 0.38499999046325684,
+              "distance": null,
+              "refDistance": 4,
+              "panningModel": null,
+              "reason": "mapped weir proximity 8.1 m; turbulence is an artistic interpretation, discharge unknown",
+              "occlusion": 0,
+              "transition": "playing"
+            }
+          ],
+          "recentEvents": [],
+          "nodes": 19,
+          "voices": 2,
+          "peakVoices": 3,
+          "hrtf": 0,
+          "beds": 2,
+          "budget": {
+            "voices": 12,
+            "hrtf": 2,
+            "beds": 3,
+            "hz": 2
+          },
+          "dropped": 0,
+          "steps": 0,
+          "lastStepAssets": [],
+          "heardBirds": 0,
+          "waterContacts": 0,
+          "waterBufferBytes": 0,
+          "roadEvents": 0,
+          "profile": "balanced",
+          "obstructionChecks": 0,
+          "obstructionUpdates": 0,
+          "cacheBytes": 12262912,
+          "peakBytes": 12262912,
+          "cached": 5,
+          "pending": 0,
+          "activeLoads": 0,
+          "loads": 5,
+          "decodes": 5,
+          "deferred": 0,
+          "deniedDecodes": 0,
+          "failures": {},
+          "aircraftEvents": 0,
+          "contextUpdates": 6,
+          "cpuMs": 0.8999999910593033,
+          "maxCpuMs": 29.600000008940697,
+          "nearbyChecks": 131,
+          "memoryCells": 1,
+          "perches": 8,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": {
+            "version": 1,
+            "geo": {
+              "lat": 46.693413546532526,
+              "lon": 0.8826318721441129
+            },
+            "key": "wgs84-v1:69987:92611",
+            "worldTimeMs": 1782050267015,
+            "localHour": 15.963055555555554,
+            "season": "summer",
+            "timeBasis": "civil",
+            "altitudeM": 65.53499908447266,
+            "habitat": "unknown",
+            "solarAltitude": 0.9849118505468907,
+            "weather": {
+              "cloud": 0.16,
+              "mist": 0,
+              "wind": 0.23103362392633273,
+              "rain": 0,
+              "snow": 0,
+              "gust": 0.5485738838440221,
+              "electric": 0,
+              "temperatureC": 18.529786633813934,
+              "snowCover": 0
+            },
+            "position": {
+              "x": -135,
+              "y": -35.665000915527344,
+              "z": 210
+            },
+            "water": {
+              "distanceM": 2.0331754406729203,
+              "horizontalDistanceM": 0,
+              "bankDistanceM": 0,
+              "centrelineDistanceM": 7.059914253315111,
+              "verticalDistanceM": 2.0331754406729203,
+              "point": {
+                "x": -135,
+                "z": 215.48235735842314,
+                "y": -35.84776410825809
+              },
+              "insideMappedWater": true,
+              "kind": "river",
+              "weirDistanceM": 8.088571581152738,
+              "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+              "heightBasis": "DEM approximation, not measured water level"
+            },
+            "emitters": [
+              {
+                "id": "perch-v1:95626:1805",
+                "geo": {
+                  "lat": 46.692618164062495,
+                  "lon": 0.8816723632812501
+                },
+                "position": {
+                  "x": -208.26292666888054,
+                  "y": -23.614794048923287,
+                  "z": 298.5419765638352
+                },
+                "habitat": "built",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95626:1806",
+                "geo": {
+                  "lat": 46.692490234375,
+                  "lon": 0.8821699218750001
+                },
+                "position": {
+                  "x": -170.2720334335453,
+                  "y": -20.48086932633899,
+                  "z": 312.7831093756771
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95626:1807",
+                "geo": {
+                  "lat": 46.6927041015625,
+                  "lon": 0.8826674804687501
+                },
+                "position": {
+                  "x": -132.28114019821004,
+                  "y": -26.32357135245013,
+                  "z": 288.9754140634682
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95626:1808",
+                "geo": {
+                  "lat": 46.692575683593745,
+                  "lon": 0.8831650390625
+                },
+                "position": {
+                  "x": -94.29024696288326,
+                  "y": -28.707227052224212,
+                  "z": 303.2709023450599
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95627:1805",
+                "geo": {
+                  "lat": 46.693123046874994,
+                  "lon": 0.881486328125
+                },
+                "position": {
+                  "x": -222.46756879122196,
+                  "y": -20.476088130484115,
+                  "z": 242.33842187635418
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95627:1807",
+                "geo": {
+                  "lat": 46.69303759765625,
+                  "lon": 0.8824443359375
+                },
+                "position": {
+                  "x": -149.3192542399688,
+                  "y": -28.510437252700072,
+                  "z": 251.8506289069714
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95628:1805",
+                "geo": {
+                  "lat": 46.693556152343746,
+                  "lon": 0.88168505859375
+                },
+                "position": {
+                  "x": -207.293581012244,
+                  "y": -25.987775696955495,
+                  "z": 194.1251210949713
+                },
+                "habitat": "built",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95629:1806",
+                "geo": {
+                  "lat": 46.694228515625,
+                  "lon": 0.8820717773437501
+                },
+                "position": {
+                  "x": -177.76582100989776,
+                  "y": -26.08568647738302,
+                  "z": 119.27764062580366
+                },
+                "habitat": "built",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95629:1807",
+                "geo": {
+                  "lat": 46.694014648437495,
+                  "lon": 0.8825507812500001
+                },
+                "position": {
+                  "x": -141.1916637342712,
+                  "y": -20.96696045069561,
+                  "z": 143.08533593880355
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95629:1809",
+                "geo": {
+                  "lat": 46.694100097656246,
+                  "lon": 0.8835458984375001
+                },
+                "position": {
+                  "x": -65.2098772636007,
+                  "y": -11.489492268690967,
+                  "z": 133.57312890739536
+                },
+                "habitat": "built",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95630:1805",
+                "geo": {
+                  "lat": 46.694510253906245,
+                  "lon": 0.881427734375
+                },
+                "position": {
+                  "x": -226.94147182188408,
+                  "y": -24.704960121625206,
+                  "z": 87.91453515758519
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95630:1806",
+                "geo": {
+                  "lat": 46.694638671875,
+                  "lon": 0.88224853515625
+                },
+                "position": {
+                  "x": -164.26954686741917,
+                  "y": -23.447819871371124,
+                  "z": 73.61904687599349
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95630:1809",
+                "geo": {
+                  "lat": 46.69468115234375,
+                  "lon": 0.883685546875
+                },
+                "position": {
+                  "x": -54.54707504053947,
+                  "y": -5.351160409944129,
+                  "z": 68.8901210947688
+                },
+                "habitat": "wood",
+                "interpreted": true
+              }
+            ],
+            "ground": null,
+            "influences": {},
+            "sources": [
+              {
+                "id": "tree-bird:tree:-122.706503:286.309434",
+                "kind": "bird",
+                "habitat": "wood",
+                "position": {
+                  "x": -123.16122400771495,
+                  "y": -29.046734267858998,
+                  "z": 284.13545873692846
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "family": "tit",
+                "updatedAt": 126.16479999999702
+              },
+              {
+                "id": "tree-bird:tree:-109.204736:286.232908",
+                "kind": "bird",
+                "habitat": "wood",
+                "position": {
+                  "x": -108.40559827126727,
+                  "y": -29.854395834496202,
+                  "z": 283.87851078696207
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "family": "robin",
+                "updatedAt": 126.16479999999702
+              }
+            ],
+            "provenance": {
+              "geography": "IGN/ASP/OSM classifications; mix inferred",
+              "weather": "EarthLife simulated",
+              "region": "temperate-europe"
+            },
+            "fixture": false,
+            "environment": {
+              "revision": 38,
+              "commandRevision": 2,
+              "manual": false
+            },
+            "mixRevision": 38,
+            "listener": {
+              "position": {
+                "x": -135,
+                "y": -33.0754790145318,
+                "z": 215.48235735842314
+              },
+              "forward": {
+                "x": 0,
+                "y": -0.16890953559334046,
+                "z": -0.985631558334879
+              }
+            },
+            "traffic": [],
+            "roof": null
+          }
+        },
+        "buffers": {
+          "attributeBuffers": 1802,
+          "attributeBytes": 53938580,
+          "typedTextureBytes": 2523136,
+          "textureCount": 3,
+          "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+        }
+      },
+      "captureValid": true,
+      "afterImage": "reference-retry-river-river-shadows-balanced-after.png"
+    },
+    {
+      "name": "reference-retry-river-river-shadows-quality",
+      "scene": "river-shadows",
+      "profile": "quality",
+      "requestedWallSeconds": 16,
+      "errorsBefore": 0,
+      "viewChanges": [
+        {
+          "wallSeconds": 8.030359274000016,
+          "view": "moving"
+        }
+      ],
+      "environmentBefore": {
+        "source": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+        "climate": {
+          "worldTimeMs": 1782045858310,
+          "solar": {
+            "altitude": 1.130663888179556,
+            "azimuth": 3.591123851979253,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0,
+            "electric": 0,
+            "temperatureC": 18.69468340703728
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.17823988313419012,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.14435812473040552,
+            "electric": 0,
+            "temperatureC": 18.69468340703728,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1575983400627863,
+            "z": -0.08327957868635055,
+            "speed": 0.17823988313419012,
+            "gust": 0.14435812473040552,
+            "slow": 0.6488333986510286,
+            "turn": -0.01934420715654646,
+            "water": 0.9502611968351016
+          },
+          "transition": {
+            "revision": 27,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 18.69468340703728,
+            "humidityPct": 46.08,
+            "cloudCover": 0.16,
+            "cloudDensity": 0.11199999999999999,
+            "rainIntensity": 0,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.0846648004115504,
+            "meanWindMps": 3.5999999999999996,
+            "gustWindMps": 3.5999999999999996,
+            "fog": 0,
+            "visibilityM": 18000,
+            "stormRisk": 0,
+            "electricalActivity": 0,
+            "groundWetness": 0,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.8624,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "calm",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.4608,
+            "dew": 0,
+            "mist": 0.26603046559569676,
+            "bankDistance": 26.880364196808294
+          },
+          "diffuseNight": {
+            "intensity": 1.451496,
+            "nightWeight": 0,
+            "moon": 0
+          },
+          "moon": {
+            "date": "2026-06-21T12:44:18.310Z",
+            "altitude": 0.17865482987000592,
+            "azimuth": 1.7856860410319335,
+            "phase": 0.23724193425181095,
+            "illumination": 0.45998839239572603,
+            "brightLimbAngle": -1.1601465358640362,
+            "parallacticAngle": -0.7343501880456613,
+            "distanceKm": 386080.2864684271,
+            "angularRadius": 0.004513963958847974,
+            "geometricallyVisible": true,
+            "direction": [
+              0.9614496231492963,
+              0.17770597470139363,
+              0.20984567830075448
+            ],
+            "visibility": 0.28,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 121,
+          "targetWeather": "clear",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [],
+            "nextSeconds": null
+          },
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T12:44:18.310Z",
+          "localTime": "21 juin 2026, 14:44",
+          "localHour": 14.738333333333333,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 6,
+            "representativeDay": null,
+            "sunrise": 1782014590999.9846,
+            "sunset": 1782071544999.9927,
+            "solarNoon": 1782043067015.189
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "groundWetness": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 18.69468340703728,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              1.6679917003139315,
+              -0.8913978934317528
+            ],
+            "morph": [
+              0.11632444134605564,
+              0.072921649841908,
+              0.1025823618446819
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "camera": {
+          "position": [
+            -135,
+            -33.0754700986969,
+            215.4824093846644
+          ],
+          "rotation": [
+            -0.0847597831082671,
+            0,
+            0,
+            0.9964014146755512
+          ],
+          "projection": [
+            1.4407365952283748,
+            0,
+            0,
+            0,
+            0,
+            1.9209821269711662,
+            0,
+            0,
+            0,
+            0,
+            -1.0001333422228147,
+            -1,
+            0,
+            0,
+            -0.20001333422228149,
+            0
+          ]
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "profile": "quality",
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1536,
+          "shadowBytes": 11796480,
+          "staticTriangles": 44424,
+          "treeInstances": 18,
+          "updates": 1,
+          "lastUpdateCpuMs": 139.1000000089407,
+          "maxUpdateCpuMs": 139.1000000089407,
+          "lastShadowCalls": 6,
+          "lastShadowTriangles": 66246,
+          "extraPasses": 1,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0.027083333333333334,
+          "character": {
+            "updates": 1,
+            "size": 256,
+            "bytes": 327680,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 15.799999997019768,
+            "lastCpuMs": 15.799999997019768,
+            "maxCpuMs": 15.799999997019768,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "shadow": {
+          "size": [
+            1024,
+            1024
+          ],
+          "type": 2,
+          "bias": 0,
+          "normalBias": 0,
+          "camera": [
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            -0.004004004004004004,
+            0,
+            0,
+            0,
+            -1.002002002002002,
+            1
+          ],
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "paddle": {
+          "stroke": 0,
+          "pose": {},
+          "tip": [
+            0,
+            0,
+            0
+          ],
+          "hands": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "marks": {
+            "capacity": 48,
+            "emitted": 0,
+            "paddleContacts": 0,
+            "wakePairs": 0,
+            "drawCalls": 0
+          }
+        },
+        "renderer": {
+          "memory": {
+            "geometries": 210,
+            "textures": 20
+          },
+          "render": {
+            "frame": 29,
+            "calls": 166,
+            "triangles": 375057,
+            "points": 0,
+            "lines": 0
+          }
+        }
+      },
+      "before": {
+        "position": [
+          -135,
+          -35.665000915527344,
+          210
+        ],
+        "heading": 0,
+        "birds": {
+          "individuals": 2,
+          "drawCalls": 1,
+          "triangles": 530,
+          "perches": 19,
+          "families": [
+            "tit",
+            "robin"
+          ],
+          "sources": [
+            {
+              "id": "tree-bird:tree:-122.706503:286.309434",
+              "position": [
+                -123.16122400771495,
+                -29.046734267858998,
+                284.13545873692846
+              ],
+              "family": "tit"
+            },
+            {
+              "id": "tree-bird:tree:-109.204736:286.232908",
+              "position": [
+                -108.40559827126727,
+                -29.854395834496202,
+                283.87851078696207
+              ],
+              "family": "robin"
+            }
+          ],
+          "renderSamples": 27,
+          "cpuMs": 3.699999988079071,
+          "maxCpuMs": 9,
+          "clock": 121,
+          "trajectory": "analytic-per-render-frame"
+        },
+        "shadow": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1536,
+          "shadowBytes": 11796480,
+          "staticTriangles": 44424,
+          "treeInstances": 18,
+          "updates": 1,
+          "lastUpdateCpuMs": 139.1000000089407,
+          "maxUpdateCpuMs": 139.1000000089407,
+          "lastShadowCalls": 6,
+          "lastShadowTriangles": 66246,
+          "extraPasses": 1,
+          "selectionBuilds": 1,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 0,
+          "windSkips": 0,
+          "windMotionBoundM": 0,
+          "maxWindMotionBoundM": 0,
+          "windThresholdM": 0.027083333333333334,
+          "character": {
+            "updates": 1,
+            "size": 256,
+            "bytes": 327680,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 15.799999997019768,
+            "lastCpuMs": 15.799999997019768,
+            "maxCpuMs": 15.799999997019768,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "boat": {
+          "active": false,
+          "heading": 0,
+          "following": false,
+          "metrics": {
+            "plans": 0,
+            "lateralError": 0,
+            "maxLateralError": 0,
+            "stops": 1
+          }
+        },
+        "planet": {
+          "contactQueries": {
+            "queries": 632,
+            "hits": 0,
+            "invalidations": 26,
+            "maxEntries": 632
+          },
+          "state": "ready",
+          "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+          "stream": {
+            "loaded": 0,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 0,
+            "active": 2,
+            "queued": 2,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 2,
+            "jobs": [
+              {
+                "id": "131:1616",
+                "generation": 2,
+                "state": "WAITING_FOR_TILE",
+                "phase": "installation-queue",
+                "priority": 646.5760283550067,
+                "at": 1794909791528
+              },
+              {
+                "id": "131:1617",
+                "generation": 1,
+                "state": "WAITING_FOR_TILE",
+                "phase": "installation-queue",
+                "priority": 0.1533444130155708,
+                "at": 1794909791541
+              }
+            ]
+          },
+          "render": {
+            "contactRevision": 1,
+            "tiles": 0,
+            "features": 0,
+            "triangles": 11951,
+            "trees": 0,
+            "disposed": 0,
+            "batches": 0,
+            "batchRebuilds": 0,
+            "maxBatchMs": 39.400000005960464,
+            "maxBatchWallMs": 0,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 108,
+              "nodes": 1615,
+              "edges": 3270,
+              "refused": 23,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 108,
+              "nodes": 869,
+              "edges": 1738,
+              "refused": 73,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 108,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 108,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 0,
+          "maxInstallWallMs": 0,
+          "preparation": {
+            "slices": 148,
+            "steps": 33211,
+            "cpuMs": 648.1000000536442,
+            "maxSliceMs": 39.400000005960464,
+            "maxStepMs": 37.30000001192093,
+            "completed": 4,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:131:1616": {
+                "steps": 557,
+                "cpuMs": 6.200000002980232,
+                "maxStepMs": 0.3999999910593033,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:131:1616": {
+                "steps": 2169,
+                "cpuMs": 8.599999979138374,
+                "maxStepMs": 0.20000000298023224,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:131:1616": {
+                "steps": 1403,
+                "cpuMs": 3.7999999970197678,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1616": {
+                "steps": 534,
+                "cpuMs": 0.30000001192092896,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1616": {
+                "steps": 28548,
+                "cpuMs": 593.9000000804663,
+                "maxStepMs": 37.30000001192093,
+                "over8": 9,
+                "over50": 0
+              }
+            },
+            "longSteps": [
+              {
+                "label": "render-install:131:1616",
+                "ms": 31.399999991059303
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 18.100000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.099999994039536
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 10.899999991059303
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.400000005960464
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 10.700000002980232
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 11.599999994039536
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 13.100000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 37.30000001192093
+              }
+            ]
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "contact": {
+            "available": 499,
+            "expected": 499,
+            "effectiveStepM": 2
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 13,
+            "maxReceiveMs": 0.5,
+            "maxDecodeWallMs": 1533.0999999940395
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0.10000000894069672,
+            "maxCpuMs": 2.8999999910593033,
+            "traffic": {
+              "created": 0,
+              "active": 0,
+              "stops": 0,
+              "distanceM": 0,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": null
+          },
+          "stations": {
+            "count": 60,
+            "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+            "license": "© SNCF Réseau · Open Database License (ODbL)"
+          }
+        },
+        "source": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "activity": "walking",
+        "audioEnabled": true,
+        "gps": {
+          "lat": 46.693413546532526,
+          "lon": 0.8826318721441129
+        },
+        "movement": null,
+        "admission": {
+          "ok": false,
+          "reason": "tile-loading",
+          "state": "WAITING_FOR_TILE",
+          "tile": "131:1617"
+        },
+        "origin": {
+          "origin": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "revision": 0
+          },
+          "metrics": {
+            "rebases": 0,
+            "frames": 27,
+            "maxLocalCameraM": 353.77313869194865,
+            "canonicalPhysics": true
+          }
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "viewport": [
+          800,
+          600
+        ],
+        "heap": 247995751,
+        "longTasks": [
+          {
+            "t": 286.09999999403954,
+            "ms": 2102
+          },
+          {
+            "t": 2811.0999999940395,
+            "ms": 945
+          },
+          {
+            "t": 4152.9000000059605,
+            "ms": 52
+          },
+          {
+            "t": 4283,
+            "ms": 50
+          },
+          {
+            "t": 4364.70000000298,
+            "ms": 183
+          },
+          {
+            "t": 4814.5999999940395,
+            "ms": 69
+          },
+          {
+            "t": 4988.5,
+            "ms": 189
+          },
+          {
+            "t": 5607.5999999940395,
+            "ms": 320
+          },
+          {
+            "t": 5944.5999999940395,
+            "ms": 548
+          },
+          {
+            "t": 6609.5,
+            "ms": 86
+          },
+          {
+            "t": 6947.29999999702,
+            "ms": 461
+          },
+          {
+            "t": 7409,
+            "ms": 192
+          },
+          {
+            "t": 8230.40000000596,
+            "ms": 74
+          },
+          {
+            "t": 8354.40000000596,
+            "ms": 580
+          },
+          {
+            "t": 8934.79999999702,
+            "ms": 207
+          },
+          {
+            "t": 9142.5,
+            "ms": 11272
+          },
+          {
+            "t": 20414.79999999702,
+            "ms": 1159
+          },
+          {
+            "t": 21583,
+            "ms": 4372
+          },
+          {
+            "t": 25976.29999999702,
+            "ms": 60
+          },
+          {
+            "t": 26317.59999999404,
+            "ms": 94
+          },
+          {
+            "t": 26412.29999999702,
+            "ms": 124
+          },
+          {
+            "t": 26548.20000000298,
+            "ms": 186
+          },
+          {
+            "t": 26737.70000000298,
+            "ms": 2263
+          },
+          {
+            "t": 29374.90000000596,
+            "ms": 2657
+          },
+          {
+            "t": 32323,
+            "ms": 397
+          },
+          {
+            "t": 32772,
+            "ms": 72
+          },
+          {
+            "t": 34938.90000000596,
+            "ms": 56
+          },
+          {
+            "t": 36023.79999999702,
+            "ms": 2602
+          },
+          {
+            "t": 38630.70000000298,
+            "ms": 78
+          },
+          {
+            "t": 38718.40000000596,
+            "ms": 2251
+          },
+          {
+            "t": 41023.5,
+            "ms": 1570
+          }
+        ],
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "audio": {
+          "layers": [],
+          "activeSources": [],
+          "recentEvents": [],
+          "nodes": 5,
+          "voices": 0,
+          "peakVoices": 0,
+          "hrtf": 0,
+          "beds": 0,
+          "budget": {
+            "voices": 12,
+            "hrtf": 2,
+            "beds": 3,
+            "hz": 2
+          },
+          "dropped": 0,
+          "steps": 0,
+          "lastStepAssets": [],
+          "heardBirds": 0,
+          "waterContacts": 0,
+          "waterBufferBytes": 0,
+          "roadEvents": 0,
+          "profile": "balanced",
+          "obstructionChecks": 0,
+          "obstructionUpdates": 0,
+          "cacheBytes": 0,
+          "peakBytes": 0,
+          "cached": 0,
+          "pending": 0,
+          "activeLoads": 0,
+          "loads": 0,
+          "decodes": 0,
+          "deferred": 0,
+          "deniedDecodes": 0,
+          "failures": {},
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "buffers": {
+          "attributeBuffers": 1139,
+          "attributeBytes": 44381676,
+          "typedTextureBytes": 2523136,
+          "textureCount": 3,
+          "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+        }
+      },
+      "beforeImage": "reference-retry-river-river-shadows-quality-before.png",
+      "prerollWallSeconds": 9.94090828599999,
+      "prerollMethod": "Native RAF only; wait for three actual production frames before the requested recording interval so an empty encoder under load cannot masquerade as a clip. Preroll remains in original media and measured FPS/durations.",
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 3,
+        "rawSha256": "394e6b6a585e5251a572a437b85e8dbec84827f4b31fbcffc71d1719bba18b02",
+        "indexedSha256": "195dcae56e31a8ce39cc578fb817893f16ca97fccef3f764a1a9ca4b05709ce6",
+        "allAudioVideoPacketPTSAndPayloadsIdentical": true,
+        "streams": [
+          {
+            "type": "video",
+            "codec": "vp9",
+            "width": 800,
+            "height": 600
+          },
+          {
+            "type": "audio",
+            "codec": "opus",
+            "channels": 2,
+            "sampleRate": "48000"
+          }
+        ]
+      },
+      "video": "reference-retry-river-river-shadows-quality.webm",
+      "original": "raw/reference-retry-river-river-shadows-quality.webm",
+      "frames": 9,
+      "wallSeconds": 28.86129999999702,
+      "averageRenderedFps": 0.2771877912637624,
+      "counter": {
+        "frames": 9,
+        "simulationSeconds": 1.9218999999910593,
+        "lastDt": 0.25
+      },
+      "simulationSeconds": 1.9218999999910593,
+      "distanceM": 0,
+      "perceptualStatus": "NON_VALIDE",
+      "framesWithBirds": 9,
+      "framesFile": "reference-retry-river-river-shadows-quality-frames.json.gz",
+      "transformsFile": "reference-retry-river-river-shadows-quality-transforms.json.gz",
+      "environmentAfter": {
+        "source": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0,
+            "electric": 0,
+            "temperatureC": 18.529786633813934
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.20369759558287504,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.31463402232164067,
+            "electric": 0,
+            "temperatureC": 18.529786633813934,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.1800247177764207,
+            "z": -0.09532828711476712,
+            "speed": 0.20369759558287504,
+            "gust": 0.31463402232164067,
+            "slow": 0.6442278670862462,
+            "turn": -0.019777349338857192,
+            "water": -0.04887433187604214
+          },
+          "transition": {
+            "revision": 36,
+            "commandRevision": 2,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 18.529786633813934,
+            "humidityPct": 46.08,
+            "cloudCover": 0.16,
+            "cloudDensity": 0.11199999999999999,
+            "rainIntensity": 0,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.0838056231408846,
+            "meanWindMps": 3.5999999999999996,
+            "gustWindMps": 3.5999999999999996,
+            "fog": 0,
+            "visibilityM": 18000,
+            "stormRisk": 0,
+            "electricalActivity": 0,
+            "groundWetness": 0,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.8624,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "calm",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.4608,
+            "dew": 0,
+            "mist": 0.11990899220503948,
+            "bankDistance": 26.880364196808294
+          },
+          "diffuseNight": {
+            "intensity": 1.451496,
+            "nightWeight": 0,
+            "moon": 0
+          },
+          "moon": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "altitude": 0.3762708273495534,
+            "azimuth": 2.038343306049544,
+            "phase": 0.23893939726382565,
+            "illumination": 0.46530388899636943,
+            "brightLimbAngle": -1.1601017135015295,
+            "parallacticAngle": -0.658949512417717,
+            "distanceKm": 386384.8646086329,
+            "angularRadius": 0.004524545865627336,
+            "geometricallyVisible": true,
+            "direction": [
+              0.8302261441780371,
+              0.3674547475372261,
+              0.41916769679404264
+            ],
+            "visibility": 0.28,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 128.17189999999107,
+          "targetWeather": "clear",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [],
+            "nextSeconds": null
+          },
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin 2026, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 6,
+            "representativeDay": null,
+            "sunrise": 1782014590999.9846,
+            "sunset": 1782071544999.9927,
+            "solarNoon": 1782043067015.189
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "groundWetness": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 18.529786633813934,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              14.94633217914972,
+              -7.942909845165305
+            ],
+            "morph": [
+              0.12292946540309552,
+              0.07716053484557697,
+              0.10834890896906214
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "camera": {
+          "position": [
+            -135,
+            -33.07547080502805,
+            215.4824052630364
+          ],
+          "rotation": [
+            -0.08475978310826696,
+            0,
+            0,
+            0.9964014146755512
+          ],
+          "projection": [
+            1.4407365952283748,
+            0,
+            0,
+            0,
+            0,
+            1.9209821269711662,
+            0,
+            0,
+            0,
+            0,
+            -1.0001333422228147,
+            -1,
+            0,
+            0,
+            -0.20001333422228149,
+            0
+          ]
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "profile": "quality",
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1536,
+          "shadowBytes": 11796480,
+          "staticTriangles": 50065,
+          "treeInstances": 18,
+          "updates": 10,
+          "lastUpdateCpuMs": 0.29999999701976776,
+          "maxUpdateCpuMs": 139.1000000089407,
+          "lastShadowCalls": 6,
+          "lastShadowTriangles": 71887,
+          "extraPasses": 1,
+          "selectionBuilds": 4,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 8,
+          "windSkips": 0,
+          "windMotionBoundM": 0.030232001975444577,
+          "maxWindMotionBoundM": 0.030232001975444577,
+          "windThresholdM": 0.027083333333333334,
+          "character": {
+            "updates": 10,
+            "size": 256,
+            "bytes": 327680,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 0.3999999910593033,
+            "lastCpuMs": 0.3999999910593033,
+            "maxCpuMs": 58.79999999701977,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "shadow": {
+          "size": [
+            1024,
+            1024
+          ],
+          "type": 2,
+          "bias": 0,
+          "normalBias": 0,
+          "camera": [
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            -0.004004004004004004,
+            0,
+            0,
+            0,
+            -1.002002002002002,
+            1
+          ],
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "paddle": {
+          "stroke": 0,
+          "pose": {},
+          "tip": [
+            0,
+            0,
+            0
+          ],
+          "hands": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "marks": {
+            "capacity": 48,
+            "emitted": 0,
+            "paddleContacts": 0,
+            "wakePairs": 0,
+            "drawCalls": 0
+          }
+        },
+        "renderer": {
+          "memory": {
+            "geometries": 235,
+            "textures": 20
+          },
+          "render": {
+            "frame": 56,
+            "calls": 184,
+            "triangles": 436929,
+            "points": 0,
+            "lines": 14
+          }
+        }
+      },
+      "after": {
+        "position": [
+          -135,
+          -35.665000915527344,
+          210
+        ],
+        "heading": 0,
+        "birds": {
+          "individuals": 2,
+          "drawCalls": 1,
+          "triangles": 530,
+          "perches": 19,
+          "families": [
+            "tit",
+            "robin"
+          ],
+          "sources": [
+            {
+              "id": "tree-bird:tree:-122.706503:286.309434",
+              "position": [
+                -123.16122400771495,
+                -29.046734267858998,
+                284.13545873692846
+              ],
+              "family": "tit"
+            },
+            {
+              "id": "tree-bird:tree:-109.204736:286.232908",
+              "position": [
+                -108.40559827126727,
+                -29.854395834496202,
+                283.87851078696207
+              ],
+              "family": "robin"
+            }
+          ],
+          "renderSamples": 36,
+          "cpuMs": 0,
+          "maxCpuMs": 9,
+          "clock": 128.17189999999107,
+          "trajectory": "analytic-per-render-frame"
+        },
+        "shadow": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1536,
+          "shadowBytes": 11796480,
+          "staticTriangles": 50065,
+          "treeInstances": 18,
+          "updates": 10,
+          "lastUpdateCpuMs": 0.29999999701976776,
+          "maxUpdateCpuMs": 139.1000000089407,
+          "lastShadowCalls": 6,
+          "lastShadowTriangles": 71887,
+          "extraPasses": 1,
+          "selectionBuilds": 4,
+          "shadowIndexBytes": 1048576,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 8,
+          "windSkips": 0,
+          "windMotionBoundM": 0.030232001975444577,
+          "maxWindMotionBoundM": 0.030232001975444577,
+          "windThresholdM": 0.027083333333333334,
+          "character": {
+            "updates": 10,
+            "size": 256,
+            "bytes": 327680,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 0.3999999910593033,
+            "lastCpuMs": 0.3999999910593033,
+            "maxCpuMs": 58.79999999701977,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "boat": {
+          "active": false,
+          "heading": 0,
+          "following": false,
+          "metrics": {
+            "plans": 0,
+            "lateralError": 0,
+            "maxLateralError": 0,
+            "stops": 1
+          }
+        },
+        "planet": {
+          "contactQueries": {
+            "queries": 632,
+            "hits": 0,
+            "invalidations": 35,
+            "maxEntries": 632
+          },
+          "state": "ready",
+          "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+          "stream": {
+            "loaded": 1,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 8691256,
+            "active": 1,
+            "queued": 0,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 2,
+            "jobs": [
+              {
+                "id": "131:1617",
+                "generation": 1,
+                "state": "WAITING_FOR_TILE",
+                "phase": "installation-queue",
+                "priority": 0.1533444130155708,
+                "at": 1794909791541
+              },
+              {
+                "id": "131:1616",
+                "generation": 2,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 387.5533837932337,
+                "at": 1794909808908
+              }
+            ]
+          },
+          "render": {
+            "contactRevision": 3,
+            "tiles": 2,
+            "features": 2482,
+            "triangles": 23940,
+            "trees": 864,
+            "disposed": 0,
+            "batches": 87,
+            "batchRebuilds": 1,
+            "maxBatchMs": 62,
+            "maxBatchWallMs": 845,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 388,
+              "nodes": 4113,
+              "edges": 8428,
+              "refused": 71,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 388,
+              "nodes": 2344,
+              "edges": 4712,
+              "refused": 242,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 388,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 388,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 44.599999994039536,
+          "maxInstallWallMs": 17379.69999998808,
+          "preparation": {
+            "slices": 1352,
+            "steps": 250193,
+            "cpuMs": 6808.20000000298,
+            "maxSliceMs": 62,
+            "maxStepMs": 62,
+            "completed": 12,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:131:1616": {
+                "steps": 557,
+                "cpuMs": 6.200000002980232,
+                "maxStepMs": 0.3999999910593033,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:131:1616": {
+                "steps": 2169,
+                "cpuMs": 8.599999979138374,
+                "maxStepMs": 0.20000000298023224,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:131:1616": {
+                "steps": 1403,
+                "cpuMs": 3.7999999970197678,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1616": {
+                "steps": 534,
+                "cpuMs": 0.30000001192092896,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1616": {
+                "steps": 84680,
+                "cpuMs": 1329.7000001072884,
+                "maxStepMs": 43.29999999701977,
+                "over8": 15,
+                "over50": 0
+              },
+              "static-batches": {
+                "steps": 734,
+                "cpuMs": 611.1000001132488,
+                "maxStepMs": 37.70000000298023,
+                "over8": 15,
+                "over50": 0
+              },
+              "surface-index:131:1617": {
+                "steps": 2185,
+                "cpuMs": 67.79999995231628,
+                "maxStepMs": 41.20000000298023,
+                "over8": 1,
+                "over50": 0
+              },
+              "terrain-refine:131:1616": {
+                "steps": 25,
+                "cpuMs": 13.299999997019768,
+                "maxStepMs": 6.299999997019768,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:131:1617": {
+                "steps": 4746,
+                "cpuMs": 26.299999952316284,
+                "maxStepMs": 4.0999999940395355,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:131:1617": {
+                "steps": 3663,
+                "cpuMs": 11.200000062584877,
+                "maxStepMs": 0.4000000059604645,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1617": {
+                "steps": 2167,
+                "cpuMs": 6.700000032782555,
+                "maxStepMs": 5.299999997019768,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1617": {
+                "steps": 123627,
+                "cpuMs": 2728.999999836087,
+                "maxStepMs": 62,
+                "over8": 36,
+                "over50": 1
+              },
+              "terrain-refine:131:1617": {
+                "steps": 23703,
+                "cpuMs": 1711.0000001341105,
+                "maxStepMs": 45.19999998807907,
+                "over8": 13,
+                "over50": 0
+              }
+            },
+            "longSteps": [
+              {
+                "label": "render-install:131:1616",
+                "ms": 31.399999991059303
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 18.100000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.099999994039536
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 10.899999991059303
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 9.400000005960464
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 10.700000002980232
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 11.599999994039536
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 13.100000008940697
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 37.30000001192093
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 43.29999999701977
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 40.29999999701977
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.599999994039536
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 8.299999997019768
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 39.599999994039536
+              },
+              {
+                "label": "render-install:131:1616",
+                "ms": 31.400000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 28.600000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 28.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "surface-index:131:1617",
+                "ms": 41.20000000298023
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 10
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 39.6000000089407
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 45
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 11.400000005960464
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 26.5
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 14
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 62
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 38.70000000298023
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 11.299999997019768
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 45.19999998807907
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 39.79999999701977
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 15.100000008940697
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 39.5
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 20.600000008940697
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 34.29999999701977
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 12.700000002980232
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 39.70000000298023
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 9.899999991059303
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 40.70000000298023
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 8.099999994039536
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 43.8999999910593
+              },
+              {
+                "label": "terrain-refine:131:1617",
+                "ms": 8.5
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.400000005960464
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 43.79999999701977
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 9.400000005960464
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 31
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 37
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 17.599999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 24.099999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 9.599999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 9.599999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 41.29999999701977
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 39.29999999701977
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 39.5
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.800000011920929
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 42.29999999701977
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 11.399999991059303
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 10.800000011920929
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 13.900000005960464
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 9.699999988079071
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 14.099999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 27.799999997019768
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 25.5
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 13.700000002980232
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 10.299999997019768
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 12.199999988079071
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 8.099999994039536
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 46.5
+              },
+              {
+                "label": "render-install:131:1617",
+                "ms": 13.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.800000011920929
+              },
+              {
+                "label": "static-batches",
+                "ms": 37.70000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.100000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 35
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 16.900000005960464
+              }
+            ]
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "contact": {
+            "available": 499,
+            "expected": 499,
+            "effectiveStepM": 2
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 13,
+            "maxReceiveMs": 0.5,
+            "maxDecodeWallMs": 1533.0999999940395
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0,
+            "maxCpuMs": 2.8999999910593033,
+            "traffic": {
+              "created": 0,
+              "active": 0,
+              "stops": 0,
+              "distanceM": 0,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": null
+          },
+          "stations": {
+            "count": 60,
+            "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+            "license": "© SNCF Réseau · Open Database License (ODbL)"
+          }
+        },
+        "source": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "activity": "walking",
+        "audioEnabled": true,
+        "gps": {
+          "lat": 46.693413546532526,
+          "lon": 0.8826318721441129
+        },
+        "movement": null,
+        "admission": {
+          "ok": false,
+          "reason": "unverified-water",
+          "height": 65.32893056063098,
+          "normal": {
+            "x": -0.009998375395984516,
+            "y": 0.9998375395986506,
+            "z": 0.014997563093980327
+          },
+          "slope": 0.018027756377319314,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "131:1617"
+        },
+        "origin": {
+          "origin": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "revision": 0
+          },
+          "metrics": {
+            "rebases": 0,
+            "frames": 36,
+            "maxLocalCameraM": 353.77313869194865,
+            "canonicalPhysics": true
+          }
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "viewport": [
+          800,
+          600
+        ],
+        "heap": 338300556,
+        "longTasks": [
+          {
+            "t": 286.09999999403954,
+            "ms": 2102
+          },
+          {
+            "t": 2811.0999999940395,
+            "ms": 945
+          },
+          {
+            "t": 4152.9000000059605,
+            "ms": 52
+          },
+          {
+            "t": 4283,
+            "ms": 50
+          },
+          {
+            "t": 4364.70000000298,
+            "ms": 183
+          },
+          {
+            "t": 4814.5999999940395,
+            "ms": 69
+          },
+          {
+            "t": 4988.5,
+            "ms": 189
+          },
+          {
+            "t": 5607.5999999940395,
+            "ms": 320
+          },
+          {
+            "t": 5944.5999999940395,
+            "ms": 548
+          },
+          {
+            "t": 6609.5,
+            "ms": 86
+          },
+          {
+            "t": 6947.29999999702,
+            "ms": 461
+          },
+          {
+            "t": 7409,
+            "ms": 192
+          },
+          {
+            "t": 8230.40000000596,
+            "ms": 74
+          },
+          {
+            "t": 8354.40000000596,
+            "ms": 580
+          },
+          {
+            "t": 8934.79999999702,
+            "ms": 207
+          },
+          {
+            "t": 9142.5,
+            "ms": 11272
+          },
+          {
+            "t": 20414.79999999702,
+            "ms": 1159
+          },
+          {
+            "t": 21583,
+            "ms": 4372
+          },
+          {
+            "t": 25976.29999999702,
+            "ms": 60
+          },
+          {
+            "t": 26317.59999999404,
+            "ms": 94
+          },
+          {
+            "t": 26412.29999999702,
+            "ms": 124
+          },
+          {
+            "t": 26548.20000000298,
+            "ms": 186
+          },
+          {
+            "t": 26737.70000000298,
+            "ms": 2263
+          },
+          {
+            "t": 29374.90000000596,
+            "ms": 2657
+          },
+          {
+            "t": 32323,
+            "ms": 397
+          },
+          {
+            "t": 32772,
+            "ms": 72
+          },
+          {
+            "t": 34938.90000000596,
+            "ms": 56
+          },
+          {
+            "t": 36023.79999999702,
+            "ms": 2602
+          },
+          {
+            "t": 38630.70000000298,
+            "ms": 78
+          },
+          {
+            "t": 38718.40000000596,
+            "ms": 2251
+          },
+          {
+            "t": 41023.5,
+            "ms": 1570
+          },
+          {
+            "t": 47787.5,
+            "ms": 161
+          },
+          {
+            "t": 51848,
+            "ms": 80
+          },
+          {
+            "t": 52528.09999999404,
+            "ms": 62
+          },
+          {
+            "t": 53230.79999999702,
+            "ms": 4484
+          },
+          {
+            "t": 57720.90000000596,
+            "ms": 192
+          },
+          {
+            "t": 61970.29999999702,
+            "ms": 154
+          },
+          {
+            "t": 65968.29999999702,
+            "ms": 3269
+          },
+          {
+            "t": 73228.70000000298,
+            "ms": 3488
+          },
+          {
+            "t": 76744.29999999702,
+            "ms": 73
+          },
+          {
+            "t": 76902.70000000298,
+            "ms": 476
+          }
+        ],
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "audio": {
+          "layers": [
+            {
+              "id": "water",
+              "asset": "river-moderate-fs-591733-m11-2",
+              "actualBusGain": 0.5395184755325317,
+              "targetGain": 0.5395184562144628,
+              "masterGain": 0.38499999046325684,
+              "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 2.0 m",
+              "diffuse": false,
+              "pan": null,
+              "position": {
+                "x": -135,
+                "y": -35.847763389681575,
+                "z": 215.4824052630364
+              },
+              "panningModel": "equalpower",
+              "transition": "steady",
+              "nextWindowIn": 19.92
+            },
+            {
+              "id": "water-detail",
+              "asset": "water-turbulence-fs-553607-m11-1",
+              "actualBusGain": 0.1902627795934677,
+              "targetGain": 0.19032979863904873,
+              "masterGain": 0.38499999046325684,
+              "reason": "mapped weir proximity 8.1 m; turbulence is an artistic interpretation, discharge unknown",
+              "diffuse": false,
+              "pan": null,
+              "position": {
+                "x": -135,
+                "y": -35.847763389681575,
+                "z": 215.4824052630364
+              },
+              "panningModel": "equalpower",
+              "transition": "steady",
+              "nextWindowIn": 5.524000000000001
+            }
+          ],
+          "activeSources": [
+            {
+              "asset": "water-turbulence-fs-553607-m11-1",
+              "recording": "fs-553607",
+              "position": null,
+              "diffuse": false,
+              "gain": 0.699999988079071,
+              "retirementGain": 1,
+              "masterGain": 0.38499999046325684,
+              "distance": null,
+              "refDistance": 4,
+              "panningModel": null,
+              "reason": "mapped weir proximity 8.1 m; turbulence is an artistic interpretation, discharge unknown",
+              "occlusion": 0,
+              "transition": "playing"
+            },
+            {
+              "asset": "river-moderate-fs-591733-m11-2",
+              "recording": "fs-591733",
+              "position": null,
+              "diffuse": false,
+              "gain": 0.699999988079071,
+              "retirementGain": 1,
+              "masterGain": 0.38499999046325684,
+              "distance": null,
+              "refDistance": 4,
+              "panningModel": null,
+              "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 2.0 m",
+              "occlusion": 0,
+              "transition": "playing"
+            }
+          ],
+          "recentEvents": [],
+          "nodes": 19,
+          "voices": 2,
+          "peakVoices": 3,
+          "hrtf": 0,
+          "beds": 2,
+          "budget": {
+            "voices": 12,
+            "hrtf": 3,
+            "beds": 3,
+            "hz": 4
+          },
+          "dropped": 0,
+          "steps": 0,
+          "lastStepAssets": [],
+          "heardBirds": 0,
+          "waterContacts": 0,
+          "waterBufferBytes": 0,
+          "roadEvents": 0,
+          "profile": "quality",
+          "obstructionChecks": 0,
+          "obstructionUpdates": 0,
+          "cacheBytes": 12262912,
+          "peakBytes": 12262912,
+          "cached": 5,
+          "pending": 0,
+          "activeLoads": 0,
+          "loads": 5,
+          "decodes": 5,
+          "deferred": 0,
+          "deniedDecodes": 0,
+          "failures": {},
+          "aircraftEvents": 0,
+          "contextUpdates": 8,
+          "cpuMs": 16.5,
+          "maxCpuMs": 36.3999999910593,
+          "nearbyChecks": 131,
+          "memoryCells": 1,
+          "perches": 8,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": {
+            "version": 1,
+            "geo": {
+              "lat": 46.693413546532526,
+              "lon": 0.8826318721441129
+            },
+            "key": "wgs84-v1:69987:92611",
+            "worldTimeMs": 1782050267015,
+            "localHour": 15.963055555555554,
+            "season": "summer",
+            "timeBasis": "civil",
+            "altitudeM": 65.53499908447266,
+            "habitat": "unknown",
+            "solarAltitude": 0.9849118505468907,
+            "weather": {
+              "cloud": 0.16,
+              "mist": 0,
+              "wind": 0.20369759558287504,
+              "rain": 0,
+              "snow": 0,
+              "gust": 0.31463402232164067,
+              "electric": 0,
+              "temperatureC": 18.529786633813934,
+              "snowCover": 0
+            },
+            "position": {
+              "x": -135,
+              "y": -35.665000915527344,
+              "z": 210
+            },
+            "water": {
+              "distanceM": 2.033184358622904,
+              "horizontalDistanceM": 0,
+              "bankDistanceM": 0,
+              "centrelineDistanceM": 7.0599505536903004,
+              "verticalDistanceM": 2.033184358622904,
+              "point": {
+                "x": -135,
+                "z": 215.4824052630364,
+                "y": -35.847763389681575
+              },
+              "insideMappedWater": true,
+              "kind": "river",
+              "weirDistanceM": 8.088596723742757,
+              "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+              "heightBasis": "DEM approximation, not measured water level"
+            },
+            "emitters": [
+              {
+                "id": "perch-v1:95626:1805",
+                "geo": {
+                  "lat": 46.692618164062495,
+                  "lon": 0.8816723632812501
+                },
+                "position": {
+                  "x": -208.26292666888054,
+                  "y": -23.614794048923287,
+                  "z": 298.5419765638352
+                },
+                "habitat": "built",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95626:1806",
+                "geo": {
+                  "lat": 46.692490234375,
+                  "lon": 0.8821699218750001
+                },
+                "position": {
+                  "x": -170.2720334335453,
+                  "y": -20.48086932633899,
+                  "z": 312.7831093756771
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95626:1807",
+                "geo": {
+                  "lat": 46.6927041015625,
+                  "lon": 0.8826674804687501
+                },
+                "position": {
+                  "x": -132.28114019821004,
+                  "y": -26.32357135245013,
+                  "z": 288.9754140634682
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95626:1808",
+                "geo": {
+                  "lat": 46.692575683593745,
+                  "lon": 0.8831650390625
+                },
+                "position": {
+                  "x": -94.29024696288326,
+                  "y": -28.707227052224212,
+                  "z": 303.2709023450599
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95627:1805",
+                "geo": {
+                  "lat": 46.693123046874994,
+                  "lon": 0.881486328125
+                },
+                "position": {
+                  "x": -222.46756879122196,
+                  "y": -20.476088130484115,
+                  "z": 242.33842187635418
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95627:1807",
+                "geo": {
+                  "lat": 46.69303759765625,
+                  "lon": 0.8824443359375
+                },
+                "position": {
+                  "x": -149.3192542399688,
+                  "y": -28.510437252700072,
+                  "z": 251.8506289069714
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95628:1805",
+                "geo": {
+                  "lat": 46.693556152343746,
+                  "lon": 0.88168505859375
+                },
+                "position": {
+                  "x": -207.293581012244,
+                  "y": -25.987775696955495,
+                  "z": 194.1251210949713
+                },
+                "habitat": "built",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95629:1806",
+                "geo": {
+                  "lat": 46.694228515625,
+                  "lon": 0.8820717773437501
+                },
+                "position": {
+                  "x": -177.76582100989776,
+                  "y": -26.08568647738302,
+                  "z": 119.27764062580366
+                },
+                "habitat": "built",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95629:1807",
+                "geo": {
+                  "lat": 46.694014648437495,
+                  "lon": 0.8825507812500001
+                },
+                "position": {
+                  "x": -141.1916637342712,
+                  "y": -20.96696045069561,
+                  "z": 143.08533593880355
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95629:1809",
+                "geo": {
+                  "lat": 46.694100097656246,
+                  "lon": 0.8835458984375001
+                },
+                "position": {
+                  "x": -65.2098772636007,
+                  "y": -11.489492268690967,
+                  "z": 133.57312890739536
+                },
+                "habitat": "built",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95630:1805",
+                "geo": {
+                  "lat": 46.694510253906245,
+                  "lon": 0.881427734375
+                },
+                "position": {
+                  "x": -226.94147182188408,
+                  "y": -24.704960121625206,
+                  "z": 87.91453515758519
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95630:1806",
+                "geo": {
+                  "lat": 46.694638671875,
+                  "lon": 0.88224853515625
+                },
+                "position": {
+                  "x": -164.26954686741917,
+                  "y": -23.447819871371124,
+                  "z": 73.61904687599349
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95630:1809",
+                "geo": {
+                  "lat": 46.69468115234375,
+                  "lon": 0.883685546875
+                },
+                "position": {
+                  "x": -54.54707504053947,
+                  "y": -5.351160409944129,
+                  "z": 68.8901210947688
+                },
+                "habitat": "wood",
+                "interpreted": true
+              }
+            ],
+            "ground": null,
+            "influences": {},
+            "sources": [
+              {
+                "id": "tree-bird:tree:-122.706503:286.309434",
+                "kind": "bird",
+                "habitat": "wood",
+                "position": {
+                  "x": -123.16122400771495,
+                  "y": -29.046734267858998,
+                  "z": 284.13545873692846
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "family": "tit",
+                "updatedAt": 128.17189999999107
+              },
+              {
+                "id": "tree-bird:tree:-109.204736:286.232908",
+                "kind": "bird",
+                "habitat": "wood",
+                "position": {
+                  "x": -108.40559827126727,
+                  "y": -29.854395834496202,
+                  "z": 283.87851078696207
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "family": "robin",
+                "updatedAt": 128.17189999999107
+              }
+            ],
+            "provenance": {
+              "geography": "IGN/ASP/OSM classifications; mix inferred",
+              "weather": "EarthLife simulated",
+              "region": "temperate-europe"
+            },
+            "fixture": false,
+            "environment": {
+              "revision": 36,
+              "commandRevision": 2,
+              "manual": false
+            },
+            "mixRevision": 36,
+            "listener": {
+              "position": {
+                "x": -135,
+                "y": -33.07547080502805,
+                "z": 215.4824052630364
+              },
+              "forward": {
+                "x": 0,
+                "y": -0.16890953559334018,
+                "z": -0.9856315583348791
+              }
+            },
+            "traffic": [],
+            "roof": null
+          }
+        },
+        "buffers": {
+          "attributeBuffers": 1812,
+          "attributeBytes": 55287944,
+          "typedTextureBytes": 2523136,
+          "textureCount": 3,
+          "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+        }
+      },
+      "captureValid": true,
+      "afterImage": "reference-retry-river-river-shadows-quality-after.png"
+    }
+  ],
+  "errors": [],
+  "sourceSHA": "b5a4f98c87d4adf130342bc05cfa732a70056502"
+}

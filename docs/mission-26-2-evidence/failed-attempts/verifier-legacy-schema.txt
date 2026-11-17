@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/endless-earth/scripts/verify-mission-26-2-evidence.py", line 31, in <module>
+    d=json.loads(receipt.read_text());subprocess.run(['git','cat-file','-e',d['sourceCommit']+'^{commit}'],check=True)
+                                                                            ~^^^^^^^^^^^^^^^^
+KeyError: 'sourceCommit'

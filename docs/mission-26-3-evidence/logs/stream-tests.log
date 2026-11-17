@@ -1,0 +1,40 @@
+✔ M26.3 exact 3.883 km source bend has continuous visible road support across the former wedge (78.581582ms)
+✔ adjacent tile copies retain exactly the same road triangles and heights at their shared seam (29.554482ms)
+✔ same walking kernel permits a contour road but still refuses a sustained steep ramp and a cliff (39.418543ms)
+✔ directional road policy preserves private, rail, water and off-road steep refusals (0.861358ms)
+✔ stalled network has a bounded retryable state; a late generation cannot publish a floor (70.960652ms)
+✔ aborted demand immediately frees a decoder slot even if the old network ignores AbortSignal (60.965325ms)
+✔ preparation yields between bounded slices, preserves step order and cancels work without installing a partial tile (12.811193ms)
+✔ tile residency is committed after asynchronous installation and a stale installation rolls back (23.194421ms)
+✔ incremental graph construction and source-owner eviction retain one-way destination nodes without global rescans (4.422427ms)
+✔ a department river crossing the pilot preserves its historical water owner and interpolates only the exterior mesh (15.530913ms)
+✔ Lambert93 agrees with its official false origin and round trips department-scale positions without converting heights (22.334378ms)
+✔ legacy adapter preserves its historical east/south axes and an unrelated region uses another projection provider (0.540151ms)
+✔ floating-origin moves camera, visual, physics proxy and sound together; canonical state survives multiple rebases (2.592581ms)
+✔ terrain interpolation and normals share the exact triangle diagonal and remain continuous at tile boundaries (2.366387ms)
+✔ tile checksum and length verification reject corrupted bytes before physical installation (267.748366ms)
+✔ opaque gzip tile transport verifies compressed bytes and decodes exactly once (56.030402ms)
+✔ tile streaming bounds concurrency/residency, survives cancellation and never installs stale requests (18.618673ms)
+✔ demand selection fits the declared byte budget without evicting and reloading demanded tiles forever (21.607411ms)
+✔ metric tile demand covers the horizon and preloads the direction of travel without fetching a distant square (6.427162ms)
+✔ directed source topology crosses tiles once, retains shared owners and never connects grade-separated crossings (23.71438ms)
+✔ transport admission keeps motorway pedestrians, private tracks, uncertain bridges and water clearance closed (0.283495ms)
+✔ mapped water/buildings and missing support block travel instead of receiving an invisible fallback floor (1.331756ms)
+✔ car hull sweeps stop before walls, missing tiles and vertical road discontinuities across irregular frame rates (41.786702ms)
+✔ right-hand car steering remains right from the following camera rather than mirroring the keyboard (7.636752ms)
+✔ save/resume validates canonical state and refuses unavailable support without replacing the saved position (1.530266ms)
+✔ analytic flock samples and identity phases survive a CPU cadence/LOD change without a phase reset (1.54668ms)
+✔ paddle force only exists while the shared blade pose enters water; wakes come in stern pairs and fade when stopped (12.485865ms)
+✔ river following supplies input to physics, preserves manual takeover and does not impose spline positions (48.194355ms)
+✔ packraft checks the full visible hull and the water under its blade instead of assuming a flat infinite surface (4.585674ms)
+✔ rail acceleration and braking keep the whole leading vehicle before an unverified corridor end (52.603049ms)
+✔ synthetic airport flight stays continuous through takeoff, airborne turns and landing, then remains parked (0.912897ms)
+✔ a synthetic train brakes for an explicitly assigned source station, dwells, then continues on its rail (47.566889ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1472.855859

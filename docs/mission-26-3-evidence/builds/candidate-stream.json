@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "1eb19c2cea13b221915a1559f22246137456e094",
+  "sourceTrees": {
+    "src": "6f9caa35d56ed77fc887728e89cb5fa7fb7b00b9",
+    "public": "24a7d7776b508824edcdbbc5f6d256c1b08134fe",
+    "package.json": "4fce9545d34660f17748e0d736c5607b3267537c",
+    "package-lock.json": "e5a244f1710f880215d52c258f5c782bfd909b65",
+    "vite.config.ts": "ba92617c05652efa2fd2e51f549724415cc4abe0"
+  },
+  "instrumentation": {
+    "scripts/build-mission-26-3.mjs": "3639c9b2761726f6f4584431e95ef1e8327b6a7d75ced4a5112002e1ababe5b2",
+    "scripts/lib/mission-26-3-diagnostic.mjs": "c68642db18e9705515bf0dc08d265af0457ffc54847c43de702aac5729631fe5",
+    "scripts/lib/mission-26-3-input.mjs": "559b392204153bde054bc9119dfd9d7d3a9ea5b1fe3aaa4a29ad03e3615f137a",
+    "scripts/lib/mission-26-2-fixture.mjs": "c5adc69968cc71d04c8cb00f52dd1e6f38d4bd8fcadeb6277382935304e58e61",
+    "scripts/lib/mission-26-2-planning.mjs": "4c4af4d8a18d6c145f6f64941ebfcd6496f3cba871a9c8c619abb065887f0078",
+    "scripts/lib/mission-26-diagnostic.mjs": "3b32b38af636745a16f9ad5f33247a433a7c14a0860d8f5dc08cea417f1d4671",
+    "scripts/lib/mission-25-2-diagnostic.mjs": "91e7722b1099f876b2b04b5bfa758c5a6500bf3c879e49b7b74f0ef33791e253"
+  },
+  "data": {
+    "regionManifestSHA256": "943275cd2af39c72fc01caedcf52fb662fe69e4488b3833957b859c344f521a1",
+    "navigationManifestSHA256": "6fdc2f09cc3f96aa9b58ff97cdd7d3d8d2b4c12558857441920c1fc4c11834f5",
+    "fineSourcePin": "acb0a73b396229bf90731b90a558a8d5d072a9ec"
+  },
+  "method": "Common evidence-only shim. Manual step calls the ENTIRE original frame with explicit dt, normal controls and collisions, no positional repair. Production frame body and controllers active; render-hook environment and agents sampled at drawn checkpoints only. No native animation or weather endurance implied. Native captures never use manual stepping.",
+  "builtAt": "2026-11-16T19:12:42.716Z"
+}

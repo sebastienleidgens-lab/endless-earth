@@ -1,0 +1,32 @@
+{
+  "method": "Independent real page-reload smoke test at a declared geographic station selected from the long trip. Initial placement only before the smoke test; actual car input creates the save. Reload uses existing localStorage and normal resume action, never an injected save. This is NOT retroactively a reload during the already archived 40km or 21km trip.",
+  "cases": [],
+  "errors": [],
+  "sourceSHA": "6b84e962c6d81f6f35fb4a9ad10caea40d6ed05b",
+  "placement": {
+    "clear": {
+      "ok": true
+    },
+    "car": {
+      "position": {
+        "x": -16170.981586447715,
+        "y": -18.16528141176764,
+        "z": 27481.56817322806
+      },
+      "heading": 0.503045290116485,
+      "speed": 0,
+      "steering": 0,
+      "active": false,
+      "reason": "",
+      "odometer": 0,
+      "braking": false,
+      "metrics": {
+        "steps": 0,
+        "refusals": 0,
+        "maxSpeed": 0
+      },
+      "placed": true
+    }
+  },
+  "failure": "TimeoutError: page.waitForFunction: Timeout 300000ms exceeded."
+}
