@@ -2,7 +2,7 @@ import {clipSegment} from './feature-clip.mjs';
 /** Inferred road width around the UNCHANGED source centreline. Shared mitred
  * sections close the wedges left by independent butt-ended segment quads.
  * Subdivision is phased on the original source segment, not the clipped tile. */
-export function* roadRibbonSteps(points,width,bounds,{step=2,crossStep=2,miterLimit=2}={}){
+export function* roadRibbonSteps(points,width,bounds,{step=4,crossStep=2,miterLimit=2}={}){
  const half=width/2,sections=[];
  const direction=(a,b)=>{const x=b[0]-a[0],y=b[1]-a[1],d=Math.hypot(x,y);return d>1e-9?{x:x/d,y:y/d}:null;};
  for(let i=0;i<points.length;i++){
