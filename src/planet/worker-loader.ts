@@ -1,10 +1,12 @@
 // @ts-ignore Same bounded fallback for environments without module workers.
 import {tileLoader} from './tile-manager.mjs';
+// @ts-ignore Same verified sidecar path in the no-worker fallback.
+import {enrichTile} from '../enrichment/load.mjs';
 /** Parsing/validation off the rendering thread, bounded acknowledged batches
  * back to the canonical owner. The worker has no scene or simulation clock. */
 export function createWorkerTileLoader(base:URL){
  const metrics={worker:typeof Worker!=='undefined',batches:0,maxReceiveMs:0,maxDecodeWallMs:0};
- if(typeof Worker==='undefined')return {load:tileLoader(base),metrics,dispose(){}};
+ if(typeof Worker==='undefined'){const loadGeography=tileLoader(base);return {load:async(entry:any,signal:AbortSignal)=>enrichTile(await loadGeography(entry,signal),entry.enrichment,base,signal),metrics,dispose(){}};}
  const worker=new Worker(new URL('./decode.worker.ts',import.meta.url),{type:'module'}),pending=new Map<number,any>();let next=0,closed=false;
  worker.onmessage=({data:d})=>{const record=pending.get(d.id);if(!record)return;const start=performance.now();
   if(d.type==='header'){record.tile={...d.header,features:[]};metrics.maxDecodeWallMs=Math.max(metrics.maxDecodeWallMs,d.decodeWallMs);}

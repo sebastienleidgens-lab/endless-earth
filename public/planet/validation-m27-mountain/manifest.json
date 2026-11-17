@@ -1,0 +1,193 @@
+{
+  "schema": "planet-region-v1",
+  "id": "synthetic-m27-mountain",
+  "name": "M27 mountain · FIXTURE SYNTHÉTIQUE",
+  "projection": {
+    "type": "local-tangent",
+    "code": "local-tangent",
+    "origin": {
+      "lat": 46.45,
+      "lon": 10.45
+    }
+  },
+  "verticalDatum": "WGS84-ellipsoid",
+  "tileSize": 512,
+  "sampleStep": 32,
+  "bounds": [
+    0,
+    0,
+    1024,
+    1024
+  ],
+  "boundary": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          10.45,
+          46.45
+        ],
+        [
+          10.463351114330898,
+          46.45
+        ],
+        [
+          10.463351114330898,
+          46.45919874850939
+        ],
+        [
+          10.45,
+          46.45919874850939
+        ],
+        [
+          10.45,
+          46.45
+        ]
+      ]
+    ]
+  },
+  "communes": [],
+  "stations": null,
+  "overview": null,
+  "navigation": null,
+  "enrichmentManifest": "enrichment/manifest.json",
+  "sources": {
+    "elevation": {
+      "source": "Original synthetic validation fixture. Every elevation, feature, habitat and permission is invented for software tests; no reconstruction of its geographic anchor.",
+      "license": "CC0-1.0",
+      "retrievedAt": "2026-11-17",
+      "sha256": "27b711dc53194942d7c9ff1a52088d8cc3c82db0e2338aa19787e5ebc8e0b81e",
+      "precisionM": null,
+      "confidence": "low",
+      "inferred": true
+    },
+    "vectors": {
+      "source": "Original synthetic validation fixture. Every elevation, feature, habitat and permission is invented for software tests; no reconstruction of its geographic anchor.",
+      "license": "CC0-1.0",
+      "retrievedAt": "2026-11-17",
+      "sha256": "896764d34ab40a92edffbe4f374209d787481170b5a19aa72278599d78936a08",
+      "precisionM": null,
+      "confidence": "low",
+      "inferred": true
+    }
+  },
+  "accessDefaults": {
+    "publicRoadClasses": true,
+    "unknownBridge": "blocked",
+    "unknownLand": "blocked",
+    "unknownWaterClearance": "blocked"
+  },
+  "tiles": [
+    {
+      "id": "0:0",
+      "x": 0,
+      "y": 0,
+      "bounds": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "url": "tiles/0-0.tile",
+      "encoding": "gzip",
+      "bytes": 2076,
+      "decodedBytes": 5340,
+      "sha256": "b6be1384da256b5565343df986135514b0f5675c546e811d608d8f56bb0dae7d",
+      "coverageM2": 262144,
+      "quality": "synthetic-validation"
+    },
+    {
+      "id": "1:0",
+      "x": 1,
+      "y": 0,
+      "bounds": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "url": "tiles/1-0.tile",
+      "encoding": "gzip",
+      "bytes": 2049,
+      "decodedBytes": 5041,
+      "sha256": "27a627f0e53e3d22a21353696dcaaf88f0c6bd75466d3b36382b27a1948b56f3",
+      "coverageM2": 262144,
+      "quality": "synthetic-validation"
+    },
+    {
+      "id": "0:1",
+      "x": 0,
+      "y": 1,
+      "bounds": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "url": "tiles/0-1.tile",
+      "encoding": "gzip",
+      "bytes": 2072,
+      "decodedBytes": 5418,
+      "sha256": "62e575905142fd36b34ad8dcde84c37103cf32fb3e0830682b425d06235b8920",
+      "coverageM2": 262144,
+      "quality": "synthetic-validation"
+    },
+    {
+      "id": "1:1",
+      "x": 1,
+      "y": 1,
+      "bounds": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "url": "tiles/1-1.tile",
+      "encoding": "gzip",
+      "bytes": 2107,
+      "decodedBytes": 5124,
+      "sha256": "5f3b603fa7a630cb805e0d88c91215696e3b12b4b0c257152e9a94ab8c271f1e",
+      "coverageM2": 262144,
+      "quality": "synthetic-validation"
+    }
+  ],
+  "coverage": {
+    "areaM2": 1048576,
+    "preparedM2": 1048576,
+    "fraction": 1,
+    "nodata": 0
+  },
+  "budgets": {
+    "maxResidentTiles": 4
+  },
+  "fixture": {
+    "synthetic": true,
+    "production": false,
+    "realGeography": false,
+    "anchorIsNotSurveyed": true,
+    "pack": "../../../enrichment/packs/mountain-fixture.json",
+    "spawn": {
+      "lon": 10.451955729638314,
+      "lat": 46.45172476534551,
+      "height": 1483.26188,
+      "datum": "WGS84-ellipsoid"
+    },
+    "spawnCanonical": {
+      "x": 150,
+      "y": 192
+    },
+    "targetCanonical": {
+      "x": 900,
+      "y": 192
+    },
+    "buildingCanonical": {
+      "x": 215,
+      "y": 236
+    },
+    "elevationRangeM": [
+      1400,
+      1896.96472
+    ],
+    "note": "The access=yes and foot=yes tags are synthetic test permissions, not public access in the real world."
+  }
+}

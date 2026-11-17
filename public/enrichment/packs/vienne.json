@@ -1,0 +1,26 @@
+{
+  "schema":"regional-enrichment-pack-v1",
+  "id":"temperate-poitou-v1","version":"1.0.0","license":"LicenseRef-EndlessEarth-Original","fixture":false,
+  "description":"Inferred regional palette and decorative families. Mapped source footprints and habitats remain authoritative; no authentic monument reconstruction is claimed.",
+  "climate":{"regime":"temperate-oceanic","hemisphere":"north","seasonModel":"historical-runtime-temperate"},
+  "protectedRegion":{"origin":{"lat":46.6953,"lon":0.8844},"bounds":[-1000,-1000,1000,1000],"frame":"legacy-adapter"},
+  "architecture":{"defaultLevels":2,"facadeSpacing":3.2,"roofRiseRatio":0.28,"brickColor":11961467,"slateColor":6382959,"metalColor":8686236,
+    "palettes":[
+      {"family":"ordinary","wall":13353648,"roof":10184038,"trim":14801868,"glass":5793668,"wood":7379310},
+      {"family":"ordinary","wall":12630433,"roof":10177622,"trim":14341316,"glass":6123155,"wood":6069621},
+      {"family":"ordinary","wall":14210501,"roof":7827549,"trim":15262421,"glass":6320014,"wood":8282212},
+      {"family":"ordinary","wall":13748145,"roof":11113581,"trim":14803152,"glass":5333116,"wood":9010283},
+      {"family":"utility","wall":11448229,"roof":8554900,"trim":12434360,"glass":6383986,"wood":7828600}
+    ]},
+  "habitats":[
+    {"id":"temperate-woodland","match":{"landuse":"forest"},"density":0.88,"kinds":["fern","fern","deadwood","stone","grass"],"riparianKinds":["fern","reed"],"maxSlope":0.85},
+    {"id":"temperate-woodland","match":{"natural":"wood"},"density":0.88,"kinds":["fern","deadwood","grass","stone"],"riparianKinds":["fern","reed"],"maxSlope":0.85},
+    {"id":"meadow","match":{"landuse":"meadow"},"density":0.7,"kinds":["grass","grass","stone"],"riparianKinds":["reed","grass"]},
+    {"id":"grassland","match":{"landuse":"grass"},"density":0.65,"kinds":["grass"],"riparianKinds":["reed","grass"]},
+    {"id":"orchard-understorey","match":{"landuse":"orchard"},"density":0.38,"kinds":["grass","stone"]},
+    {"id":"cultivated-field-margin","match":{"landuse":"farmland"},"density":0.12,"kinds":["grass","stone"],"edgeOnly":true},
+    {"id":"wetland","match":{"natural":"wetland"},"density":0.8,"kinds":["reed","grass"],"riparianKinds":["reed"]}
+  ],
+  "vegetationFamilies":["temperate-grass","temperate-fern","riparian-reed","deadwood"],
+  "detailSpacing":128,"corridorSpacing":96,"maxDetails":512
+}

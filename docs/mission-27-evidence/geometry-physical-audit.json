@@ -1,0 +1,63 @@
+{
+  "schema": "mission-27-geometry-physical-v1",
+  "sourceCommit": "7845dcb8bbecbe4a5e57ebb13256559d622eb08d",
+  "proofType": [
+    "static-source-hashes",
+    "unit-tests",
+    "synthetic-runtime"
+  ],
+  "physicalModules": [
+    {
+      "path": "src/planet/surface.mjs",
+      "sha256": "d04780360c255d46edff4994aa5ca5421266f99bf66fa976ed62ce98d1e9b9ce",
+      "unchanged": true
+    },
+    {
+      "path": "src/planet/road-ribbon.mjs",
+      "sha256": "84f3effceda69754646d63e737d02f382ac3c3ece545c3dbfe6dfd48feb5c155",
+      "unchanged": true
+    },
+    {
+      "path": "src/planet/car.mjs",
+      "sha256": "26ed0d8d5514e46d768f72d3d85958ccfc42d0e644a798666f1c5eb585518f54",
+      "unchanged": true
+    },
+    {
+      "path": "src/controls/walking.mjs",
+      "sha256": "568a7a03494a4b3a332ac29294d29edb1610da5a6f4e8fcfa85a5eb100974d1f",
+      "unchanged": true
+    },
+    {
+      "path": "src/planet/access.mjs",
+      "sha256": "3693a9b15c2572ae52bda6f3902edfc383d8ea5ffe53719272d5965d25175a28",
+      "unchanged": true
+    },
+    {
+      "path": "src/player/bathymetry.mjs",
+      "sha256": "cb69d7338c442f228145a7661b4534d60d4dbf88a82a01365820443bd71d9cfe",
+      "unchanged": true
+    },
+    {
+      "path": "src/player/packraft.mjs",
+      "sha256": "bea0d216a85c7fc8c6e8177e24bdb6f03c40af9065765b6d43002d21d2fc808b",
+      "unchanged": true
+    }
+  ],
+  "tests": {
+    "total": 493,
+    "passed": 493
+  },
+  "fixtureReceipts": [
+    "fixtures/fixture-tests.tap",
+    "fixtures-runtime.json",
+    "enrichment-webgl-fixtures.json"
+  ],
+  "sourceFootprintsAndAccessUnchanged": true,
+  "historical27SeamJourneyReplayed": false,
+  "wholeDepartmentRenderedBuildingClosureAudit": false,
+  "limitations": [
+    "New opaque facade and roof geometry does not authorize interiors or alter footprint collision.",
+    "No exhaustive 499-tile render/support raycast audit or new above/below bridge campaign.",
+    "Footprint bases still use inherited single-base terrain anchoring; partly buried facade observed at Chauvigny."
+  ]
+}

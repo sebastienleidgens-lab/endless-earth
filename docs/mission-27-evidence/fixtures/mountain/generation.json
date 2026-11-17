@@ -1,0 +1,71 @@
+{
+  "schema": "mission-27-generation-v1",
+  "sourceCommit": "1d330cab93847a4026194088c60d378c71c0b8f7",
+  "sourceManifestSHA256": "d65765bd76bc7c75fd636a7ebecccd1507a3baeed5d1db9b9d9e2bc793f11f34",
+  "manifestSHA256": "09d2632b845727e84bab984b0a58e5e5124cbb7d3228ca227b5b44c1622ae3e0",
+  "ruleHashes": {
+    "src/enrichment/generator.mjs": "9674831df28efc50ba192db9390e35e7c1476e9b724cbb6768bc178d3c706f5e",
+    "src/enrichment/architecture.mjs": "25f099363b0472b80ee3737a0fef67eb535a9c6083a8da7de5c870bd4ef252b3",
+    "src/enrichment/load.mjs": "33b6b8ddb9db35977935f97b5c763980aaf72ab2c86a3beca6b311be18b90290",
+    "src/planet/surface.mjs": "d04780360c255d46edff4994aa5ca5421266f99bf66fa976ed62ce98d1e9b9ce",
+    "src/planet/coordinates.mjs": "117f2e150eeb51488eb2b38e4e204c8c8c6080b9ef27a8cde8f79ad931b26577",
+    "scripts/prepare-mission-27.mjs": "e49b39d09334031959d22d74406aec91b030838c70ff5aff1e0b1841c6003eab"
+  },
+  "options": {
+    "maxDetails": 128,
+    "spacing": 32,
+    "coordinateNamespace": "{\"type\":\"local-tangent\",\"code\":\"local-tangent\",\"origin\":{\"lat\":46.45,\"lon\":10.45}}/WGS84-ellipsoid"
+  },
+  "tiles": 4,
+  "buildingPlans": 8,
+  "detailPlans": 512,
+  "packedBytes": 34235,
+  "decodedBytes": 414886,
+  "wallMs": 269.932461,
+  "verification": "two-identical-generations-per-tile",
+  "generated": 0,
+  "reused": 4,
+  "results": [
+    {
+      "id": "0:0",
+      "reused": true,
+      "wallMs": 90.24544100000003,
+      "repeatability": {
+        "identical": true,
+        "sha256": "710a482dbe5d9a5ed15b2c28887842b07ce32de58716074e7c153a4bbb5c3906"
+      }
+    },
+    {
+      "id": "1:0",
+      "reused": true,
+      "wallMs": 57.868596000000025,
+      "repeatability": {
+        "identical": true,
+        "sha256": "238464f50628719b59cac7d23c4c3f8d0d705821f6638e029759491408015634"
+      }
+    },
+    {
+      "id": "0:1",
+      "reused": true,
+      "wallMs": 55.214917000000014,
+      "repeatability": {
+        "identical": true,
+        "sha256": "50e42a7c6cd036916076c7f4f4b1f0d71b99a789121c9bbbe3bc8746c151f544"
+      }
+    },
+    {
+      "id": "1:1",
+      "reused": true,
+      "wallMs": 53.82724700000006,
+      "repeatability": {
+        "identical": true,
+        "sha256": "1ab09606b509de5439f5410ad496b76e869d2caea1e2a3638d1d0f93d8a12360"
+      }
+    }
+  ],
+  "limitations": [
+    "Artifact generation is not evidence of visual rendering or artistic equivalence.",
+    "Terrain and physical support are unchanged.",
+    "No 50 cm LiDAR was acquired by this command."
+  ]
+}

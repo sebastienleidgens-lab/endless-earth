@@ -1,0 +1,1329 @@
+{
+  "schema": "mission-27-acceptance-v1",
+  "assembledAt": "2026-11-17T13:52:25.791Z",
+  "verdict": "PARTIEL",
+  "completeMissionAccepted": false,
+  "code": {
+    "baselineCommit": "1d330cab93847a4026194088c60d378c71c0b8f7",
+    "assemblyHead": "c78fbf9bbc464161956de099b4b0fd1af59b3014",
+    "executedSourceCommit": "7845dcb8bbecbe4a5e57ebb13256559d622eb08d",
+    "assemblyBranch": "mission/27-world-enrichment",
+    "workingTreeDirty": true
+  },
+  "method": "Claims are scoped to referenced receipts. Missing receipts stay absent. Metadata, plans and synthetic tests do not close perceptual or production-wide requirements.",
+  "criteria": [
+    {
+      "id": "A01",
+      "title": "Conservation et ascendance vérifiées",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Base M26.4 et inventaire conservés; lire les reçus Git/préservation finaux. Les voyages historiques ne sont pas recertifiés par les tests unitaires.",
+      "evidence": [
+        {
+          "path": "preservation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "git-state.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "validation.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A02",
+      "title": "Sources, dates, licences et couverture",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Corpus acquis et documentation auditables; frontières ZICAD et couverture locale de tous les nouveaux produits non acquises.",
+      "evidence": [
+        {
+          "path": "source-manifest.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "licenses-and-assets.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A03",
+      "title": "LiDAR fin et fallback honnête",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "499 packs 2 m historiques conservés; aucune nouvelle couverture départementale 50 cm acquise ou rendue.",
+      "evidence": [
+        {
+          "path": "source-manifest.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A04",
+      "title": "Architecture universelle cohérente",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Générateurs et packs paramétrables; le jeu complet reste attaché au point d’entrée historique du pilote.",
+      "evidence": [
+        {
+          "path": "planet-portability-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "international-fixtures.json",
+          "proofType": "synthetic-fixture"
+        },
+        {
+          "path": "geodesy-audit.json",
+          "proofType": "synthetic-numeric"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A05",
+      "title": "Pipeline déterministe",
+      "status": "ATTEINT",
+      "blocking": false,
+      "detail": "Deux générations identiques par tuile attestées; portée: artefacts et identités, sans conclusion perceptive.",
+      "evidence": [
+        {
+          "path": "generation.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": true
+    },
+    {
+      "id": "A06",
+      "title": "499 tuiles enrichies",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "499/499 artefacts générés; contenu présent et rendu observé restent des dimensions séparées. Pas de validation artistique exhaustive.",
+      "evidence": [
+        {
+          "path": "coverage-tiles.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "generation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A07",
+      "title": "265 communes représentées",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "265/265 centres couverts par un artefact; ce n’est pas une couverture artistique de chaque polygone communal.",
+      "evidence": [
+        {
+          "path": "coverage-communes.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A08",
+      "title": "Richesse perçue homogène",
+      "status": "NON_ATTEINT",
+      "blocking": true,
+      "detail": "Équivalence à Angles non démontrée; baseline initiale limitée, comparaison stratifiée native encore ouverte.",
+      "evidence": [
+        {
+          "path": "visual-stations.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A09",
+      "title": "Absence de zones pauvres injustifiées",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Audit hors ligne des habitats, exclusions et détails; les zones sans habitat ou sans détail ne sont pas closes par une revue départementale.",
+      "evidence": [
+        {
+          "path": "richness-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "coverage-tiles.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A10",
+      "title": "Sols et micro-relief détaillés",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Petits détails visuels ancrés sur support existant; pas de nouvelle microtopographie ni campagne complète sols/pentes/saisons.",
+      "evidence": [
+        {
+          "path": "richness-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "geometry-physical-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A11",
+      "title": "Forêts, lisières et sous-bois",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Nouvelle couche de petites familles; les arbres départementaux simples et la forêt articulée du pilote restent différents.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A12",
+      "title": "Prairies, haies, champs et bocage",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Placement contextuel borné; saisons, cultures, haies et quatre milieux non validés nativement dans leur ensemble.",
+      "evidence": [
+        {
+          "path": "richness-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A13",
+      "title": "Bâtiments courants finis",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Plans de façades, ouvertures opaques et toits pris en charge; replis et formes complexes subsistent. Plans générés et volumes réellement rendus restent séparés.",
+      "evidence": [
+        {
+          "path": "richness-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "geometry-physical-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A14",
+      "title": "Styles urbains contextualisés",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Pack régional et usages courants; pas de revue démontrant les identités urbaines distinctes de toutes les stations.",
+      "evidence": [
+        {
+          "path": "richness-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "visual-stations.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A15",
+      "title": "Monuments et repères",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Monuments historiques préservés; replis génériques honnêtes, aucune nouvelle reproduction authentique départementale revendiquée.",
+      "evidence": [
+        {
+          "path": "source-manifest.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "preservation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "richness-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A16",
+      "title": "Rivières détaillées et raccordées",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Eau et navigation historiques conservées; le shader aquatique, les berges et champs source du pilote ne sont pas intégralement étendus.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "geometry-physical-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A17",
+      "title": "Ponts et géométrie",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Aucun nouvel accès ni hauteur libre inventée; campagne complète dessus/dessous et finitions départementales non démontrée.",
+      "evidence": [
+        {
+          "path": "geometry-physical-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "preservation.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A18",
+      "title": "Voirie fidèle et détaillée",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Sources et supports historiques conservés; pas de campagne visuelle route rurale/ville/nationale/autoroute complète.",
+      "evidence": [
+        {
+          "path": "preservation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "geometry-physical-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A19",
+      "title": "Rails et aéroport",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Voies et transport hérités conservés; absence de rejeu natif exhaustif M27 des stations et infrastructures.",
+      "evidence": [
+        {
+          "path": "preservation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "validation.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A20",
+      "title": "Détails de vie contextuels",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Petits végétaux, pierres et bois mort sélectionnés par habitat et exclusions; mobilier et vie locale généralisés non livrés.",
+      "evidence": [
+        {
+          "path": "richness-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A21",
+      "title": "Matériaux et textures",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Palettes et géométries originales, licences conservées; pas de nouvelle bibliothèque PBR départementale complète ni compression KTX2 revendiquée.",
+      "evidence": [
+        {
+          "path": "licenses-and-assets.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "source-manifest.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A22",
+      "title": "Lumière et ombres stables",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Mêmes horloges et vent/depth pour détails; l’absence de shimmer ou clignotement en mouvement n’est pas démontrée.",
+      "evidence": [
+        {
+          "path": "popping-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        },
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A23",
+      "title": "Animations cohérentes",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Branchement commun du vent et préservation des corrections M26.4; naturel et absence de reset à toutes frontières non certifiés.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A24",
+      "title": "Sons spatialisés continus",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Soundscape partagé; indices eau/obstacles/feuillage encore liés au pilote, aucune écoute départementale complète certifiée.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A25",
+      "title": "LOD terrain sans couture",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Propriétaire physique historique conservé; audit exhaustif des bords et long parcours M27 non rejoués.",
+      "evidence": [
+        {
+          "path": "geometry-physical-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A26",
+      "title": "LOD objets sans popping",
+      "status": "NON_ATTEINT",
+      "blocking": true,
+      "detail": "Identité déterministe ne prouve pas absence de popping; silhouettes/casters et demi-tours natifs départementaux encore ouverts.",
+      "evidence": [
+        {
+          "path": "popping-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A27",
+      "title": "Préchargement à pied",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Planificateur historique conservé; nouveau long voyage M27 et embranchements non démontrés par les plans.",
+      "evidence": [
+        {
+          "path": "streaming-traces.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A28",
+      "title": "Préchargement voiture",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Streaming et voiture hérités; voyage M27 intercommunal avec sortie immédiate non recertifié.",
+      "evidence": [
+        {
+          "path": "streaming-traces.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "journeys.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A29",
+      "title": "Streaming rivière et packraft",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Corridors conservateurs hérités; nouveau parcours natif M27 eau/berges/ombres non démontré.",
+      "evidence": [
+        {
+          "path": "streaming-traces.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "journeys.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A30",
+      "title": "Incidents réseau sans vide ni téléportation",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Vérification, erreur et fallback de sidecar implémentés; campagne réseau complète en déplacement non démontrée.",
+      "evidence": [
+        {
+          "path": "streaming-traces.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        },
+        {
+          "path": "validation.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A31",
+      "title": "Budget main thread",
+      "status": "NON_ATTEINT",
+      "blocking": true,
+      "detail": "Aucune tâche streaming >50 ms et préparation ≤8 ms ne sont pas acquises; conserver les maxima réellement enregistrés.",
+      "evidence": [
+        {
+          "path": "performance.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "streaming-traces.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A32",
+      "title": "FPS et énergie desktop/mobile",
+      "status": "NON_VALIDÉ_SUR_MATÉRIEL",
+      "blocking": false,
+      "detail": "Pas de GPU physique ni téléphone réel certifié. SwiftShader et émulation tactile restent distincts des performances matérielles.",
+      "evidence": [
+        {
+          "path": "performance.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A33",
+      "title": "Mémoire longue session",
+      "status": "NON_ATTEINT",
+      "blocking": false,
+      "detail": "Aucune session native finale de 30–60 minutes avec évictions et mesure CPU/GPU/audio complète certifiée.",
+      "evidence": [
+        {
+          "path": "performance.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "streaming-traces.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A34",
+      "title": "Save, reload, rebase et LOD",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Mécanismes hérités et tests techniques; consulter les checks runtime réellement fournis, sans extrapolation à tous modes/objets.",
+      "evidence": [
+        {
+          "path": "validation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "fixtures-runtime.json",
+          "proofType": "synthetic-fixture"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A35",
+      "title": "Validation artistique départementale",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "22 stations et échantillon stratifié sélectionnés depuis sources; sélection ne signifie ni visite, ni revue complète.",
+      "evidence": [
+        {
+          "path": "visual-stations.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A36",
+      "title": "Rapport honnête et conservation",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Rapport unique, preuves et écarts explicites; résultats finaux, intégrité et état de PR à vérifier dans leurs reçus.",
+      "evidence": [
+        {
+          "path": "validation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "preservation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "git-state.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A37",
+      "title": "Indépendance administrative",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Nouvelle génération paramétrable par manifeste; runtime principal encore configuré pour fr-86/Angles.",
+      "evidence": [
+        {
+          "path": "planet-portability-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "international-fixtures.json",
+          "proofType": "synthetic-fixture"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A38",
+      "title": "Géodésie mondiale robuste",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Provider numérique ECEF/ENU et cellules testés; pas de migration de la géodésie active, de la météo ni des supports entre repères du jeu.",
+      "evidence": [
+        {
+          "path": "geodesy-audit.json",
+          "proofType": "synthetic-numeric"
+        },
+        {
+          "path": "planet-portability-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A39",
+      "title": "Biomes et saisons mondiaux",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Packs de contenu distincts; climat, mousson, saisons et catalogues biologiques mondiaux complets non simulés par ces packs.",
+      "evidence": [
+        {
+          "path": "international-fixtures.json",
+          "proofType": "synthetic-fixture"
+        },
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A40",
+      "title": "Packs régionaux",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Schémas et variations déclaratifs actifs pour la nouvelle couche; pas de remplacement universel des bibliothèques historiques.",
+      "evidence": [
+        {
+          "path": "international-fixtures.json",
+          "proofType": "synthetic-fixture"
+        },
+        {
+          "path": "planet-portability-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A41",
+      "title": "Fournisseurs et provenance",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Provenance conservée et provider de coordonnées ajouté; aucune fusion mondiale de nouveaux fournisseurs terrain/vecteurs réellement intégrée.",
+      "evidence": [
+        {
+          "path": "source-manifest.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "geodesy-audit.json",
+          "proofType": "synthetic-numeric"
+        },
+        {
+          "path": "planet-portability-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A42",
+      "title": "Production et distribution incrémentales",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Dépendances et réutilisation d’artefacts locales; diffusion multi-pays et capacité mondiale non démontrées en production.",
+      "evidence": [
+        {
+          "path": "generation.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "planet-portability-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A43",
+      "title": "Test montagne",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Fixture explicitement synthétique sur même pipeline/runtime; elle ne prouve ni géographie réelle, ni audio/climat/activités complets.",
+      "evidence": [
+        {
+          "path": "international-fixtures.json",
+          "proofType": "synthetic-fixture"
+        },
+        {
+          "path": "fixtures-runtime.json",
+          "proofType": "synthetic-fixture"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A44",
+      "title": "Test hors Europe",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Fixture tropicale explicitement synthétique avec autre pack; aucune production géographique hors Europe ni parité sensorielle complète.",
+      "evidence": [
+        {
+          "path": "international-fixtures.json",
+          "proofType": "synthetic-fixture"
+        },
+        {
+          "path": "fixtures-runtime.json",
+          "proofType": "synthetic-fixture"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A45",
+      "title": "Audit de portabilité et échelle",
+      "status": "PARTIEL",
+      "blocking": true,
+      "detail": "Dépendances et estimations documentées; limites d’intégration et de capacité terrestre encore ouvertes.",
+      "evidence": [
+        {
+          "path": "planet-portability-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "geodesy-audit.json",
+          "proofType": "synthetic-numeric"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A46",
+      "title": "Inventaire de parité immersive",
+      "status": "ATTEINT",
+      "blocking": false,
+      "detail": "Inventaire source des systèmes, dépendances et adaptations; sa présence ne valide pas les systèmes en mouvement sur toutes les tuiles.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": true
+    },
+    {
+      "id": "A47",
+      "title": "Vent, arbres et sols vivants",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Champ de vent partagé et détails animables; forêt départementale et observation d’animation de toute la couverture encore insuffisantes.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "department-immersive-parity-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A48",
+      "title": "Saisons, météo et éclairage",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Moteur partagé; matrice quatre saisons/jour-soir-nuit par milieu et exposition départementale non démontrées.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "department-immersive-parity-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A49",
+      "title": "Eau, berges et effets",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Activités et contacts hérités conservés; parité aquatique visuelle départementale non livrée.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "department-immersive-parity-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A50",
+      "title": "Faune et audio",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Contrôleurs communs, mais perchoirs, indices et catalogues gardent des dépendances au pilote; continuité native non certifiée.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "department-immersive-parity-audit.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A51",
+      "title": "Interactions et traces",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Supports admis réemployés; camp hors pilote refusé et sémantique d’interaction non généralisée.",
+      "evidence": [
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "validation.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A52",
+      "title": "Audit immersif 499 tuiles",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Inventaire de disponibilité produit pour les tuiles; pas d’observation équivalente de tous les systèmes ni de campagne perceptive exhaustive.",
+      "evidence": [
+        {
+          "path": "department-immersive-parity-audit.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A53",
+      "title": "Référence Walk Simulator",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Marche reste la référence de conception; séquence native immersive complète encore à juger.",
+      "evidence": [
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        },
+        {
+          "path": "journeys.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A54",
+      "title": "Voyage multimodal continu",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Modes opérationnels hérités préservés; voyage M27 marche/voiture/bateau continu non démontré. Aucun train nouveau revendiqué.",
+      "evidence": [
+        {
+          "path": "journeys.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A55",
+      "title": "Continuité sensorielle intermodale",
+      "status": "PARTIEL",
+      "blocking": false,
+      "detail": "Horloge et identités partagées; preuve native soleil/vent/audio/objets sur transitions multimodales encore ouverte.",
+      "evidence": [
+        {
+          "path": "journeys.json",
+          "proofType": "receipt"
+        },
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        },
+        {
+          "path": "immersive-parity-inventory.json",
+          "proofType": "receipt"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    },
+    {
+      "id": "A56",
+      "title": "Qualité poétique et naturelle",
+      "status": "NON_ATTEINT",
+      "blocking": false,
+      "detail": "Grille humaine fournie dans direction artistique; aucune note ou validation perceptive fabriquée depuis plans ou captures fixes.",
+      "evidence": [
+        {
+          "path": "browser-gameplay.json",
+          "proofType": "runtime-inspection"
+        }
+      ],
+      "missingEvidence": [],
+      "fullRequirementSatisfied": false
+    }
+  ],
+  "counts": {
+    "PARTIEL": 48,
+    "ATTEINT": 2,
+    "NON_ATTEINT": 5,
+    "NON_VALIDÉ_SUR_MATÉRIEL": 1
+  },
+  "blockingCriteria": [
+    "A06",
+    "A08",
+    "A09",
+    "A13",
+    "A16",
+    "A17",
+    "A22",
+    "A25",
+    "A26",
+    "A27",
+    "A28",
+    "A29",
+    "A30",
+    "A31",
+    "A35",
+    "A37",
+    "A38",
+    "A39",
+    "A40",
+    "A41",
+    "A42",
+    "A43",
+    "A44",
+    "A45"
+  ],
+  "unfulfilledBlockingCriteria": [
+    "A06",
+    "A08",
+    "A09",
+    "A13",
+    "A16",
+    "A17",
+    "A22",
+    "A25",
+    "A26",
+    "A27",
+    "A28",
+    "A29",
+    "A30",
+    "A31",
+    "A35",
+    "A37",
+    "A38",
+    "A39",
+    "A40",
+    "A41",
+    "A42",
+    "A43",
+    "A44",
+    "A45"
+  ],
+  "evidenceSnapshot": [
+    {
+      "path": "pull-request-created.json",
+      "bytes": 610,
+      "sha256": "dd30446d8a56b339b243d1a0d6f653ea603c9b10dfc555f02b44af018687933e"
+    },
+    {
+      "path": "gallery-validation.json",
+      "bytes": 39274,
+      "sha256": "83a31b92c687f3b01cb994302655c28da5c58814e70be835afac462fe625a9ea"
+    },
+    {
+      "path": "production-smoke.json",
+      "bytes": 154304,
+      "sha256": "9b6956a6c567ea883673520c8b28e08fad657de19c34d58261f8bccf0d2d8e0b"
+    },
+    {
+      "path": "generation-cache.json",
+      "bytes": 62679,
+      "sha256": "75bddab0904381d304d7b7fc75a3bd0c60a71c660edf2c94c5eb779c91f1bff5"
+    },
+    {
+      "path": "browser-premature-readiness.json",
+      "bytes": 967365,
+      "sha256": "42a187193cc6ef312a3a179653867dadebf2e8a8c59ec601ebfd2b3d465ea3c9"
+    },
+    {
+      "path": "generation.json",
+      "bytes": 122183,
+      "sha256": "1f85e23dcb0e566f68f5775b78241a980ef6ded6b968ea84bac965380f788833"
+    },
+    {
+      "path": "coverage-tiles.json",
+      "bytes": 677775,
+      "sha256": "fa31454b4956bbcd577a92dc4586f6b96fcd47241c529c203c6ba4f74e69ca80"
+    },
+    {
+      "path": "coverage-communes.json",
+      "bytes": 124202,
+      "sha256": "1551112cd9d6215600f7448b841303c2bce9dcec7e04683fdd77118b07db2651"
+    },
+    {
+      "path": "richness-audit.json",
+      "bytes": 730706,
+      "sha256": "8461318dfcc3e47924ee8fd047f6c5f9e33aceebd36adf6aa6b904ba9f76dc9c"
+    },
+    {
+      "path": "department-immersive-parity-audit.json",
+      "bytes": 475354,
+      "sha256": "16873a57a6b4c8e9c12cc29ae697a6add21651b2458d91db03c689cf317b8c68"
+    },
+    {
+      "path": "visual-stations.json",
+      "bytes": 46317,
+      "sha256": "efd8d814d5e57c2aabcc8510ad409e1f621ef15bd03532093543dd226cae1f7d"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 270931,
+      "sha256": "be4a360b059051dea86a3dd58daa1b02f295d2d7ca167d8550832e5f274181ce"
+    },
+    {
+      "path": "licenses-and-assets.json",
+      "bytes": 73198,
+      "sha256": "de0348b53c9867f1e7b0a7037bd7979fb34ae2f1aa7efee3eb9151039b87c64b"
+    },
+    {
+      "path": "immersive-parity-inventory.json",
+      "bytes": 32877,
+      "sha256": "cd68001907a59dadd22d8b087a1af77539c74899235a8f51a5af61607e6b3d70"
+    },
+    {
+      "path": "geodesy-audit.json",
+      "bytes": 2376,
+      "sha256": "5a8466474f28e14c31feb2990a229da279eb0669f68e7e3f9079b9e2c03a1026"
+    },
+    {
+      "path": "international-fixtures.json",
+      "bytes": 2893,
+      "sha256": "7b1860265c2856361f256b4355e7db6e5e7b5199e9801a0e27ff6304fc8ae05e"
+    },
+    {
+      "path": "planet-portability-audit.json",
+      "bytes": 12311,
+      "sha256": "c447cc654017fff31ddb03677e0c76d49a42c59b830527d624110feac9ef6538"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 818,
+      "sha256": "988e1d977399a72862d7738ff94bea540d80876f76130bee1c7ff2cca3614a00"
+    },
+    {
+      "path": "browser-gameplay.json",
+      "bytes": 1074579,
+      "sha256": "3ba15b5bfe476902731d4d50cd7d65c800de4edac94b3b5a065717b2a3625fd0"
+    },
+    {
+      "path": "fixtures-runtime.json",
+      "bytes": 164643,
+      "sha256": "3503043058525864b47d45335c7b794ec04ae9f1bcc8f8c2f9c491f422935f0a"
+    },
+    {
+      "path": "performance.json",
+      "bytes": 1619,
+      "sha256": "f6927fc350a41a4c37423ec71abab95ef8ccb2eef666269bf262eef1159d0842"
+    },
+    {
+      "path": "journeys.json",
+      "bytes": 5505,
+      "sha256": "810c12dc8a4cfb7bcc701625782ad9ef78119e03aabb827b36c1005ec6dcc9fc"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 1717810,
+      "sha256": "2bf0cf1cd4b01c4c42358485034cf2639ff9765d04667a63040efef0dbba74d7"
+    },
+    {
+      "path": "geometry-physical-audit.json",
+      "bytes": 2028,
+      "sha256": "fb4d86b84cee79ce40e4239368f53422e0cc9c4ecedef18e5bb3d5c6ad526abe"
+    },
+    {
+      "path": "popping-audit.json",
+      "bytes": 696,
+      "sha256": "287f430e3bace0bbd7045783b3f202ec9da393cb7ee57b32a39c1ae30ac9f375"
+    },
+    {
+      "path": "streaming-traces.json",
+      "bytes": 102423,
+      "sha256": "6e626b52b5826ff71f475071dfc907b725c28115372d7581936be49a5522a32e"
+    },
+    {
+      "path": "git-state.json",
+      "bytes": 1846,
+      "sha256": "25bd679748d0ee2b2483c457844f8071334d7f79952298fc681b6c0242c5eca5"
+    },
+    {
+      "path": "residual-defects.geojson",
+      "bytes": 3307,
+      "sha256": "90d908844593d4fd5e0fd6432709b76cd4fa43a32de2053d05811d9e781c5508"
+    }
+  ],
+  "limits": [
+    "No native historical long journey is recertified by this report.",
+    "No physical-GPU or phone benchmark is claimed.",
+    "International fixtures are synthetic and numerical geodesy is not a migration of the active game."
+  ]
+}

@@ -1,0 +1,4944 @@
+{
+  "method": "Same createPlanetRuntime on two explicitly synthetic regional datasets. Not production geographic coverage or complete immersive parity.",
+  "results": [
+    {
+      "region": "validation-m27-mountain",
+      "synthetic": true,
+      "errors": [],
+      "hardware": "SwiftShader software rendering; no physical GPU or smartphone",
+      "initial": {
+        "region": "validation-m27-mountain",
+        "synthetic": true,
+        "position": [
+          128.0005855081177,
+          1476.2130113489875,
+          -192.00087826186717
+        ],
+        "geo": {
+          "lat": 46.45172476534551,
+          "lon": 10.451668889291362
+        },
+        "admission": {
+          "height": 1476.2130113489875,
+          "normal": {
+            "x": -0.2980657163391551,
+            "y": 0.9369782099883346,
+            "z": 0.18228730825343534
+          },
+          "slope": 0.3728878592444103,
+          "tile": "0:0",
+          "datum": "WGS84-ellipsoid",
+          "face": 380,
+          "surface": "road",
+          "road": "synthetic-m27-mountain:road-link",
+          "supportOwner": "synthetic-m27-mountain:road-link",
+          "ok": true,
+          "drivable": false,
+          "width": 6,
+          "speedLimit": 13.9,
+          "directionalGradeLimit": 0.7,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "metrics": {
+          "contactQueries": {
+            "queries": 9,
+            "hits": 0,
+            "invalidations": 44,
+            "maxEntries": 7
+          },
+          "state": "ready",
+          "source": "27b711dc53194942d7c9ff1a52088d8cc3c82db0e2338aa19787e5ebc8e0b81e",
+          "stream": {
+            "loaded": 4,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 435809,
+            "active": 0,
+            "queued": 0,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 4,
+            "jobs": [
+              {
+                "id": "0:0",
+                "generation": 1,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 0.036203867196751234,
+                "at": 1794920842166
+              },
+              {
+                "id": "0:1",
+                "generation": 2,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 512.0809543081003,
+                "at": 1794920842331
+              },
+              {
+                "id": "1:0",
+                "generation": 3,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 512.0809543081003,
+                "at": 1794920842433
+              },
+              {
+                "id": "1:1",
+                "generation": 4,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 724.185955536615,
+                "at": 1794920842529
+              }
+            ]
+          },
+          "render": {
+            "enrichment": {
+              "tiles": 4,
+              "buildings": 8,
+              "windows": 56,
+              "doors": 2,
+              "details": 512,
+              "animatedDetails": 173,
+              "fallbacks": 0
+            },
+            "contactRevision": 4,
+            "tiles": 4,
+            "features": 14,
+            "triangles": 2048,
+            "trees": 256,
+            "disposed": 0,
+            "batches": 14,
+            "batchRebuilds": 4,
+            "maxBatchMs": 6.800000000046566,
+            "maxBatchWallMs": 46.199999999953434,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 3,
+              "nodes": 8,
+              "edges": 14,
+              "refused": 0,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 3,
+              "nodes": 8,
+              "edges": 14,
+              "refused": 0,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 3,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 3,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 6.800000000046566,
+          "maxInstallWallMs": 286.19999999995343,
+          "preparation": {
+            "slices": 63,
+            "steps": 12008,
+            "cpuMs": 142.0000000006985,
+            "maxSliceMs": 6.800000000046566,
+            "maxStepMs": 4.600000000093132,
+            "completed": 24,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:0:0": {
+                "steps": 10,
+                "cpuMs": 0.5,
+                "maxStepMs": 0.30000000004656613,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:0:0": {
+                "steps": 15,
+                "cpuMs": 0.5,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:0:0": {
+                "steps": 15,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:0:0": {
+                "steps": 10,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:0:0": {
+                "steps": 3537,
+                "cpuMs": 53.90000000037253,
+                "maxStepMs": 4.600000000093132,
+                "over8": 0,
+                "over50": 0
+              },
+              "static-batches": {
+                "steps": 157,
+                "cpuMs": 29.5999999998603,
+                "maxStepMs": 3.1000000000931323,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:0:1": {
+                "steps": 10,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:0:1": {
+                "steps": 12,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:0:1": {
+                "steps": 12,
+                "cpuMs": 0.20000000018626451,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:0:1": {
+                "steps": 10,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:0:1": {
+                "steps": 3537,
+                "cpuMs": 27.600000000791624,
+                "maxStepMs": 2.3999999999068677,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:1:0": {
+                "steps": 9,
+                "cpuMs": 0.19999999995343387,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:1:0": {
+                "steps": 2305,
+                "cpuMs": 11.300000000046566,
+                "maxStepMs": 1.9000000001396984,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:1:1": {
+                "steps": 9,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:1:1": {
+                "steps": 2306,
+                "cpuMs": 8.899999999674037,
+                "maxStepMs": 0.9000000001396984,
+                "over8": 0,
+                "over50": 0
+              }
+            },
+            "longSteps": []
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "enrichment": {
+            "state": "available",
+            "tiles": 4,
+            "physicalAuthority": false
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 4,
+            "maxReceiveMs": 0,
+            "maxDecodeWallMs": 41.0999999998603
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0,
+            "maxCpuMs": 0.4000000001396984,
+            "traffic": {
+              "created": 0,
+              "active": 0,
+              "stops": 0,
+              "distanceM": 0,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": null
+          },
+          "water": {
+            "source": "estimated",
+            "confidence": "low",
+            "version": 3,
+            "accesses": 0,
+            "rejected": 0,
+            "rejectionReasons": {},
+            "rejectionExamples": [],
+            "renderedBed": false,
+            "water": "opaque source surface; analytic reflection",
+            "realDepthClaim": false,
+            "preparing": false,
+            "prepareMs": 0.09999999986030161,
+            "maxSliceMs": 0,
+            "firstAccessMs": null,
+            "samples": 0,
+            "cacheHits": 0
+          },
+          "placement": {
+            "requested": {
+              "lon": 10.451668889291362,
+              "lat": 46.45172476534551
+            },
+            "mode": "foot",
+            "source": "synthetic-m27-mountain:road-link",
+            "candidate": {
+              "lat": 46.45172476534551,
+              "lon": 10.451668889291362
+            },
+            "admission": {
+              "height": 1476.2130113489875,
+              "normal": {
+                "x": -0.2980657163391551,
+                "y": 0.9369782099883346,
+                "z": 0.18228730825343534
+              },
+              "slope": 0.3728878592444103,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 380,
+              "surface": "road",
+              "road": "synthetic-m27-mountain:road-link",
+              "supportOwner": "synthetic-m27-mountain:road-link",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            }
+          }
+        },
+        "render": {
+          "frame": 41,
+          "calls": 27,
+          "triangles": 23065,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 22,
+          "textures": 2
+        },
+        "framebuffer": [
+          640,
+          400
+        ],
+        "frames": [
+          -23.251999999999953,
+          16.751999999999953,
+          33.299999999999955,
+          66.60000000000002,
+          150,
+          33.39999999999998,
+          16.600000000000023,
+          16.700000000000045,
+          16.699999999999932,
+          16.600000000000023,
+          16.600000000000023,
+          16.700000000000045,
+          16.699999999999932,
+          16.700000000000045,
+          16.699999999999932,
+          16.700000000000045,
+          16.59999999999991,
+          16.600000000000136,
+          16.700000000000045,
+          16.699999999999818,
+          16.600000000000136,
+          16.700000000000045,
+          16.699999999999818,
+          16.600000000000136,
+          16.700000000000045,
+          16.699999999999818,
+          16.700000000000045,
+          16.600000000000136,
+          16.59999999999991,
+          16.700000000000045,
+          16.700000000000045,
+          16.699999999999818,
+          16.700000000000045,
+          16.600000000000136,
+          16.699999999999818,
+          16.700000000000045,
+          16.600000000000136,
+          16.699999999999818,
+          16.700000000000045,
+          16.600000000000136,
+          183.29999999999995
+        ],
+        "clock": 1.0499520000000002,
+        "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted."
+      },
+      "verification": {
+        "region": "validation-m27-mountain",
+        "synthetic": true,
+        "position": [
+          128.0005855081177,
+          1476.2130113489875,
+          -192.00087826186717
+        ],
+        "geo": {
+          "lat": 46.45172476534551,
+          "lon": 10.451668889291362
+        },
+        "admission": {
+          "height": 1476.2130113489875,
+          "normal": {
+            "x": -0.2980657163391551,
+            "y": 0.9369782099883346,
+            "z": 0.18228730825343534
+          },
+          "slope": 0.3728878592444103,
+          "tile": "0:0",
+          "datum": "WGS84-ellipsoid",
+          "face": 380,
+          "surface": "road",
+          "road": "synthetic-m27-mountain:road-link",
+          "supportOwner": "synthetic-m27-mountain:road-link",
+          "ok": true,
+          "drivable": false,
+          "width": 6,
+          "speedLimit": 13.9,
+          "directionalGradeLimit": 0.7,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "metrics": {
+          "contactQueries": {
+            "queries": 1219,
+            "hits": 402,
+            "invalidations": 46,
+            "maxEntries": 808
+          },
+          "state": "ready",
+          "source": "27b711dc53194942d7c9ff1a52088d8cc3c82db0e2338aa19787e5ebc8e0b81e",
+          "stream": {
+            "loaded": 4,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 435809,
+            "active": 0,
+            "queued": 0,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 4,
+            "jobs": [
+              {
+                "id": "0:0",
+                "generation": 1,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 0.036203867196751234,
+                "at": 1794920842166
+              },
+              {
+                "id": "0:1",
+                "generation": 2,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 512.0809543081003,
+                "at": 1794920842331
+              },
+              {
+                "id": "1:0",
+                "generation": 3,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 512.0809543081003,
+                "at": 1794920842433
+              },
+              {
+                "id": "1:1",
+                "generation": 4,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 724.185955536615,
+                "at": 1794920842529
+              }
+            ]
+          },
+          "render": {
+            "enrichment": {
+              "tiles": 4,
+              "buildings": 8,
+              "windows": 56,
+              "doors": 2,
+              "details": 512,
+              "animatedDetails": 173,
+              "fallbacks": 0
+            },
+            "contactRevision": 4,
+            "tiles": 4,
+            "features": 14,
+            "triangles": 2048,
+            "trees": 256,
+            "disposed": 0,
+            "batches": 14,
+            "batchRebuilds": 4,
+            "maxBatchMs": 6.800000000046566,
+            "maxBatchWallMs": 46.199999999953434,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 3,
+              "nodes": 8,
+              "edges": 14,
+              "refused": 0,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 3,
+              "nodes": 8,
+              "edges": 14,
+              "refused": 0,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 3,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 3,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 6.800000000046566,
+          "maxInstallWallMs": 286.19999999995343,
+          "preparation": {
+            "slices": 64,
+            "steps": 12040,
+            "cpuMs": 145.0000000006985,
+            "maxSliceMs": 6.800000000046566,
+            "maxStepMs": 4.600000000093132,
+            "completed": 24,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:0:0": {
+                "steps": 10,
+                "cpuMs": 0.5,
+                "maxStepMs": 0.30000000004656613,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:0:0": {
+                "steps": 15,
+                "cpuMs": 0.5,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:0:0": {
+                "steps": 15,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:0:0": {
+                "steps": 10,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:0:0": {
+                "steps": 3537,
+                "cpuMs": 53.90000000037253,
+                "maxStepMs": 4.600000000093132,
+                "over8": 0,
+                "over50": 0
+              },
+              "static-batches": {
+                "steps": 189,
+                "cpuMs": 32.5999999998603,
+                "maxStepMs": 3.1000000000931323,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:0:1": {
+                "steps": 10,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:0:1": {
+                "steps": 12,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:0:1": {
+                "steps": 12,
+                "cpuMs": 0.20000000018626451,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:0:1": {
+                "steps": 10,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:0:1": {
+                "steps": 3537,
+                "cpuMs": 27.600000000791624,
+                "maxStepMs": 2.3999999999068677,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:1:0": {
+                "steps": 9,
+                "cpuMs": 0.19999999995343387,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:1:0": {
+                "steps": 2305,
+                "cpuMs": 11.300000000046566,
+                "maxStepMs": 1.9000000001396984,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:1:1": {
+                "steps": 9,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:1:1": {
+                "steps": 2306,
+                "cpuMs": 8.899999999674037,
+                "maxStepMs": 0.9000000001396984,
+                "over8": 0,
+                "over50": 0
+              }
+            },
+            "longSteps": []
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "enrichment": {
+            "state": "available",
+            "tiles": 4,
+            "physicalAuthority": false
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 4,
+            "maxReceiveMs": 0,
+            "maxDecodeWallMs": 41.0999999998603
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0,
+            "maxCpuMs": 0.4000000001396984,
+            "traffic": {
+              "created": 0,
+              "active": 0,
+              "stops": 0,
+              "distanceM": 0,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": null
+          },
+          "water": {
+            "source": "estimated",
+            "confidence": "low",
+            "version": 3,
+            "accesses": 0,
+            "rejected": 0,
+            "rejectionReasons": {},
+            "rejectionExamples": [],
+            "renderedBed": false,
+            "water": "opaque source surface; analytic reflection",
+            "realDepthClaim": false,
+            "preparing": false,
+            "prepareMs": 0.09999999986030161,
+            "maxSliceMs": 0,
+            "firstAccessMs": null,
+            "samples": 0,
+            "cacheHits": 0
+          },
+          "placement": {
+            "requested": {
+              "lon": 10.451668889291362,
+              "lat": 46.45172476534551
+            },
+            "mode": "foot",
+            "source": "synthetic-m27-mountain:road-link",
+            "candidate": {
+              "lat": 46.45172476534551,
+              "lon": 10.451668889291362
+            },
+            "admission": {
+              "height": 1476.2130113489875,
+              "normal": {
+                "x": -0.2980657163391551,
+                "y": 0.9369782099883346,
+                "z": 0.18228730825343534
+              },
+              "slope": 0.3728878592444103,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 380,
+              "surface": "road",
+              "road": "synthetic-m27-mountain:road-link",
+              "supportOwner": "synthetic-m27-mountain:road-link",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            }
+          }
+        },
+        "render": {
+          "frame": 42,
+          "calls": 27,
+          "triangles": 23065,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 22,
+          "textures": 2
+        },
+        "framebuffer": [
+          640,
+          400
+        ],
+        "frames": [
+          -23.251999999999953,
+          16.751999999999953,
+          33.299999999999955,
+          66.60000000000002,
+          150,
+          33.39999999999998,
+          16.600000000000023,
+          16.700000000000045,
+          16.699999999999932,
+          16.600000000000023,
+          16.600000000000023,
+          16.700000000000045,
+          16.699999999999932,
+          16.700000000000045,
+          16.699999999999932,
+          16.700000000000045,
+          16.59999999999991,
+          16.600000000000136,
+          16.700000000000045,
+          16.699999999999818,
+          16.600000000000136,
+          16.700000000000045,
+          16.699999999999818,
+          16.600000000000136,
+          16.700000000000045,
+          16.699999999999818,
+          16.700000000000045,
+          16.600000000000136,
+          16.59999999999991,
+          16.700000000000045,
+          16.700000000000045,
+          16.699999999999818,
+          16.700000000000045,
+          16.600000000000136,
+          16.699999999999818,
+          16.700000000000045,
+          16.600000000000136,
+          16.699999999999818,
+          16.700000000000045,
+          16.600000000000136,
+          183.29999999999995,
+          16.700000000000045
+        ],
+        "clock": 1.0666520000000002,
+        "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted.",
+        "saved": true,
+        "initial": [
+          128.0005855081177,
+          1476.2130113489875,
+          -192.00087826186717
+        ],
+        "after": [
+          128.0005855081177,
+          1476.2130113489875,
+          -192.00087826186717
+        ],
+        "physicalFixtureM": 42.00600635310708,
+        "resumeErrorM": 0
+      },
+      "profiles": [
+        {
+          "profile": "eco",
+          "state": {
+            "region": "validation-m27-mountain",
+            "synthetic": true,
+            "position": [
+              128.0005855081177,
+              1476.2130113489875,
+              -192.00087826186717
+            ],
+            "geo": {
+              "lat": 46.45172476534551,
+              "lon": 10.451668889291362
+            },
+            "admission": {
+              "height": 1476.2130113489875,
+              "normal": {
+                "x": -0.2980657163391551,
+                "y": 0.9369782099883346,
+                "z": 0.18228730825343534
+              },
+              "slope": 0.3728878592444103,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 380,
+              "surface": "road",
+              "road": "synthetic-m27-mountain:road-link",
+              "supportOwner": "synthetic-m27-mountain:road-link",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            },
+            "metrics": {
+              "contactQueries": {
+                "queries": 1220,
+                "hits": 402,
+                "invalidations": 63,
+                "maxEntries": 808
+              },
+              "state": "ready",
+              "source": "27b711dc53194942d7c9ff1a52088d8cc3c82db0e2338aa19787e5ebc8e0b81e",
+              "stream": {
+                "loaded": 4,
+                "unloaded": 0,
+                "failures": 0,
+                "residentBytes": 435809,
+                "active": 0,
+                "queued": 0,
+                "errors": {},
+                "timeouts": 0,
+                "cancellations": 0,
+                "generation": 4,
+                "jobs": [
+                  {
+                    "id": "0:0",
+                    "generation": 1,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 0.036203867196751234,
+                    "at": 1794920842166
+                  },
+                  {
+                    "id": "0:1",
+                    "generation": 2,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920842331
+                  },
+                  {
+                    "id": "1:0",
+                    "generation": 3,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920842433
+                  },
+                  {
+                    "id": "1:1",
+                    "generation": 4,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 724.185955536615,
+                    "at": 1794920842529
+                  }
+                ]
+              },
+              "render": {
+                "enrichment": {
+                  "tiles": 4,
+                  "buildings": 8,
+                  "windows": 151,
+                  "doors": 5,
+                  "details": 512,
+                  "animatedDetails": 173,
+                  "fallbacks": 0
+                },
+                "contactRevision": 4,
+                "tiles": 4,
+                "features": 14,
+                "triangles": 2048,
+                "trees": 256,
+                "disposed": 0,
+                "batches": 14,
+                "batchRebuilds": 6,
+                "maxBatchMs": 6.800000000046566,
+                "maxBatchWallMs": 60,
+                "failures": []
+              },
+              "graph": {
+                "foot": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "car": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "rail": {
+                  "features": 3,
+                  "nodes": 0,
+                  "edges": 0,
+                  "refused": 3,
+                  "routes": 0,
+                  "visited": 0
+                }
+              },
+              "car": {
+                "steps": 0,
+                "refusals": 0,
+                "maxSpeed": 0
+              },
+              "maxInstallMs": 6.800000000046566,
+              "maxInstallWallMs": 286.19999999995343,
+              "preparation": {
+                "slices": 70,
+                "steps": 12137,
+                "cpuMs": 160.8000000009779,
+                "maxSliceMs": 6.800000000046566,
+                "maxStepMs": 4.600000000093132,
+                "completed": 26,
+                "cancelled": 0,
+                "stages": {
+                  "surface-index:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0.5,
+                    "maxStepMs": 0.30000000004656613,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.5,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:0": {
+                    "steps": 3537,
+                    "cpuMs": 53.90000000037253,
+                    "maxStepMs": 4.600000000093132,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "static-batches": {
+                    "steps": 286,
+                    "cpuMs": 48.4000000001397,
+                    "maxStepMs": 3.1000000000931323,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.20000000018626451,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:1": {
+                    "steps": 3537,
+                    "cpuMs": 27.600000000791624,
+                    "maxStepMs": 2.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.19999999995343387,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:0": {
+                    "steps": 2305,
+                    "cpuMs": 11.300000000046566,
+                    "maxStepMs": 1.9000000001396984,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:1": {
+                    "steps": 2306,
+                    "cpuMs": 8.899999999674037,
+                    "maxStepMs": 0.9000000001396984,
+                    "over8": 0,
+                    "over50": 0
+                  }
+                },
+                "longSteps": []
+              },
+              "failures": [],
+              "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+              "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+              "enrichment": {
+                "state": "available",
+                "tiles": 4,
+                "physicalAuthority": false
+              },
+              "decoder": {
+                "worker": true,
+                "batches": 4,
+                "maxReceiveMs": 0,
+                "maxDecodeWallMs": 41.0999999998603
+              },
+              "transport": {
+                "trains": 0,
+                "aircraft": 0,
+                "railStops": 0,
+                "railRoutes": [],
+                "flight": null,
+                "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+                "cpuMs": 0,
+                "maxCpuMs": 0.4000000001396984,
+                "traffic": {
+                  "created": 0,
+                  "active": 0,
+                  "stops": 0,
+                  "distanceM": 0,
+                  "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+                  "extensions": 0,
+                  "routeEnds": 0
+                },
+                "nearbyVehicle": null
+              },
+              "water": {
+                "source": "estimated",
+                "confidence": "low",
+                "version": 3,
+                "accesses": 0,
+                "rejected": 0,
+                "rejectionReasons": {},
+                "rejectionExamples": [],
+                "renderedBed": false,
+                "water": "opaque source surface; analytic reflection",
+                "realDepthClaim": false,
+                "preparing": false,
+                "prepareMs": 0.09999999986030161,
+                "maxSliceMs": 0,
+                "firstAccessMs": null,
+                "samples": 0,
+                "cacheHits": 0
+              },
+              "placement": {
+                "requested": {
+                  "lon": 10.451668889291362,
+                  "lat": 46.45172476534551
+                },
+                "mode": "foot",
+                "source": "synthetic-m27-mountain:road-link",
+                "candidate": {
+                  "lat": 46.45172476534551,
+                  "lon": 10.451668889291362
+                },
+                "admission": {
+                  "height": 1476.2130113489875,
+                  "normal": {
+                    "x": -0.2980657163391551,
+                    "y": 0.9369782099883346,
+                    "z": 0.18228730825343534
+                  },
+                  "slope": 0.3728878592444103,
+                  "tile": "0:0",
+                  "datum": "WGS84-ellipsoid",
+                  "face": 380,
+                  "surface": "road",
+                  "road": "synthetic-m27-mountain:road-link",
+                  "supportOwner": "synthetic-m27-mountain:road-link",
+                  "ok": true,
+                  "drivable": false,
+                  "width": 6,
+                  "speedLimit": 13.9,
+                  "directionalGradeLimit": 0.7,
+                  "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+                }
+              }
+            },
+            "render": {
+              "frame": 58,
+              "calls": 27,
+              "triangles": 23065,
+              "points": 0,
+              "lines": 0
+            },
+            "memory": {
+              "geometries": 22,
+              "textures": 2
+            },
+            "framebuffer": [
+              640,
+              400
+            ],
+            "frames": [
+              -23.251999999999953,
+              16.751999999999953,
+              33.299999999999955,
+              66.60000000000002,
+              150,
+              33.39999999999998,
+              16.600000000000023,
+              16.700000000000045,
+              16.699999999999932,
+              16.600000000000023,
+              16.600000000000023,
+              16.700000000000045,
+              16.699999999999932,
+              16.700000000000045,
+              16.699999999999932,
+              16.700000000000045,
+              16.59999999999991,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.59999999999991,
+              16.700000000000045,
+              16.700000000000045,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              183.29999999999995,
+              16.700000000000045,
+              433.2999999999997,
+              33.30000000000018,
+              33.30000000000018,
+              33.399999999999636,
+              16.700000000000273,
+              33.29999999999973,
+              16.600000000000364,
+              33.399999999999636,
+              16.700000000000273,
+              50,
+              33.19999999999982,
+              33.40000000000009,
+              33.30000000000018,
+              50,
+              33.399999999999636,
+              33.30000000000018
+            ],
+            "clock": 1.7999520000000004,
+            "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted."
+          }
+        },
+        {
+          "profile": "balanced",
+          "state": {
+            "region": "validation-m27-mountain",
+            "synthetic": true,
+            "position": [
+              128.0005855081177,
+              1476.2130113489875,
+              -192.00087826186717
+            ],
+            "geo": {
+              "lat": 46.45172476534551,
+              "lon": 10.451668889291362
+            },
+            "admission": {
+              "height": 1476.2130113489875,
+              "normal": {
+                "x": -0.2980657163391551,
+                "y": 0.9369782099883346,
+                "z": 0.18228730825343534
+              },
+              "slope": 0.3728878592444103,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 380,
+              "surface": "road",
+              "road": "synthetic-m27-mountain:road-link",
+              "supportOwner": "synthetic-m27-mountain:road-link",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            },
+            "metrics": {
+              "contactQueries": {
+                "queries": 1221,
+                "hits": 402,
+                "invalidations": 103,
+                "maxEntries": 808
+              },
+              "state": "ready",
+              "source": "27b711dc53194942d7c9ff1a52088d8cc3c82db0e2338aa19787e5ebc8e0b81e",
+              "stream": {
+                "loaded": 4,
+                "unloaded": 0,
+                "failures": 0,
+                "residentBytes": 435809,
+                "active": 0,
+                "queued": 0,
+                "errors": {},
+                "timeouts": 0,
+                "cancellations": 0,
+                "generation": 4,
+                "jobs": [
+                  {
+                    "id": "0:0",
+                    "generation": 1,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 0.036203867196751234,
+                    "at": 1794920842166
+                  },
+                  {
+                    "id": "0:1",
+                    "generation": 2,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920842331
+                  },
+                  {
+                    "id": "1:0",
+                    "generation": 3,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920842433
+                  },
+                  {
+                    "id": "1:1",
+                    "generation": 4,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 724.185955536615,
+                    "at": 1794920842529
+                  }
+                ]
+              },
+              "render": {
+                "enrichment": {
+                  "tiles": 4,
+                  "buildings": 8,
+                  "windows": 151,
+                  "doors": 5,
+                  "details": 512,
+                  "animatedDetails": 173,
+                  "fallbacks": 0
+                },
+                "contactRevision": 4,
+                "tiles": 4,
+                "features": 14,
+                "triangles": 2048,
+                "trees": 256,
+                "disposed": 0,
+                "batches": 14,
+                "batchRebuilds": 7,
+                "maxBatchMs": 6.800000000046566,
+                "maxBatchWallMs": 60,
+                "failures": []
+              },
+              "graph": {
+                "foot": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "car": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "rail": {
+                  "features": 3,
+                  "nodes": 0,
+                  "edges": 0,
+                  "refused": 3,
+                  "routes": 0,
+                  "visited": 0
+                }
+              },
+              "car": {
+                "steps": 0,
+                "refusals": 0,
+                "maxSpeed": 0
+              },
+              "maxInstallMs": 6.800000000046566,
+              "maxInstallWallMs": 286.19999999995343,
+              "preparation": {
+                "slices": 72,
+                "steps": 12205,
+                "cpuMs": 166.7000000011176,
+                "maxSliceMs": 6.800000000046566,
+                "maxStepMs": 4.600000000093132,
+                "completed": 27,
+                "cancelled": 0,
+                "stages": {
+                  "surface-index:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0.5,
+                    "maxStepMs": 0.30000000004656613,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.5,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:0": {
+                    "steps": 3537,
+                    "cpuMs": 53.90000000037253,
+                    "maxStepMs": 4.600000000093132,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "static-batches": {
+                    "steps": 354,
+                    "cpuMs": 54.10000000055879,
+                    "maxStepMs": 3.1000000000931323,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.20000000018626451,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:1": {
+                    "steps": 3537,
+                    "cpuMs": 27.600000000791624,
+                    "maxStepMs": 2.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.19999999995343387,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:0": {
+                    "steps": 2305,
+                    "cpuMs": 11.300000000046566,
+                    "maxStepMs": 1.9000000001396984,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:1": {
+                    "steps": 2306,
+                    "cpuMs": 8.899999999674037,
+                    "maxStepMs": 0.9000000001396984,
+                    "over8": 0,
+                    "over50": 0
+                  }
+                },
+                "longSteps": []
+              },
+              "failures": [],
+              "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+              "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+              "enrichment": {
+                "state": "available",
+                "tiles": 4,
+                "physicalAuthority": false
+              },
+              "decoder": {
+                "worker": true,
+                "batches": 4,
+                "maxReceiveMs": 0,
+                "maxDecodeWallMs": 41.0999999998603
+              },
+              "transport": {
+                "trains": 0,
+                "aircraft": 0,
+                "railStops": 0,
+                "railRoutes": [],
+                "flight": null,
+                "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+                "cpuMs": 0,
+                "maxCpuMs": 0.4000000001396984,
+                "traffic": {
+                  "created": 0,
+                  "active": 0,
+                  "stops": 0,
+                  "distanceM": 0,
+                  "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+                  "extensions": 0,
+                  "routeEnds": 0
+                },
+                "nearbyVehicle": null
+              },
+              "water": {
+                "source": "estimated",
+                "confidence": "low",
+                "version": 3,
+                "accesses": 0,
+                "rejected": 0,
+                "rejectionReasons": {},
+                "rejectionExamples": [],
+                "renderedBed": false,
+                "water": "opaque source surface; analytic reflection",
+                "realDepthClaim": false,
+                "preparing": false,
+                "prepareMs": 0.09999999986030161,
+                "maxSliceMs": 0,
+                "firstAccessMs": null,
+                "samples": 0,
+                "cacheHits": 0
+              },
+              "placement": {
+                "requested": {
+                  "lon": 10.451668889291362,
+                  "lat": 46.45172476534551
+                },
+                "mode": "foot",
+                "source": "synthetic-m27-mountain:road-link",
+                "candidate": {
+                  "lat": 46.45172476534551,
+                  "lon": 10.451668889291362
+                },
+                "admission": {
+                  "height": 1476.2130113489875,
+                  "normal": {
+                    "x": -0.2980657163391551,
+                    "y": 0.9369782099883346,
+                    "z": 0.18228730825343534
+                  },
+                  "slope": 0.3728878592444103,
+                  "tile": "0:0",
+                  "datum": "WGS84-ellipsoid",
+                  "face": 380,
+                  "surface": "road",
+                  "road": "synthetic-m27-mountain:road-link",
+                  "supportOwner": "synthetic-m27-mountain:road-link",
+                  "ok": true,
+                  "drivable": false,
+                  "width": 6,
+                  "speedLimit": 13.9,
+                  "directionalGradeLimit": 0.7,
+                  "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+                }
+              }
+            },
+            "render": {
+              "frame": 97,
+              "calls": 27,
+              "triangles": 23065,
+              "points": 0,
+              "lines": 0
+            },
+            "memory": {
+              "geometries": 22,
+              "textures": 2
+            },
+            "framebuffer": [
+              640,
+              400
+            ],
+            "frames": [
+              -23.251999999999953,
+              16.751999999999953,
+              33.299999999999955,
+              66.60000000000002,
+              150,
+              33.39999999999998,
+              16.600000000000023,
+              16.700000000000045,
+              16.699999999999932,
+              16.600000000000023,
+              16.600000000000023,
+              16.700000000000045,
+              16.699999999999932,
+              16.700000000000045,
+              16.699999999999932,
+              16.700000000000045,
+              16.59999999999991,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.59999999999991,
+              16.700000000000045,
+              16.700000000000045,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              183.29999999999995,
+              16.700000000000045,
+              433.2999999999997,
+              33.30000000000018,
+              33.30000000000018,
+              33.399999999999636,
+              16.700000000000273,
+              33.29999999999973,
+              16.600000000000364,
+              33.399999999999636,
+              16.700000000000273,
+              50,
+              33.19999999999982,
+              33.40000000000009,
+              33.30000000000018,
+              50,
+              33.399999999999636,
+              33.30000000000018,
+              183.30000000000018,
+              16.699999999999818,
+              16.59999999999991,
+              16.700000000000273,
+              50.09999999999991,
+              49.90000000000009,
+              33.399999999999636,
+              16.700000000000273,
+              33.29999999999973,
+              33.20000000000027,
+              16.799999999999727,
+              33.30000000000018,
+              50,
+              16.59999999999991,
+              16.700000000000273,
+              50,
+              33.399999999999636,
+              33.30000000000018,
+              33.30000000000018,
+              16.699999999999818,
+              33.40000000000009,
+              49.90000000000009,
+              16.699999999999818,
+              16.59999999999991,
+              66.70000000000027,
+              33.29999999999973,
+              16.700000000000273,
+              50,
+              16.59999999999991,
+              16.799999999999727,
+              16.600000000000364,
+              66.69999999999982,
+              16.59999999999991,
+              16.700000000000273,
+              16.699999999999818,
+              33.30000000000018,
+              16.699999999999818,
+              33.30000000000018,
+              16.59999999999991
+            ],
+            "clock": 3.099851999999999,
+            "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted."
+          }
+        },
+        {
+          "profile": "quality",
+          "state": {
+            "region": "validation-m27-mountain",
+            "synthetic": true,
+            "position": [
+              128.0005855081177,
+              1476.2130113489875,
+              -192.00087826186717
+            ],
+            "geo": {
+              "lat": 46.45172476534551,
+              "lon": 10.451668889291362
+            },
+            "admission": {
+              "height": 1476.2130113489875,
+              "normal": {
+                "x": -0.2980657163391551,
+                "y": 0.9369782099883346,
+                "z": 0.18228730825343534
+              },
+              "slope": 0.3728878592444103,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 380,
+              "surface": "road",
+              "road": "synthetic-m27-mountain:road-link",
+              "supportOwner": "synthetic-m27-mountain:road-link",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            },
+            "metrics": {
+              "contactQueries": {
+                "queries": 1222,
+                "hits": 402,
+                "invalidations": 149,
+                "maxEntries": 808
+              },
+              "state": "ready",
+              "source": "27b711dc53194942d7c9ff1a52088d8cc3c82db0e2338aa19787e5ebc8e0b81e",
+              "stream": {
+                "loaded": 4,
+                "unloaded": 0,
+                "failures": 0,
+                "residentBytes": 435809,
+                "active": 0,
+                "queued": 0,
+                "errors": {},
+                "timeouts": 0,
+                "cancellations": 0,
+                "generation": 4,
+                "jobs": [
+                  {
+                    "id": "0:0",
+                    "generation": 1,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 0.036203867196751234,
+                    "at": 1794920842166
+                  },
+                  {
+                    "id": "0:1",
+                    "generation": 2,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920842331
+                  },
+                  {
+                    "id": "1:0",
+                    "generation": 3,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920842433
+                  },
+                  {
+                    "id": "1:1",
+                    "generation": 4,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 724.185955536615,
+                    "at": 1794920842529
+                  }
+                ]
+              },
+              "render": {
+                "enrichment": {
+                  "tiles": 4,
+                  "buildings": 8,
+                  "windows": 151,
+                  "doors": 5,
+                  "details": 512,
+                  "animatedDetails": 173,
+                  "fallbacks": 0
+                },
+                "contactRevision": 4,
+                "tiles": 4,
+                "features": 14,
+                "triangles": 2048,
+                "trees": 256,
+                "disposed": 0,
+                "batches": 14,
+                "batchRebuilds": 8,
+                "maxBatchMs": 6.800000000046566,
+                "maxBatchWallMs": 60,
+                "failures": []
+              },
+              "graph": {
+                "foot": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "car": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "rail": {
+                  "features": 3,
+                  "nodes": 0,
+                  "edges": 0,
+                  "refused": 3,
+                  "routes": 0,
+                  "visited": 0
+                }
+              },
+              "car": {
+                "steps": 0,
+                "refusals": 0,
+                "maxSpeed": 0
+              },
+              "maxInstallMs": 6.800000000046566,
+              "maxInstallWallMs": 286.19999999995343,
+              "preparation": {
+                "slices": 74,
+                "steps": 12273,
+                "cpuMs": 171.30000000121072,
+                "maxSliceMs": 6.800000000046566,
+                "maxStepMs": 4.600000000093132,
+                "completed": 28,
+                "cancelled": 0,
+                "stages": {
+                  "surface-index:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0.5,
+                    "maxStepMs": 0.30000000004656613,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.5,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:0": {
+                    "steps": 3537,
+                    "cpuMs": 53.90000000037253,
+                    "maxStepMs": 4.600000000093132,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "static-batches": {
+                    "steps": 422,
+                    "cpuMs": 58.60000000055879,
+                    "maxStepMs": 3.1000000000931323,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.20000000018626451,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:1": {
+                    "steps": 3537,
+                    "cpuMs": 27.600000000791624,
+                    "maxStepMs": 2.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.19999999995343387,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:0": {
+                    "steps": 2305,
+                    "cpuMs": 11.300000000046566,
+                    "maxStepMs": 1.9000000001396984,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:1": {
+                    "steps": 2306,
+                    "cpuMs": 8.899999999674037,
+                    "maxStepMs": 0.9000000001396984,
+                    "over8": 0,
+                    "over50": 0
+                  }
+                },
+                "longSteps": []
+              },
+              "failures": [],
+              "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+              "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+              "enrichment": {
+                "state": "available",
+                "tiles": 4,
+                "physicalAuthority": false
+              },
+              "decoder": {
+                "worker": true,
+                "batches": 4,
+                "maxReceiveMs": 0,
+                "maxDecodeWallMs": 41.0999999998603
+              },
+              "transport": {
+                "trains": 0,
+                "aircraft": 0,
+                "railStops": 0,
+                "railRoutes": [],
+                "flight": null,
+                "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+                "cpuMs": 0,
+                "maxCpuMs": 0.4000000001396984,
+                "traffic": {
+                  "created": 0,
+                  "active": 0,
+                  "stops": 0,
+                  "distanceM": 0,
+                  "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+                  "extensions": 0,
+                  "routeEnds": 0
+                },
+                "nearbyVehicle": null
+              },
+              "water": {
+                "source": "estimated",
+                "confidence": "low",
+                "version": 3,
+                "accesses": 0,
+                "rejected": 0,
+                "rejectionReasons": {},
+                "rejectionExamples": [],
+                "renderedBed": false,
+                "water": "opaque source surface; analytic reflection",
+                "realDepthClaim": false,
+                "preparing": false,
+                "prepareMs": 0.09999999986030161,
+                "maxSliceMs": 0,
+                "firstAccessMs": null,
+                "samples": 0,
+                "cacheHits": 0
+              },
+              "placement": {
+                "requested": {
+                  "lon": 10.451668889291362,
+                  "lat": 46.45172476534551
+                },
+                "mode": "foot",
+                "source": "synthetic-m27-mountain:road-link",
+                "candidate": {
+                  "lat": 46.45172476534551,
+                  "lon": 10.451668889291362
+                },
+                "admission": {
+                  "height": 1476.2130113489875,
+                  "normal": {
+                    "x": -0.2980657163391551,
+                    "y": 0.9369782099883346,
+                    "z": 0.18228730825343534
+                  },
+                  "slope": 0.3728878592444103,
+                  "tile": "0:0",
+                  "datum": "WGS84-ellipsoid",
+                  "face": 380,
+                  "surface": "road",
+                  "road": "synthetic-m27-mountain:road-link",
+                  "supportOwner": "synthetic-m27-mountain:road-link",
+                  "ok": true,
+                  "drivable": false,
+                  "width": 6,
+                  "speedLimit": 13.9,
+                  "directionalGradeLimit": 0.7,
+                  "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+                }
+              }
+            },
+            "render": {
+              "frame": 142,
+              "calls": 27,
+              "triangles": 23065,
+              "points": 0,
+              "lines": 0
+            },
+            "memory": {
+              "geometries": 22,
+              "textures": 2
+            },
+            "framebuffer": [
+              640,
+              400
+            ],
+            "frames": [
+              -23.251999999999953,
+              16.751999999999953,
+              33.299999999999955,
+              66.60000000000002,
+              150,
+              33.39999999999998,
+              16.600000000000023,
+              16.700000000000045,
+              16.699999999999932,
+              16.600000000000023,
+              16.600000000000023,
+              16.700000000000045,
+              16.699999999999932,
+              16.700000000000045,
+              16.699999999999932,
+              16.700000000000045,
+              16.59999999999991,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.600000000000136,
+              16.700000000000045,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.59999999999991,
+              16.700000000000045,
+              16.700000000000045,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              16.600000000000136,
+              183.29999999999995,
+              16.700000000000045,
+              433.2999999999997,
+              33.30000000000018,
+              33.30000000000018,
+              33.399999999999636,
+              16.700000000000273,
+              33.29999999999973,
+              16.600000000000364,
+              33.399999999999636,
+              16.700000000000273,
+              50,
+              33.19999999999982,
+              33.40000000000009,
+              33.30000000000018,
+              50,
+              33.399999999999636,
+              33.30000000000018,
+              183.30000000000018,
+              16.699999999999818,
+              16.59999999999991,
+              16.700000000000273,
+              50.09999999999991,
+              49.90000000000009,
+              33.399999999999636,
+              16.700000000000273,
+              33.29999999999973,
+              33.20000000000027,
+              16.799999999999727,
+              33.30000000000018,
+              50,
+              16.59999999999991,
+              16.700000000000273,
+              50,
+              33.399999999999636,
+              33.30000000000018,
+              33.30000000000018,
+              16.699999999999818,
+              33.40000000000009,
+              49.90000000000009,
+              16.699999999999818,
+              16.59999999999991,
+              66.70000000000027,
+              33.29999999999973,
+              16.700000000000273,
+              50,
+              16.59999999999991,
+              16.799999999999727,
+              16.600000000000364,
+              66.69999999999982,
+              16.59999999999991,
+              16.700000000000273,
+              16.699999999999818,
+              33.30000000000018,
+              16.699999999999818,
+              33.30000000000018,
+              16.59999999999991,
+              33.40000000000009,
+              16.699999999999818,
+              16.59999999999991,
+              16.700000000000273,
+              50,
+              33.29999999999973,
+              16.700000000000273,
+              50,
+              16.599999999999454,
+              16.700000000000728,
+              50.099999999999454,
+              16.5,
+              33.400000000000546,
+              16.699999999999818,
+              16.599999999999454,
+              16.700000000000728,
+              16.599999999999454,
+              16.699999999999818,
+              16.700000000000728,
+              33.29999999999927,
+              33.400000000000546,
+              16.699999999999818,
+              16.600000000000364,
+              50,
+              33.29999999999927,
+              16.700000000000728,
+              16.699999999999818,
+              49.899999999999636,
+              16.800000000000182,
+              16.600000000000364,
+              16.699999999999818,
+              50,
+              16.599999999999454,
+              16.700000000000728,
+              16.699999999999818,
+              33.30000000000018,
+              16.599999999999454,
+              33.400000000000546,
+              16.699999999999818,
+              33.30000000000018,
+              16.599999999999454,
+              33.400000000000546,
+              16.599999999999454,
+              50.100000000000364,
+              16.599999999999454
+            ],
+            "clock": 4.249851999999998,
+            "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted."
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "region": "validation-m27-tropical",
+      "synthetic": true,
+      "errors": [],
+      "hardware": "SwiftShader software rendering; no physical GPU or smartphone",
+      "initial": {
+        "region": "validation-m27-tropical",
+        "synthetic": true,
+        "position": [
+          128.0005855079076,
+          43.10234847077313,
+          -192.00087826206493
+        ],
+        "geo": {
+          "lat": -15.998275234654491,
+          "lon": -47.99880381838938
+        },
+        "admission": {
+          "height": 43.10234847077313,
+          "normal": {
+            "x": -0.02468547262214326,
+            "y": 0.9992970553224518,
+            "z": 0.02821387363156892
+          },
+          "slope": 0.03751497220264198,
+          "tile": "0:0",
+          "datum": "WGS84-ellipsoid",
+          "face": 260,
+          "surface": "road",
+          "road": "synthetic-m27-tropical:road-south",
+          "supportOwner": "synthetic-m27-tropical:road-south",
+          "ok": true,
+          "drivable": false,
+          "width": 6,
+          "speedLimit": 13.9,
+          "directionalGradeLimit": 0.7,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "metrics": {
+          "contactQueries": {
+            "queries": 9,
+            "hits": 0,
+            "invalidations": 41,
+            "maxEntries": 7
+          },
+          "state": "ready",
+          "source": "d060cfa7ba73a63353575e3707a2c47bba9d91f57200deae76a657ad388e1774",
+          "stream": {
+            "loaded": 4,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 450679,
+            "active": 0,
+            "queued": 0,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 4,
+            "jobs": [
+              {
+                "id": "0:0",
+                "generation": 1,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 0.036203867196751234,
+                "at": 1794920847211
+              },
+              {
+                "id": "0:1",
+                "generation": 2,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 512.0809543081003,
+                "at": 1794920847343
+              },
+              {
+                "id": "1:0",
+                "generation": 3,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 512.0809543081003,
+                "at": 1794920847626
+              },
+              {
+                "id": "1:1",
+                "generation": 4,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 724.185955536615,
+                "at": 1794920847724
+              }
+            ]
+          },
+          "render": {
+            "enrichment": {
+              "tiles": 4,
+              "buildings": 8,
+              "windows": 36,
+              "doors": 2,
+              "details": 512,
+              "animatedDetails": 383,
+              "fallbacks": 0
+            },
+            "contactRevision": 4,
+            "tiles": 4,
+            "features": 14,
+            "triangles": 2048,
+            "trees": 256,
+            "disposed": 0,
+            "batches": 14,
+            "batchRebuilds": 4,
+            "maxBatchMs": 3.6000000000931323,
+            "maxBatchWallMs": 23.5,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 3,
+              "nodes": 8,
+              "edges": 14,
+              "refused": 0,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 3,
+              "nodes": 8,
+              "edges": 14,
+              "refused": 0,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 3,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 3,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 3.6000000000931323,
+          "maxInstallWallMs": 502.29999999981374,
+          "preparation": {
+            "slices": 56,
+            "steps": 12007,
+            "cpuMs": 113.3000000002794,
+            "maxSliceMs": 3.6000000000931323,
+            "maxStepMs": 2.3999999999068677,
+            "completed": 24,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:0:0": {
+                "steps": 10,
+                "cpuMs": 0.4000000001396984,
+                "maxStepMs": 0.30000000004656613,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:0:0": {
+                "steps": 15,
+                "cpuMs": 0.4000000001396984,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:0:0": {
+                "steps": 15,
+                "cpuMs": 0.20000000018626451,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:0:0": {
+                "steps": 10,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:0:0": {
+                "steps": 3536,
+                "cpuMs": 40.40000000037253,
+                "maxStepMs": 2.3999999999068677,
+                "over8": 0,
+                "over50": 0
+              },
+              "static-batches": {
+                "steps": 158,
+                "cpuMs": 23.59999999962747,
+                "maxStepMs": 1.8999999999068677,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:0:1": {
+                "steps": 10,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:0:1": {
+                "steps": 12,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:0:1": {
+                "steps": 12,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:0:1": {
+                "steps": 10,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:0:1": {
+                "steps": 3537,
+                "cpuMs": 18.300000000512227,
+                "maxStepMs": 1.0999999998603016,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:1:0": {
+                "steps": 9,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0.09999999986030161,
+                "maxStepMs": 0.09999999986030161,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:1:0": {
+                "steps": 2305,
+                "cpuMs": 13.50000000023283,
+                "maxStepMs": 1.3999999999068677,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0.09999999986030161,
+                "maxStepMs": 0.09999999986030161,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:1:1": {
+                "steps": 2305,
+                "cpuMs": 8.700000000186265,
+                "maxStepMs": 1,
+                "over8": 0,
+                "over50": 0
+              }
+            },
+            "longSteps": []
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "enrichment": {
+            "state": "available",
+            "tiles": 4,
+            "physicalAuthority": false
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 4,
+            "maxReceiveMs": 0.19999999995343387,
+            "maxDecodeWallMs": 35.800000000046566
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0,
+            "maxCpuMs": 0.7000000001862645,
+            "traffic": {
+              "created": 0,
+              "active": 0,
+              "stops": 0,
+              "distanceM": 0,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": null
+          },
+          "water": {
+            "source": "estimated",
+            "confidence": "low",
+            "version": 3,
+            "accesses": 0,
+            "rejected": 0,
+            "rejectionReasons": {},
+            "rejectionExamples": [],
+            "renderedBed": false,
+            "water": "opaque source surface; analytic reflection",
+            "realDepthClaim": false,
+            "preparing": false,
+            "prepareMs": 0,
+            "maxSliceMs": 0,
+            "firstAccessMs": null,
+            "samples": 0,
+            "cacheHits": 0
+          },
+          "placement": {
+            "requested": {
+              "lon": -47.99880381838938,
+              "lat": -15.998275234654491
+            },
+            "mode": "foot",
+            "source": "synthetic-m27-tropical:road-south",
+            "candidate": {
+              "lat": -15.998275234654491,
+              "lon": -47.99880381838938
+            },
+            "admission": {
+              "height": 43.10234847077313,
+              "normal": {
+                "x": -0.02468547262214326,
+                "y": 0.9992970553224518,
+                "z": 0.02821387363156892
+              },
+              "slope": 0.03751497220264198,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 260,
+              "surface": "road",
+              "road": "synthetic-m27-tropical:road-south",
+              "supportOwner": "synthetic-m27-tropical:road-south",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            }
+          }
+        },
+        "render": {
+          "frame": 38,
+          "calls": 27,
+          "triangles": 21753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 31,
+          "textures": 2
+        },
+        "framebuffer": [
+          640,
+          400
+        ],
+        "frames": [
+          -17.304000000186278,
+          16.604000000000013,
+          16.69999999999999,
+          16.700000000000017,
+          16.700000000000017,
+          16.599999999999966,
+          16.69999999999999,
+          16.600000000000023,
+          16.69999999999999,
+          16.69999999999999,
+          16.600000000000023,
+          16.69999999999999,
+          16.69999999999999,
+          16.600000000000023,
+          16.69999999999999,
+          49.900000000000034,
+          16.69999999999999,
+          100.09999999999997,
+          16.600000000000023,
+          150,
+          33.39999999999998,
+          116.60000000000002,
+          16.600000000000023,
+          66.69999999999993,
+          33.40000000000009,
+          16.59999999999991,
+          133.29999999999995,
+          33.30000000000018,
+          16.799999999999955,
+          16.700000000000045,
+          16.59999999999991,
+          16.700000000000045,
+          16.59999999999991,
+          16.700000000000045,
+          16.59999999999991,
+          16.700000000000045,
+          16.700000000000045,
+          16.700000000000045
+        ],
+        "clock": 1.1833039999999995,
+        "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted."
+      },
+      "verification": {
+        "region": "validation-m27-tropical",
+        "synthetic": true,
+        "position": [
+          128.0005855079076,
+          43.10234847077313,
+          -192.00087826206493
+        ],
+        "geo": {
+          "lat": -15.998275234654491,
+          "lon": -47.99880381838938
+        },
+        "admission": {
+          "height": 43.10234847077313,
+          "normal": {
+            "x": -0.02468547262214326,
+            "y": 0.9992970553224518,
+            "z": 0.02821387363156892
+          },
+          "slope": 0.03751497220264198,
+          "tile": "0:0",
+          "datum": "WGS84-ellipsoid",
+          "face": 260,
+          "surface": "road",
+          "road": "synthetic-m27-tropical:road-south",
+          "supportOwner": "synthetic-m27-tropical:road-south",
+          "ok": true,
+          "drivable": false,
+          "width": 6,
+          "speedLimit": 13.9,
+          "directionalGradeLimit": 0.7,
+          "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+        },
+        "metrics": {
+          "contactQueries": {
+            "queries": 164,
+            "hits": 53,
+            "invalidations": 41,
+            "maxEntries": 103
+          },
+          "state": "ready",
+          "source": "d060cfa7ba73a63353575e3707a2c47bba9d91f57200deae76a657ad388e1774",
+          "stream": {
+            "loaded": 4,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 450679,
+            "active": 0,
+            "queued": 0,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 4,
+            "jobs": [
+              {
+                "id": "0:0",
+                "generation": 1,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 0.036203867196751234,
+                "at": 1794920847211
+              },
+              {
+                "id": "0:1",
+                "generation": 2,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 512.0809543081003,
+                "at": 1794920847343
+              },
+              {
+                "id": "1:0",
+                "generation": 3,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 512.0809543081003,
+                "at": 1794920847626
+              },
+              {
+                "id": "1:1",
+                "generation": 4,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 724.185955536615,
+                "at": 1794920847724
+              }
+            ]
+          },
+          "render": {
+            "enrichment": {
+              "tiles": 4,
+              "buildings": 8,
+              "windows": 36,
+              "doors": 2,
+              "details": 512,
+              "animatedDetails": 383,
+              "fallbacks": 0
+            },
+            "contactRevision": 4,
+            "tiles": 4,
+            "features": 14,
+            "triangles": 2048,
+            "trees": 256,
+            "disposed": 0,
+            "batches": 14,
+            "batchRebuilds": 4,
+            "maxBatchMs": 3.6000000000931323,
+            "maxBatchWallMs": 23.5,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 3,
+              "nodes": 8,
+              "edges": 14,
+              "refused": 0,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 3,
+              "nodes": 8,
+              "edges": 14,
+              "refused": 0,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 3,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 3,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 3.6000000000931323,
+          "maxInstallWallMs": 502.29999999981374,
+          "preparation": {
+            "slices": 56,
+            "steps": 12007,
+            "cpuMs": 113.3000000002794,
+            "maxSliceMs": 3.6000000000931323,
+            "maxStepMs": 2.3999999999068677,
+            "completed": 24,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:0:0": {
+                "steps": 10,
+                "cpuMs": 0.4000000001396984,
+                "maxStepMs": 0.30000000004656613,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:0:0": {
+                "steps": 15,
+                "cpuMs": 0.4000000001396984,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:0:0": {
+                "steps": 15,
+                "cpuMs": 0.20000000018626451,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:0:0": {
+                "steps": 10,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:0:0": {
+                "steps": 3536,
+                "cpuMs": 40.40000000037253,
+                "maxStepMs": 2.3999999999068677,
+                "over8": 0,
+                "over50": 0
+              },
+              "static-batches": {
+                "steps": 158,
+                "cpuMs": 23.59999999962747,
+                "maxStepMs": 1.8999999999068677,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:0:1": {
+                "steps": 10,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:0:1": {
+                "steps": 12,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:0:1": {
+                "steps": 12,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:0:1": {
+                "steps": 10,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:0:1": {
+                "steps": 3537,
+                "cpuMs": 18.300000000512227,
+                "maxStepMs": 1.0999999998603016,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:1:0": {
+                "steps": 9,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:1:0": {
+                "steps": 9,
+                "cpuMs": 0.09999999986030161,
+                "maxStepMs": 0.09999999986030161,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:1:0": {
+                "steps": 2305,
+                "cpuMs": 13.50000000023283,
+                "maxStepMs": 1.3999999999068677,
+                "over8": 0,
+                "over50": 0
+              },
+              "surface-index:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0,
+                "maxStepMs": 0,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0.10000000009313226,
+                "maxStepMs": 0.10000000009313226,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:1:1": {
+                "steps": 9,
+                "cpuMs": 0.09999999986030161,
+                "maxStepMs": 0.09999999986030161,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:1:1": {
+                "steps": 2305,
+                "cpuMs": 8.700000000186265,
+                "maxStepMs": 1,
+                "over8": 0,
+                "over50": 0
+              }
+            },
+            "longSteps": []
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "enrichment": {
+            "state": "available",
+            "tiles": 4,
+            "physicalAuthority": false
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 4,
+            "maxReceiveMs": 0.19999999995343387,
+            "maxDecodeWallMs": 35.800000000046566
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 0,
+            "maxCpuMs": 0.7000000001862645,
+            "traffic": {
+              "created": 0,
+              "active": 0,
+              "stops": 0,
+              "distanceM": 0,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": null
+          },
+          "water": {
+            "source": "estimated",
+            "confidence": "low",
+            "version": 3,
+            "accesses": 0,
+            "rejected": 0,
+            "rejectionReasons": {},
+            "rejectionExamples": [],
+            "renderedBed": false,
+            "water": "opaque source surface; analytic reflection",
+            "realDepthClaim": false,
+            "preparing": false,
+            "prepareMs": 0,
+            "maxSliceMs": 0,
+            "firstAccessMs": null,
+            "samples": 0,
+            "cacheHits": 0
+          },
+          "placement": {
+            "requested": {
+              "lon": -47.99880381838938,
+              "lat": -15.998275234654491
+            },
+            "mode": "foot",
+            "source": "synthetic-m27-tropical:road-south",
+            "candidate": {
+              "lat": -15.998275234654491,
+              "lon": -47.99880381838938
+            },
+            "admission": {
+              "height": 43.10234847077313,
+              "normal": {
+                "x": -0.02468547262214326,
+                "y": 0.9992970553224518,
+                "z": 0.02821387363156892
+              },
+              "slope": 0.03751497220264198,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 260,
+              "surface": "road",
+              "road": "synthetic-m27-tropical:road-south",
+              "supportOwner": "synthetic-m27-tropical:road-south",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            }
+          }
+        },
+        "render": {
+          "frame": 38,
+          "calls": 27,
+          "triangles": 21753,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 31,
+          "textures": 2
+        },
+        "framebuffer": [
+          640,
+          400
+        ],
+        "frames": [
+          -17.304000000186278,
+          16.604000000000013,
+          16.69999999999999,
+          16.700000000000017,
+          16.700000000000017,
+          16.599999999999966,
+          16.69999999999999,
+          16.600000000000023,
+          16.69999999999999,
+          16.69999999999999,
+          16.600000000000023,
+          16.69999999999999,
+          16.69999999999999,
+          16.600000000000023,
+          16.69999999999999,
+          49.900000000000034,
+          16.69999999999999,
+          100.09999999999997,
+          16.600000000000023,
+          150,
+          33.39999999999998,
+          116.60000000000002,
+          16.600000000000023,
+          66.69999999999993,
+          33.40000000000009,
+          16.59999999999991,
+          133.29999999999995,
+          33.30000000000018,
+          16.799999999999955,
+          16.700000000000045,
+          16.59999999999991,
+          16.700000000000045,
+          16.59999999999991,
+          16.700000000000045,
+          16.59999999999991,
+          16.700000000000045,
+          16.700000000000045,
+          16.700000000000045
+        ],
+        "clock": 1.1833039999999995,
+        "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted.",
+        "saved": true,
+        "initial": [
+          128.0005855079076,
+          43.10234847077313,
+          -192.00087826206493
+        ],
+        "after": [
+          128.0005855079076,
+          43.10234847077313,
+          -192.00087826206493
+        ],
+        "physicalFixtureM": 4.701433823830301,
+        "resumeErrorM": 0
+      },
+      "profiles": [
+        {
+          "profile": "eco",
+          "state": {
+            "region": "validation-m27-tropical",
+            "synthetic": true,
+            "position": [
+              128.0005855079076,
+              43.10234847077313,
+              -192.00087826206493
+            ],
+            "geo": {
+              "lat": -15.998275234654491,
+              "lon": -47.99880381838938
+            },
+            "admission": {
+              "height": 43.10234847077313,
+              "normal": {
+                "x": -0.02468547262214326,
+                "y": 0.9992970553224518,
+                "z": 0.02821387363156892
+              },
+              "slope": 0.03751497220264198,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 260,
+              "surface": "road",
+              "road": "synthetic-m27-tropical:road-south",
+              "supportOwner": "synthetic-m27-tropical:road-south",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            },
+            "metrics": {
+              "contactQueries": {
+                "queries": 165,
+                "hits": 53,
+                "invalidations": 78,
+                "maxEntries": 103
+              },
+              "state": "ready",
+              "source": "d060cfa7ba73a63353575e3707a2c47bba9d91f57200deae76a657ad388e1774",
+              "stream": {
+                "loaded": 4,
+                "unloaded": 0,
+                "failures": 0,
+                "residentBytes": 450679,
+                "active": 0,
+                "queued": 0,
+                "errors": {},
+                "timeouts": 0,
+                "cancellations": 0,
+                "generation": 4,
+                "jobs": [
+                  {
+                    "id": "0:0",
+                    "generation": 1,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 0.036203867196751234,
+                    "at": 1794920847211
+                  },
+                  {
+                    "id": "0:1",
+                    "generation": 2,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920847343
+                  },
+                  {
+                    "id": "1:0",
+                    "generation": 3,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920847626
+                  },
+                  {
+                    "id": "1:1",
+                    "generation": 4,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 724.185955536615,
+                    "at": 1794920847724
+                  }
+                ]
+              },
+              "render": {
+                "enrichment": {
+                  "tiles": 4,
+                  "buildings": 8,
+                  "windows": 93,
+                  "doors": 5,
+                  "details": 512,
+                  "animatedDetails": 383,
+                  "fallbacks": 0
+                },
+                "contactRevision": 4,
+                "tiles": 4,
+                "features": 14,
+                "triangles": 2048,
+                "trees": 256,
+                "disposed": 0,
+                "batches": 14,
+                "batchRebuilds": 6,
+                "maxBatchMs": 5,
+                "maxBatchWallMs": 26.699999999953434,
+                "failures": []
+              },
+              "graph": {
+                "foot": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "car": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "rail": {
+                  "features": 3,
+                  "nodes": 0,
+                  "edges": 0,
+                  "refused": 3,
+                  "routes": 0,
+                  "visited": 0
+                }
+              },
+              "car": {
+                "steps": 0,
+                "refusals": 0,
+                "maxSpeed": 0
+              },
+              "maxInstallMs": 3.6000000000931323,
+              "maxInstallWallMs": 502.29999999981374,
+              "preparation": {
+                "slices": 60,
+                "steps": 12095,
+                "cpuMs": 123.8000000002794,
+                "maxSliceMs": 5,
+                "maxStepMs": 4.2000000001862645,
+                "completed": 26,
+                "cancelled": 0,
+                "stages": {
+                  "surface-index:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0.4000000001396984,
+                    "maxStepMs": 0.30000000004656613,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.4000000001396984,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.20000000018626451,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:0": {
+                    "steps": 3536,
+                    "cpuMs": 40.40000000037253,
+                    "maxStepMs": 2.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "static-batches": {
+                    "steps": 246,
+                    "cpuMs": 33.99999999953434,
+                    "maxStepMs": 4.2000000001862645,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:1": {
+                    "steps": 3537,
+                    "cpuMs": 18.300000000512227,
+                    "maxStepMs": 1.0999999998603016,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.09999999986030161,
+                    "maxStepMs": 0.09999999986030161,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:0": {
+                    "steps": 2305,
+                    "cpuMs": 13.50000000023283,
+                    "maxStepMs": 1.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.09999999986030161,
+                    "maxStepMs": 0.09999999986030161,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:1": {
+                    "steps": 2305,
+                    "cpuMs": 8.700000000186265,
+                    "maxStepMs": 1,
+                    "over8": 0,
+                    "over50": 0
+                  }
+                },
+                "longSteps": []
+              },
+              "failures": [],
+              "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+              "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+              "enrichment": {
+                "state": "available",
+                "tiles": 4,
+                "physicalAuthority": false
+              },
+              "decoder": {
+                "worker": true,
+                "batches": 4,
+                "maxReceiveMs": 0.19999999995343387,
+                "maxDecodeWallMs": 35.800000000046566
+              },
+              "transport": {
+                "trains": 0,
+                "aircraft": 0,
+                "railStops": 0,
+                "railRoutes": [],
+                "flight": null,
+                "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+                "cpuMs": 0,
+                "maxCpuMs": 0.7000000001862645,
+                "traffic": {
+                  "created": 0,
+                  "active": 0,
+                  "stops": 0,
+                  "distanceM": 0,
+                  "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+                  "extensions": 0,
+                  "routeEnds": 0
+                },
+                "nearbyVehicle": null
+              },
+              "water": {
+                "source": "estimated",
+                "confidence": "low",
+                "version": 3,
+                "accesses": 0,
+                "rejected": 0,
+                "rejectionReasons": {},
+                "rejectionExamples": [],
+                "renderedBed": false,
+                "water": "opaque source surface; analytic reflection",
+                "realDepthClaim": false,
+                "preparing": false,
+                "prepareMs": 0,
+                "maxSliceMs": 0,
+                "firstAccessMs": null,
+                "samples": 0,
+                "cacheHits": 0
+              },
+              "placement": {
+                "requested": {
+                  "lon": -47.99880381838938,
+                  "lat": -15.998275234654491
+                },
+                "mode": "foot",
+                "source": "synthetic-m27-tropical:road-south",
+                "candidate": {
+                  "lat": -15.998275234654491,
+                  "lon": -47.99880381838938
+                },
+                "admission": {
+                  "height": 43.10234847077313,
+                  "normal": {
+                    "x": -0.02468547262214326,
+                    "y": 0.9992970553224518,
+                    "z": 0.02821387363156892
+                  },
+                  "slope": 0.03751497220264198,
+                  "tile": "0:0",
+                  "datum": "WGS84-ellipsoid",
+                  "face": 260,
+                  "surface": "road",
+                  "road": "synthetic-m27-tropical:road-south",
+                  "supportOwner": "synthetic-m27-tropical:road-south",
+                  "ok": true,
+                  "drivable": false,
+                  "width": 6,
+                  "speedLimit": 13.9,
+                  "directionalGradeLimit": 0.7,
+                  "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+                }
+              }
+            },
+            "render": {
+              "frame": 74,
+              "calls": 27,
+              "triangles": 21753,
+              "points": 0,
+              "lines": 0
+            },
+            "memory": {
+              "geometries": 28,
+              "textures": 2
+            },
+            "framebuffer": [
+              640,
+              400
+            ],
+            "frames": [
+              -17.304000000186278,
+              16.604000000000013,
+              16.69999999999999,
+              16.700000000000017,
+              16.700000000000017,
+              16.599999999999966,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              49.900000000000034,
+              16.69999999999999,
+              100.09999999999997,
+              16.600000000000023,
+              150,
+              33.39999999999998,
+              116.60000000000002,
+              16.600000000000023,
+              66.69999999999993,
+              33.40000000000009,
+              16.59999999999991,
+              133.29999999999995,
+              33.30000000000018,
+              16.799999999999955,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.700000000000045,
+              16.700000000000045,
+              33.299999999999955,
+              50,
+              33.299999999999955,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              50,
+              16.700000000000045,
+              33.299999999999955,
+              50,
+              33.299999999999955,
+              33.30000000000018,
+              83.39999999999986,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              50,
+              16.600000000000136,
+              33.399999999999864,
+              16.600000000000136,
+              33.40000000000009,
+              16.59999999999991,
+              16.699999999999818,
+              16.700000000000273,
+              16.59999999999991,
+              16.699999999999818,
+              16.59999999999991,
+              50.100000000000364,
+              16.699999999999818,
+              16.699999999999818,
+              49.90000000000009,
+              33.30000000000018,
+              16.699999999999818,
+              16.700000000000273,
+              33.399999999999636,
+              33.20000000000027
+            ],
+            "clock": 2.2165039999999983,
+            "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted."
+          }
+        },
+        {
+          "profile": "balanced",
+          "state": {
+            "region": "validation-m27-tropical",
+            "synthetic": true,
+            "position": [
+              128.0005855079076,
+              43.10234847077313,
+              -192.00087826206493
+            ],
+            "geo": {
+              "lat": -15.998275234654491,
+              "lon": -47.99880381838938
+            },
+            "admission": {
+              "height": 43.10234847077313,
+              "normal": {
+                "x": -0.02468547262214326,
+                "y": 0.9992970553224518,
+                "z": 0.02821387363156892
+              },
+              "slope": 0.03751497220264198,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 260,
+              "surface": "road",
+              "road": "synthetic-m27-tropical:road-south",
+              "supportOwner": "synthetic-m27-tropical:road-south",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            },
+            "metrics": {
+              "contactQueries": {
+                "queries": 166,
+                "hits": 53,
+                "invalidations": 118,
+                "maxEntries": 103
+              },
+              "state": "ready",
+              "source": "d060cfa7ba73a63353575e3707a2c47bba9d91f57200deae76a657ad388e1774",
+              "stream": {
+                "loaded": 4,
+                "unloaded": 0,
+                "failures": 0,
+                "residentBytes": 450679,
+                "active": 0,
+                "queued": 0,
+                "errors": {},
+                "timeouts": 0,
+                "cancellations": 0,
+                "generation": 4,
+                "jobs": [
+                  {
+                    "id": "0:0",
+                    "generation": 1,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 0.036203867196751234,
+                    "at": 1794920847211
+                  },
+                  {
+                    "id": "0:1",
+                    "generation": 2,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920847343
+                  },
+                  {
+                    "id": "1:0",
+                    "generation": 3,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920847626
+                  },
+                  {
+                    "id": "1:1",
+                    "generation": 4,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 724.185955536615,
+                    "at": 1794920847724
+                  }
+                ]
+              },
+              "render": {
+                "enrichment": {
+                  "tiles": 4,
+                  "buildings": 8,
+                  "windows": 93,
+                  "doors": 5,
+                  "details": 512,
+                  "animatedDetails": 383,
+                  "fallbacks": 0
+                },
+                "contactRevision": 4,
+                "tiles": 4,
+                "features": 14,
+                "triangles": 2048,
+                "trees": 256,
+                "disposed": 0,
+                "batches": 14,
+                "batchRebuilds": 7,
+                "maxBatchMs": 5,
+                "maxBatchWallMs": 26.699999999953434,
+                "failures": []
+              },
+              "graph": {
+                "foot": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "car": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "rail": {
+                  "features": 3,
+                  "nodes": 0,
+                  "edges": 0,
+                  "refused": 3,
+                  "routes": 0,
+                  "visited": 0
+                }
+              },
+              "car": {
+                "steps": 0,
+                "refusals": 0,
+                "maxSpeed": 0
+              },
+              "maxInstallMs": 3.6000000000931323,
+              "maxInstallWallMs": 502.29999999981374,
+              "preparation": {
+                "slices": 62,
+                "steps": 12153,
+                "cpuMs": 128.3000000002794,
+                "maxSliceMs": 5,
+                "maxStepMs": 4.2000000001862645,
+                "completed": 27,
+                "cancelled": 0,
+                "stages": {
+                  "surface-index:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0.4000000001396984,
+                    "maxStepMs": 0.30000000004656613,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.4000000001396984,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.20000000018626451,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:0": {
+                    "steps": 3536,
+                    "cpuMs": 40.40000000037253,
+                    "maxStepMs": 2.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "static-batches": {
+                    "steps": 304,
+                    "cpuMs": 38.39999999944121,
+                    "maxStepMs": 4.2000000001862645,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:1": {
+                    "steps": 3537,
+                    "cpuMs": 18.300000000512227,
+                    "maxStepMs": 1.0999999998603016,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.09999999986030161,
+                    "maxStepMs": 0.09999999986030161,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:0": {
+                    "steps": 2305,
+                    "cpuMs": 13.50000000023283,
+                    "maxStepMs": 1.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.09999999986030161,
+                    "maxStepMs": 0.09999999986030161,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:1": {
+                    "steps": 2305,
+                    "cpuMs": 8.700000000186265,
+                    "maxStepMs": 1,
+                    "over8": 0,
+                    "over50": 0
+                  }
+                },
+                "longSteps": []
+              },
+              "failures": [],
+              "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+              "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+              "enrichment": {
+                "state": "available",
+                "tiles": 4,
+                "physicalAuthority": false
+              },
+              "decoder": {
+                "worker": true,
+                "batches": 4,
+                "maxReceiveMs": 0.19999999995343387,
+                "maxDecodeWallMs": 35.800000000046566
+              },
+              "transport": {
+                "trains": 0,
+                "aircraft": 0,
+                "railStops": 0,
+                "railRoutes": [],
+                "flight": null,
+                "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+                "cpuMs": 0,
+                "maxCpuMs": 0.7000000001862645,
+                "traffic": {
+                  "created": 0,
+                  "active": 0,
+                  "stops": 0,
+                  "distanceM": 0,
+                  "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+                  "extensions": 0,
+                  "routeEnds": 0
+                },
+                "nearbyVehicle": null
+              },
+              "water": {
+                "source": "estimated",
+                "confidence": "low",
+                "version": 3,
+                "accesses": 0,
+                "rejected": 0,
+                "rejectionReasons": {},
+                "rejectionExamples": [],
+                "renderedBed": false,
+                "water": "opaque source surface; analytic reflection",
+                "realDepthClaim": false,
+                "preparing": false,
+                "prepareMs": 0,
+                "maxSliceMs": 0,
+                "firstAccessMs": null,
+                "samples": 0,
+                "cacheHits": 0
+              },
+              "placement": {
+                "requested": {
+                  "lon": -47.99880381838938,
+                  "lat": -15.998275234654491
+                },
+                "mode": "foot",
+                "source": "synthetic-m27-tropical:road-south",
+                "candidate": {
+                  "lat": -15.998275234654491,
+                  "lon": -47.99880381838938
+                },
+                "admission": {
+                  "height": 43.10234847077313,
+                  "normal": {
+                    "x": -0.02468547262214326,
+                    "y": 0.9992970553224518,
+                    "z": 0.02821387363156892
+                  },
+                  "slope": 0.03751497220264198,
+                  "tile": "0:0",
+                  "datum": "WGS84-ellipsoid",
+                  "face": 260,
+                  "surface": "road",
+                  "road": "synthetic-m27-tropical:road-south",
+                  "supportOwner": "synthetic-m27-tropical:road-south",
+                  "ok": true,
+                  "drivable": false,
+                  "width": 6,
+                  "speedLimit": 13.9,
+                  "directionalGradeLimit": 0.7,
+                  "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+                }
+              }
+            },
+            "render": {
+              "frame": 113,
+              "calls": 27,
+              "triangles": 21753,
+              "points": 0,
+              "lines": 0
+            },
+            "memory": {
+              "geometries": 28,
+              "textures": 2
+            },
+            "framebuffer": [
+              640,
+              400
+            ],
+            "frames": [
+              -17.304000000186278,
+              16.604000000000013,
+              16.69999999999999,
+              16.700000000000017,
+              16.700000000000017,
+              16.599999999999966,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              49.900000000000034,
+              16.69999999999999,
+              100.09999999999997,
+              16.600000000000023,
+              150,
+              33.39999999999998,
+              116.60000000000002,
+              16.600000000000023,
+              66.69999999999993,
+              33.40000000000009,
+              16.59999999999991,
+              133.29999999999995,
+              33.30000000000018,
+              16.799999999999955,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.700000000000045,
+              16.700000000000045,
+              33.299999999999955,
+              50,
+              33.299999999999955,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              50,
+              16.700000000000045,
+              33.299999999999955,
+              50,
+              33.299999999999955,
+              33.30000000000018,
+              83.39999999999986,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              50,
+              16.600000000000136,
+              33.399999999999864,
+              16.600000000000136,
+              33.40000000000009,
+              16.59999999999991,
+              16.699999999999818,
+              16.700000000000273,
+              16.59999999999991,
+              16.699999999999818,
+              16.59999999999991,
+              50.100000000000364,
+              16.699999999999818,
+              16.699999999999818,
+              49.90000000000009,
+              33.30000000000018,
+              16.699999999999818,
+              16.700000000000273,
+              33.399999999999636,
+              33.20000000000027,
+              16.699999999999818,
+              16.700000000000273,
+              33.29999999999973,
+              33.30000000000018,
+              33.29999999999973,
+              33.40000000000009,
+              33.30000000000018,
+              16.699999999999818,
+              50,
+              16.700000000000273,
+              16.59999999999991,
+              16.699999999999818,
+              16.700000000000273,
+              50,
+              16.59999999999991,
+              16.699999999999818,
+              33.30000000000018,
+              33.40000000000009,
+              33.29999999999973,
+              16.59999999999991,
+              50,
+              16.700000000000273,
+              16.699999999999818,
+              50,
+              33.30000000000018,
+              16.699999999999818,
+              49.90000000000009,
+              33.40000000000009,
+              16.699999999999818,
+              16.59999999999991,
+              66.70000000000027,
+              16.699999999999818,
+              16.59999999999991,
+              50,
+              16.700000000000273,
+              16.699999999999818,
+              33.30000000000018,
+              33.29999999999973,
+              16.700000000000273
+            ],
+            "clock": 3.316503999999995,
+            "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted."
+          }
+        },
+        {
+          "profile": "quality",
+          "state": {
+            "region": "validation-m27-tropical",
+            "synthetic": true,
+            "position": [
+              128.0005855079076,
+              43.10234847077313,
+              -192.00087826206493
+            ],
+            "geo": {
+              "lat": -15.998275234654491,
+              "lon": -47.99880381838938
+            },
+            "admission": {
+              "height": 43.10234847077313,
+              "normal": {
+                "x": -0.02468547262214326,
+                "y": 0.9992970553224518,
+                "z": 0.02821387363156892
+              },
+              "slope": 0.03751497220264198,
+              "tile": "0:0",
+              "datum": "WGS84-ellipsoid",
+              "face": 260,
+              "surface": "road",
+              "road": "synthetic-m27-tropical:road-south",
+              "supportOwner": "synthetic-m27-tropical:road-south",
+              "ok": true,
+              "drivable": false,
+              "width": 6,
+              "speedLimit": 13.9,
+              "directionalGradeLimit": 0.7,
+              "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+            },
+            "metrics": {
+              "contactQueries": {
+                "queries": 167,
+                "hits": 53,
+                "invalidations": 160,
+                "maxEntries": 103
+              },
+              "state": "ready",
+              "source": "d060cfa7ba73a63353575e3707a2c47bba9d91f57200deae76a657ad388e1774",
+              "stream": {
+                "loaded": 4,
+                "unloaded": 0,
+                "failures": 0,
+                "residentBytes": 450679,
+                "active": 0,
+                "queued": 0,
+                "errors": {},
+                "timeouts": 0,
+                "cancellations": 0,
+                "generation": 4,
+                "jobs": [
+                  {
+                    "id": "0:0",
+                    "generation": 1,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 0.036203867196751234,
+                    "at": 1794920847211
+                  },
+                  {
+                    "id": "0:1",
+                    "generation": 2,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920847343
+                  },
+                  {
+                    "id": "1:0",
+                    "generation": 3,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 512.0809543081003,
+                    "at": 1794920847626
+                  },
+                  {
+                    "id": "1:1",
+                    "generation": 4,
+                    "state": "COMPLETED",
+                    "phase": "installation",
+                    "priority": 724.185955536615,
+                    "at": 1794920847724
+                  }
+                ]
+              },
+              "render": {
+                "enrichment": {
+                  "tiles": 4,
+                  "buildings": 8,
+                  "windows": 93,
+                  "doors": 5,
+                  "details": 512,
+                  "animatedDetails": 383,
+                  "fallbacks": 0
+                },
+                "contactRevision": 4,
+                "tiles": 4,
+                "features": 14,
+                "triangles": 2048,
+                "trees": 256,
+                "disposed": 0,
+                "batches": 14,
+                "batchRebuilds": 8,
+                "maxBatchMs": 5,
+                "maxBatchWallMs": 26.699999999953434,
+                "failures": []
+              },
+              "graph": {
+                "foot": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "car": {
+                  "features": 3,
+                  "nodes": 8,
+                  "edges": 14,
+                  "refused": 0,
+                  "routes": 0,
+                  "visited": 0
+                },
+                "rail": {
+                  "features": 3,
+                  "nodes": 0,
+                  "edges": 0,
+                  "refused": 3,
+                  "routes": 0,
+                  "visited": 0
+                }
+              },
+              "car": {
+                "steps": 0,
+                "refusals": 0,
+                "maxSpeed": 0
+              },
+              "maxInstallMs": 3.6000000000931323,
+              "maxInstallWallMs": 502.29999999981374,
+              "preparation": {
+                "slices": 64,
+                "steps": 12211,
+                "cpuMs": 133.10000000009313,
+                "maxSliceMs": 5,
+                "maxStepMs": 4.2000000001862645,
+                "completed": 28,
+                "cancelled": 0,
+                "stages": {
+                  "surface-index:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0.4000000001396984,
+                    "maxStepMs": 0.30000000004656613,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.4000000001396984,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:0": {
+                    "steps": 15,
+                    "cpuMs": 0.20000000018626451,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:0": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:0": {
+                    "steps": 3536,
+                    "cpuMs": 40.40000000037253,
+                    "maxStepMs": 2.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "static-batches": {
+                    "steps": 362,
+                    "cpuMs": 43.09999999916181,
+                    "maxStepMs": 4.2000000001862645,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:0:1": {
+                    "steps": 12,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:0:1": {
+                    "steps": 10,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:0:1": {
+                    "steps": 3537,
+                    "cpuMs": 18.300000000512227,
+                    "maxStepMs": 1.0999999998603016,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:0": {
+                    "steps": 9,
+                    "cpuMs": 0.09999999986030161,
+                    "maxStepMs": 0.09999999986030161,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:0": {
+                    "steps": 2305,
+                    "cpuMs": 13.50000000023283,
+                    "maxStepMs": 1.3999999999068677,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "surface-index:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "foot-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0,
+                    "maxStepMs": 0,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "car-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.10000000009313226,
+                    "maxStepMs": 0.10000000009313226,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "rail-graph:1:1": {
+                    "steps": 9,
+                    "cpuMs": 0.09999999986030161,
+                    "maxStepMs": 0.09999999986030161,
+                    "over8": 0,
+                    "over50": 0
+                  },
+                  "render-install:1:1": {
+                    "steps": 2305,
+                    "cpuMs": 8.700000000186265,
+                    "maxStepMs": 1,
+                    "over8": 0,
+                    "over50": 0
+                  }
+                },
+                "longSteps": []
+              },
+              "failures": [],
+              "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+              "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+              "enrichment": {
+                "state": "available",
+                "tiles": 4,
+                "physicalAuthority": false
+              },
+              "decoder": {
+                "worker": true,
+                "batches": 4,
+                "maxReceiveMs": 0.19999999995343387,
+                "maxDecodeWallMs": 35.800000000046566
+              },
+              "transport": {
+                "trains": 0,
+                "aircraft": 0,
+                "railStops": 0,
+                "railRoutes": [],
+                "flight": null,
+                "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+                "cpuMs": 0,
+                "maxCpuMs": 0.7000000001862645,
+                "traffic": {
+                  "created": 0,
+                  "active": 0,
+                  "stops": 0,
+                  "distanceM": 0,
+                  "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+                  "extensions": 0,
+                  "routeEnds": 0
+                },
+                "nearbyVehicle": null
+              },
+              "water": {
+                "source": "estimated",
+                "confidence": "low",
+                "version": 3,
+                "accesses": 0,
+                "rejected": 0,
+                "rejectionReasons": {},
+                "rejectionExamples": [],
+                "renderedBed": false,
+                "water": "opaque source surface; analytic reflection",
+                "realDepthClaim": false,
+                "preparing": false,
+                "prepareMs": 0,
+                "maxSliceMs": 0,
+                "firstAccessMs": null,
+                "samples": 0,
+                "cacheHits": 0
+              },
+              "placement": {
+                "requested": {
+                  "lon": -47.99880381838938,
+                  "lat": -15.998275234654491
+                },
+                "mode": "foot",
+                "source": "synthetic-m27-tropical:road-south",
+                "candidate": {
+                  "lat": -15.998275234654491,
+                  "lon": -47.99880381838938
+                },
+                "admission": {
+                  "height": 43.10234847077313,
+                  "normal": {
+                    "x": -0.02468547262214326,
+                    "y": 0.9992970553224518,
+                    "z": 0.02821387363156892
+                  },
+                  "slope": 0.03751497220264198,
+                  "tile": "0:0",
+                  "datum": "WGS84-ellipsoid",
+                  "face": 260,
+                  "surface": "road",
+                  "road": "synthetic-m27-tropical:road-south",
+                  "supportOwner": "synthetic-m27-tropical:road-south",
+                  "ok": true,
+                  "drivable": false,
+                  "width": 6,
+                  "speedLimit": 13.9,
+                  "directionalGradeLimit": 0.7,
+                  "provenance": "OSM road corridor + declared regional access policy; inferred width when absent"
+                }
+              }
+            },
+            "render": {
+              "frame": 154,
+              "calls": 27,
+              "triangles": 21753,
+              "points": 0,
+              "lines": 0
+            },
+            "memory": {
+              "geometries": 28,
+              "textures": 2
+            },
+            "framebuffer": [
+              640,
+              400
+            ],
+            "frames": [
+              -17.304000000186278,
+              16.604000000000013,
+              16.69999999999999,
+              16.700000000000017,
+              16.700000000000017,
+              16.599999999999966,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              16.69999999999999,
+              16.600000000000023,
+              16.69999999999999,
+              49.900000000000034,
+              16.69999999999999,
+              100.09999999999997,
+              16.600000000000023,
+              150,
+              33.39999999999998,
+              116.60000000000002,
+              16.600000000000023,
+              66.69999999999993,
+              33.40000000000009,
+              16.59999999999991,
+              133.29999999999995,
+              33.30000000000018,
+              16.799999999999955,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.59999999999991,
+              16.700000000000045,
+              16.700000000000045,
+              16.700000000000045,
+              33.299999999999955,
+              50,
+              33.299999999999955,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              50,
+              16.700000000000045,
+              33.299999999999955,
+              50,
+              33.299999999999955,
+              33.30000000000018,
+              83.39999999999986,
+              16.600000000000136,
+              16.699999999999818,
+              16.700000000000045,
+              50,
+              16.600000000000136,
+              33.399999999999864,
+              16.600000000000136,
+              33.40000000000009,
+              16.59999999999991,
+              16.699999999999818,
+              16.700000000000273,
+              16.59999999999991,
+              16.699999999999818,
+              16.59999999999991,
+              50.100000000000364,
+              16.699999999999818,
+              16.699999999999818,
+              49.90000000000009,
+              33.30000000000018,
+              16.699999999999818,
+              16.700000000000273,
+              33.399999999999636,
+              33.20000000000027,
+              16.699999999999818,
+              16.700000000000273,
+              33.29999999999973,
+              33.30000000000018,
+              33.29999999999973,
+              33.40000000000009,
+              33.30000000000018,
+              16.699999999999818,
+              50,
+              16.700000000000273,
+              16.59999999999991,
+              16.699999999999818,
+              16.700000000000273,
+              50,
+              16.59999999999991,
+              16.699999999999818,
+              33.30000000000018,
+              33.40000000000009,
+              33.29999999999973,
+              16.59999999999991,
+              50,
+              16.700000000000273,
+              16.699999999999818,
+              50,
+              33.30000000000018,
+              16.699999999999818,
+              49.90000000000009,
+              33.40000000000009,
+              16.699999999999818,
+              16.59999999999991,
+              66.70000000000027,
+              16.699999999999818,
+              16.59999999999991,
+              50,
+              16.700000000000273,
+              16.699999999999818,
+              33.30000000000018,
+              33.29999999999973,
+              16.700000000000273,
+              16.699999999999818,
+              16.59999999999991,
+              50.100000000000364,
+              16.59999999999991,
+              16.59999999999991,
+              66.80000000000018,
+              16.59999999999991,
+              33.40000000000009,
+              16.59999999999991,
+              33.40000000000009,
+              16.59999999999991,
+              33.29999999999973,
+              16.700000000000273,
+              16.699999999999818,
+              50,
+              16.59999999999991,
+              50,
+              16.700000000000273,
+              16.59999999999991,
+              33.40000000000009,
+              16.59999999999991,
+              33.30000000000018,
+              16.699999999999818,
+              16.699999999999818,
+              33.30000000000018,
+              16.699999999999818,
+              33.30000000000018,
+              16.699999999999818,
+              50,
+              16.600000000000364,
+              16.699999999999818,
+              50,
+              33.30000000000018,
+              16.699999999999818,
+              50,
+              33.399999999999636,
+              16.600000000000364,
+              16.699999999999818,
+              49.900000000000546,
+              16.699999999999818,
+              33.399999999999636
+            ],
+            "clock": 4.449803999999995,
+            "method": "Synthetic fixture with production createPlanetRuntime, worker loader, renderer, contact, map and save. Fixture movement is accelerated grounded-kernel sampling, not a native game journey. Full atmosphere, animal and audio parity are not asserted."
+          }
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

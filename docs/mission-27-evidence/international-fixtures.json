@@ -1,0 +1,90 @@
+{
+  "schema": "mission-27-international-fixtures-v1",
+  "evidenceType": "synthetic",
+  "sourceGeneration": "executed",
+  "enrichmentGeneration": "executed-with-two-identical-generations",
+  "runtimeValidation": "not-executed-by-this-script",
+  "fixtures": [
+    {
+      "id": "synthetic-m27-mountain",
+      "manifest": "public/planet/validation-m27-mountain/manifest.json",
+      "enrichmentManifest": "public/planet/validation-m27-mountain/enrichment/manifest.json",
+      "pack": "public/enrichment/packs/mountain-fixture.json",
+      "tiles": 4,
+      "synthetic": true,
+      "fixture": {
+        "synthetic": true,
+        "production": false,
+        "realGeography": false,
+        "anchorIsNotSurveyed": true,
+        "pack": "../../../enrichment/packs/mountain-fixture.json",
+        "spawn": {
+          "lon": 10.451955729638314,
+          "lat": 46.45172476534551,
+          "height": 1483.26188,
+          "datum": "WGS84-ellipsoid"
+        },
+        "spawnCanonical": {
+          "x": 150,
+          "y": 192
+        },
+        "targetCanonical": {
+          "x": 900,
+          "y": 192
+        },
+        "buildingCanonical": {
+          "x": 215,
+          "y": 236
+        },
+        "elevationRangeM": [
+          1400,
+          1896.96472
+        ],
+        "note": "The access=yes and foot=yes tags are synthetic test permissions, not public access in the real world."
+      }
+    },
+    {
+      "id": "synthetic-m27-tropical",
+      "manifest": "public/planet/validation-m27-tropical/manifest.json",
+      "enrichmentManifest": "public/planet/validation-m27-tropical/enrichment/manifest.json",
+      "pack": "public/enrichment/packs/tropical-fixture.json",
+      "tiles": 4,
+      "synthetic": true,
+      "fixture": {
+        "synthetic": true,
+        "production": false,
+        "realGeography": false,
+        "anchorIsNotSurveyed": true,
+        "pack": "../../../enrichment/packs/tropical-fixture.json",
+        "spawn": {
+          "lon": -47.99859822467506,
+          "lat": -15.998275234654491,
+          "height": 43.62264,
+          "datum": "WGS84-ellipsoid"
+        },
+        "spawnCanonical": {
+          "x": 150,
+          "y": 192
+        },
+        "targetCanonical": {
+          "x": 900,
+          "y": 192
+        },
+        "buildingCanonical": {
+          "x": 215,
+          "y": 236
+        },
+        "elevationRangeM": [
+          35,
+          82.28994
+        ],
+        "note": "The access=yes and foot=yes tags are synthetic test permissions, not public access in the real world."
+      }
+    }
+  ],
+  "limits": [
+    "These fixtures do not expand real geographic production coverage.",
+    "Climate fields select different regional content; monsoon/alpine weather and botanical authenticity are not simulated or proved here.",
+    "Rendering, input, collision, save, map, audio and eviction require a separate runtime receipt."
+  ]
+}

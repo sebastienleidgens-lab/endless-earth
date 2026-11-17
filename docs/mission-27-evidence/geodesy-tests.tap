@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: WGS84 ECEF known axes and ellipsoidal round-trips preserve centimetres globally
+ok 1 - WGS84 ECEF known axes and ellipsoidal round-trips preserve centimetres globally
+  ---
+  duration_ms: 2.229905
+  type: 'test'
+  ...
+# Subtest: ENU patches cross the antimeridian and both polar neighbourhoods without a singularity
+ok 2 - ENU patches cross the antimeridian and both polar neighbourhoods without a singularity
+  ---
+  duration_ms: 3.007541
+  type: 'test'
+  ...
+# Subtest: ENU explicitly retains curvature, datum and local-patch limits
+ok 3 - ENU explicitly retains curvature, datum and local-patch limits
+  ---
+  duration_ms: 0.78104
+  type: 'test'
+  ...
+# Subtest: Global cells have deterministic half-open owners at the dateline and poles
+ok 4 - Global cells have deterministic half-open owners at the dateline and poles
+  ---
+  duration_ms: 0.935659
+  type: 'test'
+  ...
+# Subtest: Save, rebase and return preserve the three-dimensional ENU canonical point
+ok 5 - Save, rebase and return preserve the three-dimensional ENU canonical point
+  ---
+  duration_ms: 0.595177
+  type: 'test'
+  ...
+# Subtest: Historical Lambert, local-tangent and pilot adapter contracts remain unchanged
+ok 6 - Historical Lambert, local-tangent and pilot adapter contracts remain unchanged
+  ---
+  duration_ms: 0.747371
+  type: 'test'
+  ...
+# Subtest: a department river crossing the pilot preserves its historical water owner and interpolates only the exterior mesh
+ok 7 - a department river crossing the pilot preserves its historical water owner and interpolates only the exterior mesh
+  ---
+  duration_ms: 2.996976
+  type: 'test'
+  ...
+# Subtest: Lambert93 agrees with its official false origin and round trips department-scale positions without converting heights
+ok 8 - Lambert93 agrees with its official false origin and round trips department-scale positions without converting heights
+  ---
+  duration_ms: 0.607505
+  type: 'test'
+  ...
+# Subtest: legacy adapter preserves its historical east/south axes and an unrelated region uses another projection provider
+ok 9 - legacy adapter preserves its historical east/south axes and an unrelated region uses another projection provider
+  ---
+  duration_ms: 0.445847
+  type: 'test'
+  ...
+# Subtest: floating-origin moves camera, visual, physics proxy and sound together; canonical state survives multiple rebases
+ok 10 - floating-origin moves camera, visual, physics proxy and sound together; canonical state survives multiple rebases
+  ---
+  duration_ms: 0.61085
+  type: 'test'
+  ...
+# Subtest: terrain interpolation and normals share the exact triangle diagonal and remain continuous at tile boundaries
+ok 11 - terrain interpolation and normals share the exact triangle diagonal and remain continuous at tile boundaries
+  ---
+  duration_ms: 0.694774
+  type: 'test'
+  ...
+# Subtest: tile checksum and length verification reject corrupted bytes before physical installation
+ok 12 - tile checksum and length verification reject corrupted bytes before physical installation
+  ---
+  duration_ms: 50.592685
+  type: 'test'
+  ...
+# Subtest: opaque gzip tile transport verifies compressed bytes and decodes exactly once
+ok 13 - opaque gzip tile transport verifies compressed bytes and decodes exactly once
+  ---
+  duration_ms: 10.549443
+  type: 'test'
+  ...
+# Subtest: tile streaming bounds concurrency/residency, survives cancellation and never installs stale requests
+ok 14 - tile streaming bounds concurrency/residency, survives cancellation and never installs stale requests
+  ---
+  duration_ms: 4.788045
+  type: 'test'
+  ...
+# Subtest: demand selection fits the declared byte budget without evicting and reloading demanded tiles forever
+ok 15 - demand selection fits the declared byte budget without evicting and reloading demanded tiles forever
+  ---
+  duration_ms: 5.507761
+  type: 'test'
+  ...
+# Subtest: metric tile demand covers the horizon and preloads the direction of travel without fetching a distant square
+ok 16 - metric tile demand covers the horizon and preloads the direction of travel without fetching a distant square
+  ---
+  duration_ms: 0.747662
+  type: 'test'
+  ...
+# Subtest: directed source topology crosses tiles once, retains shared owners and never connects grade-separated crossings
+ok 17 - directed source topology crosses tiles once, retains shared owners and never connects grade-separated crossings
+  ---
+  duration_ms: 1.125038
+  type: 'test'
+  ...
+# Subtest: transport admission keeps motorway pedestrians, private tracks, uncertain bridges and water clearance closed
+ok 18 - transport admission keeps motorway pedestrians, private tracks, uncertain bridges and water clearance closed
+  ---
+  duration_ms: 0.174227
+  type: 'test'
+  ...
+# Subtest: mapped water/buildings and missing support block travel instead of receiving an invisible fallback floor
+ok 19 - mapped water/buildings and missing support block travel instead of receiving an invisible fallback floor
+  ---
+  duration_ms: 0.801661
+  type: 'test'
+  ...
+# Subtest: car hull sweeps stop before walls, missing tiles and vertical road discontinuities across irregular frame rates
+ok 20 - car hull sweeps stop before walls, missing tiles and vertical road discontinuities across irregular frame rates
+  ---
+  duration_ms: 10.894683
+  type: 'test'
+  ...
+# Subtest: right-hand car steering remains right from the following camera rather than mirroring the keyboard
+ok 21 - right-hand car steering remains right from the following camera rather than mirroring the keyboard
+  ---
+  duration_ms: 3.606003
+  type: 'test'
+  ...
+# Subtest: save/resume validates canonical state and refuses unavailable support without replacing the saved position
+ok 22 - save/resume validates canonical state and refuses unavailable support without replacing the saved position
+  ---
+  duration_ms: 0.588878
+  type: 'test'
+  ...
+# Subtest: analytic flock samples and identity phases survive a CPU cadence/LOD change without a phase reset
+ok 23 - analytic flock samples and identity phases survive a CPU cadence/LOD change without a phase reset
+  ---
+  duration_ms: 0.63787
+  type: 'test'
+  ...
+# Subtest: paddle force only exists while the shared blade pose enters water; wakes come in stern pairs and fade when stopped
+ok 24 - paddle force only exists while the shared blade pose enters water; wakes come in stern pairs and fade when stopped
+  ---
+  duration_ms: 0.944101
+  type: 'test'
+  ...
+# Subtest: river following supplies input to physics, preserves manual takeover and does not impose spline positions
+ok 25 - river following supplies input to physics, preserves manual takeover and does not impose spline positions
+  ---
+  duration_ms: 13.144929
+  type: 'test'
+  ...
+# Subtest: packraft checks the full visible hull and the water under its blade instead of assuming a flat infinite surface
+ok 26 - packraft checks the full visible hull and the water under its blade instead of assuming a flat infinite surface
+  ---
+  duration_ms: 2.391494
+  type: 'test'
+  ...
+# Subtest: rail acceleration and braking keep the whole leading vehicle before an unverified corridor end
+ok 27 - rail acceleration and braking keep the whole leading vehicle before an unverified corridor end
+  ---
+  duration_ms: 5.383893
+  type: 'test'
+  ...
+# Subtest: synthetic airport flight stays continuous through takeoff, airborne turns and landing, then remains parked
+ok 28 - synthetic airport flight stays continuous through takeoff, airborne turns and landing, then remains parked
+  ---
+  duration_ms: 0.458555
+  type: 'test'
+  ...
+# Subtest: a synthetic train brakes for an explicitly assigned source station, dwells, then continues on its rail
+ok 29 - a synthetic train brakes for an explicitly assigned source station, dwells, then continues on its rail
+  ---
+  duration_ms: 4.49317
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 253.746237

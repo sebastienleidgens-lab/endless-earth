@@ -1,0 +1,38 @@
+{
+  "schema": "mission-27-validation-v1",
+  "sourceCommit": "7845dcb8bbecbe4a5e57ebb13256559d622eb08d",
+  "sourceTree": "f5f3f6417a1b4ec210d9e19acc15d5ebc3a68375",
+  "sameProductionTreeAsBuild": true,
+  "tests": {
+    "passed": 493,
+    "total": 493,
+    "failed": 0,
+    "success": true,
+    "log": "tests-final.txt"
+  },
+  "build": {
+    "passed": true,
+    "log": "build-final.txt",
+    "warning": "Some chunks exceed 500 kB"
+  },
+  "browser": {
+    "gameplay": true,
+    "production": true,
+    "fixtures": [
+      {
+        "region": "validation-m27-mountain",
+        "passed": true
+      },
+      {
+        "region": "validation-m27-tropical",
+        "passed": true
+      }
+    ],
+    "realHardware": false
+  },
+  "baseline": {
+    "testsPassed": 466,
+    "buildPassed": true
+  },
+  "noNewDependencies": true
+}
