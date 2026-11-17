@@ -1,0 +1,14 @@
+{
+  "schema":"regional-enrichment-pack-v1",
+  "id":"synthetic-tropical-v1","version":"1.0.0","license":"LicenseRef-EndlessEarth-Original","fixture":true,
+  "description":"Synthetic tropical southern-hemisphere validation palette. No source coverage or faithful local architecture is claimed.",
+  "climate":{"regime":"tropical-wet-dry","hemisphere":"south","seasonModel":"wet-dry-contract-only"},
+  "architecture":{"defaultLevels":1,"facadeSpacing":2.7,"roofRiseRatio":0.34,
+    "palettes":[{"family":"ordinary","wall":14073491,"roof":9080694,"trim":14932931,"glass":5202306,"wood":8157282},{"family":"utility","wall":11841681,"roof":10133408,"trim":13881521,"glass":5202306,"wood":8157282}]},
+  "habitats":[
+    {"id":"tropical-understorey","match":{"landuse":"forest"},"density":0.9,"kinds":["fern","fern","deadwood","grass"],"riparianKinds":["reed","fern"]},
+    {"id":"tropical-savanna-grass","match":{"landuse":"meadow"},"density":0.5,"kinds":["grass","stone"]},
+    {"id":"tropical-wetland","match":{"natural":"wetland"},"density":0.8,"kinds":["reed","fern"]}
+  ],
+  "vegetationFamilies":["tropical-fern-proxy","tropical-grass-proxy","tropical-reed-proxy"],"detailSpacing":128,"maxDetails":512
+}

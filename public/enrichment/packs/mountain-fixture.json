@@ -1,0 +1,14 @@
+{
+  "schema":"regional-enrichment-pack-v1",
+  "id":"synthetic-alpine-v1","version":"1.0.0","license":"LicenseRef-EndlessEarth-Original","fixture":true,
+  "description":"Synthetic mountain validation palette, not a surveyed or playable geographic territory.",
+  "climate":{"regime":"alpine","hemisphere":"north","seasonModel":"altitude-snow-contract-only"},
+  "architecture":{"defaultLevels":2,"facadeSpacing":2.8,"roofRiseRatio":0.38,
+    "palettes":[{"family":"ordinary","wall":9932143,"roof":5593434,"trim":13351333,"glass":6652568,"wood":6508122},{"family":"utility","wall":10460041,"roof":6383986,"trim":12827047,"glass":6652568,"wood":6508122}]},
+  "habitats":[
+    {"id":"alpine-conifer-floor","match":{"landuse":"forest"},"density":0.5,"kinds":["stone","deadwood","grass"],"maxSlope":1.2},
+    {"id":"alpine-meadow","match":{"landuse":"meadow"},"density":0.45,"kinds":["grass","stone"],"maxSlope":1.2},
+    {"id":"alpine-bare-rock","match":{"natural":"bare_rock"},"density":0.3,"kinds":["stone"],"maxSlope":1.2}
+  ],
+  "vegetationFamilies":["alpine-grass","conifer-deadwood"],"detailSpacing":128,"maxDetails":512
+}
