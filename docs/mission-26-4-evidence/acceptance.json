@@ -713,8 +713,8 @@
     {
       "id": "A14",
       "criterion": "Livraison et Git",
-      "status": "PARTIEL",
-      "threshold": "npmtest/build, SHA/license audit, navigable gallery and same unmerged draftPR38",
+      "status": "ATTEINT",
+      "threshold": "npmtest/build, SHA/license audit, navigable gallery and same unmerged draftPR #38",
       "obtained": {
         "tests": {
           "command": "npm test",
@@ -752,13 +752,12 @@
             "mobile",
             "internet-isolated-local"
           ],
-          "fileProtocol": "Blocked by administered browser; preserved refusal, local HTTP command provided.",
-          "localLinksPerMode": 896
+          "fileProtocol": "Blocked by administered browser; preserved refusal, local HTTP command provided."
         },
         "git": {
           "draft": true,
           "merged": false,
-          "stateReceipt": "github-before-delivery.json",
+          "stateReceipt": "github-delivery-observed.json",
           "branch": "mission/26-vienne-planet-engine",
           "pullRequest": 38,
           "ancestry": {
@@ -777,7 +776,8 @@
           },
           "mainAtAudit": "01e791be64cefae2eb1e90ab465f9bf0b848c33e",
           "mergeBase": "ffbbd765ec75bdcddd0bdb3b58933e46d585b7db",
-          "deliveryState": "Not pushed yet; final receipt follows after actual observation."
+          "deliveryState": "Published same open unmerged draft PR38, then observed through GitHub. Any later receipt commit is a descendant; no self-referential current-head hash claimed.",
+          "observedPublishedHead": "fc8606ddb316aea5c8bcc5fd51f3855132977f0a"
         },
         "preservation": "preservation.json",
         "runtimeModules": "active-module-equivalence.json",
@@ -811,7 +811,8 @@
           "packetExact": true,
           "invalidUnclaimedAttempts": 10,
           "receipt": "media-integrity.json"
-        }
+        },
+        "deliveryComplete": true
       },
       "evidence": [
         "verification.json",
@@ -828,5 +829,5 @@
     }
   ],
   "physicalGPUReview": "NOT_RUN",
-  "definition": "ATTEINT only against full stated row; open essential goals keep draftPR38."
+  "definition": "ATTEINT only against full stated row; open essential goals keep draftPR #38."
 }
