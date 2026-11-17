@@ -1,0 +1,323 @@
+{
+  "startedAt": "2026-11-17T11:55:28.228Z",
+  "method": "Isolated Node CPU/index benchmark, no browser or encoder. Exact same existing source tiles, query order and polygons. Elapsed monotonic timings include GC/preemption; not native frame times, GPU work, whole river preparation or game streaming SLA.",
+  "reference": "b5a4f98c87d4adf130342bc05cfa732a70056502",
+  "candidateRuntime": "d162a653785d656e1a6652c4ca406889a1b55c28",
+  "node": "v24.22.1",
+  "tiles": [
+    "120:1613",
+    "121:1613",
+    "120:1614",
+    "121:1614"
+  ],
+  "hashes": {
+    "src/planet/surface.mjs": "d04780360c255d46edff4994aa5ca5421266f99bf66fa976ed62ce98d1e9b9ce",
+    "src/player/water-polygon.mjs": "9a9814ffd3c7ca1e66bd5b80f2a02526f96fc1a95d5ab8852dc0bbe74bd5fa0b",
+    "src/controls/walking.mjs": "568a7a03494a4b3a332ac29294d29edb1610da5a6f4e8fcfa85a5eb100974d1f"
+  },
+  "index": [
+    {
+      "version": "reference",
+      "buildElapsedMs": 734.5014019999999,
+      "generatorStepsMs": {
+        "n": 66958,
+        "p50": 0.002590000000054715,
+        "p95": 0.03178000000002612,
+        "p99": 0.061685000000125,
+        "max": 42.94545100000005,
+        "over8": 5,
+        "over50": 0
+      },
+      "queries": [
+        {
+          "run": 0,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 393.2171049999997,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 0,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 136.0617589999997,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 1,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 173.54047899999978,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 1,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 206.6817100000003,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 2,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 143.03644600000007,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 2,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 124.42262100000016,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 3,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 135.80768700000044,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 3,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 118.86026399999992,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 4,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 115.34896500000013,
+          "checksum": 2515675,
+          "metrics": null
+        },
+        {
+          "run": 4,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 112.51138100000026,
+          "checksum": 2515675,
+          "metrics": null
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "buildElapsedMs": 328.4869130000002,
+      "generatorStepsMs": {
+        "n": 66958,
+        "p50": 0.00205599999981132,
+        "p95": 0.007677999999941676,
+        "p99": 0.026950000000397267,
+        "max": 41.81679199999962,
+        "over8": 3,
+        "over50": 0
+      },
+      "queries": [
+        {
+          "run": 0,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 100.45104899999978,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 9402,
+            "misses": 47046
+          }
+        },
+        {
+          "run": 0,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 29.212508999999955,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 56436,
+            "misses": 47052
+          }
+        },
+        {
+          "run": 1,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 143.85197000000016,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 56436,
+            "misses": 94092
+          }
+        },
+        {
+          "run": 1,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 66.04071000000022,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 103470,
+            "misses": 94098
+          }
+        },
+        {
+          "run": 2,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 108.75633400000015,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 103470,
+            "misses": 141138
+          }
+        },
+        {
+          "run": 2,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 19.949916999999914,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 150504,
+            "misses": 141144
+          }
+        },
+        {
+          "run": 3,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 95.70038399999976,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 150504,
+            "misses": 188184
+          }
+        },
+        {
+          "run": 3,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 29.86096499999985,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 197538,
+            "misses": 188190
+          }
+        },
+        {
+          "run": 4,
+          "mode": "cold",
+          "queries": 50000,
+          "elapsedMs": 79.41813600000023,
+          "checksum": 2515675,
+          "cache": 1,
+          "metrics": {
+            "hits": 197538,
+            "misses": 235230
+          }
+        },
+        {
+          "run": 4,
+          "mode": "warm",
+          "queries": 50000,
+          "elapsedMs": 33.46405500000037,
+          "checksum": 2515675,
+          "cache": 6,
+          "metrics": {
+            "hits": 244572,
+            "misses": 235236
+          }
+        }
+      ]
+    }
+  ],
+  "water": {
+    "source": "osm:relation:139244:0",
+    "tags": {
+      "natural": "water",
+      "water": "river"
+    },
+    "vertices": 1764,
+    "samples": 8325,
+    "exactSameMembership": true,
+    "runs": [
+      {
+        "run": 0,
+        "version": "reference",
+        "elapsedMs": 380.58731400000033,
+        "wet": 962
+      },
+      {
+        "run": 0,
+        "version": "candidate",
+        "elapsedMs": 36.73674099999971,
+        "wet": 962
+      },
+      {
+        "run": 1,
+        "version": "candidate",
+        "elapsedMs": 34.692934000000605,
+        "wet": 962
+      },
+      {
+        "run": 1,
+        "version": "reference",
+        "elapsedMs": 311.07890099999986,
+        "wet": 962
+      },
+      {
+        "run": 2,
+        "version": "reference",
+        "elapsedMs": 333.6570520000005,
+        "wet": 962
+      },
+      {
+        "run": 2,
+        "version": "candidate",
+        "elapsedMs": 34.45968499999981,
+        "wet": 962
+      },
+      {
+        "run": 3,
+        "version": "candidate",
+        "elapsedMs": 33.38100799999938,
+        "wet": 962
+      },
+      {
+        "run": 3,
+        "version": "reference",
+        "elapsedMs": 295.77461100000073,
+        "wet": 962
+      },
+      {
+        "run": 4,
+        "version": "reference",
+        "elapsedMs": 304.3096889999997,
+        "wet": 962
+      },
+      {
+        "run": 4,
+        "version": "candidate",
+        "elapsedMs": 48.27360300000055,
+        "wet": 962
+      }
+    ]
+  },
+  "endedAt": "2026-11-17T11:55:34.373Z"
+}

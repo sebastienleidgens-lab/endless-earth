@@ -1,0 +1,200 @@
+{
+  "method": "Open defects and evidence gaps only; fixed engine/protocol failures remain in protocol-failures.json and the final report. No unresolved cause is promoted from a centre-only inspection.",
+  "defects": [
+    {
+      "id": "MOTION-START",
+      "severity": "P0",
+      "scene": "Flat/slope walking and running; four views",
+      "gps": null,
+      "way": null,
+      "tile": null,
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "Restart/contact and clearance order fixed, but whole-sequence knee acceleration remains high; abrupt startup run120Hz can worsen2461.72→3059.42rad/s². Sole contact alone cannot establish natural movement.",
+      "nextAction": "Inspect signed joint velocities/acceleration and readable hardware clips; retune first-step reach/flight timing without filtering the physical root.",
+      "impact": "Visible trembling/naturalness still unaccepted.",
+      "evidence": [
+        "visual-regressions/mechanical-comparison.json",
+        "visual-regressions/final-physical-gait.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "BIRDS-PERCEPTION",
+      "severity": "P0",
+      "scene": "Near/far birds, perch/flight/LOD",
+      "gps": null,
+      "way": null,
+      "tile": null,
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "C2 wing/body/event envelopes tested; low software cadence cannot validate perceived flight or every LOD transition.",
+      "nextAction": "Run fixed/mobile-camera hardware protocol at normal speed; inspect actual bird visibility and wing/body phase.",
+      "impact": "Naturalness remains partial.",
+      "evidence": [
+        "visual-regressions/pairing-audit.json",
+        "visual-regressions/candidate-matched-native.json",
+        "hardware-availability.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "SHADOW-TEMPORAL",
+      "severity": "P0",
+      "scene": "Foliage on trunk, ground, village, river, character/car",
+      "gps": null,
+      "way": null,
+      "tile": null,
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "Coarse/fine trunk wind disagreement fixed; shimmer, pixel quality and world-wide temporal stability remain unvalidated.",
+      "nextAction": "Review four matched hardware scenes with actual sun/caster matrices and profile costs; isolate texel snapping/caster/LOD changes.",
+      "impact": "Artistic and temporal shadow acceptance remains partial.",
+      "evidence": [
+        "visual-regressions/pairing-audit.json",
+        "performance.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "PREPARATION-BUDGET",
+      "severity": "P0",
+      "scene": "World installation, water graph, urban/static batches",
+      "gps": null,
+      "way": null,
+      "tile": null,
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "Observed cooperative steps/slices exceed8ms and50ms. A requested generator budget does not bound an individual next(); elapsed values also include preemption/GC.",
+      "nextAction": "Use retained stage logs to split remaining large work and avoid repeated unchanged unavailable-support work; preserve source/contact visibility and cancellation ownership.",
+      "impact": "Loading pauses and deadline retries remain possible; SLA not met.",
+      "evidence": [
+        "performance.json",
+        "final-80km/Vallee-source-roundtrip-car-80km-car.json",
+        "streaming-network-corrected.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "STREAM-INSTALL-RETRY",
+      "severity": "P0",
+      "scene": "Long repeated car journeys",
+      "gps": {
+        "lat": 46.47422026270323,
+        "lon": 0.6602047511613284
+      },
+      "way": null,
+      "tile": "127:1611 / failed neighbour126:1610",
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "An earlier run passed D749 then stopped during fine/install waiting with retained tile-timeout errors. Driver retry caps can also be reached by a neighbouring failed key; this does not prove an impassable road.",
+      "nextAction": "Inspect actual required hull tile/fine task vs unrelated failed neighbours; profile cancellation/rollback and installation waiting before adjusting scheduling.",
+      "impact": "Journey robustness under preparation pressure remains partial even with a successful80km replay.",
+      "evidence": [
+        "final-80km/Vallee-source-roundtrip-car-80km-car.json",
+        "water-final-80km/Vallee-source-roundtrip-car-80km-car.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "CHAUVIGNY-FIRST-JUNCTION",
+      "severity": "P1",
+      "scene": "First historic Chauvigny junction",
+      "gps": {
+        "lat": 46.57220170181649,
+        "lon": 0.6500890957554373
+      },
+      "way": "osm:way:41386481",
+      "tile": "126:1613",
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "Local car replay still refuses unknown land access after≈145m; clear centre support does not establish admission of every hull corner.",
+      "nextAction": "Export directional admission at all attempted hull samples and inspect source-corridor ownership; do not invent an access or widen tolerances.",
+      "impact": "This junction is not closed by success on another road.",
+      "evidence": [
+        "junction-final/Chauvigny-junction-local-600m-car.json",
+        "junction-corrected/Chauvigny-junction-local-600m-car.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "ANGLES-COLD-READINESS",
+      "severity": "P1",
+      "scene": "Cold true Angles spawn departure",
+      "gps": {
+        "lat": 46.69300547775268,
+        "lon": 0.8864995505906751
+      },
+      "way": "osm:way:647696674",
+      "tile": "protected pilot",
+      "reproducibility": "intermittent observed stop; cause hypothesis",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "One cold trial stopped at1539.90m despite clear centre support. Late placement of the initial parked car is a hypothesis, not proven by that trace. Waiting for normal car readiness at unchanged spawn yields4737.88m/3tiles.",
+      "nextAction": "Reproduce with exact parked-car pose/collider and fine-contact timing exported from departure; fix engine initialization if the late-placement race is confirmed.",
+      "impact": "Immediate cold departure remains an open robustness question; no positional repair was used.",
+      "evidence": [
+        "final-travel/spawn-east-dense-avoid-water-foot.json",
+        "warmed-spawn/spawn-east-dense-avoid-water-foot.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "HARDWARE-PERFORMANCE",
+      "severity": "P1",
+      "scene": "Desktop GPU and real Android",
+      "gps": null,
+      "way": null,
+      "tile": null,
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "No hardware device accessible; unforced WebGL also reports SwiftShader. Physical60/30FPS and<=5% median regression are not established.",
+      "nextAction": "Execute the supplied local review/F8 export protocol on documented hardware at actual framebuffer/effects; repeat statistically useful isolated runs.",
+      "impact": "Hardware and tactile/thermal/memory claims remain unaccepted.",
+      "evidence": [
+        "hardware-availability.json",
+        "performance.json",
+        "REPRODUCTION.md"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "NATIVE-ACTIVITIES-COVERAGE",
+      "severity": "P1",
+      "scene": "Camp/swim/interactions/train/airplane and long endurance evictions",
+      "gps": null,
+      "way": null,
+      "tile": null,
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "Logic/inheritance and selected compiled UI/reload checks exist, but there is no exhaustive new native physical-device replay of every activity or proof of no leak across dozens of tiles.",
+      "nextAction": "Extend actual native activity/eviction coverage with scoped memory/worker/listener/GPU counters, following the delivered protocol.",
+      "impact": "A13 and full endurance/memory acceptance remain partial.",
+      "evidence": [
+        "fixture.json",
+        "reload-corrected.json",
+        "map-ui.json",
+        "performance.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    },
+    {
+      "id": "CAPTURE-PAIRING",
+      "severity": "P1",
+      "scene": "Reference/candidate native comparison",
+      "gps": null,
+      "way": null,
+      "tile": null,
+      "reproducibility": "verified",
+      "owner": "Endless Earth runtime / validation",
+      "cause": "Intended stations/date/seed/profile/framebuffer match, but full atmospheric sensitivity and some shadow/camera matrices differ. Empty/invalid captures are retained separately and corrected retries exist.",
+      "nextAction": "Reset/measure every visual state needed for stricter pairing before any<=5% or temporal-image comparison; keep actual differences visible.",
+      "impact": "Current captures document behaviour, not a strict controlled artistic/performance verdict.",
+      "evidence": [
+        "visual-regressions/pairing-audit.json",
+        "media-integrity.json",
+        "protocol-failures.json"
+      ],
+      "deliveryRuntimeSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+    }
+  ]
+}

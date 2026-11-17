@@ -1,0 +1,28 @@
+✔ M26.3 exact 3.883 km source bend has continuous visible road support across the former wedge (32.927527ms)
+✔ adjacent tile copies retain exactly the same road triangles and heights at their shared seam (15.785807ms)
+✔ same walking kernel permits a contour road but still refuses a sustained steep ramp and a cliff (10.109571ms)
+✔ directional road policy preserves private, rail, water and off-road steep refusals (0.641686ms)
+✔ stalled network has a bounded retryable state; a late generation cannot publish a floor (69.355224ms)
+✔ aborted demand immediately frees a decoder slot even if the old network ignores AbortSignal (25.304075ms)
+✔ a cooperative installation deadline aborts, rolls back and frees the serial installation queue (78.381154ms)
+✔ source-route driver advances a passed source vertex instead of circling back after a low-rate overshoot (4.817555ms)
+✔ physical tile installation takes priority over queued optional terrain refinement (10.836951ms)
+✔ route driver turns a source right-angle through 4.8m and 7m corridors using the unchanged swept car hull (86.207895ms)
+✔ slow camera travel does not alternate two source casters at a shadow budget boundary; approach still admits a near tree (0.811163ms)
+✔ a rounded source junction advances past a short intermediate node without steering back toward it (0.169833ms)
+✔ the measured N147 return does not hide a 104m source edge behind its 5m connector (0.13567ms)
+✔ forward source horizon begins at actual projected progress, not at the start of a long passed edge (0.171507ms)
+✔ decoded tile waiting behind an installation does not inherit the expired network deadline (99.133399ms)
+✔ river following finishes instead of remaining motionless between the braking and arrival radii (136.616695ms)
+✔ scenic traffic extends its finite source horizon instead of parking forever in the middle of a through road (119.75163ms)
+✔ required fine contact preempts unrelated tile installation and reprioritizes an already queued refinement (7.317792ms)
+✔ bank discovery uses the admitted visible road height, and cannot grant private or missing support (0.345502ms)
+✔ source traffic can circulate around a directed triangle instead of mistaking a visited junction for a real dead end (149.834418ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1394.320772

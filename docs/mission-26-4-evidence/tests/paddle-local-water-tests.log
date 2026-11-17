@@ -1,0 +1,71 @@
+✔ water graph waits for bank discovery and does not scan a finished sector without any return bank (8.950269ms)
+✔ paddle grips solve in the clavicle frame after shoulder extension, with translated and rotated avatars (380.613688ms)
+✔ off-axis docking follows the inspected water then bank corridor instead of cutting an obstructed diagonal (58.331397ms)
+✔ water network follows a bent corridor, preserves a hole and refuses disconnected water without an exit (79.492347ms)
+✔ water contacts share one ID per true joint crossing and never repeat an immersed hand or paddle (7.125006ms)
+✔ interaction surfaces require actual semantic geometry, permission, collider and a body sweep; removal invalidates a seat (0.7521ms)
+✔ authored locomotion keys are periodic and continuous in speed; extended rig and boat retain bounded shared draws (76.905628ms)
+✔ wind CPU/GPU carriers agree across seconds/minutes/hours, deterministic seeds and temporal boundaries (370.391228ms)
+✔ perched individuals stay deterministic and quiet during unsuitable weather/night (5.053466ms)
+✔ source bank remains steep while a wide road does not smear it into the flat centre lane (8.655229ms)
+✔ zero-radius polygon membership retains holes/edges parity and ordinary capsules keep their margin (0.565424ms)
+✔ cached source query invalidates across yielded additions, shared owners and removal, bounded independently of geography (20.602521ms)
+✔ takeoff and landing smoothly bring wing energy and body orientation to rest on the same flight clock (0.750403ms)
+✔ trunk root motion agrees between coarse receiver and fine solar caster for the same wind and season (2.074605ms)
+✔ starting and resuming never replant the support foot ahead or lose sole contact at irregular rates (1149.16465ms)
+✔ visible paddle and thrust/contact sampler share the exact same world frame despite hull bob (42.211058ms)
+✖ paddle can reach the actual nearby lower water plane, while a distant drop produces no invented contact (60.263841ms)
+✔ a department river crossing the pilot preserves its historical water owner and interpolates only the exterior mesh (20.06109ms)
+✔ Lambert93 agrees with its official false origin and round trips department-scale positions without converting heights (1.109238ms)
+✔ legacy adapter preserves its historical east/south axes and an unrelated region uses another projection provider (14.034742ms)
+✔ floating-origin moves camera, visual, physics proxy and sound together; canonical state survives multiple rebases (0.983966ms)
+✔ terrain interpolation and normals share the exact triangle diagonal and remain continuous at tile boundaries (1.177878ms)
+✔ tile checksum and length verification reject corrupted bytes before physical installation (426.218147ms)
+✔ opaque gzip tile transport verifies compressed bytes and decodes exactly once (176.662477ms)
+✔ tile streaming bounds concurrency/residency, survives cancellation and never installs stale requests (82.707338ms)
+✔ demand selection fits the declared byte budget without evicting and reloading demanded tiles forever (11.348241ms)
+✔ metric tile demand covers the horizon and preloads the direction of travel without fetching a distant square (46.906083ms)
+✔ directed source topology crosses tiles once, retains shared owners and never connects grade-separated crossings (2.255505ms)
+✔ transport admission keeps motorway pedestrians, private tracks, uncertain bridges and water clearance closed (0.410105ms)
+✔ mapped water/buildings and missing support block travel instead of receiving an invisible fallback floor (1.372797ms)
+✔ car hull sweeps stop before walls, missing tiles and vertical road discontinuities across irregular frame rates (51.166989ms)
+✔ right-hand car steering remains right from the following camera rather than mirroring the keyboard (15.752643ms)
+✔ save/resume validates canonical state and refuses unavailable support without replacing the saved position (1.143416ms)
+✔ analytic flock samples and identity phases survive a CPU cadence/LOD change without a phase reset (6.676029ms)
+✔ paddle force only exists while the shared blade pose enters water; wakes come in stern pairs and fade when stopped (12.286102ms)
+✔ river following supplies input to physics, preserves manual takeover and does not impose spline positions (191.158492ms)
+✔ packraft checks the full visible hull and the water under its blade instead of assuming a flat infinite surface (12.704085ms)
+✔ rail acceleration and braking keep the whole leading vehicle before an unverified corridor end (21.230712ms)
+✔ synthetic airport flight stays continuous through takeoff, airborne turns and landing, then remains parked (3.050615ms)
+✔ a synthetic train brakes for an explicitly assigned source station, dwells, then continues on its rail (15.946218ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 39
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2386.469836
+
+✖ failing tests:
+
+test at tests/mission-26-4.test.mjs:13:1
+✖ paddle can reach the actual nearby lower water plane, while a distant drop produces no invented contact (60.263841ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(maxThrust>0)
+  
+      at TestContext.<anonymous> (file:///workspace/endless-earth/tests/mission-26-4.test.mjs:13:843)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

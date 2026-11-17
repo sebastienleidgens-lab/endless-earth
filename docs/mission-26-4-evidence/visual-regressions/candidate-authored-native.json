@@ -1,0 +1,4395 @@
+{
+  "label": "candidate-authored",
+  "method": "Native canvas + original mixed stereo audio, no manual simulation steps, no position assignment during clips. Independent matched setup before clips; four camera angles are explicitly timed. 800x600 DPR1, seed12345, June21 clear. Software renderer: no hardware or perceptual validation.",
+  "cases": [
+    {
+      "name": "candidate-authored-pilot-water-balanced",
+      "scene": "pilot-water",
+      "profile": "balanced",
+      "requestedWallSeconds": 24,
+      "errorsBefore": 0,
+      "viewChanges": [],
+      "environmentBefore": {
+        "source": "d162a653785d656e1a6652c4ca406889a1b55c28",
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0,
+            "electric": 0,
+            "temperatureC": 18.529786633813934
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.1456956109494606,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0,
+            "electric": 0,
+            "temperatureC": 18.529786633813934,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.12716464700391356,
+            "z": -0.07114602942376924,
+            "speed": 0.1456956109494606,
+            "gust": 0,
+            "slow": 0.6070650456227525,
+            "turn": -0.019842329277967002,
+            "water": 0.6036489629380374
+          },
+          "transition": {
+            "revision": 52,
+            "commandRevision": 4,
+            "manual": true
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 18.529786633813934,
+            "humidityPct": 46.08,
+            "cloudCover": 0.16,
+            "cloudDensity": 0.11199999999999999,
+            "rainIntensity": 0,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.060704234517556,
+            "meanWindMps": 3.5999999999999996,
+            "gustWindMps": 3.5999999999999996,
+            "fog": 0,
+            "visibilityM": 18000,
+            "stormRisk": 0,
+            "electricalActivity": 0,
+            "groundWetness": 0,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.8624,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "calm",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.4608,
+            "dew": 0,
+            "mist": 0.019524427815883715,
+            "bankDistance": 2.073571492446089
+          },
+          "diffuseNight": {
+            "intensity": 1.451496,
+            "nightWeight": 0,
+            "moon": 0
+          },
+          "moon": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "altitude": 0.3762708273495534,
+            "azimuth": 2.038343306049544,
+            "phase": 0.23893939726382565,
+            "illumination": 0.46530388899636943,
+            "brightLimbAngle": -1.1601017135015295,
+            "parallacticAngle": -0.658949512417717,
+            "distanceKm": 386384.8646086329,
+            "angularRadius": 0.004524545865627336,
+            "geometricallyVisible": true,
+            "direction": [
+              0.8302261441780371,
+              0.3674547475372261,
+              0.41916769679404264
+            ],
+            "visibility": 0.28,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 142.02660000000895,
+          "targetWeather": "clear",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [],
+            "nextSeconds": null
+          },
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin 2026, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 6,
+            "representativeDay": null,
+            "sunrise": 1782014590999.9846,
+            "sunset": 1782071544999.9927,
+            "solarNoon": 1782043067015.189
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "groundWetness": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 18.529786633813934,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              34.04750110692316,
+              -18.44416213135373
+            ],
+            "morph": [
+              0.13554637091848085,
+              0.08530796432385622,
+              0.11933460118325671
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "camera": {
+          "position": [
+            -668.3824460325275,
+            -33.36402476846381,
+            -200.585258720197
+          ],
+          "rotation": [
+            -0.02540116456505135,
+            0.9613862323399048,
+            0.09500961585208419,
+            0.25703008773616587
+          ],
+          "projection": [
+            1.4407365952283748,
+            0,
+            0,
+            0,
+            0,
+            1.9209821269711662,
+            0,
+            0,
+            0,
+            0,
+            -1.0001333422228147,
+            -1,
+            0,
+            0,
+            -0.20001333422228149,
+            0
+          ]
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "profile": "balanced",
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 2772,
+          "treeInstances": 60,
+          "updates": 22,
+          "lastUpdateCpuMs": 0.29999999701976776,
+          "maxUpdateCpuMs": 97.69999998807907,
+          "lastShadowCalls": 10,
+          "lastShadowTriangles": 74838,
+          "extraPasses": 0,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 21,
+          "windSkips": 0,
+          "windMotionBoundM": 0.031020937328127562,
+          "maxWindMotionBoundM": 0.031504995430695924,
+          "windThresholdM": 0.030468750000000003,
+          "character": {
+            "updates": 23,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 0.800000011920929,
+            "maxCpuMs": 23.799999997019768,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "shadow": {
+          "size": [
+            1024,
+            1024
+          ],
+          "type": 2,
+          "bias": 0,
+          "normalBias": 0,
+          "camera": [
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            -0.004004004004004004,
+            0,
+            0,
+            0,
+            -1.002002002002002,
+            1
+          ],
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "paddle": {
+          "stroke": 0.9499999999999998,
+          "pose": {
+            "phase": 0.9499999999999998,
+            "authoredX": 0.14641479086208725,
+            "x": 0.10877400748900473,
+            "y": 0.5335852091379127,
+            "z": 0.4230692943142214,
+            "rx": 0.10470295610349904,
+            "ry": 0.2033538761973434,
+            "authoredRz": 0.5043176129694117,
+            "rz": 0.5713170826497821,
+            "side": -1,
+            "tipX": -0.8139453721598258,
+            "tipY": -0.088612737820018,
+            "tipZ": 0.5490004708425691,
+            "authoredTipY": -0.02534283674992599,
+            "authoredTipX": -0.8139453721598258,
+            "contact": 0.3167854593740749,
+            "waterContact": 0.27644414843051024,
+            "thrust": 0.39807957373993474
+          },
+          "tip": [
+            -671.451019195523,
+            -35.43827922095431,
+            -196.88769646111706
+          ],
+          "hands": [
+            [
+              -670.8215429059625,
+              -34.928942789283866,
+              -196.62528266526348
+            ],
+            [
+              -670.4057163551834,
+              -34.62895449342915,
+              -196.45588578802736
+            ]
+          ],
+          "marks": {
+            "capacity": 48,
+            "emitted": 2,
+            "paddleContacts": 1,
+            "wakePairs": 0,
+            "drawCalls": 0
+          }
+        },
+        "renderer": {
+          "memory": {
+            "geometries": 220,
+            "textures": 20
+          },
+          "render": {
+            "frame": 96,
+            "calls": 65,
+            "triangles": 349401,
+            "points": 0,
+            "lines": 102
+          }
+        }
+      },
+      "before": {
+        "position": [
+          -670.471698307726,
+          -35.249666483134284,
+          -196.95726070890365
+        ],
+        "heading": -0.5224872536321237,
+        "birds": {
+          "individuals": 2,
+          "drawCalls": 1,
+          "triangles": 530,
+          "perches": 24,
+          "families": [
+            "robin"
+          ],
+          "sources": [
+            {
+              "id": "tree-bird:tree:-678.953922:-229.548349",
+              "position": [
+                -691.8145721890569,
+                -24.843601659788032,
+                -200.34391616751594
+              ],
+              "family": "robin"
+            },
+            {
+              "id": "tree-bird:tree:-712.874891:-183.788047",
+              "position": [
+                -702.3616509957716,
+                -25.05732366342264,
+                -202.83938925285202
+              ],
+              "family": "robin"
+            }
+          ],
+          "renderSamples": 52,
+          "cpuMs": 0.09999999403953552,
+          "maxCpuMs": 17,
+          "clock": 142.02660000000895,
+          "trajectory": "analytic-per-render-frame"
+        },
+        "shadow": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 2772,
+          "treeInstances": 60,
+          "updates": 22,
+          "lastUpdateCpuMs": 0.29999999701976776,
+          "maxUpdateCpuMs": 97.69999998807907,
+          "lastShadowCalls": 10,
+          "lastShadowTriangles": 74838,
+          "extraPasses": 0,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 21,
+          "windSkips": 0,
+          "windMotionBoundM": 0.031020937328127562,
+          "maxWindMotionBoundM": 0.031504995430695924,
+          "windThresholdM": 0.030468750000000003,
+          "character": {
+            "updates": 23,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 0,
+            "poseAgeMs": 0,
+            "lastCpuMs": 0.800000011920929,
+            "maxCpuMs": 23.799999997019768,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "boat": {
+          "active": true,
+          "heading": -0.5224872536321237,
+          "following": false,
+          "metrics": {
+            "plans": 0,
+            "lateralError": 0,
+            "maxLateralError": 0,
+            "stops": 2
+          }
+        },
+        "planet": {
+          "contactQueries": {
+            "queries": 632,
+            "hits": 0,
+            "invalidations": 50,
+            "maxEntries": 632
+          },
+          "state": "ready",
+          "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+          "stream": {
+            "loaded": 3,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 26652023,
+            "active": 1,
+            "queued": 0,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 4,
+            "jobs": [
+              {
+                "id": "131:1616",
+                "generation": 2,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 814.6275106168978,
+                "at": 1794911343815
+              },
+              {
+                "id": "131:1617",
+                "generation": 1,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 0.1525598416259283,
+                "at": 1794911360936
+              },
+              {
+                "id": "130:1616",
+                "generation": 4,
+                "state": "WAITING_FOR_TILE",
+                "phase": "installation-queue",
+                "priority": 1369.730333336882,
+                "at": 1794911362084
+              },
+              {
+                "id": "130:1617",
+                "generation": 3,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 1099.9330690113964,
+                "at": 1794911385858
+              }
+            ]
+          },
+          "render": {
+            "contactRevision": 5,
+            "tiles": 3,
+            "features": 3172,
+            "triangles": 53336,
+            "trees": 1376,
+            "disposed": 0,
+            "batches": 275,
+            "batchRebuilds": 3,
+            "maxBatchMs": 660.8000000119209,
+            "maxBatchWallMs": 6086.600000008941,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 665,
+              "nodes": 7385,
+              "edges": 15122,
+              "refused": 141,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 665,
+              "nodes": 4598,
+              "edges": 9236,
+              "refused": 407,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 665,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 665,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 660.8000000119209,
+          "maxInstallWallMs": 24921.29999999702,
+          "preparation": {
+            "slices": 2731,
+            "steps": 525231,
+            "cpuMs": 19699.199999913573,
+            "maxSliceMs": 660.8000000119209,
+            "maxStepMs": 660.8000000119209,
+            "completed": 23,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:131:1616": {
+                "steps": 557,
+                "cpuMs": 14.899999976158142,
+                "maxStepMs": 3.3999999910593033,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:131:1616": {
+                "steps": 2169,
+                "cpuMs": 12.30000002682209,
+                "maxStepMs": 0.5999999940395355,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:131:1616": {
+                "steps": 1403,
+                "cpuMs": 3.4000000208616257,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1616": {
+                "steps": 534,
+                "cpuMs": 7.800000011920929,
+                "maxStepMs": 4,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1616": {
+                "steps": 111271,
+                "cpuMs": 3629.3999995440245,
+                "maxStepMs": 228.29999999701977,
+                "over8": 55,
+                "over50": 5
+              },
+              "static-batches": {
+                "steps": 6701,
+                "cpuMs": 5127.800000101328,
+                "maxStepMs": 660.8000000119209,
+                "over8": 132,
+                "over50": 16
+              },
+              "surface-index:131:1617": {
+                "steps": 2185,
+                "cpuMs": 25.900000020861626,
+                "maxStepMs": 6.600000008940697,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:131:1617": {
+                "steps": 4746,
+                "cpuMs": 25.199999943375587,
+                "maxStepMs": 11.299999997019768,
+                "over8": 1,
+                "over50": 0
+              },
+              "car-graph:131:1617": {
+                "steps": 3663,
+                "cpuMs": 9.800000041723251,
+                "maxStepMs": 2.1000000089406967,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1617": {
+                "steps": 2167,
+                "cpuMs": 0.699999988079071,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1617": {
+                "steps": 175641,
+                "cpuMs": 2612.9000000804663,
+                "maxStepMs": 59.900000005960464,
+                "over8": 32,
+                "over50": 1
+              },
+              "terrain-refine:131:1617": {
+                "steps": 18845,
+                "cpuMs": 1004.2000001221895,
+                "maxStepMs": 54.099999994039536,
+                "over8": 22,
+                "over50": 2
+              },
+              "surface-index:130:1617": {
+                "steps": 744,
+                "cpuMs": 75.2000000178814,
+                "maxStepMs": 46.29999999701977,
+                "over8": 1,
+                "over50": 0
+              },
+              "foot-graph:130:1617": {
+                "steps": 2018,
+                "cpuMs": 46.099999994039536,
+                "maxStepMs": 10.099999994039536,
+                "over8": 1,
+                "over50": 0
+              },
+              "car-graph:130:1617": {
+                "steps": 1686,
+                "cpuMs": 9.499999985098839,
+                "maxStepMs": 0.29999999701976776,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:130:1617": {
+                "steps": 723,
+                "cpuMs": 0.4000000059604645,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:130:1617": {
+                "steps": 121951,
+                "cpuMs": 3914.1999998539686,
+                "maxStepMs": 82.70000000298023,
+                "over8": 72,
+                "over50": 8
+              },
+              "surface-index:130:1616": {
+                "steps": 1391,
+                "cpuMs": 41.30000002682209,
+                "maxStepMs": 9.399999991059303,
+                "over8": 1,
+                "over50": 0
+              },
+              "foot-graph:130:1616": {
+                "steps": 3412,
+                "cpuMs": 15.500000044703484,
+                "maxStepMs": 1.4000000059604645,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:130:1616": {
+                "steps": 2680,
+                "cpuMs": 12.100000023841858,
+                "maxStepMs": 6.600000008940697,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:130:1616": {
+                "steps": 1360,
+                "cpuMs": 0.40000002086162567,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:130:1616": {
+                "steps": 59384,
+                "cpuMs": 2092.5000000596046,
+                "maxStepMs": 56.79999999701977,
+                "over8": 41,
+                "over50": 1
+              }
+            },
+            "longSteps": [
+              {
+                "label": "render-install:130:1617",
+                "ms": 49.6000000089407
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 16.599999994039536
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 65.5
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 8.799999997019768
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 10.399999991059303
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 14.100000008940697
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 9.5
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 8.700000002980232
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 12.300000011920929
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 39.70000000298023
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 9
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 45.5
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 25
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 33.1000000089407
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 8.200000002980232
+              },
+              {
+                "label": "render-install:130:1617",
+                "ms": 11
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.199999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 122.70000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 15.399999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 58.70000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 18.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 49
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 26.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 660.8000000119209
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.300000011920929
+              },
+              {
+                "label": "static-batches",
+                "ms": 35.400000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 43.29999999701977
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.699999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.300000011920929
+              },
+              {
+                "label": "static-batches",
+                "ms": 9
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.600000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.600000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.400000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.400000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 17.600000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 69.1000000089407
+              },
+              {
+                "label": "static-batches",
+                "ms": 41.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 15.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 65.8999999910593
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 133.59999999403954
+              },
+              {
+                "label": "static-batches",
+                "ms": 15.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 17.19999998807907
+              },
+              {
+                "label": "static-batches",
+                "ms": 43.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 24.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 45.8999999910593
+              },
+              {
+                "label": "static-batches",
+                "ms": 48.8999999910593
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.699999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 26.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 73.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 56.400000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 21.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 15.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 18.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 24.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.699999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 16.400000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 23
+              },
+              {
+                "label": "static-batches",
+                "ms": 96.79999999701977
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.699999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 12
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 26.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 16
+              },
+              {
+                "label": "surface-index:130:1616",
+                "ms": 9.399999991059303
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 38.099999994039536
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 10.799999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 32
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 11.899999991059303
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 43.20000000298023
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 42.30000001192093
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.099999994039536
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 11.300000011920929
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.199999988079071
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 44.79999999701977
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 9
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.599999994039536
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 12.200000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 47.5
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.799999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 15.200000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.799999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.099999994039536
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 56.79999999701977
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 43
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 15
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 18.5
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.100000008940697
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 17.400000005960464
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 38.099999994039536
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 22.700000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 10.5
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 42.20000000298023
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 24.799999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 11.700000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 39.400000005960464
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 34.5
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.399999991059303
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 9
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.200000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 9
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 25.100000008940697
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 20.700000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 9.5
+              }
+            ]
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "contact": {
+            "available": 499,
+            "expected": 499,
+            "effectiveStepM": 2
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 25,
+            "maxReceiveMs": 0.7000000029802322,
+            "maxDecodeWallMs": 1196.9000000059605
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 61.6000000089407,
+            "maxCpuMs": 71,
+            "traffic": {
+              "created": 6,
+              "active": 6,
+              "stops": 0,
+              "distanceM": 4.538823632545598,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": {
+              "id": "traffic:osm:1619998476:0",
+              "position": {
+                "x": -182.28076861911885,
+                "y": -2.577733101246099,
+                "z": -167.1519913762532
+              },
+              "speed": 1.5,
+              "rain": 0
+            }
+          },
+          "stations": {
+            "count": 60,
+            "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+            "license": "© SNCF Réseau · Open Database License (ODbL)"
+          }
+        },
+        "source": "d162a653785d656e1a6652c4ca406889a1b55c28",
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "activity": "boating",
+        "audioEnabled": true,
+        "gps": {
+          "lat": 46.697069289082904,
+          "lon": 0.8756186689899123
+        },
+        "movement": null,
+        "admission": {
+          "ok": false,
+          "reason": "unverified-water",
+          "height": 65.397038445496,
+          "normal": {
+            "x": -0.039936153191542735,
+            "y": 0.9984038297885898,
+            "z": 0.039936153191542735
+          },
+          "slope": 0.0565685424949226,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "131:1617"
+        },
+        "origin": {
+          "origin": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "revision": 0
+          },
+          "metrics": {
+            "rebases": 0,
+            "frames": 51,
+            "maxLocalCameraM": 697.832028628862,
+            "canonicalPhysics": true
+          }
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "viewport": [
+          800,
+          600
+        ],
+        "heap": 379119088,
+        "longTasks": [
+          {
+            "t": 633.9000000059605,
+            "ms": 6173
+          },
+          {
+            "t": 7102.5999999940395,
+            "ms": 83
+          },
+          {
+            "t": 7305.9000000059605,
+            "ms": 61
+          },
+          {
+            "t": 7409.4000000059605,
+            "ms": 777
+          },
+          {
+            "t": 8204.29999999702,
+            "ms": 182
+          },
+          {
+            "t": 8688.09999999404,
+            "ms": 210
+          },
+          {
+            "t": 8898.90000000596,
+            "ms": 68
+          },
+          {
+            "t": 9108.29999999702,
+            "ms": 51
+          },
+          {
+            "t": 9674.79999999702,
+            "ms": 360
+          },
+          {
+            "t": 10247.09999999404,
+            "ms": 68
+          },
+          {
+            "t": 10359.29999999702,
+            "ms": 133
+          },
+          {
+            "t": 10492.59999999404,
+            "ms": 71
+          },
+          {
+            "t": 11091.70000000298,
+            "ms": 63
+          },
+          {
+            "t": 11155.79999999702,
+            "ms": 139
+          },
+          {
+            "t": 11294.90000000596,
+            "ms": 68
+          },
+          {
+            "t": 11705.59999999404,
+            "ms": 57
+          },
+          {
+            "t": 11983,
+            "ms": 77
+          },
+          {
+            "t": 12068.29999999702,
+            "ms": 1003
+          },
+          {
+            "t": 13102.79999999702,
+            "ms": 51
+          },
+          {
+            "t": 13213.70000000298,
+            "ms": 150
+          },
+          {
+            "t": 13400.20000000298,
+            "ms": 113
+          },
+          {
+            "t": 13909.90000000596,
+            "ms": 645
+          },
+          {
+            "t": 14554.90000000596,
+            "ms": 151
+          },
+          {
+            "t": 15802,
+            "ms": 102
+          },
+          {
+            "t": 15905.09999999404,
+            "ms": 75
+          },
+          {
+            "t": 15994.29999999702,
+            "ms": 841
+          },
+          {
+            "t": 16835.5,
+            "ms": 220
+          },
+          {
+            "t": 17078.90000000596,
+            "ms": 18899
+          },
+          {
+            "t": 35978.09999999404,
+            "ms": 802
+          },
+          {
+            "t": 36804.70000000298,
+            "ms": 6242
+          },
+          {
+            "t": 43072.40000000596,
+            "ms": 85
+          },
+          {
+            "t": 43380.59999999404,
+            "ms": 2996
+          },
+          {
+            "t": 46425.79999999702,
+            "ms": 90
+          },
+          {
+            "t": 48986.79999999702,
+            "ms": 5113
+          },
+          {
+            "t": 54102.40000000596,
+            "ms": 58
+          },
+          {
+            "t": 54175.40000000596,
+            "ms": 60
+          },
+          {
+            "t": 54310.70000000298,
+            "ms": 52
+          },
+          {
+            "t": 54495.5,
+            "ms": 71
+          },
+          {
+            "t": 54655.5,
+            "ms": 136
+          },
+          {
+            "t": 54846.59999999404,
+            "ms": 109
+          },
+          {
+            "t": 56775.70000000298,
+            "ms": 231
+          },
+          {
+            "t": 57708.5,
+            "ms": 51
+          },
+          {
+            "t": 58510.5,
+            "ms": 82
+          },
+          {
+            "t": 59004.40000000596,
+            "ms": 182
+          },
+          {
+            "t": 59304.59999999404,
+            "ms": 53
+          },
+          {
+            "t": 61196.29999999702,
+            "ms": 159
+          },
+          {
+            "t": 62435.20000000298,
+            "ms": 2369
+          },
+          {
+            "t": 64829.5,
+            "ms": 3250
+          },
+          {
+            "t": 68080.20000000298,
+            "ms": 2183
+          },
+          {
+            "t": 70272.5,
+            "ms": 106
+          },
+          {
+            "t": 70505.5,
+            "ms": 52
+          },
+          {
+            "t": 72087.90000000596,
+            "ms": 92
+          },
+          {
+            "t": 72211,
+            "ms": 78
+          },
+          {
+            "t": 74290.40000000596,
+            "ms": 93
+          },
+          {
+            "t": 75395.59999999404,
+            "ms": 2893
+          },
+          {
+            "t": 78290.5,
+            "ms": 106
+          },
+          {
+            "t": 78500.40000000596,
+            "ms": 54
+          },
+          {
+            "t": 78901.29999999702,
+            "ms": 66
+          },
+          {
+            "t": 82511,
+            "ms": 52
+          },
+          {
+            "t": 82899.59999999404,
+            "ms": 54
+          },
+          {
+            "t": 83611.59999999404,
+            "ms": 56
+          },
+          {
+            "t": 85306,
+            "ms": 78
+          },
+          {
+            "t": 85506.59999999404,
+            "ms": 63
+          },
+          {
+            "t": 87496.29999999702,
+            "ms": 73
+          },
+          {
+            "t": 88602.59999999404,
+            "ms": 88
+          },
+          {
+            "t": 92976.5,
+            "ms": 50
+          },
+          {
+            "t": 93704.09999999404,
+            "ms": 77
+          },
+          {
+            "t": 94017,
+            "ms": 52
+          },
+          {
+            "t": 94093.5,
+            "ms": 76
+          },
+          {
+            "t": 94302.79999999702,
+            "ms": 55
+          },
+          {
+            "t": 94512.90000000596,
+            "ms": 63
+          },
+          {
+            "t": 95014.90000000596,
+            "ms": 55
+          },
+          {
+            "t": 95111.70000000298,
+            "ms": 50
+          },
+          {
+            "t": 95297,
+            "ms": 104
+          },
+          {
+            "t": 96695.79999999702,
+            "ms": 73
+          },
+          {
+            "t": 97160.70000000298,
+            "ms": 70
+          },
+          {
+            "t": 97706.5,
+            "ms": 51
+          },
+          {
+            "t": 97919.20000000298,
+            "ms": 59
+          },
+          {
+            "t": 98111.90000000596,
+            "ms": 53
+          },
+          {
+            "t": 98906.90000000596,
+            "ms": 54
+          },
+          {
+            "t": 99293.09999999404,
+            "ms": 78
+          },
+          {
+            "t": 99512.70000000298,
+            "ms": 54
+          },
+          {
+            "t": 99637.20000000298,
+            "ms": 5603
+          },
+          {
+            "t": 105251.29999999702,
+            "ms": 120
+          },
+          {
+            "t": 105507.5,
+            "ms": 50
+          },
+          {
+            "t": 106799.5,
+            "ms": 61
+          },
+          {
+            "t": 106861.40000000596,
+            "ms": 140
+          },
+          {
+            "t": 107510.70000000298,
+            "ms": 50
+          },
+          {
+            "t": 109089.40000000596,
+            "ms": 159
+          },
+          {
+            "t": 109838.40000000596,
+            "ms": 58
+          },
+          {
+            "t": 110498.79999999702,
+            "ms": 85
+          },
+          {
+            "t": 110708.59999999404,
+            "ms": 50
+          },
+          {
+            "t": 111167.29999999702,
+            "ms": 53
+          },
+          {
+            "t": 111406.59999999404,
+            "ms": 151
+          },
+          {
+            "t": 111839.09999999404,
+            "ms": 66
+          },
+          {
+            "t": 114820.70000000298,
+            "ms": 181
+          },
+          {
+            "t": 115101.29999999702,
+            "ms": 52
+          },
+          {
+            "t": 115500.5,
+            "ms": 126
+          },
+          {
+            "t": 115706.79999999702,
+            "ms": 60
+          },
+          {
+            "t": 116167.5,
+            "ms": 667
+          },
+          {
+            "t": 117706.90000000596,
+            "ms": 63
+          },
+          {
+            "t": 117906.59999999404,
+            "ms": 71
+          },
+          {
+            "t": 118095.09999999404,
+            "ms": 66
+          },
+          {
+            "t": 118235,
+            "ms": 135
+          },
+          {
+            "t": 118643.59999999404,
+            "ms": 123
+          },
+          {
+            "t": 119154.40000000596,
+            "ms": 51
+          },
+          {
+            "t": 119286.90000000596,
+            "ms": 81
+          },
+          {
+            "t": 119373.29999999702,
+            "ms": 56
+          },
+          {
+            "t": 120506.40000000596,
+            "ms": 98
+          },
+          {
+            "t": 122165.20000000298,
+            "ms": 111
+          },
+          {
+            "t": 125294.90000000596,
+            "ms": 59
+          },
+          {
+            "t": 125354.29999999702,
+            "ms": 308
+          },
+          {
+            "t": 128308.20000000298,
+            "ms": 52
+          },
+          {
+            "t": 128668.59999999404,
+            "ms": 105
+          },
+          {
+            "t": 136500.29999999702,
+            "ms": 198
+          },
+          {
+            "t": 136702.29999999702,
+            "ms": 4401
+          }
+        ],
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "audio": {
+          "layers": [],
+          "activeSources": [],
+          "recentEvents": [],
+          "nodes": 5,
+          "voices": 0,
+          "peakVoices": 0,
+          "hrtf": 0,
+          "beds": 0,
+          "budget": {
+            "voices": 12,
+            "hrtf": 2,
+            "beds": 3,
+            "hz": 2
+          },
+          "dropped": 0,
+          "steps": 0,
+          "lastStepAssets": [],
+          "heardBirds": 0,
+          "waterContacts": 0,
+          "waterBufferBytes": 0,
+          "roadEvents": 0,
+          "profile": "balanced",
+          "obstructionChecks": 0,
+          "obstructionUpdates": 0,
+          "cacheBytes": 0,
+          "peakBytes": 0,
+          "cached": 0,
+          "pending": 0,
+          "activeLoads": 0,
+          "loads": 0,
+          "decodes": 0,
+          "deferred": 0,
+          "deniedDecodes": 0,
+          "failures": {},
+          "aircraftEvents": 0,
+          "contextUpdates": 0,
+          "cpuMs": 0,
+          "maxCpuMs": 0,
+          "nearbyChecks": 0,
+          "memoryCells": 0,
+          "perches": 0,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": null
+        },
+        "buffers": {
+          "attributeBuffers": 2916,
+          "attributeBytes": 81244892,
+          "typedTextureBytes": 2523136,
+          "textureCount": 3,
+          "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+        }
+      },
+      "beforeImage": "candidate-authored-pilot-water-balanced-before.png",
+      "prerollWallSeconds": 6.482498480999988,
+      "prerollMethod": "Native RAF only; wait for three actual production frames before the requested recording interval so an empty encoder under load cannot masquerade as a clip. Preroll remains in original media and measured FPS/durations.",
+      "media": {
+        "containerIndexed": true,
+        "codecCopy": true,
+        "packetPTSAndPayloadsIdentical": true,
+        "packets": 6,
+        "rawSha256": "423f2847338747e0373715178c96e3adbabf28812877be13585d40c3ad815246",
+        "indexedSha256": "48902fb681b8df3167b636c71e528282038204f89ccf90dd008827dc3b14bd8a",
+        "allAudioVideoPacketPTSAndPayloadsIdentical": true,
+        "streams": [
+          {
+            "type": "video",
+            "codec": "vp9",
+            "width": 800,
+            "height": 600
+          },
+          {
+            "type": "audio",
+            "codec": "opus",
+            "channels": 2,
+            "sampleRate": "48000"
+          }
+        ]
+      },
+      "video": "candidate-authored-pilot-water-balanced.webm",
+      "original": "raw/candidate-authored-pilot-water-balanced.webm",
+      "frames": 9,
+      "wallSeconds": 27.599,
+      "averageRenderedFps": 0.2898655748396681,
+      "counter": {
+        "frames": 9,
+        "simulationSeconds": 2.0080999999940397,
+        "lastDt": 0.25
+      },
+      "simulationSeconds": 2.0080999999940397,
+      "distanceM": 0.8877661276655917,
+      "perceptualStatus": "NON_VALIDE",
+      "framesWithBirds": 9,
+      "framesFile": "candidate-authored-pilot-water-balanced-frames.json.gz",
+      "transformsFile": "candidate-authored-pilot-water-balanced-transforms.json.gz",
+      "environmentAfter": {
+        "source": "d162a653785d656e1a6652c4ca406889a1b55c28",
+        "climate": {
+          "worldTimeMs": 1782050267015,
+          "solar": {
+            "altitude": 0.9849118505468907,
+            "azimuth": 4.121808471121176,
+            "month": 6
+          },
+          "weather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.24,
+            "rain": 0,
+            "snow": 0,
+            "electric": 0,
+            "temperatureC": 18.529786633813934
+          },
+          "acousticWeather": {
+            "cloud": 0.16,
+            "mist": 0,
+            "wind": 0.14900423614157793,
+            "rain": 0,
+            "snow": 0,
+            "gust": 0.0005585070766017428,
+            "electric": 0,
+            "temperatureC": 18.529786633813934,
+            "snowCover": 0
+          },
+          "wind": {
+            "x": 0.12738743430200736,
+            "z": -0.07769898749834736,
+            "speed": 0.14900423614157793,
+            "gust": 0.0005585070766017428,
+            "slow": 0.6204879543234502,
+            "turn": -0.01948467478990837,
+            "water": 0.38326393649016954
+          },
+          "transition": {
+            "revision": 61,
+            "commandRevision": 4,
+            "manual": false
+          },
+          "simulation": true,
+          "metrics": {
+            "temperatureC": 18.529786633813934,
+            "humidityPct": 46.08,
+            "cloudCover": 0.16,
+            "cloudDensity": 0.11199999999999999,
+            "rainIntensity": 0,
+            "snowIntensity": 0,
+            "windDirectionRad": 1.0230983502996738,
+            "meanWindMps": 3.5999999999999996,
+            "gustWindMps": 3.5999999999999996,
+            "fog": 0,
+            "visibilityM": 18000,
+            "stormRisk": 0,
+            "electricalActivity": 0,
+            "groundWetness": 0,
+            "coldDegreeHours": 0,
+            "iceFraction": 0,
+            "sunshine": 0.8624,
+            "simulation": true,
+            "snowCover": 0
+          },
+          "stormPhase": "calm",
+          "naturalEvolution": false,
+          "reduceLightning": false,
+          "sensitive": {
+            "humidity": 0.4608,
+            "dew": 0,
+            "mist": 0.00822673002824544,
+            "bankDistance": 2.073571492446089
+          },
+          "diffuseNight": {
+            "intensity": 1.451496,
+            "nightWeight": 0,
+            "moon": 0
+          },
+          "moon": {
+            "date": "2026-06-21T13:57:47.015Z",
+            "altitude": 0.3762708273495534,
+            "azimuth": 2.038343306049544,
+            "phase": 0.23893939726382565,
+            "illumination": 0.46530388899636943,
+            "brightLimbAngle": -1.1601017135015295,
+            "parallacticAngle": -0.658949512417717,
+            "distanceKm": 386384.8646086329,
+            "angularRadius": 0.004524545865627336,
+            "geometricallyVisible": true,
+            "direction": [
+              0.8302261441780371,
+              0.3674547475372261,
+              0.41916769679404264
+            ],
+            "visibility": 0.28,
+            "model": "Schlyter approximate topocentric orbit; shared M11 date"
+          },
+          "elapsedSeconds": 149.80510000000896,
+          "targetWeather": "clear",
+          "lightning": {
+            "active": false,
+            "id": null,
+            "intensity": 0,
+            "maxIntensity": 0.32,
+            "events": [],
+            "nextSeconds": null
+          },
+          "moment": "afternoon",
+          "mode": "afternoon",
+          "date": "2026-06-21T13:57:47.015Z",
+          "localTime": "21 juin 2026, 15:57",
+          "localHour": 15.963055555555554,
+          "season": "summer",
+          "timeZone": "Europe/Paris",
+          "polar": null,
+          "calendar": {
+            "manual": false,
+            "month": 6,
+            "representativeDay": null,
+            "sunrise": 1782014590999.9846,
+            "sunset": 1782071544999.9927,
+            "solarNoon": 1782043067015.189
+          },
+          "weatherTau": 5.5,
+          "effectiveMeanWind": 0.24,
+          "starVisibility": 0,
+          "rainDrops": 0,
+          "groundWetness": 0,
+          "snow": {
+            "cover": 0,
+            "temperature": 18.529786633813934,
+            "falling": 0,
+            "phase": "bare"
+          },
+          "cloudMotion": {
+            "drift": [
+              46.07613833199571,
+              -25.204678171722424
+            ],
+            "morph": [
+              0.1425417355145647,
+              0.08985665911019113,
+              0.12540715084223727
+            ],
+            "baseHeight": 230,
+            "upperHeight": 540
+          }
+        },
+        "camera": {
+          "position": [
+            -668.825535061214,
+            -33.44452495097064,
+            -199.81583219665862
+          ],
+          "rotation": [
+            -0.02540116456505094,
+            0.9613862323399054,
+            0.09500961585208334,
+            0.25703008773616415
+          ],
+          "projection": [
+            1.4407365952283748,
+            0,
+            0,
+            0,
+            0,
+            1.9209821269711662,
+            0,
+            0,
+            0,
+            0,
+            -1.0001333422228147,
+            -1,
+            0,
+            0,
+            -0.20001333422228149,
+            0
+          ]
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "profile": "balanced",
+        "lighting": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 2772,
+          "treeInstances": 60,
+          "updates": 30,
+          "lastUpdateCpuMs": 0.4000000059604645,
+          "maxUpdateCpuMs": 97.69999998807907,
+          "lastShadowCalls": 10,
+          "lastShadowTriangles": 74838,
+          "extraPasses": 1,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 29,
+          "windSkips": 0,
+          "windMotionBoundM": 0.03322195067524841,
+          "maxWindMotionBoundM": 0.03443441715462316,
+          "windThresholdM": 0.030468750000000003,
+          "character": {
+            "updates": 32,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 6.799999997019768,
+            "lastCpuMs": 6.799999997019768,
+            "maxCpuMs": 57.6000000089407,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "shadow": {
+          "size": [
+            1024,
+            1024
+          ],
+          "type": 2,
+          "bias": 0,
+          "normalBias": 0,
+          "camera": [
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            0.2,
+            0,
+            0,
+            0,
+            0,
+            -0.004004004004004004,
+            0,
+            0,
+            0,
+            -1.002002002002002,
+            1
+          ],
+          "matrix": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "paddle": {
+          "stroke": 8.580779999977347,
+          "pose": {
+            "phase": 8.580779999977347,
+            "authoredX": 0.13451501736096214,
+            "x": 0.1065462293867396,
+            "y": 0.5454849826390379,
+            "z": 0.22368312871651008,
+            "rx": -0.11960648019392618,
+            "ry": 0.1868264130013363,
+            "authoredRz": 0.463329504243314,
+            "rz": 0.5173051792056615,
+            "side": -1,
+            "tipX": -0.8499679957973892,
+            "tipY": 0.017132238454734217,
+            "tipZ": 0.46929240120702836,
+            "authoredTipY": 0.07070607115643368,
+            "authoredTipX": -0.8499679957973892,
+            "contact": 0,
+            "waterContact": 0,
+            "thrust": 0
+          },
+          "tip": [
+            -671.8855474493569,
+            -35.41353918119204,
+            -196.2053200318499
+          ],
+          "hands": [
+            [
+              -671.1821222467308,
+              -34.97323141971324,
+              -196.0159868348345
+            ],
+            [
+              -670.7233802727313,
+              -34.71848991805295,
+              -195.88846205832826
+            ]
+          ],
+          "marks": {
+            "capacity": 48,
+            "emitted": 10,
+            "paddleContacts": 3,
+            "wakePairs": 2,
+            "drawCalls": 1
+          }
+        },
+        "renderer": {
+          "memory": {
+            "geometries": 223,
+            "textures": 20
+          },
+          "render": {
+            "frame": 122,
+            "calls": 69,
+            "triangles": 407855,
+            "points": 0,
+            "lines": 102
+          }
+        }
+      },
+      "after": {
+        "position": [
+          -670.9147873364127,
+          -35.33067141964678,
+          -196.18783418536503
+        ],
+        "heading": -0.5224872536321237,
+        "birds": {
+          "individuals": 2,
+          "drawCalls": 1,
+          "triangles": 530,
+          "perches": 24,
+          "families": [
+            "robin",
+            "blackbird"
+          ],
+          "sources": [
+            {
+              "id": "tree-bird:tree:-678.953922:-229.548349",
+              "position": [
+                -704.1388700200398,
+                -27.268658549334205,
+                -168.38059263247357
+              ],
+              "family": "robin"
+            },
+            {
+              "id": "tree-bird:tree:-616.650607:-208.123862",
+              "position": [
+                -618.3000105512895,
+                -30.997575184774853,
+                -209.78142172609833
+              ],
+              "family": "blackbird"
+            }
+          ],
+          "renderSamples": 61,
+          "cpuMs": 0,
+          "maxCpuMs": 40,
+          "clock": 149.80510000000896,
+          "trajectory": "analytic-per-render-frame"
+        },
+        "shadow": {
+          "state": "ready",
+          "mode": "local",
+          "matchedGeometry": 287,
+          "ambientVertices": 536452,
+          "shadowSize": 1024,
+          "shadowBytes": 5242880,
+          "staticTriangles": 2772,
+          "treeInstances": 60,
+          "updates": 30,
+          "lastUpdateCpuMs": 0.4000000059604645,
+          "maxUpdateCpuMs": 97.69999998807907,
+          "lastShadowCalls": 10,
+          "lastShadowTriangles": 74838,
+          "extraPasses": 1,
+          "selectionBuilds": 2,
+          "shadowIndexBytes": 65536,
+          "sourceBytes": 5495013,
+          "filter": "receiver-plane-pcf",
+          "windTests": 29,
+          "windSkips": 0,
+          "windMotionBoundM": 0.03322195067524841,
+          "maxWindMotionBoundM": 0.03443441715462316,
+          "windThresholdM": 0.030468750000000003,
+          "character": {
+            "updates": 32,
+            "size": 128,
+            "bytes": 81920,
+            "proxies": 1,
+            "extraPasses": 1,
+            "poseAgeMs": 6.799999997019768,
+            "lastCpuMs": 6.799999997019768,
+            "maxCpuMs": 57.6000000089407,
+            "receiver": "landscape only; actor receives landscape map"
+          }
+        },
+        "boat": {
+          "active": true,
+          "heading": -0.5224872536321237,
+          "following": false,
+          "metrics": {
+            "plans": 0,
+            "lateralError": 0,
+            "maxLateralError": 0,
+            "stops": 2
+          }
+        },
+        "planet": {
+          "contactQueries": {
+            "queries": 632,
+            "hits": 0,
+            "invalidations": 59,
+            "maxEntries": 632
+          },
+          "state": "ready",
+          "source": "434fbdf3a4c5d575df7749f48c00d7cf21f7ca407995cb0500427e9501cbd1dd",
+          "stream": {
+            "loaded": 4,
+            "unloaded": 0,
+            "failures": 0,
+            "residentBytes": 35769031,
+            "active": 0,
+            "queued": 0,
+            "errors": {},
+            "timeouts": 0,
+            "cancellations": 0,
+            "generation": 4,
+            "jobs": [
+              {
+                "id": "131:1616",
+                "generation": 2,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 814.6275106168978,
+                "at": 1794911343815
+              },
+              {
+                "id": "131:1617",
+                "generation": 1,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 0.1525598416259283,
+                "at": 1794911360936
+              },
+              {
+                "id": "130:1617",
+                "generation": 3,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 1099.9330690113964,
+                "at": 1794911385858
+              },
+              {
+                "id": "130:1616",
+                "generation": 4,
+                "state": "COMPLETED",
+                "phase": "installation",
+                "priority": 1366.521532364224,
+                "at": 1794911427686
+              }
+            ]
+          },
+          "render": {
+            "contactRevision": 5,
+            "tiles": 4,
+            "features": 4490,
+            "triangles": 53336,
+            "trees": 1888,
+            "disposed": 0,
+            "batches": 380,
+            "batchRebuilds": 4,
+            "maxBatchMs": 660.8000000119209,
+            "maxBatchWallMs": 7987.5,
+            "failures": []
+          },
+          "graph": {
+            "foot": {
+              "features": 665,
+              "nodes": 7385,
+              "edges": 15122,
+              "refused": 141,
+              "routes": 0,
+              "visited": 0
+            },
+            "car": {
+              "features": 665,
+              "nodes": 4598,
+              "edges": 9236,
+              "refused": 407,
+              "routes": 0,
+              "visited": 0
+            },
+            "rail": {
+              "features": 665,
+              "nodes": 0,
+              "edges": 0,
+              "refused": 665,
+              "routes": 0,
+              "visited": 0
+            }
+          },
+          "car": {
+            "steps": 0,
+            "refusals": 0,
+            "maxSpeed": 0
+          },
+          "maxInstallMs": 660.8000000119209,
+          "maxInstallWallMs": 41828.09999999404,
+          "preparation": {
+            "slices": 3509,
+            "steps": 622132,
+            "cpuMs": 26202.999999940395,
+            "maxSliceMs": 660.8000000119209,
+            "maxStepMs": 660.8000000119209,
+            "completed": 25,
+            "cancelled": 0,
+            "stages": {
+              "surface-index:131:1616": {
+                "steps": 557,
+                "cpuMs": 14.899999976158142,
+                "maxStepMs": 3.3999999910593033,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:131:1616": {
+                "steps": 2169,
+                "cpuMs": 12.30000002682209,
+                "maxStepMs": 0.5999999940395355,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:131:1616": {
+                "steps": 1403,
+                "cpuMs": 3.4000000208616257,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1616": {
+                "steps": 534,
+                "cpuMs": 7.800000011920929,
+                "maxStepMs": 4,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1616": {
+                "steps": 111271,
+                "cpuMs": 3629.3999995440245,
+                "maxStepMs": 228.29999999701977,
+                "over8": 55,
+                "over50": 5
+              },
+              "static-batches": {
+                "steps": 11572,
+                "cpuMs": 8424.50000025332,
+                "maxStepMs": 660.8000000119209,
+                "over8": 217,
+                "over50": 30
+              },
+              "surface-index:131:1617": {
+                "steps": 2185,
+                "cpuMs": 25.900000020861626,
+                "maxStepMs": 6.600000008940697,
+                "over8": 0,
+                "over50": 0
+              },
+              "foot-graph:131:1617": {
+                "steps": 4746,
+                "cpuMs": 25.199999943375587,
+                "maxStepMs": 11.299999997019768,
+                "over8": 1,
+                "over50": 0
+              },
+              "car-graph:131:1617": {
+                "steps": 3663,
+                "cpuMs": 9.800000041723251,
+                "maxStepMs": 2.1000000089406967,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:131:1617": {
+                "steps": 2167,
+                "cpuMs": 0.699999988079071,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:131:1617": {
+                "steps": 175641,
+                "cpuMs": 2612.9000000804663,
+                "maxStepMs": 59.900000005960464,
+                "over8": 32,
+                "over50": 1
+              },
+              "terrain-refine:131:1617": {
+                "steps": 18845,
+                "cpuMs": 1004.2000001221895,
+                "maxStepMs": 54.099999994039536,
+                "over8": 22,
+                "over50": 2
+              },
+              "surface-index:130:1617": {
+                "steps": 744,
+                "cpuMs": 75.2000000178814,
+                "maxStepMs": 46.29999999701977,
+                "over8": 1,
+                "over50": 0
+              },
+              "foot-graph:130:1617": {
+                "steps": 2018,
+                "cpuMs": 46.099999994039536,
+                "maxStepMs": 10.099999994039536,
+                "over8": 1,
+                "over50": 0
+              },
+              "car-graph:130:1617": {
+                "steps": 1686,
+                "cpuMs": 9.499999985098839,
+                "maxStepMs": 0.29999999701976776,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:130:1617": {
+                "steps": 723,
+                "cpuMs": 0.4000000059604645,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:130:1617": {
+                "steps": 121951,
+                "cpuMs": 3914.1999998539686,
+                "maxStepMs": 82.70000000298023,
+                "over8": 72,
+                "over50": 8
+              },
+              "surface-index:130:1616": {
+                "steps": 1391,
+                "cpuMs": 41.30000002682209,
+                "maxStepMs": 9.399999991059303,
+                "over8": 1,
+                "over50": 0
+              },
+              "foot-graph:130:1616": {
+                "steps": 3412,
+                "cpuMs": 15.500000044703484,
+                "maxStepMs": 1.4000000059604645,
+                "over8": 0,
+                "over50": 0
+              },
+              "car-graph:130:1616": {
+                "steps": 2680,
+                "cpuMs": 12.100000023841858,
+                "maxStepMs": 6.600000008940697,
+                "over8": 0,
+                "over50": 0
+              },
+              "rail-graph:130:1616": {
+                "steps": 1360,
+                "cpuMs": 0.40000002086162567,
+                "maxStepMs": 0.10000000894069672,
+                "over8": 0,
+                "over50": 0
+              },
+              "render-install:130:1616": {
+                "steps": 151414,
+                "cpuMs": 5078.399999722838,
+                "maxStepMs": 148,
+                "over8": 82,
+                "over50": 7
+              }
+            },
+            "longSteps": [
+              {
+                "label": "render-install:130:1616",
+                "ms": 20.700000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 9.5
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 40.69999998807907
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 23.19999998807907
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 10.400000005960464
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 19
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 10.5
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 43.599999994039536
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 35.29999999701977
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 25.200000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 22.399999991059303
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 79.6000000089407
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 148
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 20.200000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 15
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 10.799999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 32.900000005960464
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 9.199999988079071
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 20.700000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 15.400000005960464
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.100000008940697
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 63.400000005960464
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.199999988079071
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 16.80000001192093
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 16.799999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 45.599999994039536
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.899999991059303
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 13
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 64.09999999403954
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 20.700000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.200000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 14.5
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 13.400000005960464
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 11.100000008940697
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 51.5
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 31.700000002980232
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 39.8999999910593
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 15.299999997019768
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 78.1000000089407
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 40
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.699999988079071
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 8.699999988079071
+              },
+              {
+                "label": "render-install:130:1616",
+                "ms": 20.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.600000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 39.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 18.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.199999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 15.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.300000011920929
+              },
+              {
+                "label": "static-batches",
+                "ms": 264.70000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 11
+              },
+              {
+                "label": "static-batches",
+                "ms": 15
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.600000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 16.600000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 17.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 9
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 30.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 20.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 16.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 205.3999999910593
+              },
+              {
+                "label": "static-batches",
+                "ms": 15.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 67.3999999910593
+              },
+              {
+                "label": "static-batches",
+                "ms": 15.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.300000011920929
+              },
+              {
+                "label": "static-batches",
+                "ms": 18.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 82.70000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 20.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.699999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 20.100000008940697
+              },
+              {
+                "label": "static-batches",
+                "ms": 28.80000001192093
+              },
+              {
+                "label": "static-batches",
+                "ms": 21.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 22.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.699999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 57.20000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 21.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 43.79999999701977
+              },
+              {
+                "label": "static-batches",
+                "ms": 67.80000001192093
+              },
+              {
+                "label": "static-batches",
+                "ms": 54.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.200000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 69.70000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 24.899999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 32.20000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 19.399999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 55.8999999910593
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 31.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 100.90000000596046
+              },
+              {
+                "label": "static-batches",
+                "ms": 50.79999999701977
+              },
+              {
+                "label": "static-batches",
+                "ms": 61.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 9
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 9
+              },
+              {
+                "label": "static-batches",
+                "ms": 11.699999988079071
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.599999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.099999994039536
+              },
+              {
+                "label": "static-batches",
+                "ms": 13.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 59.20000000298023
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.5
+              },
+              {
+                "label": "static-batches",
+                "ms": 17.700000002980232
+              },
+              {
+                "label": "static-batches",
+                "ms": 9.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 42.900000005960464
+              },
+              {
+                "label": "static-batches",
+                "ms": 14.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 10
+              },
+              {
+                "label": "static-batches",
+                "ms": 10.799999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 15.299999997019768
+              },
+              {
+                "label": "static-batches",
+                "ms": 68.09999999403954
+              },
+              {
+                "label": "static-batches",
+                "ms": 8.399999991059303
+              },
+              {
+                "label": "static-batches",
+                "ms": 12.799999997019768
+              }
+            ]
+          },
+          "failures": [],
+          "frame": "legacy-adapter; canonical EPSG coordinates preserved",
+          "floatingOrigin": "integrated render/audio origin; canonical simulation and storage unchanged",
+          "contact": {
+            "available": 499,
+            "expected": 499,
+            "effectiveStepM": 2
+          },
+          "decoder": {
+            "worker": true,
+            "batches": 25,
+            "maxReceiveMs": 0.7000000029802322,
+            "maxDecodeWallMs": 1196.9000000059605
+          },
+          "transport": {
+            "trains": 0,
+            "aircraft": 0,
+            "railStops": 0,
+            "railRoutes": [],
+            "flight": null,
+            "provenance": "Synthetic traffic on imported OSM infrastructure; no real timetable, flight or passenger service.",
+            "cpuMs": 10.100000008940697,
+            "maxCpuMs": 167.70000000298023,
+            "traffic": {
+              "created": 6,
+              "active": 6,
+              "stops": 0,
+              "distanceM": 50.27180609898301,
+              "provenance": "Deterministic scenic vehicles on admitted OSM roads; no live traffic",
+              "extensions": 0,
+              "routeEnds": 0
+            },
+            "nearbyVehicle": {
+              "id": "traffic:osm:1619998476:0",
+              "position": {
+                "x": -176.66891606131676,
+                "y": -2.1633315835333944,
+                "z": -162.10244383341234
+              },
+              "speed": 5.516199999988079,
+              "rain": 0
+            }
+          },
+          "stations": {
+            "count": 60,
+            "source": "41f8bc18ae069c81f36cb530d71402253b25ee0d7bfabcf5cbd6fb6ff78f5108",
+            "license": "© SNCF Réseau · Open Database License (ODbL)"
+          }
+        },
+        "source": "d162a653785d656e1a6652c4ca406889a1b55c28",
+        "heightBaseM": 101.2,
+        "verticalDatum": "IGN69",
+        "activity": "boating",
+        "audioEnabled": true,
+        "gps": {
+          "lat": 46.69706237723846,
+          "lon": 0.8756128657450658
+        },
+        "movement": null,
+        "admission": {
+          "ok": false,
+          "reason": "unverified-water",
+          "height": 65.34998463122233,
+          "normal": {
+            "x": -0.03495066699971887,
+            "y": 0.9985904857063508,
+            "z": 0.03994361942825318
+          },
+          "slope": 0.05315072906367036,
+          "datum": "IGN69",
+          "resolutionM": 2,
+          "source": "IGN LHD numeric MNT; 2 m derivative",
+          "quantizationMaxErrorM": 0.005,
+          "tile": "131:1617"
+        },
+        "origin": {
+          "origin": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "revision": 0
+          },
+          "metrics": {
+            "rebases": 0,
+            "frames": 60,
+            "maxLocalCameraM": 698.0357893019258,
+            "canonicalPhysics": true
+          }
+        },
+        "buffer": [
+          800,
+          600
+        ],
+        "viewport": [
+          800,
+          600
+        ],
+        "heap": 414911837,
+        "longTasks": [
+          {
+            "t": 633.9000000059605,
+            "ms": 6173
+          },
+          {
+            "t": 7102.5999999940395,
+            "ms": 83
+          },
+          {
+            "t": 7305.9000000059605,
+            "ms": 61
+          },
+          {
+            "t": 7409.4000000059605,
+            "ms": 777
+          },
+          {
+            "t": 8204.29999999702,
+            "ms": 182
+          },
+          {
+            "t": 8688.09999999404,
+            "ms": 210
+          },
+          {
+            "t": 8898.90000000596,
+            "ms": 68
+          },
+          {
+            "t": 9108.29999999702,
+            "ms": 51
+          },
+          {
+            "t": 9674.79999999702,
+            "ms": 360
+          },
+          {
+            "t": 10247.09999999404,
+            "ms": 68
+          },
+          {
+            "t": 10359.29999999702,
+            "ms": 133
+          },
+          {
+            "t": 10492.59999999404,
+            "ms": 71
+          },
+          {
+            "t": 11091.70000000298,
+            "ms": 63
+          },
+          {
+            "t": 11155.79999999702,
+            "ms": 139
+          },
+          {
+            "t": 11294.90000000596,
+            "ms": 68
+          },
+          {
+            "t": 11705.59999999404,
+            "ms": 57
+          },
+          {
+            "t": 11983,
+            "ms": 77
+          },
+          {
+            "t": 12068.29999999702,
+            "ms": 1003
+          },
+          {
+            "t": 13102.79999999702,
+            "ms": 51
+          },
+          {
+            "t": 13213.70000000298,
+            "ms": 150
+          },
+          {
+            "t": 13400.20000000298,
+            "ms": 113
+          },
+          {
+            "t": 13909.90000000596,
+            "ms": 645
+          },
+          {
+            "t": 14554.90000000596,
+            "ms": 151
+          },
+          {
+            "t": 15802,
+            "ms": 102
+          },
+          {
+            "t": 15905.09999999404,
+            "ms": 75
+          },
+          {
+            "t": 15994.29999999702,
+            "ms": 841
+          },
+          {
+            "t": 16835.5,
+            "ms": 220
+          },
+          {
+            "t": 17078.90000000596,
+            "ms": 18899
+          },
+          {
+            "t": 35978.09999999404,
+            "ms": 802
+          },
+          {
+            "t": 36804.70000000298,
+            "ms": 6242
+          },
+          {
+            "t": 43072.40000000596,
+            "ms": 85
+          },
+          {
+            "t": 43380.59999999404,
+            "ms": 2996
+          },
+          {
+            "t": 46425.79999999702,
+            "ms": 90
+          },
+          {
+            "t": 48986.79999999702,
+            "ms": 5113
+          },
+          {
+            "t": 54102.40000000596,
+            "ms": 58
+          },
+          {
+            "t": 54175.40000000596,
+            "ms": 60
+          },
+          {
+            "t": 54310.70000000298,
+            "ms": 52
+          },
+          {
+            "t": 54495.5,
+            "ms": 71
+          },
+          {
+            "t": 54655.5,
+            "ms": 136
+          },
+          {
+            "t": 54846.59999999404,
+            "ms": 109
+          },
+          {
+            "t": 56775.70000000298,
+            "ms": 231
+          },
+          {
+            "t": 57708.5,
+            "ms": 51
+          },
+          {
+            "t": 58510.5,
+            "ms": 82
+          },
+          {
+            "t": 59004.40000000596,
+            "ms": 182
+          },
+          {
+            "t": 59304.59999999404,
+            "ms": 53
+          },
+          {
+            "t": 61196.29999999702,
+            "ms": 159
+          },
+          {
+            "t": 62435.20000000298,
+            "ms": 2369
+          },
+          {
+            "t": 64829.5,
+            "ms": 3250
+          },
+          {
+            "t": 68080.20000000298,
+            "ms": 2183
+          },
+          {
+            "t": 70272.5,
+            "ms": 106
+          },
+          {
+            "t": 70505.5,
+            "ms": 52
+          },
+          {
+            "t": 72087.90000000596,
+            "ms": 92
+          },
+          {
+            "t": 72211,
+            "ms": 78
+          },
+          {
+            "t": 74290.40000000596,
+            "ms": 93
+          },
+          {
+            "t": 75395.59999999404,
+            "ms": 2893
+          },
+          {
+            "t": 78290.5,
+            "ms": 106
+          },
+          {
+            "t": 78500.40000000596,
+            "ms": 54
+          },
+          {
+            "t": 78901.29999999702,
+            "ms": 66
+          },
+          {
+            "t": 82511,
+            "ms": 52
+          },
+          {
+            "t": 82899.59999999404,
+            "ms": 54
+          },
+          {
+            "t": 83611.59999999404,
+            "ms": 56
+          },
+          {
+            "t": 85306,
+            "ms": 78
+          },
+          {
+            "t": 85506.59999999404,
+            "ms": 63
+          },
+          {
+            "t": 87496.29999999702,
+            "ms": 73
+          },
+          {
+            "t": 88602.59999999404,
+            "ms": 88
+          },
+          {
+            "t": 92976.5,
+            "ms": 50
+          },
+          {
+            "t": 93704.09999999404,
+            "ms": 77
+          },
+          {
+            "t": 94017,
+            "ms": 52
+          },
+          {
+            "t": 94093.5,
+            "ms": 76
+          },
+          {
+            "t": 94302.79999999702,
+            "ms": 55
+          },
+          {
+            "t": 94512.90000000596,
+            "ms": 63
+          },
+          {
+            "t": 95014.90000000596,
+            "ms": 55
+          },
+          {
+            "t": 95111.70000000298,
+            "ms": 50
+          },
+          {
+            "t": 95297,
+            "ms": 104
+          },
+          {
+            "t": 96695.79999999702,
+            "ms": 73
+          },
+          {
+            "t": 97160.70000000298,
+            "ms": 70
+          },
+          {
+            "t": 97706.5,
+            "ms": 51
+          },
+          {
+            "t": 97919.20000000298,
+            "ms": 59
+          },
+          {
+            "t": 98111.90000000596,
+            "ms": 53
+          },
+          {
+            "t": 98906.90000000596,
+            "ms": 54
+          },
+          {
+            "t": 99293.09999999404,
+            "ms": 78
+          },
+          {
+            "t": 99512.70000000298,
+            "ms": 54
+          },
+          {
+            "t": 99637.20000000298,
+            "ms": 5603
+          },
+          {
+            "t": 105251.29999999702,
+            "ms": 120
+          },
+          {
+            "t": 105507.5,
+            "ms": 50
+          },
+          {
+            "t": 106799.5,
+            "ms": 61
+          },
+          {
+            "t": 106861.40000000596,
+            "ms": 140
+          },
+          {
+            "t": 107510.70000000298,
+            "ms": 50
+          },
+          {
+            "t": 109089.40000000596,
+            "ms": 159
+          },
+          {
+            "t": 109838.40000000596,
+            "ms": 58
+          },
+          {
+            "t": 110498.79999999702,
+            "ms": 85
+          },
+          {
+            "t": 110708.59999999404,
+            "ms": 50
+          },
+          {
+            "t": 111167.29999999702,
+            "ms": 53
+          },
+          {
+            "t": 111406.59999999404,
+            "ms": 151
+          },
+          {
+            "t": 111839.09999999404,
+            "ms": 66
+          },
+          {
+            "t": 114820.70000000298,
+            "ms": 181
+          },
+          {
+            "t": 115101.29999999702,
+            "ms": 52
+          },
+          {
+            "t": 115500.5,
+            "ms": 126
+          },
+          {
+            "t": 115706.79999999702,
+            "ms": 60
+          },
+          {
+            "t": 116167.5,
+            "ms": 667
+          },
+          {
+            "t": 117706.90000000596,
+            "ms": 63
+          },
+          {
+            "t": 117906.59999999404,
+            "ms": 71
+          },
+          {
+            "t": 118095.09999999404,
+            "ms": 66
+          },
+          {
+            "t": 118235,
+            "ms": 135
+          },
+          {
+            "t": 118643.59999999404,
+            "ms": 123
+          },
+          {
+            "t": 119154.40000000596,
+            "ms": 51
+          },
+          {
+            "t": 119286.90000000596,
+            "ms": 81
+          },
+          {
+            "t": 119373.29999999702,
+            "ms": 56
+          },
+          {
+            "t": 120506.40000000596,
+            "ms": 98
+          },
+          {
+            "t": 122165.20000000298,
+            "ms": 111
+          },
+          {
+            "t": 125294.90000000596,
+            "ms": 59
+          },
+          {
+            "t": 125354.29999999702,
+            "ms": 308
+          },
+          {
+            "t": 128308.20000000298,
+            "ms": 52
+          },
+          {
+            "t": 128668.59999999404,
+            "ms": 105
+          },
+          {
+            "t": 136500.29999999702,
+            "ms": 198
+          },
+          {
+            "t": 136702.29999999702,
+            "ms": 4401
+          },
+          {
+            "t": 144619.90000000596,
+            "ms": 666
+          },
+          {
+            "t": 145291,
+            "ms": 67
+          },
+          {
+            "t": 145390,
+            "ms": 411
+          },
+          {
+            "t": 146104.70000000298,
+            "ms": 53
+          },
+          {
+            "t": 146878.70000000298,
+            "ms": 136
+          },
+          {
+            "t": 147014.79999999702,
+            "ms": 50
+          },
+          {
+            "t": 147104.5,
+            "ms": 192
+          },
+          {
+            "t": 148953.70000000298,
+            "ms": 68
+          },
+          {
+            "t": 150503.79999999702,
+            "ms": 65
+          },
+          {
+            "t": 150697.09999999404,
+            "ms": 397
+          },
+          {
+            "t": 151890.40000000596,
+            "ms": 82
+          },
+          {
+            "t": 152903.90000000596,
+            "ms": 54
+          },
+          {
+            "t": 154059.29999999702,
+            "ms": 108
+          },
+          {
+            "t": 155266.20000000298,
+            "ms": 182
+          },
+          {
+            "t": 156382.5,
+            "ms": 265
+          },
+          {
+            "t": 156905.29999999702,
+            "ms": 56
+          },
+          {
+            "t": 157955.40000000596,
+            "ms": 214
+          },
+          {
+            "t": 158513.79999999702,
+            "ms": 68
+          },
+          {
+            "t": 158889.5,
+            "ms": 92
+          },
+          {
+            "t": 159438.59999999404,
+            "ms": 383
+          },
+          {
+            "t": 159895.29999999702,
+            "ms": 59
+          },
+          {
+            "t": 160101.20000000298,
+            "ms": 68
+          },
+          {
+            "t": 160204,
+            "ms": 54
+          },
+          {
+            "t": 160304.59999999404,
+            "ms": 69
+          },
+          {
+            "t": 160562,
+            "ms": 57
+          },
+          {
+            "t": 161080.59999999404,
+            "ms": 106
+          },
+          {
+            "t": 161215.20000000298,
+            "ms": 53
+          },
+          {
+            "t": 161268.90000000596,
+            "ms": 168
+          },
+          {
+            "t": 161495.09999999404,
+            "ms": 64
+          },
+          {
+            "t": 162078.90000000596,
+            "ms": 80
+          },
+          {
+            "t": 162701.79999999702,
+            "ms": 70
+          },
+          {
+            "t": 163312.90000000596,
+            "ms": 60
+          },
+          {
+            "t": 164274,
+            "ms": 179
+          },
+          {
+            "t": 166759.79999999702,
+            "ms": 122
+          },
+          {
+            "t": 167603,
+            "ms": 71
+          },
+          {
+            "t": 170026.79999999702,
+            "ms": 245
+          },
+          {
+            "t": 172685.59999999404,
+            "ms": 201
+          },
+          {
+            "t": 175474.20000000298,
+            "ms": 201
+          }
+        ],
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "audio": {
+          "layers": [
+            {
+              "id": "water",
+              "asset": "river-moderate-fs-591733-m11-2",
+              "actualBusGain": 0.5389465093612671,
+              "targetGain": 0.5390895524628516,
+              "masterGain": 0.38499999046325684,
+              "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 2.1 m",
+              "diffuse": false,
+              "pan": null,
+              "position": {
+                "x": -669.3736941639194,
+                "y": -35.19026666796999,
+                "z": -198.8639509144912
+              },
+              "panningModel": "equalpower",
+              "transition": "steady",
+              "nextWindowIn": 20.872644583173095
+            },
+            {
+              "id": "foliage",
+              "asset": "foliage-commons-85708704-1",
+              "actualBusGain": 0.0049989898689091206,
+              "targetGain": 0.004998989712237755,
+              "masterGain": 0.38499999046325684,
+              "reason": "mapped vegetation 0.38 × shared wind 0.15, gust 0.00",
+              "diffuse": true,
+              "pan": null,
+              "position": null,
+              "panningModel": null,
+              "transition": "steady",
+              "nextWindowIn": 0.0802979473322587
+            }
+          ],
+          "activeSources": [
+            {
+              "asset": "river-moderate-fs-591733-m11-1",
+              "recording": "fs-591733",
+              "position": null,
+              "diffuse": false,
+              "gain": 0.6584131121635437,
+              "retirementGain": 1,
+              "masterGain": 0.38499999046325684,
+              "distance": null,
+              "refDistance": 4,
+              "panningModel": null,
+              "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 2.7 m",
+              "occlusion": 0,
+              "transition": "playing"
+            },
+            {
+              "asset": "foliage-commons-85708704-1",
+              "recording": "commons-85708704",
+              "position": null,
+              "diffuse": true,
+              "gain": 0.699999988079071,
+              "retirementGain": 1,
+              "masterGain": 0.38499999046325684,
+              "distance": null,
+              "refDistance": 4,
+              "panningModel": null,
+              "reason": "mapped vegetation 0.38 × shared wind 0.15, gust 0.00",
+              "occlusion": 0,
+              "transition": "playing"
+            },
+            {
+              "asset": "river-moderate-fs-591733-m11-2",
+              "recording": "fs-591733",
+              "position": null,
+              "diffuse": false,
+              "gain": 0.2376186102628708,
+              "retirementGain": 1,
+              "masterGain": 0.38499999046325684,
+              "distance": null,
+              "refDistance": 4,
+              "panningModel": null,
+              "reason": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey; physical proximity 2.1 m",
+              "occlusion": 0,
+              "transition": "playing"
+            }
+          ],
+          "recentEvents": [
+            {
+              "asset": "original-water-paddle:2",
+              "position": {
+                "x": -670.2874863929162,
+                "y": -35.41342120160592,
+                "z": -195.8650828570525
+              },
+              "contactId": 2,
+              "time": 14.612
+            },
+            {
+              "asset": "original-water-paddle:2",
+              "position": {
+                "x": -671.7216090126782,
+                "y": -35.47880720399497,
+                "z": -196.2268783141121
+              },
+              "contactId": 5,
+              "time": 23.072
+            }
+          ],
+          "nodes": 22,
+          "voices": 3,
+          "peakVoices": 3,
+          "hrtf": 0,
+          "beds": 2,
+          "budget": {
+            "voices": 12,
+            "hrtf": 2,
+            "beds": 3,
+            "hz": 2
+          },
+          "dropped": 0,
+          "steps": 0,
+          "lastStepAssets": [],
+          "heardBirds": 0,
+          "waterContacts": 2,
+          "waterBufferBytes": 913920,
+          "roadEvents": 0,
+          "profile": "balanced",
+          "obstructionChecks": 0,
+          "obstructionUpdates": 2,
+          "cacheBytes": 17216000,
+          "peakBytes": 17216000,
+          "cached": 5,
+          "pending": 0,
+          "activeLoads": 0,
+          "loads": 5,
+          "decodes": 5,
+          "deferred": 0,
+          "deniedDecodes": 0,
+          "failures": {},
+          "aircraftEvents": 0,
+          "contextUpdates": 9,
+          "cpuMs": 1.0999999940395355,
+          "maxCpuMs": 139.79999999701977,
+          "nearbyChecks": 63,
+          "memoryCells": 1,
+          "perches": 12,
+          "contact": {
+            "surface": null,
+            "material": "unknown",
+            "basis": "no reliable ground material",
+            "confidence": "unknown",
+            "wetness": 0
+          },
+          "context": {
+            "version": 1,
+            "geo": {
+              "lat": 46.69706237723846,
+              "lon": 0.8756128657450658
+            },
+            "key": "wgs84-v1:69988:92608",
+            "worldTimeMs": 1782050267015,
+            "localHour": 15.963055555555554,
+            "season": "summer",
+            "timeBasis": "civil",
+            "altitudeM": 65.86932858035323,
+            "habitat": "scrub",
+            "solarAltitude": 0.9849118505468907,
+            "weather": {
+              "cloud": 0.16,
+              "mist": 0,
+              "wind": 0.14900423614157793,
+              "rain": 0,
+              "snow": 0,
+              "gust": 0.0005585070766017428,
+              "electric": 0,
+              "temperatureC": 18.529786633813934,
+              "snowCover": 0
+            },
+            "position": {
+              "x": -670.9147873364127,
+              "y": -35.33067141964678,
+              "z": -196.18783418536503
+            },
+            "water": {
+              "distanceM": 2.0625640643847323,
+              "horizontalDistanceM": 1.0984336016434428,
+              "bankDistanceM": 1.0984336016434428,
+              "centrelineDistanceM": 12.717059988980122,
+              "verticalDistanceM": 1.7457417169993619,
+              "point": {
+                "x": -669.3736941639194,
+                "z": -198.8639509144912,
+                "y": -35.19026666796999
+              },
+              "insideMappedWater": false,
+              "kind": "river",
+              "weirDistanceM": null,
+              "provenance": "mapped OSM river polygon bank; cadastral outline where tagged; not a current bank survey",
+              "heightBasis": "DEM approximation, not measured water level"
+            },
+            "emitters": [
+              {
+                "id": "perch-v1:95633:1791",
+                "geo": {
+                  "lat": 46.69615966796875,
+                  "lon": 0.87492529296875
+                },
+                "position": {
+                  "x": -723.4105925111971,
+                  "y": -13.14809696139011,
+                  "z": -95.69823828129353
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95633:1792",
+                "geo": {
+                  "lat": 46.6960146484375,
+                  "lon": 0.8752373046875
+                },
+                "position": {
+                  "x": -699.5886685433559,
+                  "y": -19.476930033860384,
+                  "z": -79.55466406222081
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95633:1793",
+                "geo": {
+                  "lat": 46.695886230468744,
+                  "lon": 0.87573486328125
+                },
+                "position": {
+                  "x": -661.6003422159293,
+                  "y": -26.483537417099015,
+                  "z": -65.2591757806291
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95633:1794",
+                "geo": {
+                  "lat": 46.695929199218746,
+                  "lon": 0.8761953125
+                },
+                "position": {
+                  "x": -626.4452963604216,
+                  "y": -24.66221913919172,
+                  "z": -70.04245703081261
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95633:1795",
+                "geo": {
+                  "lat": 46.696142578125,
+                  "lon": 0.87669287109375
+                },
+                "position": {
+                  "x": -588.4569700329951,
+                  "y": -28.448984798031717,
+                  "z": -93.79579687485369
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95634:1791",
+                "geo": {
+                  "lat": 46.696583984374996,
+                  "lon": 0.8746445312500001
+                },
+                "position": {
+                  "x": -744.8465960816222,
+                  "y": -14.197221522898545,
+                  "z": -142.9331406245816
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95634:1792",
+                "geo": {
+                  "lat": 46.6963701171875,
+                  "lon": 0.8751235351562501
+                },
+                "position": {
+                  "x": -708.274909990155,
+                  "y": -22.64445878173197,
+                  "z": -119.12544531237268
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95634:1793",
+                "geo": {
+                  "lat": 46.696498535156245,
+                  "lon": 0.8756025390625001
+                },
+                "position": {
+                  "x": -671.703223898688,
+                  "y": -26.446893854455695,
+                  "z": -133.4209335931734
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95635:1791",
+                "geo": {
+                  "lat": 46.697060546874994,
+                  "lon": 0.87476025390625
+                },
+                "position": {
+                  "x": -736.0112346099888,
+                  "y": -22.151346802403566,
+                  "z": -195.98407812431583
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95635:1792",
+                "geo": {
+                  "lat": 46.6969326171875,
+                  "lon": 0.8752578125
+                },
+                "position": {
+                  "x": -698.0229082825623,
+                  "y": -28.516612841140912,
+                  "z": -181.74294531247392
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95635:1793",
+                "geo": {
+                  "lat": 46.697145996093745,
+                  "lon": 0.87575537109375
+                },
+                "position": {
+                  "x": -660.0345819551358,
+                  "y": -29.440929336509512,
+                  "z": -205.49628515572402
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95635:1794",
+                "geo": {
+                  "lat": 46.697018066406244,
+                  "lon": 0.8762529296875
+                },
+                "position": {
+                  "x": -622.0462556277091,
+                  "y": -30.650853563524976,
+                  "z": -191.25515234309114
+                },
+                "habitat": "meadow",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95635:1795",
+                "geo": {
+                  "lat": 46.6968896484375,
+                  "lon": 0.87675048828125
+                },
+                "position": {
+                  "x": -584.0579293002826,
+                  "y": -31.61257878844468,
+                  "z": -176.95966406229041
+                },
+                "habitat": "meadow",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95636:1791",
+                "geo": {
+                  "lat": 46.697356445312494,
+                  "lon": 0.8746611328125
+                },
+                "position": {
+                  "x": -743.5790758705056,
+                  "y": -26.373092444461932,
+                  "z": -228.92349218680317
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95636:1792",
+                "geo": {
+                  "lat": 46.6976552734375,
+                  "lon": 0.87517724609375
+                },
+                "position": {
+                  "x": -704.1741093071197,
+                  "y": -28.522310462710635,
+                  "z": -262.18903906225245
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95636:1793",
+                "geo": {
+                  "lat": 46.697441894531245,
+                  "lon": 0.87565625
+                },
+                "position": {
+                  "x": -667.6024232156525,
+                  "y": -27.39239764867851,
+                  "z": -238.43569921821137
+                },
+                "habitat": "meadow",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95636:1794",
+                "geo": {
+                  "lat": 46.697399414062495,
+                  "lon": 0.87617236328125
+                },
+                "position": {
+                  "x": -628.1974566522665,
+                  "y": -30.176629530366156,
+                  "z": -233.70677343698668
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95636:1795",
+                "geo": {
+                  "lat": 46.69752734375,
+                  "lon": 0.8766513671875
+                },
+                "position": {
+                  "x": -591.6257705607994,
+                  "y": -27.770317565747533,
+                  "z": -247.94790624961956
+                },
+                "habitat": "meadow",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95637:1791",
+                "geo": {
+                  "lat": 46.698159667968746,
+                  "lon": 0.87461865234375
+                },
+                "position": {
+                  "x": -746.822436410727,
+                  "y": -28.11546517967814,
+                  "z": -318.33823828077465
+                },
+                "habitat": "wood",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95637:1792",
+                "geo": {
+                  "lat": 46.6978603515625,
+                  "lon": 0.8750791015625
+                },
+                "position": {
+                  "x": -711.6673905552193,
+                  "y": -30.185615714876647,
+                  "z": -285.01833593715753
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95637:1793",
+                "geo": {
+                  "lat": 46.69807373046875,
+                  "lon": 0.87557666015625
+                },
+                "position": {
+                  "x": -673.6790642277928,
+                  "y": -30.593836208365474,
+                  "z": -308.7716757811986
+                },
+                "habitat": "meadow",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95637:1794",
+                "geo": {
+                  "lat": 46.698116699218744,
+                  "lon": 0.876111328125
+                },
+                "position": {
+                  "x": -632.8574574284474,
+                  "y": -29.70233820249105,
+                  "z": -313.55495703059114
+                },
+                "habitat": "meadow",
+                "interpreted": true
+              },
+              {
+                "id": "perch-v1:95637:1795",
+                "geo": {
+                  "lat": 46.69798876953125,
+                  "lon": 0.87660888671875
+                },
+                "position": {
+                  "x": -594.8691311010208,
+                  "y": -25.610466594067574,
+                  "z": -299.31382421874923
+                },
+                "habitat": "scrub",
+                "interpreted": true
+              }
+            ],
+            "ground": {
+              "surface": null,
+              "material": "unknown",
+              "basis": "no reliable ground material",
+              "confidence": "unknown",
+              "wetness": 0
+            },
+            "influences": {
+              "vegetation": 0.38249999999999995,
+              "rural": 0.075
+            },
+            "sources": [
+              {
+                "id": "tree-bird:tree:-678.953922:-229.548349",
+                "kind": "bird",
+                "habitat": "wood",
+                "position": {
+                  "x": -704.1388700200398,
+                  "y": -27.268658549334205,
+                  "z": -168.38059263247357
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": -2.436649545380934e-16,
+                  "z": 0
+                },
+                "family": "robin",
+                "updatedAt": 149.80510000000896
+              },
+              {
+                "id": "tree-bird:tree:-616.650607:-208.123862",
+                "kind": "bird",
+                "habitat": "wood",
+                "position": {
+                  "x": -618.3000105512895,
+                  "y": -30.997575184774853,
+                  "z": -209.78142172609833
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "family": "blackbird",
+                "updatedAt": 149.80510000000896
+              }
+            ],
+            "provenance": {
+              "geography": "IGN/ASP/OSM classifications; mix inferred",
+              "weather": "EarthLife simulated",
+              "region": "temperate-europe"
+            },
+            "fixture": false,
+            "environment": {
+              "revision": 61,
+              "commandRevision": 4,
+              "manual": false
+            },
+            "mixRevision": 61,
+            "listener": {
+              "position": {
+                "x": -668.825535061214,
+                "y": -33.44452495097064,
+                "z": -199.81583219665862
+              },
+              "forward": {
+                "x": -0.48938366551829027,
+                "y": -0.19573960035370389,
+                "z": 0.8498174137879586
+              }
+            },
+            "traffic": [],
+            "roof": null
+          }
+        },
+        "buffers": {
+          "attributeBuffers": 3278,
+          "attributeBytes": 93894046,
+          "typedTextureBytes": 2523136,
+          "textureCount": 3,
+          "scope": "CPU mirrors of loaded geometry and typed textures; excludes driver allocation, compression, render targets and untyped image textures"
+        }
+      },
+      "captureValid": true,
+      "afterImage": "candidate-authored-pilot-water-balanced-after.png"
+    }
+  ],
+  "errors": [],
+  "sourceSHA": "d162a653785d656e1a6652c4ca406889a1b55c28"
+}
