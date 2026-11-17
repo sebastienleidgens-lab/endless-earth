@@ -1,25 +1,65 @@
 {
   "tests": {
     "command": "npm test",
-    "sourceCommit": "d162a653785d656e1a6652c4ca406889a1b55c28",
+    "sourceCommit": "3aa41d279fe2dad5a23804ea30bc40f5748d194e",
+    "coreRuntimeSource": "d162a653785d656e1a6652c4ca406889a1b55c28",
     "passed": 466,
     "failed": 0,
-    "log": "tests/tests-authored-final.log",
-    "sha256": "3c95001e978bfef65c533898a10b15ed4e72f1ddb4758d14c8402a701fff4e1b"
+    "log": "tests/tests-payload.log",
+    "sha256": "75115fb369cf75b4d925521356ec0290c50158d2081b88a8fa5b1ece40b9438f"
   },
   "production": {
-    "passed": false,
-    "reason": "Final payload build and clean identity verification pending; no acceptance inferred."
+    "passed": true,
+    "sourceCommit": "3aa41d279fe2dad5a23804ea30bc40f5748d194e",
+    "dirty": false,
+    "layouts": 4,
+    "receipt": "tests/production-check.json",
+    "build": "builds/production/production-build.json",
+    "log": "tests/production-build.log",
+    "hooksAbsent": [
+      "p252",
+      "p261",
+      "p262",
+      "p263",
+      "p264",
+      "q26"
+    ]
   },
   "gallery": {
-    "passed": false
+    "passed": true,
+    "receipt": "gallery-check.json",
+    "scenarios": 14,
+    "mediaPerLayout": 33,
+    "modes": [
+      "desktop",
+      "mobile",
+      "internet-isolated-local"
+    ],
+    "fileProtocol": "Blocked by administered browser; preserved refusal, local HTTP command provided."
   },
   "git": {
     "draft": true,
     "merged": false,
     "stateReceipt": "github-before-delivery.json",
     "branch": "mission/26-vienne-planet-engine",
-    "pullRequest": 38
+    "pullRequest": 38,
+    "ancestry": {
+      "110b4548aa32297e837874cb6a9a6353c4d1f94b": {
+        "HEAD": true,
+        "origin/main": false
+      },
+      "5fe6e792f34369926854b649a5b631426b7037c4": {
+        "HEAD": true,
+        "origin/main": false
+      },
+      "7b78222b7d93b99926ce4a3a1f5bd91ca2eafb94": {
+        "HEAD": true,
+        "origin/main": false
+      }
+    },
+    "mainAtAudit": "01e791be64cefae2eb1e90ab465f9bf0b848c33e",
+    "mergeBase": "ffbbd765ec75bdcddd0bdb3b58933e46d585b7db",
+    "deliveryState": "Not pushed yet; final receipt follows after actual observation."
   },
   "preservation": "preservation.json",
   "runtimeModules": "active-module-equivalence.json",
@@ -28,5 +68,30 @@
     "deployment": false,
     "purchaseEUR": 0,
     "productionWorkflowChanges": false
+  },
+  "archives": {
+    "index": "builds/index.json",
+    "instrumentation": "builds/instrumentation-provenance.json",
+    "historicalMissingHelperTextEntries": 18,
+    "missingTextScope": "Earlier prototypes only; compiled original bytes remain retained. Final/matched helper versions are exact.",
+    "compiledBuildCount": 18
+  },
+  "whitespaceAudit": {
+    "scope": "Source/scripts/Markdown checked separately from archival bytes. Original compiled shaders and failed test logs preserve trailing whitespace verbatim; they are never normalized."
+  },
+  "reviewMode": {
+    "passed": true,
+    "receipt": "review/review-check.json",
+    "scope": "F8 visibility, real JSON download, GPU string, framebuffer. Software tooling check only; no hardware or artistic acceptance.",
+    "build": "builds/candidate-review-layout/runtime-build.json",
+    "sourceCommit": "3aa41d279fe2dad5a23804ea30bc40f5748d194e",
+    "samples": 13
+  },
+  "media": {
+    "clips": 33,
+    "nativeCaseRecords": 38,
+    "packetExact": true,
+    "invalidUnclaimedAttempts": 10,
+    "receipt": "media-integrity.json"
   }
 }

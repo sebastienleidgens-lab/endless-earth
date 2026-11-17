@@ -114,3 +114,7 @@ Le contrôle de compatibilité du court Clain historique se rejoue par `node scr
 La série finale `quiet-execution.json` est produite par `node scripts/run-mission-26-4-quiet.mjs` avec les références gelées sur5437/5441. Elle refuse de démarrer tant qu’un propriétaire de campagne fonctionnelle est actif. Ne lancer ni génération de rapport, ni hash global, ni autre navigateur/encodeur pendant ses mesures. La première série `isolated` est conservée mais un travail CPU documentaire s’est superposé à une partie de sa référence.
 
 Le reçu `builds/instrumentation-provenance.json` vérifie les textes d’instrumentation par leur contenu. Dix-huit entrées de helpers d’anciens prototypes ne disposent plus d’un texte exact retrouvé ; leurs programmes compilés et hashes restent conservés. Les builds appariés, le candidat final et leurs helpers sont disponibles exactement. Une recompilation moderne de ces anciens prototypes n’est jamais présentée comme leur binaire historique.
+
+## Ouvrir la galerie localement
+
+Depuis la racine : `python3 -m http.server 5443 --bind 127.0.0.1 --directory docs`, puis ouvrir `http://127.0.0.1:5443/mission-26-4-evidence/index.html`. Les vidéos, cartes et scripts de galerie sont locaux et ne demandent aucun accès Internet. Le navigateur administré Codex refuse `file://` : cet essai est conservé dans `gallery-first-file-protocol-blocked.json`, sans neutraliser cette politique. Desktop, tactile émulé et boucle locale avec tout accès externe refusé sont vérifiés séparément.

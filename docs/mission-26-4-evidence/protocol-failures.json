@@ -116,6 +116,28 @@
         "bank-source-candidates.json",
         "river-6-screen.json"
       ]
+    },
+    {
+      "id": "H11",
+      "kind": "diagnostic-tooling-startup",
+      "observation": "F8 initially sampled before world readiness, then the review build retained the default paused evidence frame. Neither failure is a production journey failure.",
+      "correction": "Guard readiness, release native frame only in review mode, clone timed metric snapshots and reset FPS baseline while loading. Real F8/download check succeeds.",
+      "evidence": [
+        "review/first-check-failed.json",
+        "review/second-check-failed.json",
+        "review/paused-review-check-cancelled.json",
+        "review/live-check-before-layout.json"
+      ]
+    },
+    {
+      "id": "H12",
+      "kind": "managed-browser-protocol-limit",
+      "observation": "Local file:// gallery navigation refused by browser administrative policy after desktop/mobile HTTP checks passed.",
+      "correction": "Policy retained. Local HTTP and Internet-isolated loopback verified; local serving command delivered.",
+      "evidence": [
+        "gallery-first-file-protocol-blocked.json",
+        "gallery-check.json"
+      ]
     }
   ]
 }

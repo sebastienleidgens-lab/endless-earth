@@ -4,7 +4,7 @@
 
 **Verdict global : PARTIEL.** La voiture atteint la destination du trajet≥80km. Un nouveau corridor dépasse1km de progression physique et se termine par débarquement et marche. Les corrections du personnage, des oiseaux et des ombres sont techniques ; leur naturel et leur qualité temporelle restent **NON VALIDÉS sur matériel physique**. Les budgets de préparation≤8 ms / aucune tâche>50 ms ne sont pas atteints. La PR38 reste en brouillon, non prête à fusionner.
 
-[Galerie autonome](mission-26-4-evidence/index.html) · [A01–A14](mission-26-4-evidence/acceptance.json) · [Reproduction et revue GPU locale](mission-26-4-evidence/REPRODUCTION.md) · [Architecture](mission-26-4-architecture.md). Aucun déploiement/publication, merge, achat ou workflow de production modifié.
+[Galerie autonome locale](mission-26-4-evidence/index.html) · [A01–A14](mission-26-4-evidence/acceptance.json) · [Reproduction et revue GPU locale](mission-26-4-evidence/REPRODUCTION.md) · [Architecture](mission-26-4-architecture.md). Aucun déploiement/publication, merge, achat ou workflow de production modifié.
 
 ## 2. M26.3 → M26.4 : causes, corrections et résultats
 
@@ -180,7 +180,7 @@ Les échantillons de quelques secondes ne rendent pas le P99 robuste et les phas
 
 Les647preuves/rapports M26.3 hashés avant modification restent inchangés ; données publiques et workflows aussi. Relief2m :499packs,1407876165octets, pin`acb0a73b396229bf90731b90a558a8d5d072a9ec`. IGN/OSM, licences, audio, textures et patrimoine du pilote sont conservés. Aucun dataset nouveau, département ajouté, acquisition massive ou coût. Les accès de jeu restent des politiques sources, pas des droits cadastraux ni des conseils nautiques.
 
-Validation : **466 tests réussis, 0 échec** ; build de production=en attente, galerie=en attente. [Reçus exacts](mission-26-4-evidence/verification.json). Les tests de logique hérités couvrent transports, camp/nage/interactions, audio, sauvegardes et architecture ; les smokes compilés couvrent carte/tactile/reload/réseau et la fixture synthétique hors France. Cela ne vaut pas un rejeu natif exhaustif de train/avion/camp sur téléphone. L'historique M25.2 reste ancêtre de la branche et absent de main ; les SHA main/PR réels sont vérifiés à la livraison. Une seule PR38 brouillon, aucune fusion, aucun déploiement/publication et aucun changement de workflow.
+Validation : **466 tests réussis, 0 échec** ; build de production=réussi, galerie=vérifiée. [Reçus exacts](mission-26-4-evidence/verification.json). La galerie fonctionne via serveur local sans dépendance Internet ; le protocole fichier `file://` est bloqué par le navigateur administré, refus archivé. Les tests de logique hérités couvrent transports, camp/nage/interactions, audio, sauvegardes et architecture ; les smokes compilés couvrent carte/tactile/reload/réseau et la fixture synthétique hors France. Cela ne vaut pas un rejeu natif exhaustif de train/avion/camp sur téléphone. L'historique M25.2 reste ancêtre de la branche et absent de main ; les SHA main/PR réels sont vérifiés à la livraison. Une seule PR38 brouillon, aucune fusion, aucun déploiement/publication et aucun changement de workflow.
 
 ## 9. Défauts résiduels et décision
 
