@@ -1,0 +1,69 @@
+{
+  "initialBytes": 1480340,
+  "initialDefinition": "Exact uncompressed file sum needed for first painting: HTML, JS/CSS, all world geometry, image0/depth0/water0/leaves0. No HTTP or TLS overhead; preloads can overlap initial display.",
+  "allBytes": 2681937,
+  "decodedCacheEstimateBytes": 55050240,
+  "decodedDefinition": "3*(2048*1280)*(4 RGBA image + 2 depth + 1 water) = 52.5 MiB. Lower bound excluding browser, canvases, decoder peaks and compositor. JS heap is separate and must not be naively added.",
+  "walk": {
+    "metres": 572.2405979999747,
+    "observedCompletionSeconds": 422.46145815100004,
+    "completionResolutionSeconds": 10,
+    "visits": [
+      0,
+      1,
+      2,
+      1,
+      0
+    ],
+    "transitionsMs": [
+      1.3999999999068677,
+      0.8999999999068677,
+      1.1000000000931323,
+      0.8999999999068677
+    ],
+    "p50FrameMs": 16.69999999999709,
+    "p95FrameMs": 16.70000000001164,
+    "heapAtEnd": 34038162
+  },
+  "mobile": {
+    "readyMs": 1654.7852670000284,
+    "p50FrameMs": 16.699999999999818,
+    "p95FrameMs": 16.799999999999955,
+    "heap": 59504304,
+    "physicalDevice": false
+  },
+  "comparison": [
+    {
+      "name": "lp01",
+      "readyMs": 276.363246,
+      "heapBytes": 59855007,
+      "p50Ms": 33.30000000000018,
+      "p95Ms": 50,
+      "encodedResourceBytes": 2676654,
+      "errors": []
+    },
+    {
+      "name": "3d-main",
+      "readyMs": 3859.6738349999996,
+      "heapBytes": 120139126,
+      "p50Ms": 383.1999999999971,
+      "p95Ms": 666.6999999999989,
+      "encodedResourceBytes": 13289075,
+      "errors": []
+    }
+  ],
+  "visibleAnimationPixels": {
+    "water": 410,
+    "foliage": 1275,
+    "all": 1703,
+    "width": 1294,
+    "height": 680,
+    "seconds": 1.2,
+    "threshold": 9
+  },
+  "hashes": {
+    "scene-0": "345cfd31f45049bea8a91665c9b81f443effc461dcf38695efcd26be76d90bb5",
+    "scene-1": "a977060720e92a912aa6fea3bd6e7187e2bf2736a8302b668781d9903f7de2e8",
+    "scene-2": "e08df3fefaad1b5bffdaa6ca64cbfb26db36ed7fd91b7550084002fc76a806aa"
+  }
+}

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#192c2b" />
+    <title>Living Paintings · Endless Earth</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <a class="brand" href="./" aria-label="Recommencer la promenade"
+          >E<span
+            >ENDLESS EARTH<small>LES CARNETS D’EXPLORATION</small></span
+          ></a
+        >
+        <div class="edition">ÉTUDE N° 01<span>Living Paintings</span></div>
+        <button id="about" aria-label="À propos du prototype">
+          À propos <span>↗</span>
+        </button>
+      </header>
+      <main>
+        <section class="intro">
+          <p class="eyebrow">FRANCE · VIENNE · 46°41′ N, 0°53′ E</p>
+          <h1>Une promenade à <em>Angles-sur-l’Anglin.</em></h1>
+          <p class="subtitle">
+            Trois tableaux. Deux rives. Le temps de regarder.
+          </p>
+        </section>
+        <section class="painting" aria-label="Promenade interactive">
+          <canvas
+            id="view"
+            tabindex="0"
+            aria-label="Tableau jouable. Déplacez-vous avec les flèches, ZQSD ou WASD, ou touchez un chemin."
+          ></canvas>
+          <div id="loading" role="status">Ouverture du carnet…</div>
+          <div class="scene-label">
+            <span id="chapter">01 / 03</span>
+            <h2 id="title">Les ruelles de pierre</h2>
+            <p id="description"></p>
+          </div>
+          <button id="zoom">Vue large</button>
+          <button id="walk">Commencer la promenade <span>→</span></button>
+          <div class="compass" title="Nord géographique">
+            <span id="north">N ↑</span><small>1,38 m/s</small>
+          </div>
+          <div id="toast" role="status"></div>
+          <div class="mobile-pad" aria-label="Commandes tactiles">
+            <button data-key="ArrowUp" aria-label="Marcher vers le haut">
+              ↑
+            </button>
+            <div>
+              <button data-key="ArrowLeft" aria-label="Marcher vers la gauche">
+                ←</button
+              ><button data-key="ArrowDown" aria-label="Marcher vers le bas">
+                ↓</button
+              ><button
+                data-key="ArrowRight"
+                aria-label="Marcher vers la droite"
+              >
+                →
+              </button>
+            </div>
+          </div>
+        </section>
+        <section class="trail">
+          <div class="trail-heading">
+            <span>LE FIL DE LA PROMENADE</span
+            ><span id="distance">0 m parcouru</span>
+          </div>
+          <ol>
+            <li class="active" data-scene="0">
+              <span>01</span>
+              <div>Le village<small>Rue du Pont</small></div>
+            </li>
+            <li data-scene="1">
+              <span>02</span>
+              <div>La traversée<small>Le pont de l’Anglin</small></div>
+            </li>
+            <li data-scene="2">
+              <span>03</span>
+              <div>Le coteau<small>Rue Sainte-Croix</small></div>
+            </li>
+          </ol>
+        </section>
+        <footer>
+          <p>
+            <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> ou ZQSD / WASD
+            <span>·</span> Cliquez sur un chemin <span>·</span>
+            <button id="pause">Pause</button
+            ><button id="motion" aria-pressed="false">Animations : oui</button>
+          </p>
+          <p>
+            Décors interprétés ·
+            <a
+              href="https://www.openstreetmap.org/copyright"
+              target="_blank"
+              rel="noreferrer"
+              >© OpenStreetMap contributors</a
+            >
+            · IGN <span>·</span> Prototype LP-01
+          </p>
+        </footer>
+      </main>
+    </div>
+    <dialog id="info">
+      <button id="close" aria-label="Fermer">×</button>
+      <p class="eyebrow">ENDLESS EARTH · LP-01</p>
+      <h2>Un paysage à parcourir.</h2>
+      <p>
+        Une étude indépendante de décors précalculés, inspirée des jeux de rôle
+        à perspective fixe. Suivez les lanternes dorées aux extrémités du
+        parcours pour changer de tableau. Revenez sur vos pas à tout moment.
+      </p>
+      <p>
+        Les rues, le pont et les empreintes des bâtiments proviennent
+        d’OpenStreetMap. Le relief est échantillonné dans le MNT IGN existant.
+        Toits, façades, arbres et profil du pont sont des interprétations
+        procédurales, sans vérification architecturale.
+      </p>
+      <p>
+        Décors 3D détaillés précalculés : pierre, tuiles, végétation et ombres.
+        Textures photographiques libres de Poly Haven (CC0). Aucune image
+        générée par IA. Aucun son. La qualité artistique reste à apprécier dans
+        le navigateur.
+      </p>
+      <p class="credits">
+        <a
+          href="https://www.openstreetmap.org/copyright"
+          target="_blank"
+          rel="noreferrer"
+          >© OpenStreetMap contributors · ODbL 1.0</a
+        ><br />IGN LiDAR HD / BD Forêt / BD TOPO ·
+        <a
+          href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/"
+          target="_blank"
+          rel="noreferrer"
+          >Licence Ouverte 2.0</a
+        ><br /><a href="./ATTRIBUTION.txt" target="_blank" rel="noreferrer"
+          >Attributions IGN, OSM, Poly Haven et Three.js</a
+        >
+        · Ressources originales : voir LICENSES.md dans le prototype.
+      </p>
+    </dialog>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

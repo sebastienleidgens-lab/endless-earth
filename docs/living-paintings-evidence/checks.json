@@ -1,0 +1,47 @@
+{
+  "initialBase": "8cefef9b0f8a24bd7ee7b8deb661126a50854c80",
+  "mainRechecked": "0f699fa50cb9d9b8158fc88776d27ec75594f575",
+  "branch": "prototype/living-paintings",
+  "prototypeTests": {
+    "tests": 7,
+    "pass": 7,
+    "fail": 0
+  },
+  "initialBaseTests": {
+    "tests": 140,
+    "pass": 140,
+    "fail": 0
+  },
+  "currentMainReferenceTests": {
+    "tests": 146,
+    "pass": 146,
+    "fail": 0
+  },
+  "sourceHashMatches": {
+    "angles-osm.geojson": true,
+    "angles-terrain.json": true,
+    "angles-environment.json": true
+  },
+  "deterministicAssets": [
+    "experiments/living-paintings/public/scene-0-depth.png: OK",
+    "experiments/living-paintings/public/scene-0-image.webp: OK",
+    "experiments/living-paintings/public/scene-0-leaves.json: OK",
+    "experiments/living-paintings/public/scene-0-water.png: OK",
+    "experiments/living-paintings/public/scene-1-depth.png: OK",
+    "experiments/living-paintings/public/scene-1-image.webp: OK",
+    "experiments/living-paintings/public/scene-1-leaves.json: OK",
+    "experiments/living-paintings/public/scene-1-water.png: OK",
+    "experiments/living-paintings/public/scene-2-depth.png: OK",
+    "experiments/living-paintings/public/scene-2-image.webp: OK",
+    "experiments/living-paintings/public/scene-2-leaves.json: OK",
+    "experiments/living-paintings/public/scene-2-water.png: OK"
+  ],
+  "builds": {
+    "prototype": "passed TypeScript + Vite",
+    "initial3D": "passed TypeScript + Vite",
+    "currentMainReference": "passed TypeScript + Vite"
+  },
+  "productionEdits": "none; compare prototype commit against verified base for .github/src/public/root package and config",
+  "mainMovement": "main advanced by merge of PR #18 during this work; no merge/rebase or push to main performed by LP-01",
+  "physicalDeviceTested": false
+}
