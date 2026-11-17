@@ -11,11 +11,8 @@ export function circleHitsPolygon(x,z,poly,radius=.3) {
   for(let i=0,j=poly.length-1;i<poly.length;j=i++) {
     const a=poly[j],b=poly[i],dx=b.x-a.x,dz=b.z-a.z;
     if((a.z>z)!==(b.z>z)&&x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)inside=!inside;
-    // Water membership asks for radius zero millions of times while building
-    // its checked lattice. Edge distance can never be <0; avoid the unused
-    // projection/hypot without changing either the polygon or capsule rule.
-    if(radius>0){const t=Math.max(0,Math.min(1,((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz||1)));
-    if(Math.hypot(x-a.x-t*dx,z-a.z-t*dz)<radius)return true;}
+    const t=Math.max(0,Math.min(1,((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz||1)));
+    if(Math.hypot(x-a.x-t*dx,z-a.z-t*dz)<radius)return true;
   }
   return inside;
 }

@@ -1,4 +1,4 @@
-import {circleHitsPolygon} from '../controls/walking.mjs';
+import {waterContainsPoint} from './water-polygon.mjs';
 import {createWaterNetwork} from './water-network.mjs';
 import {PreparationQueue} from '../planet/work-queue.mjs';
 
@@ -13,7 +13,7 @@ export function createEstimatedBathymetry({areas,lines=[],support,landClear,clea
  }
  const metrics={source:'estimated',confidence:'low',version:3,accesses:0,rejected:0,rejectionReasons:{},rejectionExamples:[],renderedBed:false,water:'opaque source surface; analytic reflection',realDepthClaim:false,preparing:true,prepareMs:0,maxSliceMs:0,firstAccessMs:null,samples:0,cacheHits:0};const started=performance.now();
  const bounds=new Map(areas.map(a=>[a,{minX:Math.min(...a.rings[0].map(p=>p.x)),maxX:Math.max(...a.rings[0].map(p=>p.x)),minZ:Math.min(...a.rings[0].map(p=>p.z)),maxZ:Math.max(...a.rings[0].map(p=>p.z))}]));
- const wet=(x,z)=>areas.some(a=>x>=bounds.get(a).minX&&x<=bounds.get(a).maxX&&z>=bounds.get(a).minZ&&z<=bounds.get(a).maxZ&&circleHitsPolygon(x,z,a.rings[0],0)&&!a.rings.slice(1).some(r=>circleHitsPolygon(x,z,r,0)));
+ const wet=(x,z)=>areas.some(a=>x>=bounds.get(a).minX&&x<=bounds.get(a).maxX&&z>=bounds.get(a).minZ&&z<=bounds.get(a).maxZ&&waterContainsPoint(x,z,a.rings[0])&&!a.rings.slice(1).some(r=>waterContainsPoint(x,z,r)));
  const cells=new Map(),cellSize=32;
  for(const seg of segments)for(let z=Math.floor(Math.min(seg.a.z,seg.b.z)/cellSize);z<=Math.floor(Math.max(seg.a.z,seg.b.z)/cellSize);z++)for(let x=Math.floor(Math.min(seg.a.x,seg.b.x)/cellSize);x<=Math.floor(Math.max(seg.a.x,seg.b.x)/cellSize);x++){const k=x+','+z;if(!cells.has(k))cells.set(k,[]);cells.get(k).push(seg);}
  function shore(x,z,maximum=Infinity){let best=null,d2=Infinity;const cx=Math.floor(x/cellSize),cz=Math.floor(z/cellSize),seen=new Set();
