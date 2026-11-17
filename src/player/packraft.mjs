@@ -1,4 +1,4 @@
-import {paddlePose} from './paddle-motion.mjs';
+import {paddlePose,fitPaddleToWater} from './paddle-motion.mjs';
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 const smooth=t=>t*t*(3-2*t),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 // Outer silhouette of the rendered elliptical tube: centreline .51/.94 m
@@ -67,7 +67,12 @@ export class PackraftController{
    else{const target=Math.atan2(q.x-p.x,q.z-p.z),error=Math.atan2(Math.sin(target-this.heading),Math.cos(target-this.heading));turn=clamp(error*2,-1,1);forward=Math.abs(error)<.85?.75:0;}
   }else this.recoveryRoute=null;
   this.wasRecovering=this.recovery;
-  const effort=Math.min(1,Math.hypot(forward,turn));this.stroke+=dt*(effort>.01?3.8:0);const pose=paddlePose(this.stroke,this.paddleState),c=Math.cos(this.heading),sn=Math.sin(this.heading),bladeX=p.x+c*pose.tipX+sn*pose.tipZ,bladeZ=p.z-sn*pose.tipX+c*pose.tipZ,bladeWater=provider.sample(bladeX,bladeZ),centerWater=provider.sample(p.x,p.z),bladeY=(centerWater?.surfaceY??this.position.y)+pose.tipY;
+  const effort=Math.min(1,Math.hypot(forward,turn));this.stroke+=dt*(effort>.01?3.8:0);const pose=paddlePose(this.stroke,this.paddleState),c=Math.cos(this.heading),sn=Math.sin(this.heading),centerWater=provider.sample(p.x,p.z);
+  let bladeX=p.x+c*pose.tipX+sn*pose.tipZ,bladeZ=p.z-sn*pose.tipX+c*pose.tipZ,bladeWater=provider.sample(bladeX,bladeZ);
+  // Two bounded evaluations account for the shaft's changed horizontal tip.
+  // The water geometry and the user's input remain untouched.
+  if(centerWater?.reliable&&bladeWater?.reliable&&Math.abs(bladeWater.surfaceY-centerWater.surfaceY)>.01)for(let i=0;i<2;i++){fitPaddleToWater(pose,bladeWater.surfaceY-centerWater.surfaceY);bladeX=p.x+c*pose.tipX+sn*pose.tipZ;bladeZ=p.z-sn*pose.tipX+c*pose.tipZ;bladeWater=provider.sample(bladeX,bladeZ);if(!bladeWater?.reliable)break;}
+  const bladeY=(centerWater?.surfaceY??this.position.y)+pose.tipY;
   const catchWater=bladeWater?.reliable?clamp((bladeWater.surfaceY-bladeY)/.08,0,1):0,thrust=forward*catchWater*2.4;this.paddleState.waterContact=catchWater;this.paddleState.thrust=thrust;
   this.speed=(this.speed+thrust*dt)*Math.exp(-dt*(forward<0?1.6:.52));this.speed=clamp(this.speed,-.65,1.8);
   this.yawRate+=(turn*catchWater*1.3-this.yawRate)*(1-Math.exp(-dt*3));const heading=this.heading+this.yawRate*dt;
